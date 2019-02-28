@@ -1,0 +1,43 @@
+execute pathogen#infect()
+call pathogen#helptags()
+syntax on                           " Turn on syntax highlighting
+filetype plugin indent on
+let mapleader=","
+colorscheme jellybeans
+
+set mouse=a                         " Let's click around!!!
+set colorcolumn=120
+set nopaste
+set number                          " Show line numbers
+set relativenumber                  " Use relative numbers
+set autoread                        " Don't bother me when a file changes externally
+set swapfile                        " Don't store temp files in cwd
+set dir=/tmp
+set encoding=utf8                   " Use UTF-8 by default
+set incsearch                       " Search as you type
+set hlsearch                        " Highlight search matches
+set ruler                           " Show row/col and percentage
+set ignorecase                      " Ignore case in a pattern
+set smartcase                       " If ignorecase is on & search pattern has uppercase letters, it becomes case sensitive
+set showmatch                       " Show matching parens and braces
+set autoindent                      " Copy indent from previous line
+set nocp                            " Don't make Vim try to emulate Vi
+set tabstop=2                       " Show existing tab with 4 spaces width
+set shiftwidth=2                    " When indenting with '>', use 4 spaces width
+set expandtab                       " On pressing tab, insert 4 spaces
+set backspace=indent,eol,start      " Allow backspace beyond insertion point
+set clipboard=unnamedplus           " Allow integration with system Clipboard
+set wildmenu                        " Visual autocomplete for command menu
+set wildignore=*.class,*~,.git,node_modules,*.pyc,*.zip,*.swp,plugins,platforms "Ignore certain files in tab completion
+set hidden                          " Allows switch to another buffer with unsaved changes
+set foldmethod=indent               " Enable folding
+set foldlevel=99
+autocmd filetype crontab setlocal nobackup nowritebackup
+" Key re-mapping
+source ~/.vim/config/vimkeybindings.vim
+" You Complete Me configuration
+source ~/.vim/config/vimycm.vim
+" Ultisnips configuration
+source ~/.vim/config/ultisnips.vim
+
+" Language specific config in .vim/after/language.vim
