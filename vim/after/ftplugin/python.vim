@@ -11,6 +11,5 @@ au BufNewFile,BufRead *.py
     \ set autoindent |
     \ set fileformat=unix
 
-" Flag extraneous white space
-" au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
+" Run python files from within Vim
+autocmd BufWinEnter *.py nnoremap <leader>r :w<CR>:!python3 %:p<CR>
