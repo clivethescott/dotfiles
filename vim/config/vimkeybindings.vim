@@ -11,10 +11,6 @@ nnoremap Q :qall<CR>
 nnoremap <leader>y "+y
 nnoremap <leader>p "+p
 
-
-" Enable folding with the space bar
-nnoremap <space> za
-
 noremap <leader>l :Autoformat<CR>
 
 " Split lines
