@@ -1,0 +1,9 @@
+ctrlp.vim
+dart-vim-plugin
+gruvbox
+plugins.txt
+ultisnips
+undotree
+vim-snippets
+vim-solarized8
+YouCompleteMe

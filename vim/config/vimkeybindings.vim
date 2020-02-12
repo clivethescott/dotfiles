@@ -1,17 +1,11 @@
 " Switch to alternative buffer
-nnoremap <bs> :b#<CR>
+nnoremap <tab> :b#<CR>
 
 " Quit all buffers
 nnoremap Q :qall<CR>
 
 " Use shift U for re-do
-nnoremap <S-U> <C-R>
-
-" Split window mappings
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <S-U> <C-R>
 
 " Clipboard shortcuts
 nnoremap <leader>y "+y
@@ -25,3 +19,30 @@ noremap <leader>l :Autoformat<CR>
 
 " Split lines
 nnoremap K i<CR><Esc>
+
+" Undo tree
+nnoremap <leader>g :UndotreeToggle<cr>
+
+" Turn of highlighted search results
+nnoremap <esc><esc> :silent! nohls<cr>
+
+" Send to the black hole of death
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+
+" We shouldn't be using these anyway
+nnoremap <left> <nop>
+inoremap <left> <nop>
+vnoremap <left> <nop>
+
+nnoremap <right> <nop>
+inoremap <right> <nop>
+vnoremap <right> <nop>
+
+nnoremap <down> <nop>
+inoremap <down> <nop>
+vnoremap <down> <nop>
+
+nnoremap <up> <nop>
+inoremap <up> <nop>
+vnoremap <up> <nop>

@@ -12,4 +12,4 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
 
 " Run python files from within Vim
-autocmd BufWinEnter *.py nnoremap <leader>r :w<CR>:!python3 %:p<CR>
+autocmd BufWinEnter *.py nnoremap <leader>r :w<CR>:!py %:p<CR>

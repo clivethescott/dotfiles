@@ -3,16 +3,18 @@ call pathogen#helptags()
 syntax on                           " Turn on syntax highlighting
 filetype plugin indent on
 let mapleader=","
-colorscheme jellybeans
+" colorscheme jellybeans
+colorscheme gruvbox
+set background=dark
+" colorscheme solarized8
 
-set mouse=a                         " Let's click around!!!
+set timeout timeoutlen=3000 ttimeoutlen=100
 set colorcolumn=120
 set nopaste
 set number                          " Show line numbers
 set relativenumber                  " Use relative numbers
 set autoread                        " Don't bother me when a file changes externally
 set swapfile                        " Don't store temp files in cwd
-set dir=/tmp
 set encoding=utf8                   " Use UTF-8 by default
 set incsearch                       " Search as you type
 set hlsearch                        " Highlight search matches
@@ -26,7 +28,7 @@ set tabstop=2                       " Show existing tab with 4 spaces width
 set shiftwidth=2                    " When indenting with '>', use 4 spaces width
 set expandtab                       " On pressing tab, insert 4 spaces
 set backspace=indent,eol,start      " Allow backspace beyond insertion point
-set clipboard=unnamedplus           " Allow integration with system Clipboard
+" set clipboard=unnamedplus           " Allow integration with system Clipboard
 set wildmenu                        " Visual autocomplete for command menu
 set wildignore=*.class,*~,.git,node_modules,*.pyc,*.zip,*.swp,plugins,platforms "Ignore certain files in tab completion
 set hidden                          " Allows switch to another buffer with unsaved changes
@@ -39,5 +41,9 @@ source ~/.vim/config/vimkeybindings.vim
 source ~/.vim/config/vimycm.vim
 " Ultisnips configuration
 source ~/.vim/config/ultisnips.vim
+" Undotree configuration
+source ~/.vim/config/undotree.vim
+" Ctrlp configuration
+source ~/.vim/config/ctrlp.vim
 
 " Language specific config in .vim/after/language.vim
