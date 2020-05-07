@@ -1,77 +1,55 @@
 syntax on
 
-set nocompatible
 set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-set smartindent
+set tabstop=4 softtabstop=4 shiftwidth=4
+set expandtab smartindent
 set number relativenumber
 set nowrap
-set smartcase
-set noswapfile
-set nobackup
-set undodir=~/.vim/undodir
-set undofile
-set incsearch
-set hlsearch                        " Highlight search matches
-set ignorecase                      " Ignore case in a pattern
+set smartcase ignorecase                      
+set showmatch
+set nobackup nowritebackup noswapfile hidden
+set undofile undodir=~/.vim/undodir
+set incsearch hlsearch
 set encoding=utf-8
-set hidden
 set wildmenu                        " Visual autocomplete for command menu
 set splitbelow splitright           " Expected split behaviour
-
-" Give more space for displaying messages.
-" set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=50
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+" Shorter delays and better user experience.
+set updatetime=300
 set colorcolumn=80
 "Ignore certain files in tab completion
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.jar,*/node_modules/*,*/target/*,*/.git/*,*.class,*.pyc
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.jar,*/node_modules/*,*/target/*
+set wildignore+=*/.git/*,*.class,*.pyc,*/plugged/*,*/undodir/*
 filetype off
-
 
 call plug#begin('~/.vim/plugged')
 
 " Essentials
 Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug '~/.fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-" Git
-" Plug 'tpope/vim-fugitive'
 " Completion
-Plug 'ycm-core/YouCompleteMe'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" Python
-Plug 'python-mode/python-mode', { 'for': 'python' }
-Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 " Dart
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
-" JS
-Plug 'yuezk/vim-js', { 'for': 'javascript' }
-Plug 'leafoftree/vim-vue-plugin', { 'for': ['javascript', 'html', 'vue'] }
 
 call plug#end()
 
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-" filetype plugin on
 
 colorscheme gruvbox
 set background=dark
-let mapleader=" "
+let mapleader=","
 
-" Window movement
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <leader>1 :e $MYVIMRC<CR>
 
 " Make adjusing split sizes a bit more friendly
 nnoremap <silent> <C-Left> :vertical resize +3<CR>
@@ -83,10 +61,7 @@ nnoremap <silent> <C-Down> :resize -3<CR>
 nnoremap <silent> <tab> :b#<CR>
 nnoremap Q :qall<CR>
 nnoremap <C-S> <esc>:w<CR>
-nnoremap <silent> <leader>y "+y
-nnoremap <silent> <leader>Y "+yy
-nnoremap <silent> <leader>p "+p
-" Turn of highlighted search results
+" Turn off highlighted search results
 nnoremap <silent> <esc><esc> :silent! nohls<cr>
 " We shouldn't be using these anyway
 nnoremap <left> <nop>
@@ -97,58 +72,52 @@ nnoremap <down> <nop>
 vnoremap <down> <nop>
 nnoremap <up> <nop>
 vnoremap <up> <nop>
-
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let g:ctrlp_use_caching = 1
+" Match braces
+inoremap { {<CR>}<Esc>ko
 
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_collect_identifiers_from_tags_files = 1 " read from Ctags
-map <leader>b  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+set grepprg=rg\ --vimgrep
+nmap <c-p> :Files<CR> 
+nmap <c-e> :Buffers<CR> 
+" Git status
+nmap <silent> gs :GFiles?<CR>
+nmap <silent> gf :GFiles<CR>
+nmap <silent> us :Snippets<CR>
 
-let g:python_highlight_all = 1
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+" Coc tab completion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-let g:UltiSnipsExpandTrigger = '<c-g>'
-let g:UltiSnipsJumpForwardTrigger = '<c-s-l>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-s-k>'
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" Symbol renaming.
+nmap <leader>r <Plug>(coc-rename)
+nmap <leader>.  <Plug>(coc-codeaction)
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-p> coc#refresh()
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-fun! GoYCM()
-    nnoremap <buffer> <silent> <leader>gt :YcmCompleter GoTo<CR>
-    nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
-    nnoremap <buffer> <silent> <leader>rr :YcmCompleter RefactorRename<space>
-endfun
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
-
-fun! GoCoc()
-    " Use tab for trigger completion with characters ahead and navigate.
-    inoremap <buffer> <silent><expr> <TAB>
-                \ pumvisible() ? "\<C-n>" :
-                \ <SID>check_back_space() ? "\<TAB>" :
-                \ coc#refresh()
-
-    " GoTo code navigation.
-    nmap <buffer> <leader>gd <Plug>(coc-definition)
-    nmap <buffer> <leader>gi <Plug>(coc-implementation)
-	nmap <leader>rr <Plug>(coc-rename)
-	
-	" Formatting selected code.
-    "nmap <leader>l  <Plug>(coc-format-selected)
-	
-    " Use K to show documentation in preview window.
-    nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-	function! s:show_documentation()
-		if (index(['vim','help'], &filetype) >= 0)
-			execute 'h '.expand('<cword>')
-		else
-			call CocAction('doHover')
-		endif
-    endfunction
-endfun
-
-
-" autocmd FileType typescript :call GoYCM()
-" autocmd FileType cpp,cxx,h,hpp,c,json,dart :call GoCoc()
+let g:UltiSnipsExpandTrigger="<c-g>"
