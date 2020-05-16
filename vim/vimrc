@@ -19,11 +19,11 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 " Shorter delays and better user experience.
-set updatetime=300
+set updatetime=100
 set colorcolumn=80
 "Ignore certain files in tab completion
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.jar,*/node_modules/*,*/target/*
-set wildignore+=*/.git/*,*.class,*.pyc,*/plugged/*,*/undodir/*
+set wildignore+=*/.git/*,*.class,*.pyc,*/plugged/*,*/undodir/*,*.png,*.dex
 filetype off
 
 call plug#begin('~/.vim/plugged')
@@ -72,6 +72,10 @@ nnoremap <down> <nop>
 vnoremap <down> <nop>
 nnoremap <up> <nop>
 vnoremap <up> <nop>
+
+" Keep indent/outdent after first indent/outdent
+vnoremap < <gv
+vnoremap > >gv
 " Match braces
 inoremap { {<CR>}<Esc>ko
 
@@ -80,12 +84,12 @@ let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
 set grepprg=rg\ --vimgrep
-nmap <c-p> :Files<CR> 
-nmap <c-e> :Buffers<CR> 
+nnoremap <c-p> :Files<CR> 
+nnoremap <c-e> :Buffers<CR> 
 " Git status
-nmap <silent> gs :GFiles?<CR>
-nmap <silent> gf :GFiles<CR>
-nmap <silent> us :Snippets<CR>
+nnoremap <silent> gs :GFiles?<CR>
+nnoremap <silent> gf :GFiles<CR>
+nnoremap <leader>s :Snippets<CR>
 
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Coc tab completion
@@ -99,14 +103,14 @@ function! s:check_back_space() abort
 endfunction
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gr <Plug>(coc-references)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+nnoremap <leader>f  <Plug>(coc-format-selected)
 " Symbol renaming.
-nmap <leader>r <Plug>(coc-rename)
-nmap <leader>.  <Plug>(coc-codeaction)
+nnoremap <leader>r <Plug>(coc-rename)
+nnoremap <leader>.  <Plug>(coc-codeaction)
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-p> coc#refresh()
 " Use K to show documentation in preview window.
@@ -120,4 +124,14 @@ function! s:show_documentation()
   endif
 endfunction
 
-let g:UltiSnipsExpandTrigger="<c-g>"
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+let g:UltiSnipsExpandTrigger="<c-y>"
