@@ -1,3 +1,4 @@
+nnoremap <leader>s :CocCommand snippets.editSnippets<CR>
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Coc tab completion
 inoremap <silent><expr> <TAB>
