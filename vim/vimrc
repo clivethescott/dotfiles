@@ -92,3 +92,7 @@ let g:UltiSnipsExpandTrigger="<c-y>"
 nnoremap <silent> gs :GFiles?<CR>
 
 source ~/.config/nvim/mycocsettings.vim
+augroup auto-source
+    autocmd!
+    autocmd BufWritePost vimrc source ~/.config/nvim/init.vim
+augroup END
