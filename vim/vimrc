@@ -90,6 +90,5 @@ nnoremap <c-e> :Buffers<CR>
 let g:UltiSnipsExpandTrigger="<c-y>"
 " Git status
 nnoremap <silent> gs :GFiles?<CR>
-nnoremap <silent> gf :GFiles<CR>
 
 source ~/.config/nvim/mycocsettings.vim
