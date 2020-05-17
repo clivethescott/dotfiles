@@ -50,6 +50,7 @@ let mapleader=","
 
 nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>1 :e $MYVIMRC<CR>
+nnoremap <leader>2 :e ~/.config/nvim/mycocsettings.vim<CR>
 
 " Make adjusing split sizes a bit more friendly
 nnoremap <silent> <C-Left> :vertical resize +3<CR>
