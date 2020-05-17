@@ -1,5 +1,5 @@
 nnoremap <leader>s :CocCommand snippets.editSnippets<CR>
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+inoremap <C-j> <Plug>(coc-snippets-expand-jump)
 " Coc tab completion
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -19,8 +19,6 @@ nmap <silent> <leader>f  <Plug>(coc-format-selected)
 " Symbol renaming.
 nmap <leader>r <Plug>(coc-rename)
 nmap <leader>.  <Plug>(coc-codeaction)
-" Use <c-space> to trigger completion.
-imap <silent><expr> <c-p> coc#refresh()
 " Use K to show documentation in preview window.
 nmap <silent> K :call <SID>show_documentation()<CR>
 
@@ -37,7 +35,7 @@ endfunction
 " position. Coc only does snippet and additional edit on confirm.
 " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
 if exists('*complete_info')
-  imap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
