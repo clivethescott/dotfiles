@@ -35,10 +35,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Dart
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 call plug#end()
 
@@ -91,8 +92,8 @@ let g:UltiSnipsExpandTrigger="<c-y>"
 " Git status
 nnoremap <silent> gs :GFiles?<CR>
 
-source ~/.config/nvim/mycocsettings.vim
 augroup auto-source
     autocmd!
     autocmd BufWritePost vimrc source ~/.config/nvim/init.vim
 augroup END
+source ~/.config/nvim/mycocsettings.vim
