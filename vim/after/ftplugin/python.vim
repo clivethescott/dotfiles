@@ -1,15 +1,9 @@
-" Make code look pretty
-let python_highlight_all=1
-
-" PEP 8 guidelines
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix
-
-" Run python files from within Vim
-autocmd BufWinEnter *.py nnoremap <leader>r :w<CR>:!py %:p<CR>
+au FileType python BufNewFile,BufRead
+    \ match BadWhitespace /\s\+$/
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal textwidth=79
+setlocal autoindent
+setlocal fileformat=unix
+let b:ctrlp_user_command = 'rg %s --files --type python'

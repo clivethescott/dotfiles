@@ -106,8 +106,8 @@ endfunction
 nnoremap <silent> gd <Plug>(coc-definition)
 nnoremap <silent> gr <Plug>(coc-references)
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nnoremap <leader>f  <Plug>(coc-format-selected)
+xmap <silent> <leader>f  <Plug>(coc-format-selected)
+nnoremap <silent> <leader>f  <Plug>(coc-format-selected)
 " Symbol renaming.
 nnoremap <leader>r <Plug>(coc-rename)
 nnoremap <leader>.  <Plug>(coc-codeaction)
