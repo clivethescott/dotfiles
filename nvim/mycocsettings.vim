@@ -27,15 +27,49 @@ endif
 
 nnoremap <leader>s :CocCommand snippets.editSnippets<CR>
 inoremap <C-j> <Plug>(coc-snippets-expand-jump)
+imap <C-y> <Plug>(coc-snippets-expand)
 
 " GoTo code navigation.
-nmap gd <Plug>(coc-definition)
-nmap gr <Plug>(coc-references)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> g] <Plug>(coc-diagnostic-prev)
+nmap <silent> g[ <Plug>(coc-diagnostic-next)
 " Formatting selected code.
-xmap <silent> <leader>f  <Plug>(coc-format-selected)
-nmap <silent> <leader>f  <Plug>(coc-format-selected)
+vmap <silent> <leader>f <Plug>(coc-format-selected)
+nmap <silent> <leader>f :call CocAction('format')<CR>
 " Symbol renaming.
 nmap <leader>r <Plug>(coc-rename)
-nmap <leader>.  <Plug>(coc-codeaction)
+xmap <leader>. <Plug>(coc-codeaction-selected)
+nmap <leader>. <Plug>(coc-codeaction)
+nmap <leader>qf  <Plug>(coc-fix-current)
 " Use K to show documentation in preview window.
 nmap <silent> K :call <SID>show_documentation()<CR>
+let g:coc_global_extensions = [
+  \ 'coc-prettier',
+  \ 'coc-python',
+  \ 'coc-snippets',
+  \ 'coc-html',
+  \ 'coc-css',
+  \ 'coc-vimlsp'
+  \ ]
+
+nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
+
+if filereadable('./pubspec.yaml')
+    let g:coc_global_extensions += ['coc-flutter']
+endif
+" Javascript
+if isdirectory('./node_modules') 
+    if isdirectory('./node_modules/eslint')
+        let g:coc_global_extensions += ['coc-eslint']
+    endif
+
+    if filereadable('./tslint.json')
+        let g:coc_global_extensions += [
+                    \ 'coc-tsserver',
+                    \ 'coc-tslint-plugin',
+                    \ 'coc-angular'
+                    \ ]
+    endif
+endif

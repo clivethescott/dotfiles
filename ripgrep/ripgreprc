@@ -1,0 +1,20 @@
+# Don't let ripgrep vomit really long lines to my terminal, and show a preview.
+--max-columns=150
+--max-columns-preview
+
+# Add Flutter type.
+--type-add
+flutter:*.{dart,yaml,java,gradle}*
+
+# Add Angular type.
+--type-add
+angular:*.{ts,html,css,json,js}*
+
+
+# Because who cares about case!?
+--smart-case
+
+--glob=!.m2/* 
+--glob=!*.class
+--glob=!*.jar
+
