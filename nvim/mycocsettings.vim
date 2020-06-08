@@ -26,8 +26,10 @@ else
 endif
 
 nnoremap <leader>s :CocCommand snippets.editSnippets<CR>
-inoremap <C-j> <Plug>(coc-snippets-expand-jump)
 imap <C-y> <Plug>(coc-snippets-expand)
+" Jump between placeholders
+let g:coc_snippet_prev = '<c-s-l>'
+let g:coc_snippet_next = '<c-s-k>'
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -38,11 +40,12 @@ nmap <silent> g[ <Plug>(coc-diagnostic-next)
 " Formatting selected code.
 vmap <silent> <leader>f <Plug>(coc-format-selected)
 nmap <silent> <leader>f :call CocAction('format')<CR>
+nmap <silent> <space>p :call CocActionAsync('showSignatureHelp')<CR>
 " Symbol renaming.
 nmap <leader>r <Plug>(coc-rename)
 xmap <leader>. <Plug>(coc-codeaction-selected)
 nmap <leader>. <Plug>(coc-codeaction)
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap qf  <Plug>(coc-fix-current)
 " Use K to show documentation in preview window.
 nmap <silent> K :call <SID>show_documentation()<CR>
 let g:coc_global_extensions = [
@@ -51,7 +54,8 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-html',
   \ 'coc-css',
-  \ 'coc-vimlsp'
+  \ 'coc-vimlsp',
+  \ 'coc-java'
   \ ]
 
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>

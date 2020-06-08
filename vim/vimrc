@@ -1,5 +1,6 @@
 syntax on
 
+set cursorline
 set noerrorbells
 set tabstop=4 softtabstop=4 shiftwidth=4
 set expandtab smartindent
@@ -29,7 +30,7 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 " Essentials
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
@@ -39,7 +40,12 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Dart
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
-" Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript', 'typescript'] }
+" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'majutsushi/tagbar'
+" My plugins
+Plug '~/VimScriptProjects/Plugins/date-set'
+Plug '~/VimScriptProjects/Plugins/restore-cursor'
 
 call plug#end()
 
@@ -49,10 +55,16 @@ colorscheme gruvbox
 set background=dark
 let mapleader=","
 
-nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <silent> <leader>u :UndotreeToggle<CR>
+nnoremap <silent> <leader>t :TagbarToggle<CR>
 nnoremap <leader>1 :e $MYVIMRC<CR>
 nnoremap <leader>2 :e ~/.config/nvim/mycocsettings.vim<CR>
 
+" Splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 " Make adjusing split sizes a bit more friendly
 nnoremap <silent> <C-Left> :vertical resize +3<CR>
 nnoremap <silent> <C-Right> :vertical resize -3<CR>
@@ -63,8 +75,6 @@ nnoremap <silent> <C-Down> :resize -3<CR>
 nnoremap <silent> <tab> :b#<CR>
 nnoremap Q :qall<CR>
 nnoremap <C-S> <esc>:w<CR>
-" Turn off highlighted search results
-nnoremap <silent> <esc><esc> :silent! nohls<cr>
 " We shouldn't be using these anyway
 nnoremap <left> <nop>
 vnoremap <left> <nop>
@@ -79,6 +89,7 @@ vnoremap <up> <nop>
 vnoremap < <gv
 vnoremap > >gv
 
+" Enter will open in vertical split
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
@@ -90,9 +101,13 @@ let g:UltiSnipsExpandTrigger="<c-y>"
 " Git status
 nnoremap <silent> gs :GFiles?<CR>
 
-source ~/VimScriptProjects/date_set.vim
-
-augroup set-date-modified
+augroup myfunctions
     autocmd!
     autocmd BufWritePost *.vim call UpdateDateModified()
+    autocmd BufReadPost * call RestoreCursorPosition()
+augroup END
+augroup myoptions
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END

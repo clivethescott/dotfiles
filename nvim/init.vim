@@ -4,6 +4,9 @@ let &packpath = &runtimepath
 source ~/.vim/vimrc
 source ~/.config/nvim/mycocsettings.vim
 
+" Turn off highlighted search results
+nnoremap <silent><leader>m :silent! nohls<cr>
+
 augroup auto-source
     autocmd!
     autocmd BufWritePost vimrc source ~/.config/nvim/init.vim

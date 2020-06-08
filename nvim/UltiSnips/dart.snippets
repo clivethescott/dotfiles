@@ -1,0 +1,47 @@
+snippet medq "Use MediaQuery size"
+MediaQuery.of(context).size.$1
+endsnippet
+
+snippet stlss "Create a stateless widget" b
+class $1 extends StatelessWidget {
+	@override
+	Widget build(BuildContext context) {
+		return $2;
+	}
+}
+endsnippet
+
+snippet meth "Create a public method" b
+/// created by `echo $USER`
+$1($2) {
+}
+endsnippet
+
+snippet stful "Create a stateful widget" b
+class _$1State extends State<$1> {
+	@override
+	Widget build(BuildContext context) {
+		return new $2;
+	}
+}
+
+class $1 extends StatefulWidget {
+	@override
+	_$1State createState() => _$1State();
+
+}
+endsnippet
+
+global !p
+def complete_mixins(t, opts):
+	if t:
+		opts = [m[len(t):] for m in opts if m.startswith(t)]
+	if len(opts) == 1:
+		return opts[0]
+	return '(' + '|'.join(opts) + ')'
+endglobal
+
+snippet 'with' "Add a mixin"
+with $1`!p snip.rv=complete_mixins(t[1], ['SingleTickerProviderStateMixin', 'TickerProviderStateMixin'])`
+endsnippet
+	

@@ -1,0 +1,11 @@
+{
+    "coc.preferences.formatOnSaveFiletypes": [
+        "dart",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "eslint.autoFixOnSave": true,
+    "prettier.disableSuccessMessage": true
+}
