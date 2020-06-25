@@ -1,0 +1,19 @@
+[user]
+	email = clivethescott@gmail.com
+	name = Clive Gurure
+[core]
+	autocrlf = input
+	excludesfile = /home/clive/.gitignore_global
+[pager]
+	branch = false
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+	tool = meld

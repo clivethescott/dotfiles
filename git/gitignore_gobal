@@ -1,0 +1,10 @@
+*.flutter-plugins-dependencies
+.git/
+/undodir/
+/node_modules/
+/target/
+*.class
+*.pyc
+*.settings
+*.classpath
+

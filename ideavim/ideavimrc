@@ -18,6 +18,13 @@ inoremap <S-Left> <C-O>:action EditorLeftWithSelection<CR>
 inoremap <S-Right> <C-O>:action EditorRightWithSelection<CR>
 inoremap <S-Up> <C-O>:action EditorUpWithSelection<CR>
 inoremap <S-Down> <C-O>:action EditorDownWithSelection<CR>
+" Splits
+nmap <leader>v :action SplitVertically<CR>
+nmap <leader>s :action SplitHorizontally<CR>
+nmap gh :action PrevSplitter<CR>
+nmap gl :action NextSplitter<CR>
+nmap gc :action Unsplit<CR>
 " Disable that annoying bell sound
 set visualbell
 set noerrorbells
+set clipboard+=ideaput

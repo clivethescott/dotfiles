@@ -10,6 +10,13 @@ flutter:*.{dart,yaml,java,gradle}*
 --type-add
 angular:*.{ts,html,css,json,js}*
 
+# Add properties type
+--type-add
+properties:*.{properties,yml,yaml,conf}
+
+# Add graphql type
+--type-add
+graphql:*.{graphqls}
 
 # Because who cares about case!?
 --smart-case

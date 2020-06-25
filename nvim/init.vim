@@ -3,16 +3,20 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vim/vimrc
 source ~/.config/nvim/mycocsettings.vim
-
-" Turn off highlighted search results
-nnoremap <silent><leader>m :silent! nohls<cr>
-
-augroup auto-source
-    autocmd!
-    autocmd BufWritePost vimrc source ~/.config/nvim/init.vim
-augroup END
+source ~/.config/nvim/ctags.vim
 
 " Make Nvim play nice with virtual environments
 let g:python3_host_prog='/usr/bin/python3'
 " Disable NVim's Python 2
 let g:loaded_python_provider = 0
+
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }

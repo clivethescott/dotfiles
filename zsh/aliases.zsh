@@ -1,3 +1,5 @@
+alias macroip="docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' paas-switch"
+alias macro="docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' paas-switch | yank"
 alias dcu='docker-compose up -d'
 alias dcd='docker-compose down'
 alias devtools='flutter pub global run devtools'

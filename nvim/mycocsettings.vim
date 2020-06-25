@@ -50,12 +50,13 @@ nmap qf  <Plug>(coc-fix-current)
 nmap <silent> K :call <SID>show_documentation()<CR>
 let g:coc_global_extensions = [
   \ 'coc-prettier',
-  \ 'coc-python',
   \ 'coc-snippets',
   \ 'coc-html',
   \ 'coc-css',
   \ 'coc-vimlsp',
-  \ 'coc-java'
+  \ 'coc-yank',
+  \ 'coc-vetur',
+  \ 'coc-go',
   \ ]
 
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
@@ -73,7 +74,6 @@ if isdirectory('./node_modules')
         let g:coc_global_extensions += [
                     \ 'coc-tsserver',
                     \ 'coc-tslint-plugin',
-                    \ 'coc-angular'
                     \ ]
     endif
 endif

@@ -1,5 +1,6 @@
 syntax on
 
+set clipboard=unnamedplus
 set cursorline
 set noerrorbells
 set tabstop=4 softtabstop=4 shiftwidth=4
@@ -25,6 +26,8 @@ set colorcolumn=80
 "Ignore certain files in tab completion
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.jar,*/node_modules/*,*/target/*
 set wildignore+=*/.git/*,*.class,*.pyc,*/plugged/*,*/undodir/*,*.png,*.dex
+" Don't show that we are now in Insert mode
+set noshowmode
 filetype off
 
 call plug#begin('~/.vim/plugged')
@@ -40,9 +43,10 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Dart
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
-" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'majutsushi/tagbar'
+Plug 'jvanja/vim-bootstrap4-snippets'
+Plug 'itchyny/vim-gitbranch'
+Plug 'itchyny/lightline.vim'
 " My plugins
 Plug '~/VimScriptProjects/Plugins/date-set'
 Plug '~/VimScriptProjects/Plugins/restore-cursor'
@@ -55,10 +59,12 @@ colorscheme gruvbox
 set background=dark
 let mapleader=","
 
+nnoremap <silent><leader>m :silent! nohls<cr>
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 nnoremap <silent> <leader>t :TagbarToggle<CR>
 nnoremap <leader>1 :e $MYVIMRC<CR>
 nnoremap <leader>2 :e ~/.config/nvim/mycocsettings.vim<CR>
+nnoremap <leader>3 :e ~/.config/nvim/init.vim<CR>
 
 " Splits
 nnoremap <C-J> <C-W><C-J>
@@ -66,10 +72,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " Make adjusing split sizes a bit more friendly
-nnoremap <silent> <C-Left> :vertical resize +3<CR>
-nnoremap <silent> <C-Right> :vertical resize -3<CR>
-nnoremap <silent> <C-Up> :resize +3<CR>
-nnoremap <silent> <C-Down> :resize -3<CR>
+nnoremap <silent> <space>h :vertical resize +3<CR>
+nnoremap <silent> <space>l :vertical resize -3<CR>
+nnoremap <silent> <space>k :resize +3<CR>
+nnoremap <silent> <space>j :resize -3<CR>
 
 " Switch to alternative buffer
 nnoremap <silent> <tab> :b#<CR>
@@ -110,4 +116,5 @@ augroup myoptions
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  autocmd BufWritePost vimrc source ~/.config/nvim/init.vim
 augroup END
