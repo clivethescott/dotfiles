@@ -37,6 +37,8 @@ Plug 'gruvbox-community/gruvbox'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+Plug 'tomtom/tcomment_vim'
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 " Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
@@ -45,8 +47,12 @@ Plug 'honza/vim-snippets'
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 Plug 'majutsushi/tagbar'
 Plug 'jvanja/vim-bootstrap4-snippets'
+" Status Line
 Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
+" Python syntax highlighting
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python' }
+Plug 'Glench/Vim-Jinja2-Syntax'
 " My plugins
 Plug '~/VimScriptProjects/Plugins/date-set'
 Plug '~/VimScriptProjects/Plugins/restore-cursor'
@@ -62,9 +68,10 @@ let mapleader=","
 nnoremap <silent><leader>m :silent! nohls<cr>
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 nnoremap <silent> <leader>t :TagbarToggle<CR>
-nnoremap <leader>1 :e $MYVIMRC<CR>
-nnoremap <leader>2 :e ~/.config/nvim/mycocsettings.vim<CR>
-nnoremap <leader>3 :e ~/.config/nvim/init.vim<CR>
+nnoremap <silent><leader>1 :NERDTreeToggle<CR>
+nnoremap <leader>2 :e $MYVIMRC<CR>
+nnoremap <leader>3 :e ~/.config/nvim/mycocsettings.vim<CR>
+nnoremap <leader>4 :e ~/.config/nvim/init.vim<CR>
 
 " Splits
 nnoremap <C-J> <C-W><C-J>
