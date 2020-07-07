@@ -22,7 +22,7 @@ set shortmess+=c
 set signcolumn=yes
 " Shorter delays and better user experience.
 set updatetime=100
-set colorcolumn=80
+set colorcolumn=120
 "Ignore certain files in tab completion
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.jar,*/node_modules/*,*/target/*
 set wildignore+=*/.git/*,*.class,*.pyc,*/plugged/*,*/undodir/*,*.png,*.dex

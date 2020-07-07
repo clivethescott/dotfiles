@@ -7,5 +7,6 @@
         "typescriptreact"
     ],
     "eslint.autoFixOnSave": true,
-    "prettier.disableSuccessMessage": true
+    "prettier.disableSuccessMessage": true,
+    "python.jediEnabled": false
 }
