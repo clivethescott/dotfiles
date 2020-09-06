@@ -4,11 +4,15 @@
 
 # Add Flutter type.
 --type-add
-flutter:*.{dart,yaml,java,gradle}*
+flutter:*.{dart,yaml,java,gradle}
 
 # Add Angular type.
 --type-add
-angular:*.{ts,html,css,json,js}*
+angular:*.{ts,html,css,json,js}
+
+# Add Typescript type.
+--type-add
+typescript:*.{ts}
 
 # Add properties type
 --type-add
@@ -22,6 +26,9 @@ graphql:*.{graphqls}
 --smart-case
 
 --glob=!.m2/* 
+--glob=!venv/* 
+--glob=!node_modules/* 
+--glob=!*/__pycache__/* 
 --glob=!*.class
 --glob=!*.jar
 

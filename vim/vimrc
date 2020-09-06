@@ -45,14 +45,17 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Dart
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
-Plug 'majutsushi/tagbar'
-Plug 'jvanja/vim-bootstrap4-snippets'
+" Plug 'majutsushi/tagbar'
 " Status Line
 Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
 " Python syntax highlighting
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python' }
 Plug 'Glench/Vim-Jinja2-Syntax'
+" Javascript 
+Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'jparise/vim-graphql'
 " My plugins
 Plug '~/VimScriptProjects/Plugins/date-set'
 Plug '~/VimScriptProjects/Plugins/restore-cursor'
@@ -73,11 +76,6 @@ nnoremap <leader>2 :e $MYVIMRC<CR>
 nnoremap <leader>3 :e ~/.config/nvim/mycocsettings.vim<CR>
 nnoremap <leader>4 :e ~/.config/nvim/init.vim<CR>
 
-" Splits
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 " Make adjusing split sizes a bit more friendly
 nnoremap <silent> <space>h :vertical resize +3<CR>
 nnoremap <silent> <space>l :vertical resize -3<CR>
@@ -86,8 +84,11 @@ nnoremap <silent> <space>j :resize -3<CR>
 
 " Switch to alternative buffer
 nnoremap <silent> <tab> :b#<CR>
+nnoremap <silent> <C-H> :bp<CR>
+nnoremap <silent> <C-L> :bn<CR>
 nnoremap Q :qall<CR>
 nnoremap <C-S> <esc>:w<CR>
+inoremap <C-S> <esc>:w<CR>
 " We shouldn't be using these anyway
 nnoremap <left> <nop>
 vnoremap <left> <nop>
@@ -124,4 +125,7 @@ augroup myoptions
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
   autocmd BufWritePost vimrc source ~/.config/nvim/init.vim
+  autocmd BufEnter *.{js,jsx,ts,tsx,py} :syntax sync fromstart
+  autocmd BufLeave *.{js,jsx,ts,tsx,py} :syntax sync clear
+  autocmd FileType json syntax match Comment +\/\/.\+$+
 augroup END
