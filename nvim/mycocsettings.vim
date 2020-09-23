@@ -6,6 +6,7 @@ function! s:show_documentation()
   endif
 endfunction
 
+" Used in the tab autocompletion for coc
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -25,6 +26,8 @@ else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 nnoremap <leader>s :CocCommand snippets.editSnippets<CR>
 imap <C-y> <Plug>(coc-snippets-expand)
 " Jump between placeholders
@@ -37,6 +40,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> g] <Plug>(coc-diagnostic-prev)
 nmap <silent> g[ <Plug>(coc-diagnostic-next)
+nnoremap <silent><nowait> <leader>d  :<C-u>CocList diagnostics<cr>
 " Formatting selected code.
 vmap <silent> <leader>f <Plug>(coc-format-selected)
 nmap <silent> <leader>f :call CocAction('format')<CR>
@@ -48,6 +52,8 @@ nmap <leader>. <Plug>(coc-codeaction)
 nmap qf  <Plug>(coc-fix-current)
 " Use K to show documentation in preview window.
 nmap <silent> K :call <SID>show_documentation()<CR>
+" Used to expand decorations in worksheets
+nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
 let g:coc_global_extensions = [
   \ 'coc-prettier',
   \ 'coc-snippets',
@@ -56,7 +62,10 @@ let g:coc_global_extensions = [
   \ 'coc-vimlsp',
   \ 'coc-yank',
   \ 'coc-vetur',
-  \ 'coc-go',
+  \ 'coc-python',
+  \ 'coc-metals',
+  \ 'coc-java',
+  \ 'coc-pyright',
   \ ]
 
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
@@ -68,6 +77,10 @@ endif
 if isdirectory('./node_modules') 
     if isdirectory('./node_modules/eslint')
         let g:coc_global_extensions += ['coc-eslint']
+    endif
+
+    if filereadable('./angular.json')
+        let g:coc_global_extensions += ['coc-angular']
     endif
 
     if filereadable('./tslint.json')

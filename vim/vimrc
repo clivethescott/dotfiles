@@ -51,13 +51,13 @@ Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
 " Python syntax highlighting
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python' }
-Plug 'Glench/Vim-Jinja2-Syntax'
+" Plug 'Glench/Vim-Jinja2-Syntax'
 " Javascript 
-Plug 'leafgarland/typescript-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'jparise/vim-graphql'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'pangloss/vim-javascript'
+" Plug 'jparise/vim-graphql'
 " My plugins
-Plug '~/VimScriptProjects/Plugins/date-set'
+" Plug '~/VimScriptProjects/Plugins/date-set'
 Plug '~/VimScriptProjects/Plugins/restore-cursor'
 
 call plug#end()
@@ -72,6 +72,7 @@ nnoremap <silent><leader>m :silent! nohls<cr>
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 nnoremap <silent> <leader>t :TagbarToggle<CR>
 nnoremap <silent><leader>1 :NERDTreeToggle<CR>
+nnoremap <silent><leader>! :NERDTreeFind<CR>
 nnoremap <leader>2 :e $MYVIMRC<CR>
 nnoremap <leader>3 :e ~/.config/nvim/mycocsettings.vim<CR>
 nnoremap <leader>4 :e ~/.config/nvim/init.vim<CR>
@@ -128,4 +129,13 @@ augroup myoptions
   autocmd BufEnter *.{js,jsx,ts,tsx,py} :syntax sync fromstart
   autocmd BufLeave *.{js,jsx,ts,tsx,py} :syntax sync clear
   autocmd FileType json syntax match Comment +\/\/.\+$+
+  autocmd BufRead,BufNewFile *.sbt,*.sc set filetype=scala
 augroup END
+augroup scala
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType scala setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+

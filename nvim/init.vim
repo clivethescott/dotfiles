@@ -9,6 +9,8 @@ source ~/.config/nvim/ctags.vim
 let g:python3_host_prog='/usr/bin/python3'
 " Disable NVim's Python 2
 let g:loaded_python_provider = 0
+" Open FZF window in center of screen
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',

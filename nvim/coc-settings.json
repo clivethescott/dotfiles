@@ -1,12 +1,26 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": [
-        "dart",
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact"
-    ],
-    "eslint.autoFixOnSave": true,
-    "prettier.disableSuccessMessage": true,
-    "python.jediEnabled": false
+  "coc.preferences.formatOnSaveFiletypes": [
+    "dart",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "scala"
+  ],
+  "eslint.autoFixOnSave": true,
+  "prettier.disableSuccessMessage": true,
+  "python.jediEnabled": false,
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "metals.statusBarEnabled": true,
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-1.8",
+      "path": "/home/clive/.sdkman/candidates/java/8.0.252.hs-adpt"
+    },
+    {
+      "name": "JavaSE-15",
+      "path": "/home/clive/.sdkman/candidates/java/15.0.0.hs-adpt",
+      "default": true
+    }
+  ]
 }

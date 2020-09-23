@@ -17,3 +17,6 @@
     cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
 	tool = meld
+	ff = true
+[alias]
+	uncommit = reset HEAD^

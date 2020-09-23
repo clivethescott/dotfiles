@@ -4,7 +4,7 @@
 
 # Add Flutter type.
 --type-add
-flutter:*.{dart,yaml,java,gradle}
+flutter:*.{dart,yaml}
 
 # Add Angular type.
 --type-add
