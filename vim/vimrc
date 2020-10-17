@@ -51,6 +51,8 @@ Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
 " Python syntax highlighting
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python' }
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 " Plug 'Glench/Vim-Jinja2-Syntax'
 " Javascript 
 " Plug 'leafgarland/typescript-vim'
@@ -58,7 +60,7 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python' }
 " Plug 'jparise/vim-graphql'
 " My plugins
 " Plug '~/VimScriptProjects/Plugins/date-set'
-Plug '~/VimScriptProjects/Plugins/restore-cursor'
+" Plug '~/VimScriptProjects/Plugins/restore-cursor'
 
 call plug#end()
 
@@ -116,16 +118,11 @@ let g:UltiSnipsExpandTrigger="<c-y>"
 " Git status
 nnoremap <silent> gs :GFiles?<CR>
 
-augroup myfunctions
-    autocmd!
-    autocmd BufWritePost *.vim call UpdateDateModified()
-    autocmd BufReadPost * call RestoreCursorPosition()
-augroup END
 augroup myoptions
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-  autocmd BufWritePost vimrc source ~/.config/nvim/init.vim
+  "autocmd BufWritePost vimrc source ~/.config/nvim/init.vim
   autocmd BufEnter *.{js,jsx,ts,tsx,py} :syntax sync fromstart
   autocmd BufLeave *.{js,jsx,ts,tsx,py} :syntax sync clear
   autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -139,3 +136,13 @@ augroup scala
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+nmap <leader>gp <Plug>(GitGutterPreviewHunk)
+nmap <leader>gu <Plug>(GitGutterUndoHunk)
+nmap <leader>gU <Plug>(Gread)
+
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction

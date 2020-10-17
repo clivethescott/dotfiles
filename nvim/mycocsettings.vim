@@ -66,6 +66,7 @@ let g:coc_global_extensions = [
   \ 'coc-metals',
   \ 'coc-java',
   \ 'coc-pyright',
+  \ 'coc-go',
   \ ]
 
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
