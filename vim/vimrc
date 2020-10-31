@@ -53,6 +53,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python' }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'fatih/vim-go',  { 'do': ':GoUpdateBinaries' }
+" Plug 'wellle/context.vim'
 " Plug 'Glench/Vim-Jinja2-Syntax'
 " Javascript 
 " Plug 'leafgarland/typescript-vim'

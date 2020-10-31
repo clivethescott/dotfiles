@@ -5,7 +5,8 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "scala"
+    "scala",
+    "go"
   ],
   "eslint.autoFixOnSave": true,
   "prettier.disableSuccessMessage": true,
@@ -22,5 +23,12 @@
       "path": "/home/clive/.sdkman/candidates/java/15.0.0.hs-adpt",
       "default": true
     }
-  ]
+  ],
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
+    }
+  }
 }
