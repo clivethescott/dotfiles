@@ -1,37 +1,42 @@
-snippet vw "Create an add item view"
-def add_$1(request):
-	if request.method == "POST":
-		form = $2(request.POST)
-		if form.is_valid():
-			$1_item = form.save(commit=False)
-			$1_item.save()
-	else:
-		form = $2()
-	return render(request, '$1/create_$1.html', {'form': form})
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+snippet ifpost "If Django request is a POST" b
+if request.method == 'POST':
+	form = $1Form(request.POST)
+	if form.is_valid():
+		$2
 endsnippet
 
-snippet imppath "Import path from django.urls module" b
-from django.urls import path
+snippet param "Parametrized test" b
+input_data = [
+	("foobar0", "foobar1"),
+]
+
+@pytest.mark.parametrize("data, expected", input_data)
+def test_$1(data, expected):
+	assert $2(data) == expected
 endsnippet
 
-snippet imphttp "Import HttpResponse from django.http module" b
-from django.http import HttpResponse
-endsnippet
-
-snippet path "Add a path in a URLConf" b
-path('$1', views.$2, name='$3'),
-endsnippet
-
-snippet init "Add a constructor" b
-def __init__(self, $1):
-	$2
-endsnippet
-
-snippet str "Generate a toString" b
-def __str__(self):
-	$1
-endsnippet
-
-snippet model "Generate a model class" b
-class $1(models.Model):
-endsnippet

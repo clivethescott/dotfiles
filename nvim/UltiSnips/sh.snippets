@@ -23,23 +23,6 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-snippet dispose "State dispose method" b
-@override
-void dispose() {
-super.dispose();
-$1
-}
+snippet shebang "She bang" b
+#!/usr/bin/env sh
 endsnippet
-
-snippet initState "State init method" b
-@override
-void initState() {
-super.initState();
-$1
-}
-endsnippet
-
-snippet route "Material page route" b
-Navigator.push(context, MaterialPageRoute(builder: (context) => $1()));
-endsnippet
-
