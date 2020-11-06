@@ -23,6 +23,14 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+snippet jsonHeader
+w.Header().Set("Content-Type", "application/json")
+endsnippet
+snippet handler
+func $1Handler(w http.ResponseWriter, r *http.Request) {
+$2
+}
+endsnippet
 snippet assertif
 if got != want {
 	t.Errorf("got %$1 but want %$1", got, want)
