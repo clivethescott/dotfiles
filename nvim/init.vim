@@ -32,6 +32,7 @@ let g:go_def_mapping_enabled = 0
 " let g:go_metalinter_autosave = 1
 let g:go_metalinter_deadline = '3s'
 let g:go_test_timeout = '8s'
+let g:go_list_type = "quickfix"
 
 
 " Auto formatting and importing
@@ -43,16 +44,6 @@ let g:go_auto_type_info = 1
 
 " Open Go alternate file in vertical split
 autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-
-" Run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
 
 function! GitStatus()
   let [a,m,r] = GitGutterGetHunkSummary()
