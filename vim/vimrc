@@ -55,6 +55,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 Plug 'fatih/vim-go',  { 'do': ':GoUpdateBinaries' }
+Plug 'uarun/vim-protobuf'
 " Plug 'wellle/context.vim'
 " Plug 'Glench/Vim-Jinja2-Syntax'
 " Javascript 
@@ -70,6 +71,8 @@ call plug#end()
 filetype plugin indent on    " required
 
 colorscheme gruvbox
+" coc-yank highlight color, must be set after colorscheme
+hi HighlightedyankRegion term=bold ctermbg=0 guibg=#13354A
 set background=dark
 let mapleader=","
 
@@ -144,3 +147,4 @@ nmap [h <Plug>(GitGutterPrevHunk)
 nmap <leader>gp <Plug>(GitGutterPreviewHunk)
 nmap <leader>gu <Plug>(GitGutterUndoHunk)
 nmap <leader>gU <Plug>(Gread)
+nmap <silent><leader>c :cclose<CR>

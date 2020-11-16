@@ -67,6 +67,7 @@ let g:coc_global_extensions = [
   \ 'coc-pyright',
   \ ]
 
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 
 if filereadable('./pubspec.yaml')
