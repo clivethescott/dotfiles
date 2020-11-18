@@ -23,6 +23,34 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+snippet writ "add a writer method"
+func (w $1) Write(p []byte) (int, error) {
+	$2
+}
+endsnippet
+snippet lis "Listen on a port"
+lis, err := net.Dial("tcp", ":${1:9000}")
+if err != nil {
+	log.Fatal("Failed to listen on port $1: %v", err)
+}
+endsnippet
+snippet iff "if error != nil check"
+if err != nil {
+$1
+}
+endsnippet
+snippet server "generate a new Http server"
+mux := http.NewServeMux()
+server := &http.Server{
+	Addr:         ":8000",
+	Handler:      mux,
+	ReadTimeout:  2 * time.Second,
+	WriteTimeout: 2 * time.Second,
+}
+
+mux.HandleFunc("/", $1)
+log.Fatal(server.ListenAndServe())
+endsnippet
 snippet jsonHeader
 w.Header().Set("Content-Type", "application/json")
 endsnippet
