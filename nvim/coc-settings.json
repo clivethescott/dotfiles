@@ -12,7 +12,8 @@
   "prettier.disableSuccessMessage": true,
   "python.jediEnabled": false,
   "javascript.implicitProjectConfig.experimentalDecorators": true,
-  "metals.statusBarEnabled": true,
+  "java.completion.enabled": true,
+  "java.jdt.ls.vmargs": "-javaagent:/home/clive/apps/jar/lombok.jar -Xmx1G -Xms1G",
   "java.configuration.runtimes": [
     {
       "name": "JavaSE-1.8",

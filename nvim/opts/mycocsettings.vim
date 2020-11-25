@@ -26,6 +26,12 @@ else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
+"FZF
+nnoremap <silent><nowait><space>f <ESC>:BLines<CR>
+nnoremap <silent><nowait><space>c <ESC>:BCommits<CR>
+nnoremap <silent><nowait><space>C <ESC>:Commits<CR>
+nnoremap <silent><nowait><space>/ <ESC>:History/<CR>
+
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 nnoremap <leader>s :CocCommand snippets.editSnippets<CR>
@@ -63,7 +69,6 @@ let g:coc_global_extensions = [
   \ 'coc-yank',
   \ 'coc-vetur',
   \ 'coc-python',
-  \ 'coc-metals',
   \ 'coc-pyright',
   \ ]
 
