@@ -1,3 +1,17 @@
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Used in the tab autocompletion for coc
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
@@ -19,6 +33,8 @@ nmap <silent> K :call <SID>show_documentation()<CR>
 " Used to expand decorations in worksheets
 nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
 
+" Yank list
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 " Coc tab completion
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :

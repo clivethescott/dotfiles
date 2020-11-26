@@ -23,6 +23,11 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+snippet http "implement ServeHTTP method" b
+func ($1 $2) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+$3
+}
+endsnippet
 snippet sort "add sorting methods"
 func ($1 $2) Len() int {
 	return len($1)
