@@ -73,4 +73,5 @@ nnoremap <silent> <leader>u :UndotreeToggle<CR>
 " COC keymaps 
 " --------------------------------------------------------------
 source $HOME/.config/nvim/opts/coc-keymaps.vim
+source $HOME/.config/nvim/opts/vimgo-keymaps.vim
 

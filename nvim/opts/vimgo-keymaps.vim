@@ -9,19 +9,20 @@ function! s:build_go_files()
 endfunction
 
 
-" Map keys for most used commands.
-nnoremap <buffer> <leader>b :<C-u>call <SID>build_go_files()<CR>
-nnoremap <buffer> <leader>R :GoRun<CR>
-nnoremap <silent> <buffer> <leader>f :GoFmt<CR>
-nnoremap <buffer> <leader>t :GoTest<CR>
-nnoremap <buffer> <leader>T :GoTestFunc<CR>
-nnoremap <silent> <buffer>gt :GoAlternate<CR>
-nnoremap <buffer>gr :GoReferrers<CR>
-nnoremap <buffer>gi :GoImplements<CR>
-nnoremap <silent> <buffer>gc :GoCoverage<CR>
-nnoremap <silent> <buffer>gb :GoCoverageBrowser<CR>
-nnoremap <silent> <buffer>gC :GoCoverageClear<CR>
-nnoremap <silent> <buffer>gl :cclose<CR>
-nnoremap <silent> <buffer>gL :lclose<CR>
-nnoremap <buffer> <leader>r :GoRename<CR>
-" nnoremap <buffer> K :GoDoc<CR>
+augroup filetype_go
+    autocmd!
+    autocmd FileType go nnoremap <leader>b :<C-u>call <SID>build_go_files()<CR>
+    autocmd FileType go nnoremap <buffer> <leader>R :GoRun<CR>
+    autocmd FileType go nnoremap <silent> <buffer> <leader>f :GoFmt<CR>
+    autocmd FileType go nnoremap <buffer> <leader>t :GoTest<CR>
+    autocmd FileType go nnoremap <buffer> <leader>T :GoTestFunc<CR>
+    autocmd FileType go nnoremap <silent> <buffer>gt :GoAlternate<CR>
+    autocmd FileType go nnoremap <buffer>gr :GoReferrers<CR>
+    autocmd FileType go nnoremap <buffer>gi :GoImplements<CR>
+    autocmd FileType go nnoremap <silent> <buffer>gc :GoCoverage<CR>
+    autocmd FileType go nnoremap <silent> <buffer>gb :GoCoverageBrowser<CR>
+    autocmd FileType go nnoremap <silent> <buffer>gC :GoCoverageClear<CR>
+    autocmd FileType go nnoremap <silent> <buffer>gl :cclose<CR>
+    autocmd FileType go nnoremap <silent> <buffer>gL :lclose<CR>
+    autocmd FileType go nnoremap <buffer> <leader>r :GoRename<CR>
+augroup END
