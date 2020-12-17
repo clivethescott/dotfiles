@@ -1,4 +1,4 @@
-source ~/.vim/vimrc
+source $HOME/.config/nvim/init.vim
 nmap gi :action GotoImplementation<CR>
 nmap gr :action ShowUsages<CR>
 nmap gt :action GotoTypeDeclaration<CR>
@@ -28,3 +28,4 @@ nmap gc :action Unsplit<CR>
 set visualbell
 set noerrorbells
 set clipboard+=ideaput
+set relativenumber
