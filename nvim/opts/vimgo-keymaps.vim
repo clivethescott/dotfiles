@@ -19,9 +19,9 @@ augroup filetype_go
     autocmd FileType go nnoremap <silent> <buffer>gt :GoAlternate<CR>
     autocmd FileType go nnoremap <buffer>gr :GoReferrers<CR>
     autocmd FileType go nnoremap <buffer>gi :GoImplements<CR>
-    autocmd FileType go nnoremap <silent> <buffer>gc :GoCoverage<CR>
     autocmd FileType go nnoremap <silent> <buffer>gb :GoCoverageBrowser<CR>
-    autocmd FileType go nnoremap <silent> <buffer>gC :GoCoverageClear<CR>
+    " autocmd FileType go nnoremap <silent> <buffer>gc :GoCoverage<CR>
+    autocmd FileType go nnoremap <silent> <buffer>gC :GoCoverageToggle<CR>
     autocmd FileType go nnoremap <silent> <buffer>gl :cclose<CR>
     autocmd FileType go nnoremap <silent> <buffer>gL :lclose<CR>
     autocmd FileType go nnoremap <buffer> <leader>r :GoRename<CR>

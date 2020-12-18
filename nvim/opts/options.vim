@@ -35,6 +35,7 @@ setlocal autowrite
 " Plugin Options ----------------------------------------------------
 
 source $HOME/.config/nvim/opts/vimgo-options.vim
+source $HOME/.config/nvim/opts/coc-options.vim
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<c-y>"
 " Jump between snippet placeholders
@@ -45,7 +46,13 @@ let g:python3_host_prog='/usr/bin/python3'
 " Disable NVim's Python 2
 let g:loaded_python_provider = 0
 " Open FZF window in center of screen
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+" let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+" Change default FZF keys for opening a match
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-y': 'vsplit' }
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 " Disable git gutter default keymaps, we'll define our own
 let g:gitgutter_map_keys = 0
 let g:gitgutter_git_executable = '/usr/bin/git'
@@ -62,13 +69,15 @@ let g:lightline = {
       \ },
       \ }
 
-augroup myoptions
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-  autocmd BufEnter *.{js,jsx,ts,tsx,py} :syntax sync fromstart
-  autocmd BufLeave *.{js,jsx,ts,tsx,py} :syntax sync clear
-  autocmd FileType json syntax match Comment +\/\/.\+$+
-  " Use :GV Open Go alternate file in vertical split
-  autocmd Filetype go command! -bang GV call go#alternate#Switch(<bang>0, 'vsplit')
-augroup END
+if has('nvim')
+    augroup myoptions
+      autocmd!
+      autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+      autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+      autocmd BufEnter *.{js,jsx,ts,tsx,py} :syntax sync fromstart
+      autocmd BufLeave *.{js,jsx,ts,tsx,py} :syntax sync clear
+      autocmd FileType json syntax match Comment +\/\/.\+$+
+      " Use :GV Open Go alternate file in vertical split
+      autocmd Filetype go command! -bang GV call go#alternate#Switch(<bang>0, 'vsplit')
+    augroup END
+endif
