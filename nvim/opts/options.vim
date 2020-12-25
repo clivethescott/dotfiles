@@ -1,5 +1,6 @@
 syntax on
 
+set dictionary+=/usr/share/dict/words
 set clipboard=unnamedplus
 set cursorline
 set noerrorbells
@@ -46,16 +47,24 @@ let g:python3_host_prog='/usr/bin/python3'
 " Disable NVim's Python 2
 let g:loaded_python_provider = 0
 " Open FZF window in center of screen
-" let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 " Change default FZF keys for opening a match
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-y': 'vsplit' }
-let g:fzf_history_dir = '~/.local/share/fzf-history'
+" let g:fzf_history_dir = '~/.local/share/fzf-history'
 " Disable git gutter default keymaps, we'll define our own
 let g:gitgutter_map_keys = 0
 let g:gitgutter_git_executable = '/usr/bin/git'
+let g:gitgutter_grep = 'rg'
+" Fern options
+let g:fern#disable_default_mappings   = 1
+let g:fern#disable_drawer_auto_quit   = 1
+let g:fern#disable_viewer_hide_cursor = 1
+let g:fern_git_status#disable_ignored    = 1
+let g:fern_git_status#disable_untracked  = 1
+let g:fern_git_status#disable_submodules = 1
 
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',

@@ -9,7 +9,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+" Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-git-status.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
