@@ -15,7 +15,6 @@ endfunction
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> g] <Plug>(coc-diagnostic-prev)
 nmap <silent> g[ <Plug>(coc-diagnostic-next)
 nnoremap <silent><nowait> <leader>d  :<C-u>CocList diagnostics<cr>
