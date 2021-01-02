@@ -6,4 +6,3 @@ source $HOME/.config/nvim/opts/plugins.vim
 source $HOME/.config/nvim/opts/colorscheme.vim
 source $HOME/.config/nvim/opts/keymaps.vim
 source $HOME/.config/nvim/opts/startify.vim
-

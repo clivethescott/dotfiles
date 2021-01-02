@@ -16,7 +16,7 @@ function! s:init_fern() abort
   nmap <buffer> d <Plug>(fern-action-new-dir)
   " Requires trash-cli installed
   nmap <buffer> D <Plug>(fern-action-trash)
-  nmap <buffer> m <Plug>(fern-action-move)
+  nmap <buffer> M <Plug>(fern-action-move)
   nmap <buffer> r <Plug>(fern-action-rename)
   nmap <buffer> s <Plug>(fern-action-open:split)
   nmap <buffer> v <Plug>(fern-action-open:vsplit)
@@ -27,6 +27,7 @@ function! s:init_fern() abort
   nmap <buffer> <nowait> > <Plug>(fern-action-enter)
   " Just like NERTree
   nmap <buffer> ma <Plug>(fern-action-new-path)
+  nmap <buffer> mc <Plug>(fern-action-copy)
   " nmap <buffer> h <Plug>(fern-action-hide-toggle)
   nmap <buffer> q :<C-u>quit<CR>
   augroup FernTypeGroup
