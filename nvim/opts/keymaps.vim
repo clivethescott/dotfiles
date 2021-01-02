@@ -31,6 +31,8 @@ nnoremap Q :qall<CR>
 nnoremap <C-S> :w<CR>
 inoremap <C-S> <esc>:w<CR>
 
+nnoremap ' `
+
 " We shouldn't be using these anyway
 nnoremap <left> <nop>
 vnoremap <left> <nop>
@@ -45,8 +47,8 @@ vnoremap <up> <nop>
 vnoremap < <gv
 vnoremap > >gv
 
-nnoremap <silent> > :diffput<CR>
-nnoremap <silent> < :diffget<CR>
+nnoremap <silent> g> :diffput<CR>
+nnoremap <silent> g< :diffget<CR>
 nnoremap <silent> tn :tabnext<CR>
 nnoremap <silent> tp :tabprevious<CR>
 nnoremap <silent> tN :tabnew<CR>
