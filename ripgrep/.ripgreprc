@@ -28,6 +28,8 @@ graphql:*.{graphqls}
 --glob=!.m2/* 
 --glob=!venv/* 
 --glob=!node_modules/* 
+--glob=!target/* 
+--glob=!project/* 
 --glob=!*/__pycache__/* 
 --glob=!*.class
 --glob=!*.jar
