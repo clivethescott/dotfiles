@@ -1,4 +1,6 @@
 {
+  "codeLens.enable": true,
+  "metals.treeviews.forceChildrenReload": "R",
   "coc.preferences.formatOnSaveFiletypes": [
     "dart",
     "javascript",

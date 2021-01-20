@@ -14,6 +14,9 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" Make sure `"codeLens.enable": true` is set in your coc config
+nnoremap <space>cl :<C-u>call CocActionAsync('codeLensAction')<CR>
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -79,3 +82,16 @@ command! -nargs=0 Imports   :call     CocAction('runCommand', 'editor.action.org
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Metals
+" Toggle panel with Tree Views
+nnoremap <silent> <leader>tt :<C-u>CocCommand metals.tvp<CR>
+" Toggle Tree View 'metalsPackages'
+nnoremap <silent> <leader>tp :<C-u>CocCommand metals.tvp metalsPackages<CR>
+" Toggle Tree View 'metalsCompile'
+nnoremap <silent> <leader>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
+" Toggle Tree View 'metalsBuild'
+nnoremap <silent> <leader>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
+" Reveal current current class (trait or object) in Tree View 'metalsPackages'
+nnoremap <silent> <leader>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
+" Trigger for code actions
