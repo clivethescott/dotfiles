@@ -33,6 +33,8 @@ inoremap <C-S> <esc>:w<CR>
 
 nnoremap ' `
 
+noremap! <C-BS> <C-w>
+
 " We shouldn't be using these anyway
 nnoremap <left> <nop>
 vnoremap <left> <nop>

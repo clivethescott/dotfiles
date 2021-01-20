@@ -28,4 +28,4 @@ nmap gc :action Unsplit<CR>
 set visualbell
 set noerrorbells
 set clipboard+=ideaput
-set relativenumber
+set number relativenumber

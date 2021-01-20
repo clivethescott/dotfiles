@@ -85,8 +85,11 @@ if has('nvim')
       autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
       autocmd BufEnter *.{js,jsx,ts,tsx,py} :syntax sync fromstart
       autocmd BufLeave *.{js,jsx,ts,tsx,py} :syntax sync clear
+      " Help Vim recognize *.sbt and *.sc as Scala files
+      autocmd BufRead,BufNewFile *.sbt,*.sc set filetype=scala 
       autocmd FileType json syntax match Comment +\/\/.\+$+
       " Use :GV Open Go alternate file in vertical split
       autocmd Filetype go command! -bang GV call go#alternate#Switch(<bang>0, 'vsplit')
+      autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
     augroup END
 endif
