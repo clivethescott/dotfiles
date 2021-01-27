@@ -93,3 +93,5 @@ if has('nvim')
       autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
     augroup END
 endif
+
+abbreviate STring string
