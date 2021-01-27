@@ -2,7 +2,7 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'gruvbox-community/gruvbox'
+Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'neoclide/coc.nvim', {'commit': '047a87b01d7d2df2ee1f08ef988ef419051778c1'}
 " Use already available FZF
