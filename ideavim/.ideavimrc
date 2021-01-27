@@ -27,5 +27,6 @@ nmap gc :action Unsplit<CR>
 " Disable that annoying bell sound
 set visualbell
 set noerrorbells
-set clipboard+=ideaput
+" set clipboard+=ideaput
+set clipboard+=unnamed
 set number relativenumber
