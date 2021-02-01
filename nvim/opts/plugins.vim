@@ -15,7 +15,7 @@ Plug 'lambdalisue/fern-git-status.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
-Plug 'itchyny/vim-gitbranch'
+"Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python' }
 Plug 'airblade/vim-gitgutter'

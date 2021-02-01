@@ -1,6 +1,7 @@
 {
   "codeLens.enable": true,
   "metals.treeviews.forceChildrenReload": "R",
+  "metals.statusBarEnabled": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "dart",
     "javascript",
@@ -10,10 +11,8 @@
     "scala",
     "go"
   ],
-  "eslint.autoFixOnSave": true,
   "prettier.disableSuccessMessage": true,
   "python.jediEnabled": false,
-  "javascript.implicitProjectConfig.experimentalDecorators": true,
   "java.completion.enabled": true,
   "java.jdt.ls.vmargs": "-javaagent:/home/clive/apps/jar/lombok.jar -Xmx1G -Xms1G",
   "java.configuration.runtimes": [

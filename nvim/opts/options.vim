@@ -37,6 +37,7 @@ setlocal autowrite
 
 source $HOME/.config/nvim/opts/vimgo-options.vim
 source $HOME/.config/nvim/opts/coc-options.vim
+source $HOME/.config/nvim/opts/lightline.vim
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<c-y>"
 " Jump between snippet placeholders
@@ -65,18 +66,6 @@ let g:fern#disable_viewer_hide_cursor = 1
 let g:fern_git_status#disable_ignored    = 1
 let g:fern_git_status#disable_untracked  = 1
 let g:fern_git_status#disable_submodules = 1
-
-let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'gitbranch', 'gitstatus'] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name',
-      \   'gitstatus': 'GitStatus'
-      \ },
-      \ }
 
 if has('nvim')
     augroup myoptions

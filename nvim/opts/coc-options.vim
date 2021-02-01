@@ -18,4 +18,5 @@ let g:coc_global_extensions = [
   \ 'coc-pyright',
   \ 'coc-java',
   \ 'coc-metals',
+  \ 'coc-json',
   \ ]
