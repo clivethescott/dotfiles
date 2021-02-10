@@ -24,6 +24,14 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> g] <Plug>(coc-diagnostic-prev)
 nmap <silent> g[ <Plug>(coc-diagnostic-next)
+nmap <silent> g[ <Plug>(coc-diagnostic-next)
+nmap <silent> gl <Plug>(coc-codelens-action)
+nmap gc  <Plug>(coc-fix-current)
+" Applying codeAction to the selected region.
+xmap gs <Plug>(coc-codeaction-selected)
+nmap gs <Plug>(coc-codeaction-selected)
+" Buffer code action
+nmap <silent> ga <Plug>(coc-codeaction)
 nnoremap <silent><nowait> <leader>d  :<C-u>CocList diagnostics<cr>
 " Formatting selected code.
 vmap <silent> <leader>f <Plug>(coc-format-selected)
@@ -31,12 +39,6 @@ nmap <silent> <leader>f :call CocAction('format')<CR>
 nmap <silent> <space>p :call CocActionAsync('showSignatureHelp')<CR>
 " Symbol renaming.
 nmap <leader>r <Plug>(coc-rename)
-" Applying codeAction to the selected region.
-xmap <leader>. <Plug>(coc-codeaction-selected)
-nmap <leader>. <Plug>(coc-codeaction-selected)
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-nmap qf  <Plug>(coc-fix-current)
 " Use K to show documentation in preview window.
 nmap <silent> K :call <SID>show_documentation()<CR>
 " Used to expand decorations in worksheets
@@ -85,13 +87,13 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 
 " Metals
 " Toggle panel with Tree Views
-nnoremap <silent> <leader>tt :<C-u>CocCommand metals.tvp<CR>
+nnoremap <silent> <space>tt :<C-u>CocCommand metals.tvp<CR>
 " Toggle Tree View 'metalsPackages'
-nnoremap <silent> <leader>tp :<C-u>CocCommand metals.tvp metalsPackages<CR>
+nnoremap <silent> <space>tp :<C-u>CocCommand metals.tvp metalsPackages<CR>
 " Toggle Tree View 'metalsCompile'
-nnoremap <silent> <leader>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
+nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
 " Toggle Tree View 'metalsBuild'
-nnoremap <silent> <leader>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
+nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 " Reveal current current class (trait or object) in Tree View 'metalsPackages'
-nnoremap <silent> <leader>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
+nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
 " Trigger for code actions
