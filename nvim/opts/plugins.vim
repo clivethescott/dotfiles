@@ -9,6 +9,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Use already available FZF
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-peekaboo'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'lambdalisue/fern.vim'
@@ -31,7 +32,9 @@ Plug 'fatih/vim-go',  { 'do': ':GoUpdateBinaries' }
 Plug 'uarun/vim-protobuf'
 " Start menu
 Plug 'mhinz/vim-startify'
-Plug 'vimlab/split-term.vim'
+" Plug 'vimlab/split-term.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 
 call plug#end()
 

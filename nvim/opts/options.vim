@@ -61,11 +61,11 @@ let g:gitgutter_git_executable = '/usr/bin/git'
 let g:gitgutter_grep = 'rg'
 " Fern options
 let g:fern#disable_default_mappings   = 1
-let g:fern#disable_drawer_auto_quit   = 1
-let g:fern#disable_viewer_hide_cursor = 1
+let g:fern#disable_drawer_smart_quit = 1
 let g:fern_git_status#disable_ignored    = 1
 let g:fern_git_status#disable_untracked  = 1
 let g:fern_git_status#disable_submodules = 1
+let g:fern#renderer = "nerdfont"
 
 if has('nvim')
     augroup myoptions

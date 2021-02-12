@@ -26,7 +26,7 @@ nmap <silent> g] <Plug>(coc-diagnostic-prev)
 nmap <silent> g[ <Plug>(coc-diagnostic-next)
 nmap <silent> g[ <Plug>(coc-diagnostic-next)
 nmap <silent> gl <Plug>(coc-codelens-action)
-nmap gc  <Plug>(coc-fix-current)
+nmap g.  <Plug>(coc-fix-current)
 " Applying codeAction to the selected region.
 xmap gs <Plug>(coc-codeaction-selected)
 nmap gs <Plug>(coc-codeaction-selected)
