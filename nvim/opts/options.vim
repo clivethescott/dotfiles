@@ -41,8 +41,8 @@ source $HOME/.config/nvim/opts/lightline.vim
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<c-y>"
 " Jump between snippet placeholders
-let g:coc_snippet_prev = '<c-s-l>'
-let g:coc_snippet_next = '<c-s-k>'
+let g:coc_snippet_prev = '<C-J>'
+let g:coc_snippet_next = '<C-K>'
 " Make Nvim play nice with virtual environments
 let g:python3_host_prog='/usr/bin/python3'
 " Disable NVim's Python 2

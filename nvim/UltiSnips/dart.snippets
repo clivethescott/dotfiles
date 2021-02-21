@@ -50,3 +50,9 @@ snippet route "Material page route" b
 await Navigator.push(context, MaterialPageRoute(builder: (context) => $1()));
 endsnippet
 
+snippet postFrame "Add post frame call back in initState" b
+WidgetsBinding.instance.addPostFrameCallback((_) {
+$1
+});
+endsnippet
+
