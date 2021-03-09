@@ -2,6 +2,8 @@
   "codeLens.enable": true,
   "metals.treeviews.forceChildrenReload": "R",
   "metals.statusBarEnabled": true,
+  "flutter.lsp.initialization.closingLabels": true,
+  "flutter.lsp.initialization.onlyAnalyzeProjectsWithOpenFiles": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "dart",
     "javascript",
@@ -11,6 +13,8 @@
     "scala",
     "go"
   ],
+  "eslint.format.enable": true,
+  "eslint.autoFixOnSave": true,
   "prettier.disableSuccessMessage": true,
   "python.jediEnabled": false,
   "java.referencesCodeLens.enabled": true,
@@ -38,7 +42,7 @@
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"],
       "initializationOptions": {
-        "usePlaceholders": true
+        "usePlaceholders": false
       }
     }
   }

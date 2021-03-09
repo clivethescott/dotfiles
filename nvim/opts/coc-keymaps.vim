@@ -32,7 +32,7 @@ xmap gs <Plug>(coc-codeaction-selected)
 nmap gs <Plug>(coc-codeaction-selected)
 " Buffer code action
 nmap <silent> ga <Plug>(coc-codeaction)
-nnoremap <silent><nowait> <leader>d  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <leader>D  :<C-u>CocList diagnostics<cr>
 " Formatting selected code.
 vmap <silent> <leader>f <Plug>(coc-format-selected)
 nmap <silent> <leader>f :call CocAction('format')<CR>
@@ -96,4 +96,5 @@ nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
 nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 " Reveal current current class (trait or object) in Tree View 'metalsPackages'
 nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
-" Trigger for code actions
+" Fix treesitter syntax highlight issues
+" nnoremap <leader>gf :write | edit | TSBufEnable highlight

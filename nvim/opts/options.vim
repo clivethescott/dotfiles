@@ -72,8 +72,8 @@ if has('nvim')
       autocmd!
       autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
       autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-      autocmd BufEnter *.{js,jsx,ts,tsx,py} :syntax sync fromstart
-      autocmd BufLeave *.{js,jsx,ts,tsx,py} :syntax sync clear
+      autocmd BufEnter *.{js,jsx,ts,tsx,py,dart,go} :syntax sync fromstart
+      autocmd BufLeave *.{js,jsx,ts,tsx,py,dart,go} :syntax sync clear
       " Help Vim recognize *.sbt and *.sc as Scala files
       autocmd BufRead,BufNewFile *.sbt,*.sc set filetype=scala 
       autocmd FileType json syntax match Comment +\/\/.\+$+

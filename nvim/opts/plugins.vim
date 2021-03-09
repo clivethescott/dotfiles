@@ -9,7 +9,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Use already available FZF
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'lambdalisue/fern.vim'
@@ -35,6 +35,11 @@ Plug 'mhinz/vim-startify'
 " Plug 'vimlab/split-term.vim'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+" React/JS Dev
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'leafgarland/typescript-vim', { 'for': 'javascript' }
+Plug 'MaxMEllon/vim-jsx-pretty', { 'for': 'javascript' } 
+Plug 'peitalin/vim-jsx-typescript', { 'for': 'javascript' } 
 
 call plug#end()
 
