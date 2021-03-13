@@ -16,10 +16,10 @@ let g:coc_global_extensions = [
   \ 'coc-yank',
   \ 'coc-python',
   \ 'coc-pyright',
-  \ 'coc-java',
   \ 'coc-metals',
   \ 'coc-json',
   \ 'coc-tsserver',
+  \ 'coc-flutter',
   \ ]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')

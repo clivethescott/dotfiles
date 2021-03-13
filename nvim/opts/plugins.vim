@@ -10,6 +10,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 " Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/goyo.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'lambdalisue/fern.vim'
@@ -19,7 +20,7 @@ Plug 'honza/vim-snippets'
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 "Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python' }
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python' }
 Plug 'airblade/vim-gitgutter'
 Plug 'jparise/vim-graphql'
 " The premiere Git plugin for Vim or Vim plugin for Git

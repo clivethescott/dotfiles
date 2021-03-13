@@ -1,67 +1,47 @@
-# A valid snippet should starts with:
-#
-#		snippet trigger_word [ "description" [ options ] ]
-#
-# and end with:
-#
-#		endsnippet
-#
-# Snippet options:
-#
-#		b - Beginning of line.
-#		i - In-word expansion.
-#		w - Word boundary.
-#		r - Regular expression
-#		e - Custom context snippet
-#		A - Snippet will be triggered automatically, when condition matches.
-#
-# Basic example:
-#
-#		snippet emitter "emitter properties" b
-#		private readonly ${1} = new Emitter<$2>()
-#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
-#		endsnippet
-#
-# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-snippet didch "Add didChangeDependencies method" b
-@override
-void didChangeDependencies() {
-$1
-super.didChangeDependencies();
-}
+snippet medq "Use MediaQuery size"
+MediaQuery.of(context).size.$1
 endsnippet
-snippet dispose "State dispose method" b
-@override
-void dispose() {
-super.dispose();
-$1
+
+snippet stlss "Create a stateless widget" b
+class $1 extends StatelessWidget {
+	@override
+	Widget build(BuildContext context) {
+		return $2;
+	}
 }
 endsnippet
 
-snippet initState "State init method" b
-@override
-void initState() {
-super.initState();
-$1
+snippet meth "Create a public method" b
+/// created by `echo $USER`
+$1($2) {
 }
 endsnippet
 
-snippet route "Material page route" b
-await Navigator.push(context, MaterialPageRoute(builder: (context) => $1()));
+snippet stful "Create a stateful widget" b
+class _$1State extends State<$1> {
+	@override
+	Widget build(BuildContext context) {
+		return new $2;
+	}
+}
+
+class $1 extends StatefulWidget {
+	@override
+	_$1State createState() => _$1State();
+
+}
 endsnippet
 
-snippet postFrame "Add post frame call back in initState" b
-WidgetsBinding.instance.addPostFrameCallback((_) {
-$1
-});
-endsnippet
+global !p
+def complete_mixins(t, opts):
+	if t:
+		opts = [m[len(t):] for m in opts if m.startswith(t)]
+	if len(opts) == 1:
+		return opts[0]
+	return '(' + '|'.join(opts) + ')'
+endglobal
 
-snippet tojson
-Map<String, dynamic> toJson() => _$$1ToJson(this);
+snippet 'with' "Add a mixin"
+with $1`!p snip.rv=complete_mixins(t[1], ['SingleTickerProviderStateMixin', 'TickerProviderStateMixin'])`
 endsnippet
-snippet json
-Map<String, dynamic> toJson() => _$$1ToJson(this);
-
-factory $1.fromJson(Map<String, dynamic> json) => _$$1FromJson(json);
-endsnippet
-
+	
