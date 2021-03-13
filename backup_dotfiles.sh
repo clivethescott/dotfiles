@@ -13,6 +13,7 @@ cp $HOME/.ideavimrc $DOTFILES_HOME/ideavim
 cp $HOME/.ripgreprc $DOTFILES_HOME/ripgrep
 cp $HOME/.tmux.conf $DOTFILES_HOME/tmux
 cp $HOME/.zsh/*.sh $DOTFILES_HOME/zsh
+cp $HOME/.config/alacritty/* $DOTFILES_HOME/alacritty
 cd $DOTFILES_HOME
 git add .
 git commit
