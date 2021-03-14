@@ -5,7 +5,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'neoclide/coc.nvim', {'commit': '047a87b01d7d2df2ee1f08ef988ef419051778c1'}
 " Use already available FZF
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
@@ -33,7 +32,6 @@ Plug 'fatih/vim-go',  { 'do': ':GoUpdateBinaries' }
 Plug 'uarun/vim-protobuf'
 " Start menu
 Plug 'mhinz/vim-startify'
-" Plug 'vimlab/split-term.vim'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 " React/JS Dev
@@ -41,6 +39,11 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim', { 'for': 'javascript' }
 Plug 'MaxMEllon/vim-jsx-pretty', { 'for': 'javascript' } 
 Plug 'peitalin/vim-jsx-typescript', { 'for': 'javascript' } 
+" Neovim LSP
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'hrsh7th/nvim-compe'
+" Plug 'akinsho/flutter-tools.nvim'
+" Plug 'nvim-lua/completion-nvim'
 
 call plug#end()
 

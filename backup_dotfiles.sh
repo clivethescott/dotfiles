@@ -1,12 +1,12 @@
 #!/usr/bin/env sh
 
-old_dir = $(pwd)
+old_dir=$(pwd)
 DOTFILES_HOME=$HOME/dotfiles
 cp $HOME/.config/nvim/UltiSnips/*.snippets $DOTFILES_HOME/nvim/UltiSnips
 cp $HOME/.gitconfig $HOME/.gitignore_global $DOTFILES_HOME/git
-cp $HOME/.vim/after/ftplugin/*.vim $DOTFILES_HOME/vim/after/ftplugin
 cp $HOME/.config/nvim/init.vim $DOTFILES_HOME/nvim
-cp $HOME/.config/nvim/opts/*.vim $DOTFILES_HOME/nvim/opts
+cp $HOME/.config/nvim/viml/*.vim $DOTFILES_HOME/nvim/viml
+cp $HOME/.config/nvim/lua/*.lua $DOTFILES_HOME/nvim/lua
 cp $HOME/.config/nvim/coc-settings.json $DOTFILES_HOME/nvim
 cp $HOME/.config/coc/ultisnips/*.snippets $DOTFILES_HOME/nvim/UltiSnips
 cp $HOME/.ideavimrc $DOTFILES_HOME/ideavim

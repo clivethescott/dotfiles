@@ -1,4 +1,12 @@
-" FZF 
+" Open FZF window in center of screen
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+" Change default FZF keys for opening a match
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-y': 'vsplit' }
+" let g:fzf_history_dir = '~/.local/share/fzf-history'
+
 nnoremap <c-p> :Files<CR> 
 nnoremap <c-e> :Buffers<CR> 
 nnoremap <c-f> :Rg<CR>

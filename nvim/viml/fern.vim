@@ -1,3 +1,10 @@
+let g:fern#disable_default_mappings   = 1
+let g:fern#disable_drawer_smart_quit = 1
+let g:fern_git_status#disable_ignored    = 1
+let g:fern_git_status#disable_untracked  = 1
+let g:fern_git_status#disable_submodules = 1
+let g:fern#renderer = "nerdfont"
+
 noremap <silent> <Leader>1 :Fern . -drawer -width=35 -toggle<CR><C-w>=
 noremap <silent> <Leader>! :Fern . -drawer -reveal=% -width=35<CR><C-w>=
 

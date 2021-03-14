@@ -9,7 +9,6 @@ nmap <silent><leader>c :cclose<CR>
 " Clear highlight
 nnoremap <silent><leader>m :silent! nohls<cr>
 nnoremap <leader>2 :e ~/.config/nvim/init.vim<CR>
-nnoremap <leader>3 :e ~/.config/nvim/coc-settings.json<CR>
 nnoremap <leader>4 :Startify<CR>
 " Alternative buffer
 nnoremap <silent> <tab> :b#<CR>
@@ -56,21 +55,4 @@ nnoremap <silent> tn :tabnext<CR>
 nnoremap <silent> tp :tabprevious<CR>
 nnoremap <silent> tN :tabnew<CR>
 nnoremap <silent> tc :tabclose<CR>
-
-" --------------------------------------------------------------
-" Plugin keymaps 
-" --------------------------------------------------------------
-
-" Toggle Undotree
-nnoremap <silent> <leader>u :UndotreeToggle<CR>
-
-"Split term
-nnoremap <silent><space>t :VTerm<ESC>
-nnoremap <silent><space>T :Term<ESC>
-
-source $HOME/.config/nvim/opts/git-keymaps.vim
-source $HOME/.config/nvim/opts/fzf-keymaps.vim
-source $HOME/.config/nvim/opts/coc-keymaps.vim
-source $HOME/.config/nvim/opts/vimgo-keymaps.vim
-source $HOME/.config/nvim/opts/fern-keymaps.vim
 
