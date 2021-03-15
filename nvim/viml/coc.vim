@@ -96,6 +96,8 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Coc-snippets
 nnoremap <leader>s :CocCommand snippets.editSnippets<CR>
 imap <C-y> <Plug>(coc-snippets-expand)
+" coc-flutter
+nnoremap <space>r :CocCommand flutter.run<CR>
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.

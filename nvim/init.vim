@@ -10,7 +10,6 @@ source $HOME/.config/nvim/viml/nvim-keymap.vim
 
 " Plugin Configuration
 source $HOME/.config/nvim/viml/startify.vim
-" source $HOME/.config/nvim/opts/coc-options.vim
 source $HOME/.config/nvim/viml/vimgo.vim
 source $HOME/.config/nvim/viml/lightline.vim
 source $HOME/.config/nvim/viml/fzf.vim

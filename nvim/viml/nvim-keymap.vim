@@ -10,6 +10,9 @@ nmap <silent><leader>c :cclose<CR>
 nnoremap <silent><leader>m :silent! nohls<cr>
 nnoremap <leader>2 :e ~/.config/nvim/init.vim<CR>
 nnoremap <leader>4 :Startify<CR>
+nnoremap <leader>g :Goyo<CR>
+nnoremap <leader>G :Goyo!<CR>
+nnoremap <leader>b :make<CR>
 " Alternative buffer
 nnoremap <silent> <tab> :b#<CR>
 " Split movements in all modes

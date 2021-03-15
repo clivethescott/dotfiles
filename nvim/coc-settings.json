@@ -4,6 +4,9 @@
   "metals.statusBarEnabled": true,
   "flutter.lsp.initialization.closingLabels": true,
   "flutter.lsp.initialization.onlyAnalyzeProjectsWithOpenFiles": false,
+  "flutter.sdk.searchPaths": [
+      "/home/clive/snap/flutter/common/flutter"
+  ],
   "coc.preferences.formatOnSaveFiletypes": [
     "dart",
     "javascript",
