@@ -1,6 +1,9 @@
 " Open FZF window in center of screen
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 " Change default FZF keys for opening a match
+" Quick fix
+" <alt-A> toggle all
+" <alt-D> untoggle all
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',

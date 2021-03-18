@@ -4,8 +4,8 @@ set dictionary+=/usr/share/dict/words
 set clipboard=unnamedplus
 set cursorline
 set noerrorbells
-set tabstop=4 softtabstop=4 shiftwidth=4
-set expandtab smartindent
+set tabstop=2 softtabstop=2 shiftwidth=2
+set expandtab smarttab smartindent
 set number relativenumber
 set nowrap
 set smartcase ignorecase                      
@@ -32,6 +32,8 @@ set noshowmode
 set grepprg=rg\ --vimgrep
 " Save on make
 setlocal autowrite
+set formatoptions-=cro                  " Stop newline continution of comments
+
 
 " Disable NVim's Python 2
 let g:loaded_python_provider = 0

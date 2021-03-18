@@ -16,7 +16,6 @@ let g:coc_global_extensions = [
   \ 'coc-yank',
   \ 'coc-python',
   \ 'coc-pyright',
-  \ 'coc-metals',
   \ 'coc-json',
   \ 'coc-tsserver',
   \ 'coc-flutter',
