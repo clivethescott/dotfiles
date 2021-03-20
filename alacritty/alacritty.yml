@@ -73,6 +73,12 @@ scrolling:
 selection:
   save_to_clipboard: true
 
+
+shell:
+  program: /bin/zsh
+  args:
+    - -c
+    - /bin/tmux
 key_bindings:
   - { key: V, mods: Control, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }

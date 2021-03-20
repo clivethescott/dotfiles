@@ -20,3 +20,5 @@
 	ff = true
 [alias]
 	uncommit = reset HEAD^
+[pull]
+	ff = true

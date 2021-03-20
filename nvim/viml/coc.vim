@@ -58,10 +58,10 @@ nmap <silent> g[ <Plug>(coc-diagnostic-next)
 nmap <silent> gl <Plug>(coc-codelens-action)
 nmap g.  <Plug>(coc-fix-current)
 " Applying codeAction to the selected region.
-xmap gs <Plug>(coc-codeaction-selected)
-nmap gs <Plug>(coc-codeaction-selected)
+xmap ga <Plug>(coc-codeaction-selected)
+nmap ga <Plug>(coc-codeaction-selected)
 " Buffer code action
-nmap <silent> ga <Plug>(coc-codeaction)
+nmap <silent> gs <Plug>(coc-codeaction)
 nnoremap <silent><nowait> <leader>D  :<C-u>CocList diagnostics<cr>
 " Formatting selected code.
 vmap <silent> <leader>f <Plug>(coc-format-selected)
