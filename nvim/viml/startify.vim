@@ -1,3 +1,6 @@
+let g:startify_change_to_dir = 0
+let g:startify_change_to_vcs_root = 1
+
 " returns all modified files of the current git repo
 " `2>/dev/null` makes the command fail quietly, so that when we are not
 " in a git repo, the list will be empty

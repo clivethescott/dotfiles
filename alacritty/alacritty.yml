@@ -45,6 +45,24 @@ colors:
     white:   '#928374'
   # indexed_colors: []
 
+# cursor:
+  # Cursor style
+  # style:
+    # Cursor shape
+    #
+    # Values for `shape`:
+    #   - ▇ Block
+    #   - _ Underline
+    #   - | Beam
+    #shape: Block
+env:
+  # TERM variable
+  #
+  # This value is used to set the `$TERM` environment variable for
+  # each instance of Alacritty. If it is not present, alacritty will
+  # check the local terminfo database and use `alacritty` if it is
+  # available, otherwise `xterm-256color` is used.
+  TERM: xterm-256color
 background_opacity: 0.9
 
 font:
@@ -73,12 +91,6 @@ scrolling:
 selection:
   save_to_clipboard: true
 
-
-shell:
-  program: /bin/zsh
-  args:
-    - -c
-    - /bin/tmux
 key_bindings:
   - { key: V, mods: Control, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
