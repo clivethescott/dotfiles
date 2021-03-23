@@ -14,7 +14,6 @@ Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 "Plug 'itchyny/vim-gitbranch'

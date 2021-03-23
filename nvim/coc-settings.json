@@ -1,5 +1,6 @@
 {
   "codeLens.enable": true,
+  "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
   "metals.treeviews.forceChildrenReload": "R",
   "metals.statusBarEnabled": true,
   "flutter.lsp.initialization.closingLabels": true,

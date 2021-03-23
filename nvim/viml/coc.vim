@@ -92,9 +92,6 @@ endif
 
 " Use <c-space> to trigger COC
 inoremap <silent><expr> <c-space> coc#refresh()
-" Coc-snippets
-nnoremap <leader>s :CocCommand snippets.editSnippets<CR>
-imap <C-y> <Plug>(coc-snippets-expand)
 " coc-flutter
 nnoremap <space>r :CocCommand flutter.run<CR>
 
@@ -130,3 +127,15 @@ nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
 " Fix treesitter syntax highlight issues
 " nnoremap <leader>gf :write | edit | TSBufEnable highlight
+"
+" Snippets
+nnoremap <leader>s :CocCommand snippets.editSnippets<CR>
+imap <C-y> <Plug>(coc-snippets-expand)
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'

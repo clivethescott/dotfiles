@@ -26,7 +26,6 @@
 snippet medq "Use MediaQuery size"
 MediaQuery.of(context).size.$1
 endsnippet
-
 snippet stlss "Create a stateless widget" b
 class $1 extends StatelessWidget {
 	@override
@@ -35,33 +34,28 @@ class $1 extends StatelessWidget {
 	}
 }
 endsnippet
-
 snippet meth "Create a public method" b
 /// created by `echo $USER`
 $1($2) {
 }
 endsnippet
-
-snippet route "Push a material page route"
-Navigator.push${1:Replacement}(context,
-		MaterialPageRoute<void>(
-				builder: (context) => $2),);
-endsnippet
-
 snippet stful "Create a stateful widget" b
 class $1 extends StatefulWidget {
 	@override
 	_$1State createState() => _$1State();
 
 }
-
 class _$1State extends State<$1> {
 	@override
 	Widget build(BuildContext context) {
 		return $2;
 	}
 }
-
+endsnippet
+snippet route "Push a material page route"
+Navigator.push${1:Replacement}(context,
+		MaterialPageRoute<void>(
+				builder: (context) => $2),);
 endsnippet
 
 global !p
