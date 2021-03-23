@@ -94,4 +94,7 @@ selection:
 key_bindings:
   - { key: V, mods: Control, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: Minus, mods: Control, action: DecreaseFontSize }
+  - { key: T, mods: Control|Shift, action: SpawnNewInstance }
 

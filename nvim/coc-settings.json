@@ -1,10 +1,9 @@
 {
   "codeLens.enable": true,
   "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
-  "metals.treeviews.forceChildrenReload": "R",
-  "metals.statusBarEnabled": true,
   "flutter.lsp.initialization.closingLabels": true,
   "flutter.lsp.initialization.onlyAnalyzeProjectsWithOpenFiles": false,
+  "flutter.commands.devicesTimeout": 3,
   "flutter.sdk.searchPaths": [
       "/home/clive/snap/flutter/common/flutter"
   ],

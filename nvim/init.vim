@@ -16,16 +16,16 @@ source $HOME/.config/nvim/viml/fzf.vim
 source $HOME/.config/nvim/viml/gitgutter.vim
 source $HOME/.config/nvim/viml/fugitive.vim
 source $HOME/.config/nvim/viml/undotree.vim
-source $HOME/.config/nvim/viml/fern.vim
-source $HOME/.config/nvim/viml/snippets.vim
+" source $HOME/.config/nvim/viml/fern.vim
 source $HOME/.config/nvim/viml/coc.vim
 source $HOME/.config/nvim/viml/startify.vim
 source $HOME/.config/nvim/viml/autogroups.vim
+source $HOME/.config/nvim/viml/rnvimr.vim
 
 lua <<EOF
 -- require('lsp-config')
 -- require('nvim-compe')
 -- require('dart-lsp')
-require('treesitter')
+-- require('treesitter')
 EOF
 
