@@ -26,6 +26,6 @@ lua <<EOF
 -- require('lsp-config')
 -- require('nvim-compe')
 -- require('dart-lsp')
--- require('treesitter')
+require('treesitter')
 EOF
 
