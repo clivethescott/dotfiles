@@ -57,6 +57,10 @@ Navigator.push${1:Replacement}(context,
 		MaterialPageRoute<void>(
 				builder: (context) => $2),);
 endsnippet
+snippet nroute "Push a named route with args"
+Navigator.pushNamed(context, route.$1,
+arguments: $2),
+endsnippet
 
 global !p
 def complete_mixins(t, opts):
@@ -69,5 +73,11 @@ endglobal
 
 snippet 'with' "Add a mixin"
 with $1`!p snip.rv=complete_mixins(t[1], ['SingleTickerProviderStateMixin', 'TickerProviderStateMixin'])`
+endsnippet
+
+snippet json "Add toJson and fromJson"
+factory $1.fromJson(Map<String, dynamic> json) => _$$1FromJson(json);
+
+Map<String, dynamic> toJson() => _$$1ToJson(this);
 endsnippet
 	
