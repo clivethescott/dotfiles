@@ -69,7 +69,7 @@ shell:
   program: /bin/zsh
   args:
     - -c
-    - /bin/tmux attach || /bin/tmux new
+    - /bin/tmux attach || /bin/tmux new-session
 
 font:
   offset:
@@ -86,6 +86,13 @@ font:
 window:
   startup_mode: Fullscreen
   decorations: none
+  # Window padding (changes require restart)
+  #
+  # Blank space added around the window in pixels. This padding is scaled
+  # by DPI and the specified value is always added at both opposing sides.
+  padding:
+    x: 5
+    y: 0
 
 live_config_reload: true
 
@@ -100,7 +107,7 @@ selection:
 key_bindings:
   - { key: V, mods: Control, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
-  - { key: Equals, mods: Control, action: IncreaseFontSize }
-  - { key: Minus, mods: Control, action: DecreaseFontSize }
+  - { key: Equals, mods: Control|Shift, action: IncreaseFontSize }
+  - { key: Minus, mods: Control|Shift, action: DecreaseFontSize }
   - { key: T, mods: Control|Shift, action: SpawnNewInstance }
 

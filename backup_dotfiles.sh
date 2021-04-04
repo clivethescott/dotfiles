@@ -14,6 +14,7 @@ cp $HOME/.tmux.conf $DOTFILES_HOME/tmux/.tmux.conf
 cp $HOME/.zsh/*.sh $DOTFILES_HOME/zsh
 cp $HOME/.config/alacritty/alacritty.yml $DOTFILES_HOME/alacritty/alacritty.yml
 cp $HOME/.config/ranger/rc.conf $DOTFILES_HOME/ranger/rc.conf
+cp $HOME/.config/ranger/rifle.conf $DOTFILES_HOME/ranger/rifle.conf
 cd $DOTFILES_HOME
 git add .
 git commit

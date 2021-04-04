@@ -59,7 +59,7 @@ Navigator.push${1:Replacement}(context,
 endsnippet
 snippet nroute "Push a named route with args"
 Navigator.pushNamed(context, route.$1,
-arguments: $2),
+arguments: route.$2($3));
 endsnippet
 
 global !p
