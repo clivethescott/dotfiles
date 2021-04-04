@@ -15,6 +15,7 @@ cp $HOME/.zsh/*.sh $DOTFILES_HOME/zsh
 cp $HOME/.config/alacritty/alacritty.yml $DOTFILES_HOME/alacritty/alacritty.yml
 cp $HOME/.config/ranger/rc.conf $DOTFILES_HOME/ranger/rc.conf
 cp $HOME/.config/ranger/rifle.conf $DOTFILES_HOME/ranger/rifle.conf
+cp $HOME/.config/ranger/commands.py $DOTFILES_HOME/ranger/commands.py
 cd $DOTFILES_HOME
 git add .
 git commit
