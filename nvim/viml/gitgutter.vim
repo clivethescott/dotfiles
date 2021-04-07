@@ -10,7 +10,6 @@ let g:gitgutter_grep = 'rg'
 
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
-nmap <leader>gp <Plug>(GitGutterPreviewHunk)
-nmap <leader>gu <Plug>(GitGutterUndoHunk)
-nmap <leader>gU <Plug>(Gread)
+nmap <leader>gP <Plug>(GitGutterPreviewHunk)
+nmap <leader>gU <Plug>(GitGutterUndoHunk)
 

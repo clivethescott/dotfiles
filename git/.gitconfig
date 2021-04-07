@@ -16,7 +16,8 @@
 [difftool "default-difftool"]
     cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
-	tool = meld
+  tool = vimdiff
+	guitool = meld
 	ff = true
 [alias]
 	uncommit = reset HEAD^

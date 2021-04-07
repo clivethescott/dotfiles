@@ -18,7 +18,7 @@ let g:coc_global_extensions = [
   \ 'coc-pyright',
   \ 'coc-json',
   \ 'coc-tsserver',
-  \ 'coc-flutter',
+  \ 'coc-flutter-tools',
   \ ]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -72,8 +72,6 @@ nmap <leader>r <Plug>(coc-rename)
 " Use K to show documentation in preview window.
 nmap <silent> K :call <SID>show_documentation()<CR>
 " Used to expand decorations in worksheets
-nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
-
 " Yank list
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 " Coc tab completion
@@ -114,17 +112,10 @@ command! -nargs=0 Imports   :call     CocAction('runCommand', 'editor.action.org
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" Metals
-" Toggle panel with Tree Views
-nnoremap <silent> <space>tt :<C-u>CocCommand metals.tvp<CR>
-" Toggle Tree View 'metalsPackages'
-nnoremap <silent> <space>tp :<C-u>CocCommand metals.tvp metalsPackages<CR>
-" Toggle Tree View 'metalsCompile'
-nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
-" Toggle Tree View 'metalsBuild'
-nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
-" Reveal current current class (trait or object) in Tree View 'metalsPackages'
-nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
+nnoremap <silent> <space>fo :<C-u>CocCommand flutter.toggleOutline<CR>
+nnoremap <silent> <space>fq :<C-u>CocCommand flutter.dev.quit<CR>
+nnoremap <silent> <space>fr :<C-u>CocCommand flutter.dev.hotRestart<CR>
+nnoremap <silent> <space>fc :<C-u>CocCommand flutter.dev.clearDevLog<CR>
 " Fix treesitter syntax highlight issues
 " nnoremap <leader>gf :write | edit | TSBufEnable highlight
 "

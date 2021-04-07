@@ -4,9 +4,11 @@
   "flutter.lsp.initialization.closingLabels": true,
   "flutter.lsp.initialization.onlyAnalyzeProjectsWithOpenFiles": false,
   "flutter.commands.devicesTimeout": 3,
+  "flutter.UIPath": true,
   "flutter.sdk.searchPaths": [
       "/home/clive/snap/flutter/common/flutter"
   ],
+  "flutter.autoOpenDevLog": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "dart",
     "javascript",
