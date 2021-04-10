@@ -37,6 +37,7 @@ set formatoptions-=cro                  " Stop newline continution of comments
 
 " Disable NVim's Python 2
 let g:loaded_python_provider = 0
+let g:python3_host_prog = '/usr/bin/python3'
 " Disable NVim's Perl
 let g:loaded_perl_provider = 0
 " Disable NVim's Ruby

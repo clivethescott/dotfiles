@@ -8,6 +8,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Use already available FZF
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'honza/vim-snippets'

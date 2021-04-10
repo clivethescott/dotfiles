@@ -4,7 +4,7 @@
   "flutter.lsp.initialization.closingLabels": true,
   "flutter.lsp.initialization.onlyAnalyzeProjectsWithOpenFiles": false,
   "flutter.commands.devicesTimeout": 3,
-  "flutter.UIPath": true,
+  "flutter.UIPath": false,
   "flutter.sdk.searchPaths": [
       "/home/clive/snap/flutter/common/flutter"
   ],

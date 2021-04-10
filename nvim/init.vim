@@ -21,6 +21,7 @@ source $HOME/.config/nvim/viml/coc.vim
 source $HOME/.config/nvim/viml/startify.vim
 source $HOME/.config/nvim/viml/autogroups.vim
 source $HOME/.config/nvim/viml/rnvimr.vim
+source $HOME/.config/nvim/viml/fzfcheckout.vim
 
 lua <<EOF
 -- require('lsp-config')
