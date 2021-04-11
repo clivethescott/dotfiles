@@ -21,6 +21,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 " Case relative replacements
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-dispatch'
 Plug 'fatih/vim-go',  { 'do': ':GoUpdateBinaries' }
 " Protobuf syntax highlighting
 Plug 'uarun/vim-protobuf'
