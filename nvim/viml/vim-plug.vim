@@ -1,8 +1,8 @@
 filetype off
 
 call plug#begin('~/.vim/plugged')
-
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+ " We recommend updating the parsers on update 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Use already available FZF
@@ -16,19 +16,15 @@ Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'jparise/vim-graphql'
-" The premiere Git plugin for Vim or Vim plugin for Git
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-" Case relative replacements
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
 Plug 'fatih/vim-go',  { 'do': ':GoUpdateBinaries' }
-" Protobuf syntax highlighting
 Plug 'uarun/vim-protobuf'
-" Start menu
 Plug 'mhinz/vim-startify'
 Plug 'lambdalisue/nerdfont.vim'
-" File manager
+" File manager config
 " Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 " Plug 'lambdalisue/fern.vim'
 " Plug 'lambdalisue/fern-git-status.vim'
