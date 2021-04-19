@@ -5,7 +5,7 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 " <alt-A> toggle all
 " <alt-D> untoggle all
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-t': 'vsplit',
   \ 'ctrl-x': 'split',
   \ 'ctrl-y': 'vsplit' }
 " let g:fzf_history_dir = '~/.local/share/fzf-history'

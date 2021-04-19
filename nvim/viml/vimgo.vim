@@ -39,6 +39,7 @@ let g:go_debug_windows = {
 " Auto formatting and importing
 let g:go_fmt_autosave = 1
 let g:go_fmt_command = "goimports"
+let g:go_rename_command = "gorename"
 
 " Status line types/signatures
 let g:go_auto_type_info = 1

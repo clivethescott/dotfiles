@@ -27,6 +27,9 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+" Resize v-splits
+nnoremap <leader>< 10<C-w><
+nnoremap <leader>> 10<C-w>>
 
 nnoremap <C-S> :w<CR>
 inoremap <C-S> <esc>:w<CR>

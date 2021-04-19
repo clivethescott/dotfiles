@@ -9,7 +9,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
-Plug 'junegunn/goyo.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'honza/vim-snippets'
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
@@ -23,15 +22,16 @@ Plug 'tpope/vim-dispatch'
 Plug 'fatih/vim-go',  { 'do': ':GoUpdateBinaries' }
 Plug 'uarun/vim-protobuf'
 Plug 'mhinz/vim-startify'
-Plug 'lambdalisue/nerdfont.vim'
-" File manager config
+" Ranger plugin
+Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+
+" File managers
 " Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 " Plug 'lambdalisue/fern.vim'
 " Plug 'lambdalisue/fern-git-status.vim'
 " Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+" Plug 'lambdalisue/nerdfont.vim'
 "
-" Ranger plugin
-Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 
 call plug#end()
 
