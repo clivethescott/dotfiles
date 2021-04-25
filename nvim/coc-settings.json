@@ -22,25 +22,6 @@
   "eslint.autoFixOnSave": true,
   "prettier.disableSuccessMessage": true,
   "python.jediEnabled": false,
-  "java.referencesCodeLens.enabled": true,
-  "java.project.resourceFilters": [
-      "node_modules",
-      ".git",
-      "target"
-  ],
-  "java.completion.enabled": true,
-  "java.jdt.ls.vmargs": "-javaagent:/home/clive/apps/jar/lombok.jar -Xmx1G -Xms1G",
-  "java.configuration.runtimes": [
-    {
-      "name": "JavaSE-1.8",
-      "path": "/home/clive/.sdkman/candidates/java/8.0.252.hs-adpt"
-    },
-    {
-      "name": "JavaSE-15",
-      "path": "/home/clive/.sdkman/candidates/java/15.0.0.hs-adpt",
-      "default": true
-    }
-  ],
   "languageserver": {
     "golang": {
       "command": "gopls",

@@ -1,12 +1,12 @@
 filetype off
 
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('config') . '/plugged')
  " We recommend updating the parsers on update 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Use already available FZF
-Plug '~/.fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }

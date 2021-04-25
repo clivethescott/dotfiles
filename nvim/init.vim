@@ -1,7 +1,3 @@
-" Make nvim use Vim's config
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-
 source $HOME/.config/nvim/viml/nvim-options.vim
 source $HOME/.config/nvim/viml/abbreviations.vim
 source $HOME/.config/nvim/viml/vim-plug.vim

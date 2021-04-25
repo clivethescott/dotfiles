@@ -11,7 +11,7 @@ set nowrap
 set smartcase ignorecase                      
 set showmatch
 set nobackup nowritebackup noswapfile hidden
-set undofile undodir=~/.vim/undodir
+set undofile undodir=~/.config/nvim/undodir
 set incsearch hlsearch
 set encoding=utf-8
 set wildmenu                        " Visual autocomplete for command menu

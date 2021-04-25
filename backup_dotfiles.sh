@@ -2,12 +2,13 @@
 
 old_dir=$(pwd)
 DOTFILES_HOME=$HOME/dotfiles
-cp $HOME/.config/nvim/snippets/*.snippets $DOTFILES_HOME/nvim/snippets
+NVIM_HOME=$HOME/.config/nvim
+cp $NVIM_HOME/snippets/*.snippets $DOTFILES_HOME/nvim/snippets
+cp $NVIM_HOME/init.vim $DOTFILES_HOME/nvim/init.vim
+cp $NVIM_HOME/viml/*.vim $DOTFILES_HOME/nvim/viml
+cp $NVIM_HOME/lua/*.lua $DOTFILES_HOME/nvim/lua
+cp $NVIM_HOME/coc-settings.json $DOTFILES_HOME/nvim/coc-settings.json
 cp $HOME/.gitconfig $HOME/.gitignore_global $DOTFILES_HOME/git
-cp $HOME/.config/nvim/init.vim $DOTFILES_HOME/nvim/init.vim
-cp $HOME/.config/nvim/viml/*.vim $DOTFILES_HOME/nvim/viml
-cp $HOME/.config/nvim/lua/*.lua $DOTFILES_HOME/nvim/lua
-cp $HOME/.config/nvim/coc-settings.json $DOTFILES_HOME/nvim/coc-settings.json
 cp $HOME/.ideavimrc $DOTFILES_HOME/ideavim/.ideavimrc
 cp $HOME/.ripgreprc $DOTFILES_HOME/ripgrep/.ripgreprc
 cp $HOME/.tmux.conf $DOTFILES_HOME/tmux/.tmux.conf

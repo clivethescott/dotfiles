@@ -53,6 +53,7 @@ vnoremap <up> <nop>
 vnoremap < <gv
 vnoremap > >gv
 
+nnoremap <leader> gh :helptags ALL<CR>
 nnoremap <silent> g> :diffput<CR>
 nnoremap <silent> g< :diffget<CR>
 nnoremap <silent> tn :tabnext<CR>

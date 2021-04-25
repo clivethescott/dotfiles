@@ -19,6 +19,7 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-tsserver',
   \ 'coc-flutter-tools',
+  \ 'coc-lua',
   \ ]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
