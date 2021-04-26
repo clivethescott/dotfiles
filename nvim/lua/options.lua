@@ -1,6 +1,4 @@
 vim.o.syntax = 'on'
-vim.o.background = 'dark'
-vim.cmd([[colorscheme gruvbox]])
 
 vim.o.dictionary = vim.o.dictionary .. '/usr/share/dict/words'
 vim.o.clipboard = 'unnamedplus'
@@ -12,7 +10,7 @@ vim.o.backup = false
 vim.o.writebackup = false
 vim.o.hidden = true
 vim.o.undofile = true
-vim.o.undodir = '~/.config/nvim/undodir'
+vim.o.undodir = '/home/clive/.config/nvim/undodir'
 vim.o.splitbelow = true
 vim.o.splitright = true
 -- Don't pass messages to |ins-completion-menu|.
@@ -25,6 +23,7 @@ vim.o.grepprg = 'rg --vimgrep'
 -- Save on make
 vim.o.autowrite = true
 vim.o.smarttab = true
+vim.o.termguicolors = true
 
 vim.wo.cursorline = true
 -- Always show the signcolumn, otherwise it would shift the text each time

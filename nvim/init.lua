@@ -1,10 +1,18 @@
 require('options')
 require('keymaps')
 -- Plug Configuration
+require('plugins')
 require('plugins.plugins-config')
+require('plugins.colors-config')
 require('plugins.telescope-config')
 require('plugins.treesitter-config')
 require('plugins.fugitive-config')
 require('plugins.lightline-config')
 require('plugins.undotree-config')
 require('plugins.rnvimr-config')
+-- LSP
+require('lsp-config')
+require('plugins.compe-config')
+require('plugins.vsnip-config')
+require('autogroups')
+

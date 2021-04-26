@@ -27,7 +27,6 @@ return packer.startup(function()
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
   use 'morhetz/gruvbox'
-  use 'honza/vim-snippets'
   use 'itchyny/lightline.vim'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-commentary'
@@ -35,6 +34,11 @@ return packer.startup(function()
   use 'mhinz/vim-startify'
   use { 'fatih/vim-go',  run = ':GoUpdateBinaries' }
   use 'kevinhwang91/rnvimr'
+  use 'neovim/nvim-lspconfig'
+  use 'hrsh7th/nvim-compe'
+  use 'hrsh7th/vim-vsnip'
+  use 'hrsh7th/vim-vsnip-integ'
+  use 'Neevash/awesome-flutter-snippets'
   -- use { 'mbbill/undotree', opt = true cmd = 'UndotreeToggle' }
   -- use { 'junegunn/fzf', run = 'cd ~/.fzf && ./install --all' }
   -- use { 

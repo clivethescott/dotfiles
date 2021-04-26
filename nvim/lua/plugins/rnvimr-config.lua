@@ -12,7 +12,7 @@ vim.g.rnvimr_action = {
   yw = 'EmitRangerCwd'
 }
 
-local columns = vim.o.columns 
+local columns = math.max(vim.o.columns, 80)
 local lines = vim.o.lines 
 -- Customize the initial layout
 vim.g.rnvimr_layout = {

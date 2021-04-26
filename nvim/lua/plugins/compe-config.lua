@@ -1,6 +1,7 @@
+vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
 vim.o.completeopt = "menuone,noselect"
 
-require'compe'.setup {
+require('compe').setup {
   enabled = true;
   autocomplete = true;
   debug = false;
@@ -47,10 +48,10 @@ end
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-n>"
-  elseif vim.fn.call("vsnip#available", {1}) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
   elseif check_back_space() then
     return t "<Tab>"
+  elseif vim.fn.call("vsnip#available", {1}) == 1 then
+    return t "<Plug>(vsnip-expand-or-jump)"
   else
     return vim.fn['compe#complete']()
   end
@@ -65,7 +66,10 @@ _G.s_tab_complete = function()
   end
 end
 
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+local map = vim.api.nvim_set_keymap
+local opts = { expr = true }
+map("i", "<Tab>", "v:lua.tab_complete()", opts)
+map("s", "<Tab>", "v:lua.tab_complete()", opts)
+map("i", "<S-Tab>", "v:lua.s_tab_complete()", opts)
+map('i', '<cr>', "compe#confirm('<cr>')", opts)
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", opts)

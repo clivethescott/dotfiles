@@ -33,4 +33,5 @@ graphql:*.{graphqls}
 --glob=!*/__pycache__/* 
 --glob=!*.class
 --glob=!*.jar
+--glob=!*.png
 

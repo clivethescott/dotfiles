@@ -4,8 +4,8 @@ old_dir=$(pwd)
 DOTFILES_HOME=$HOME/dotfiles
 NVIM_HOME=$HOME/.config/nvim
 cp $NVIM_HOME/snippets/*.snippets $DOTFILES_HOME/nvim/snippets
-cp $NVIM_HOME/init.vim $DOTFILES_HOME/nvim/init.vim
-cp $NVIM_HOME/init.lua $DOTFILES_HOME/nvim/init.lua
+cp $NVIM_HOME/*.vim $DOTFILES_HOME/nvim
+cp $NVIM_HOME/*.lua $DOTFILES_HOME/nvim
 cp $NVIM_HOME/viml/*.vim $DOTFILES_HOME/nvim/viml
 cp -r $NVIM_HOME/lua $DOTFILES_HOME/nvim
 cp $NVIM_HOME/coc-settings.json $DOTFILES_HOME/nvim/coc-settings.json
