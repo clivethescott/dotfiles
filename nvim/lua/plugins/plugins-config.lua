@@ -27,7 +27,7 @@ return packer.startup(function()
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
   use 'morhetz/gruvbox'
-  use 'itchyny/lightline.vim'
+  -- use 'itchyny/lightline.vim'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-commentary'
   use 'tpope/vim-dispatch'
@@ -39,20 +39,21 @@ return packer.startup(function()
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
   use 'Neevash/awesome-flutter-snippets'
-  -- use { 'mbbill/undotree', opt = true cmd = 'UndotreeToggle' }
-  -- use { 'junegunn/fzf', run = 'cd ~/.fzf && ./install --all' }
-  -- use { 
-  --   'dart-lang/dart-vim-plugin', 
-  --   opt = true, 
-  --   ft = {'dart'}
-  -- }
+  use { 
+    'dart-lang/dart-vim-plugin', 
+    opt = true, 
+    ft = {'dart'}
+  }
+  use {
+    'hoob3rt/lualine.nvim',
+    requires = {'ryanoasis/vim-devicons', opt = true},
+  }
   -- use 'airblade/vim-gitgutter'
   -- use 'jparise/vim-graphql'
   -- use 'tpope/vim-commentary'
   -- use 'tpope/vim-abolish'
   -- use 'uarun/vim-protobuf'
   -- -- Ranger plugin
-  -- use { 'kevinhwang91/rnvimr', run = 'make sync' }
 
 end)
 

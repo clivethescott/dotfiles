@@ -108,6 +108,7 @@ require('lspconfig').sumneko_lua.setup {
         globals = {'vim'},
       },
       workspace = {
+	preloadFileSize = 500,
         -- Make the server aware of Neovim runtime files
         library = {
           [vim.fn.expand('$VIMRUNTIME/lua')] = true,
