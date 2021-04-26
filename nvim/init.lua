@@ -1,0 +1,10 @@
+require('options')
+require('keymaps')
+-- Plug Configuration
+require('plugins.plugins-config')
+require('plugins.telescope-config')
+require('plugins.treesitter-config')
+require('plugins.fugitive-config')
+require('plugins.lightline-config')
+require('plugins.undotree-config')
+require('plugins.rnvimr-config')
