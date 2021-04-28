@@ -1,7 +1,7 @@
 # Colors (Gruvbox dark)
 colors:
   primary:
-    # hard contrast background - '#1d2021'
+    # the hard contrast background - '#1d2021'
     background:        &gruvbox_dark_bg '#1d2021'
     # soft contrast background - '#32302f'
     foreground:        '#fbf1c7'
@@ -65,11 +65,11 @@ env:
   TERM: xterm-256color
 background_opacity: 0.9
 # Start tmux shell (zsh) start 
-shell:
-  program: /bin/zsh
-  args:
-    - -c
-    - /bin/tmux attach || /bin/tmux new-session
+# shell:
+#   program: /bin/zsh
+#   args:
+#     - -c
+#     - /bin/tmux attach || /bin/tmux new-session
 
 font:
   offset:
@@ -84,7 +84,7 @@ font:
     style: Regular
 
 window:
-  startup_mode: Fullscreen
+  startup_mode: Windowed
   decorations: none
   # Window padding (changes require restart)
   #
@@ -110,4 +110,5 @@ key_bindings:
   - { key: Equals, mods: Control|Shift, action: IncreaseFontSize }
   - { key: Minus, mods: Control|Shift, action: DecreaseFontSize }
   - { key: T, mods: Control|Shift, action: SpawnNewInstance }
+  - { key: F, mods: Control|Shift, action: ToggleFullScreen }
 

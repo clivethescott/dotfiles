@@ -11,6 +11,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ',D', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
@@ -36,7 +37,7 @@ local on_attach = function(client, bufnr)
       augroup lsp_document_highlight
         autocmd! * <buffer>
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-	autocmd BufWritePre *{.dart,go} lua vim.lsp.buf.formatting_sync(null, 300)
+	      autocmd BufWritePre *{.dart,go} lua vim.lsp.buf.formatting_sync(null, 300)
       augroup END
     ]], false)
   end

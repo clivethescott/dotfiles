@@ -7,7 +7,7 @@ require('telescope').setup{
 
 map('n', '<c-p>', ':Telescope find_files<cr>', opts)
 map('n', '<c-e>', ':Telescope buffers<cr>', opts)
-map('n', '<leader>R', ':Telescope live_grep<cr>', opts)
+map('n', '<space><space>', ':Telescope live_grep<cr>', opts)
 map('n', '<space>go', ':Telescope oldfiles<cr>', opts)
 map('n', '<space>gm', ':Telescope marks<cr>', opts)
 map('n', '<space>gr', ':Telescope registers<cr>', opts)
