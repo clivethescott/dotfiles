@@ -48,6 +48,7 @@ return packer.startup(function()
     'hoob3rt/lualine.nvim',
     requires = {'ryanoasis/vim-devicons', opt = true},
   }
+  use 'folke/lsp-colors.nvim'
   -- use 'airblade/vim-gitgutter'
   -- use 'jparise/vim-graphql'
   -- use 'tpope/vim-commentary'
