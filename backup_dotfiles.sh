@@ -22,6 +22,7 @@ cp $HOME/.config/ranger/commands.py $DOTFILES_HOME/ranger/commands.py
 cp $HOME/.Xmodmap $DOTFILES_HOME/x
 # Input configuration, touchpad etc
 cp /etc/X11/xorg.conf.d/99-libinput.conf $DOTFILES_HOME/x
+cp $HOME/.config/i3/config $DOTFILES_HOME/i3
 cd $DOTFILES_HOME
 git add .
 git commit
