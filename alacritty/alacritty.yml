@@ -65,11 +65,11 @@ env:
   TERM: xterm-256color
 background_opacity: 0.9
 # Start tmux shell (zsh) start 
-shell:
-  program: /bin/zsh
-  args:
-    - -c
-    - /bin/tmux attach || /bin/tmux new-session
+# shell:
+#   program: /bin/zsh
+#   args:
+#     - -c
+#     - /bin/tmux attach || /bin/tmux new-session
 
 font:
   offset:
@@ -85,7 +85,7 @@ font:
 
 window:
   startup_mode: Windowed
-  decorations: none
+  decorations: full
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
