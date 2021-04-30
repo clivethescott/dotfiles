@@ -8,13 +8,13 @@
 # -----------------------------------------------------------------------------
 
 from __future__ import (absolute_import, division, print_function)
-
 # You can import any python module as needed.
 import os
 
+from utils import subs
+
 # You always need to import ranger.api.commands here to get the Command class:
 from ranger.api.commands import Command
-
 
 # Any class that is a subclass of "Command" will be integrated into ranger as a
 # command.  Try typing ":my_edit<ENTER>" in ranger!
@@ -61,7 +61,25 @@ class duplicate(Command):
     # The tab method is called when you press tab, and should return a list of
     # suggestions that the user will tab through.
     # tabnum is 1 for <TAB> and -1 for <S-TAB> by default
-    def tab(self, tabnum):
+    def tab(self, _):
         # This is a generic tab-completion function that iterates through the
         # content of the current directory.
         return self._tab_directory_content()
+
+# Any class that is a subclass of "Command" will be integrated into ranger as a
+# command.  Try typing ":my_edit<ENTER>" in ranger!
+class subcp(Command):
+    """:subtitle_copy
+
+    Locate + copy subtitle for current video file
+    """
+
+    # The execute method is called when you run this command in ranger.
+    def execute(self):
+        subs.cp(self.fm.thisfile.path)
+        
+    def tab(self, _):
+        # This is a generic tab-completion function that iterates through the
+        # content of the current directory.
+        return self._tab_directory_content()
+

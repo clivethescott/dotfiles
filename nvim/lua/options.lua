@@ -39,6 +39,9 @@ vim.bo.shiftwidth = 2
 vim.bo.expandtab = true
 vim.bo.smartindent = true
 vim.bo.swapfile = false
+
+-- TODO: figure out why lua config is not being set
+vim.cmd[[set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smartindent noswapfile]]
 -- Stop newline continution of comments, TODO: convert to lua
 -- vim.o.formatoptions-=cro 
 
