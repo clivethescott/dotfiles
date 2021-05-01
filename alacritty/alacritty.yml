@@ -75,7 +75,7 @@ font:
   offset:
     x: 0
     y: 0
-  size: 9.5
+  size: 9
   normal:
     family: "SauceCodePro NF"
     style: Regular
