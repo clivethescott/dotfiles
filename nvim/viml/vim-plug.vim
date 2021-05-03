@@ -5,10 +5,6 @@ call plug#begin(stdpath('config') . '/plugged')
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Use already available FZF
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'stsewd/fzf-checkout.vim'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'honza/vim-snippets'
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
@@ -24,6 +20,10 @@ Plug 'uarun/vim-protobuf'
 Plug 'mhinz/vim-startify'
 " Ranger plugin
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+" Telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " File managers
 " Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }

@@ -11,7 +11,5 @@ if has('nvim')
       " Help Vim recognize *.sbt and *.sc as Scala files
       autocmd BufRead,BufNewFile *.sbt,*.sc set filetype=scala 
       autocmd FileType json syntax match Comment +\/\/.\+$+
-      autocmd FileType lua nnoremap <buffer> <leader>f :call LuaFormat()<cr>
-      autocmd BufWrite *.lua call LuaFormat()
     augroup END
 endif

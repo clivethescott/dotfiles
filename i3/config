@@ -102,7 +102,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -197,8 +197,8 @@ bindsym $mod+r mode "resize"
 
 bindsym $mod+Shift+x exec i3lock-fancy --pixelate 
 # Increase/Decrease brightness
-bindsym XF86MonBrightnessUp exec ~/ShellScripts/brightness.sh 0.7
-bindsym XF86MonBrightnessDown exec ~/ShellScripts/brightness.sh 0.5
+bindsym XF86MonBrightnessUp exec ~/ShellScripts/brightness.sh 0.1
+bindsym XF86MonBrightnessDown exec ~/ShellScripts/brightness.sh -0.1
 # Take a Screenshot
 bindsym $mod+Shift+p --release exec scrot --silent --select ~/Pictures/"Screenshot from $(date +%Y-%m-%d_%H-%M-%S).png" 
 
