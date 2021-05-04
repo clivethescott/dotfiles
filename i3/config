@@ -65,7 +65,8 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec rofi -modi drun,run -show drun
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec rofi -show combi
 
 # change focus
 bindsym $mod+$left focus left
@@ -126,14 +127,15 @@ bindsym $mod+minus scratchpad show
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
+# 
 set $ws1 "1:  Shell"
-set $ws2 "2:  Media"
+set $ws2 "2:  Firefox"
 set $ws3 "3:  Flutter"
 set $ws4 "4:  Java"
-set $ws5 "5:  Mail"
+set $ws5 "5:  Mail/IM"
 set $ws6 "6: Files"
-set $ws7 "7"
-set $ws8 "8"
+set $ws7 "7: Books"
+set $ws8 "8:  Music"
 set $ws9 "9"
 set $ws10 "10"
 
@@ -210,18 +212,21 @@ for_window [window_role="pop-up"] floating enable
 # Open applications on specific workspace
 # To get class => xprop | grep WM_CLASS | awk '{print $4}'
 assign [class="Firefox"] $ws2
-# Android Studio
+assign [class="Chrome"] $ws2
 assign [class="jetbrains-studio"] $ws3
-# IntelliJ
 assign [class="jetbrains-idea"] $ws4
 assign [class="Mailspring"] $ws5
+assign [class="zoom"] $ws5
+assign [class="Skype"] $ws5
+assign [class="teams"] $ws5
+assign [class="Spotify"] $ws8
 
 # Display Resolution
-exec_always xrandr --output eDP-1 --mode 1920x1200
+exec xrandr --output eDP-1 --primary --mode 1920x1200
 # Display Wallpaper
 exec_always feh --bg-fill ~/Pictures/arch.jpg
 # Brightness
-exec_always ~/ShellScripts/brightness.sh 0.5
+exec ~/ShellScripts/brightness_set.sh 0.6
 # Change window colors
 # <colorclass> <border> <background> <text> <indicator> <child_border>
 client.focused #3b444b #3b444b #ffffff #568203 #568203
