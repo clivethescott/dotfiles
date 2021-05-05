@@ -11,5 +11,7 @@ if has('nvim')
       " Help Vim recognize *.sbt and *.sc as Scala files
       autocmd BufRead,BufNewFile *.sbt,*.sc set filetype=scala 
       autocmd FileType json syntax match Comment +\/\/.\+$+
+      autocmd BufNewFile *.sh silent! 0r ~/.config/nvim/templates/skel.sh
+      autocmd BufNewFile *.dart silent! 0r ~/.config/nvim/templates/skel.dart
     augroup END
 endif

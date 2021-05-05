@@ -10,6 +10,7 @@ cp $NVIM_HOME/init.lua $DOTFILES_HOME/nvim/init.lua
 cp $NVIM_HOME/viml/*.vim $DOTFILES_HOME/nvim/viml
 cp -r $NVIM_HOME/lua $DOTFILES_HOME/nvim
 cp $NVIM_HOME/coc-settings.json $DOTFILES_HOME/nvim/coc-settings.json
+cp $NVIM_HOME/templates/* $DOTFILES_HOME/nvim/templates
 cp $HOME/.gitconfig $HOME/.gitignore_global $DOTFILES_HOME/git
 cp $HOME/.ideavimrc $DOTFILES_HOME/ideavim/.ideavimrc
 cp $HOME/.ripgreprc $DOTFILES_HOME/ripgrep/.ripgreprc
