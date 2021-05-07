@@ -40,7 +40,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # Playerctl media playing
 bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
 bindsym $mod+n exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 bindsym $mod+p exec playerctl previous
 
 # use these keys for focus, movement, and resize directions when reaching for

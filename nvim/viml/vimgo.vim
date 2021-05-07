@@ -25,8 +25,9 @@ let g:go_test_show_name = 0
 " this is handled by LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
 " Run meta linter on save
-" let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave = 1
 let g:go_metalinter_deadline = '3s'
+let g:go_metalinter_command = 'golangci-lint'
 let g:go_test_timeout = '8s'
 " Don't use location window
 let g:go_list_type = "quickfix"
@@ -42,7 +43,7 @@ let g:go_fmt_command = "goimports"
 let g:go_rename_command = "gorename"
 
 " Status line types/signatures
-let g:go_auto_type_info = 1
+let g:go_auto_type_info = 0
 
 augroup filetype_go
     autocmd!

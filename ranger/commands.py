@@ -10,8 +10,11 @@
 from __future__ import (absolute_import, division, print_function)
 # You can import any python module as needed.
 import os
+from utils import subs
 # You always need to import ranger.api.commands here to get the Command class:
 from ranger.api.commands import Command
+from ranger.core.loader import CommandLoader
+
 
 # Any class that is a subclass of "Command" will be integrated into ranger as a
 # command.  Try typing ":my_edit<ENTER>" in ranger!
@@ -70,7 +73,6 @@ class subcp(Command):
     """
 
     def execute(self):
-        from utils import subs
         subs.cp(self.fm.thisfile.path)
         
     def tab(self, _):
@@ -82,8 +84,6 @@ class compress(Command):
 
         Compress marked files to current directory using atool
         """
-
-        from ranger.core.loader import CommandLoader
 
         cwd = self.fm.thisdir
         marked_files = cwd.get_selection()
