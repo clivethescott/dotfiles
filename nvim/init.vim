@@ -8,7 +8,6 @@ source $HOME/.config/nvim/viml/nvim-keymap.vim
 source $HOME/.config/nvim/viml/startify.vim
 source $HOME/.config/nvim/viml/vimgo.vim
 source $HOME/.config/nvim/viml/lightline.vim
-source $HOME/.config/nvim/viml/fzf.vim
 source $HOME/.config/nvim/viml/gitgutter.vim
 source $HOME/.config/nvim/viml/fugitive.vim
 source $HOME/.config/nvim/viml/undotree.vim
@@ -17,12 +16,12 @@ source $HOME/.config/nvim/viml/coc.vim
 source $HOME/.config/nvim/viml/startify.vim
 source $HOME/.config/nvim/viml/autogroups.vim
 source $HOME/.config/nvim/viml/rnvimr.vim
-source $HOME/.config/nvim/viml/fzfcheckout.vim
 
 lua <<EOF
 -- require('lsp-config')
 -- require('nvim-compe')
 -- require('dart-lsp')
-require('treesitter-config')
+require('plugins.treesitter-config')
+require('plugins.telescope-config')
 EOF
 

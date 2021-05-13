@@ -1,9 +1,9 @@
 if has('nvim')
     augroup myoptions
       autocmd!
-      autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+      " autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
       " autocmd BufEnter * lua require'completion'.on_attach()
-      autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+      " autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
       " autocmd BufRead,BufNewFile *.dart set foldmethod=syntax
       " autocmd BufRead,BufNewFile *.go set foldmethod=indent
       " Format on save

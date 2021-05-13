@@ -1,13 +1,33 @@
 vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
 vim.o.completeopt = "menuone,noselect"
 
+vim.cmd[[
+function! Auto_complete_string()                               
+    if pumvisible()                                            
+        return "\<C-n>"                                        
+    else                                                       
+        return "\<C-x>\<C-o>\<C-r>=Auto_complete_opened()\<CR>"
+    end                                                        
+endfunction                                                    
+
+function! Auto_complete_opened()                               
+    if pumvisible()                                            
+        return "\<c-n>\<c-p>\<c-n>"                            
+    else                                                       
+        return "\<bs>\<C-n>"                                   
+    end                                                        
+endfunction                                                    
+
+inoremap <expr> <Nul> Auto_complete_string()
+inoremap <expr> <C-Space> Auto_complete_string()
+]]
 require('compe').setup {
   enabled = true;
-  autocomplete = true;
+  autocomplete = false;
   debug = false;
-  min_length = 1;
+  min_length = 3;
   preselect = 'enable';
-  throttle_time = 100;
+  throttle_time = 500;
   source_timeout = 200;
   incomplete_delay = 400;
   max_abbr_width = 100;
@@ -18,14 +38,14 @@ require('compe').setup {
   source = {
     path = true;
     buffer = true;
-    calc = false;
+    calc = true;
     vsnip = true;
     nvim_lsp = true;
     nvim_lua = true;
     spell = true;
     tags = true;
     snippets_nvim = true;
-    treesitter = false;
+    treesitter = true;
   };
 }
 
@@ -73,3 +93,4 @@ map("s", "<Tab>", "v:lua.tab_complete()", opts)
 map("i", "<S-Tab>", "v:lua.s_tab_complete()", opts)
 map('i', '<cr>', "compe#confirm('<cr>')", opts)
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", opts)
+

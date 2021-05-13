@@ -63,7 +63,7 @@ env:
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
   TERM: xterm-256color
-background_opacity: 0.9
+background_opacity: 0.8
 # Start tmux shell (zsh) start 
 # shell:
 #   program: /bin/zsh
@@ -75,12 +75,12 @@ font:
   offset:
     x: 0
     y: 0
-  size: 9.5
+  size: 13
   normal:
-    family: "SauceCodePro NF"
+    family: "SauceCodePro Nerd Font"
     style: Regular
   bold:
-    family: "SauceCodePro NF"
+    family: "SauceCodePro Nerd Font"
     style: Regular
 
 window:
