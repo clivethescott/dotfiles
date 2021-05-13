@@ -9,7 +9,6 @@ vim.o.showmatch = true
 vim.o.backup = false
 vim.o.writebackup = false
 vim.o.hidden = true
-vim.o.undofile = true
 vim.o.undodir = '/home/clive/.config/nvim/undodir'
 vim.o.splitbelow = true
 vim.o.splitright = true
@@ -17,7 +16,7 @@ vim.o.splitright = true
 vim.o.shortmess = vim.o.shortmess .. 'c'
 -- Shorter delays and better user experience.
 vim.o.updatetime = 100
-vim.o.wildignore = vim.o.wildignore .. '*/tmp/*,*.so,*.swp,*.zip,*.jar,*/node_modules/*,*/target/*,*/.git/' .. 
+vim.o.wildignore = vim.o.wildignore .. '*/tmp/*,*.so,*.swp,*.zip,*.jar,*/node_modules/*,*/target/*,*/.git/' ..
 '*,*.class,*.pyc,*/plugged/*,*/undodir/*,*.png,*.dex'
 vim.o.grepprg = 'rg --vimgrep'
 -- Save on make
@@ -39,6 +38,7 @@ vim.bo.shiftwidth = 2
 vim.bo.expandtab = true
 vim.bo.smartindent = true
 vim.bo.swapfile = false
+vim.bo.undofile = true
 
 -- TODO: figure out why lua config is not being set
 vim.cmd[[set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smartindent noswapfile]]

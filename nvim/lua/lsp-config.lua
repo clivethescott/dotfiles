@@ -43,10 +43,11 @@ local on_attach = function(client, bufnr)
   end
 end
 
+local lspconfig = require('lspconfig')
+
 ----------------------------------------------------------------------
 -- DART LSP CONFIG
 ----------------------------------------------------------------------
-	local lspconfig = require('lspconfig')
 lspconfig.dartls.setup{
     root_dir = lspconfig.util.root_pattern("pubspec.yaml");
     filetypes = {'dart', 'yaml'};
@@ -66,7 +67,6 @@ lspconfig.dartls.setup{
       autoImportCompletions = true,
     }
 }
-
 ----------------------------------------------------------------------
 -- GO LSP CONFIG
 ----------------------------------------------------------------------
@@ -74,7 +74,6 @@ lspconfig.gopls.setup{
   filetypes = {'go'};
   on_attach = on_attach;
 }
-
 ----------------------------------------------------------------------
 -- LUA LSP CONFIG
 ----------------------------------------------------------------------
@@ -93,7 +92,7 @@ end
 local sumneko_root_path = os.getenv('HOME') .. '/apps/lua-language-server'
 local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 
-require('lspconfig').sumneko_lua.setup {
+lspconfig.sumneko_lua.setup {
   on_attach = on_attach;
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
@@ -123,4 +122,18 @@ require('lspconfig').sumneko_lua.setup {
     },
   },
 }
-
+----------------------------------------------------------------------
+-- Python LSP CONFIG
+----------------------------------------------------------------------
+require'lspconfig'.pyright.setup{
+  on_attach = on_attach;
+  settings = {
+    python = {
+      pythonPath = '/usr/bin/python3',
+      analysis = {
+        loglevel = 'Error',
+        typeCheckingMode = 'strict'
+      }
+    }
+  }
+}
