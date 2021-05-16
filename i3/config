@@ -27,7 +27,7 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -51,7 +51,7 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ################################################################################################
 
 # exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+# bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 # exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
 # bindsym $mod+Ctrl+m exec pavucontrol
@@ -59,17 +59,17 @@ exec --no-startup-id pa-applet
 ################################################################################################
 
 # Audio Controls
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-bindsym $mod+n exec playerctl next
-bindsym $mod+p exec playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym $mod+n exec --no-startup-id playerctl next
+bindsym $mod+p exec --no-startup-id playerctl previous
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec ~/ShellScripts/brightness.sh 0.1
-bindsym XF86MonBrightnessDown exec ~/ShellScripts/brightness.sh -0.1
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/ShellScripts/brightness.sh 0.1
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/ShellScripts/brightness.sh -0.1
 # Startup Brightness
-exec ~/ShellScripts/brightness_set.sh 0.6
+exec --no-startup-id ~/ShellScripts/brightness_set.sh 0.6
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
@@ -379,7 +379,7 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-exec xrandr --output eDP-1 --primary --mode 1920x1200
+exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1200
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
 	i3bar_command i3bar

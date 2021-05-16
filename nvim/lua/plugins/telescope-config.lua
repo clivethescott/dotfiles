@@ -3,6 +3,9 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 require('telescope').setup{
+  defaults = {
+    file_ignore_patterns = {'.java'},
+  }
 }
 
 map('n', '<c-p>', ':Telescope find_files<cr>', opts)
@@ -17,3 +20,4 @@ map('n', '<space>gl', ':Telescope git_commits<cr>', opts)
 map('n', '<space>gL', ':Telescope git_bcommits<cr>', opts)
 map('n', '<space>gb', ':Telescope git_branches<cr>', opts)
 map('n', '<space>gs', ':Telescope git_status<cr>', opts)
+map('n', '<space>f', ':Telescope flutter commands<cr>', opts)

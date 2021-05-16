@@ -46,27 +46,49 @@ end
 local lspconfig = require('lspconfig')
 
 ----------------------------------------------------------------------
--- DART LSP CONFIG
-----------------------------------------------------------------------
-lspconfig.dartls.setup{
-    root_dir = lspconfig.util.root_pattern("pubspec.yaml");
-    filetypes = {'dart', 'yaml'};
-    on_attach = on_attach;
-    cmd = {
-        "dart",
-        "/home/clive/snap/flutter/common/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot",
-        "--lsp",
-        "--client-id",
-        "neovim"
-    },
-    init_options = {
-      closingLabels = true,
-      flutterOutline = true,
-      outline = true,
-      allowAnalytics = false,
-      autoImportCompletions = true,
+-- Flutter LSP CONFIG - should not be enabled simultaneously with Flutter CONFIG
+-- load flutter commands into telescope
+require("flutter-tools").setup {
+  flutter_path = '/home/clive/snap/flutter/common/flutter/bin/flutter',
+  widget_guides = {
+    enabled = true,
+  },
+  dev_log = {
+    open_cmd = "tabedit", -- command to use to open the log buffer
+  },
+  outline = {
+    open_cmd = "70vnew", -- command to use to open the outline buffer
+  },
+  lsp = {
+    on_attach = on_attach,
+    settings = {
+      showTodos = true,
+      completeFunctionCalls = true -- NOTE: this is WIP and doesn't work currently
     }
+  }
 }
+----------------------------------------------------------------------
+-- DART LSP CONFIG - should NOT be enabled simultaneously with Flutter CONFIG
+----------------------------------------------------------------------
+-- lspconfig.dartls.setup{
+--     root_dir = lspconfig.util.root_pattern("pubspec.yaml");
+--     filetypes = {'dart', 'yaml'};
+--     on_attach = on_attach;
+--     cmd = {
+--         "dart",
+--         "/home/clive/snap/flutter/common/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot",
+--         "--lsp",
+--         "--client-id",
+--         "neovim"
+--     },
+--     init_options = {
+--       closingLabels = true,
+--       flutterOutline = true,
+--       outline = true,
+--       allowAnalytics = false,
+--       autoImportCompletions = true,
+--     }
+-- }
 ----------------------------------------------------------------------
 -- GO LSP CONFIG
 ----------------------------------------------------------------------

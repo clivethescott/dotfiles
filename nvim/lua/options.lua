@@ -23,6 +23,7 @@ vim.o.grepprg = 'rg --vimgrep'
 vim.o.autowrite = true
 vim.o.smarttab = true
 vim.o.termguicolors = true
+vim.o.timeoutlen = 700
 
 vim.wo.cursorline = true
 -- Always show the signcolumn, otherwise it would shift the text each time

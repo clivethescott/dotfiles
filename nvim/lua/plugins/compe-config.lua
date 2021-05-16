@@ -23,7 +23,7 @@ inoremap <expr> <C-Space> Auto_complete_string()
 ]]
 require('compe').setup {
   enabled = true;
-  autocomplete = false;
+  autocomplete = true;
   debug = false;
   min_length = 3;
   preselect = 'enable';

@@ -18,7 +18,7 @@ packer.init({
   }
 })
 
-return packer.startup(function()
+return packer.startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -39,9 +39,9 @@ return packer.startup(function()
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
   use 'Neevash/awesome-flutter-snippets'
-  use { 
-    'dart-lang/dart-vim-plugin', 
-    opt = true, 
+  use {
+    'dart-lang/dart-vim-plugin',
+    opt = true,
     ft = {'dart'}
   }
   use {
@@ -49,6 +49,17 @@ return packer.startup(function()
     requires = {'ryanoasis/vim-devicons', opt = true},
   }
   use 'folke/lsp-colors.nvim'
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+      }
+    end
+  }
+  use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
+
   -- use 'airblade/vim-gitgutter'
   -- use 'jparise/vim-graphql'
   -- use 'tpope/vim-commentary'
