@@ -23,7 +23,8 @@ vim.o.grepprg = 'rg --vimgrep'
 vim.o.autowrite = true
 vim.o.smarttab = true
 vim.o.termguicolors = true
-vim.o.timeoutlen = 700
+-- Also controls which-key delay
+vim.o.timeoutlen = 500
 
 vim.wo.cursorline = true
 -- Always show the signcolumn, otherwise it would shift the text each time

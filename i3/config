@@ -81,6 +81,8 @@ bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+y exec blueman-manager
 bindsym $mod+Shift+a exec pavucontrol
 bindsym $mod+Shift+i exec intellij-idea
+bindsym F8 exec --no-startup-id arandr
+bindsym $mod+F8 exec --no-startup-id arandr
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 bindsym $mod+F5 exec terminal -e 'mocp'
@@ -220,6 +222,7 @@ for_window [class="Firefox"] move to workspace $ws2
 # Fix flickering
 for_window [class="Spotify"] border normal
 for_window [class="jetbrains-studio"] border normal
+for_window [class="jetbrains-idea"] border normal
 for_window [class="Mailspring"] border normal
 
 assign [class="Chrome"] $ws2
@@ -266,6 +269,7 @@ for_window [window_role="task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
+for_window [class="Zenity"] floating disable
 
 # Change window colors
 # <colorclass> <border> <background> <text> <indicator> <child_border>

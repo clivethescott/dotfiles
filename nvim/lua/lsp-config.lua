@@ -49,7 +49,7 @@ local lspconfig = require('lspconfig')
 -- Flutter LSP CONFIG - should not be enabled simultaneously with Flutter CONFIG
 -- load flutter commands into telescope
 require("flutter-tools").setup {
-  flutter_path = '/home/clive/snap/flutter/common/flutter/bin/flutter',
+  flutter_path = '/home/clive/apps/flutter/bin/flutter',
   widget_guides = {
     enabled = true,
   },
