@@ -66,12 +66,14 @@ bindsym $mod+n exec --no-startup-id playerctl next
 bindsym $mod+p exec --no-startup-id playerctl previous
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id ~/ShellScripts/brightness.sh 0.1
-bindsym XF86MonBrightnessDown exec --no-startup-id ~/ShellScripts/brightness.sh -0.1
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/ShellScripts/brightness.sh 0.05
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/ShellScripts/brightness.sh -0.05
 # Startup Brightness
 exec --no-startup-id ~/ShellScripts/brightness_set.sh 0.6
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+# Redshift
+exec --no-startup-id redshift-gtk
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
@@ -127,6 +129,7 @@ bindsym $mod+Shift+Right move right
 # workspace_auto_back_and_forth yes
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+b workspace back_and_forth
+bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation

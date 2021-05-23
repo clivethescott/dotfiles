@@ -1,2 +1,5 @@
 set default-bg \#ffffff
 set font "monospace normal 12"
+map J zoom in
+map K zoom out
+map t toggle_page_mode
