@@ -82,7 +82,6 @@ bindsym $mod+Ctrl+f exec pcmanfm
 bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+y exec blueman-manager
 bindsym $mod+Shift+a exec pavucontrol
-bindsym $mod+Shift+i exec intellij-idea
 bindsym F8 exec --no-startup-id arandr
 bindsym $mod+F8 exec --no-startup-id arandr
 # bindsym $mod+F3 exec ranger
@@ -98,6 +97,8 @@ bindsym $mod+Shift+p --release exec scrot --silent --select ~/Pictures/"Screensh
 # bindsym $mod+Shift+p --release exec --no-startup-id i3-scrot -s
 # bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+# Toggle redshift
+bindsym $mod+Shift+i exec --no-startup-id pkill -USR1 '^redshift$'
 
 # focus_follows_mouse no
 
@@ -485,3 +486,4 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+

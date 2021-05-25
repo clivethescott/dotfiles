@@ -11,11 +11,13 @@ from __future__ import (absolute_import, division, print_function)
 from ranger_udisk_menu.mounter import mount
 # You can import any python module as needed.
 import os
+import re
 from utils import subs
 # You always need to import ranger.api.commands here to get the Command class:
 from ranger.api.commands import Command
 from ranger.core.loader import CommandLoader
 
+dir_name_junk = re.compile(r'([^\w\/\\.])')
 
 # https://github.com/ranger/ranger/wiki/Integrating-File-Search-with-fzf
 # Now, simply bind this function to a key, by adding this to your ~/.config/ranger/rc.conf: map <C-f> fzf_select
@@ -175,11 +177,17 @@ class compress(Command):
         return ['compress ' + os.path.basename(self.fm.thisdir.path) + ext for ext in extension]
 
 class play_music(Command):
+    def replace_junk_in_dir_name(self, old_name: str) -> str:
+        new_name = dir_name_junk.sub('.', old_name)
+        os.rename(old_name, new_name)
+        return new_name
+
     def execute(self):
         """ Plays all music in dir """
 
-        dir_files = os.path.join(self.fm.thisfile.path, '*').replace(' ', r'\ ')
-        command = f'shell /usr/bin/mpv {dir_files}'
+        dir_name = self.replace_junk_in_dir_name(self.fm.thisfile.path)
+        dir_files = os.path.join(dir_name, '*').replace(' ', r'\ ')
+        command = f'shell /usr/bin/mpv --no-audio-display {dir_files}'
         self.fm.execute_console(command)
 
 

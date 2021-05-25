@@ -10,6 +10,7 @@ map('n', '<leader>2', ':e ~/.config/nvim/init.lua<cr>', opts)
 map('n', '<leader>3', ':e ~/.config/nvim/lua/options.lua<cr>', opts)
 map('n', '<leader>4', ':Startify<cr>', opts)
 map('n', '<leader>b', ':make<cr>', opts)
+map('n', '<leader>s', ':VsnipOpen<cr>', opts)
 map('n', '<tab>', ':b#<cr>', opts)
 -- Split movements in all modes
 map('n', '<c-h>', '<c-w>h', opts)

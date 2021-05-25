@@ -14,7 +14,7 @@ local packer = require('packer')
 packer.init({
   auto_clean = false,
   git = {
-    clone_timeout = 120,
+    clone_timeout = 600,
   }
 })
 
@@ -36,8 +36,9 @@ return packer.startup(function(use)
   use 'kevinhwang91/rnvimr'
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-compe'
+  -- snippets
+  use 'rafamadriz/friendly-snippets'
   use 'hrsh7th/vim-vsnip'
-  use 'hrsh7th/vim-vsnip-integ'
   use 'Neevash/awesome-flutter-snippets'
   use {
     'dart-lang/dart-vim-plugin',

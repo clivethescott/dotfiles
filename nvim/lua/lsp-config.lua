@@ -1,3 +1,14 @@
+-- for snippet completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
+
 local on_attach = function(client, bufnr)
   print('Attaching to ' .. client.name)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -49,6 +60,7 @@ local lspconfig = require('lspconfig')
 -- Flutter LSP CONFIG - should not be enabled simultaneously with Flutter CONFIG
 -- load flutter commands into telescope
 require("flutter-tools").setup {
+  capabilities =  capabilities;
   flutter_path = '/home/clive/apps/flutter/bin/flutter',
   widget_guides = {
     enabled = true,
@@ -93,6 +105,7 @@ require("flutter-tools").setup {
 -- GO LSP CONFIG
 ----------------------------------------------------------------------
 lspconfig.gopls.setup{
+  capabilities =  capabilities;
   filetypes = {'go'};
   on_attach = on_attach;
 }
@@ -148,6 +161,7 @@ lspconfig.sumneko_lua.setup {
 -- Python LSP CONFIG
 ----------------------------------------------------------------------
 require'lspconfig'.pyright.setup{
+  capabilities =  capabilities;
   on_attach = on_attach;
   settings = {
     python = {
