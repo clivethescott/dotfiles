@@ -1,13 +1,13 @@
 ! -*- coding: utf-8 -*-
 ! 2013-02-04
 
-! swap Ctrl and Alt keys
-
 ! here's the default setting on special keys
 !  xmodmap -pke | grep -P '(Control|Super|Alt|Menu)'
 
 ! keycode  37 = Control_L NoSymbol Control_L
+! keycode  50 = Shift_L NoSymbol Shift_L
 ! keycode  64 = Alt_L Meta_L Alt_L Meta_L
+! keycode  66 = Caps_Lock NoSymbol Caps_Lock
 ! keycode 105 = Control_R NoSymbol Control_R
 ! keycode 108 = Alt_R Meta_R Alt_R Meta_R
 ! keycode 133 = Super_L NoSymbol Super_L
@@ -17,11 +17,15 @@
 ! keycode 204 = NoSymbol Alt_L NoSymbol Alt_L
 ! keycode 206 = NoSymbol Super_L NoSymbol Super_L
 
-clear control
-clear mod1
+! swap Ctrl and Alt keys
+clear Control
+clear Mod1
 keycode 37 = Alt_L Meta_L
 keycode 105 = Alt_R Meta_R
 keycode 64 = Control_L
 keycode 108 = Control_R
-add control = Control_L Control_R
-add mod1 = Alt_L Meta_L
+add Control = Control_L Control_R
+add Mod1 = Alt_L Meta_L
+
+! Make Caps Lock another Ctrl
+remove Lock = Caps_Lock

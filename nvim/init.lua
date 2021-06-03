@@ -10,6 +10,7 @@ require('plugins.treesitter-config')
 require('plugins.fugitive-config')
 require('plugins.statusline-config')
 require('plugins.rnvimr-config')
+require('plugins.vimgo-config')
 -- LSP
 require('lsp-config')
 require('plugins.compe-config')

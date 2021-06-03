@@ -1,0 +1,17 @@
+{
+		"freezed class": {
+			"description": "Generate freezed class + json"
+			"prefix": "freeze",
+			"body": ["import 'package:json_annotation/json_annotation.dart';\n",
+        "import 'package:freezed_annotation/freezed_annotation.dart';\n",
+        "import 'package:flutter/foundation.dart';\n\n",
+        "part '${1:/downcase}.freezed.dart';\n",
+        "part '${1:/downcase}.g.dart';\n\n",
+        "@freezed\n",
+        "class ${1:Class} with _$${1:Class}{\n",
+          "factory ${1:Class}({${2:fields}})\n",
+          "factory ${1:Class}.fromJson(Map<String, dynamic> json) => _$${1:Class}FromJson(json);\n",
+        "}"
+      ],
+		},
+}

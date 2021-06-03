@@ -17,7 +17,7 @@ hide_edge_borders none
 # change borders
 bindsym $mod+u border none
 bindsym $mod+y border pixel 1
-bindsym $mod+shift+n border normal
+bindsym $mod+shift+p border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -63,7 +63,8 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym $mod+n exec --no-startup-id playerctl next
-bindsym $mod+p exec --no-startup-id playerctl previous
+bindsym $mod+shift+n exec --no-startup-id playerctl previous
+bindsym $mod+p exec --no-startup-id playerctl play-pause
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id ~/ShellScripts/brightness.sh 0.05
@@ -89,16 +90,17 @@ bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+Shift+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+# bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+bindsym $mod+Shift+Print --release exec --no-startup-id i4-scrot -s
 bindsym $mod+Shift+p --release exec scrot --silent --select ~/Pictures/"Screenshot from $(date +%Y-%m-%d_%H-%M-%S).png" 
 # bindsym $mod+Shift+p --release exec --no-startup-id i3-scrot -s
 # bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 # Toggle redshift
 bindsym $mod+Shift+i exec --no-startup-id pkill -USR1 '^redshift$'
+bindsym $mod+Shift+d exec --no-startup-id ~/zoom-meetings/daniel.sh
 
 # focus_follows_mouse no
 
@@ -134,8 +136,8 @@ bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace bac
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+Shift+s split h;exec notify-send 'tile horizontally'
-bindsym $mod+Shift+v split v;exec notify-send 'tile vertically'
+bindsym $mod+Shift+v split h;exec notify-send 'tile vertically'
+bindsym $mod+Shift+s split v;exec notify-send 'tile horizontally'
 bindsym $mod+q split toggle
 
 # toggle fullscreen mode for the focused container
@@ -173,15 +175,16 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 "1:  Shell"
+#                 
+set $ws1 "1:   Shell"
 set $ws2 "2:   Firefox"
 set $ws3 "3:   Flutter"
 set $ws4 "4:  Java"
 set $ws5 "5:   Mail/IM"
 set $ws6 "6: Files"
-set $ws7 "7: Books"
+set $ws7 "7:   Books"
 set $ws8 "8:   Music"
-set $ws9 "9"
+set $ws9 "9:   Tasks"
 set $ws0 "0"
 
 # switch to workspace
@@ -239,6 +242,7 @@ assign [class="teams"] $ws5
 assign [class="Pcmanfm"] $ws6
 
 # Open specific applications in floating mode
+for_window [title="Android Emulator*"] floating enable
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
@@ -355,6 +359,9 @@ exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 # exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+# Suspend screen https://faq.i3wm.org/question/5938/getting-screen-to-blank/index.html
+# standby, suspend, off in seconds
+exec --no-startup-id xset dpms 0 0 1200
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -392,7 +399,7 @@ exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1200
 bar {
 	i3bar_command i3bar
 	status_command i3status -c ~/.i3/i3status.conf
-	position bottom
+	position top
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
@@ -487,3 +494,5 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+# Multiple monitor setup
+bindsym $mod+Shift+m move workspace to output right

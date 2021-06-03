@@ -32,3 +32,23 @@ vim.g.go_rename_command = "gorename"
 
 -- Status line types/signatures
 vim.g.go_auto_type_info = false
+vim.cmd[[
+augroup filetype_go
+    autocmd!
+    autocmd FileType go nnoremap <buffer> <leader>R :GoRun<CR>
+    autocmd FileType go nnoremap <silent> <buffer> <leader>f :GoFmt<CR>
+    autocmd FileType go nnoremap <buffer> <leader>t :GoTest<CR>
+    autocmd FileType go nnoremap <buffer> <leader>T :GoTestFunc<CR>
+    autocmd FileType go nnoremap <silent> <buffer>gt :GoAlternate<CR>
+    autocmd FileType go nnoremap <buffer>gr :GoReferrers<CR>
+    autocmd FileType go nnoremap <buffer>gi :GoImplements<CR>
+    autocmd FileType go nnoremap <silent> <buffer>gb :GoCoverageBrowser<CR>
+    " autocmd FileType go nnoremap <silent> <buffer>gc :GoCoverage<CR>
+    autocmd FileType go nnoremap <silent> <buffer>gC :GoCoverageToggle<CR>
+    autocmd FileType go nnoremap <silent> <buffer>gl :cclose<CR>
+    autocmd FileType go nnoremap <silent> <buffer>gL :lclose<CR>
+    autocmd FileType go nnoremap <buffer> <leader>r :GoRename<CR>
+      " Use :GV Open Go alternate file in vertical split
+    autocmd Filetype go command! -bang GV call go#alternate#Switch(<bang>0, 'vsplit')
+augroup END
+]]

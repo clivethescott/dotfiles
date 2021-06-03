@@ -1,8 +1,16 @@
 {
-	".source.go": {
 		"single import": {
 			"prefix": "im",
 			"body": "import \"${1:package}\"",
+			"description": "Snippet for import statement"
+		},
+		"test assertion": {
+			"prefix": "iff",
+			"body": [
+        "if got != want {", 
+        "  t.Errorf(\"got %${1:v}, wanted %${2:v}\", got, want)", 
+        "}"
+      ],
 			"description": "Snippet for import statement"
 		},
 		"multiple imports": {
@@ -265,5 +273,4 @@
 			"body": "type ${1:SortBy} []${2:Type}\n\nfunc (a $1) Len() int           { return len(a) }\nfunc (a $1) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }\nfunc (a $1) Less(i, j int) bool { ${3:return a[i] < a[j]} }",
 			"description": "Snippet for a custom sort.Sort interface implementation, for a given slice type."
 		}
-	}
 }

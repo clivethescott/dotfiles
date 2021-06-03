@@ -55,6 +55,7 @@ local on_attach = function(client, bufnr)
 end
 
 local lspconfig = require('lspconfig')
+local root_pattern = lspconfig.util.root_pattern
 
 ----------------------------------------------------------------------
 -- Flutter LSP CONFIG - should not be enabled simultaneously with Flutter CONFIG
@@ -64,6 +65,11 @@ require("flutter-tools").setup {
   flutter_path = '/home/clive/apps/flutter/bin/flutter',
   widget_guides = {
     enabled = true,
+  },
+  closing_tags = {
+    highlight = "Delimiter", -- highlight for the closing tag
+    prefix = "--> ", -- character to use for close tag e.g. > Widget
+    enabled = true -- set to false to disable
   },
   dev_log = {
     open_cmd = "tabedit", -- command to use to open the log buffer
@@ -160,7 +166,7 @@ lspconfig.sumneko_lua.setup {
 ----------------------------------------------------------------------
 -- Python LSP CONFIG
 ----------------------------------------------------------------------
-require'lspconfig'.pyright.setup{
+lspconfig.pyright.setup{
   capabilities =  capabilities;
   on_attach = on_attach;
   settings = {
@@ -172,4 +178,19 @@ require'lspconfig'.pyright.setup{
       }
     }
   }
+}
+----------------------------------------------------------------------
+-- HTML LSP CONFIG
+----------------------------------------------------------------------
+lspconfig.html.setup{
+  capabilities =  capabilities;
+  on_attach = on_attach;
+}
+----------------------------------------------------------------------
+-- Typescript/Javascript LSP CONFIG
+----------------------------------------------------------------------
+lspconfig.tsserver.setup{
+  capabilities =  capabilities;
+  on_attach = on_attach;
+  root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git", "go.mod")
 }
