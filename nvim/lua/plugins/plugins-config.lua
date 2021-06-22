@@ -50,15 +50,6 @@ return packer.startup(function(use)
     requires = {'ryanoasis/vim-devicons', opt = true},
   }
   use 'folke/lsp-colors.nvim'
-  use {
-    "folke/which-key.nvim",
-    config = function()
-      require("which-key").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-      }
-    end
-  }
   use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
 
   -- use 'airblade/vim-gitgutter'

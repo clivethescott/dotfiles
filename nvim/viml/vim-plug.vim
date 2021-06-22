@@ -18,6 +18,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'fatih/vim-go',  { 'do': ':GoUpdateBinaries' }
 Plug 'uarun/vim-protobuf'
 Plug 'mhinz/vim-startify'
+Plug 'pangloss/vim-javascript'
 " Ranger plugin
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 " Telescope

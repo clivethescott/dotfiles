@@ -18,8 +18,6 @@
     "scala",
     "go"
   ],
-  "eslint.format.enable": true,
-  "eslint.autoFixOnSave": true,
   "prettier.disableSuccessMessage": true,
   "python.jediEnabled": false,
   "languageserver": {

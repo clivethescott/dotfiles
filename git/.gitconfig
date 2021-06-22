@@ -21,3 +21,5 @@
 	uncommit = reset HEAD^
 [pull]
 	ff = true
+[init]
+	defaultBranch = main

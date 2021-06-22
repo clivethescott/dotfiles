@@ -20,7 +20,7 @@ let g:go_highlight_structs = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
 " Add the failing test name to the output of :GoTest
-let g:go_test_show_name = 0
+let g:go_test_show_name = 1
 " disable vim-go :GoDef short cut (gd)
 " this is handled by LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
@@ -28,9 +28,11 @@ let g:go_def_mapping_enabled = 0
 let g:go_metalinter_autosave = 1
 let g:go_metalinter_deadline = '3s'
 let g:go_metalinter_command = 'golangci-lint'
+let g:go_metalinter_enabled = ['vet', 'revive', 'errcheck']
+let g:go_metalinter_autosave_enabled = ['vet', 'revive']
 let g:go_test_timeout = '8s'
 " Don't use location window
-let g:go_list_type = "quickfix"
+" let g:go_list_type = "quickfix"
 " Only show variable and stacktrace windows when debugging
 let g:go_debug_windows = {
       \ 'vars':       'rightbelow 60vnew',
@@ -52,6 +54,7 @@ augroup filetype_go
     autocmd FileType go nnoremap <silent> <buffer> <leader>f :GoFmt<CR>
     autocmd FileType go nnoremap <buffer> <leader>t :GoTest<CR>
     autocmd FileType go nnoremap <buffer> <leader>T :GoTestFunc<CR>
+    autocmd FileType go nnoremap <buffer> <leader>k :GoDocBrowser<CR>
     autocmd FileType go nnoremap <silent> <buffer>gt :GoAlternate<CR>
     autocmd FileType go nnoremap <buffer>gr :GoReferrers<CR>
     autocmd FileType go nnoremap <buffer>gi :GoImplements<CR>

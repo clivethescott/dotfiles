@@ -44,7 +44,7 @@ bindsym $mod+d exec --no-startup-id dmenu_recency
 #bindsym $mod+d exec rofi -show combi
 
 # launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
+# bindsym $mod+z exec --no-startup-id morc_menu
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -67,10 +67,10 @@ bindsym $mod+shift+n exec --no-startup-id playerctl previous
 bindsym $mod+p exec --no-startup-id playerctl play-pause
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id ~/ShellScripts/brightness.sh 0.05
-bindsym XF86MonBrightnessDown exec --no-startup-id ~/ShellScripts/brightness.sh -0.05
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 # Startup Brightness
-exec --no-startup-id ~/ShellScripts/brightness_set.sh 0.6
+exec --no-startup-id brightnessctl set 20%
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 # Redshift
@@ -79,12 +79,14 @@ exec --no-startup-id redshift-gtk
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec palemoon
-bindsym $mod+Ctrl+f exec pcmanfm
-bindsym $mod+Shift+f exec firefox
-bindsym $mod+Shift+y exec blueman-manager
-bindsym $mod+Shift+a exec pavucontrol
+bindsym $mod+Ctrl+f exec --no-startup-id pcmanfm
+bindsym $mod+Shift+f exec --no-startup-id firefox
+bindsym $mod+Shift+y exec --no-startup-id blueman-manager
+bindsym $mod+Shift+a exec --no-startup-id pavucontrol
+bindsym $mod+Ctrl+a exec --no-startup-id audacious
 bindsym F8 exec --no-startup-id arandr
 bindsym $mod+F8 exec --no-startup-id arandr
+bindsym $mod+Shift+z exec --no-startup-id zathura
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 bindsym $mod+F5 exec terminal -e 'mocp'
@@ -94,7 +96,7 @@ bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i4-scrot -s
-bindsym $mod+Shift+p --release exec scrot --silent --select ~/Pictures/"Screenshot from $(date +%Y-%m-%d_%H-%M-%S).png" 
+bindsym $mod+Shift+p --release exec scrot --silent --select ~/Pictures/screenshots/"Screenshot from $(date +%Y-%m-%d_%H-%M-%S).png" 
 # bindsym $mod+Shift+p --release exec --no-startup-id i3-scrot -s
 # bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
@@ -222,6 +224,7 @@ bindsym $mod+Shift+0 move container to workspace $ws0
 # Firefox
 for_window [class="firefox"] move to workspace $ws2
 for_window [class="Firefox"] move to workspace $ws2
+for_window [class="Audacious"] move to workspace $ws8
 # Spotify
 # for_window [class="Spotify"] move to workspace $ws8
 # for_window [class="spotify"] move to workspace $ws8
@@ -495,4 +498,4 @@ mode "$mode_gaps_outer" {
 }
 
 # Multiple monitor setup
-bindsym $mod+Shift+m move workspace to output right
+bindsym $mod+Shift+m move workspace to output left

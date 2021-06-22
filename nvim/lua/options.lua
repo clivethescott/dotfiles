@@ -24,7 +24,7 @@ vim.o.autowrite = true
 vim.o.smarttab = true
 vim.o.termguicolors = true
 -- Also controls which-key delay
-vim.o.timeoutlen = 700
+vim.o.timeoutlen = 1000
 
 vim.wo.cursorline = true
 -- Always show the signcolumn, otherwise it would shift the text each time
