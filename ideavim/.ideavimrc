@@ -30,3 +30,4 @@ set noerrorbells
 " set clipboard+=ideaput
 set clipboard+=unnamed
 set number relativenumber
+set ideajoin

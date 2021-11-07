@@ -1,14 +1,14 @@
 {
   "codeLens.enable": true,
   "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
-  "flutter.lsp.initialization.closingLabels": true,
-  "flutter.lsp.initialization.onlyAnalyzeProjectsWithOpenFiles": false,
-  "flutter.commands.devicesTimeout": 3,
-  "flutter.UIPath": false,
-  "flutter.sdk.searchPaths": [
-      "/home/clive/snap/flutter/common/flutter"
-  ],
-  "flutter.autoOpenDevLog": true,
+  "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"],
+  "python.linting.lintOnSave": true,
+  "python.formatting.provider": "autopep8",
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.mypyArgs": ["--strict", "--show-column-numbers"],
+  "python.analysis.typeCheckingMode": "strict",
   "coc.preferences.formatOnSaveFiletypes": [
     "dart",
     "javascript",
@@ -16,10 +16,12 @@
     "typescript",
     "typescriptreact",
     "scala",
-    "go"
+    "go",
+    "python",
+    "yaml",
+    "json"
   ],
   "prettier.disableSuccessMessage": true,
-  "python.jediEnabled": false,
   "languageserver": {
     "golang": {
       "command": "gopls",

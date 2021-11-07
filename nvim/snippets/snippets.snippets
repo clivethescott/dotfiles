@@ -23,32 +23,3 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-snippet iff 
-if err != nil {
-	${1:log.Fatal(err)}
-}
-endsnippet
-
-snippet subt
-t.Run("$1", func(t *testing.T) {
-$2
-})
-endsnippet
-
-snippet ifg
-if got != want {
-	t.Errorf("got %v want %v given %v", got, want, given)
-}
-endsnippet
-
-snippet exam 
-func Example$1() {
-$2
-}
-endsnippet
-
-snippet stringer 
-func (item $1) String() string {
-	return fmt.Sprintf("$2",$3)	
-}
-endsnippet

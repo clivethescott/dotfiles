@@ -1,25 +1,14 @@
 [user]
-	email = clivethescott@gmail.com
 	name = Clive Gurure
-[core]
-	autocrlf = input
-	excludesfile = /home/clive/.gitignore_global
-[pager]
-	branch = false
+	email = clivethescott@gmail.com
 [filter "lfs"]
+	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-	clean = git-lfs clean -- %f
-[diff]
-    tool = default-difftool
-[merge]
-  tool = vimdiff
-	guitool = meld
-	ff = true
-[alias]
-	uncommit = reset HEAD^
-[pull]
-	ff = true
+[includeIf "gitdir:~/wizenoze/source/"]
+  path = .gitconfig-wizenoze
 [init]
 	defaultBranch = main
+[core]
+	excludesfile = /Users/clive/.gitignore

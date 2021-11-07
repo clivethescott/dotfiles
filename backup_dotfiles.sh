@@ -16,6 +16,7 @@ cp $HOME/.ideavimrc $DOTFILES_HOME/ideavim/.ideavimrc
 cp $HOME/.ripgreprc $DOTFILES_HOME/ripgrep/.ripgreprc
 cp $HOME/.tmux.conf $DOTFILES_HOME/tmux/.tmux.conf
 cp $HOME/.zsh/*.sh $DOTFILES_HOME/zsh
+cp $HOME/.zprofile $DOTFILES_HOME/zsh
 cp $HOME/.config/alacritty/alacritty.yml $DOTFILES_HOME/alacritty/alacritty.yml
 # Ranger
 cp $RANGER_HOME/rc.conf $DOTFILES_HOME/ranger/rc.conf
