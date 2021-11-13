@@ -14,12 +14,13 @@ let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-vimlsp',
   \ 'coc-yank',
-  \ 'coc-python',
   \ 'coc-pyright',
   \ 'coc-json',
   \ 'coc-tsserver',
-  \ 'coc-flutter-tools',
   \ 'coc-lua',
+  \ 'coc-git',
+  \ 'coc-yaml',
+  \ 'coc-docker',
   \ ]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -35,7 +36,7 @@ function! s:show_documentation()
   elseif (coc#rpc#ready())
     call CocActionAsync('doHover')
   else
-    execute '!' . &keywordprg . " " . expand('<cword>')
+    " execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
@@ -49,6 +50,7 @@ endfunction
 nnoremap <space>cl :<C-u>call CocActionAsync('codeLensAction')<CR>
 
 " GoTo code navigation.
+nmap <silent> gD :call CocAction('jumpDefinition', 'vsplit')<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
@@ -131,3 +133,6 @@ let g:coc_snippet_next = '<c-j>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
+
+" Nicely show signature of method when auto-completing
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
