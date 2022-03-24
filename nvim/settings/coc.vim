@@ -18,9 +18,9 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-tsserver',
   \ 'coc-lua',
-  \ 'coc-git',
   \ 'coc-yaml',
   \ 'coc-docker',
+  \ 'coc-metals',
   \ ]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -67,6 +67,7 @@ nmap gs <Plug>(coc-codeaction-selected)
 nmap <silent> ga <Plug>(coc-codeaction)
 nnoremap <silent><nowait> <leader>D  :<C-u>CocList diagnostics<cr>
 " Formatting selected code.
+xmap <silent> <leader>f <Plug>(coc-format-selected)
 vmap <silent> <leader>f <Plug>(coc-format-selected)
 nmap <silent> <leader>f :call CocAction('format')<CR>
 nmap <silent> <space>p :call CocActionAsync('showSignatureHelp')<CR>
@@ -93,8 +94,6 @@ endif
 
 " Use <c-space> to trigger COC
 inoremap <silent><expr> <c-space> coc#refresh()
-" coc-flutter
-nnoremap <space>r :CocCommand flutter.run<CR>
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -115,10 +114,8 @@ command! -nargs=0 Imports   :call     CocAction('runCommand', 'editor.action.org
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-nnoremap <silent> <space>fo :<C-u>CocCommand flutter.toggleOutline<CR>
-nnoremap <silent> <space>fq :<C-u>CocCommand flutter.dev.quit<CR>
-nnoremap <silent> <space>fr :<C-u>CocCommand flutter.dev.hotRestart<CR>
-nnoremap <silent> <space>fc :<C-u>CocCommand flutter.dev.clearDevLog<CR>
+nnoremap <silent> <leader>c :<C-u>CocCommand <CR>
+nnoremap <silent> <space>o :CocList outline <CR>
 " Fix treesitter syntax highlight issues
 " nnoremap <leader>gf :write | edit | TSBufEnable highlight
 "
@@ -136,3 +133,15 @@ let g:coc_snippet_prev = '<c-k>'
 
 " Nicely show signature of method when auto-completing
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+
+" Scala Settings
+" Toggle panel with Tree Views
+nnoremap <silent> <space>tt :<C-u>CocCommand metals.tvp<CR>
+" Toggle Tree View 'metalsPackages'
+nnoremap <silent> <space>tp :<C-u>CocCommand metals.tvp metalsPackages<CR>
+" Toggle Tree View 'metalsCompile'
+nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
+" Toggle Tree View 'metalsBuild'
+nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
+" Reveal current current class (trait or object) in Tree View 'metalsPackages'
+nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>

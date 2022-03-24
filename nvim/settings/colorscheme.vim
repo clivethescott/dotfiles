@@ -1,5 +1,6 @@
 " Enable true colors if available
 set termguicolors
+" colorscheme gruvbox
 colorscheme gruvbox
 " Enable italics
 highlight Comment cterm=italic gui=italic

@@ -5,9 +5,9 @@ DOTFILES_HOME=$HOME/dotfiles
 NVIM_HOME=$HOME/.config/nvim
 RANGER_HOME=$HOME/.config/ranger
 cp $NVIM_HOME/snippets/*.snippets $DOTFILES_HOME/nvim/snippets
-cp $NVIM_HOME/init2.vim $DOTFILES_HOME/nvim/init.vim
+cp $NVIM_HOME/init.vim $DOTFILES_HOME/nvim/init.vim
 cp $NVIM_HOME/init.lua $DOTFILES_HOME/nvim/init.lua
-cp $NVIM_HOME/viml/*.vim $DOTFILES_HOME/nvim/viml
+cp $NVIM_HOME/settings/*.vim $DOTFILES_HOME/nvim/settings
 cp -r $NVIM_HOME/lua $DOTFILES_HOME/nvim
 cp $NVIM_HOME/coc-settings.json $DOTFILES_HOME/nvim/coc-settings.json
 cp $NVIM_HOME/templates/* $DOTFILES_HOME/nvim/templates
@@ -37,6 +37,5 @@ cp $HOME/.gtkrc-2.0 $DOTFILES_HOME/gtk-2/.gtkrc-2.0
 cd $DOTFILES_HOME
 git add .
 git commit
-git push
-cd $old_dir
+echo "ready to push updated changes!"
 

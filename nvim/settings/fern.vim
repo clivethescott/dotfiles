@@ -43,8 +43,14 @@ function! s:init_fern() abort
   augroup END
 endfunction
 
+function! s:fern_settings() abort
+  nmap <silent> <buffer> p <Plug>(fern-action-preview:toggle)
+  nmap <silent> <buffer> q <Plug>(fern-quit-or-close-preview)
+endfunction
+
 augroup FernEvents
   autocmd!
   autocmd FileType fern call s:init_fern()
+  autocmd FileType fern call s:fern_settings()
 augroup END
 

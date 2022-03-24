@@ -9,6 +9,17 @@
   "python.linting.mypyEnabled": true,
   "python.linting.mypyArgs": ["--strict", "--show-column-numbers"],
   "python.analysis.typeCheckingMode": "strict",
+  "metals.statusBarEnabled": true,
+  "metals.ammoniteJvmProperties": ["-Xmx1G"],
+  "metals.treeviews.alignment": "right",
+  "metals.superMethodLensesEnabled": false,
+  "metals.showInferredType": true,
+  "metals.showImplicitArguments": true,
+  "metals.showImplicitConversionsAndClasses": true,
+  "metals.treeviews.gotoLastChild": "",
+  "metals.treeviews.gotoFirstChild": "",
+  "metals.treeviews.gotoPrevSibling": "",
+  "metals.treeviews.gotoNextSibling": "",
   "coc.preferences.formatOnSaveFiletypes": [
     "dart",
     "javascript",
@@ -21,7 +32,6 @@
     "yaml",
     "json"
   ],
-  "prettier.disableSuccessMessage": true,
   "languageserver": {
     "golang": {
       "command": "gopls",

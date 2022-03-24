@@ -24,6 +24,11 @@ nmap <leader>s :action SplitHorizontally<CR>
 nmap gh :action PrevSplitter<CR>
 nmap gl :action NextSplitter<CR>
 nmap gc :action Unsplit<CR>
+
+map <M-u> <C-u>
+map <M-d> <C-d>
+imap <M-[> <Esc>
+
 " Disable that annoying bell sound
 set visualbell
 set noerrorbells
