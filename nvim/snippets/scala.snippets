@@ -38,3 +38,34 @@ test("$1") {
 $2
 }
 endsnippet
+snippet route "http4s route" b
+def $1[F[_]: ${1:Monad}]: HttpRoutes[F] = {
+	val dsl = Http4sDsl[F]
+	import dsl._
+
+	HttpRoutes.of[F] { case GET -> Root => ${2:???}
+	}
+}
+endsnippet
+
+snippet ember "Configure an Ember Server" b
+import org.http4s.ember.server._
+EmberServerBuilder
+	.default[IO]
+	.withHost(ipv4"0.0.0.0")
+	.withPort(port"${1:8080}")
+	.withHttpApp(${2:app})
+	.build
+	.use(_ => IO.never)
+	.as(ExitCode.Success)
+endsnippet
+
+snippet blaze "Configure a Blaze Server" b
+import org.http4s.blaze.server._
+BlazeServerBuilder[IO]
+	.bindHttp(${1:8080}, "localhost")
+	.withHttpApp(${2:app})
+	.resource
+	.useForever
+	.as(ExitCode.Success)
+endsnippet

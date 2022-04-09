@@ -11,7 +11,7 @@
   "python.analysis.typeCheckingMode": "strict",
   "metals.statusBarEnabled": true,
   "metals.ammoniteJvmProperties": ["-Xmx1G"],
-  "metals.treeviews.alignment": "right",
+  "metals.treeviews.alignment": "left",
   "metals.superMethodLensesEnabled": false,
   "metals.showInferredType": true,
   "metals.showImplicitArguments": true,

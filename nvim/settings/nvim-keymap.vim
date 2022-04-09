@@ -31,8 +31,8 @@ nnoremap <C-l> <C-w>l
 nnoremap <leader>< 10<C-w><
 nnoremap <leader>> 10<C-w>>
 
-nnoremap <C-S> :w<CR>
-inoremap <C-S> <esc>:w<CR>
+nnoremap <silent><C-S> :w<CR>
+inoremap <silent><C-S> <esc>:w<CR>
 
 nnoremap ' `
 nnoremap Q :q<CR>

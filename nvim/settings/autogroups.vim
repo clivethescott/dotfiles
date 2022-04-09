@@ -13,6 +13,5 @@ if has('nvim')
       autocmd FileType json syntax match Comment +\/\/.\+$+
       autocmd BufNewFile *.sh silent! 0r ~/.config/nvim/templates/skel.sh
       autocmd BufNewFile *.dart silent! 0r ~/.config/nvim/templates/skel.dart
-      autocmd BufWritePre *.scala silent! lua editor.action.organizeImport
     augroup END
 endif

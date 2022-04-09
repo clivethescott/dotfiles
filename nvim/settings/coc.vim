@@ -46,9 +46,6 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Make sure `"codeLens.enable": true` is set in your coc config
-nnoremap <space>cl :<C-u>call CocActionAsync('codeLensAction')<CR>
-
 " GoTo code navigation.
 nmap <silent> gD :call CocAction('jumpDefinition', 'vsplit')<CR>
 nmap <silent> gd <Plug>(coc-definition)
@@ -66,6 +63,8 @@ nmap gs <Plug>(coc-codeaction-selected)
 " Buffer code action
 nmap <silent> ga <Plug>(coc-codeaction)
 nnoremap <silent><nowait> <leader>D  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <space>d  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <space>s  :<C-u>CocList symbols<cr>
 " Formatting selected code.
 xmap <silent> <leader>f <Plug>(coc-format-selected)
 vmap <silent> <leader>f <Plug>(coc-format-selected)
@@ -106,13 +105,16 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 Imports   :call     CocAction('runCommand', 'editor.action.organizeImport')
+" Add `:Imports` command for organize imports of the current buffer.
+command! -nargs=0 Imports :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Make sure `"codeLens.enable": true` is set in your coc config
+" nnoremap <leader>cl <Plug>(coc-codelens-action)
 
 nnoremap <silent> <leader>c :<C-u>CocCommand <CR>
 nnoremap <silent> <space>o :CocList outline <CR>
