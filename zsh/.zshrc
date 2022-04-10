@@ -95,8 +95,36 @@ source ~/.zsh/keybindings.zsh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source /home/clive/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+### 
+#
+#Fix slowness of pastes with zsh-syntax-highlighting.zsh
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
+### Fix slowness of pastes
+
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# > FZF 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# File previews with Ctrl-T, --exit-0 automatically exits when the list is empty.
+export FZF_CTRL_T_OPTS="--exit-0 --preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -100'"
+# --preview option to display the full command on the preview window, ? toggles the preview window
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
+# if you prefer to start in a tmux split pane
+export FZF_TMUX=1
+bindkey "^Y" fzf-cd-widget
+
+# < FZF
+
 # Make history searching work again after using vi mode
 # bindkey "^[[A" history-substring-search-up
 # bindkey "^[[B" history-substring-search-down
@@ -111,5 +139,11 @@ setopt noflowcontrol
 # neofetch
 #
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/clive/.sdkman"
-[[ -s "/home/clive/.sdkman/bin/sdkman-init.sh" ]] && source "/home/clive/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR=$HOME/.sdkman
+[[ -s "/Users/clive/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/clive/.sdkman/bin/sdkman-init.sh"
+
+alias luamake=/Users/clive/apps/lua-language-server/3rd/luamake/luamake
+
+# Increase the number of max open files/descriptions
+ulimit -n 2048
+

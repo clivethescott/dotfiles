@@ -16,7 +16,7 @@ Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-startify'
 " FZF
 Plug 'junegunn/fzf.vim'
-Plug '~/.fzf'
+Plug '/opt/homebrew/opt/fzf/'
 Plug 'stsewd/fzf-checkout.vim'
 " Plug 'fatih/vim-go',  { 'do': ':GoUpdateBinaries' }
 
