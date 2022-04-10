@@ -115,13 +115,18 @@ source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # > FZF 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # File previews with Ctrl-T, --exit-0 automatically exits when the list is empty.
-export FZF_CTRL_T_OPTS="--exit-0 --preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -100'"
+# Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 # --preview option to display the full command on the preview window, ? toggles the preview window
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fd --type f'
+
 # if you prefer to start in a tmux split pane
 export FZF_TMUX=1
-bindkey "^Y" fzf-cd-widget
+bindkey "^G" fzf-cd-widget
+bindkey "^E" fzf-file-widget
 
 # < FZF
 
