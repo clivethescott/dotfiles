@@ -1,12 +1,12 @@
-vim.cmd([[
-  augroup myoptions
-      autocmd!
-      autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-      autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-      " Help Vim recognize *.sbt and *.sc as Scala files
-      autocmd BufRead,BufNewFile *.sbt,*.sc set filetype=scala
-      autocmd FileType json syntax match Comment +\/\/.\+$+
-      autocmd BufWritePost plugins-config.lua PackerCompile
-    augroup END
-]])
+local api = vim.api
+api.nvim_create_autocmd({ 'BufRead', 'BufReadPost' }, {
+  callback = function()
+    local row, column = unpack(api.nvim_buf_get_mark(0, '"'))
+    local buf_line_count = api.nvim_buf_line_count(0)
+
+    if row >= 1 and row <= buf_line_count then
+      api.nvim_win_set_cursor(0, { row, column })
+    end
+  end,
+})
 

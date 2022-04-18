@@ -121,7 +121,7 @@ export FZF_CTRL_T_OPTS="--preview '(bat --style=numbers --color=always --line-ra
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
 # Setting fd as the default source for fzf
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git --exclude target --exclude venv'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git --exclude target --exclude venv --exclude .idea --exclude .jar --exclude .metals'
 # Increase split window height, see fzf-tmux --help
 export FZF_TMUX_OPTS="-d 60%"
 
