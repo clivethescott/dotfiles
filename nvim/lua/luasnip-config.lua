@@ -1,3 +1,5 @@
+-- Check https://github.com/L3MON4D3/LuaSnip
+--
 -- load VSCode-like snippets provided by plugins
 require("luasnip.loaders.from_vscode").lazy_load()
 -- load snippets from path/of/your/nvim/config/my-cool-snippets

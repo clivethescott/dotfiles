@@ -3,7 +3,12 @@ vim.o.dictionary = vim.o.dictionary .. '/usr/share/dict/words'
 
 --Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
+
+local onedarkTheme = require('onedark')
+onedarkTheme.setup {
+  style = 'cool' -- or dark(er), cool, deep, warm(er)
+}
+onedarkTheme.load()
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noinsert,noselect'

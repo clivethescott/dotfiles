@@ -172,7 +172,7 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-u>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-y>'] = cmp.mapping.complete(),
     ['<C-x>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ['<Tab>'] = cmp.mapping(function(fallback)
@@ -245,10 +245,14 @@ metals_config.settings = {
     "com.github.swagger.akka.javadsl"
   }
 }
+metals_config.capabilities = capabilities
 
 metals_config.on_attach = function(client, bufnr)
   on_attach(client, bufnr)
   -- other settings for metals here
+
+  -- Metals mappings
+  map('n', '<leader>c', require('telescope').extensions.metals.commands)
 end
 
 local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })

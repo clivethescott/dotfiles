@@ -50,6 +50,7 @@ end
 
 require('telescope').setup {
   defaults = {
+    file_ignore_patterns = { "target", "node_modules", ".metals", ".git", ".idea", ".jar", "venv", ".bloop", ".bsp"},
     buffer_previewer_maker = new_maker,
     preview = {
       mime_hook = mime_hook,
@@ -72,14 +73,7 @@ require('telescope').setup {
   },
   pickers = {
     find_files = {
-      find_command = { "fd", "--type", "f", "--hidden", "--max-depth", "10", "--strip-cwd-prefix",
-      "--exclude", ".git",
-      "--exclude", "target",
-      "--exclude", "venv",
-      "--exclude", ".idea",
-      "--exclude", ".metals",
-      "--exclude", ".jar",
-      }
+      find_command = { "fd", "--type", "f", "--hidden", "--max-depth", "10", "--strip-cwd-prefix" }
     },
   },
 }
