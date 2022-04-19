@@ -38,8 +38,9 @@ local on_attach = function(client, bufnr)
     vim.diagnostic.setqflist({ severity = 'W' }) -- all workspace warnings
   end, opts)
   -- map('n', '<space>ws', vim.lsp.buf.workspace_symbol, opts)
-  map('n', '<space>ws', telescope.lsp_workspace_symbols, opts)
-  map('n', '<space>wS', telescope.lsp_document_symbols, opts)
+  -- map('n', '<space>wS', telescope.lsp_workspace_symbols, opts)
+  map('n', '<space>wS', telescope.lsp_dynamic_workspace_symbols, opts) -- to work with metals
+  map('n', '<space>ws', telescope.lsp_document_symbols, opts)
   -- map('n', 'gr', vim.lsp.buf.references, opts)
   map('n', 'gr', telescope.lsp_references, opts)
   vim.api.nvim_create_user_command('Format', vim.lsp.buf.formatting, {})
@@ -159,6 +160,9 @@ lspconfig.gopls.setup {
 local cmp = require 'cmp'
 
 cmp.setup({
+  completion = {
+    keyword_length = 2 -- number of characters needed to trigger auto-completion
+  },
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
@@ -209,12 +213,12 @@ cmp.setup({
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
+--[[ cmp.setup.cmdline('/', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' }
   }
-})
+}) ]]
 
 --[[ -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
@@ -253,6 +257,10 @@ metals_config.on_attach = function(client, bufnr)
 
   -- Metals mappings
   map('n', '<leader>c', require('telescope').extensions.metals.commands)
+  --[[ Depending on what you're using to display these results, some send in an empty query string to start off the process.
+  Since this can potentially be a huge amount of symbols, metals won't respond to an empty query search.
+  So for example with telescope, I need to use builtin.lsp_dynamic_workspace_symbols not the normal builtin.lsp_workspace_symbols ]]
+  map('n', '<space>wS', telescope.lsp_dynamic_workspace_symbols, opts)
 end
 
 local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
