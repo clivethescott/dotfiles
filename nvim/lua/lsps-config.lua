@@ -53,6 +53,7 @@ local on_attach = function(client, bufnr)
 
 end
 
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Enable the following language servers
@@ -193,13 +194,14 @@ cmp.setup({
       end
     end, { 'i', 's' }),
   }),
-  sources = cmp.config.sources({
+  sources = {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' }, -- For luasnip users.
     { name = 'nvim_lsp_signature_help' },
+    { name = 'nvim_lsp_document_symbol' },
+    { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
-  })
+  }
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -210,7 +212,7 @@ cmp.setup.cmdline('/', {
   }
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+--[[ -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
@@ -218,7 +220,7 @@ cmp.setup.cmdline(':', {
   }, {
     { name = 'cmdline' }
   })
-})
+}) ]]
 
 ----------------------------------------------------------------------
 -- Metals LSP CONFIG
@@ -241,8 +243,8 @@ metals_config.settings = {
 }
 
 metals_config.on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    -- other settings for metals here
+  on_attach(client, bufnr)
+  -- other settings for metals here
 end
 
 local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
@@ -253,4 +255,3 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   group = nvim_metals_group,
 })
-

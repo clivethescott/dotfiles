@@ -30,7 +30,16 @@ require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  -- cmp completion sources
   use 'hrsh7th/cmp-nvim-lsp'
-  use 'saadparwaiz1/cmp_luasnip'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-nvim-lsp-document-symbol'
+  use 'hrsh7th/cmp-nvim-lsp-signature-help'
+  -- snippets
+  use 'saadparwaiz1/cmp_luasnip' -- Snippets cmp completion source
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use 'rafamadriz/friendly-snippets' -- Vscode-like Snippets
+  use 'honza/vim-snippets' -- Snipmate-like Snippets
+
 end)
