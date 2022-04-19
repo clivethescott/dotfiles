@@ -194,14 +194,18 @@ cmp.setup({
       end
     end, { 'i', 's' }),
   }),
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lsp_signature_help' },
-    { name = 'nvim_lsp_document_symbol' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
+  sources = cmp.config.sources({
     { name = 'path' },
-  }
+  }, {
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
+    { name = 'nvim_lsp_signature_help' },
+    { name = 'luasnip' },
+  }, {
+    { name = 'buffer' },
+    { name = 'nvim_lsp_document_symbol' },
+    { name = 'calc' },
+  })
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
