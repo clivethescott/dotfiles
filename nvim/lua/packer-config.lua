@@ -16,7 +16,6 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-  -- use 'mjlbach/onedark.nvim' -- Theme inspired by Atom
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } } -- Fancier statusline
   use { 'kyazdani42/nvim-tree.lua',
     requires = {

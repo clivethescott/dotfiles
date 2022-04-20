@@ -3,7 +3,7 @@ local function metals_status()
 end
 
 require('lualine').setup {
-  extensions = {'nvim-tree'},
+  extensions = { 'nvim-tree' },
   options = {
     icons_enabled = true,
     theme = 'onedark',
@@ -44,7 +44,7 @@ require('lualine').setup {
       { metals_status }
     },
     lualine_c = {
-        { 'filename',
+      { 'filename',
         file_status = true, -- Displays file status (readonly status, modified status)
         path = 0, -- 0: Just the filename
         -- 1: Relative path

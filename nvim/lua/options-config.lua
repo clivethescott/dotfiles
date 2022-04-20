@@ -1,9 +1,11 @@
-vim.o.clipboard = 'unnamedplus'
-vim.o.dictionary = vim.o.dictionary .. '/usr/share/dict/words'
+-- Always use the clipboard directly (instead of +/* registers)
+vim.opt.clipboard = 'unnamedplus'
+vim.opt.dictionary:append('/usr/share/dict/words')
 
---Set colorscheme
-vim.o.termguicolors = true
+-- Enables Nicer colors in the terminal
+vim.opt.termguicolors = true
 
+-- Configure and enable onedark theme
 local onedarkTheme = require('onedark')
 onedarkTheme.setup {
   style = 'cool' -- or dark(er), cool, deep, warm(er)
@@ -11,55 +13,68 @@ onedarkTheme.setup {
 onedarkTheme.load()
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noinsert,noselect'
-vim.o.dictionary = vim.o.dictionary .. '/usr/share/dict/words'
-vim.o.clipboard = 'unnamedplus'
-vim.o.errorbells = false
-vim.o.smartcase = true
-vim.o.ignorecase = true
-vim.o.showmatch = true
-vim.o.backup = false
-vim.o.writebackup = false
-vim.o.hidden = true
-vim.o.undodir = '/Users/clive/.config/nvim/undodir'
-vim.o.splitbelow = true
-vim.o.splitright = true
--- Don't pass messages to |ins-completion-menu|.
--- Ensure nvim-metals shows error messages
-vim.o.shortmess = string.gsub(vim.o.shortmess, 'F', '') .. 'c'
--- Shorter delays and better user experience.
-vim.o.updatetime = 100
-vim.o.wildignore = vim.o.wildignore .. '*/tmp/*,*.so,*.swp,*.zip,*.jar,*/node_modules/*,*/target/*,*/.git/' ..
-'*,*.class,*.pyc,*/plugged/*,*/undodir/*,*.png,*.dex'
-vim.o.grepprg = 'rg --vimgrep'
--- Save on make
-vim.o.autowrite = true
-vim.o.smarttab = true
-vim.o.termguicolors = true
--- Also controls which-key delay
-vim.o.timeoutlen = 1000
+vim.opt.completeopt = 'menuone,noinsert,noselect'
 
-vim.wo.cursorline = true
+-- Override ignorecase if search includes uppe case chars
+vim.opt.smartcase = true
+vim.opt.ignorecase = true
+
+-- Briefly show matching bracket
+vim.opt.showmatch = true
+
+-- No need to backup, when we have undo files enabled
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.undodir = vim.env.HOME .. '/.config/nvim/undodir'
+vim.opt.undofile = true
+vim.opt.swapfile = false
+
+-- Sensible split behaviour
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+-- Ensure nvim-metals shows error messages
+-- Don't pass messages to |ins-completion-menu|.
+vim.opt.shortmess:remove('F'):append('c')
+
+-- Shorter delays and better user experience.
+vim.opt.updatetime = 100
+
+vim.opt.wildignore:append({ '*/tmp/*', '*.so', '*.swp', '*.zip', '*.jar', '*/node_modules/*', '*/target/*',
+  '*/.git/*', '*.class', '*.pyc', '*/plugged/*', '*/undodir/*', '*.png', '*.dex' })
+vim.opt.grepprg = 'rg --vimgrep'
+
+-- Save on make
+vim.opt.autowrite = true
+
+-- Don't wait too long to complete successive keys, Also controls which-key delay
+vim.opt.timeoutlen = 1000
+
+-- Disabled for now, affects redraw speed
+-- vim.opt.cursorline = true
+
 -- Always show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appear/become resolved.
-vim.wo.signcolumn = 'yes'
-vim.wo.colorcolumn = '120'
-vim.wo.number = true
-vim.wo.relativenumber = true
+vim.opt.signcolumn = 'yes'
+vim.opt.colorcolumn = '120'
 
-vim.bo.tabstop = 2
-vim.bo.softtabstop = 2
-vim.bo.shiftwidth = 2
-vim.bo.expandtab = true
-vim.bo.smartindent = true
-vim.bo.swapfile = false
-vim.bo.undofile = true
+-- Enable line (relative) numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
 
--- TODO: figure out why lua config is not being set
-vim.cmd[[set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smartindent noswapfile]]
-vim.cmd[[set undofile]]
--- Stop newline continution of comments, TODO: convert to lua
--- vim.o.formatoptions-=cro
+-- Number of spaces equal to a tab
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+-- Tabs become spaces
+vim.opt.expandtab = true
+vim.opt.smarttab = true
+-- Continue indent on new line
+vim.opt.smartindent = true
+
+-- Stop newline continution of comments
+-- vim.opt.formatoptions-=cro
+vim.opt.formatoptions:remove('cro')
 
 -- Nvim config
 vim.g.loaded_python_provider = 0
