@@ -37,4 +37,8 @@ function M.gitBlameClear() -- important for clearing out the text when our curso
   api.nvim_buf_clear_namespace(0, 2, 0, -1)
 end
 
+function M.resolvedCapabilities()
+  print(vim.inspect(vim.lsp.buf_get_clients()[1].resolved_capabilities))
+end
+
 return M

@@ -2,6 +2,7 @@
 require('utils')
 require('packer-config')
 require('options-config')
+require('autogroups')
 
 require('lualine-config')
 require('nvimtree-config')
@@ -18,5 +19,6 @@ require('comment-config')
 require('autogroups')
 require('commands')
 require('luasnip-config')
-
--- vim: ts=2 sts=2 sw=2 et
+require('dap-config')
+require('toggleterm-config')
+require('trouble-config')

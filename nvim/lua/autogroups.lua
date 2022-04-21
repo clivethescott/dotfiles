@@ -19,7 +19,7 @@ local format_on_save_group = vim.api.nvim_create_augroup('FormatOnSave', { clear
 api.nvim_create_autocmd({ 'BufWritePre' }, {
   desc = 'Files to format before save',
   group = format_on_save_group,
-  pattern = { '*.scala', '*.python', '*.go', '*.lua' },
+  pattern = { '*.scala', '*.sc', '*.py', '*.go', '*.lua' },
   callback = function()
     local timeoutMs = 1000
     local opts = nil

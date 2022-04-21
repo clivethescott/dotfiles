@@ -1,56 +1,64 @@
 -- LSP settings
 local map = vim.keymap.set
 local lspconfig = require 'lspconfig'
+
+local function actionIf(action, condition, failureMsg)
+  return function()
+    if condition then action()
+    else print(failureMsg)
+    end
+  end
+end
+
 local on_attach = function(client, bufnr)
   -- print('Attaching to ' .. client.name)
   local opts = { buffer = bufnr, noremap = true, silent = true }
   local telescope = require('telescope.builtin')
-  map('n', 'gD', vim.lsp.buf.declaration, opts)
-  -- map('n', 'gd', vim.lsp.buf.definition, opts)
-  map('n', 'gd', telescope.lsp_definitions, opts)
-  -- map('n', 'gy', vim.lsp.buf.type_definition, opts)
-  map('n', 'gy', telescope.lsp_type_definitions, opts)
-  map('n', 'K', vim.lsp.buf.hover, opts)
-  -- map('n', 'gi', vim.lsp.buf.implementation, opts)
-  map('n', 'gi', telescope.lsp_implementations, opts)
-  map('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-  map('n', 'gs', vim.lsp.buf.signature_help, opts)
-  -- map('n', 'ga', vim.lsp.buf.code_action, opts)
-  map('n', 'ga', telescope.lsp_code_actions, opts)
-  map('n', 'g[', function()
-    vim.diagnostic.goto_prev { wrap = false }
-  end, opts)
+  local caps = client.resolved_capabilities
+
+  -- Actions with a Telescope Picker
+  map('n', 'gd', actionIf(telescope.lsp_definitions, caps.goto_definition, 'Definition unavailable'), opts)
+  map('n', 'gi', actionIf(telescope.lsp_implementations, caps.implementation, 'Implementation unavailable'), opts)
+  map('n', 'gy', actionIf(telescope.lsp_type_definitions, caps.type_definition, 'Type Definition unavailable'), opts)
+  map('n', 'gr', actionIf(telescope.lsp_references, caps.find_references, 'References unavailable'), opts)
+  map('n', '<space>wS', actionIf(telescope.lsp_dynamic_workspace_symbols, caps.workspace_symbol, 'Workspace symbol unavailable'), opts)
+  map('n', '<space>ws', actionIf(telescope.lsp_document_symbols, caps.document_symbol, 'Document symbol unavailable'), opts)
+  map('n', 'ga', actionIf(telescope.lsp_code_actions, caps.code_action, 'Code Action unavailable'), opts)
+  map('n', '<leader>d', telescope.diagnostics, opts)
+
+  map('n', 'gD', actionIf(vim.lsp.buf.declaration, caps.declaration, 'Declaration unavailable'), opts)
+  map('n', 'K', actionIf(vim.lsp.buf.hover, caps.hover, 'Hover unavailable'), opts)
+  map('n', '<C-k>', actionIf(vim.lsp.buf.signature_help, caps.signature_help, 'Signature unavailable'), opts)
+  map('n', 'gs', actionIf(vim.lsp.buf.signature_help, caps.signature_help, 'Signature unavailable'), opts)
+  map('n', 'gl', actionIf(vim.lsp.codelens.run, caps.code_lens, 'Code Lens unavailable'), opts)
+  map('n', '<leader>r', actionIf(vim.lsp.buf.rename, caps.rename, 'Rename unavailable'), opts)
+
+  -- Formatting
+  if caps.document_formatting then
+    map('n', '<leader>f', vim.lsp.buf.formatting, opts)
+  elseif caps.document_range_formatting then
+    map('n', '<leader>f', vim.lsp.buf.range_formatting, opts)
+  else
+    print('Note: Formatting Unavailable')
+  end
+
+  -- Diagnostics
+  map('n', 'g[', function() vim.diagnostic.goto_prev { wrap = false } end, opts) -- prevent previous jumping back
   map('n', 'g]', vim.lsp.diagnostic.goto_next, opts)
   map('n', '<leader>D', vim.lsp.diagnostic.show_line_diagnostics, opts)
   -- map('n', '<leader>d', vim.diagnostic.setloclist, opts) -- buffer diagnostics only
-  map('n', '<leader>d', telescope.diagnostics, opts)
 
   -- map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
   -- map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
   -- map('n', '<leader>wl', function()
   --   vim.inspect(vim.lsp.buf.list_workspace_folders())
   -- end, opts)
-  map('n', '<leader>r', vim.lsp.buf.rename, opts)
   map('n', '<space>we', function()
     vim.diagnostic.setqflist({ severity = 'E' }) -- all workspace errors
   end, opts)
   map('n', '<space>ww', function()
     vim.diagnostic.setqflist({ severity = 'W' }) -- all workspace warnings
   end, opts)
-  -- map('n', '<space>ws', vim.lsp.buf.workspace_symbol, opts)
-  -- map('n', '<space>wS', telescope.lsp_workspace_symbols, opts)
-  map('n', '<space>wS', telescope.lsp_dynamic_workspace_symbols, opts) -- to work with metals
-  map('n', '<space>ws', telescope.lsp_document_symbols, opts)
-  -- map('n', 'gr', vim.lsp.buf.references, opts)
-  map('n', 'gr', telescope.lsp_references, opts)
-  vim.api.nvim_create_user_command('Format', vim.lsp.buf.formatting, {})
-
-  -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
-    map('n', '<leader>f', vim.lsp.buf.formatting, opts)
-  elseif client.resolved_capabilities.document_range_formatting then
-    map('n', '<leader>f', vim.lsp.buf.range_formatting, opts)
-  end
 
 end
 
@@ -251,8 +259,43 @@ metals_config.settings = {
 }
 metals_config.capabilities = capabilities
 
+local dap = require 'dap'
+dap.configurations.scala = {
+  {
+    type = "scala",
+    request = "launch",
+    name = "Run or Test File",
+    metals = {
+      runType = "runOrTestFile",
+    },
+  },
+  {
+    type = "scala",
+    request = "launch",
+    name = "Test Build Target",
+    metals = {
+      runType = "testTarget",
+    },
+  },
+}
+
 metals_config.on_attach = function(client, bufnr)
+  local caps = client.resolved_capabilities
+  caps.goto_definition = true
+  caps.implementation = true
+  caps.find_references = true
+  caps.workspace_symbol = true
+  caps.document_symbol = true
+  caps.code_action = true
+  caps.hover = true
+  caps.signature_help = true
+  caps.code_lens = true
+  caps.rename = true
+  caps.document_formatting = true
+  caps.document_range_formatting = true
+
   on_attach(client, bufnr)
+  require('metals').setup_dap()
   -- other settings for metals here
 
   -- Metals mappings
@@ -261,6 +304,7 @@ metals_config.on_attach = function(client, bufnr)
   Since this can potentially be a huge amount of symbols, metals won't respond to an empty query search.
   So for example with telescope, I need to use builtin.lsp_dynamic_workspace_symbols not the normal builtin.lsp_workspace_symbols ]]
   map('n', '<space>wS', telescope.lsp_dynamic_workspace_symbols, opts)
+  map('n', 'gD', require('metals').goto_super_method, opts)
 end
 
 local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
@@ -270,4 +314,36 @@ vim.api.nvim_create_autocmd("FileType", {
     require("metals").initialize_or_attach(metals_config)
   end,
   group = nvim_metals_group,
+})
+
+
+-- Null ls config
+local null_ls = require('null-ls')
+
+require("null-ls").setup({
+  on_attach = function(client, bufnr)
+    local caps = client.resolved_capabilities
+
+    if client.name == 'pyright' then
+      caps.document_formatting = true
+    end
+
+    on_attach(client, bufnr)
+  end,
+  sources = {
+    -- Code Actions
+    null_ls.builtins.code_actions.gitsigns,
+
+    -- Diagnostics
+    null_ls.builtins.diagnostics.luacheck,
+    null_ls.builtins.diagnostics.mypy,
+    null_ls.builtins.diagnostics.flake8,
+
+    -- Formatting
+    null_ls.builtins.formatting.autopep8,
+    null_ls.builtins.formatting.prettier,
+
+    -- Hover
+    null_ls.builtins.hover.dictionary,
+  },
 })

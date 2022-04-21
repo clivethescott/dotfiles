@@ -48,9 +48,11 @@ local new_maker = function(filepath, bufnr, opts)
   }):sync()
 end
 
+local trouble = require("trouble.providers.telescope")
+
 require('telescope').setup {
   defaults = {
-    file_ignore_patterns = { "target", "node_modules", ".metals", ".git", ".idea", ".jar", "venv", ".bloop", ".bsp"},
+    file_ignore_patterns = { "target", "node_modules", ".metals", ".git", ".idea", ".jar", "venv", ".bloop", ".bsp" },
     buffer_previewer_maker = new_maker,
     preview = {
       mime_hook = mime_hook,
@@ -61,13 +63,23 @@ require('telescope').setup {
     },
     mappings = {
       i = {
-        ['<C-u>'] = false, -- if you prefer to clear prompt rather than scroll previewer
-        ['<C-d>'] = false,
-        -- map actions.which_key to <C-h> (default: <C-/>)
+        ['<C-n>'] = actions.move_selection_next,
+        ['<C-p>'] = actions.move_selection_previous,
+
+        ['<C-u>'] = actions.preview_scrolling_up,
+        ['<C-d>'] = actions.preview_scrolling_down,
         -- actions.which_key shows the mappings for your picker,
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
         ["<C-h>"] = "which_key",
-        ["<esc>"] = actions.close, -- close on first Esc
+        ["<esc>"] = actions.close,
+        ["<C-c>"] = actions.close,
+        -- open search results with trouble
+        ["<c-t>"] = trouble.open_with_trouble,
+      },
+      n = {
+        ["<c-t>"] = trouble.open_with_trouble,
+        ["<esc>"] = actions.close,
+        ["<C-c>"] = actions.close,
       },
     },
   },

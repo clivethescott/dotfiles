@@ -8,7 +8,7 @@ vim.opt.termguicolors = true
 -- Configure and enable onedark theme
 local onedarkTheme = require('onedark')
 onedarkTheme.setup {
-  style = 'cool' -- or dark(er), cool, deep, warm(er)
+  style = 'darker' -- or dark(er), cool, deep, warm(er)
 }
 onedarkTheme.load()
 

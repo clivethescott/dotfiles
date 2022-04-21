@@ -3,7 +3,7 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
 local map = vim.keymap.set
-local opts = { remap = false, silent = true }
+local opts = { noremap = true, silent = true }
 
 -- Dealing with word wrap on long lines
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -96,7 +96,33 @@ map('n', '<space>wo', metals.hover_worksheet)
 map('n', '<space>to', tvp.reveal_in_tree)
 map('n', '<space>tt', tvp.toggle_tree_view)
 
--- User Commands
-local utils = require 'utils'
-map('n', '<leader>gb', utils.gitBlame)
-map('n', '<leader>gB', utils.gitBlameClear)
+-- DAP mappings
+local dap = require('dap')
+map('n', '<space>db', dap.toggle_breakpoint)
+map('n', '<space>dbc', function()
+  dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+end)
+map('n', '<space>dbs', dap.list_breakpoints)
+map('n', '<space>dbd', dap.clear_breakpoints)
+map('n', '<space>dc', dap.continue)
+map('n', '<space>dcc', dap.run_to_cursor)
+map('n', '<space>ds', dap.step_over)
+map('n', '<space>dss', dap.step_over)
+map('n', '<space>dsi', dap.step_into)
+map('n', '<space>dso', dap.step_out)
+map('n', '<space>do', dap.repl.toggle)
+map('n', '<space>dr', dap.run_last)
+map('n', '<space>dt', function()
+  local cb = function()
+    print('Debug Session Terminated')
+  end
+  dap.terminate({}, {}, cb)
+end)
+
+-- Trouble Mappings
+vim.api.nvim_set_keymap('n', '<space>ee', '<cmd>Trouble<cr>', opts)
+vim.api.nvim_set_keymap('n', '<space>ew', '<cmd>Trouble workspace_diagnostics<cr>', opts)
+vim.api.nvim_set_keymap('n', '<space>ed', '<cmd>Trouble document_diagnostics<cr>', opts)
+vim.api.nvim_set_keymap('n', '<space>el', '<cmd>Trouble loclist<cr>', opts)
+vim.api.nvim_set_keymap('n', '<space>eq', '<cmd>Trouble quickfix<cr>', opts)
+vim.api.nvim_set_keymap('n', 'er', '<cmd>Trouble lsp_references<cr>', opts)
