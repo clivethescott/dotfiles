@@ -208,13 +208,13 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'path' },
   }, {
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lua' },
+    { name = 'nvim_lsp', max_item_count = 15 },
+    { name = 'nvim_lua', max_item_count = 10 },
     { name = 'nvim_lsp_signature_help' },
-    { name = 'luasnip' },
+    { name = 'luasnip', max_item_count = 5 },
   }, {
-    { name = 'buffer' },
-    { name = 'nvim_lsp_document_symbol' },
+    { name = 'buffer', max_item_count = 10 },
+    { name = 'nvim_lsp_document_symbol', max_item_count = 10 },
     { name = 'calc' },
   })
 })
