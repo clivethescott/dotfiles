@@ -38,7 +38,5 @@ cp $HOME/.gtkrc-2.0 $DOTFILES_HOME/gtk-2/.gtkrc-2.0
 cp $HOME/.sbt/1.0/build.sbt $DOTFILES_HOME/sbt
 
 cd $DOTFILES_HOME
-git add .
-git commit
-echo "ready to push updated changes!"
+lazygit
 
