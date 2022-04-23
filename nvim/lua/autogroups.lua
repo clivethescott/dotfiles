@@ -27,4 +27,13 @@ api.nvim_create_autocmd({ 'BufWritePre' }, {
   end,
 })
 
+-- Some filetype plugins will reset formatoptions, hence needed this way
+api.nvim_create_autocmd({ 'FileType' }, {
+  desc = 'Dont auto-continue comments',
+  pattern = { '*' },
+  callback = function()
+    vim.opt.formatoptions:remove('c'):remove('r'):remove('o') -- :h fo-table
+  end,
+})
+
 -- vim.cmd[[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]

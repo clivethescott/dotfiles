@@ -75,10 +75,6 @@ vim.opt.smarttab = true
 -- Continue indent on new line
 vim.opt.smartindent = true
 
--- Stop newline continution of comments
--- vim.opt.formatoptions-=cro
-vim.opt.formatoptions:remove('cro')
-
 -- Nvim config
 vim.g.loaded_python_provider = 0
 vim.g.loaded_perl_provider = 0
