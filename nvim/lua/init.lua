@@ -22,3 +22,7 @@ require('luasnip-config')
 require('dap-config')
 require('toggleterm-config')
 require('trouble-config')
+require('autopairs-config')
+
+require('twilight-config')
+require('zen-mode-config')

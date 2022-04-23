@@ -24,6 +24,7 @@ require('packer').startup(function(use)
 
   -- Color Theme
   use 'navarasu/onedark.nvim'
+  use 'folke/tokyonight.nvim'
   use 'folke/lsp-colors.nvim'
 
   -- Comments
@@ -73,4 +74,14 @@ require('packer').startup(function(use)
 
   -- Floating term
   use 'akinsho/toggleterm.nvim'
+
+  use 'windwp/nvim-autopairs'
+
+  -- keep function name pinned when scrolling
+  -- use 'romgrk/nvim-treesitter-context'
+
+  -- Distraction Free coding
+  use 'folke/zen-mode.nvim'
+  use 'folke/twilight.nvim'
+
 end)

@@ -38,8 +38,6 @@ local on_attach = function(client, bufnr)
     map('n', '<leader>f', vim.lsp.buf.formatting, opts)
   elseif caps.document_range_formatting then
     map('n', '<leader>f', vim.lsp.buf.range_formatting, opts)
-  else
-    print('Note: Formatting Unavailable')
   end
 
   -- Diagnostics
@@ -335,7 +333,7 @@ require("null-ls").setup({
     null_ls.builtins.code_actions.gitsigns,
 
     -- Diagnostics
-    null_ls.builtins.diagnostics.luacheck,
+    -- null_ls.builtins.diagnostics.luacheck,
     null_ls.builtins.diagnostics.mypy,
     null_ls.builtins.diagnostics.flake8,
 

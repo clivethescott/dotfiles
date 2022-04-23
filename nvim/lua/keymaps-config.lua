@@ -126,3 +126,13 @@ vim.api.nvim_set_keymap('n', '<space>ed', '<cmd>Trouble document_diagnostics<cr>
 vim.api.nvim_set_keymap('n', '<space>el', '<cmd>Trouble loclist<cr>', opts)
 vim.api.nvim_set_keymap('n', '<space>eq', '<cmd>Trouble quickfix<cr>', opts)
 vim.api.nvim_set_keymap('n', 'er', '<cmd>Trouble lsp_references<cr>', opts)
+
+-- Zen Mode Mappings
+
+map('n', '<leader>z', function()
+  require('zen-mode').toggle({
+    window = {
+      width = .85 -- width will be 85% of the editor width
+    }
+  })
+end)

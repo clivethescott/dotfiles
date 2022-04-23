@@ -6,11 +6,14 @@ vim.opt.dictionary:append('/usr/share/dict/words')
 vim.opt.termguicolors = true
 
 -- Configure and enable onedark theme
-local onedarkTheme = require('onedark')
+--[[ local onedarkTheme = require('onedark')
 onedarkTheme.setup {
   style = 'darker' -- or dark(er), cool, deep, warm(er)
 }
-onedarkTheme.load()
+onedarkTheme.load() ]]
+
+vim.g.tokyonight_style = "night"
+vim.cmd [[colorscheme tokyonight]]
 
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = 'menuone,noinsert,noselect'

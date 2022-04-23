@@ -6,7 +6,7 @@ require('lualine').setup {
   extensions = { 'nvim-tree' },
   options = {
     icons_enabled = true,
-    theme = 'onedark',
+    theme = 'tokyonight',
     component_separators = '|',
     section_separators = '',
     -- component_separators = { left = '', right = '' },
