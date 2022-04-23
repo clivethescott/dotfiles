@@ -81,7 +81,6 @@ require('packer').startup(function(use)
   -- use 'romgrk/nvim-treesitter-context'
 
   -- Distraction Free coding
-  use 'folke/zen-mode.nvim'
-  use 'folke/twilight.nvim'
+  use { 'folke/zen-mode.nvim', requires = { 'folke/twilight.nvim' } }
 
 end)
