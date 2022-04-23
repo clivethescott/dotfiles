@@ -166,6 +166,7 @@ lspconfig.gopls.setup {
 local cmp = require 'cmp'
 
 cmp.setup({
+  preselect = cmp.PreselectMode.None,
   completion = {
     keyword_length = 2 -- number of characters needed to trigger auto-completion
   },
