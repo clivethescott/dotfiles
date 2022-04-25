@@ -1,7 +1,6 @@
 require 'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
   auto_reload_on_write = true,
   disable_netrw = true,
-  hide_root_folder = false,
   hijack_cursor = false,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
@@ -12,7 +11,7 @@ require 'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
   sort_by = "name",
   update_cwd = false,
   view = {
-    width = 30,
+    width = 40,
     height = 30,
     side = "left",
     preserve_window_proportions = false,
@@ -51,7 +50,7 @@ require 'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
     args = {},
   },
   diagnostics = {
-    enable = false,
+    enable = true,
     show_on_dirs = false,
     icons = {
       hint = "",
@@ -62,7 +61,7 @@ require 'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
   },
   filters = {
     dotfiles = false,
-    custom = { '.git', '.DS_Store', 'target' },
+    custom = { '.git', '.DS_Store', 'target', '.bloop', '.bsp', '.metals' },
     exclude = {},
   },
   git = {
@@ -74,7 +73,7 @@ require 'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
     use_system_clipboard = true,
     change_dir = {
       enable = true,
-      global = false,
+      global = true,
     },
     open_file = {
       quit_on_open = false,
@@ -111,7 +110,7 @@ local _ = {
   { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
   { key = "<C-e>", action = "edit_in_place" },
   { key = { "O" }, action = "edit_no_picker" },
-  { key = { "<2-RightMouse>", "<C-]>" }, action = "cd" },
+  -- { key = { "<2-RightMouse>", "<C-]>" }, action = "cd" },
   { key = "<C-v>", action = "vsplit" },
   { key = "<C-x>", action = "split" },
   { key = "<C-t>", action = "tabnew" },
