@@ -2,61 +2,62 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
-local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
+local map = function(mode, lhs, rhs)
+  vim.keymap.set(mode, lhs, rhs, { silent = true })
+end
 
 -- Dealing with word wrap on long lines
-map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
 
 -- Center search result
-map('n', 'n', 'nzzzv', opts)
-map('n', 'N', 'Nzzzv', opts)
-map('n', '#', '#zz', opts)
-map('n', '*', '*zz', opts)
+map('n', 'n', 'nzzzv')
+map('n', 'N', 'Nzzzv')
+map('n', '#', '#zz')
+map('n', '*', '*zz')
 
 -- Remove search highlight
-map('n', '<leader>m', ':silent! nohls<cr>', opts)
+map('n', '<leader>m', ':silent! nohls<cr>')
 
 -- Alternate buffer
-map('n', '<tab>', ':b#<cr>', opts)
+map('n', '<tab>', ':b#<cr>')
 
 -- Split movements
-map('n', '<c-h>', '<c-w>h', opts)
-map('n', '<c-j>', '<c-w>j', opts)
-map('n', '<c-k>', '<c-w>k', opts)
-map('n', '<c-l>', '<c-w>l', opts)
+map('n', '<c-h>', '<c-w>h')
+map('n', '<c-j>', '<c-w>j')
+map('n', '<c-k>', '<c-w>k')
+map('n', '<c-l>', '<c-w>l')
 
 -- Resize v-splits
-map('n', '<space><', '10<c-w><', opts)
-map('n', '<space>>', '10<c-w>>', opts)
+map('n', '<space><', '10<c-w><')
+map('n', '<space>>', '10<c-w>>')
 
 -- Saving
-map('n', '<c-s>', ':w<cr>', opts)
-map('i', '<c-s>', '<esc>:w<cr>', opts)
+map('n', '<c-s>', ':w<cr>')
+map('i', '<c-s>', '<esc>:w<cr>')
 
 -- Jump to exact mark position either way
-map('n', "'", "`", opts)
+map('n', "'", "`")
 
 -- Faster way to quit
-map('n', 'Q', ':q<cr>', opts)
+map('n', 'Q', ':q<cr>')
 
 -- Faster way to yank line
-map('n', 'Y', 'yy', opts)
+map('n', 'Y', 'yy')
 
 -- Shouldn't be using these anyway
-map('n', '<left>', '<nop>', opts)
-map('v', '<left>', '<nop>', opts)
-map('n', '<right>', '<nop>', opts)
-map('v', '<right>', '<nop>', opts)
-map('n', '<down>', '<nop>', opts)
-map('v', '<down>', '<nop>', opts)
-map('n', '<up>', '<nop>', opts)
-map('v', '<up>', '<nop>', opts)
+map('n', '<left>', '<nop>')
+map('v', '<left>', '<nop>')
+map('n', '<right>', '<nop>')
+map('v', '<right>', '<nop>')
+map('n', '<down>', '<nop>')
+map('v', '<down>', '<nop>')
+map('n', '<up>', '<nop>')
+map('v', '<up>', '<nop>')
 
 -- Keep indent/outdent after first indent/outdent in visual mode
-map('v', '<', '<gv', opts)
-map('v', '>', '>gv', opts)
+map('v', '<', '<gv')
+map('v', '>', '>gv')
 
 -- Telescope mappings
 local telescope = require('telescope.builtin')
@@ -95,6 +96,7 @@ local tvp = require 'metals.tvp'
 map('n', '<space>wo', metals.hover_worksheet)
 map('n', '<space>to', tvp.reveal_in_tree)
 map('n', '<space>tt', tvp.toggle_tree_view)
+map('n', 'gD', metals.goto_super_method)
 
 -- DAP mappings
 local dap = require('dap')
@@ -120,6 +122,7 @@ map('n', '<space>dt', function()
 end)
 
 -- Trouble Mappings
+local opts = { silent = true, noremap = true }
 vim.api.nvim_set_keymap('n', '<space>ee', '<cmd>Trouble<cr>', opts)
 vim.api.nvim_set_keymap('n', '<space>ew', '<cmd>Trouble workspace_diagnostics<cr>', opts)
 vim.api.nvim_set_keymap('n', '<space>ed', '<cmd>Trouble document_diagnostics<cr>', opts)
@@ -127,12 +130,37 @@ vim.api.nvim_set_keymap('n', '<space>el', '<cmd>Trouble loclist<cr>', opts)
 vim.api.nvim_set_keymap('n', '<space>eq', '<cmd>Trouble quickfix<cr>', opts)
 vim.api.nvim_set_keymap('n', 'er', '<cmd>Trouble lsp_references<cr>', opts)
 
--- Zen Mode Mappings
+-- NvimTree Mappings
+vim.api.nvim_set_keymap('n', '<leader>!', '<cmd>NvimTreeFindFile<cr>', opts)
 
+-- Zen Mode Mappings
 map('n', '<leader>z', function()
   require('zen-mode').toggle({
     window = {
       width = .85 -- width will be 85% of the editor width
     }
   })
+end)
+
+-- Luasnip Mappings
+local luasnip = require('luasnip')
+map('i', '<C-j>', function()
+  if luasnip.expand_or_jumpable() then
+    luasnip.jump(1)
+  end
+end)
+map('s', '<C-j>', function()
+  if luasnip.expand_or_jumpable() then
+    luasnip.jump(1)
+  end
+end)
+map('s', '<C-k>', function()
+  if luasnip.jumpable(-1) then
+    luasnip.jump(-1)
+  end
+end)
+map('i', '<C-k>', function()
+  if luasnip.jumpable(-1) then
+    luasnip.jump(-1)
+  end
 end)

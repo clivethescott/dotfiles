@@ -3,6 +3,7 @@ require('utils')
 require('packer-config')
 require('options-config')
 require('autogroups')
+require('abbreviations')
 
 require('lualine-config')
 require('nvimtree-config')
