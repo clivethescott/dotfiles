@@ -1,9 +1,10 @@
 local api = vim.api
 
-local restore_pos_group = vim.api.nvim_create_augroup('RestoreLastPos', { clear = true })
+local events_group = vim.api.nvim_create_augroup('CustomEventsGroup', { clear = true })
+
 api.nvim_create_autocmd({ 'BufRead', 'BufReadPost' }, {
   desc = 'Restore last known position in file',
-  group = restore_pos_group,
+  group = events_group,
   pattern = '*',
   callback = function()
     local row, column = unpack(api.nvim_buf_get_mark(0, '"'))
@@ -15,14 +16,13 @@ api.nvim_create_autocmd({ 'BufRead', 'BufReadPost' }, {
   end,
 })
 
-local format_on_save_group = vim.api.nvim_create_augroup('FormatOnSave', { clear = true })
 api.nvim_create_autocmd({ 'BufWritePre' }, {
   desc = 'Files to format before save',
-  group = format_on_save_group,
+  group = events_group,
   pattern = { '*.scala', '*.sc', '*.py', '*.go', '*.lua' },
   callback = function()
-    local timeoutMs = 1000
-    local opts = nil
+    local timeoutMs = 2000
+    local opts = {}
     vim.lsp.buf.formatting_sync(opts, timeoutMs)
   end,
 })
@@ -30,6 +30,7 @@ api.nvim_create_autocmd({ 'BufWritePre' }, {
 -- Some filetype plugins will reset formatoptions, hence needed this way
 api.nvim_create_autocmd({ 'FileType' }, {
   desc = 'Dont auto-continue comments',
+  group = events_group,
   pattern = { '*' },
   callback = function()
     vim.opt.formatoptions:remove('c'):remove('r'):remove('o') -- :h fo-table
