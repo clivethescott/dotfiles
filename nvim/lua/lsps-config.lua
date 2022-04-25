@@ -2,36 +2,28 @@
 local map = vim.keymap.set
 local lspconfig = require 'lspconfig'
 
-local function actionIf(action, condition, failureMsg)
-  return function()
-    if condition then action()
-    else print(failureMsg)
-    end
-  end
-end
-
 local on_attach = function(client, bufnr)
-  -- print('Attaching to ' .. client.name)
-  local opts = { buffer = bufnr, noremap = true, silent = true }
+  -- vim.notify('LSP connected client ' .. client.name, 'info')
+  local opts = { buffer = bufnr, silent = true }
   local telescope = require('telescope.builtin')
   local caps = client.resolved_capabilities
 
   -- Actions with a Telescope Picker
-  map('n', 'gd', actionIf(telescope.lsp_definitions, caps.goto_definition, 'Definition unavailable'), opts)
-  map('n', 'gi', actionIf(telescope.lsp_implementations, caps.implementation, 'Implementation unavailable'), opts)
-  map('n', 'gy', actionIf(telescope.lsp_type_definitions, caps.type_definition, 'Type Definition unavailable'), opts)
-  map('n', 'gr', actionIf(telescope.lsp_references, caps.find_references, 'References unavailable'), opts)
-  map('n', '<space>wS', actionIf(telescope.lsp_dynamic_workspace_symbols, caps.workspace_symbol, 'Workspace symbol unavailable'), opts)
-  map('n', '<space>ws', actionIf(telescope.lsp_document_symbols, caps.document_symbol, 'Document symbol unavailable'), opts)
-  map('n', 'ga', actionIf(telescope.lsp_code_actions, caps.code_action, 'Code Action unavailable'), opts)
+  map('n', 'gd', telescope.lsp_definitions, opts)
+  map('n', 'gi', telescope.lsp_implementations, opts)
+  map('n', 'gy', telescope.lsp_type_definitions, opts)
+  map('n', 'gr', telescope.lsp_references, opts)
+  map('n', '<space>wS', telescope.lsp_dynamic_workspace_symbols, opts)
+  map('n', '<space>ws', telescope.lsp_document_symbols, opts)
+  map('n', 'ga', telescope.lsp_code_actions, opts)
   map('n', '<leader>d', telescope.diagnostics, opts)
 
-  map('n', 'gD', actionIf(vim.lsp.buf.declaration, caps.declaration, 'Declaration unavailable'), opts)
-  map('n', 'K', actionIf(vim.lsp.buf.hover, caps.hover, 'Hover unavailable'), opts)
-  map('n', '<C-k>', actionIf(vim.lsp.buf.signature_help, caps.signature_help, 'Signature unavailable'), opts)
-  map('n', 'gs', actionIf(vim.lsp.buf.signature_help, caps.signature_help, 'Signature unavailable'), opts)
-  map('n', 'gl', actionIf(vim.lsp.codelens.run, caps.code_lens, 'Code Lens unavailable'), opts)
-  map('n', '<leader>r', actionIf(vim.lsp.buf.rename, caps.rename, 'Rename unavailable'), opts)
+  map('n', 'gD', vim.lsp.buf.declaration, opts)
+  map('n', 'K', vim.lsp.buf.hover, opts)
+  map('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+  map('n', 'gs', vim.lsp.buf.signature_help, opts)
+  map('n', 'gl', vim.lsp.codelens.run, opts)
+  map('n', '<leader>r', vim.lsp.buf.rename, opts)
 
   -- Formatting
   if caps.document_formatting then
@@ -297,20 +289,23 @@ metals_config.on_attach = function(client, bufnr)
   require('metals').setup_dap()
   -- other settings for metals here
 
+  local opts = { silent = true, noremap = true }
   -- Metals mappings
-  map('n', '<leader>c', require('telescope').extensions.metals.commands)
+  map('n', '<leader>c', require('telescope').extensions.metals.commands, opts)
   --[[ Depending on what you're using to display these results, some send in an empty query string to start off the process.
   Since this can potentially be a huge amount of symbols, metals won't respond to an empty query search.
   So for example with telescope, I need to use builtin.lsp_dynamic_workspace_symbols not the normal builtin.lsp_workspace_symbols ]]
   map('n', '<space>wS', telescope.lsp_dynamic_workspace_symbols, opts)
-  map('n', 'gD', require('metals').goto_super_method, opts)
+
 end
 
 local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "scala", "sbt", "sc" },
   callback = function()
+    -- Metals mappings
     require("metals").initialize_or_attach(metals_config)
+
   end,
   group = nvim_metals_group,
 })
