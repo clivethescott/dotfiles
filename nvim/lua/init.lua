@@ -27,3 +27,4 @@ require('autopairs-config')
 
 require('twilight-config')
 require('zen-mode-config')
+require('dressing-config')
