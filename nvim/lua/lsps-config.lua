@@ -15,7 +15,7 @@ local on_attach = function(client, bufnr)
   map('n', 'gr', telescope.lsp_references, opts)
   map('n', '<space>wS', telescope.lsp_dynamic_workspace_symbols, opts)
   map('n', '<space>ws', telescope.lsp_document_symbols, opts)
-  map('n', 'ga', telescope.lsp_code_actions, opts)
+  map('n', 'ga', vim.lsp.buf.code_action, opts)
   map('n', '<leader>d', telescope.diagnostics, opts)
 
   map('n', 'gD', vim.lsp.buf.declaration, opts)
