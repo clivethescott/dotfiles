@@ -6,7 +6,7 @@ NVIM_HOME=$HOME/.config/nvim
 cp $NVIM_HOME/init.lua $DOTFILES_HOME/nvim/init.lua
 cp $NVIM_HOME/lua/*.lua $DOTFILES_HOME/nvim/lua
 cp $NVIM_HOME/luasnippets/*.lua $DOTFILES_HOME/nvim/luasnippets
-cp $HOME/.gitconfig $HOME/.gitignore_global $DOTFILES_HOME/git
+cp $HOME/.gitconfig $HOME/.gitignore $DOTFILES_HOME/git
 cp $HOME/.ideavimrc $DOTFILES_HOME/ideavim/.ideavimrc
 cp $HOME/.ripgreprc $DOTFILES_HOME/ripgrep/.ripgreprc
 cp $HOME/.tmux.conf $DOTFILES_HOME/tmux/.tmux.conf
