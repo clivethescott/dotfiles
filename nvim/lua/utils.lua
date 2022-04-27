@@ -41,4 +41,8 @@ function M.resolvedCapabilities()
   print(vim.inspect(vim.lsp.buf_get_clients()[1].resolved_capabilities))
 end
 
+function M.uuid()
+  return string.lower(vim.fn.system("uuidgen | tr -d '\n'"))
+end
+
 return M

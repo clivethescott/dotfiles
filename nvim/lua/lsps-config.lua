@@ -90,8 +90,9 @@ lspconfig.sumneko_lua.setup {
         path = runtime_path,
       },
       diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
+        -- Get the language server to recognize the `vim` global and
+        -- Luasnip shortcuts https://github.com/L3MON4D3/LuaSnip/blob/69cb81cf7490666890545fef905d31a414edc15b/lua/luasnip/config.lua#L82-L104
+        globals = { 'vim', 'parse', 's', 'sn', 't', 'f', 'i', 'c', 'fmt' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -175,7 +176,7 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-u>'] = cmp.mapping.scroll_docs(4),
-    ['<C-y>'] = cmp.mapping.complete(),
+    -- ['<C-y>'] = cmp.mapping.complete(),
     ['<C-x>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ['<Tab>'] = cmp.mapping(function(fallback)

@@ -37,4 +37,13 @@ api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
+api.nvim_create_autocmd({ 'BufWritePost' }, {
+  desc = 'Auto re-source luasnip config',
+  group = events_group,
+  pattern = { 'luasnip-config.lua' },
+  callback = function()
+    vim.cmd 'source ~/.config/nvim/lua/luasnip-config.lua'
+  end,
+})
+
 -- vim.cmd[[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]

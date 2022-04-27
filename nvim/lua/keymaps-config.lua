@@ -123,12 +123,12 @@ end)
 
 -- Trouble Mappings
 local opts = { silent = true, noremap = true }
-vim.api.nvim_set_keymap('n', '<space>ee', '<cmd>Trouble<cr>', opts)
-vim.api.nvim_set_keymap('n', '<space>ew', '<cmd>Trouble workspace_diagnostics<cr>', opts)
-vim.api.nvim_set_keymap('n', '<space>ed', '<cmd>Trouble document_diagnostics<cr>', opts)
-vim.api.nvim_set_keymap('n', '<space>el', '<cmd>Trouble loclist<cr>', opts)
-vim.api.nvim_set_keymap('n', '<space>eq', '<cmd>Trouble quickfix<cr>', opts)
-vim.api.nvim_set_keymap('n', 'er', '<cmd>Trouble lsp_references<cr>', opts)
+vim.api.nvim_set_keymap('n', '<space>ee', '<cmd>TroubleToggle<cr>', opts)
+vim.api.nvim_set_keymap('n', '<space>ew', '<cmd>TroubleToggle workspace_diagnostics<cr>', opts)
+vim.api.nvim_set_keymap('n', '<space>ed', '<cmd>TroubleToggle document_diagnostics<cr>', opts)
+vim.api.nvim_set_keymap('n', '<space>el', '<cmd>TroubleToggle loclist<cr>', opts)
+vim.api.nvim_set_keymap('n', '<space>eq', '<cmd>TroubleToggle quickfix<cr>', opts)
+vim.api.nvim_set_keymap('n', 'er', '<cmd>TroubleToggle lsp_references<cr>', opts)
 
 -- NvimTree Mappings
 vim.api.nvim_set_keymap('n', '<leader>!', '<cmd>NvimTreeFindFile<cr>', opts)
@@ -144,23 +144,21 @@ end)
 
 -- Luasnip Mappings
 local luasnip = require('luasnip')
-map('i', '<C-j>', function()
+map({ 'i', 's' }, '<C-j>', function()
   if luasnip.expand_or_jumpable() then
     luasnip.jump(1)
   end
 end)
-map('s', '<C-j>', function()
-  if luasnip.expand_or_jumpable() then
-    luasnip.jump(1)
-  end
-end)
-map('s', '<C-k>', function()
+map({ 'i', 's' }, '<C-k>', function()
   if luasnip.jumpable(-1) then
     luasnip.jump(-1)
   end
 end)
-map('i', '<C-k>', function()
-  if luasnip.jumpable(-1) then
-    luasnip.jump(-1)
+map({ 'i' }, '<C-y>', function()
+  if luasnip.choice_active() then
+    luasnip.change_choice(1)
   end
+end)
+map('n', '<leader>s', function()
+  require("luasnip.loaders.from_lua").edit_snippet_files()
 end)
