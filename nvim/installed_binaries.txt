@@ -1,0 +1,8 @@
+Search
+rg - Ripgrep for grep
+fd - For finding files by name
+
+Other utitlities
+uuidgen - generate UUIDs
+tr - char substitution
+bat - previews
