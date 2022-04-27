@@ -3,6 +3,7 @@
 require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true, -- false will disable the whole extension
+    additional_vim_regex_highlighting = false, -- performance may suffer
   },
   disable = { "svelte" },
   incremental_selection = {
@@ -24,6 +25,8 @@ require('nvim-treesitter.configs').setup {
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         ['af'] = '@function.outer',
+        ['ap'] = '@parameter.outer',
+        ['ip'] = '@parameter.inner',
         ['if'] = '@function.inner',
         ['ac'] = '@class.outer',
         ['ic'] = '@class.inner',
@@ -49,7 +52,14 @@ require('nvim-treesitter.configs').setup {
         ['[]'] = '@class.outer',
       },
     },
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>a"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<leader>A"] = "@parameter.inner",
+      },
+    },
   },
 }
-
-
