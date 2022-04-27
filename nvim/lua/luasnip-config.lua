@@ -1,7 +1,19 @@
 local ls = require 'luasnip'
+local types = require("luasnip.util.types")
 
-ls.config.set_config {
+ls.config.setup {
+  history = true,
   update_events = 'TextChanged,TextChangedI', -- updates as you type, default is InsertLeave
+  enable_autosnippets = true,
+  ft_func = require("luasnip.extras.filetype_functions").from_cursor, -- use treesitter to get ft
+  -- delete_check_events = 'TextChanged', -- enable to delete virt text when snippet is deleted
+  ext_opts = {
+    [types.choiceNode] = {
+      active = {
+        virt_text = { { "<-", "Error" } } -- text + hlgroup, when choosing
+      },
+    }
+  }
 }
 
 -- Load snippet from sources

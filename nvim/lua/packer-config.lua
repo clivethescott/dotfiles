@@ -64,7 +64,7 @@ require('packer').startup(function(use)
   use 'saadparwaiz1/cmp_luasnip' -- cmp Luasnip completion source
   use 'L3MON4D3/LuaSnip' -- Snippets engine
   use 'rafamadriz/friendly-snippets' -- Collection of Vscode-like Snippets
-  -- use 'honza/vim-snippets' -- Collection of Snipmate-like Snippets
+  use 'honza/vim-snippets' -- Collection of Snipmate-like Snippets
 
   -- Metals LSP for Scala
   use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }

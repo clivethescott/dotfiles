@@ -92,7 +92,7 @@ lspconfig.sumneko_lua.setup {
       diagnostics = {
         -- Get the language server to recognize the `vim` global and
         -- Luasnip shortcuts https://github.com/L3MON4D3/LuaSnip/blob/69cb81cf7490666890545fef905d31a414edc15b/lua/luasnip/config.lua#L82-L104
-        globals = { 'vim', 'parse', 's', 'sn', 't', 'f', 'i', 'c', 'fmt' },
+        globals = { 'vim', 'parse', 's', 'sn', 't', 'f', 'i', 'c', 'fmt', 'rep' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -202,11 +202,11 @@ cmp.setup({
     { name = 'path', max_item_count = 3 },
   }, {
     { name = 'nvim_lsp', max_item_count = 15 },
-    { name = 'nvim_lsp_document_symbol', max_item_count = 10 },
-    { name = 'buffer', max_item_count = 5 },
-    { name = 'nvim_lua', max_item_count = 10 },
     { name = 'luasnip', max_item_count = 5 },
+    { name = 'nvim_lsp_document_symbol', max_item_count = 10 },
+    { name = 'nvim_lua', max_item_count = 5 },
     { name = 'nvim_lsp_signature_help' },
+    { name = 'buffer', max_item_count = 5 },
   }, {
     { name = 'calc' },
   })

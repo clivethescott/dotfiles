@@ -12,6 +12,7 @@ onedarkTheme.setup {
 }
 onedarkTheme.load() ]]
 
+
 vim.g.tokyonight_style = "night"
 vim.cmd [[colorscheme tokyonight]]
 
@@ -64,6 +65,12 @@ vim.opt.colorcolumn = '120'
 -- Enable line (relative) numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+-- See messages better, also avoids hit enter
+vim.opt.cmdheight = 2
+
+-- Don't show mode change messages
+vim.opt.showmode = false
 
 -- Number of spaces equal to a tab
 vim.opt.tabstop = 2

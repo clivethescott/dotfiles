@@ -1,8 +1,10 @@
-local sp = require("luasnip.nodes.snippetProxy") -- parse snippets on expansion
 local utils = require 'utils'
 
 return {
-  s("uuid", {
+  s({ trig = "uuid", name = "UUID", dscr = "Generate a UUID" }, {
     f(function() return utils.uuid() end, {}, {}),
-  })
+  }),
+  s("time", f(function()
+    return os.date "%D - %H:%M"
+  end)),
 }

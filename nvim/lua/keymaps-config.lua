@@ -1,7 +1,3 @@
--- Use , as leader
-vim.g.mapleader = ','
-vim.g.maplocalleader = ','
-
 local map = function(mode, lhs, rhs)
   vim.keymap.set(mode, lhs, rhs, { silent = true })
 end
@@ -128,7 +124,7 @@ vim.api.nvim_set_keymap('n', '<space>ew', '<cmd>TroubleToggle workspace_diagnost
 vim.api.nvim_set_keymap('n', '<space>ed', '<cmd>TroubleToggle document_diagnostics<cr>', opts)
 vim.api.nvim_set_keymap('n', '<space>el', '<cmd>TroubleToggle loclist<cr>', opts)
 vim.api.nvim_set_keymap('n', '<space>eq', '<cmd>TroubleToggle quickfix<cr>', opts)
-vim.api.nvim_set_keymap('n', 'er', '<cmd>TroubleToggle lsp_references<cr>', opts)
+vim.api.nvim_set_keymap('n', '<space>er', '<cmd>TroubleToggle lsp_references<cr>', opts)
 
 -- NvimTree Mappings
 vim.api.nvim_set_keymap('n', '<leader>!', '<cmd>NvimTreeFindFile<cr>', opts)
@@ -154,10 +150,15 @@ map({ 'i', 's' }, '<C-k>', function()
     luasnip.jump(-1)
   end
 end)
+-- minimal choice change, same as when using vim.ui.select below
 map({ 'i' }, '<C-y>', function()
   if luasnip.choice_active() then
     luasnip.change_choice(1)
   end
+end)
+-- Luasnip choice selection using vim.ui.select
+map({ 'i' }, '<C-u>', function()
+  require('luasnip.extras.select_choice')()
 end)
 map('n', '<leader>s', function()
   require("luasnip.loaders.from_lua").edit_snippet_files()
