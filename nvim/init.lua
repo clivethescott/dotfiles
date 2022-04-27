@@ -1,3 +1,7 @@
+-- Use , as leader, define as early as possible
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
+
 -- vim.lsp.set_log_level("debug")
 require('utils')
 require('packer-config')
