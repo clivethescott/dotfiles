@@ -3,32 +3,49 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
 -- vim.lsp.set_log_level("debug")
-require('config.utils')
-require('config.packer-config')
-require('config.options-config')
-require('config.autogroups')
-require('config.abbreviations')
+require('helper.utils')
+require('helper.commands')
 
-require('config.lualine-config')
-require('config.nvimtree-config')
-require('config.webicons-config')
+-- Common configuration
+require('conf.options')
+require('conf.autogroups')
+require('conf.abbreviations')
+require('conf.keymaps')
 
-require('config.keymaps-config')
-require('config.gitsigns-config')
-require('config.telescope-config')
-require('config.treesitter-config')
-require('config.lsps-config')
--- require('config.metals-config')
-require('config.colors-config')
-require('config.comment-config')
-require('config.autogroups')
-require('config.commands')
-require('config.luasnip-config')
-require('config.dap-config')
-require('config.toggleterm-config')
-require('config.trouble-config')
-require('config.autopairs-config')
+-- Plugin configuration
 
-require('config.twilight-config')
-require('config.zen-mode-config')
-require('config.dressing-config')
+-- Package Manager
+require('plug.packer')
+-- Status line
+require('plug.lualine')
+-- File Browser
+require('plug.nvimtree')
+-- Icons
+require('plug.webicons')
+-- Signs for Git tracked files
+require('plug.gitsigns')
+-- Multi-purpose picker
+require('plug.telescope')
+-- Syntax parser
+require('plug.treesitter')
+-- LSP client config
+require('plug.lsps')
+-- Colorscheme changes, overrides etc
+require('plug.colors')
+-- Comments for every language
+require('plug.comment')
+-- Snippets engine
+require('plug.luasnip')
+-- Debug support
+require('plug.dap')
+-- Toggle Floating terminal
+require('plug.toggleterm')
+-- Diagnostics browser
+require('plug.trouble')
+-- Complete all sorts of pairs
+require('plug.autopairs')
+-- Dim code blocks not in use
+require('plug.twilight')
+require('plug.zen-mode')
+-- Override vim.ui.input and vim.ui.select
+require('plug.dressing')

@@ -1,4 +1,4 @@
-local utils = require 'config.utils'
+local utils = require 'helper.utils'
 
 return {
   s({ trig = "uuid", name = "UUID", dscr = "Generate a UUID" }, {

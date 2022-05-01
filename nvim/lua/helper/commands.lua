@@ -1,11 +1,11 @@
 vim.api.nvim_create_user_command('GitBlame', function()
-  require 'config.utils'.gitBlame()
+  require 'helper.utils'.gitBlame()
 end, {})
 
 vim.api.nvim_create_user_command('GitBlameClear', function()
-  require 'config.utils'.gitBlameClear()
+  require 'helper.utils'.gitBlameClear()
 end, {})
 
 vim.api.nvim_create_user_command('LspStatus', function()
-  require 'config.utils'.resolvedCapabilities()
+  require 'helper.utils'.resolvedCapabilities()
 end, {})
