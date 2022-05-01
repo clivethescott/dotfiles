@@ -6,7 +6,7 @@ local on_attach = function(client, bufnr)
   -- vim.notify('LSP connected client ' .. client.name, 'info')
   local opts = { buffer = bufnr, silent = true }
   local telescope = require('telescope.builtin')
-  local caps = client.resolved_capabilities
+  local caps = client.server_capabilities
 
   -- Actions with a Telescope Picker
   map('n', 'gd', telescope.lsp_definitions, opts)
@@ -274,7 +274,7 @@ dap.configurations.scala = {
 }
 
 metals_config.on_attach = function(client, bufnr)
-  local caps = client.resolved_capabilities
+  local caps = client.server_capabilities
   caps.goto_definition = true
   caps.implementation = true
   caps.find_references = true
@@ -319,7 +319,7 @@ local null_ls = require('null-ls')
 
 require("null-ls").setup({
   on_attach = function(client, bufnr)
-    local caps = client.resolved_capabilities
+    local caps = client.server_capabilities
 
     if client.name == 'pyright' then
       caps.document_formatting = true
