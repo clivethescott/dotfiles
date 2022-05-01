@@ -2,7 +2,7 @@ local api = vim.api
 
 local events_group = vim.api.nvim_create_augroup('CustomEventsGroup', { clear = true })
 
-api.nvim_create_autocmd({ 'BufRead', 'BufReadPost' }, {
+api.nvim_create_autocmd({ 'BufReadPost' }, {
   desc = 'Restore last known position in file',
   group = events_group,
   pattern = '*',
