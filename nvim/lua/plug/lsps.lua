@@ -28,16 +28,20 @@ local on_attach = function(client, bufnr)
   map('n', '<leader>r', vim.lsp.buf.rename, opts)
 
   -- Formatting
-  if caps.document_formatting then
-    map('n', '<leader>f', vim.lsp.buf.formatting, opts)
-  elseif caps.document_range_formatting then
+  if caps.documentFormattingProvider then
+    map('n', '<leader>f', function()
+      vim.lsp.buf.format{ async = true}
+    end, opts)
+  elseif caps.documentRangeFormattingProvider then
     map('n', '<leader>f', vim.lsp.buf.range_formatting, opts)
   end
 
   -- Diagnostics
   map('n', 'g[', function() vim.diagnostic.goto_prev { wrap = false } end, opts) -- prevent previous jumping back
-  map('n', 'g]', vim.lsp.diagnostic.goto_next, opts)
-  map('n', '<leader>D', vim.lsp.diagnostic.show_line_diagnostics, opts)
+  map('n', 'g]', vim.diagnostic.goto_next, opts)
+  map('n', '<leader>D', function()
+    vim.diagnostic.open_float({scope = 'line'}) -- can be line, buffer, cursor
+  end, opts)
   -- map('n', '<leader>d', vim.diagnostic.setloclist, opts) -- buffer diagnostics only
 
   -- map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
@@ -274,20 +278,6 @@ dap.configurations.scala = {
 }
 
 metals_config.on_attach = function(client, bufnr)
-  local caps = client.server_capabilities
-  caps.goto_definition = true
-  caps.implementation = true
-  caps.find_references = true
-  caps.workspace_symbol = true
-  caps.document_symbol = true
-  caps.code_action = true
-  caps.hover = true
-  caps.signature_help = true
-  caps.code_lens = true
-  caps.rename = true
-  caps.document_formatting = true
-  caps.document_range_formatting = true
-
   on_attach(client, bufnr)
   require('metals').setup_dap()
   -- other settings for metals here
@@ -319,12 +309,6 @@ local null_ls = require('null-ls')
 
 require("null-ls").setup({
   on_attach = function(client, bufnr)
-    local caps = client.server_capabilities
-
-    if client.name == 'pyright' then
-      caps.document_formatting = true
-    end
-
     on_attach(client, bufnr)
   end,
   sources = {
