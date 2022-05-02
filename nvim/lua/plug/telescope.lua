@@ -52,7 +52,7 @@ local trouble = require("trouble.providers.telescope")
 
 require('telescope').setup {
   defaults = {
-    file_ignore_patterns = { "target", "node_modules", ".metals", ".git", ".idea", ".jar", "venv", ".bloop", ".bsp" },
+    file_ignore_patterns = { "target", "node_modules", ".metals", ".git", ".idea", ".jar", "venv", ".bloop", ".bsp", "undodir" },
     buffer_previewer_maker = new_maker,
     preview = {
       mime_hook = mime_hook,
