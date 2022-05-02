@@ -40,9 +40,9 @@ api.nvim_create_autocmd({ 'FileType' }, {
 api.nvim_create_autocmd({ 'BufWritePost' }, {
   desc = 'Auto re-source luasnip config',
   group = events_group,
-  pattern = { 'luasnip-config.lua' },
+  pattern = { 'luasnip.lua' },
   callback = function()
-    vim.cmd 'source ~/.config/nvim/lua/luasnip-config.lua'
+    vim.cmd 'source ~/.config/nvim/lua/plug/luasnip.lua'
   end,
 })
 
