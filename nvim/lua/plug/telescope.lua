@@ -75,11 +75,13 @@ require('telescope').setup {
         ["<C-c>"] = actions.close,
         -- open search results with trouble
         ["<c-t>"] = trouble.open_with_trouble,
+        ["<c-x>"] = actions.delete_buffer,
       },
       n = {
         ["<c-t>"] = trouble.open_with_trouble,
         ["<esc>"] = actions.close,
         ["<C-c>"] = actions.close,
+        ["<c-x>"] = actions.delete_buffer,
       },
     },
   },
