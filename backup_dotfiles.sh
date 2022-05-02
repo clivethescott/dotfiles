@@ -4,7 +4,7 @@ old_dir=$(pwd)
 DOTFILES_HOME=$HOME/dotfiles
 NVIM_HOME=$HOME/.config/nvim
 cp $NVIM_HOME/init.lua $DOTFILES_HOME/nvim/init.lua
-cp -r $NVIM_HOME/lua $DOTFILES_HOME/nvim
+rm -rf $DOTFILES_HOME/nim/lua && cp -r $NVIM_HOME/lua $DOTFILES_HOME/nvim
 cp -r $NVIM_HOME/luasnippets $DOTFILES_HOME/nvim
 cp $HOME/.gitconfig $HOME/.gitignore $DOTFILES_HOME/git
 cp $HOME/.ideavimrc $DOTFILES_HOME/ideavim/.ideavimrc
