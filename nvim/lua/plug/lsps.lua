@@ -30,7 +30,7 @@ local on_attach = function(client, bufnr)
   -- Formatting
   if caps.documentFormattingProvider then
     map('n', '<leader>f', function()
-      vim.lsp.buf.format{ async = true}
+      vim.lsp.buf.format { async = true }
     end, opts)
   elseif caps.documentRangeFormattingProvider then
     map('n', '<leader>f', vim.lsp.buf.range_formatting, opts)
@@ -40,7 +40,7 @@ local on_attach = function(client, bufnr)
   map('n', 'g[', function() vim.diagnostic.goto_prev { wrap = false } end, opts) -- prevent previous jumping back
   map('n', 'g]', vim.diagnostic.goto_next, opts)
   map('n', '<leader>D', function()
-    vim.diagnostic.open_float({scope = 'line'}) -- can be line, buffer, cursor
+    vim.diagnostic.open_float({ scope = 'line' }) -- can be line, buffer, cursor
   end, opts)
   -- map('n', '<leader>d', vim.diagnostic.setloclist, opts) -- buffer diagnostics only
 
@@ -163,8 +163,15 @@ lspconfig.gopls.setup {
 ----------------------------------------------------------------------
 -- Setup nvim-cmp.
 local cmp = require 'cmp'
+local lspkind = require 'lspkind'
 
 cmp.setup({
+  formatting = {
+    format = lspkind.cmp_format {
+      mode = 'symbol_text', -- show only symbol annotations
+      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+    }
+  },
   preselect = cmp.PreselectMode.None,
   completion = {
     keyword_length = 2 -- number of characters needed to trigger auto-completion

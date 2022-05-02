@@ -88,4 +88,6 @@ require('packer').startup(function(use)
   -- Distraction Free coding
   use { 'folke/zen-mode.nvim', requires = { 'folke/twilight.nvim' } }
 
+  -- LSP Pictograms
+  use 'onsails/lspkind.nvim'
 end)
