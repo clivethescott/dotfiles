@@ -57,9 +57,10 @@ map('v', '>', '>gv')
 
 -- Telescope mappings
 local telescope = require('telescope.builtin')
+local telescope_extras = require('plug.telescope-extras')
 map('n', '<c-e>', telescope.buffers)
 -- Use git_files if in git dir, else use find_files
-map('n', '<c-p>', require('plug.telescope-keymaps').project_files)
+map('n', '<c-p>', telescope_extras.project_files)
 map('n', '<leader>t', telescope.builtin)
 map('n', '<leader>tf', telescope.live_grep)
 map('n', '<leader>tb', telescope.current_buffer_fuzzy_find)
