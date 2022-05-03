@@ -1,4 +1,14 @@
 require('nvim-autopairs').setup({
+  fast_wrap = {
+    map = '<c-e>',
+    chars = { '{', '[', '(', '"', "'" },
+    pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], '%s+', ''),
+    end_key = '$',
+    keys = 'qwertyuiopzxcvbnmasdfghjkl',
+    check_comma = true,
+    highlight = 'Search',
+    highlight_grey = 'Comment'
+  },
   disable_filetype = { "TelescopePrompt", "vim" },
   disable_in_macro = false, -- disable when recording or executing a macro
   disable_in_visualblock = false, -- disable when insert after visual block mode
