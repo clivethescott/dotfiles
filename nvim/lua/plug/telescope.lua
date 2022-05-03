@@ -77,12 +77,15 @@ require('telescope').setup {
         -- open search results with trouble
         ["<c-t>"] = trouble.open_with_trouble,
         ["<c-x>"] = actions.delete_buffer,
+        -- ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
       },
       n = {
         ["<c-t>"] = trouble.open_with_trouble,
         ["<esc>"] = actions.close,
         ["<C-c>"] = actions.close,
         ["<c-x>"] = actions.delete_buffer,
+        ["?"] = "which_key",
       },
     },
   },
