@@ -1,19 +1,26 @@
-require 'nvim-web-devicons'.setup {
-  -- your personal icons can go here (to override)
-  -- you can specify color or cterm_color instead of specifying both of them
-  -- DevIcon will be appended to `name`
-  override = {
-    ['sbt'] = {
+-- TODO: figure out why require'nvim-web-devicons'.setup{ overrides = ...} ain't working
+require 'nvim-web-devicons'.setup {}
+
+local scala_files = { 'sc', 'sbt', 'scala'}
+for _, ft in ipairs(scala_files) do
+  require 'nvim-web-devicons'.set_icon {
+    [ft] = {
       icon = "",
       color = "#cc3e44",
       cterm_color = "167",
-      name = "sbt",
-    },
-    ['sc'] = {
-      icon = "",
-      color = "#cc3e44",
-      cterm_color = "167",
-      name = "sc",
-    },
+      name = "Scala",
+    }
   }
-}
+end
+
+local conf_files = { 'properties'}
+for _, ft in ipairs(conf_files) do
+  require 'nvim-web-devicons'.set_icon {
+    [ft] = {
+    icon = "",
+    color = "#6d8086",
+    cterm_color = "66",
+    name = "Conf",
+    }
+  }
+end
