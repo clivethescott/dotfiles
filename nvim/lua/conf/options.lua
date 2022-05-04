@@ -33,8 +33,8 @@ vim.opt.undodir = vim.env.HOME .. '/.config/nvim/undodir'
 vim.opt.undofile = true
 vim.opt.swapfile = false
 -- Show listchars
-vim.opt.list = true
-vim.opt.listchars = {eol = '↵'}
+-- vim.opt.list = true
+-- vim.opt.listchars = {eol = '↵'}
 
 -- Sensible split behaviour
 vim.opt.splitbelow = true
