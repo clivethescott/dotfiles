@@ -66,6 +66,11 @@ map('n', '<leader>2', function()
     cwd = '~/.config/nvim'
   }
 end)
+map('n', '<leader>3', function()
+  telescope.grep_string {
+    cwd = '~/.config/nvim/lua'
+  }
+end)
 map('n', '<leader>t', telescope.builtin)
 map('n', '<leader>tf', telescope.live_grep)
 map('n', '<leader>tb', telescope.current_buffer_fuzzy_find)
