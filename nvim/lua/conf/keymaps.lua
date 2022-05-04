@@ -171,7 +171,9 @@ map({ 'i' }, '<C-y>', function()
 end)
 -- Luasnip choice selection using vim.ui.select
 map({ 'i' }, '<C-u>', function()
-  require('luasnip.extras.select_choice')()
+  if luasnip.get_active_snip() then
+    require('luasnip.extras.select_choice')()
+  end
 end)
 map('n', '<leader>s', function()
   require("luasnip.loaders.from_lua").edit_snippet_files()
