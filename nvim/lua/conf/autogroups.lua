@@ -46,4 +46,14 @@ api.nvim_create_autocmd({ 'BufWritePost' }, {
   end,
 })
 
+api.nvim_create_autocmd({ 'InsertLeave' }, {
+  desc = 'Close cmp if open on leaving insert',
+  group = events_group,
+  pattern = { '*' },
+  callback = function()
+    local cmp = require('cmp')
+    if cmp.visible() then cmp.close() end
+  end,
+})
+
 -- vim.cmd[[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
