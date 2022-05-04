@@ -164,6 +164,25 @@ lspconfig.gopls.setup {
 -- Setup nvim-cmp.
 local cmp = require 'cmp'
 local lspkind = require 'lspkind'
+local select_next_item = function(fallback)
+  if cmp.visible() then
+    cmp.select_next_item()
+  elseif luasnip.expand_or_jumpable() then
+    luasnip.expand_or_jump()
+  else
+    fallback()
+  end
+end
+
+local select_prev_item = function(fallback)
+  if cmp.visible() then
+    cmp.select_prev_item()
+  elseif luasnip.jumpable(-1) then
+    luasnip.jump(-1)
+  else
+    fallback()
+  end
+end
 
 cmp.setup({
   formatting = {
@@ -190,26 +209,14 @@ cmp.setup({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-u>'] = cmp.mapping.scroll_docs(4),
     -- ['<C-y>'] = cmp.mapping.complete(),
+    -- ['<C-x>'] = cmp.mapping.abort(),
     ['<C-x>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ['<C-n>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['C-p'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
+    ['<C-n>'] = cmp.mapping(select_next_item, { 'i', 's' }),
+    ['<Tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
+
+    ['C-p'] = cmp.mapping(select_prev_item, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
   }),
   sources = cmp.config.sources({
     { name = 'path', max_item_count = 3 },
