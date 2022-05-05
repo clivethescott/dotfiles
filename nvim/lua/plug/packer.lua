@@ -26,7 +26,6 @@ require('packer').startup(function(use)
   -- Color Theme
   use 'navarasu/onedark.nvim'
   use 'folke/tokyonight.nvim'
-  use 'folke/lsp-colors.nvim'
 
   -- LSP Progress
   use 'arkav/lualine-lsp-progress'
