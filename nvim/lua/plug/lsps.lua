@@ -155,7 +155,12 @@ lspconfig.tsserver.setup {
 lspconfig.gopls.setup {
   capabilities = capabilities;
   filetypes = { 'go' };
-  on_attach = on_attach;
+  on_attach = function (client, bufnr)
+    -- These will be handled by null-ls goimports
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+    on_attach(client, bufnr)
+  end;
 }
 
 ----------------------------------------------------------------------
@@ -337,6 +342,7 @@ require("null-ls").setup({
     -- Formatting
     null_ls.builtins.formatting.autopep8,
     null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.goimports,
 
     -- Hover
     null_ls.builtins.hover.dictionary,
