@@ -33,7 +33,7 @@ api.nvim_create_autocmd({ 'FileType' }, {
   group = events_group,
   pattern = { '*' },
   callback = function()
-    vim.opt.formatoptions:remove('c'):remove('r'):remove('o') -- :h fo-table
+    vim.opt_local.formatoptions:remove { 'c', 'r', 'o' } -- :h fo-table
   end,
 })
 
