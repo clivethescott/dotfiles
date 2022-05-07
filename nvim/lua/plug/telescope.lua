@@ -52,6 +52,7 @@ local trouble = require("trouble.providers.telescope")
 
 require('telescope').setup {
   defaults = {
+    prompt_prefix = "     ",
     file_ignore_patterns = { "target", "node_modules", ".metals/", ".git/", ".idea", ".jar", "venv", ".bloop", ".bsp",
       "undodir", ".DS_Store" },
     buffer_previewer_maker = new_maker,
