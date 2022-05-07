@@ -1,8 +1,13 @@
-local function metals_status()
-  return vim.g["metals_status"] or ""
+local ok, lualine = pcall(require, 'lualine')
+if not ok then
+  return
 end
 
-require('lualine').setup {
+local function metals_status()
+  return vim.g['metals_status'] or ''
+end
+
+lualine.setup {
   extensions = { 'nvim-tree' },
   options = {
     icons_enabled = true,

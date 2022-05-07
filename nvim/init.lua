@@ -2,50 +2,53 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
--- vim.lsp.set_log_level("debug")
-require('helper.utils')
-require('helper.commands')
+-- vim.lsp.set_log_level "debug"
+require 'helper.utils'
+require 'helper.commands'
 
 -- Common configuration
-require('conf.options')
-require('conf.autogroups')
-require('conf.abbreviations')
-require('conf.keymaps')
+require 'conf.options'
+require 'conf.autogroups'
+require 'conf.abbreviations'
+require 'conf.keymaps'
 
 -- Plugin configuration
 
 -- Package Manager
-require('plug.packer')
+require 'plug.packer'
 -- Status line
-require('plug.lualine')
+require 'plug.lualine'
 -- File Browser
-require('plug.nvimtree')
+require 'plug.nvimtree'
 -- Icons
-require('plug.webicons')
+require 'plug.webicons'
 -- Signs for Git tracked files
-require('plug.gitsigns')
+require 'plug.gitsigns'
 -- Multi-purpose picker
-require('plug.telescope')
+require 'plug.telescope'
 -- Syntax parser
-require('plug.treesitter')
+require 'plug.treesitter'
 -- LSP client config
-require('plug.lsps')
+require 'lsp.lsps'
 -- Colorscheme changes, overrides etc
-require('plug.colors')
+require 'plug.colors'
 -- Comments for every language
-require('plug.comment')
+require 'plug.comment'
 -- Snippets engine
-require('plug.luasnip')
+require 'plug.luasnip'
 -- Debug support
-require('plug.dap')
+require 'plug.dap-virt-text'
 -- Toggle Floating terminal
-require('plug.toggleterm')
+require 'plug.toggleterm'
 -- Diagnostics browser
-require('plug.trouble')
+require 'plug.trouble'
 -- Complete all sorts of pairs
-require('plug.autopairs')
+require 'plug.autopairs'
 -- Dim code blocks not in use
-require('plug.twilight')
-require('plug.zen-mode')
+require 'plug.twilight'
+require 'plug.zen-mode'
 -- Override vim.ui.input and vim.ui.select
-require('plug.dressing')
+require 'plug.dressing'
+
+-- Smooth scrolling
+require 'plug.neoscroll'

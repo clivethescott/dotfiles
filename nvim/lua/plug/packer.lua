@@ -19,7 +19,9 @@ require('packer').startup(function(use)
       'kyazdani42/nvim-web-devicons',
     }
   }
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  use { 'nvim-telescope/telescope.nvim',
+    requires = { 'nvim-lua/plenary.nvim' }
+  }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use { 'stevearc/dressing.nvim' } -- alternative vim.ui.select and vim.ui.input
 
@@ -34,28 +36,36 @@ require('packer').startup(function(use)
   use 'numToStr/Comment.nvim'
 
   -- Status Line
-  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+  use { 'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 
   -- Add git related info in the signs columns and popups
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  use { 'lewis6991/gitsigns.nvim',
+    requires = { 'nvim-lua/plenary.nvim' }
+  }
 
   -- Syntax highlighting
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use 'nvim-treesitter/playground'
+  -- use 'nvim-treesitter/playground'
 
   -- LSP Completion
   use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-cmp'
-  -- cmp completion sources
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-nvim-lsp-document-symbol'
-  use 'hrsh7th/cmp-nvim-lsp-signature-help'
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'hrsh7th/cmp-calc'
+  use { 'hrsh7th/nvim-cmp',
+    requires = {
+
+      -- cmp completion sources
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp-document-symbol',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-calc'
+    }
+  }
 
   -- Additional e.g diagnostics, formatting LSP servers don't provide
   use 'jose-elias-alvarez/null-ls.nvim'
@@ -92,4 +102,7 @@ require('packer').startup(function(use)
 
   -- LSP Pictograms
   use 'onsails/lspkind.nvim'
+
+  -- Smooth scrolling
+  use 'karb94/neoscroll.nvim'
 end)

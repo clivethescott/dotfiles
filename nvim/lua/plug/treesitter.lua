@@ -1,6 +1,9 @@
--- Treesitter configuration
--- Parsers must be installed manually via :TSInstall
-require('nvim-treesitter.configs').setup {
+local ok, treesitter_config = pcall(require, 'nvim-treesitter.configs')
+if not ok then
+  return
+end
+
+treesitter_config.setup {
   highlight = {
     enable = true, -- false will disable the whole extension
     additional_vim_regex_highlighting = false, -- performance may suffer

@@ -1,5 +1,10 @@
+local ok, devicons = pcall(require, 'nvim-web-devicons')
+if not ok then
+  return
+end
+
 -- TODO: figure out why require'nvim-web-devicons'.setup{ overrides = ...} ain't working
-require 'nvim-web-devicons'.setup {}
+devicons.setup {}
 
 local scala_files = { 'sc', 'sbt', 'scala'}
 for _, ft in ipairs(scala_files) do
