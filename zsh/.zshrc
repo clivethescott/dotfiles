@@ -4,6 +4,7 @@
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="af-magic"
+ZSH_TMUX_AUTOSTART=true
 
 # Remove oldest history event that has a duplicate, if history needs trimming
 HIST_EXPIRE_DUPS_FIRST="true"
@@ -51,7 +52,11 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(z docker git vi-mode history-substring-search virtualenv zsh-autosuggestions)
+
+# Tmux is installed via Homebrew, locate it in PATH before loading the plugin
+source ~/.zsh/exports.zsh
+
+plugins=(z git vi-mode history-substring-search virtualenv zsh-autosuggestions tmux)
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -62,7 +67,6 @@ source $ZSH/oh-my-zsh.sh
 source ~/.zsh/setopt.zsh 
 source ~/.zsh/z.sh
 source ~/.zsh/aliases.zsh
-source ~/.zsh/exports.zsh
 source ~/.zsh/functions.zsh
 source ~/.zsh/keybindings.zsh
 
