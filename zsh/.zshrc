@@ -1,3 +1,4 @@
+# zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -60,6 +61,11 @@ plugins=(z git vi-mode history-substring-search virtualenv zsh-autosuggestions t
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+
+# Just offer a reminder every few days, if there are updates available
+zstyle ':omz:update' mode reminder
+# This will check for updates every X days
+zstyle ':omz:update' frequency 30
 
 source $ZSH/oh-my-zsh.sh
 
@@ -152,8 +158,6 @@ setopt noflowcontrol
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR=$HOME/.sdkman
 [[ -s "/Users/clive/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/clive/.sdkman/bin/sdkman-init.sh"
-
-alias luamake=/Users/clive/apps/lua-language-server/3rd/luamake/luamake
 
 # Increase the number of max open files/descriptions
 ulimit -n 2048
