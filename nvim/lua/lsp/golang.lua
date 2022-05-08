@@ -15,6 +15,8 @@ M.setup = function(on_attach, capabilities)
       on_attach(client, bufnr)
     end;
   }
+
+  lspconfig.golangci_lint_ls.setup{}
 end
 
 return M
