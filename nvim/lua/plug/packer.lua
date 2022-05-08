@@ -104,5 +104,5 @@ require('packer').startup(function(use)
   use 'onsails/lspkind.nvim'
 
   -- Smooth scrolling
-  use 'karb94/neoscroll.nvim'
+  -- use 'karb94/neoscroll.nvim'
 end)
