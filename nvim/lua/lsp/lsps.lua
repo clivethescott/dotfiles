@@ -67,15 +67,19 @@ local on_attach = function(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true -- broadcasting snippet capability for completion
 local has_cmp, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
 if has_cmp then
   -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
   capabilities = cmp_lsp.update_capabilities(capabilities)
 end
 
-local servers = { 'cmp', 'metals', 'dap', 'gopls', 'tsserver', 'html', 'pyright', 'luaserver' }
+local servers = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'pyright', 'luaserver', 'json' }
 table.insert(servers, 'null-ls') -- add null-ls at the end
 
 for _, server in ipairs(servers) do
-  require('lsp.' .. server).setup(on_attach, capabilities)
+  local ok, conf = pcall(require, 'lsp.' .. server)
+  if ok then
+    conf.setup(on_attach, capabilities)
+  end
 end
