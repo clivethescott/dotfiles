@@ -80,7 +80,7 @@ require('packer').startup(function(use)
   use 'honza/vim-snippets' -- Collection of Snipmate-like Snippets
 
   -- Metals LSP for Scala
-  use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
+  use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }, run = ":lua require('metals').update()" }
 
   -- Debugger
   use 'mfussenegger/nvim-dap'
