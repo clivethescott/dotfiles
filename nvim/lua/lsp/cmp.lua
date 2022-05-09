@@ -11,8 +11,8 @@ M.setup = function()
   local select_next_item = function(fallback)
     if cmp.visible() then
       cmp.select_next_item()
-    -- elseif has_luasnip and luasnip.expand_or_jumpable() then
-    --   luasnip.expand_or_jump()
+    elseif has_luasnip and luasnip.expand_or_jumpable() then
+      luasnip.expand_or_jump()
     else
       fallback()
     end
