@@ -11,8 +11,8 @@ M.setup = function()
   local select_next_item = function(fallback)
     if cmp.visible() then
       cmp.select_next_item()
-    elseif has_luasnip and luasnip.expand_or_jumpable() then
-      luasnip.expand_or_jump()
+    -- elseif has_luasnip and luasnip.expand_or_jumpable() then
+    --   luasnip.expand_or_jump()
     else
       fallback()
     end
@@ -73,11 +73,11 @@ M.setup = function()
     sources = cmp.config.sources({
       { name = 'path', max_item_count = 3 },
     }, {
-      { name = 'nvim_lua', max_item_count = 5, keyword_length = 3 },
-      { name = 'nvim_lsp', max_item_count = 15, keyword_length = 3 },
+      { name = 'nvim_lsp', max_item_count = 20, keyword_length = 1},
+      { name = 'nvim_lua', max_item_count = 5},
       { name = 'luasnip', max_item_count = 5, keyword_length = 2 },
-      { name = 'nvim_lsp_document_symbol', max_item_count = 10, keyword_length = 3 },
       { name = 'nvim_lsp_signature_help' },
+      { name = 'nvim_lsp_document_symbol', max_item_count = 10},
       { name = 'buffer', max_item_count = 5, keyword_length = 3 },
     }, {
       { name = 'calc' },
