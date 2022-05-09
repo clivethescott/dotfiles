@@ -40,9 +40,14 @@ npairs.setup({
 
 -- Add custom rules
 local Rule = require('nvim-autopairs.rule')
+local cond = require('nvim-autopairs.conds')
 
 npairs.add_rules({
   Rule('"""', '"""', { "scala", "java", "python" }), -- triple quoted strings
+  Rule(':', '=', { "go"})
+    :with_pair(cond.not_inside_quote())
+    :with_pair(cond.not_before_text('"'))
+    :set_end_pair_length(0), -- assignment with type inference
 })
 
 local has_cmp, cmp = pcall(require, 'cmp')
