@@ -35,8 +35,8 @@ npairs.setup({
 })
 
 -- Customise existing rules
-local parens = npairs.get_rule('[')
-parens.not_filetypes = { 'go'} -- no autopair for slices in Go
+-- local parens = npairs.get_rule('[')
+-- parens.not_filetypes = { 'go'} -- no autopair for slices in Go
 
 -- Add custom rules
 local Rule = require('nvim-autopairs.rule')
