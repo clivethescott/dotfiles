@@ -57,8 +57,8 @@ vim.opt.autowrite = true
 -- Don't wait too long to complete successive keys, Also controls which-key delay
 vim.opt.timeoutlen = 1000
 
--- Disabled for now, affects redraw speed
--- vim.opt.cursorline = true
+-- Affects redraw speed
+vim.opt.cursorline = true
 
 -- Always show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appear/become resolved.
