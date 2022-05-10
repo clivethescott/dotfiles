@@ -178,3 +178,6 @@ end)
 map('n', '<leader>s', function()
   require("luasnip.loaders.from_lua").edit_snippet_files()
 end)
+
+-- UndoTree
+vim.api.nvim_set_keymap('n', '<space>u', '<cmd>UndotreeToggle<cr>', opts)

@@ -105,4 +105,5 @@ require('packer').startup(function(use)
 
   -- Smooth scrolling
   -- use 'karb94/neoscroll.nvim'
+  use {'mbbill/undotree', opt = true, cmd = {'UndoTreeToggle'}}
 end)
