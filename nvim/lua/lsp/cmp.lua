@@ -71,7 +71,7 @@ M.setup = function()
       ['<S-Tab>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
     }),
     sources = cmp.config.sources({
-      { name = 'path', max_item_count = 3 },
+      { name = 'path', max_item_count = 30 },
     }, {
       { name = 'nvim_lsp', max_item_count = 20, keyword_length = 1},
       { name = 'nvim_lua', max_item_count = 5},
