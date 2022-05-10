@@ -49,6 +49,7 @@ require 'plug.twilight'
 require 'plug.zen-mode'
 -- Override vim.ui.input and vim.ui.select
 require 'plug.dressing'
-
 -- Smooth scrolling
 require 'plug.neoscroll'
+-- Visualize undo history
+require 'plug.undotree'

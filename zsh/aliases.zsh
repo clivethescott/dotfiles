@@ -1,3 +1,7 @@
+alias godocs='godoc -http=:3000'
+alias lg='lazygit'
+alias cs='coursier'
+alias myip='curl -s https://api.ipify.org | pbcopy'
 alias tk='tmux kill-server'
 alias fpb='flutter pub get'
 alias pacfind="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -Syu"
@@ -16,7 +20,7 @@ alias disablewebcam='sudo modprobe -r uvcvideo'
 alias mvnr='mvn spring-boot:run -Drun.jvmArguments="-Xms1G -Xmx1G"'
 alias bc='bc -l'
 alias adbu='adb uninstall zw.gov.mohcc.mrs.ehr_mobile'
-alias code=codium
+# alias code=codium
 alias fr='flutter run'
 alias frn='flutter run --no-sound-null-safety'
 alias godocs='godoc -http :8888'
@@ -49,7 +53,7 @@ alias youtubemusic='youtube-dl -f bestaudio --extract-audio'
 alias yank='xclip -sel clip'
 alias server='python3 -m http.server 8000'
 alias vi=vim
-alias ls='ls -hG --color=auto'
+alias ls='ls -hG'
 alias mr='mvn spring-boot:run -Drun.jvmArguments="-Xms1G -Xmx1G"'
 alias mc='mvn clean install && cd mrs-web && mr'
 alias prettyjson='python -m json.tool'
@@ -62,4 +66,5 @@ alias rm='rm -iv'
 alias gs='git status'
 alias venv='python3 -m venv'
 alias python='python3'
+alias pip='pip3'
 alias py=python3
