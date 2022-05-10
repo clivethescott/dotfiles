@@ -29,9 +29,6 @@ require('packer').startup(function(use)
   use 'navarasu/onedark.nvim'
   use 'folke/tokyonight.nvim'
 
-  -- LSP Progress
-  use 'arkav/lualine-lsp-progress'
-
   -- Comments
   use 'numToStr/Comment.nvim'
 
@@ -67,11 +64,26 @@ require('packer').startup(function(use)
     }
   }
 
+  -- LSP Progress
+  use 'arkav/lualine-lsp-progress'
+
+  -- LSP Icons in completion
+  use 'onsails/lspkind.nvim'
+
   -- Additional e.g diagnostics, formatting LSP servers don't provide
   use 'jose-elias-alvarez/null-ls.nvim'
 
-  -- Show me the trouble!
+  -- Show me the LSP trouble!
   use { 'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons' }
+
+  -- Metals LSP for Scala
+  use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }, run = ":lua require('metals').update()" }
+  -- Java LSP
+  use { 'mfussenegger/nvim-jdtls' }
+
+  -- Debugger
+  use 'mfussenegger/nvim-dap'
+  use { 'theHamsta/nvim-dap-virtual-text', requires = { 'mfussenegger/nvim-dap' } }
 
   -- snippets
   use 'saadparwaiz1/cmp_luasnip' -- cmp Luasnip completion source
@@ -79,32 +91,26 @@ require('packer').startup(function(use)
   use 'rafamadriz/friendly-snippets' -- Collection of Vscode-like Snippets
   use 'honza/vim-snippets' -- Collection of Snipmate-like Snippets
 
-  -- Metals LSP for Scala
-  use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }, run = ":lua require('metals').update()" }
-
-  -- Debugger
-  use 'mfussenegger/nvim-dap'
-  use { 'theHamsta/nvim-dap-virtual-text', requires = { 'mfussenegger/nvim-dap' } }
-
   -- Floating term
   use 'akinsho/toggleterm.nvim'
 
   use 'windwp/nvim-autopairs'
 
-  -- keep function name pinned when scrolling
-  -- use 'romgrk/nvim-treesitter-context'
-
-  -- Auto close and rename HTML tag
-  -- use 'windwp/nvim-ts-autotag'
-
   -- Distraction Free coding
   use { 'folke/zen-mode.nvim', requires = { 'folke/twilight.nvim' } }
 
-  -- LSP Pictograms
-  use 'onsails/lspkind.nvim'
+  -- Fancy notifications
+  use { 'rcarriga/nvim-notify', opt = true }
+
+  -- Visualize undo history
+  use { 'mbbill/undotree', opt = true }
 
   -- Smooth scrolling
-  -- use 'karb94/neoscroll.nvim'
-  use {'mbbill/undotree', opt = true, cmd = {'UndoTreeToggle'}}
-  use 'mfussenegger/nvim-jdtls'
+  use { 'karb94/neoscroll.nvim', opt = true }
+
+  -- keep function name pinned when scrolling
+  use { 'romgrk/nvim-treesitter-context', opt = true }
+
+  -- Auto close and rename HTML tag
+  use { 'windwp/nvim-ts-autotag', opt = true }
 end)

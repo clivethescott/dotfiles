@@ -16,7 +16,12 @@ map('n', '*', '*zz')
 map('n', '<leader>m', ':silent! nohls<cr>')
 
 -- Alternate buffer
-map('n', '<tab>', ':b#<cr>')
+map('n', 'gp', ':b#<cr>')
+
+-- Open URI under cursor
+map('n', 'gx', function()
+  require 'helper.utils'.open_uri()
+end)
 
 -- Split movements
 map('n', '<c-h>', '<c-w>h')
@@ -182,5 +187,7 @@ end)
 -- UndoTree
 vim.api.nvim_set_keymap('n', '<space>u', '<cmd>UndotreeToggle<cr>', opts)
 
-local jdtls = require 'jdtls'
-map('n', '<space>jr', jdtls.update_project_config)
+local has_jdtls, jdtls = pcall(require, 'jdtls')
+if has_jdtls then
+  map('n', '<space>jr', jdtls.update_project_config)
+end

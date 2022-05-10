@@ -53,3 +53,5 @@ require 'plug.dressing'
 require 'plug.neoscroll'
 -- Visualize undo history
 require 'plug.undotree'
+-- Fancy notifications
+require 'plug.notify'

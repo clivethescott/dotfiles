@@ -5,6 +5,7 @@ M.setup = function()
     return
   end
 
+  -- requires npm i -g vscode-langservers-extracted
   lspconfig.jsonls.setup {}
 end
 

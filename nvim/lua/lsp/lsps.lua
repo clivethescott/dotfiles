@@ -34,6 +34,9 @@ local on_attach = function(client, bufnr)
   map('n', 'gs', vim.lsp.buf.signature_help, opts)
   map('n', 'gl', vim.lsp.codelens.run, opts)
   map('n', '<leader>r', vim.lsp.buf.rename, opts)
+  map('n', '<leader>R', function()
+    require('helper.utils').rename()
+  end, opts)
 
   -- Formatting
   if caps.documentFormattingProvider then

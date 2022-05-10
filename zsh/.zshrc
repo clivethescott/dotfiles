@@ -155,9 +155,6 @@ setopt noflowcontrol
 # fpath+=${ZDOTDIR:-~}/.zsh_functions
 # neofetch
 #
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR=$HOME/.sdkman
-[[ -s "/Users/clive/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/clive/.sdkman/bin/sdkman-init.sh"
 
 # Increase the number of max open files/descriptions
 ulimit -n 2048
