@@ -19,7 +19,7 @@ api.nvim_create_autocmd({ 'BufReadPost' }, {
 api.nvim_create_autocmd({ 'BufWritePre' }, {
   desc = 'Files to format before save',
   group = events_group,
-  pattern = { '*.scala', '*.sc', '*.py', '*.go' },
+  pattern = { '*.scala', '*.sc', '*.py', '*.go', '*.java' },
   callback = function()
     local timeoutMs = 2000
     local opts = {}

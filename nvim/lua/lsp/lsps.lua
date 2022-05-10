@@ -74,7 +74,7 @@ if has_cmp then
   capabilities = cmp_lsp.update_capabilities(capabilities)
 end
 
-local servers = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'pyright', 'luaserver', 'json' }
+local servers = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'pyright', 'luaserver', 'json', 'java' }
 table.insert(servers, 'null-ls') -- add null-ls at the end
 
 for _, server in ipairs(servers) do

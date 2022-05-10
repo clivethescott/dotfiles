@@ -26,6 +26,7 @@ M.setup = function(on_attach)
 
       -- Hover
       null_ls.builtins.hover.dictionary,
+      -- null_ls.builtins.formatting.google_java_format, -- brew install google-java-format or equiv
     },
   })
 end

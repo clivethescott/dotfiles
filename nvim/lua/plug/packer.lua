@@ -49,7 +49,7 @@ require('packer').startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
-  -- use 'nvim-treesitter/playground'
+  use 'nvim-treesitter/playground'
 
   -- LSP Completion
   use 'neovim/nvim-lspconfig'
@@ -106,4 +106,5 @@ require('packer').startup(function(use)
   -- Smooth scrolling
   -- use 'karb94/neoscroll.nvim'
   use {'mbbill/undotree', opt = true, cmd = {'UndoTreeToggle'}}
+  use 'mfussenegger/nvim-jdtls'
 end)
