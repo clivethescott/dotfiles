@@ -5,6 +5,7 @@ M.setup = function(on_attach, capabilities)
     return
   end
 
+  -- Requires go install golang.org/x/tools/gopls@latest
   lspconfig.gopls.setup {
     capabilities = capabilities,
     filetypes = { 'go' },
@@ -25,10 +26,11 @@ M.setup = function(on_attach, capabilities)
       },
     },
     init_options = {
-      usePlaceholders = false,
+      usePlaceholders = true,
     },
   }
 
+  -- brew install golangci-lint or equiv
   lspconfig.golangci_lint_ls.setup {
     capabilities = capabilities,
     filetypes = { 'go' },
