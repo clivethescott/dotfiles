@@ -35,6 +35,14 @@ api.nvim_create_autocmd({ 'FileType' }, {
   callback = function()
     vim.opt_local.formatoptions:remove { 'c', 'r', 'o' } -- :h fo-table
   end,
+api.nvim_create_autocmd({ 'FileType' }, {
+    desc = 'Dont auto-continue comments',
+    group = events_group,
+    pattern = { 'java' },
+    callback = function()
+        vim.opt_local.shiftwidth = 4
+        vim.opt_local.tabstop = 4
+    end,
 })
 
 api.nvim_create_autocmd({ 'BufWritePost' }, {
