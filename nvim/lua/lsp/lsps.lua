@@ -43,8 +43,10 @@ local on_attach = function(client, bufnr)
     map('n', '<leader>f', function()
       vim.lsp.buf.format { async = true }
     end, opts)
-  elseif caps.documentRangeFormattingProvider then
-    map('n', '<leader>f', vim.lsp.buf.range_formatting, opts)
+  end
+
+  if caps.documentRangeFormattingProvider then
+    map('v', '<leader>f', vim.lsp.buf.range_formatting, opts)
   end
 
   -- Diagnostics
