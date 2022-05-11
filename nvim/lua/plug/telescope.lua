@@ -1,6 +1,7 @@
 local actions = require("telescope.actions")
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
+local utils = require 'telescope.utils'
 
 -- Use terminal image viewer to preview images
 local mime_hook = function(filepath, bufnr, opts)
@@ -52,6 +53,15 @@ local trouble = require("trouble.providers.telescope")
 
 require('telescope').setup {
   defaults = {
+    layout_config = {
+      horizontal = {
+        width = 0.9
+      }
+    },
+    path_display = {
+      -- shorten = { len = 1, exclude = { -2, -1 } }
+      tail = {},
+    },
     prompt_prefix = "     ",
     file_ignore_patterns = { "target", "node_modules", ".metals/", ".git/", ".idea", ".jar", "venv", ".bloop", ".bsp",
       "undodir", ".DS_Store" },
