@@ -77,7 +77,8 @@ M.setup = function()
         saveActions = { organizeImports = true },
         completion = {
           favoriteStaticMembers = {
-            "org.junit.Assert.*",
+            "org.mockito.BDDMockito.*",
+            "org.assertj.core.api.Assertions.*"
           },
           guessMethodArguments = true,
           overwrite = true,
