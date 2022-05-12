@@ -48,8 +48,11 @@ require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/playground'
 
-  -- LSP Completion
-  use 'neovim/nvim-lspconfig'
+  -- LSP
+  use {
+    'williamboman/nvim-lsp-installer',
+    'neovim/nvim-lspconfig',
+  }
   use { 'hrsh7th/nvim-cmp',
     requires = {
 

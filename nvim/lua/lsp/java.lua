@@ -5,11 +5,13 @@ M.setup = function()
     return
   end
 
+  local jdtls_install_dir = vim.fn.stdpath('data') .. '/lsp_servers/jdtls/'
   -- eclipse.jdt.ls stores project specific data within the folder set via the -data flag.
   -- If you're using eclipse.jdt.ls with multiple different projects you must use a dedicated data directory per project.
   -- If you started neovim within `~/dev/xy/project-1` this would resolve to `project-1`
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-  local workspace_dir = '/Users/clive/.cache/jdtls/' .. project_name
+  local workspace_dir = jdtls_install_dir .. project_name
+  local lombok_path = vim.fn.stdpath('config') .. '/lombok-1.18.24.jar'
 
   -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
   local config = {
@@ -21,7 +23,7 @@ M.setup = function()
       'java', -- or '/path/to/java11_or_newer/bin/java'
       -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
-      '-javaagent:/Users/clive/apps/lombok-1.18.24.jar',
+      '-javaagent:' .. lombok_path,
       '-Declipse.application=org.eclipse.jdt.ls.core.id1',
       '-Dosgi.bundles.defaultStartLevel=4',
       '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -33,14 +35,14 @@ M.setup = function()
       '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
       -- 💀
-      '-jar', '/Users/clive/apps/jdtls-1.12/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
+      '-jar',  jdtls_install_dir .. 'plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
       -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
       -- Must point to the                                                     Change this to
       -- eclipse.jdt.ls installation                                           the actual version
 
 
       -- 💀
-      '-configuration', '/Users/clive/apps/jdtls-1.12/config_mac',
+      '-configuration', jdtls_install_dir .. 'config_mac',
       -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
       -- Must point to the                      Change to one of `linux`, `win` or `mac`
       -- eclipse.jdt.ls installation            Depending on your system.

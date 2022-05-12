@@ -79,11 +79,27 @@ if has_cmp then
   capabilities = cmp_lsp.update_capabilities(capabilities)
 end
 
-local servers = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'pyright', 'luaserver', 'json', 'java' }
-table.insert(servers, 'null-ls') -- add null-ls at the end
+-- LSP installer (must be called before lspconfig below)
+local has_lspinstall, lspinstall = pcall(require, 'nvim-lsp-installer')
+if has_lspinstall then
+  lspinstall.setup({
+    ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver', 'pyright', 'jdtls' },
+    ui = {
+      icons = {
+        server_installed = "✓",
+        server_pending = "➜",
+        server_uninstalled = "✗"
+      }
+    },
+    log_level = vim.log.levels.WARN,
+  })
+end
 
-for _, server in ipairs(servers) do
-  local ok, conf = pcall(require, 'lsp.' .. server)
+local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'pyright', 'luaserver', 'json', 'java' }
+table.insert(configs, 'null-ls') -- add null-ls at the end
+
+for _, config in ipairs(configs) do
+  local ok, conf = pcall(require, 'lsp.' .. config)
   if ok then
     conf.setup(on_attach, capabilities)
   end
