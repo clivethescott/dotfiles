@@ -19,7 +19,7 @@ api.nvim_create_autocmd({ 'BufReadPost' }, {
 api.nvim_create_autocmd({ 'BufWritePre' }, {
   desc = 'Files to format before save',
   group = events_group,
-  pattern = { '*.scala', '*.sc', '*.py', '*.go', '*.java' },
+  pattern = { '*.scala', '*.sc', '*.py', '*.go', '*.java', '*.rs' },
   callback = function()
     local timeoutMs = 2000
     local opts = {}
@@ -55,5 +55,4 @@ api.nvim_create_autocmd({ 'BufWritePost' }, {
     vim.cmd 'source ~/.config/nvim/lua/plug/luasnip.lua'
   end,
 })
-
 -- vim.cmd[[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]

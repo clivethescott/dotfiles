@@ -30,7 +30,6 @@ local on_attach = function(client, bufnr)
   map('n', 'ga', vim.lsp.buf.code_action, opts)
   map('n', 'gD', vim.lsp.buf.declaration, opts)
   map('n', 'K', vim.lsp.buf.hover, opts)
-  map('n', '<C-k>', vim.lsp.buf.signature_help, opts)
   map('n', 'gs', vim.lsp.buf.signature_help, opts)
   map('n', 'gl', vim.lsp.codelens.run, opts)
   map('n', '<leader>r', vim.lsp.buf.rename, opts)
@@ -83,7 +82,8 @@ end
 local has_lspinstall, lspinstall = pcall(require, 'nvim-lsp-installer')
 if has_lspinstall then
   lspinstall.setup({
-    ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver', 'pyright', 'jdtls' },
+    ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver', 'pyright', 'jdtls',
+      'rust_analyzer' },
     ui = {
       icons = {
         server_installed = "✓",
@@ -95,7 +95,7 @@ if has_lspinstall then
   })
 end
 
-local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'pyright', 'luaserver', 'json', 'java' }
+local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'pyright', 'luaserver', 'json', 'java', 'rust' }
 table.insert(configs, 'null-ls') -- add null-ls at the end
 
 for _, config in ipairs(configs) do
