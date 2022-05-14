@@ -1,4 +1,4 @@
-export BROWSER=/usr/bin/firefox
+export BROWSER=open
 export MYVIMRC=$HOME/.vim/vimrc
 export APP_HOME=$HOME/apps
 export VISUALVM_HOME=$APP_HOME/visualvm
