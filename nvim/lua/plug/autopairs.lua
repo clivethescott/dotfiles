@@ -44,7 +44,7 @@ local cond = require('nvim-autopairs.conds')
 
 npairs.add_rules({
   Rule('"""', '"""', { "scala", "java", "python" }), -- triple quoted strings
-  Rule(':', '=', { "go"})
+  Rule(':', '=', { "golang"})
     :with_pair(cond.not_inside_quote())
     :with_pair(cond.not_before_text('"'))
     :set_end_pair_length(0), -- assignment with type inference
