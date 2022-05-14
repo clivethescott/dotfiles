@@ -1,4 +1,5 @@
-alias godocs='godoc -http=:3000'
+alias rustdocs="cargo doc --open"
+alias godocs="echo 'Go Docs starting on http://localhost:3000' && godoc -http=:3000"
 alias lg='lazygit'
 alias cs='coursier'
 alias myip='curl -s https://api.ipify.org | pbcopy'
@@ -23,7 +24,6 @@ alias adbu='adb uninstall zw.gov.mohcc.mrs.ehr_mobile'
 # alias code=codium
 alias fr='flutter run'
 alias frn='flutter run --no-sound-null-safety'
-alias godocs='godoc -http :8888'
 alias ehrdump="docker exec mysql sh -c 'exec mysqldump --all-databases -uroot'"
 alias c='clear'
 alias gencoverage='coverage run --source='.' manage.py test && coverage html'
