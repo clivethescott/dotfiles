@@ -19,7 +19,8 @@ treesitter_config.setup {
     },
   },
   indent = {
-    enable = true,
+    enable = false,
+    disable = {'java'}
   },
   textobjects = {
     select = {
