@@ -160,7 +160,7 @@ end)
 local luasnip = require('luasnip')
 map({ 'i', 's' }, '<C-j>', function()
   if luasnip.expand_or_jumpable() then
-    luasnip.expand_or_jump()
+    luasnip.jump(1)
   end
 end)
 map({ 'i', 's' }, '<C-k>', function()

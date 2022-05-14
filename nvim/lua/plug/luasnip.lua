@@ -8,7 +8,7 @@ local types = require("luasnip.util.types")
 ls.config.setup {
   history = false,
   -- update_events = 'TextChanged,TextChangedI', -- updates as you type, default is InsertLeave
-  enable_autosnippets = false, -- enabling this has a performance penalty
+  enable_autosnippets = true, -- enabling this has a performance penalty
   ft_func = require("luasnip.extras.filetype_functions").from_cursor, -- use treesitter to get ft
   -- delete_check_events = 'TextChanged', -- enable to delete virt text when snippet is deleted
   ext_opts = {
