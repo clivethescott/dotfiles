@@ -24,7 +24,7 @@ treesitter_config.setup {
   },
   autotag = {
     enable = true,
-    filetypes = {'html', 'javascript', 'go', 'xml', 'markdown'},
+    filetypes = {'html', 'javascript', 'xml', 'markdown'},
     skip_tags = {'br', 'img'},
   },
   textobjects = {
