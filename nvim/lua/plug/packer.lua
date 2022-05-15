@@ -102,6 +102,9 @@ require('packer').startup(function(use)
   -- Distraction Free coding
   use { 'folke/zen-mode.nvim', requires = { 'folke/twilight.nvim' } }
 
+  -- Auto close and rename HTML tag
+  use { 'windwp/nvim-ts-autotag'}
+
   -- Fancy notifications
   use { 'rcarriga/nvim-notify', opt = true }
 
@@ -114,6 +117,4 @@ require('packer').startup(function(use)
   -- keep function name pinned when scrolling
   use { 'romgrk/nvim-treesitter-context', opt = true }
 
-  -- Auto close and rename HTML tag
-  use { 'windwp/nvim-ts-autotag', opt = true }
 end)
