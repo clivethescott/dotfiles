@@ -25,7 +25,7 @@ end
 function M.open_uri()
   local word_under_cursor = vim.fn.expand("<cWORD>")
   -- any uri with a protocol segment
-  local regex_protocol_uri = "%a*:%/%/[%a%d%#%[%]%-%%+:;!$@/?&=_.,~*()]*"
+  local regex_protocol_uri = "%a*:%/%/[%a%d%#%[%]%-%%+:;!$@/?&=_.,~*]*"
   local is_open = system_open_uri(string.match(word_under_cursor, regex_protocol_uri))
   if is_open then
     return
