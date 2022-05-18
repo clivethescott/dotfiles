@@ -8,7 +8,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- System clipboard copy/paste
 map('v', '<space>y', '"*yi')
-map({'n', 'v'}, '<space>p', '"*p')
+map({'n', 'v'}, '<space>p', '"*P')
 
 -- Center search result
 map('n', 'n', 'nzzzv')
