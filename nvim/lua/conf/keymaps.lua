@@ -6,6 +6,10 @@ end
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
 
+-- System clipboard copy/paste
+map('v', '<space>y', '"*yi')
+map({'n', 'v'}, '<space>p', '"*p')
+
 -- Center search result
 map('n', 'n', 'nzzzv')
 map('n', 'N', 'Nzzzv')
