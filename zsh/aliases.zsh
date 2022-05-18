@@ -1,4 +1,8 @@
-# alias ps='procs --tree'
+# alias ls='ls -hG'
+alias ls='COLUMNS=120 exa'
+alias grep='rg'
+alias find='fd'
+alias ps='procs'
 alias rustdocs="cargo doc --open"
 alias godocs="echo 'Go Docs starting on http://localhost:3000' && godoc -http=:3000"
 alias lg='lazygit'
@@ -54,12 +58,10 @@ alias youtubemusic='youtube-dl -f bestaudio --extract-audio'
 alias yank='xclip -sel clip'
 alias server='python3 -m http.server 8000'
 alias vi=vim
-# alias ls='ls -hG'
-alias ls='exa'
 alias mr='mvn spring-boot:run -Drun.jvmArguments="-Xms1G -Xmx1G"'
 alias mc='mvn clean install && cd mrs-web && mr'
 alias prettyjson='python -m json.tool'
-alias grep='grep --color=auto'
+# alias grep='grep --color=auto'
 alias bounceterminal='echo -e "\a"'
 alias mime='file --mime-type -b'
 alias gitpullcheck='git remote update && git status -uno'
