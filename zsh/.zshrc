@@ -55,7 +55,7 @@ DISABLE_AUTO_TITLE="true"
 # Add wisely, as too many plugins slow down shell startup.
 
 # Tmux is installed via Homebrew, locate it in PATH before loading the plugin
-source ~/.zsh/exports.zsh
+source ~/.config/zsh/exports.zsh
 
 plugins=(z git vi-mode history-substring-search virtualenv zsh-autosuggestions tmux)
 
@@ -70,11 +70,11 @@ zstyle ':omz:update' frequency 30
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-source ~/.zsh/setopt.zsh 
-source ~/.zsh/z.sh
-source ~/.zsh/aliases.zsh
-source ~/.zsh/functions.zsh
-source ~/.zsh/keybindings.zsh
+source ~/.config/zsh/setopt.zsh 
+source ~/.config/zsh/z.sh
+source ~/.config/zsh/aliases.zsh
+source ~/.config/zsh/functions.zsh
+source ~/.config/zsh/keybindings.zsh
 
 
 
@@ -120,7 +120,7 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 ### Fix slowness of pastes
 
-source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # > FZF 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

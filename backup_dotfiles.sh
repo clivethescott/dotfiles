@@ -10,7 +10,7 @@ cp $HOME/.gitconfig $HOME/.gitignore $DOTFILES_HOME/git
 cp $HOME/.ideavimrc $DOTFILES_HOME/ideavim/.ideavimrc
 cp $HOME/.ripgreprc $DOTFILES_HOME/ripgrep/.ripgreprc
 cp $HOME/.tmux.conf $DOTFILES_HOME/tmux/.tmux.conf
-cp $HOME/.zsh/*.zsh $DOTFILES_HOME/zsh
+cp $HOME/.config/zsh/*.zsh $DOTFILES_HOME/zsh
 cp $HOME/.zshrc $DOTFILES_HOME/zsh
 cp $HOME/.zprofile $DOTFILES_HOME/zsh
 # Input configuration, touchpad etc
