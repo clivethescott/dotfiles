@@ -37,6 +37,47 @@ function M.open_uri()
   end
 end
 
+function M.alt_scala_file()
+  local cur_file = vim.fn.expand('%')
+  local ext = vim.fn.fnamemodify(cur_file, ':e')
+
+  -- alt scala ft files
+  if ext == 'sbt' or ext == 'sc' then
+    return
+  end
+
+  local code_file
+
+  if vim.endswith(cur_file, 'Spec.scala') then
+    code_file = string.gsub(cur_file, 'src/test', 'src/main')
+    code_file = string.gsub(code_file, 'Spec.scala', '.scala')
+  else
+    code_file = string.gsub(cur_file, 'src/main', 'src/test')
+    code_file = vim.fn.fnamemodify(code_file, ':r') .. 'Spec.scala'
+  end
+
+  local dir = vim.fn.fnamemodify(code_file, ':p:h')
+
+  if vim.fn.isdirectory(dir) == 0 then
+    require 'os'.execute('mkdir -p ' .. dir)
+  end
+
+  vim.fn.execute('edit ' .. code_file)
+end
+
+function M.alt_go_file()
+  local cur_file = vim.fn.expand('%')
+  local edit_file
+  if vim.endswith(cur_file, '_test.go') then
+    edit_file = 'edit ' .. string.gsub(cur_file, '_test.go', '.go')
+  else
+    edit_file = 'edit ' .. vim.fn.fnamemodify(cur_file, ':r') .. '_test.go'
+  end
+
+  vim.fn.execute(edit_file)
+
+end
+
 local function count_lsp_res_changes(lsp_results)
   local count = { instances = 0, files = 0 }
   if (lsp_results.documentChanges) then

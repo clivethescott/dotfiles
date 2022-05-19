@@ -2,13 +2,15 @@ local map = function(mode, lhs, rhs)
   vim.keymap.set(mode, lhs, rhs, { silent = true })
 end
 
+local opts = { silent = true, noremap = true }
+
 -- Dealing with word wrap on long lines
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
 
 -- System clipboard copy/paste
 map('v', '<space>y', '"*yi')
-map({'n', 'v'}, '<space>p', '"*P')
+map({ 'n', 'v' }, '<space>p', '"*P')
 
 -- Center search result
 map('n', 'n', 'nzzzv')
@@ -60,9 +62,23 @@ map('v', '<down>', '<nop>')
 map('n', '<up>', '<nop>')
 map('v', '<up>', '<nop>')
 
--- Keep indent/outdent after first indent/outdent in visual mode
+-- Keep selection after visual indent/outdent
 map('v', '<', '<gv')
 map('v', '>', '>gv')
+
+-- Use <c-p> and <c-n> to match command history by substring
+-- Just like how <up> and <down> work
+vim.keymap.set('c', '<c-n>', function()
+  return vim.fn.wildmenumode() == 1 and '<c-n>' or '<down>'
+end, { expr = true })
+vim.keymap.set('c', '<c-p>', function()
+  return vim.fn.wildmenumode() == 1 and '<c-p>' or '<up>'
+end, { expr = true })
+
+-- Quickly add empty lines
+-- https://github.com/mhinz/vim-galore#quickly-add-empty-lines=
+vim.api.nvim_set_keymap('n', '<space>[', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", opts)
+vim.api.nvim_set_keymap('n', '<space>]', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>', opts)
 
 -- Telescope mappings
 local telescope = require('telescope.builtin')
@@ -96,6 +112,8 @@ map('n', '<leader>gb', telescope.git_bcommits)
 map('n', '<leader>gg', telescope.git_branches)
 map('n', '<leader>gs', telescope.git_status)
 map('n', '<leader>go', telescope.oldfiles)
+
+vim.api.nvim_set_keymap('n', '<leader>gt', '<cmd>AlternateFile<cr>', opts)
 -- map('n', '<space>ts', telescope.treesitter)
 -- map('n', '<leader>sh', telescope.help_tags)
 -- map('n', '<leader>st', telescope.tags)
@@ -140,7 +158,6 @@ map('n', '<space>dt', function()
 end)
 
 -- Trouble Mappings
-local opts = { silent = true, noremap = true }
 vim.api.nvim_set_keymap('n', '<space>ee', '<cmd>TroubleToggle<cr>', opts)
 vim.api.nvim_set_keymap('n', '<space>ew', '<cmd>TroubleToggle workspace_diagnostics<cr>', opts)
 vim.api.nvim_set_keymap('n', '<space>ed', '<cmd>TroubleToggle document_diagnostics<cr>', opts)
