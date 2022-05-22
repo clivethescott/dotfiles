@@ -12,3 +12,5 @@ if vim.g.colors_name == 'tokyonight' then
   -- More contrast for Line numbers when using tokyonight
   vim.cmd [[highlight LineNr cterm=underline ctermfg=11 guifg=#737aa2 ]]
 end
+vim.api.nvim_set_hl(0, 'WinBarPath', { fg = '#545c7e' })
+vim.api.nvim_set_hl(0, 'WinBarModified', { fg = '#e0af68' })

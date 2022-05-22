@@ -65,6 +65,20 @@ function M.alt_scala_file()
   vim.fn.execute('edit ' .. code_file)
 end
 
+function M.nvim_winbar()
+    local file_path = vim.api.nvim_eval_statusline('%f', {}).str
+    local modified = vim.api.nvim_eval_statusline('%M', {}).str == '+' and '⊚' or ''
+
+    file_path = file_path:gsub('/', ' ➤ ')
+
+    return '%#WinBarPath#'
+     .. file_path
+     .. '%*'
+     .. '%#WinBarModified#'
+     .. modified
+     .. '%*'
+end
+
 function M.alt_go_file()
   local cur_file = vim.fn.expand('%')
   local edit_file

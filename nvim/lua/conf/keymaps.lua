@@ -66,6 +66,14 @@ map('v', '<up>', '<nop>')
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
+vim.keymap.set('n', '<space>f', function()
+  if vim.o.winbar == "" then
+    vim.o.winbar = "%{%v:lua.require'helper.utils'.nvim_winbar()%}"
+  else
+    vim.o.winbar = ""
+  end
+end)
+
 -- Use <c-p> and <c-n> to match command history by substring
 -- Just like how <up> and <down> work
 vim.keymap.set('c', '<c-n>', function()
@@ -115,7 +123,6 @@ map('n', '<leader>go', telescope.oldfiles)
 
 vim.api.nvim_set_keymap('n', '<leader>gt', '<cmd>AlternateFile<cr>', opts)
 -- map('n', '<space>ts', telescope.treesitter)
--- map('n', '<leader>sh', telescope.help_tags)
 -- map('n', '<leader>st', telescope.tags)
 -- map('n', '<space>fs', telescope.grep_string)
 -- map('n', '<leader>so', function()
