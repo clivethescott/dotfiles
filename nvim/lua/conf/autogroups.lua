@@ -12,6 +12,7 @@ api.nvim_create_autocmd({ 'BufReadPost' }, {
 
     if row >= 1 and row <= buf_line_count then
       api.nvim_win_set_cursor(0, { row, column })
+      vim.cmd(':normal zz')
     end
   end,
 })
@@ -38,7 +39,7 @@ api.nvim_create_autocmd({ 'FileType' }, {
 })
 
 api.nvim_create_autocmd({ 'FileType' }, {
-    desc = 'Dont auto-continue comments',
+    desc = 'Reset proper indent for Java files',
     group = events_group,
     pattern = { 'java' },
     callback = function()
