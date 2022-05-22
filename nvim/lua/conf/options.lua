@@ -5,6 +5,8 @@ vim.opt.dictionary:append('/usr/share/dict/words')
 -- Enables Nicer colors in the terminal
 vim.opt.termguicolors = true
 
+vim.opt.lazyredraw = true
+
 -- Configure and enable onedark theme
 --[[ local onedarkTheme = require('onedark')
 onedarkTheme.setup {
@@ -96,3 +98,4 @@ vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldminlines = 20
 ]]
+
