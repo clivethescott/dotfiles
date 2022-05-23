@@ -12,7 +12,7 @@ api.nvim_create_autocmd({ 'BufReadPost' }, {
 
     if row >= 1 and row <= buf_line_count then
       api.nvim_win_set_cursor(0, { row, column })
-      vim.cmd(':normal zz')
+      vim.api.nvim_exec('normal zz', false)
     end
   end,
 })
