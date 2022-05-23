@@ -67,14 +67,14 @@ end
 
 function M.nvim_winbar()
     local file_path = vim.api.nvim_eval_statusline('%f', {}).str
-    local modified = vim.api.nvim_eval_statusline('%M', {}).str == '+' and '⊚' or ''
+    local modified = vim.api.nvim_eval_statusline('%m', {}).str
 
-    file_path = file_path:gsub('/', ' ➤ ')
+    file_path =  '   ' .. file_path:gsub('/', ' ➤ ')
 
     return '%#WinBarPath#'
      .. file_path
      .. '%*'
-     .. '%#WinBarModified#'
+     .. '%#WinBarModified# '
      .. modified
      .. '%*'
 end
