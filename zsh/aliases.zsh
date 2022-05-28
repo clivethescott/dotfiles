@@ -7,7 +7,6 @@ alias ps='procs'
 alias rustdocs="cargo doc --open"
 alias godocs="echo 'Go Docs starting on http://localhost:3000' && godoc -http=:3000"
 alias lg='lazygit'
-alias cs='coursier'
 alias myip='curl -s https://api.ipify.org | pbcopy'
 alias tk='tmux kill-server'
 alias fpb='flutter pub get'

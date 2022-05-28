@@ -55,13 +55,13 @@ DISABLE_AUTO_TITLE="true"
 # Add wisely, as too many plugins slow down shell startup.
 
 # Tmux is installed via Homebrew, locate it in PATH before loading the plugin
-source ~/.config/zsh/exports.zsh
+source $ZDOTDIR/exports.zsh
 
 # Alt vi-mode plugin https://github.com/jeffreytse/zsh-vi-mode
 plugins=(z git vi-mode history-substring-search virtualenv zsh-autosuggestions tmux)
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=$ZDOTDIR/.oh-my-zsh
 
 # Just offer a reminder every few days, if there are updates available
 zstyle ':omz:update' mode reminder
@@ -71,11 +71,11 @@ zstyle ':omz:update' frequency 30
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-source ~/.config/zsh/setopt.zsh 
-source ~/.config/zsh/z.sh
-source ~/.config/zsh/aliases.zsh
-source ~/.config/zsh/functions.zsh
-source ~/.config/zsh/keybindings.zsh
+source $ZDOTDIR/setopt.zsh 
+source $ZDOTDIR/z.sh
+source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/functions.zsh
+source $ZDOTDIR/keybindings.zsh
 
 # Switches cursor depending on vi mode
 cursor_mode
@@ -125,7 +125,7 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 ### Fix slowness of pastes
 
-source $HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # > FZF 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
