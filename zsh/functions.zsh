@@ -4,7 +4,48 @@ function tomcat() {
     echo `ps -ef | grep org.apache.catalina.startup.Bootstrap | grep -v grep | awk '{ print $2 }' | tail -1`
     # echo "kill -9 $running_tomcats"
 }
+function cursor_mode() {
+    # Source: https://thevaluable.dev/zsh-install-configure-mouseless/ 
+    # See https://ttssh2.osdn.jp/manual/4/en/usage/tips/vim.html for cursor shapes
+    cursor_block='\e[2 q'
+    cursor_beam='\e[6 q'
 
+    function zle-keymap-select {
+        if [[ ${KEYMAP} == vicmd ]] ||
+            [[ $1 = 'block' ]]; then
+            echo -ne $cursor_block
+        elif [[ ${KEYMAP} == main ]] ||
+            [[ ${KEYMAP} == viins ]] ||
+            [[ ${KEYMAP} = '' ]] ||
+            [[ $1 = 'beam' ]]; then
+            echo -ne $cursor_beam
+        fi
+    }
+
+    zle-line-init() {
+        echo -ne $cursor_beam
+    }
+
+    zle -N zle-keymap-select
+    zle -N zle-line-init
+}
+
+function vimtextobjects() {
+  # Add vim text objects for things like da", ci( etc
+  # Source https://thevaluable.dev/zsh-install-configure-mouseless/ 
+  autoload -Uz select-bracketed select-quoted
+  zle -N select-quoted
+  zle -N select-bracketed
+  for km in viopp visual; do
+    bindkey -M $km -- '-' vi-up-line-or-history
+    for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
+      bindkey -M $km $c select-quoted
+    done
+    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+      bindkey -M $km $c select-bracketed
+    done
+  done
+}
 # Creates an archive (*.tar.gz) from given directory.
 function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 
@@ -67,6 +108,27 @@ function parse_git_branch() {
 
 function fman() {
   sh ~/ShellScripts/fman.sh
+}
+
+function zz() {
+  z "$@"
+  if [[ -z "$VIRTUAL_ENV" ]] ; then
+    ## If env folder is found then activate the vitualenv
+      if [[ -d ./venv ]] ; then
+        source ./venv/bin/activate
+      fi
+  else
+    ## check the current folder belong to earlier VIRTUAL_ENV folder
+    # if yes then do nothing
+    # else deactivate
+      local parentdir="$(dirname "$VIRTUAL_ENV")"
+      if [[ "$PWD"/ != "$parentdir"/* ]] ; then
+        deactivate
+        if [[ -d ./venv ]] ; then
+          source ./venv/bin/activate
+        fi
+      fi
+  fi
 }
 
 function cd() {

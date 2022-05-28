@@ -57,6 +57,7 @@ DISABLE_AUTO_TITLE="true"
 # Tmux is installed via Homebrew, locate it in PATH before loading the plugin
 source ~/.config/zsh/exports.zsh
 
+# Alt vi-mode plugin https://github.com/jeffreytse/zsh-vi-mode
 plugins=(z git vi-mode history-substring-search virtualenv zsh-autosuggestions tmux)
 
 # Path to your oh-my-zsh installation.
@@ -76,6 +77,10 @@ source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/functions.zsh
 source ~/.config/zsh/keybindings.zsh
 
+# Switches cursor depending on vi mode
+cursor_mode
+# Additional vi-mode text objects
+vimtextobjects
 
 
 # export MANPATH="/usr/local/man:$MANPATH"
