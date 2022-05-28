@@ -1,6 +1,5 @@
 local M = {}
 M.setup = function(on_attach, capabilities)
-  local has_telescope, telescope = pcall(require, 'telescope')
   local has_metals, metals = pcall(require, 'metals')
   if not has_metals then
     return
@@ -27,17 +26,6 @@ M.setup = function(on_attach, capabilities)
     on_attach(client, bufnr)
     metals.setup_dap()
     -- other settings for metals here
-
-    local opts = { silent = true, noremap = true }
-    -- Metals mappings
-    if has_telescope then
-      map('n', '<leader>c', telescope.extensions.metals.commands, opts)
-      --[[ Depending on what you're using to display these results, some send in an empty query string to start off the process.
-  Since this can potentially be a huge amount of symbols, metals won't respond to an empty query search.
-  So for example with telescope, I need to use builtin.lsp_dynamic_workspace_symbols not the normal builtin.lsp_workspace_symbols ]]
-      map('n', '<space>wS', telescope.lsp_dynamic_workspace_symbols, opts)
-
-    end
   end
 
   local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })

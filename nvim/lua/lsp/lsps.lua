@@ -17,6 +17,7 @@ local on_attach = function(client, bufnr)
     map('n', '<space>ws', telescope_builtin.lsp_dynamic_workspace_symbols, opts)
     map('n', '<space>wS', telescope_builtin.lsp_document_symbols, opts)
     map('n', '<leader>d', telescope_builtin.diagnostics, opts)
+    map('n', '<leader>c', require 'telescope'.extensions.metals.commands, opts)
   else
     map('n', 'gd', vim.lsp.buf.definition, opts)
     map('n', 'gi', vim.lsp.buf.implementation, opts)
