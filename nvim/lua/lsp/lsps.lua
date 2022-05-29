@@ -1,6 +1,7 @@
 -- LSP settings
 local map = vim.keymap.set
 local has_telescope, telescope_builtin = pcall(require, 'telescope.builtin')
+local utils = require'helper.utils'
 
 local on_attach = function(client, bufnr)
   -- vim.notify('LSP connected client ' .. client.name, 'info')
@@ -34,19 +35,16 @@ local on_attach = function(client, bufnr)
   map('n', 'gs', vim.lsp.buf.signature_help, opts)
   map('n', 'gl', vim.lsp.codelens.run, opts)
   map('n', '<leader>r', vim.lsp.buf.rename, opts)
-  map('n', '<leader>R', function()
-    require('helper.utils').rename()
-  end, opts)
+  map('n', '<leader>R', utils.rename, opts)
 
   -- Formatting
+
   if caps.documentFormattingProvider then
-    map('n', '<leader>f', function()
-      vim.lsp.buf.format { async = true }
-    end, opts)
+    map('n', '<leader>f', utils.lsp_buf_format, opts)
   end
 
   if caps.documentRangeFormattingProvider then
-    map('v', '<leader>f', vim.lsp.buf.range_formatting, opts)
+    map('v', '<leader>f', utils.lsp_range_format, opts)
   end
 
   -- Diagnostics

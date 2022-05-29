@@ -10,9 +10,6 @@ M.setup = function(on_attach, capabilities)
     capabilities = capabilities,
     filetypes = { 'go' },
     on_attach = function(client, bufnr)
-      -- These will be handled by null-ls goimports
-      client.server_capabilities.documentFormattingProvider = false
-      client.server_capabilities.documentRangeFormattingProvider = false
       on_attach(client, bufnr)
     end,
     settings = {

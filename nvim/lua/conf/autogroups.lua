@@ -22,9 +22,7 @@ api.nvim_create_autocmd({ 'BufWritePre' }, {
   group = events_group,
   pattern = { '*.scala', '*.sc', '*.py', '*.go', '*.java', '*.rs' },
   callback = function()
-    local timeoutMs = 2000
-    local opts = {}
-    vim.lsp.buf.formatting_sync(opts, timeoutMs)
+    require'helper.utils'.lsp_buf_format_sync()
   end,
 })
 

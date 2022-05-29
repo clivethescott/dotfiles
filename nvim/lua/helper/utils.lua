@@ -66,17 +66,17 @@ function M.alt_scala_file()
 end
 
 function M.nvim_winbar()
-    local file_path = vim.api.nvim_eval_statusline('%f', {}).str
-    local modified = vim.api.nvim_eval_statusline('%m', {}).str
+  local file_path = vim.api.nvim_eval_statusline('%f', {}).str
+  local modified = vim.api.nvim_eval_statusline('%m', {}).str
 
-    file_path =  '   ' .. file_path:gsub('/', ' ➤ ')
+  file_path = '   ' .. file_path:gsub('/', ' ➤ ')
 
-    return '%#WinBarPath#'
-     .. file_path
-     .. '%*'
-     .. '%#WinBarModified# '
-     .. modified
-     .. '%*'
+  return '%#WinBarPath#'
+      .. file_path
+      .. '%*'
+      .. '%#WinBarModified# '
+      .. modified
+      .. '%*'
 end
 
 function M.alt_go_file()
@@ -138,6 +138,34 @@ function M.rename()
       vim.notify(message)
     end)
   end)
+end
+
+local skip_lsp_format_clients = { 'gopls', }
+local formatting_options = function(bufnr)
+  return {
+    bufnr = bufnr or 0,
+    timeout_ms = 2000,
+    async = true,
+    filter = function(client)
+      return skip_lsp_format_clients[client.name] == nil
+    end,
+  }
+end
+
+function M.lsp_buf_format_sync(bufnr)
+  local opts = formatting_options(bufnr)
+  opts.async = false
+  vim.lsp.buf.format(opts)
+end
+
+function M.lsp_buf_format(bufnr)
+  local opts = formatting_options(bufnr)
+  vim.lsp.buf.format(opts)
+end
+
+function M.lsp_range_format(bufnr)
+  local opts = formatting_options(bufnr)
+  vim.lsp.buf.range_formatting(opts)
 end
 
 return M
