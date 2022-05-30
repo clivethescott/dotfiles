@@ -168,4 +168,9 @@ function M.lsp_range_format(bufnr)
   vim.lsp.buf.range_formatting(opts)
 end
 
+function M.show_word_help()
+  local cword = vim.fn.expand("<cword>")
+  vim.fn.execute('h ' .. cword)
+end
+
 return M
