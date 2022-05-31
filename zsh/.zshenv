@@ -1,5 +1,5 @@
 export ZDOTDIR=$HOME/.config/zsh
-export KEYTIMEOUT=1 # make zsh vi mode switch faster
+export KEYTIMEOUT=50 # make zsh vi mode switch faster
 export BROWSER=open
 export EDITOR=nvim
 export VISUAL=$EDITOR
