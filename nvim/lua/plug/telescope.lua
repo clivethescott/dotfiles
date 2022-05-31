@@ -59,8 +59,8 @@ require('telescope').setup {
       }
     },
     path_display = {
-      -- shorten = { len = 1, exclude = { -2, -1 } }
-      tail = {},
+      shorten = { len = 1, exclude = { -2, -1 } }
+      -- tail = {},
     },
     prompt_prefix = "     ",
     file_ignore_patterns = { "target", "node_modules", ".metals/", ".git/", ".idea", ".jar", "venv", ".bloop", ".bsp",

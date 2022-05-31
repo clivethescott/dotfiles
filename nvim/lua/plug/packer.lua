@@ -80,7 +80,7 @@ require('packer').startup(function(use)
   use { 'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons' }
 
   -- Metals LSP for Scala
-  use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }, run = ":lua require('metals').update()" }
+  use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
   -- Java LSP
   use { 'mfussenegger/nvim-jdtls' }
 

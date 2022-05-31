@@ -104,6 +104,11 @@ map('n', '<leader>3', function()
     cwd = '~/.config/nvim/lua'
   }
 end)
+map('n', '<leader>4', function()
+  telescope.find_files {
+    cwd = '~/.config/zsh'
+  }
+end)
 map('n', '<leader>t', telescope.builtin)
 map('n', '<leader>tf', telescope.live_grep)
 map('n', '<leader>tb', telescope.current_buffer_fuzzy_find)
