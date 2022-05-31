@@ -86,7 +86,9 @@ require('packer').startup(function(use)
 
   -- Debugger
   use 'mfussenegger/nvim-dap'
+  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
   use { 'theHamsta/nvim-dap-virtual-text', requires = { 'mfussenegger/nvim-dap' } }
+  use { 'leoluz/nvim-dap-go', requires = { 'mfussenegger/nvim-dap' } } -- requires delve
 
   -- snippets
   use 'saadparwaiz1/cmp_luasnip' -- cmp Luasnip completion source

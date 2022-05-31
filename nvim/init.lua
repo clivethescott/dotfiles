@@ -36,8 +36,6 @@ require 'plug.colors'
 require 'plug.comment'
 -- Snippets engine
 require 'plug.luasnip'
--- Debug support
-require 'plug.dap-virt-text'
 -- Toggle Floating terminal
 require 'plug.toggleterm'
 -- Diagnostics browser

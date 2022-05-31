@@ -98,7 +98,7 @@ local has_lspinstall, lspinstall = pcall(require, 'nvim-lsp-installer')
 if has_lspinstall then
   lspinstall.setup({
     -- ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver', 'pyright', 'jdtls', 'rust_analyzer', 'dockerls' },
-    ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver' },
+    ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver', 'jdtls' },
     ui = {
       icons = {
         server_installed = "✓",
@@ -111,7 +111,7 @@ if has_lspinstall then
 end
 
 -- local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'pyright', 'luaserver', 'json', 'java', 'rust', 'docker' }
-local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'luaserver', 'json' }
+local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'luaserver', 'json', 'java' }
 table.insert(configs, 'null-ls') -- add null-ls at the end
 
 for _, config in ipairs(configs) do

@@ -149,24 +149,38 @@ map('n', 'gD', metals.goto_super_method)
 -- DAP mappings
 local dap = require('dap')
 map('n', '<space>db', dap.toggle_breakpoint)
-map('n', '<space>dbc', function()
+map('n', '<space>dbb', function()
   dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
 end)
-map('n', '<space>dbs', dap.list_breakpoints)
-map('n', '<space>dbd', dap.clear_breakpoints)
-map('n', '<space>dc', dap.continue)
-map('n', '<space>dcc', dap.run_to_cursor)
+map('n', '<space>dl', dap.list_breakpoints)
+map('n', '<space>dc', dap.clear_breakpoints)
+map('n', '<space>dr', dap.continue)
+-- map('n', '<space>dc', dap.run_to_cursor)
 map('n', '<space>ds', dap.step_over)
-map('n', '<space>dss', dap.step_over)
-map('n', '<space>dsi', dap.step_into)
-map('n', '<space>dso', dap.step_out)
-map('n', '<space>do', dap.repl.toggle)
-map('n', '<space>dr', dap.run_last)
-map('n', '<space>dt', function()
+map('n', '<space>do', dap.step_over)
+map('n', '<space>di', dap.step_into)
+map('n', '<space>dq', dap.step_out)
+map('n', '<space>dd', dap.repl.toggle)
+-- map('n', '<space>dr', dap.run_last)
+map('n', '<space>dx', function()
   local cb = function()
     print('Debug Session Terminated')
   end
   dap.terminate({}, {}, cb)
+end)
+map({'n', 'v'}, '<space>de', function()
+  local ok, dapui = pcall(require, 'dapui')
+  if not ok then
+    return
+  end
+  dapui.eval()
+end)
+map('n', '<space>dt', function ()
+  local ok, dap_go = pcall(require, 'dap-go')
+  if not ok then
+    return
+  end
+  dap_go.debug_test()
 end)
 
 -- Trouble Mappings
