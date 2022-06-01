@@ -54,9 +54,6 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# Tmux is installed via Homebrew, locate it in PATH before loading the plugin
-source $ZDOTDIR/exports.zsh
-
 # Alt vi-mode plugin https://github.com/jeffreytse/zsh-vi-mode
 plugins=(z git vi-mode history-substring-search virtualenv zsh-autosuggestions tmux)
 
