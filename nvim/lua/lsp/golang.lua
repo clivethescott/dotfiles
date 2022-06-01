@@ -20,6 +20,7 @@ M.setup = function(on_attach, capabilities)
           shadow = true,
         },
         staticcheck = true,
+        gofumpt = true,
       },
     },
     init_options = {

@@ -140,7 +140,7 @@ function M.rename()
   end)
 end
 
-local skip_lsp_format_clients = { 'gopls', }
+local skip_lsp_format_clients = {}
 local formatting_options = function(bufnr)
   return {
     bufnr = bufnr or 0,

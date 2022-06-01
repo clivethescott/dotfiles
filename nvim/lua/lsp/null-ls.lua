@@ -22,7 +22,7 @@ M.setup = function(on_attach)
       -- Formatting
       null_ls.builtins.formatting.autopep8, -- pip install autopep8
       null_ls.builtins.formatting.prettier, -- brew install prettier or equiv
-      null_ls.builtins.formatting.goimports, -- go install golang.org/x/tools/cmd/goimports@latest
+      -- null_ls.builtins.formatting.goimports, -- go install golang.org/x/tools/cmd/goimports@latest
 
       -- Hover
       null_ls.builtins.hover.dictionary,
