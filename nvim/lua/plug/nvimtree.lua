@@ -7,6 +7,12 @@ nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
   disable_netrw = true,
   hijack_cursor = false,
   hijack_netrw = true,
+  respect_buf_cwd = true,
+  view = {
+    adaptive_size = true,
+    number = true,
+    relativenumber = true,
+  },
   filters = {
     dotfiles = false,
     custom = { '.git', '.DS_Store', 'target', '.bloop', '.bsp', '.metals' },
@@ -25,5 +31,3 @@ nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
     },
   },
 }
-
-
