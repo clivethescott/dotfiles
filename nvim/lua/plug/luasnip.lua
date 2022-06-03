@@ -28,8 +28,8 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 -- Snipmate e.g honza/vim-snippets
 -- We need to tell luasnip that "_" contains global snipmate snippets:
-ls.filetype_extend("all", { "_" })
-require("luasnip.loaders.from_snipmate").lazy_load() -- Snipmate
+-- ls.filetype_extend("all", { "_" })
+-- require("luasnip.loaders.from_snipmate").lazy_load() -- Snipmate
 
 -- Lua
 -- Default load location is luasnippets directory in rutimepath or change using
