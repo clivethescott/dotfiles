@@ -12,9 +12,7 @@ local setup_dap_virt_text = function()
     return
   end
 
-  dap_virt_text.setup {
-    enabled = true, -- enable this plugin (the default)
-  }
+  dap_virt_text.setup()
 
   vim.fn.sign_define('DapBreakpoint', { text = '🟥', texthl = '', linehl = '', numhl = '' })
   vim.fn.sign_define('DapBreakpointRejected', { text = '🟦', texthl = '', linehl = '', numhl = '' })
@@ -41,12 +39,15 @@ local setup_ui = function(dap)
 
   -- You can use nvim-dap events to open and close the windows automatically
   dap.listeners.after.event_initialized["dapui_config"] = function()
+    vim.notify('Debug Session Started', vim.log.levels.INFO)
     ui.open()
   end
   dap.listeners.before.event_terminated["dapui_config"] = function()
+    vim.notify('Debug Session Terminated', vim.log.levels.INFO)
     ui.close()
   end
   dap.listeners.before.event_exited["dapui_config"] = function()
+    vim.notify('Debug Session Exited', vim.log.levels.WARN)
     ui.close()
   end
 end

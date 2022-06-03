@@ -89,6 +89,7 @@ require('packer').startup(function(use)
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
   use { 'theHamsta/nvim-dap-virtual-text', requires = { 'mfussenegger/nvim-dap' } }
   use { 'leoluz/nvim-dap-go', requires = { 'mfussenegger/nvim-dap' } } -- requires delve
+  use { 'nvim-telescope/telescope-dap.nvim', requires = { 'mfussenegger/nvim-dap' } }
 
   -- snippets
   use 'saadparwaiz1/cmp_luasnip' -- cmp Luasnip completion source
@@ -108,7 +109,7 @@ require('packer').startup(function(use)
   use { 'windwp/nvim-ts-autotag' }
 
   -- Fancy notifications
-  use { 'rcarriga/nvim-notify', opt = true }
+  use { 'rcarriga/nvim-notify' }
 
   -- Visualize undo history
   use { 'mbbill/undotree', opt = true }
