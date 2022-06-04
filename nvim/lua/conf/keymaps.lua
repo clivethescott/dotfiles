@@ -210,12 +210,12 @@ end)
 
 -- Luasnip Mappings
 local luasnip = require('luasnip')
-map({ 'i', 's' }, '<C-j>', function()
+map({ 'i', 's' }, '<Tab>', function()
   if luasnip.expand_or_jumpable() then
     luasnip.jump(1)
   end
 end)
-map({ 'i', 's' }, '<C-k>', function()
+map({ 'i', 's' }, '<S-Tab>', function()
   if luasnip.jumpable(-1) then
     luasnip.jump(-1)
   end
