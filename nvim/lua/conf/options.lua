@@ -93,8 +93,9 @@ vim.g.loaded_perl_provider = 0
 vim.g.python3_host_prog = '/opt/homebrew/opt/python@3.10/bin/python3'
 vim.g.loaded_ruby_provider = 0
 
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+-- vim.opt.foldmethod = 'expr'
+-- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+-- vim.opt.foldminlines = 20
 
 -- Show Lines before/after cursor
 vim.opt.scrolloff = 5
