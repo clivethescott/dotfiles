@@ -30,7 +30,7 @@ M.setup = function(on_attach, capabilities)
 
   -- ./golangci-lint help linters
   local lint_command = { "golangci-lint", "run", "--out-format", "json" }
-  local custom_lint_config = true
+  local custom_lint_config = false
 
   if custom_lint_config then
     local enabled_presets = "bugs,comment,metalinter,sql,style,unused"
