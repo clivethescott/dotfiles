@@ -25,5 +25,19 @@ return {
     }})
   ]], { i(1), i(0)})
   ),
+  s({trig='main', dscr='Create a main function'}, fmt([[
+    func main() {{
+      {}
+    }}
+  ]], { i(0)})
+  ),
+  s({trig='pmain', dscr='Setup a new main.go'}, fmt([[
+    package main
+
+    func main() {{
+      {}
+    }}
+  ]], { i(0)})
+  ),
 }
 
