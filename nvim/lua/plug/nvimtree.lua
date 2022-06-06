@@ -23,6 +23,10 @@ nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
     ignore = true,
     timeout = 400,
   },
+  trash = {
+    cmd = 'trash', -- for macos using https://gist.github.com/dabrahams/14fedc316441c350b382528ea64bc09c
+    require_confirm = false,
+  },
   actions = {
     use_system_clipboard = true,
     change_dir = {
