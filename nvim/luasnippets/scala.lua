@@ -4,7 +4,7 @@ return {
   -- case class Person(name: String) extends C
   -- case class Person(name: String) extends C with D
   -- case class Person(name: String) extends C with D {}
-  s("cc",
+  s({ trig = "cc", dscr = "Create a case class" },
     fmt("case class {}({}){}", {
       i(1, "class name"), i(2, "params"),
       c(3, {
@@ -13,5 +13,19 @@ return {
         -- sn(nil, { t " extends ", i(1), "{}" }),
       })
     })
-  )
+  ),
+  s({ trig = "ex", dscr = "Extends" },
+    fmt("extends {}", {
+      i(0)
+    })
+  ),
+  s({ trig = "test", dscr = "Create an AnyFunSuite Test" },
+    fmt([[
+      test("{}") {{
+        {}
+      }}
+    ]], {
+      i(1), i(0)
+    })
+  ),
 }
