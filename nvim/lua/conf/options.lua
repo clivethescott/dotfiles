@@ -98,5 +98,5 @@ vim.opt.foldminlines = 99
 vim.opt.foldlevel = 1
 
 -- Show Lines before/after cursor
-vim.opt.scrolloff = 2
+vim.opt.scrolloff = 1
 
