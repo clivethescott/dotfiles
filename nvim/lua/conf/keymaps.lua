@@ -1,12 +1,13 @@
-local map = function(mode, lhs, rhs)
-  vim.keymap.set(mode, lhs, rhs, { silent = true })
+local map = function(mode, lhs, rhs, opts)
+  opts = opts or { silent = true }
+  vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 local opts = { silent = true, noremap = true }
 
 -- Dealing with word wrap on long lines
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
+map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
+map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
 
 -- System clipboard copy/paste
 map('v', '<space>y', '"*yi')
@@ -68,7 +69,7 @@ map('v', '<up>', '<nop>')
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
-vim.keymap.set('n', '<space>f', function()
+map('n', '<space>f', function()
   if vim.o.winbar == "" then
     vim.o.winbar = "%{%v:lua.require'helper.utils'.nvim_winbar()%}"
   else
@@ -78,10 +79,10 @@ end)
 
 -- Use <c-p> and <c-n> to match command history by substring
 -- Just like how <up> and <down> work
-vim.keymap.set('c', '<c-n>', function()
+map('c', '<c-n>', function()
   return vim.fn.wildmenumode() == 1 and '<c-n>' or '<down>'
 end, { expr = true })
-vim.keymap.set('c', '<c-p>', function()
+map('c', '<c-p>', function()
   return vim.fn.wildmenumode() == 1 and '<c-p>' or '<up>'
 end, { expr = true })
 
@@ -154,12 +155,12 @@ map('n', '<space>db', dap.toggle_breakpoint)
 map('n', '<space>dB', function()
   dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
 end)
-map('n', '<space>dl', function ()
-  require'telescope'.extensions.dap.list_breakpoints{}
+map('n', '<space>dl', function()
+  require 'telescope'.extensions.dap.list_breakpoints {}
 end)
 map('n', '<space>dL', dap.clear_breakpoints)
-map('n', '<space>dc', function ()
-  require'telescope'.extensions.dap.commands{}
+map('n', '<space>dc', function()
+  require 'telescope'.extensions.dap.commands {}
 end)
 map('n', '<space>dr', dap.continue)
 map('n', '<F5>', dap.continue)
@@ -173,14 +174,14 @@ map('n', '<space>dd', dap.repl.toggle)
 map('n', '<space>dx', function()
   dap.terminate({}, {})
 end)
-map({'n', 'v'}, '<space>de', function()
+map({ 'n', 'v' }, '<space>de', function()
   local ok, dapui = pcall(require, 'dapui')
   if not ok then
     return
   end
   dapui.eval()
 end)
-map('n', '<space>dt', function ()
+map('n', '<space>dt', function()
   local ok, dap_go = pcall(require, 'dap-go')
   if not ok then
     return
@@ -213,11 +214,15 @@ local luasnip = require('luasnip')
 map({ 'i', 's' }, '<Tab>', function()
   if luasnip.expand_or_jumpable() then
     luasnip.jump(1)
+  else
+    return '<Tab>'
   end
-end)
+end, {silent = true, expr = true })
 map({ 'i', 's' }, '<S-Tab>', function()
   if luasnip.jumpable(-1) then
     luasnip.jump(-1)
+  else
+    return '<S-Tab>'
   end
 end)
 -- minimal choice change, same as when using vim.ui.select below
