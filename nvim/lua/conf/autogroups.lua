@@ -22,7 +22,7 @@ api.nvim_create_autocmd({ 'BufWritePre' }, {
   group = events_group,
   pattern = { '*.scala', '*.sc', '*.py', '*.go', '*.java', '*.rs' },
   callback = function()
-    require'helper.utils'.lsp_buf_format_sync()
+    require 'helper.utils'.lsp_buf_format_sync()
   end,
 })
 
@@ -37,13 +37,13 @@ api.nvim_create_autocmd({ 'FileType' }, {
 })
 
 api.nvim_create_autocmd({ 'FileType' }, {
-    desc = 'Reset proper indent for Java files',
-    group = events_group,
-    pattern = { 'java' },
-    callback = function()
-        vim.opt_local.shiftwidth = 4
-        vim.opt_local.tabstop = 4
-    end,
+  desc = 'Reset proper indent for Java files',
+  group = events_group,
+  pattern = { 'java' },
+  callback = function()
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.tabstop = 4
+  end,
 })
 
 api.nvim_create_autocmd({ 'BufWritePost' }, {

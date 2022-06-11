@@ -26,7 +26,7 @@ require('packer').startup(function(use)
   use { 'stevearc/dressing.nvim' } -- alternative vim.ui.select and vim.ui.input
 
   -- Color Theme
-  use 'navarasu/onedark.nvim'
+  -- use 'navarasu/onedark.nvim'
   use 'folke/tokyonight.nvim'
 
   -- Comments
@@ -47,6 +47,9 @@ require('packer').startup(function(use)
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/playground'
+
+  -- keep function name pinned when scrolling
+  use { 'romgrk/nvim-treesitter-context' }
 
   -- LSP
   use {
@@ -116,8 +119,5 @@ require('packer').startup(function(use)
 
   -- Smooth scrolling
   use { 'karb94/neoscroll.nvim', opt = true }
-
-  -- keep function name pinned when scrolling
-  use { 'romgrk/nvim-treesitter-context', opt = true }
 
 end)

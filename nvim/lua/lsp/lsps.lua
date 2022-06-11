@@ -32,7 +32,7 @@ local on_attach = function(client, bufnr)
       end
     end, opts)
 
-    map('n', '<leader>d', telescope_builtin.diagnostics, opts)
+    map('n', '<leader>D', telescope_builtin.diagnostics, opts)
     map('n', '<leader>c', require 'telescope'.extensions.metals.commands, opts)
   else
     map('n', '<space>ws', lsp_workspace_symbol, opts)
@@ -41,7 +41,7 @@ local on_attach = function(client, bufnr)
     map('n', 'gy', vim.lsp.buf.type_definition, opts)
     map('n', 'gr', vim.lsp.buf.references, opts)
     map('n', '<space>wS', vim.lsp.buf.document_symbol, opts)
-    map('n', '<leader>d', vim.lsp.buf.diagnostics, opts)
+    map('n', '<leader>D', vim.lsp.buf.diagnostics, opts)
   end
 
   map('n', 'ga', vim.lsp.buf.code_action, opts)
@@ -66,7 +66,7 @@ local on_attach = function(client, bufnr)
   -- Diagnostics
   map('n', 'g[', function() vim.diagnostic.goto_prev { wrap = false } end, opts) -- prevent previous jumping back
   map('n', 'g]', vim.diagnostic.goto_next, opts)
-  map('n', '<leader>D', function()
+  map('n', '<leader>d', function()
     vim.diagnostic.open_float({ scope = 'line' }) -- can be line, buffer, cursor
   end, opts)
   -- map('n', '<leader>d', vim.diagnostic.setloclist, opts) -- buffer diagnostics only
@@ -98,7 +98,7 @@ local has_lspinstall, lspinstall = pcall(require, 'nvim-lsp-installer')
 if has_lspinstall then
   lspinstall.setup({
     -- ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver', 'pyright', 'jdtls', 'rust_analyzer', 'dockerls' },
-    ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver', 'jdtls' },
+    ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver' },
     ui = {
       icons = {
         server_installed = "✓",
@@ -111,7 +111,7 @@ if has_lspinstall then
 end
 
 -- local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'pyright', 'luaserver', 'json', 'java', 'rust', 'docker' }
-local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'luaserver', 'json', 'java' }
+local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'luaserver', 'json' }
 table.insert(configs, 'null-ls') -- add null-ls at the end
 
 for _, config in ipairs(configs) do

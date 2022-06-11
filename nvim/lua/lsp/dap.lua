@@ -43,11 +43,9 @@ local setup_ui = function(dap)
     ui.open()
   end
   dap.listeners.before.event_terminated["dapui_config"] = function()
-    vim.notify('Debug Session Terminated', vim.log.levels.INFO)
     ui.close()
   end
   dap.listeners.before.event_exited["dapui_config"] = function()
-    vim.notify('Debug Session Exited', vim.log.levels.WARN)
     ui.close()
   end
 end
