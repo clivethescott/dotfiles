@@ -14,6 +14,15 @@ return {
       })
     })
   ),
+  s({ trig = "iclass", dscr = "Create an implicit definition" },
+    fmt([[
+      implicit class {}({}) {{
+        {}
+      }}
+      ]], {
+      i(1, "class name"), i(2, "params"), i(0)
+    })
+  ),
   s({ trig = "ex", dscr = "Extends" },
     fmt("extends {}", {
       i(0)
