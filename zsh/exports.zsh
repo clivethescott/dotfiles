@@ -1,3 +1,4 @@
+export KEYTIMEOUT=50 # make zsh vi mode switch faster
 export BROWSER=open
 export EDITOR=nvim
 export VISUAL=$EDITOR
@@ -10,9 +11,11 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export TERM=screen-256color
 export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 
+CARGO_HOME=$HOME/.cargo
 APP_HOME=$HOME/apps
 COURSIER_HOME=$HOME/Library/Application\ Support/Coursier
 PYTHON_PATH=/opt/homebrew/opt/python@3.10
 
-export PATH=$JAVA_HOME/bin:$COURSIER_HOME/bin:$GOBIN:/opt/homebrew/bin:$PYTHON_PATH/bin:$PATH
+export PATH=/opt/homebrew/bin:$JAVA_HOME/bin:$COURSIER_HOME/bin:$GOBIN:$PYTHON_PATH/bin:$CARGO_HOME/bin:$PATH
+
 

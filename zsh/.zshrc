@@ -54,6 +54,13 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
+# Keep $PATH uniq
+typeset -aU path
+
+# Source this before applying tmux plugin
+# Source this here and not in zshenv to prefix in $PATH
+source $ZDOTDIR/exports.zsh
+
 # Alt vi-mode plugin https://github.com/jeffreytse/zsh-vi-mode
 plugins=(z git vi-mode history-substring-search virtualenv zsh-autosuggestions tmux)
 
