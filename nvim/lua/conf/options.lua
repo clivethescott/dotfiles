@@ -57,7 +57,7 @@ vim.opt.grepprg = 'rg --vimgrep'
 vim.opt.autowrite = true
 
 -- Don't wait too long to complete successive keys, Also controls which-key delay
-vim.opt.timeoutlen = 1000
+vim.opt.timeoutlen = 500
 
 -- Affects redraw speed
 vim.opt.cursorline = true
@@ -71,8 +71,7 @@ vim.opt.colorcolumn = '120'
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- See messages better, also avoids hit enter
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 
 -- Don't show mode change messages
 vim.opt.showmode = false
