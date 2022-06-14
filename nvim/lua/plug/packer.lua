@@ -49,7 +49,7 @@ require('packer').startup(function(use)
   use 'nvim-treesitter/playground'
 
   -- keep function name pinned when scrolling
-  use { 'romgrk/nvim-treesitter-context' }
+  -- use { 'romgrk/nvim-treesitter-context' }
 
   -- LSP
   use {
@@ -64,11 +64,13 @@ require('packer').startup(function(use)
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-nvim-lsp-document-symbol',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
+      -- 'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-calc'
     }
   }
+
+  use 'ray-x/lsp_signature.nvim'
 
   -- LSP Progress
   use 'arkav/lualine-lsp-progress'

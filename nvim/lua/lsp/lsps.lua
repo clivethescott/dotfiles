@@ -1,7 +1,12 @@
 -- LSP settings
 local map = vim.keymap.set
 local has_telescope, telescope_builtin = pcall(require, 'telescope.builtin')
+local has_sig, sig = pcall(require, 'lsp_signature')
 local utils = require 'helper.utils'
+
+if has_sig then
+  sig.setup()
+end
 
 local lsp_workspace_symbol = function()
   vim.ui.input({ prompt = 'enter query: ' }, function(query)
@@ -11,6 +16,20 @@ local lsp_workspace_symbol = function()
   end)
 end
 local on_attach = function(client, bufnr)
+  if has_sig then
+    sig.on_attach({
+      toggle_key = '<C-v>',
+      bind = true, --This is mandatory, otherwise border config won't get registered.
+      handler_opts = {
+        border = "none"
+      },
+      transparency = 20,
+      padding = ' ',
+      floating_window_off_x = 5,
+      floating_window_above_cur_line = true,
+    }, bufnr)
+  end
+
   -- vim.notify('LSP connected client ' .. client.name, 'info')
   local opts = { buffer = bufnr, silent = true }
   local caps = client.server_capabilities
@@ -87,6 +106,9 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true -- broadcasting snippet capability for completion
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = { "documentation", "detail", "additionalTextEdits" },
+}
 local has_cmp, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
 if has_cmp then
   -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
