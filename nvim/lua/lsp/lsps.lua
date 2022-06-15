@@ -5,7 +5,16 @@ local has_sig, sig = pcall(require, 'lsp_signature')
 local utils = require 'helper.utils'
 
 if has_sig then
-  sig.setup()
+  sig.setup({
+      bind = true, --This is mandatory, otherwise border config won't get registered.
+      handler_opts = {
+        border = "none"
+      },
+      transparency = 20,
+      padding = ' ',
+      floating_window_off_x = 5,
+      floating_window_above_cur_line = true,
+  })
 end
 
 local lsp_workspace_symbol = function()
@@ -16,20 +25,6 @@ local lsp_workspace_symbol = function()
   end)
 end
 local on_attach = function(client, bufnr)
-  if has_sig then
-    sig.on_attach({
-      toggle_key = '<C-v>',
-      bind = true, --This is mandatory, otherwise border config won't get registered.
-      handler_opts = {
-        border = "none"
-      },
-      transparency = 20,
-      padding = ' ',
-      floating_window_off_x = 5,
-      floating_window_above_cur_line = true,
-    }, bufnr)
-  end
-
   -- vim.notify('LSP connected client ' .. client.name, 'info')
   local opts = { buffer = bufnr, silent = true }
   local caps = client.server_capabilities
@@ -120,7 +115,7 @@ local has_lspinstall, lspinstall = pcall(require, 'nvim-lsp-installer')
 if has_lspinstall then
   lspinstall.setup({
     -- ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver', 'pyright', 'jdtls', 'rust_analyzer', 'dockerls' },
-    ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver' },
+    ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver', 'pyright' },
     ui = {
       icons = {
         server_installed = "✓",
@@ -133,7 +128,7 @@ if has_lspinstall then
 end
 
 -- local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'pyright', 'luaserver', 'json', 'java', 'rust', 'docker' }
-local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'luaserver', 'json' }
+local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'luaserver', 'json', 'pyright' }
 table.insert(configs, 'null-ls') -- add null-ls at the end
 
 for _, config in ipairs(configs) do
