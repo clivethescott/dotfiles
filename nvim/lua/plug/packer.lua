@@ -70,6 +70,8 @@ require('packer').startup(function(use)
     }
   }
 
+  use 'vimpostor/vim-tpipeline'
+
   use 'ray-x/lsp_signature.nvim'
 
   -- LSP Progress
