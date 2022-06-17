@@ -37,6 +37,9 @@ require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
+  -- Combine tmux and vim status line, must also update tmux config
+  -- use 'vimpostor/vim-tpipeline'
+
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' }
@@ -73,8 +76,7 @@ require('packer').startup(function(use)
     }
   }
 
-  use 'vimpostor/vim-tpipeline'
-
+  -- Nicer LSP signature float window
   use 'ray-x/lsp_signature.nvim'
 
   -- LSP Progress
@@ -94,7 +96,7 @@ require('packer').startup(function(use)
   -- Java LSP
   use { 'mfussenegger/nvim-jdtls' }
 
-  -- Debugger
+  -- DAP
   use 'mfussenegger/nvim-dap'
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
   use { 'theHamsta/nvim-dap-virtual-text', requires = { 'mfussenegger/nvim-dap' } }
@@ -105,7 +107,7 @@ require('packer').startup(function(use)
   use 'saadparwaiz1/cmp_luasnip' -- cmp Luasnip completion source
   use 'L3MON4D3/LuaSnip' -- Snippets engine
   use 'rafamadriz/friendly-snippets' -- Collection of Vscode-like Snippets
-  use 'honza/vim-snippets' -- Collection of Snipmate-like Snippets
+  -- use 'honza/vim-snippets' -- Collection of Snipmate-like Snippets
 
   -- Floating term
   use 'akinsho/toggleterm.nvim'

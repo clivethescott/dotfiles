@@ -6,14 +6,15 @@ local utils = require 'helper.utils'
 
 if has_sig then
   sig.setup({
-      bind = true, --This is mandatory, otherwise border config won't get registered.
-      handler_opts = {
-        border = "none"
-      },
-      transparency = 20,
-      padding = ' ',
-      floating_window_off_x = 5,
-      floating_window_above_cur_line = true,
+    bind = true, --This is mandatory, otherwise border config won't get registered.
+    handler_opts = {
+      border = "none"
+    },
+    transparency = 20,
+    padding = ' ',
+    floating_window_off_x = 5,
+    floating_window_above_cur_line = true,
+    hint_prefix = " ",
   })
 end
 
