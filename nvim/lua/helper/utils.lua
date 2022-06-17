@@ -135,7 +135,9 @@ function M.rename()
         changes.files == 1 and '' or 's',
         changes.files > 1 and "To save them run ':wa'" or ''
       )
-      vim.notify(message)
+      if changes.instances > 2 then
+        vim.notify(message)
+      end
     end)
   end)
 end

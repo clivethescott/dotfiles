@@ -64,8 +64,8 @@ local on_attach = function(client, bufnr)
   map('n', 'gh', utils.show_word_help, opts)
   map('n', 'gs', vim.lsp.buf.signature_help, opts)
   map('n', 'gl', vim.lsp.codelens.run, opts)
-  map('n', '<leader>r', vim.lsp.buf.rename, opts)
-  map('n', '<leader>R', utils.rename, opts)
+  -- map('n', '<leader>r', vim.lsp.buf.rename, opts)
+  map('n', '<leader>r', utils.rename, opts)
 
   -- Formatting
 
