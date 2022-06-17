@@ -4,6 +4,6 @@ if not ok then
 end
 
 notify.setup({
-  timeout = 1000,
+  timeout = 500,
 })
 vim.notify = notify
