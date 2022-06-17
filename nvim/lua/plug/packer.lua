@@ -42,6 +42,9 @@ require('packer').startup(function(use)
     requires = { 'nvim-lua/plenary.nvim' }
   }
 
+  -- Surround Text objects
+  use 'tpope/vim-surround'
+
   -- Syntax highlighting
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   -- Additional textobjects for treesitter
