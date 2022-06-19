@@ -1,0 +1,37 @@
+# brew leaves --installed-on-request | xargs -n1 brew desc > leaves.txt
+
+asciidoctor: Text processor and publishing toolchain for AsciiDoc
+automake: Tool for generating GNU Standards-compliant Makefiles
+axel: Light UNIX download accelerator
+bat: Clone of cat(1) with syntax highlighting and Git integration
+carthage: Decentralized dependency manager for Cocoa
+catimg: Insanely fast image printing in your terminal
+coreutils: GNU File, Shell, and Text utilities
+coursier: Launcher for Coursier
+defaultbrowser: Command-line tool for getting & setting the default browser
+delve: Debugger for the Go programming language
+exa: Modern replacement for 'ls'
+fd: Simple, fast and user-friendly alternative to find
+fzf: Command-line fuzzy finder written in Go
+git: Distributed revision control system
+git-delta: Syntax-highlighting pager for git and diff output
+gnu-sed: GNU implementation of the famous stream editor
+go: Open source programming language to build simple/reliable/efficient software
+google-java-format: Reformats Java source code to comply with Google Java Style
+httpie: User-friendly cURL replacement (command-line HTTP client)
+lazygit: A simple terminal UI for git commands, written in Go
+jq: Lightweight and flexible command-line JSON processor
+libtool: Generic library support script
+maven: Java-based project management
+neovim: Ambitious Vim-fork focused on extensibility and agility
+ninja: Small build system for use with gyp or CMake
+node: Platform built on V8 to build network applications
+pkg-config: Manage compile and link flags for libraries
+postgresql: Object-relational database system
+procs: Modern replacement for ps written by Rust
+protobuf: Protocol buffers (Google's data interchange format)
+ripgrep: Search tool like grep and The Silver Searcher
+smartmontools: SMART hard drive monitoring
+tmux: Terminal multiplexer
+tree: Display directories as trees (with optional color/HTML output)
+wget: Internet file retriever

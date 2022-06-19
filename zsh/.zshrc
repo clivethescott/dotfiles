@@ -62,7 +62,7 @@ typeset -aU path
 source $ZDOTDIR/exports.zsh
 
 # Alt vi-mode plugin https://github.com/jeffreytse/zsh-vi-mode
-plugins=(z git vi-mode history-substring-search virtualenv zsh-autosuggestions tmux)
+plugins=(git vi-mode history-substring-search zsh-autosuggestions tmux)
 
 # Path to your oh-my-zsh installation.
 export ZSH=$ZDOTDIR/.oh-my-zsh
@@ -76,7 +76,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 source $ZDOTDIR/setopt.zsh 
-source $ZDOTDIR/z.sh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/functions.zsh
 source $ZDOTDIR/keybindings.zsh
@@ -167,4 +166,4 @@ setopt noflowcontrol
 
 # Increase the number of max open files/descriptions
 ulimit -n 2048
-
+eval "$(zoxide init zsh)"
