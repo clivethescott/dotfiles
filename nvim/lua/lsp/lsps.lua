@@ -18,13 +18,6 @@ if has_sig then
   })
 end
 
-local lsp_workspace_symbol = function()
-  vim.ui.input({ prompt = 'enter query: ' }, function(query)
-    if query ~= nil and query ~= "" then
-      vim.lsp.buf.workspace_symbol(query)
-    end
-  end)
-end
 local on_attach = function(client, bufnr)
   -- vim.notify('LSP connected client ' .. client.name, 'info')
   local opts = { buffer = bufnr, silent = true }
@@ -41,21 +34,20 @@ local on_attach = function(client, bufnr)
 
     map('n', '<space>ws', function()
       if client.name == 'metals' then -- metals not supporting dynamic workspace_symbol
-        lsp_workspace_symbol()
+        utils.lsp_workspace_symbols()
       else
         telescope_builtin.lsp_dynamic_workspace_symbols()
       end
     end, opts)
-
     map('n', '<leader>D', telescope_builtin.diagnostics, opts)
     map('n', '<leader>c', require 'telescope'.extensions.metals.commands, opts)
   else
-    map('n', '<space>ws', lsp_workspace_symbol, opts)
+    map('n', '<space>ws', vim.lsp.buf.workspace_symbol, opts)
+    map('n', '<space>wS', vim.lsp.buf.document_symbol, opts)
     map('n', 'gd', vim.lsp.buf.definition, opts)
     map('n', 'gi', vim.lsp.buf.implementation, opts)
     map('n', 'gy', vim.lsp.buf.type_definition, opts)
     map('n', 'gr', vim.lsp.buf.references, opts)
-    map('n', '<space>wS', vim.lsp.buf.document_symbol, opts)
     map('n', '<leader>D', vim.lsp.buf.diagnostics, opts)
   end
 
