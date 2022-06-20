@@ -75,7 +75,7 @@ M.setup = function()
       ['<C-n>'] = cmp.mapping(select_next_item, { 'i', 's' }),
       -- ['<Tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
 
-      ['C-p'] = cmp.mapping(select_prev_item, { 'i', 's' }),
+      ['<C-p>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
       -- ['<S-Tab>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
     }),
     sources = cmp.config.sources({
