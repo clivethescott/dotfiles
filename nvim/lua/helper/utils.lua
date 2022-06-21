@@ -123,7 +123,7 @@ function M.rename()
     -- check new_name is valid
     if is_empty_str(new_name) or curr_name == new_name then return end
     -- request lsp rename
-    local params = vim.lsp.util.make_position_params()
+    local params = vim.lsp.util.make_position_params(0, 'utf-8')
     params.newName = new_name
     vim.lsp.buf_request(0, "textDocument/rename", params, function(err, res, ctx, _)
       if err then
@@ -147,60 +147,6 @@ function M.rename()
         vim.notify(message)
       end
     end)
-  end)
-end
-
-function M.lsp_workspace_symbols(opts)
-
-  opts = opts or {}
-  local pickers = require "telescope.pickers"
-  local finders = require "telescope.finders"
-  local conf = require("telescope.config").values
-  local utils = require "telescope.utils"
-  local make_entry = require "telescope.make_entry"
-
-  local params = { query = 'List' }
-  vim.lsp.buf_request(opts.bufnr, "workspace/symbol", params, function(err, server_result, _, _)
-    if err then
-      vim.api.nvim_err_writeln("Error when finding workspace symbols: " .. err.message)
-      return
-    end
-
-    local locations = vim.lsp.util.symbols_to_items(server_result or {}, opts.bufnr) or {}
-    locations = utils.filter_symbols(locations, opts)
-    if locations == nil then
-      -- error message already printed in `utils.filter_symbols`
-      return
-    end
-
-    if vim.tbl_isempty(locations) then
-      vim.notify("No results from workspace/symbol")
-      return
-    end
-
-    -- opts.ignore_filename = true
-
-    vim.pretty_print(locations)
-    pickers.new(opts, {
-      prompt_title = "LSP Workspace Symbols",
-      finder = finders.new_table {
-        results = locations,
-        entry_maker = function(entry)
-          return {
-            value = entry.filename,
-            display = entry.text,
-            ordinal = entry.col,
-            path = entry.filename,
-            lnum = entry.lnum
-          }
-        end
-      },
-      -- previewer = conf.qflist_previewer(opts),
-      sorter = conf.prefilter_sorter {
-        tag = "symbol_type",
-        sorter = conf.generic_sorter(opts),
-      },
-    }):find()
   end)
 end
 
