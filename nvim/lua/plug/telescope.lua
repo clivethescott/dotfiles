@@ -1,7 +1,6 @@
 local actions = require("telescope.actions")
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
-local utils = require 'telescope.utils'
 
 -- Use terminal image viewer to preview images
 local mime_hook = function(filepath, bufnr, opts)
@@ -36,7 +35,7 @@ local new_maker = function(filepath, bufnr, opts)
     command = "file",
     args = { "--mime-type", "-b", filepath },
     on_exit = function(j)
-      local mime_type = vim.split(j:result()[1], "/")[1]
+      local mime_type = vim.split(j:result()[1], "/", { plain = true, trimempty = true })[1]
       if mime_type == "text" then
         previewers.buffer_previewer_maker(filepath, bufnr, opts)
       else
@@ -50,6 +49,7 @@ local new_maker = function(filepath, bufnr, opts)
 end
 
 local trouble = require("trouble.providers.telescope")
+local global_ignore = os.getenv('HOME') .. '/.gitignore'
 
 require('telescope').setup {
   defaults = {
@@ -59,12 +59,12 @@ require('telescope').setup {
       }
     },
     path_display = {
-      shorten = { len = 1, exclude = { -2, -1 } }
+      -- shorten = { len = 1, exclude = { -3, -2, -1 } }
+      truncate = {},
       -- tail = {},
     },
     prompt_prefix = "     ",
-    file_ignore_patterns = { "target", "node_modules", ".metals/", ".git/", ".idea", ".jar", "venv", ".bloop", ".bsp",
-      "undodir", ".DS_Store" },
+    file_ignore_patterns = {}, -- Note that setting this may affect Telescope rendering of document symbols
     buffer_previewer_maker = new_maker,
     preview = {
       mime_hook = mime_hook,
@@ -102,7 +102,7 @@ require('telescope').setup {
   },
   pickers = {
     find_files = {
-      find_command = { "fd", "--type", "f", "--hidden", "--max-depth", "10", "--strip-cwd-prefix" }
+      find_command = { "fd", "--type", "f", "--hidden", "--max-depth", "10", "--strip-cwd-prefix", "--ignore-file", global_ignore }
     },
   },
 }
@@ -114,4 +114,3 @@ require('telescope').load_extension('fzf')
 
 -- requires nvim-telescope/telescope-dap.nvim
 require('telescope').load_extension('dap')
-
