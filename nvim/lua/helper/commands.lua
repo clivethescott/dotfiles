@@ -10,15 +10,11 @@ vim.api.nvim_create_user_command('LspStatus', function()
   require 'helper.utils'.resolvedCapabilities()
 end, {})
 
-local get_ftype = function(bufnr)
-  return vim.fn.getbufvar(bufnr or 0, '&filetype')
-end
-
 vim.api.nvim_create_user_command('AlternateFile', function()
-  local ft = get_ftype()
-  if ft == 'go' then
+  local ext = vim.fn.expand('%:e')
+  if ext == 'go' then
     require 'helper.utils'.alt_go_file()
-  elseif ft == 'scala' then
+  elseif ext == 'scala' then
     require 'helper.utils'.alt_scala_file()
   end
 end, {})
