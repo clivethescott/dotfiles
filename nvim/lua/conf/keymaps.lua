@@ -171,6 +171,9 @@ map('n', '<space>di', dap.step_into)
 map('n', '<space>dI', dap.step_out)
 map('n', '<space>dd', dap.repl.toggle)
 -- map('n', '<space>dr', dap.run_last)
+map('n', '<space>dq', function()
+  dap.terminate({}, {})
+end)
 map('n', '<space>dx', function()
   dap.terminate({}, {})
 end)
@@ -217,7 +220,7 @@ map({ 'i', 's' }, '<Tab>', function()
   else
     return '<Tab>'
   end
-end, {silent = true, expr = true })
+end)
 map({ 'i', 's' }, '<S-Tab>', function()
   if luasnip.jumpable(-1) then
     luasnip.jump(-1)
