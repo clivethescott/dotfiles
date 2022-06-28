@@ -1,6 +1,6 @@
 # alias ls='ls -hG'
 alias bloop='bloop-jvm'
-alias bu='brew upgrade neovim --fetch-head && vim -c ":PackerSync"'
+alias bu='brew upgrade --fetch-HEAD && vim -c ":PackerSync"'
 alias less=bat
 alias ls='COLUMNS=120 exa'
 alias grep='rg'
