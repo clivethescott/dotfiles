@@ -54,21 +54,4 @@ api.nvim_create_autocmd({ 'BufWritePost' }, {
     vim.cmd 'source ~/.config/nvim/lua/plug/luasnip.lua'
   end,
 })
-
-api.nvim_create_autocmd({ 'InsertLeave' }, {
-  desc = 'Set cmdheight to 1',
-  group = events_group,
-  pattern = { '*' },
-  callback = function()
-    vim.opt.cmdheight = 1
-  end,
-})
-api.nvim_create_autocmd({ 'InsertEnter' }, {
-  desc = 'Set cmdheight to 0',
-  group = events_group,
-  pattern = { '*' },
-  callback = function()
-    vim.opt.cmdheight = 0
-  end,
-})
 -- vim.cmd[[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
