@@ -103,7 +103,7 @@ map('n', '<leader>2', function()
   }
 end)
 map('n', '<leader>3', function()
-  telescope.grep_string {
+  telescope.live_grep {
     cwd = '~/.config/nvim/lua'
   }
 end)
