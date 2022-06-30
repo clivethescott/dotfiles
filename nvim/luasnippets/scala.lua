@@ -37,4 +37,16 @@ return {
       i(1), i(0)
     })
   ),
+  s({ trig = "unp", dscr = "Create an extractor" },
+    fmt([[
+      def unapply({}): {} = {}
+    ]], {
+      i(1),
+      c(2, {
+        sn(nil, { t "Option[", i(1), t "]" }),
+        sn(nil, { i(1), t "Boolean" }),
+      }),
+      i(3)
+    })
+  ),
 }
