@@ -7,7 +7,8 @@ end
 
 -- Reload init.lua on change
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost', { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'init.lua' })
+vim.api.nvim_create_autocmd('BufWritePost',
+  { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'init.lua' })
 
 require('packer').startup(function(use)
   -- Packer manager manages itself
@@ -80,7 +81,10 @@ require('packer').startup(function(use)
   use 'ray-x/lsp_signature.nvim'
 
   -- LSP Progress
-  use 'arkav/lualine-lsp-progress'
+  -- use 'arkav/lualine-lsp-progress'
+  use { 'j-hui/fidget.nvim',
+    config = function() require 'fidget'.setup {} end
+  }
 
   -- LSP Icons in completion
   use 'onsails/lspkind.nvim'
