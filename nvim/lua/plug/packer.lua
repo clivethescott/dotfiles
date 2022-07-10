@@ -47,7 +47,7 @@ require('packer').startup(function(use)
   }
 
   -- Surround Text objects
-  use 'tpope/vim-surround'
+  -- use 'tpope/vim-surround'
 
   -- Syntax highlighting
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
