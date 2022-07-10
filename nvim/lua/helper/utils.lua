@@ -66,6 +66,8 @@ function M.alt_scala_file()
 end
 
 function M.nvim_winbar()
+  if vim.fn.has('nvim-0.8') == 0 then return end
+
   local file_path = vim.api.nvim_eval_statusline('%f', {}).str
   local modified = vim.api.nvim_eval_statusline('%m', {}).str
 
@@ -150,27 +152,27 @@ function M.rename()
   end)
 end
 
-local skip_lsp_format_clients = {}
-local formatting_options = function(bufnr)
+-- local skip_lsp_format_clients = {}
+local formatting_options = function(bufnr, async)
+  async = async or true
   return {
     bufnr = bufnr or 0,
     timeout_ms = 2000,
-    async = true,
-    filter = function(client)
-      return skip_lsp_format_clients[client.name] == nil
-    end,
+    async = async,
+    -- filter = function(client)
+    --   return skip_lsp_format_clients[client.name] == nil
+    -- end,
   }
 end
 
 function M.lsp_buf_format_sync(bufnr)
-  local opts = formatting_options(bufnr)
-  opts.async = false
-  vim.lsp.buf.format(opts)
+  local opts = formatting_options(bufnr, false)
+  vim.lsp.buf.formatting(opts)
 end
 
 function M.lsp_buf_format(bufnr)
   local opts = formatting_options(bufnr)
-  vim.lsp.buf.format(opts)
+  vim.lsp.buf.formatting(opts)
 end
 
 function M.lsp_range_format(bufnr)
