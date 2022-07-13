@@ -46,6 +46,9 @@ M.setup = function()
   end
 
   cmp.setup({
+    experimental = {
+      ghost_text = true,
+    },
     formatting = {
       format = cmp_format
     },
@@ -57,7 +60,7 @@ M.setup = function()
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
         if has_luasnip then
-          luasnip.lsp_expand(args.body) -- For `luasnip` users.
+          pcall(luasnip.lsp_expand, args.body) -- For `luasnip` users.
         end
       end,
     },
