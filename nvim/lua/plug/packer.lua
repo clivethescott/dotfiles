@@ -48,6 +48,14 @@ require('packer').startup(function(use)
 
   -- Surround Text objects
   -- use 'tpope/vim-surround'
+  use({
+    "kylechui/nvim-surround",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  })
 
   -- Syntax highlighting
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }

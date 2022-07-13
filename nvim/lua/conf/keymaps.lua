@@ -220,14 +220,14 @@ map({ 'i', 's' }, '<Tab>', function()
   else
     return '<Tab>'
   end
-end)
+end, { expr = true })
 map({ 'i', 's' }, '<S-Tab>', function()
   if luasnip.jumpable(-1) then
     luasnip.jump(-1)
   else
     return '<S-Tab>'
   end
-end)
+end, { expr = true })
 -- minimal choice change, same as when using vim.ui.select below
 map({ 'i' }, '<C-y>', function()
   if luasnip.choice_active() then
