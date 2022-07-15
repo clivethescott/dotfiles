@@ -135,6 +135,19 @@ require('packer').startup(function(use)
   -- Fancy notifications
   use { 'rcarriga/nvim-notify' }
 
+  -- Easier jumping
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require 'hop'.setup {
+        teasing = false,
+        uppercase_labels = true,
+      }
+    end
+  }
+
   -- Visualize undo history
   use { 'mbbill/undotree', opt = true }
 

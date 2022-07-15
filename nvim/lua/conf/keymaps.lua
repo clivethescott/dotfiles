@@ -182,7 +182,7 @@ map({ 'n', 'v' }, '<space>de', function()
   if not ok then
     return
   end
-  dapui.eval()
+  dapui.eval('', {})
 end)
 map('n', '<space>dt', function()
   local ok, dap_go = pcall(require, 'dap-go')
@@ -250,4 +250,30 @@ vim.api.nvim_set_keymap('n', '<space>u', '<cmd>UndotreeToggle<cr>', opts)
 local has_jdtls, jdtls = pcall(require, 'jdtls')
 if has_jdtls then
   map('n', '<space>jr', jdtls.update_project_config)
+end
+
+-- Hop.nvim
+local has_hop, hop = pcall(require, 'hop')
+if has_hop then
+  local hop_hint = require 'hop.hint'
+  map('', 't', function()
+    hop.hint_char1({ direction = hop_hint.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1,
+      teasing = false })
+  end, {})
+  map('', 'T', function()
+    hop.hint_char1({ direction = hop_hint.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1,
+      teasing = false })
+  end, {})
+  map('', 'f', function()
+    hop.hint_char1({ direction = hop_hint.HintDirection.AFTER_CURSOR, current_line_only = true, teasing = false })
+  end, {})
+  map('', 'F', function()
+    hop.hint_char1({ direction = hop_hint.HintDirection.BEFORE_CURSOR, current_line_only = true, teasing = false })
+  end, {})
+  map('', '<space>f', function()
+    hop.hint_words({ direction = hop_hint.HintDirection.AFTER_CURSOR, current_line_only = false, teasing = false })
+  end, {})
+  map('', '<space>F', function()
+    hop.hint_words({ direction = hop_hint.HintDirection.BEFORE_CURSOR, current_line_only = false, teasing = false })
+  end, {})
 end
