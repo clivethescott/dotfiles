@@ -37,7 +37,7 @@ return {
       i(1), i(0)
     })
   ),
-  s({ trig = "unp", dscr = "Create an extractor" },
+  s({ trig = "ext", dscr = "Create an extractor" },
     fmt([[
       def unapply({}): {} = {}
     ]], {
@@ -47,6 +47,21 @@ return {
         sn(nil, { i(1), t "Boolean" }),
       }),
       i(3)
+    })
+  ),
+  s({ trig = "call", dscr = "Call implicit" },
+    fmt([[ 
+      def apply[{}](implicit {}: {}[{}]): {}[{}] = {}
+      {}
+    ]], {
+      i(1, "A"),
+      i(2, "ev"),
+      i(3, "TypeClass"),
+      rep(1),
+      rep(3),
+      rep(1),
+      rep(2),
+      i(0)
     })
   ),
 }
