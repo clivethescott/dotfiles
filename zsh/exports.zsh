@@ -10,6 +10,7 @@ export FZF_CTRL_T_COMMAND='rg --files'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export TERM=screen-256color
 export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export SBT_OPTS="-Xms1G -Xmx4G -Dsbt.repository.config=sbt.repositories"
 
 CARGO_HOME=$HOME/.cargo
 APP_HOME=$HOME/apps

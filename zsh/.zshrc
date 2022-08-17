@@ -5,7 +5,9 @@
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="af-magic"
-ZSH_TMUX_AUTOSTART=true
+if [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
+  ZSH_TMUX_AUTOSTART=true
+fi
 
 # Remove oldest history event that has a duplicate, if history needs trimming
 HIST_EXPIRE_DUPS_FIRST="true"
@@ -62,7 +64,7 @@ typeset -aU path
 source $ZDOTDIR/exports.zsh
 
 # Alt vi-mode plugin https://github.com/jeffreytse/zsh-vi-mode
-plugins=(git vi-mode history-substring-search zsh-autosuggestions tmux)
+plugins=(git vi-mode history-substring-search zsh-autosuggestions tmux fzf)
 
 # Path to your oh-my-zsh installation.
 export ZSH=$ZDOTDIR/.oh-my-zsh
@@ -128,7 +130,7 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 ### Fix slowness of pastes
 
-source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # > FZF 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

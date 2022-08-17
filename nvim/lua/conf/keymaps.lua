@@ -229,9 +229,9 @@ map({ 'i', 's' }, '<S-Tab>', function()
   end
 end, { expr = true })
 -- minimal choice change, same as when using vim.ui.select below
-map({ 'i' }, '<C-y>', function()
-  if luasnip.choice_active() then
-    luasnip.change_choice(1)
+map({ 'i', 's' }, '<C-y>', function()
+  if luasnip.get_active_snip() then
+    require('luasnip.extras.select_choice')()
   end
 end)
 -- Luasnip choice selection using vim.ui.select

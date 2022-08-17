@@ -1,3 +1,8 @@
+-- sn(nil, { t "IO[", i("+E"), t ", ", i(2, "+A"), t "]" }),
+-- sn(nil, { t "Task[", i(1, "+A"), t "]" }),
+-- sn(nil, { t "RIO[", i(1, "-R"), t", ", i(2, "+A"),  t "]" }),
+-- sn(nil, { t "UIO[", i(1, "+A"), t "]" }),
+-- sn(nil, { t "URIO[", i(1, "+E"), t ", ", i(2, "+A"), t "]" }),
 return {
   -- case class Person(name: String) {}
   -- case class Person(name: String) extends A
@@ -62,6 +67,27 @@ return {
       rep(1),
       rep(2),
       i(0)
+    })
+  ),
+  s({ trig = "co", dscr = "Case object" },
+    fmt([[ 
+        case object {}
+    ]], {
+      i(0)
+    })
+  ),
+  s({ trig = "zio", dscr = "ZIO type declaration" },
+    fmt([[ 
+        {} 
+    ]], {
+      c(1, {
+        sn(nil, { t "ZIO[", i(1, "-R"), t ", ", i(2, "+E"), t ", ", i(3, "+A"), t "]" }),
+        sn(nil, { t "IO[", i("+E"), t ", ", i(2, "+A"), t "]" }),
+        sn(nil, { t "Task[", i(1, "+A"), t "]" }),
+        sn(nil, { t "RIO[", i(1, "-R"), t ", ", i(2, "+A"), t "]" }),
+        sn(nil, { t "UIO[", i(1, "+A"), t "]" }),
+        sn(nil, { t "URIO[", i(1, "+E"), t ", ", i(2, "+A"), t "]" }),
+      })
     })
   ),
 }

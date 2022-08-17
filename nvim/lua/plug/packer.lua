@@ -1,8 +1,9 @@
 -- Install packer if not already installed
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.cmd [[packadd packer.nvim]]
 end
 
 -- Reload init.lua on change
@@ -135,23 +136,13 @@ require('packer').startup(function(use)
   -- Fancy notifications
   use { 'rcarriga/nvim-notify' }
 
-  -- Easier jumping
-  use {
-    'phaazon/hop.nvim',
-    branch = 'v2', -- optional but strongly recommended
-    config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
-      require 'hop'.setup {
-        teasing = false,
-        uppercase_labels = true,
-      }
-    end
-  }
-
   -- Visualize undo history
   use { 'mbbill/undotree', opt = true }
 
   -- Smooth scrolling
   use { 'karb94/neoscroll.nvim', opt = true }
 
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)

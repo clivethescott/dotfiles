@@ -152,3 +152,11 @@ function cd() {
       fi
   fi
 }
+
+function resetdns() {
+     dscacheutil -flushcache;
+     sudo killall -HUP mDNSResponder
+     sudo killall -9 mDNSResponder mDNSResponderHelper
+     sudo launchctl stop homebrew.mxcl.dnsmasq 
+     sudo launchctl start homebrew.mxcl.dnsmasq
+}
