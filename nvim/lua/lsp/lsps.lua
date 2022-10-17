@@ -1,27 +1,27 @@
 -- LSP settings
 local map = vim.keymap.set
 local has_telescope, telescope_builtin = pcall(require, 'telescope.builtin')
-local has_sig, sig = pcall(require, 'lsp_signature')
 local utils = require 'helper.utils'
 
-if has_sig then
-  sig.setup({
+local on_attach = function(client, bufnr)
+  -- vim.notify('LSP connected client ' .. client.name, 'info')
+  local opts = { buffer = bufnr, silent = true }
+  local caps = client.server_capabilities
+
+local has_sig, sig = pcall(require, 'lsp_signature')
+  if has_sig then
+  sig.on_attach({
     bind = true, --This is mandatory, otherwise border config won't get registered.
     handler_opts = {
-      border = "none"
+      border = "rounded"
     },
     transparency = 20,
     padding = ' ',
     floating_window_off_x = 5,
     floating_window_above_cur_line = true,
     hint_prefix = " ",
-  })
-end
-
-local on_attach = function(client, bufnr)
-  -- vim.notify('LSP connected client ' .. client.name, 'info')
-  local opts = { buffer = bufnr, silent = true }
-  local caps = client.server_capabilities
+  }, bufnr)
+  end
 
   if has_telescope then
     map('n', 'gd', telescope_builtin.lsp_definitions, opts)
@@ -51,7 +51,7 @@ local on_attach = function(client, bufnr)
   map('n', 'gs', vim.lsp.buf.signature_help, opts)
   map('n', 'gl', vim.lsp.codelens.run, opts)
   -- map('n', '<leader>r', vim.lsp.buf.rename, opts)
-  map('n', '<leader>r', utils.rename, opts)
+  map('n', '<leader>r', vim.lsp.buf.rename, opts)
 
   -- Formatting
 
@@ -71,7 +71,7 @@ local on_attach = function(client, bufnr)
   end, opts)
   -- map('n', '<leader>d', vim.diagnostic.setloclist, opts) -- buffer diagnostics only
 
-  -- map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+  -- map('n', '/leader>wa', vim.lsp.buf.add_workspace_folder, opts)
   -- map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
   -- map('n', '<leader>wl', function()
   --   vim.inspect(vim.lsp.buf.list_workspace_folders())

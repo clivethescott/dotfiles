@@ -8,10 +8,15 @@ M.project_files = function()
 
   local fopts = {
     hidden = true,
-    no_ignore = false
+    no_ignore = false,
+    show_untracked = true
   }
-  local ok = pcall(telescope.git_files, fopts)
-  if not ok then telescope.find_files(fopts) end
+  local is_git_dir = require 'telescope.utils'.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree" })[1]
+  if is_git_dir then
+    telescope.git_files(fopts)
+  else
+    telescope.find_files(fopts)
+  end
 end
 
 return M

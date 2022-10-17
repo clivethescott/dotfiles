@@ -46,17 +46,6 @@ require('packer').startup(function(use)
     requires = { 'nvim-lua/plenary.nvim' }
   }
 
-  -- Surround Text objects
-  -- use 'tpope/vim-surround'
-  use({
-    "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end
-  })
-
   -- Syntax highlighting
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   -- Additional textobjects for treesitter
@@ -64,7 +53,7 @@ require('packer').startup(function(use)
   use 'nvim-treesitter/playground'
 
   -- keep function name pinned when scrolling
-  -- use { 'romgrk/nvim-treesitter-context' }
+  use { 'romgrk/nvim-treesitter-context' }
 
   -- LSP
   use {
@@ -105,8 +94,6 @@ require('packer').startup(function(use)
 
   -- Metals LSP for Scala
   use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
-  -- Java LSP
-  use { 'mfussenegger/nvim-jdtls' }
 
   -- DAP
   use 'mfussenegger/nvim-dap'
@@ -120,6 +107,9 @@ require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip' -- Snippets engine
   use 'rafamadriz/friendly-snippets' -- Collection of Vscode-like Snippets
   -- use 'honza/vim-snippets' -- Collection of Snipmate-like Snippets
+
+  -- Diff previewer
+  use { 'sindrets/diffview.nvim' }
 
   -- Floating term
   use 'akinsho/toggleterm.nvim'
@@ -135,23 +125,7 @@ require('packer').startup(function(use)
   -- Fancy notifications
   use { 'rcarriga/nvim-notify' }
 
-  -- Easier jumping
-  use {
-    'phaazon/hop.nvim',
-    branch = 'v2', -- optional but strongly recommended
-    config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
-      require 'hop'.setup {
-        teasing = false,
-        uppercase_labels = true,
-      }
-    end
-  }
-
   -- Visualize undo history
   use { 'mbbill/undotree', opt = true }
-
-  -- Smooth scrolling
-  use { 'karb94/neoscroll.nvim', opt = true }
 
 end)
