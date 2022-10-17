@@ -6,7 +6,7 @@ end
 treesitter_config.setup {
   highlight = {
     enable = true, -- false will disable the whole extension
-    additional_vim_regex_highlighting = false, -- performance may suffer if enabled
+    additional_vim_regex_highlighting = true, -- performance may suffer if enabled
   },
   disable = { "svelte", "phpdoc", "commonlisp" },
   incremental_selection = {

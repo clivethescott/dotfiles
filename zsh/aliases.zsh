@@ -2,7 +2,7 @@ alias sbt='sbt -J-XX:+IgnoreUnrecognizedVMOptions'
 alias tree='ls --tree'
 alias pdfcat='gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=temp.pdf source*.pdf' # uses ghostscript
 alias bloop='bloop-jvm'
-alias bu='brew upgrade --fetch-HEAD && vim -c ":PackerSync"'
+alias bu='brew upgrade && vim -c ":PackerSync"'
 alias less=bat
 alias ls='COLUMNS=120 exa'
 alias grep='rg'

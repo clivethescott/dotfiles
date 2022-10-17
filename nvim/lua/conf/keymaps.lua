@@ -79,12 +79,9 @@ end)
 
 -- Use <c-p> and <c-n> to match command history by substring
 -- Just like how <up> and <down> work
-map('c', '<c-n>', function()
-  return vim.fn.wildmenumode() == 1 and '<c-n>' or '<down>'
-end, { expr = true })
-map('c', '<c-p>', function()
-  return vim.fn.wildmenumode() == 1 and '<c-p>' or '<up>'
-end, { expr = true })
+-- https://github.com/neovim/neovim/issues/20231
+map('c', '<c-n>', [[wildmenumode() == 1 ? '<c-n>' : '<down>']], { expr = true, replace_keycodes = false })
+map('c', '<c-n>', [[wildmenumode() == 1 ? '<c-p>' : '<up>']], { expr = true, replace_keycodes = false })
 
 -- Quickly add empty lines
 -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines=
