@@ -1,7 +1,7 @@
 venv/
 __pycache__/
 target/
-project/
+project/project
 .metals/
 node_modules/
 .bloop/
