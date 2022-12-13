@@ -77,12 +77,6 @@ map('n', '<space>f', function()
   end
 end)
 
--- Use <c-p> and <c-n> to match command history by substring
--- Just like how <up> and <down> work
--- https://github.com/neovim/neovim/issues/20231
-map('c', '<c-n>', [[wildmenumode() == 1 ? '<c-n>' : '<down>']], { expr = true, replace_keycodes = false })
-map('c', '<c-n>', [[wildmenumode() == 1 ? '<c-p>' : '<up>']], { expr = true, replace_keycodes = false })
-
 -- Quickly add empty lines
 -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines=
 vim.api.nvim_set_keymap('n', '<space>[', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", opts)
@@ -114,6 +108,7 @@ vim.api.nvim_set_keymap('n', '<leader>gt', '<cmd>AlternateFile<cr>', opts)
 
 map('n', '<leader>t', telescope.builtin)
 map('n', '<leader>tf', telescope.current_buffer_fuzzy_find)
+map('n', '<c-f>', telescope.live_grep)
 map('n', '<leader>tF', telescope.live_grep)
 map('n', '<leader>tc', telescope.commands)
 map('n', '<leader>tm', telescope.marks)

@@ -1,5 +1,5 @@
-Global / semanticdbEnabled := true
+// Global / semanticdbEnabled := true
 Global / onChangedBuildSource := ReloadOnSourceChanges
-semanticdbVersion := "4.5.9"
+semanticdbVersion := "4.6.0"
 
 addCommandAlias("ci", ";clean; compile;test; assembly;")

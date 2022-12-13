@@ -14,9 +14,9 @@ onedarkTheme.setup {
 }
 onedarkTheme.load() ]]
 
-
 vim.g.tokyonight_style = "night"
-vim.cmd [[colorscheme tokyonight]]
+
+vim.cmd [[colorscheme tokyonight ]]
 
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = 'menuone,noinsert,noselect'
@@ -71,7 +71,7 @@ vim.opt.colorcolumn = '120'
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 
 -- Don't show mode change messages
 vim.opt.showmode = false

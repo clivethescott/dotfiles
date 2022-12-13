@@ -5,9 +5,9 @@ alias bloop='bloop-jvm'
 alias bu='brew upgrade && vim -c ":PackerSync"'
 alias less=bat
 alias ls='COLUMNS=120 exa'
-alias grep='rg'
-alias find='fd'
-alias ps='procs'
+# alias grep='rg'
+# alias find='fd'
+# alias ps='procs'
 alias rustdocs="cargo doc --open"
 alias godocs="echo 'Go Docs starting on http://localhost:3000' && godoc -http=:3000"
 alias lg='lazygit'

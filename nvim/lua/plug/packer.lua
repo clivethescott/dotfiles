@@ -29,6 +29,7 @@ require('packer').startup(function(use)
   -- Color Theme
   -- use 'navarasu/onedark.nvim'
   use 'folke/tokyonight.nvim'
+  use { "ellisonleao/gruvbox.nvim" }
 
   -- Comments
   use 'numToStr/Comment.nvim'
@@ -60,19 +61,15 @@ require('packer').startup(function(use)
     'williamboman/nvim-lsp-installer',
     'neovim/nvim-lspconfig',
   }
-  use { 'hrsh7th/nvim-cmp',
-    requires = {
-
-      -- cmp completion sources
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-nvim-lsp-document-symbol',
-      -- 'hrsh7th/cmp-nvim-lsp-signature-help',
-      'hrsh7th/cmp-nvim-lua',
-      'hrsh7th/cmp-calc'
-    }
-  }
+  use 'hrsh7th/nvim-cmp'
+  use { 'hrsh7th/cmp-nvim-lsp', requires = 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-path', requires = 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-buffer', requires = 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-nvim-lsp-document-symbol', requires = 'hrsh7th/nvim-cmp' }
+  -- 'hrsh7th/cmp-nvim-lsp-signature-help'
+  use { 'hrsh7th/cmp-nvim-lua', requires = 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-calc', requires = 'hrsh7th/nvim-cmp' }
+  use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
 
   -- Nicer LSP signature float window
   use 'ray-x/lsp_signature.nvim'

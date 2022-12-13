@@ -64,4 +64,18 @@ return {
       i(0)
     })
   ),
+  s({ trig = "enum", dscr = "Create an enumeration" },
+    fmt([[ 
+      object {} extends Enumeration {{
+        type {} = Value
+        val {} = Value
+      }}
+      {}
+    ]], {
+      i(1),
+      rep(1),
+      i(2, "val1, value2"),
+      i(0)
+    })
+  ),
 }

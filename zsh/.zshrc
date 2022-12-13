@@ -167,3 +167,4 @@ setopt noflowcontrol
 # Increase the number of max open files/descriptions
 ulimit -n 2048
 eval "$(zoxide init zsh)"
+eval "$(jenv init -)"

@@ -93,7 +93,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 local has_cmp, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
 if has_cmp then
   -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-  capabilities = cmp_lsp.update_capabilities(capabilities)
+  capabilities = cmp_lsp.default_capabilities()
 end
 
 -- LSP installer (must be called before lspconfig below)
