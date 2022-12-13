@@ -34,4 +34,6 @@ graphql:*.{graphqls}
 --glob=!*.class
 --glob=!*.jar
 --glob=!*.png
+--glob=!*.idea/*
+--glob=!*.g8/*
 

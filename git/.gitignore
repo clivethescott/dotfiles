@@ -8,4 +8,5 @@ node_modules/
 .bsp/
 undodir/
 .scala-build
-.g8/
+.idea/
+.g8

@@ -1,16 +1,28 @@
-# alias ls='ls -hG'
+alias tf=terraform
+alias k=kubectl
+# get id and create PR on https://github.bamtech.co/mercury/janus-force-redeploy/blob/master/deploy.yaml
+alias killdeployment="bamc janus list-deployments --application subscription-data-migrator --environment dev | yq '.deployments[0].id'"
+alias awsall="_awsListProfile"
+alias awsp="_awsSetProfile"
+alias awswho="aws configure list"
+alias awslocal="aws --no-sign-request --endpoint-url=http://localhost:4566"
+alias dynamodb='aws --no-sign-request --endpoint-url=http://localhost:4566 dynamodb '
+alias dynamodescribe='aws --no-sign-request --endpoint-url=http://localhost:4566 dynamodb describe-table --table-name '
+alias deployed='http http://subscription-service-v2.mercury.bamtech.dev.us-east-1.bamgrid.net/build-info'
+alias sfmt='sbt ";scalafmt;test:scalafmt;it:test::scalafmt;e2e/e2e:scalafmt"'
+alias sbt='sbt -J-XX:+IgnoreUnrecognizedVMOptions'
 alias tree='ls --tree'
 alias pdfcat='gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=temp.pdf source*.pdf' # uses ghostscript
 alias bloop='bloop-jvm'
-alias bu='brew upgrade && vim -c ":PackerSync"'
+alias bu='brew upgrade --fetch-HEAD && vim -c ":PackerSync"'
 alias less=bat
 alias ls='COLUMNS=120 exa'
 # alias grep='rg'
-# alias find='fd'
-# alias ps='procs'
+alias procs='procs --no-header'
 alias rustdocs="cargo doc --open"
 alias godocs="echo 'Go Docs starting on http://localhost:3000' && godoc -http=:3000"
 alias lg='lazygit'
+alias lz='lazydocker'
 alias myip='curl -s https://api.ipify.org | pbcopy'
 alias tk='tmux kill-server'
 alias fpb='flutter pub get'
@@ -53,7 +65,7 @@ alias sshcopy='ssh-copy-id -i ~/.ssh/id_rsa.pub user@host'
 alias fix='ibus-daemon -rd'
 # alias u8='sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y'
 alias u8='sudo pacman -Syu'
-alias json="jq '.'"
+alias json="fx"
 alias apksigninfo='jarsigner -verify -verbose -certs'
 alias diskusage='du -sh * | sort -h'
 alias mavendownload='mvn dependency:go-offline'

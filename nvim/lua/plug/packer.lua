@@ -1,8 +1,10 @@
 -- Install packer if not already installed
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+local fn = vim.fn
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+    install_path })
+  vim.cmd [[packadd packer.nvim]]
 end
 
 -- Reload init.lua on change
@@ -27,7 +29,7 @@ require('packer').startup(function(use)
   use { 'stevearc/dressing.nvim' } -- alternative vim.ui.select and vim.ui.input
 
   -- Color Theme
-  -- use 'navarasu/onedark.nvim'
+  use 'navarasu/onedark.nvim'
   use 'folke/tokyonight.nvim'
   use { "ellisonleao/gruvbox.nvim" }
 
@@ -47,6 +49,17 @@ require('packer').startup(function(use)
     requires = { 'nvim-lua/plenary.nvim' }
   }
 
+  -- Surround Text objects
+  -- use 'tpope/vim-surround'
+  use({
+    "kylechui/nvim-surround",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  })
+
   -- Syntax highlighting
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   -- Additional textobjects for treesitter
@@ -54,7 +67,7 @@ require('packer').startup(function(use)
   use 'nvim-treesitter/playground'
 
   -- keep function name pinned when scrolling
-  use { 'romgrk/nvim-treesitter-context' }
+  -- use { 'romgrk/nvim-treesitter-context' }
 
   -- LSP
   use {
@@ -70,9 +83,10 @@ require('packer').startup(function(use)
   use { 'hrsh7th/cmp-nvim-lua', requires = 'hrsh7th/nvim-cmp' }
   use { 'hrsh7th/cmp-calc', requires = 'hrsh7th/nvim-cmp' }
   use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-nvim-lsp-signature-help', requires = 'hrsh7th/nvim-cmp' }
 
   -- Nicer LSP signature float window
-  use 'ray-x/lsp_signature.nvim'
+  -- use 'ray-x/lsp_signature.nvim'
 
   -- LSP Progress
   -- use 'arkav/lualine-lsp-progress'
@@ -91,6 +105,8 @@ require('packer').startup(function(use)
 
   -- Metals LSP for Scala
   use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
+  -- Java LSP
+  use { 'mfussenegger/nvim-jdtls' }
 
   -- DAP
   use 'mfussenegger/nvim-dap'
@@ -104,9 +120,6 @@ require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip' -- Snippets engine
   use 'rafamadriz/friendly-snippets' -- Collection of Vscode-like Snippets
   -- use 'honza/vim-snippets' -- Collection of Snipmate-like Snippets
-
-  -- Diff previewer
-  use { 'sindrets/diffview.nvim' }
 
   -- Floating term
   use 'akinsho/toggleterm.nvim'
@@ -122,7 +135,18 @@ require('packer').startup(function(use)
   -- Fancy notifications
   use { 'rcarriga/nvim-notify' }
 
+  -- Combined split-window/tmux navigation
+  -- use 'christoomey/vim-tmux-navigator'
+
   -- Visualize undo history
   use { 'mbbill/undotree', opt = true }
 
+  use 'jparise/vim-graphql'
+
+  -- Smooth scrolling
+  -- use { 'karb94/neoscroll.nvim', opt = true }
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)

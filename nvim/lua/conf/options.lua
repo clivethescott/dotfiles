@@ -7,16 +7,26 @@ vim.opt.termguicolors = true
 
 vim.opt.lazyredraw = true
 
+local selected_scheme = 'tokyonight'
+vim.g['clive#colorscheme'] = selected_scheme
+
 -- Configure and enable onedark theme
---[[ local onedarkTheme = require('onedark')
-onedarkTheme.setup {
-  style = 'darker' -- or dark(er), cool, deep, warm(er)
-}
-onedarkTheme.load() ]]
+local onedark_ok, onedark_theme = pcall(require, 'onedark')
+if onedark_ok and selected_scheme == 'onedark' then
+  onedark_theme.setup {
+    style = 'darker' -- or dark(er), cool, deep, warm(er)
+  }
+  onedark_theme.load()
+  vim.cmd [[colorscheme onedark]]
+end
 
 vim.g.tokyonight_style = "night"
-
 vim.cmd [[colorscheme tokyonight ]]
+local tokyo_ok, _ = pcall(require, 'tokyonight')
+if tokyo_ok and selected_scheme == 'tokyonight' then
+  vim.g.tokyonight_style = "night"
+  vim.cmd [[colorscheme tokyonight]]
+end
 
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = 'menuone,noinsert,noselect'
@@ -92,10 +102,9 @@ vim.g.loaded_perl_provider = 0
 vim.g.python3_host_prog = '/opt/homebrew/opt/python@3.10/bin/python3'
 vim.g.loaded_ruby_provider = 0
 
-vim.opt.foldmethod = 'syntax'
-vim.opt.foldminlines = 99
-vim.opt.foldlevel = 1
+-- vim.opt.foldmethod = 'syntax'
+-- vim.opt.foldminlines = 99
+-- vim.opt.foldlevel = 1
 
 -- Show Lines before/after cursor
 vim.opt.scrolloff = 1
-

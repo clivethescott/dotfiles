@@ -1,17 +1,11 @@
 [user]
 	name = Clive Gurure
-	email = clivethescott@gmail.com
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[includeIf "gitdir:~/wizenoze/source/"]
-  path = .gitconfig-wizenoze
-[init]
-	defaultBranch = main
+	email = clive.gurure@disneystreaming.com
+	signingKey = D3E0E2C940EA6B587180083CE9A1BE552907DFE6
+[commit]
+	gpgsign = false
 [core]
-	excludesfile = /Users/clive/.gitignore
+	excludesfile = /Users/clive.gurure/.gitignore
   pager = delta
 [interactive]
     diffFilter = delta --color-only
@@ -27,3 +21,9 @@
 
 [diff]
     colorMoved = default
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
+[url "git@github.bamtech.co:"]
+	insteadOf = https://github.bamtech.co/
