@@ -12,7 +12,7 @@ lualine.setup {
   options = {
     icons_enabled = true,
     theme = 'tokyonight',
-    component_separators = '|',
+    component_separators = '',
     section_separators = '',
     -- component_separators = { left = '', right = '' },
     -- section_separators = { left = '', right = '' },
@@ -46,7 +46,7 @@ lualine.setup {
         update_in_insert = false, -- Update diagnostics in insert mode.
         always_visible = false, -- Show diagnostics even if there are none.
       },
-      -- { 'lsp_progress' }, -- provided by arkav/lualine-lsp-progress
+      { 'lsp_progress' }, -- provided by arkav/lualine-lsp-progress
       { metals_status }
     },
     lualine_c = {

@@ -1,7 +1,40 @@
-source $HOME/.config/nvim/init.vim
+let mapleader = ','
+" Disable that annoying bell sound
+set visualbell
+set noerrorbells
+" set clipboard+=ideaput
+set clipboard+=unnamed
+set number relativenumber
+set hlsearch
+set incsearch
+set smartcase
+set showmode
+set ideajoin
+set sneak
+set easymotion
+
+nnoremap <leader>m :nohls<cr>
+nnoremap gp :b#<cr>
+nnoremap Y yy
+nnoremap ' `
+nmap <Leader>v :vsplit<CR>
+nmap <Leader>s :split<CR>
+vnoremap < <gv
+vnoremap > >gv
+" Greatest remap EVER!! 
+" Let me explain, this remap while in visiual mode
+" will delete what is currently highlighted and replace it 
+" with what is in the register BUT it will YANK (delete) it 
+" to a VOID register. Meaning I still have what I originally had
+" when I pasted. I don't loose the previous thing I YANKED!vnoremap
+vnoremap <leader>p "_dP
+
+
 nmap gi :action GotoImplementation<CR>
+nmap gf :action GotoFile<CR>
 nmap gr :action ShowUsages<CR>
-nmap gt :action GotoTypeDeclaration<CR>
+nmap gc :action CopyReference<CR>
+nmap gy :action GotoTypeDeclaration<CR>
 nmap g[ :action GotoPreviousError<CR>
 nmap g] :action GotoNextError<CR>
 nmap <leader>f :action ReformatCode<CR>
@@ -18,21 +51,16 @@ inoremap <S-Left> <C-O>:action EditorLeftWithSelection<CR>
 inoremap <S-Right> <C-O>:action EditorRightWithSelection<CR>
 inoremap <S-Up> <C-O>:action EditorUpWithSelection<CR>
 inoremap <S-Down> <C-O>:action EditorDownWithSelection<CR>
-" Splits
-nmap <leader>v :action SplitVertically<CR>
-nmap <leader>s :action SplitHorizontally<CR>
-nmap gh :action PrevSplitter<CR>
-nmap gl :action NextSplitter<CR>
-nmap gc :action Unsplit<CR>
+" Git
+nmap <Leader>gp :action Git.Pull<CR>
+nmap <Leader>gP :action Vcs.Push<CR>
+nmap <Leader>gl :action Git.Log<CR>
+nmap <Leader>gh :action Github.Open.In.Browser<CR>
+nmap <Leader>gg :action Git.Branches<CR>
+nmap <Leader>gb :action Git.Branches<CR>
 
+nmap <space>j :action AceAction<CR>
+nmap <M-j> :action AceAction<CR>
 map <M-u> <C-u>
 map <M-d> <C-d>
 imap <M-[> <Esc>
-
-" Disable that annoying bell sound
-set visualbell
-set noerrorbells
-" set clipboard+=ideaput
-set clipboard+=unnamed
-set number relativenumber
-set ideajoin

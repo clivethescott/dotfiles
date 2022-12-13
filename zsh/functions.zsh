@@ -1,3 +1,5 @@
+source $HOME/.config/zsh/awsp_functions.sh
+
 # Kill tomcat
 function tomcat() {
 

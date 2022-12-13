@@ -3,7 +3,7 @@ local map = function(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
-local opts = { silent = true, noremap = true }
+local opts = { silent = true }
 
 -- Dealing with word wrap on long lines
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
@@ -79,9 +79,12 @@ end)
 
 -- Use <c-p> and <c-n> to match command history by substring
 -- Just like how <up> and <down> work
--- https://github.com/neovim/neovim/issues/20231
-map('c', '<c-n>', [[wildmenumode() == 1 ? '<c-n>' : '<down>']], { expr = true, replace_keycodes = false })
-map('c', '<c-n>', [[wildmenumode() == 1 ? '<c-p>' : '<up>']], { expr = true, replace_keycodes = false })
+map('c', '<c-n>', function()
+  return vim.fn.wildmenumode() == 1 and '<c-n>' or '<down>'
+end, { expr = true })
+map('c', '<c-p>', function()
+  return vim.fn.wildmenumode() == 1 and '<c-p>' or '<up>'
+end, { expr = true })
 
 -- Quickly add empty lines
 -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines=
@@ -112,9 +115,10 @@ end)
 
 vim.api.nvim_set_keymap('n', '<leader>gt', '<cmd>AlternateFile<cr>', opts)
 
-map('n', '<leader>t', telescope.builtin)
-map('n', '<leader>tf', telescope.current_buffer_fuzzy_find)
-map('n', '<leader>tF', telescope.live_grep)
+map('n', '<leader>tt', telescope.builtin)
+map('n', '<leader>tf', telescope.live_grep)
+map('n', '<c-f>', telescope.live_grep)
+map('n', '<leader>tF', telescope.current_buffer_fuzzy_find)
 map('n', '<leader>tc', telescope.commands)
 map('n', '<leader>tm', telescope.marks)
 map('n', '<leader>tj', telescope.jumplist)

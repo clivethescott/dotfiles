@@ -1,6 +1,11 @@
 local has_telescope, telescope = pcall(require, 'telescope.builtin')
 local M = {}
 
+local function is_git_workdir()
+  local cmd = 'git rev-parse --is-inside-work-tree 2> /dev/null'
+  return os.execute(cmd) == 0
+end
+
 M.project_files = function()
   if not has_telescope then
     return
@@ -8,11 +13,10 @@ M.project_files = function()
 
   local fopts = {
     hidden = true,
-    no_ignore = false,
-    show_untracked = true
+    no_ignore = false
   }
-  local is_git_dir = require 'telescope.utils'.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree" })[1]
-  if is_git_dir then
+
+  if is_git_workdir() then
     telescope.git_files(fopts)
   else
     telescope.find_files(fopts)

@@ -64,7 +64,7 @@ typeset -aU path
 source $ZDOTDIR/exports.zsh
 
 # Alt vi-mode plugin https://github.com/jeffreytse/zsh-vi-mode
-plugins=(git vi-mode history-substring-search zsh-autosuggestions tmux fzf)
+plugins=(git vi-mode history-substring-search zsh-autosuggestions tmux fzf docker)
 
 # Path to your oh-my-zsh installation.
 export ZSH=$ZDOTDIR/.oh-my-zsh
@@ -78,10 +78,12 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 source $ZDOTDIR/setopt.zsh 
-source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/functions.zsh
+source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/keybindings.zsh
 
+complete -W "$(cat $HOME/.aws/credentials | rg '\[.*\]' | tr -d '[]')" _awsSwitchProfile
+complete -W "$(cat $HOME/.aws/config | rg '\[.*\]' | tr -d '[]' | cut -d " " -f 2)" _awsSetProfile
 # Switches cursor depending on vi mode
 cursor_mode
 # Additional vi-mode text objects
@@ -169,3 +171,5 @@ setopt noflowcontrol
 # Increase the number of max open files/descriptions
 ulimit -n 2048
 eval "$(zoxide init zsh)"
+
+eval "$(jenv init -)"

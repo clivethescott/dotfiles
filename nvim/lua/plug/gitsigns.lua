@@ -21,7 +21,7 @@ gitsigns.setup { on_attach = function()
   end, { expr = true })
 
   map('n', '<space>hh', gs.preview_hunk)
-  map({ 'n', 'v' }, '<space>hU', ':Gitsigns reset_hunk<CR>')
+  map({ 'n', 'v' }, '<space>hu', ':Gitsigns reset_hunk<CR>')
   map('n', '<space>hB', function() gs.blame_line { full = true } end)
   map('n', '<space>hb', gs.toggle_current_line_blame)
   map('n', '<space>hR', gs.reset_buffer)
