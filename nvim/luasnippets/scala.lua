@@ -1,8 +1,3 @@
--- sn(nil, { t "IO[", i("+E"), t ", ", i(2, "+A"), t "]" }),
--- sn(nil, { t "Task[", i(1, "+A"), t "]" }),
--- sn(nil, { t "RIO[", i(1, "-R"), t", ", i(2, "+A"),  t "]" }),
--- sn(nil, { t "UIO[", i(1, "+A"), t "]" }),
--- sn(nil, { t "URIO[", i(1, "+E"), t ", ", i(2, "+A"), t "]" }),
 return {
   -- case class Person(name: String) {}
   -- case class Person(name: String) extends A
@@ -31,6 +26,15 @@ return {
   s({ trig = "ex", dscr = "Extends" },
     fmt("extends {}", {
       i(0)
+    })
+  ),
+  s({ trig = "test", dscr = "Create an AnyFunSuite Test" },
+    fmt([[
+      test("{}") {{
+        {}
+      }}
+    ]], {
+      i(1), i(0)
     })
   ),
   s({ trig = "ext", dscr = "Create an extractor" },
@@ -74,52 +78,13 @@ return {
       i(0)
     })
   ),
-  s({ trig = "co", dscr = "Case object" },
+  s({ trig = "lib", dscr = "scala-cli script lib" },
     fmt([[ 
-        case object {}
+      //> using lib "{}::{}:{}"
     ]], {
-      i(0)
+      i(1, "groupId"),
+      i(2, "artifactId"),
+      i(3, "version")
     })
-  ),
-  s({ trig = "zio", dscr = "ZIO type declaration" },
-    fmt([[ 
-        {} 
-    ]], {
-      c(1, {
-        sn(nil, { t "ZIO[", i(1, "-R"), t ", ", i(2, "+E"), t ", ", i(3, "+A"), t "] ", i(0) }),
-        sn(nil, { t "IO[", i("+E"), t ", ", i(2, "+A"), t "]" }),
-        sn(nil, { t "Task[", i(1, "+A"), t "]" }),
-        sn(nil, { t "RIO[", i(1, "-R"), t ", ", i(2, "+A"), t "]" }),
-        sn(nil, { t "UIO[", i(1, "+A"), t "]" }),
-        sn(nil, { t "URIO[", i(1, "+E"), t ", ", i(2, "+A"), t "]" }),
-      })
-    })
-  ),
-  s({ trig = "test", dscr = "Create a ZIO test" },
-    fmt([[ 
-        testM("{}") {{
-          {}
-        }},
-    ]], {
-      i(1, "test name"), i(0)
-    })
-  ),
-  s({ trig = "utest", dscr = "Create a simple test" },
-    fmt([[
-      test("{}") {{
-        {}
-      }},
-    ]], {
-      i(1, "test name"), i(0)
-    })
-  ),
-  s({ trig = "spec", dscr = "Create a test suite" },
-    fmt([[ 
-          def spec = suite("{}")(
-            {}
-          )
-        ]], {
-      i(1, "suite name"), i(2)
-    })
-  ),
+  )
 }

@@ -1,6 +1,5 @@
 // Global / semanticdbEnabled := true
-semanticdbVersion := "4.6.0"
 Global / onChangedBuildSource := ReloadOnSourceChanges
+semanticdbVersion := "4.6.0"
 
-addCommandAlias("rerun", "scalafixAll; compile; docker:publishLocal; up dev")
-
+addCommandAlias("ci", ";clean; compile;test; assembly;")

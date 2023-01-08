@@ -5,9 +5,7 @@
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="af-magic"
-if [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
-  ZSH_TMUX_AUTOSTART=true
-fi
+ZSH_TMUX_AUTOSTART=true
 
 # Remove oldest history event that has a duplicate, if history needs trimming
 HIST_EXPIRE_DUPS_FIRST="true"
@@ -64,7 +62,7 @@ typeset -aU path
 source $ZDOTDIR/exports.zsh
 
 # Alt vi-mode plugin https://github.com/jeffreytse/zsh-vi-mode
-plugins=(git vi-mode history-substring-search zsh-autosuggestions tmux fzf docker)
+plugins=(git vi-mode history-substring-search zsh-autosuggestions tmux)
 
 # Path to your oh-my-zsh installation.
 export ZSH=$ZDOTDIR/.oh-my-zsh
@@ -78,12 +76,10 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 source $ZDOTDIR/setopt.zsh 
-source $ZDOTDIR/functions.zsh
 source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/functions.zsh
 source $ZDOTDIR/keybindings.zsh
 
-complete -W "$(cat $HOME/.aws/credentials | rg '\[.*\]' | tr -d '[]')" _awsSwitchProfile
-complete -W "$(cat $HOME/.aws/config | rg '\[.*\]' | tr -d '[]' | cut -d " " -f 2)" _awsSetProfile
 # Switches cursor depending on vi mode
 cursor_mode
 # Additional vi-mode text objects
@@ -132,7 +128,7 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 ### Fix slowness of pastes
 
-# source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # > FZF 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -171,4 +167,9 @@ setopt noflowcontrol
 # Increase the number of max open files/descriptions
 ulimit -n 2048
 eval "$(zoxide init zsh)"
-eval "$(jenv init -)"
+# eval "$(jenv init -)"
+
+# >>> .scala-cli.aux completions >>>
+fpath=("/Users/clive/Library/Application Support/ScalaCli/completions/zsh" $fpath)
+compinit
+# <<< .scala-cli.aux completions <<<

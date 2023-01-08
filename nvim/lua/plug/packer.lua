@@ -1,16 +1,11 @@
 -- Install packer if not already installed
-local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-    install_path })
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local is_bootstrap = false
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  is_bootstrap = true
+  vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
   vim.cmd [[packadd packer.nvim]]
 end
-
--- Reload init.lua on change
-local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost',
-  { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'init.lua' })
 
 require('packer').startup(function(use)
   -- Packer manager manages itself
@@ -22,16 +17,12 @@ require('packer').startup(function(use)
       'kyazdani42/nvim-web-devicons',
     }
   }
-  use { 'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/plenary.nvim' }
-  }
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
   use { 'stevearc/dressing.nvim' } -- alternative vim.ui.select and vim.ui.input
 
   -- Color Theme
-  use 'navarasu/onedark.nvim'
   use 'folke/tokyonight.nvim'
-  use { "ellisonleao/gruvbox.nvim" }
 
   -- Comments
   use 'numToStr/Comment.nvim'
@@ -41,38 +32,38 @@ require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
-  -- Combine tmux and vim status line, must also update tmux config
-  -- use 'vimpostor/vim-tpipeline'
-
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' }
   }
 
-  -- Surround Text objects
-  -- use 'tpope/vim-surround'
-  use({
-    "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end
-  })
-
   -- Syntax highlighting
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use { 'nvim-treesitter/nvim-treesitter',
+    run = function()
+      pcall(require('nvim-treesitter.install').update { with_sync = true })
+    end,
+  }
   -- Additional textobjects for treesitter
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use 'nvim-treesitter/playground'
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = 'nvim-treesitter',
+  }
+  -- use 'nvim-treesitter/playground'
 
   -- keep function name pinned when scrolling
-  -- use { 'romgrk/nvim-treesitter-context' }
+  use { 'romgrk/nvim-treesitter-context' }
 
   -- LSP
-  use {
-    'williamboman/nvim-lsp-installer',
+  use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    requires = {
+      -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+
+      -- Additional lua configuration, makes nvim stuff amazing
+      'folke/neodev.nvim',
+    },
   }
   use 'hrsh7th/nvim-cmp'
   use { 'hrsh7th/cmp-nvim-lsp', requires = 'hrsh7th/nvim-cmp' }
@@ -83,10 +74,9 @@ require('packer').startup(function(use)
   use { 'hrsh7th/cmp-nvim-lua', requires = 'hrsh7th/nvim-cmp' }
   use { 'hrsh7th/cmp-calc', requires = 'hrsh7th/nvim-cmp' }
   use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
-  use { 'hrsh7th/cmp-nvim-lsp-signature-help', requires = 'hrsh7th/nvim-cmp' }
 
   -- Nicer LSP signature float window
-  -- use 'ray-x/lsp_signature.nvim'
+  use 'ray-x/lsp_signature.nvim'
 
   -- LSP Progress
   -- use 'arkav/lualine-lsp-progress'
@@ -105,8 +95,6 @@ require('packer').startup(function(use)
 
   -- Metals LSP for Scala
   use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
-  -- Java LSP
-  use { 'mfussenegger/nvim-jdtls' }
 
   -- DAP
   use 'mfussenegger/nvim-dap'
@@ -120,6 +108,9 @@ require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip' -- Snippets engine
   use 'rafamadriz/friendly-snippets' -- Collection of Vscode-like Snippets
   -- use 'honza/vim-snippets' -- Collection of Snipmate-like Snippets
+
+  -- Diff previewer
+  -- use { 'sindrets/diffview.nvim' }
 
   -- Floating term
   use 'akinsho/toggleterm.nvim'
@@ -135,18 +126,35 @@ require('packer').startup(function(use)
   -- Fancy notifications
   use { 'rcarriga/nvim-notify' }
 
-  -- Combined split-window/tmux navigation
-  -- use 'christoomey/vim-tmux-navigator'
+  -- Detect tabstop and shiftwidth automatically
+  use 'tpope/vim-sleuth'
 
   -- Visualize undo history
   use { 'mbbill/undotree', opt = true }
 
-  use 'jparise/vim-graphql'
-
-  -- Smooth scrolling
-  -- use { 'karb94/neoscroll.nvim', opt = true }
-
-  if packer_bootstrap then
+  if is_bootstrap then
     require('packer').sync()
   end
+
 end)
+
+-- When we are bootstrapping a configuration, it doesn't
+-- make sense to execute the rest of the init.lua.
+--
+-- You'll need to restart nvim, and then it will work.
+if is_bootstrap then
+  print '=================================='
+  print '    Plugins are being installed'
+  print '    Wait until Packer completes,'
+  print '       then restart nvim'
+  print '=================================='
+  return
+end
+
+-- Automatically source and re-compile packer whenever you save this init.lua
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
+  group = packer_group,
+  pattern = vim.fn.expand '$MYVIMRC',
+})

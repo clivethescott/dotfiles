@@ -3,7 +3,7 @@ local map = function(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
-local opts = { silent = true }
+local opts = { silent = true, noremap = true }
 
 -- Dealing with word wrap on long lines
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
@@ -77,11 +77,6 @@ map('n', '<space>f', function()
   end
 end)
 
--- Use <c-p> and <c-n> to match command history by substring
--- Just like how <up> and <down> work
--- https://github.com/neovim/neovim/issues/20231
-map('c', '<c-n>', [[wildmenumode() == 1 ? '<c-n>' : '<down>']], { expr = true, replace_keycodes = false })
-map('c', '<c-n>', [[wildmenumode() == 1 ? '<c-p>' : '<up>']], { expr = true, replace_keycodes = false })
 -- Quickly add empty lines
 -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines=
 vim.api.nvim_set_keymap('n', '<space>[', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", opts)
@@ -114,10 +109,7 @@ vim.api.nvim_set_keymap('n', '<leader>gt', '<cmd>AlternateFile<cr>', opts)
 map('n', '<leader>t', telescope.builtin)
 map('n', '<leader>tf', telescope.current_buffer_fuzzy_find)
 map('n', '<c-f>', telescope.live_grep)
-map('n', '<leader>tt', telescope.builtin)
-map('n', '<leader>tf', telescope.live_grep)
-map('n', '<c-f>', telescope.live_grep)
-map('n', '<leader>tF', telescope.current_buffer_fuzzy_find)
+map('n', '<leader>tF', telescope.live_grep)
 map('n', '<leader>tc', telescope.commands)
 map('n', '<leader>tm', telescope.marks)
 map('n', '<leader>tj', telescope.jumplist)
@@ -229,9 +221,9 @@ map({ 'i', 's' }, '<S-Tab>', function()
   end
 end, { expr = true })
 -- minimal choice change, same as when using vim.ui.select below
-map({ 'i', 's' }, '<C-y>', function()
-  if luasnip.get_active_snip() then
-    require('luasnip.extras.select_choice')()
+map({ 'i' }, '<C-y>', function()
+  if luasnip.choice_active() then
+    luasnip.change_choice(1)
   end
 end)
 -- Luasnip choice selection using vim.ui.select

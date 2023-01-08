@@ -37,11 +37,11 @@ M.setup = function()
   end
 
   local has_lspkind, lspkind = pcall(require, 'lspkind')
-  local cmp_format
+  local cmp_format = {}
   if has_lspkind then
     cmp_format = lspkind.cmp_format {
       mode = 'symbol_text', -- show only symbol annotations
-      maxwidth = 50, -- prevent the popup from showing more than provided characters
+      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
     }
   end
 
@@ -87,7 +87,6 @@ M.setup = function()
       { name = 'luasnip', max_item_count = 5, keyword_length = 2 },
       { name = 'nvim_lsp', max_item_count = 20, keyword_length = 1 },
       { name = 'nvim_lua', max_item_count = 5 },
-      { name = 'cmp_tabnine', max_item_count = 5 },
       -- { name = 'nvim_lsp_signature_help' }, -- now using lsp_signature
       { name = 'nvim_lsp_document_symbol', max_item_count = 10 },
       { name = 'buffer', max_item_count = 5, keyword_length = 3 },

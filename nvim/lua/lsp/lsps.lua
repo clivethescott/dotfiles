@@ -1,27 +1,27 @@
 -- LSP settings
 local map = vim.keymap.set
 local has_telescope, telescope_builtin = pcall(require, 'telescope.builtin')
-local has_sig, sig = pcall(require, 'lsp_signature')
 local utils = require 'helper.utils'
 
-if has_sig then
-  sig.setup({
+local on_attach = function(client, bufnr)
+  -- vim.notify('LSP connected client ' .. client.name, 'info')
+  local opts = { buffer = bufnr, silent = true }
+  local caps = client.server_capabilities
+
+local has_sig, sig = pcall(require, 'lsp_signature')
+  if has_sig then
+  sig.on_attach({
     bind = true, --This is mandatory, otherwise border config won't get registered.
     handler_opts = {
-      border = "none"
+      border = "rounded"
     },
     transparency = 20,
     padding = ' ',
     floating_window_off_x = 5,
     floating_window_above_cur_line = true,
     hint_prefix = " ",
-  })
-end
-
-local on_attach = function(client, bufnr)
-  -- vim.notify('LSP connected client ' .. client.name, 'info')
-  local opts = { buffer = bufnr, silent = true }
-  local caps = client.server_capabilities
+  }, bufnr)
+  end
 
   if has_telescope then
     map('n', 'gd', telescope_builtin.lsp_definitions, opts)
@@ -51,7 +51,7 @@ local on_attach = function(client, bufnr)
   map('n', 'gs', vim.lsp.buf.signature_help, opts)
   map('n', 'gl', vim.lsp.codelens.run, opts)
   -- map('n', '<leader>r', vim.lsp.buf.rename, opts)
-  map('n', '<leader>r', utils.rename, opts)
+  map('n', '<leader>r', vim.lsp.buf.rename, opts)
 
   -- Formatting
 
@@ -71,7 +71,7 @@ local on_attach = function(client, bufnr)
   end, opts)
   -- map('n', '<leader>d', vim.diagnostic.setloclist, opts) -- buffer diagnostics only
 
-  -- map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+  -- map('n', '/leader>wa', vim.lsp.buf.add_workspace_folder, opts)
   -- map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
   -- map('n', '<leader>wl', function()
   --   vim.inspect(vim.lsp.buf.list_workspace_folders())
@@ -85,8 +85,7 @@ local on_attach = function(client, bufnr)
 
 end
 
--- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-local capabilities = require 'cmp_nvim_lsp'.default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true -- broadcasting snippet capability for completion
 capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = { "documentation", "detail", "additionalTextEdits" },
@@ -94,35 +93,24 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 local has_cmp, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
 if has_cmp then
   -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-  capabilities = cmp_lsp.update_capabilities(capabilities)
+  capabilities = cmp_lsp.default_capabilities()
 end
 
--- LSP installer (must be called before lspconfig below)
-local has_lspinstall, lspinstall = pcall(require, 'nvim-lsp-installer')
-if has_lspinstall then
-  lspinstall.setup({
+-- Setup mason so it can manage external tooling
+require('mason').setup()
+
+require'mason-lspconfig'.setup({
     -- ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver', 'pyright', 'jdtls', 'rust_analyzer', 'dockerls' },
-    ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver', 'pyright' },
-    ui = {
-      icons = {
-        server_installed = "✓",
-        server_pending = "➜",
-        server_uninstalled = "✗"
-      }
-    },
-    log_level = vim.log.levels.WARN,
-  })
-end
+    ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'jsonls', 'tsserver', 'pyright' },
+})
 
 -- local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'pyright', 'luaserver', 'json', 'java', 'rust', 'docker' }
-local configs = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'luaserver', 'json', 'pyright', 'graphql' }
-table.insert(configs, 'null-ls') -- add null-ls at the end
+local setup_servers = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'luaserver', 'json', 'pyright' }
+table.insert(setup_servers, 'null-ls') -- add null-ls at the end
 
-require'lspconfig'.dockerls.setup{}
-
-for _, config in ipairs(configs) do
-  local has_conf, conf = pcall(require, 'lsp.' .. config)
-  if has_conf then
-    conf.setup(on_attach, capabilities)
+for _, setup_server in ipairs(setup_servers) do
+  local ok, server = pcall(require, 'lsp.' .. setup_server)
+  if ok then
+    server.setup(on_attach, capabilities)
   end
 end

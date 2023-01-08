@@ -20,7 +20,7 @@ treesitter_config.setup {
   },
   indent = {
     enable = true,
-    disable = {'java'}
+    disable = {'python'}
   },
   autotag = {
     enable = true,

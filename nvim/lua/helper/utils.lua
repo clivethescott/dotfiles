@@ -2,7 +2,7 @@ local M = {}
 
 function M.resolvedCapabilities(client_id)
   client_id = client_id or 1
-  print(vim.inspect(vim.lsp.get_active_clients()[client_id].server_capabilities))
+  vim.pretty_print(vim.lsp.get_client_by_id(client_id).server_capabilities)
 end
 
 function M.uuid()
@@ -114,44 +114,6 @@ local is_empty_str = function(str)
   return not str or #str == 0
 end
 
-function M.rename()
-  local curr_name = vim.fn.expand("<cword>")
-  local input_opts = {
-    prompt = 'LSP Rename',
-    default = curr_name
-  }
-  -- ask user input
-  vim.ui.input(input_opts, function(new_name)
-    -- check new_name is valid
-    if is_empty_str(new_name) or curr_name == new_name then return end
-    -- request lsp rename
-    local params = vim.lsp.util.make_position_params(0, 'utf-8')
-    params.newName = new_name
-    vim.lsp.buf_request(0, "textDocument/rename", params, function(err, res, ctx, _)
-      if err then
-        vim.notify(err.message or 'Error while renaming', vim.log.levels.ERROR)
-        return
-      end
-      if not res then return end
-      -- apply renames
-      local client = vim.lsp.get_client_by_id(ctx.client_id)
-      vim.lsp.util.apply_workspace_edit(res, client.offset_encoding)
-      -- display a message
-      local changes = count_lsp_res_changes(res)
-      if changes.instances > 2 then
-        local message = string.format("renamed %s instance%s in %s file%s. %s",
-          changes.instances,
-          changes.instances == 1 and '' or 's',
-          changes.files,
-          changes.files == 1 and '' or 's',
-          changes.files > 1 and "To save them run ':wa'" or ''
-        )
-        vim.notify(message)
-      end
-    end)
-  end)
-end
-
 -- local skip_lsp_format_clients = {}
 local formatting_options = function(bufnr, async)
   async = async or true
@@ -165,7 +127,7 @@ local formatting_options = function(bufnr, async)
   }
 end
 
-function M.lsp_buf_format_sync(bufnr)
+    function M.lsp_buf_format_sync(bufnr)
   local opts = formatting_options(bufnr, false)
   vim.lsp.buf.format(opts)
 end
