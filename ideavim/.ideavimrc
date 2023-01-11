@@ -63,4 +63,6 @@ nmap <space>j :action AceAction<CR>
 nmap <M-j> :action AceAction<CR>
 map <M-u> <C-u>
 map <M-d> <C-d>
-imap <M-[> <Esc>
+
+inoremap kj <Esc>
+inoremap jk <Esc>
