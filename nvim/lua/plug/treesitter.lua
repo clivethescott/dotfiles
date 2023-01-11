@@ -53,7 +53,7 @@ treesitter_config.setup {
         [']['] = '@class.outer',
       },
       goto_previous_start = {
-        ['[m'] = '@function.outer',
+        ['[m'] = '@function.inner',
         ['[['] = '@class.outer',
       },
       goto_previous_end = {

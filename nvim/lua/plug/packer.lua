@@ -18,7 +18,7 @@ require('packer').startup(function(use)
     }
   }
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use { 'stevearc/dressing.nvim' } -- alternative vim.ui.select and vim.ui.input
 
   -- Color Theme
@@ -125,6 +125,12 @@ require('packer').startup(function(use)
 
   -- Fancy notifications
   use { 'rcarriga/nvim-notify' }
+
+  use { 'chentoast/marks.nvim',
+    config = function()
+      require 'marks'.setup {}
+    end
+  }
 
   -- Visualize undo history
   use { 'mbbill/undotree', opt = true }

@@ -3,9 +3,6 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
 -- vim.lsp.set_log_level "debug"
--- Package Manager
-require 'plug.packer'
-
 require 'helper.utils'
 require 'helper.commands'
 
@@ -17,6 +14,8 @@ require 'conf.keymaps'
 
 -- Plugin configuration
 
+-- Package Manager
+require 'plug.packer'
 -- Status line
 require 'plug.lualine'
 -- File Browser
@@ -54,3 +53,5 @@ require 'plug.neoscroll'
 require 'plug.undotree'
 -- Fancy notifications
 require 'plug.notify'
+-- Visualize marks
+require 'plug.marks'
