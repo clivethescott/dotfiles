@@ -126,9 +126,6 @@ require('packer').startup(function(use)
   -- Fancy notifications
   use { 'rcarriga/nvim-notify' }
 
-  -- Detect tabstop and shiftwidth automatically
-  use 'tpope/vim-sleuth'
-
   -- Visualize undo history
   use { 'mbbill/undotree', opt = true }
 
