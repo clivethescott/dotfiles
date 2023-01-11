@@ -113,4 +113,4 @@ require('telescope').setup {
 require('telescope').load_extension('fzf')
 
 -- requires nvim-telescope/telescope-dap.nvim
-require('telescope').load_extension('dap')
+-- require('telescope').load_extension('dap')

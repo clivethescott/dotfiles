@@ -75,15 +75,15 @@ end
 local M = {}
 
 M.setup = function()
-  local ok, dap = pcall(require, 'dap')
-  if not ok then
-    return
-  end
-
-  setup_dap_configs(dap)
-  setup_ui(dap)
-  setup_dap_virt_text()
-  setup_dap_go()
+  -- local ok, dap = pcall(require, 'dap')
+  -- if not ok then
+  --   return
+  -- end
+  --
+  -- setup_dap_configs(dap)
+  -- setup_ui(dap)
+  -- setup_dap_virt_text()
+  -- setup_dap_go()
 end
 
 return M
