@@ -126,11 +126,7 @@ require('packer').startup(function(use)
   -- Fancy notifications
   use { 'rcarriga/nvim-notify' }
 
-  use { 'chentoast/marks.nvim',
-    config = function()
-      require 'marks'.setup {}
-    end
-  }
+  use 'chentoast/marks.nvim'
 
   -- Visualize undo history
   use { 'mbbill/undotree', opt = true }

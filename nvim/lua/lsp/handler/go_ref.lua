@@ -27,10 +27,4 @@ M.implementation = function()
   end)
 end
 
-local function hello()
-  return 'helo'
-end
-
-local msg = hello()
-
 return M

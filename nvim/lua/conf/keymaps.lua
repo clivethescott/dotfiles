@@ -186,8 +186,8 @@ end)
 
 -- Trouble Mappings
 vim.api.nvim_set_keymap('n', '<space>ee', '<cmd>TroubleToggle<cr>', opts)
-vim.api.nvim_set_keymap('n', '<space>ed', '<cmd>TroubleToggle workspace_diagnostics<cr>', opts)
-vim.api.nvim_set_keymap('n', '<space>eD', '<cmd>TroubleToggle document_diagnostics<cr>', opts)
+vim.api.nvim_set_keymap('n', '<space>ew', '<cmd>TroubleToggle workspace_diagnostics<cr>', opts)
+vim.api.nvim_set_keymap('n', '<space>ed', '<cmd>TroubleToggle document_diagnostics<cr>', opts)
 vim.api.nvim_set_keymap('n', '<space>el', '<cmd>TroubleToggle loclist<cr>', opts)
 vim.api.nvim_set_keymap('n', '<space>eq', '<cmd>TroubleToggle quickfix<cr>', opts)
 vim.api.nvim_set_keymap('n', '<space>er', '<cmd>TroubleToggle lsp_references<cr>', opts)
@@ -244,28 +244,4 @@ if has_jdtls then
   map('n', '<space>jr', jdtls.update_project_config)
 end
 
--- Hop.nvim
-local has_hop, hop = pcall(require, 'hop')
-if has_hop then
-  local hop_hint = require 'hop.hint'
-  map('', 't', function()
-    hop.hint_char1({ direction = hop_hint.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1,
-      teasing = false })
-  end, {})
-  map('', 'T', function()
-    hop.hint_char1({ direction = hop_hint.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1,
-      teasing = false })
-  end, {})
-  map('', 'f', function()
-    hop.hint_char1({ direction = hop_hint.HintDirection.AFTER_CURSOR, current_line_only = true, teasing = false })
-  end, {})
-  map('', 'F', function()
-    hop.hint_char1({ direction = hop_hint.HintDirection.BEFORE_CURSOR, current_line_only = true, teasing = false })
-  end, {})
-  map('', '<space>f', function()
-    hop.hint_words({ direction = hop_hint.HintDirection.AFTER_CURSOR, current_line_only = false, teasing = false })
-  end, {})
-  map('', '<space>F', function()
-    hop.hint_words({ direction = hop_hint.HintDirection.BEFORE_CURSOR, current_line_only = false, teasing = false })
-  end, {})
-end
+

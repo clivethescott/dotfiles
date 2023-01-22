@@ -68,6 +68,7 @@ require('telescope').setup {
     buffer_previewer_maker = new_maker,
     preview = {
       mime_hook = mime_hook,
+      treesitter = false,
     },
     vimgrep_arguments = {
       "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case",
