@@ -131,9 +131,11 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # > FZF 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # File previews with Ctrl-T, --exit-0 automatically exits when the list is empty.
 # Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
+
+# Allows <Tab> / <S-Tab> multiple selections
+export FZF_DEFAULT_OPTS="-m"
 export FZF_CTRL_T_OPTS="--preview '(bat --style=numbers --color=always --line-range :200 {}) 2> /dev/null | head -200'"
 # --preview option to display the full command on the preview window, ? toggles the preview window
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
@@ -160,16 +162,9 @@ bindkey "^N" history-substring-search-down
 stty -ixon
 setopt noflowcontrol
 
-# fpath+=${ZDOTDIR:-~}/.zsh_functions
-# neofetch
-#
-
 # Increase the number of max open files/descriptions
 ulimit -n 2048
 eval "$(zoxide init zsh)"
 # eval "$(jenv init -)"
 
-# >>> .scala-cli.aux completions >>>
-fpath=("/Users/clive/Library/Application Support/ScalaCli/completions/zsh" $fpath)
 compinit
-# <<< .scala-cli.aux completions <<<

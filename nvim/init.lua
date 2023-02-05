@@ -55,3 +55,5 @@ require 'plug.undotree'
 require 'plug.notify'
 -- Visualize marks
 require 'plug.marks'
+-- Visualize marks
+require 'plug.leap'

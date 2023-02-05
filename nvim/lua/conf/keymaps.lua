@@ -107,6 +107,7 @@ end)
 vim.api.nvim_set_keymap('n', '<leader>gt', '<cmd>AlternateFile<cr>', opts)
 
 map('n', '<leader>t', telescope.builtin)
+map('n', '<leader>tl', telescope.resume)
 map('n', '<leader>tf', telescope.current_buffer_fuzzy_find)
 map('n', '<c-f>', telescope.live_grep)
 map('n', '<leader>tF', telescope.live_grep)

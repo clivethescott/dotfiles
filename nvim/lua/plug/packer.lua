@@ -128,6 +128,8 @@ require('packer').startup(function(use)
 
   use 'chentoast/marks.nvim'
 
+  use 'ggandor/leap.nvim'
+
   -- Visualize undo history
   use { 'mbbill/undotree', opt = true }
 

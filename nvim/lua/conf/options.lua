@@ -1,4 +1,5 @@
 -- Always use the clipboard directly (instead of +/* registers)
+local nvim_config_dir = vim.fn.fnamemodify(vim.env.MYVIMRC, ':h')
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.dictionary:append('/usr/share/dict/words')
 
@@ -31,7 +32,7 @@ vim.opt.showmatch = true
 -- No need to backup, when we have undo files enabled
 vim.opt.backup = false
 vim.opt.writebackup = false
-vim.opt.undodir = vim.env.HOME .. '/.config/nvim/undodir'
+vim.opt.undodir = nvim_config_dir .. '/undodir'
 vim.opt.undofile = true
 vim.opt.swapfile = false
 -- Show listchars
@@ -51,7 +52,10 @@ vim.opt.updatetime = 100
 
 vim.opt.wildignore:append({ '*/tmp/*', '*.so', '*.swp', '*.zip', '*.jar', '*/node_modules/*', '*/target/*',
   '*/.git/*', '*.class', '*.pyc', '*/plugged/*', '*/undodir/*', '*.png', '*.dex' })
-vim.opt.grepprg = 'rg --vimgrep'
+vim.opt.grepprg = 'rg --vimgrep --smart-case'
+
+vim.opt.path:append(nvim_config_dir)
+vim.opt.rtp:append('/opt/homebrew/opt/fzf')
 
 -- Save on make
 vim.opt.autowrite = true

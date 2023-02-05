@@ -4,8 +4,7 @@ if not ok then
 end
 
 local function metals_status()
-  local state = vim.g['metals_status'] or ''
-  return string.sub(state, 1, 50)
+  return vim.g['metals_status'] or ''
 end
 
 lualine.setup {

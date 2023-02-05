@@ -86,5 +86,15 @@ return {
       i(2, "artifactId"),
       i(3, "version")
     })
+  ),
+  s({ trig = "fory", dscr = "for yield expr" },
+    fmt([[ 
+      for {{
+        {}
+      }} yield {}
+    ]], {
+      i(1),
+      i(0),
+    })
   )
 }
