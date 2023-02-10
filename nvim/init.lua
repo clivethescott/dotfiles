@@ -2,6 +2,9 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
+-- Package Manager
+require 'plug.lazy'
+
 -- vim.lsp.set_log_level "debug"
 require 'helper.utils'
 require 'helper.commands'
@@ -14,8 +17,6 @@ require 'conf.keymaps'
 
 -- Plugin configuration
 
--- Package Manager
-require 'plug.packer'
 -- Status line
 require 'plug.lualine'
 -- File Browser

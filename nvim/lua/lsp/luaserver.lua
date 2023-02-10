@@ -5,7 +5,7 @@ M.setup = function(on_attach, capabilities)
     return
   end
 
-  local runtime_path = vim.split(package.path, ';')
+  local runtime_path = vim.split(package.path, ';', {})
   table.insert(runtime_path, 'lua/?.lua')
   table.insert(runtime_path, 'lua/?/init.lua')
 
@@ -27,8 +27,7 @@ M.setup = function(on_attach, capabilities)
   -- add plugins
   -- if you're not using packer, then you might need to change the paths below
 
-  add("~/.local/share/nvim/site/pack/packer/opt/*")
-  add("~/.local/share/nvim/site/pack/packer/start/*")
+  add("~/.local/share/nvim/lazy/*")
 
   lspconfig.sumneko_lua.setup {
     -- delete root from workspace to make sure we don't trigger duplicate warnings
