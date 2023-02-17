@@ -29,7 +29,7 @@ M.setup = function(on_attach, capabilities)
 
   add("~/.local/share/nvim/lazy/*")
 
-  lspconfig.sumneko_lua.setup {
+  lspconfig.lua_ls.setup {
     -- delete root from workspace to make sure we don't trigger duplicate warnings
     on_new_config = function(config, root)
       local libs = vim.tbl_deep_extend("force", {}, library)

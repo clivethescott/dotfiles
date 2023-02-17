@@ -101,7 +101,7 @@ require('mason').setup()
 
 require 'mason-lspconfig'.setup({
   -- ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver', 'pyright', 'jdtls', 'rust_analyzer', 'dockerls' },
-  ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'jsonls', 'tsserver', 'pyright',
+  ensure_installed = { 'lua_ls', 'golangci_lint_ls', 'gopls', 'html', 'jsonls', 'tsserver', 'pyright',
     'rust_analyzer' },
 })
 

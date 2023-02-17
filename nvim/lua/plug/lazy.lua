@@ -23,6 +23,7 @@ local plugins = {
   },
   {
     'kyazdani42/nvim-tree.lua',
+    lazy = true,
     dependencies = {
       'kyazdani42/nvim-web-devicons'
     }
@@ -39,15 +40,17 @@ local plugins = {
     build = 'make'
   },
   {
-    'stevearc/dressing.nvim'
+    'stevearc/dressing.nvim',
+    lazy = true
   },
   {
-    'numToStr/Comment.nvim'
+    'numToStr/Comment.nvim',
+    lazy = true,
   },
   {
     'nvim-lualine/lualine.nvim',
     dependencies = {
-      'kyazdani42/nvim-web-devicons', lazy = true
+      'kyazdani42/nvim-web-devicons'
     }
   },
   {
@@ -76,6 +79,7 @@ local plugins = {
   },
   {
     'windwp/nvim-ts-autotag',
+    lazy = true,
     dependencies = {
       'nvim-treesitter'
     }
@@ -117,10 +121,12 @@ local plugins = {
     'onsails/lspkind.nvim'
   },
   {
-    'jose-elias-alvarez/null-ls.nvim'
+    'jose-elias-alvarez/null-ls.nvim',
+    lazy = true,
   },
   {
     'folke/trouble.nvim',
+    lazy = true,
     dependencies = {
       'kyazdani42/nvim-web-devicons'
     }
@@ -132,46 +138,54 @@ local plugins = {
     }
   },
   {
-    'mfussenegger/nvim-dap'
+    'mfussenegger/nvim-dap',
+    lazy = true,
   },
   {
     "rcarriga/nvim-dap-ui",
+    lazy = true,
     dependencies = {
       "mfussenegger/nvim-dap"
     }
   },
   {
     'theHamsta/nvim-dap-virtual-text',
+    lazy = true,
     dependencies = {
       "mfussenegger/nvim-dap"
     }
   },
   {
     'leoluz/nvim-dap-go',
+    lazy = true,
     dependencies = {
       "mfussenegger/nvim-dap"
     }
   },
   {
     'nvim-telescope/telescope-dap.nvim',
+    lazy = true,
     dependencies = {
       "mfussenegger/nvim-dap"
     }
   },
   {
-    'akinsho/toggleterm.nvim'
+    'akinsho/toggleterm.nvim',
+    lazy = true,
   },
   {
     'windwp/nvim-autopairs'
   },
   {
     'folke/zen-mode.nvim',
+    lazy = true,
     dependencies = {
       'folke/twilight.nvim'
     }
   },
   {
-    'rcarriga/nvim-notify'
+    'rcarriga/nvim-notify',
+    lazy = true,
   },
   {
     'chentoast/marks.nvim'
@@ -179,7 +193,7 @@ local plugins = {
   {
     'mbbill/undotree',
     lazy = true,
-    cmd = 'UndoTreeToggle'
+    cmd = 'UndotreeToggle'
   }
 }
 require("lazy").setup(plugins, opts)
