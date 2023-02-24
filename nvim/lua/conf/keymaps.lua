@@ -105,10 +105,23 @@ map('n', '<leader>4', function()
 end)
 
 vim.api.nvim_set_keymap('n', '<leader>gt', '<cmd>AlternateFile<cr>', opts)
+local open_file_browser = function(fopts)
+  fopts = fopts or {}
+  require 'telescope'.extensions.file_browser.file_browser(fopts)
+end
 
+map('n', '<leader>to', open_file_browser)
+map('n', '<leader>tO', function()
+  local fopts = {
+    select_buffer = true,
+    path = vim.fn.expand('%:p:h')
+  }
+  open_file_browser(fopts)
+end)
 map('n', '<leader>t', telescope.builtin)
 map('n', '<leader>tl', telescope.resume)
 map('n', '<leader>tf', telescope.current_buffer_fuzzy_find)
+map('n', '<c-t>', telescope.current_buffer_fuzzy_find)
 map('n', '<c-f>', telescope.live_grep)
 map('n', '<leader>tF', telescope.live_grep)
 map('n', '<leader>tc', telescope.commands)
@@ -129,10 +142,6 @@ map('n', '<leader>gs', telescope.git_status)
 -- map('n', '<leader>so', function()
 --   telescope.tags { only_current_buffer = true }
 -- end)
-
--- NvimTree mappings
-local tree = require('nvim-tree')
-map('n', '<leader>1', tree.toggle)
 
 -- Metals mappings
 local metals = require 'metals'
@@ -194,7 +203,10 @@ vim.api.nvim_set_keymap('n', '<space>eq', '<cmd>TroubleToggle quickfix<cr>', opt
 vim.api.nvim_set_keymap('n', '<space>er', '<cmd>TroubleToggle lsp_references<cr>', opts)
 
 -- NvimTree Mappings
-vim.api.nvim_set_keymap('n', '<leader>!', '<cmd>NvimTreeFindFile<cr>', opts)
+local tree = require('nvim-tree')
+vim.api.nvim_set_keymap('n', '<leader>!', '<cmd>NvimTreeFindFile!<cr>', opts)
+map('n', '<leader>1', tree.toggle)
+
 
 -- Zen Mode Mappings
 map('n', '<leader>z', function()
@@ -239,10 +251,3 @@ end)
 
 -- UndoTree
 vim.api.nvim_set_keymap('n', '<space>u', '<cmd>UndotreeToggle<cr>', opts)
-
-local has_jdtls, jdtls = pcall(require, 'jdtls')
-if has_jdtls then
-  map('n', '<space>jr', jdtls.update_project_config)
-end
-
-

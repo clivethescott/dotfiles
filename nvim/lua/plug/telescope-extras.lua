@@ -11,7 +11,10 @@ M.project_files = function()
     no_ignore = false,
     show_untracked = true
   }
-  local is_git_dir = require 'telescope.utils'.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree" })[1]
+  -- local is_git_dir = require 'telescope.utils'.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree" })[1]
+  vim.fn.system('git rev-parse --is-inside-work-tree')
+  local is_git_dir = vim.v.shell_error == 0
+
   if is_git_dir then
     telescope.git_files(fopts)
   else
