@@ -8,13 +8,13 @@ local map = vim.keymap.set
 gitsigns.setup { on_attach = function()
   local gs = package.loaded.gitsigns
   -- Navigation
-  map('n', '<space>gn', function()
+  map('n', '<space>hn', function()
     if vim.wo.diff then return ']c' end
     vim.schedule(function() gs.next_hunk() end)
     return '<Ignore>'
   end, { expr = true })
 
-  map('n', '<space>gp', function()
+  map('n', '<space>hp', function()
     if vim.wo.diff then return '[c' end
     vim.schedule(function() gs.prev_hunk() end)
     return '<Ignore>'
@@ -39,7 +39,7 @@ signs = {
 },
 signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
 numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
-linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+linehl = true, -- Toggle with `:Gitsigns toggle_linehl`
 watch_gitdir = {
   interval = 1000,
   follow_files = true
