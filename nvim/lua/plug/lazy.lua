@@ -195,6 +195,9 @@ local plugins = {
     'chentoast/marks.nvim'
   },
   {
+    'nathom/filetype.nvim',
+  },
+  {
     'mbbill/undotree',
     lazy = true,
     cmd = 'UndotreeToggle'

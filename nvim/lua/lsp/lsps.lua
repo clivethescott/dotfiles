@@ -114,3 +114,6 @@ for _, setup_server in ipairs(setup_servers) do
     server.setup(on_attach, capabilities)
   end
 end
+
+require'lspconfig'.dockerls.setup{}
+require('lspconfig').yamlls.setup{}

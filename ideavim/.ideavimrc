@@ -4,14 +4,13 @@ set visualbell
 set noerrorbells
 " set clipboard+=ideaput
 set clipboard+=unnamed
+set clipboard+=ideaput
 set number relativenumber
 set hlsearch
 set incsearch
 set smartcase
 set showmode
 set ideajoin
-set sneak
-set easymotion
 
 nnoremap <leader>m :nohls<cr>
 nnoremap gp :b#<cr>
@@ -29,18 +28,30 @@ vnoremap > >gv
 " when I pasted. I don't loose the previous thing I YANKED!vnoremap
 vnoremap <leader>p "_dP
 
+" handlers
+sethandler <D-[> a:vim
+sethandler <D-u> a:vim
+sethandler <D-d> a:vim
+sethandler <M-w> a:vim
+sethandler <M-\> a:vim
+sethandler <C-h> a:vim
+sethandler <C-j> a:vim
+sethandler <C-k> a:vim
+sethandler <C-l> a:vim
 
-nmap gi :action GotoImplementation<CR>
-nmap gf :action GotoFile<CR>
-nmap gr :action ShowUsages<CR>
-nmap gc :action CopyReference<CR>
-nmap gy :action GotoTypeDeclaration<CR>
-nmap g[ :action GotoPreviousError<CR>
-nmap g] :action GotoNextError<CR>
-nmap <leader>f :action ReformatCode<CR>
-nmap <leader>e :action RecentChangedFiles<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gD :action GotToDeclaration<CR>
+nnoremap gp :action GotToSuperMethod<CR>
+nnoremap gf :action GotoFile<CR>
+nnoremap gr :action ShowUsages<CR>
+nnoremap gc :action CopyReference<CR>
+nnoremap gy :action GotoTypeDeclaration<CR>
+nnoremap g[ :action GotoPreviousError<CR>
+nnoremap g] :action GotoNextError<CR>
+nnoremap <leader>f :action ReformatCode<CR>
+nnoremap <leader>e :action RecentChangedFiles<CR>
 
-nmap K :action ParameterInfo<CR>
+nnoremap K :action ParameterInfo<CR>
 " Make shift + arrow key work again
 nnoremap <S-Left> :action EditorLeftWithSelection<CR>
 nnoremap <S-Right> :action EditorRightWithSelection<CR>
@@ -58,11 +69,24 @@ nmap <Leader>gl :action Git.Log<CR>
 nmap <Leader>gh :action Github.Open.In.Browser<CR>
 nmap <Leader>gg :action Git.Branches<CR>
 nmap <Leader>gb :action Git.Branches<CR>
+nmap <Leader>gr :action IdeaVim.ReloadVimRc.reload<CR>
+nmap <Leader>ge :e ~/.ideavimrc<CR>
+nmap <Leader>zz :action ToggleDistractionFreeMode<CR>
 
-nmap <space>j :action AceAction<CR>
-nmap <M-j> :action AceAction<CR>
-map <M-u> <C-u>
-map <M-d> <C-d>
+nnoremap <c-\> :action SplitVertically<CR>
+nnoremap <C-h> <c-w>h
+nnoremap <C-l> <c-w>l
+nnoremap <C-j> <c-w>j
+nnoremap <C-k> <c-w>k
+nnoremap <c-=> :action Unsplit<CR>
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+nnoremap zc :action CollapseRegion<CR>
+nnoremap zo :action ExpandRegion<CR>
+nnoremap <leader>zc :action CollapseAllRegions<CR>
+nnoremap <leader>zo :action ExpandAllRegions<CR>
 
-inoremap kj <Esc>
-inoremap jk <Esc>
+map <D-[> <Esc>
+map <D-u> :action EditorPageUp<cr>
+map <D-d> :action EditorPageDown<cr>
+map <C-c> <Esc>
