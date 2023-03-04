@@ -38,8 +38,8 @@ signs = {
   changedelete = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
 },
 signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
-linehl = true, -- Toggle with `:Gitsigns toggle_linehl`
+numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
 watch_gitdir = {
   interval = 1000,
   follow_files = true
