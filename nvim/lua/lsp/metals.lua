@@ -9,13 +9,14 @@ M.setup = function(on_attach, capabilities)
   -- enables `metals/status` and also other helpful messages that are shown to you
   metals_config.init_options.statusBarProvider = "on"
   metals_config.settings = {
-    serverVersion = 'latest.snapshot',
+    serverVersion = '0.11.11',
     fallbackScalaVersion = '3.2.2',
     showImplicitArguments = true,
     showImplicitConversionsAndClasses = false,
     showInferredType = true,
     serverProperties = { "-Xmx1G" },
     superMethodLensesEnabled = true,
+    -- enableSemanticHighlighting = true,
     excludedPackages = {
       "akka.actor.typed.javadsl",
       "com.github.swagger.akka.javadsl"
