@@ -203,9 +203,8 @@ vim.api.nvim_set_keymap('n', '<space>eq', '<cmd>TroubleToggle quickfix<cr>', opt
 vim.api.nvim_set_keymap('n', '<space>er', '<cmd>TroubleToggle lsp_references<cr>', opts)
 
 -- NvimTree Mappings
-local tree = require('nvim-tree')
 vim.api.nvim_set_keymap('n', '<leader>!', '<cmd>NvimTreeFindFile!<cr>', opts)
-map('n', '<leader>1', tree.toggle)
+vim.api.nvim_set_keymap('n', '<leader>1', '<cmd>NvimTreeToggle<cr>', opts)
 
 
 -- Zen Mode Mappings

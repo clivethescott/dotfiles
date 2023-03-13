@@ -107,7 +107,8 @@ local plugins = {
       { 'tzachar/cmp-tabnine', build = './install.sh' }
     }
   },
-  { -- Snippets
+  {
+    -- Snippets
     'L3MON4D3/LuaSnip',
     dependencies = {
       'saadparwaiz1/cmp_luasnip',
@@ -176,6 +177,7 @@ local plugins = {
   {
     'akinsho/toggleterm.nvim',
     lazy = true,
+    version = '*'
   },
   {
     'windwp/nvim-autopairs'
