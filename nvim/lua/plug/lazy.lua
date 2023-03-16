@@ -210,6 +210,12 @@ local plugins = {
       vim.o.timeout = true
       vim.o.timeoutlen = 500
       require("which-key").setup({
+        plugins = {
+          presets = {
+            operators = false,
+            motions = false,
+          },
+        },
         key_labels = {
           ["<space>"] = "SPACE",
           ["<tab>"] = "TAB",
