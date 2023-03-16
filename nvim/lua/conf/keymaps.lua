@@ -289,6 +289,10 @@ wk.register({
       r = { '<cmd>TroubleToggle lsp_references<cr>', 'LSP References' },
       w = { '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Workspace Diagnostics' },
     },
+    g = {
+      '+Go',
+      i = { '<cmd>GoImports<cr>', 'Go Imports' },
+    },
     f = { toggle_winbar, 'Toggle winbar' },
     -- map('n', '<space>to', tvp.reveal_in_tree)
     -- map('n', '<space>tt', tvp.toggle_tree_view)
