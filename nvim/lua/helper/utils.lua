@@ -6,7 +6,8 @@ function M.resolvedCapabilities(client_id)
 end
 
 function M.uuid()
-  return string.lower(require 'os'.execute("uuidgen | tr -d '\n'"))
+  local uuid = vim.fn.system("uuidgen | tr -d '\n'")
+  return string.lower(uuid)
 end
 
 local system_open_uri = function(uri)
