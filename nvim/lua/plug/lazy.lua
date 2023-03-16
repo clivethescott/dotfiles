@@ -203,6 +203,22 @@ local plugins = {
     'mbbill/undotree',
     lazy = true,
     cmd = 'UndotreeToggle'
-  }
+  },
+  {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 500
+      require("which-key").setup({
+        key_labels = {
+          ["<space>"] = "SPACE",
+          ["<tab>"] = "TAB",
+        },
+        window = {
+          position = "top",
+        },
+      })
+    end,
+  },
 }
 require("lazy").setup(plugins, opts)

@@ -7,6 +7,15 @@ local on_attach = function(client, bufnr)
   -- vim.notify('LSP connected client ' .. client.name, 'info')
   local opts = { buffer = bufnr, silent = true }
   local caps = client.server_capabilities
+  local wk = require 'which-key'
+  local wk_buf_opts = {
+    mode = "n",
+    prefix = "",
+    buffer = bufnr,
+    silent = true,
+    noremap = true,
+    nowait = false,
+  }
 
   local has_sig, sig = pcall(require, 'lsp_signature')
   if has_sig then
@@ -34,6 +43,24 @@ local on_attach = function(client, bufnr)
     map('n', '<space>ws', telescope_builtin.lsp_dynamic_workspace_symbols, opts)
     map('n', '<leader>D', telescope_builtin.diagnostics, opts)
     map('n', '<leader>c', require 'telescope'.extensions.metals.commands, opts)
+
+    wk.register({
+      g = {
+        d = { telescope_builtin.lsp_definitions, 'Go To Definition' },
+        i = { telescope_builtin.lsp_implementations, 'Go To Implementation' },
+        r = { telescope_builtin.lsp_references, 'Go To References' },
+        y = { telescope_builtin.lsp_type_definitions, 'Go To TypeDef' },
+      },
+      ["<space>"] = {
+        w = {
+          s = { telescope_builtin.lsp_dynamic_workspace_symbols, 'Dynamic Workspace Symbols' },
+          S = { telescope_builtin.lsp_document_symbols, 'Buffer Symbols' },
+        }
+      },
+      ["<leader>"] = {
+        D = { telescope_builtin.diagnostics, 'Diagnostics' },
+      }
+    }, wk_buf_opts)
   else
     map('n', '<space>ws', vim.lsp.buf.workspace_symbol, opts)
     map('n', '<space>wS', vim.lsp.buf.document_symbol, opts)
@@ -53,10 +80,24 @@ local on_attach = function(client, bufnr)
   -- map('n', '<leader>r', vim.lsp.buf.rename, opts)
   map('n', '<leader>r', vim.lsp.buf.rename, opts)
 
+  wk.register({
+    g = {
+      a = { vim.lsp.buf.code_action, 'Code Action' },
+      D = { vim.lsp.buf.declaration, 'Go To Declaration' },
+      h = { utils.show_word_help, 'Show Word Help' },
+      l = { vim.lsp.codelens.run, 'Show Code Lens' },
+      s = { vim.lsp.buf.signature_help, 'Signature Help' },
+    },
+    K = { vim.lsp.buf.hover, 'Hover' },
+    ["<leader>r"] = { vim.lsp.buf.rename, 'Refactor Rename' },
+  }, wk_buf_opts)
   -- Formatting
 
   if caps.documentFormattingProvider then
     map('n', '<leader>f', utils.lsp_buf_format, opts)
+    wk.register({
+      ["<leader>f"] = { utils.lsp_buf_format, 'Format Buffer' },
+    }, wk_buf_opts)
   end
 
   if caps.documentRangeFormattingProvider then
@@ -64,11 +105,16 @@ local on_attach = function(client, bufnr)
   end
 
   -- Diagnostics
-  map('n', 'g[', function() vim.diagnostic.goto_prev { wrap = false } end, opts) -- prevent previous jumping back
+  local prev_diagnostic = function()
+    -- prevent previous jumping back
+    vim.diagnostic.goto_prev { wrap = false }
+  end
+  map('n', 'g[', prev_diagnostic, opts)
   map('n', 'g]', vim.diagnostic.goto_next, opts)
-  map('n', '<leader>d', function()
+  local open_diagnostic_float = function()
     vim.diagnostic.open_float({ scope = 'line' }) -- can be line, buffer, cursor
-  end, opts)
+  end
+  map('n', '<leader>d', open_diagnostic_float, opts)
   -- map('n', '<leader>d', vim.diagnostic.setloclist, opts) -- buffer diagnostics only
 
   -- map('n', '/leader>wa', vim.lsp.buf.add_workspace_folder, opts)
@@ -76,13 +122,28 @@ local on_attach = function(client, bufnr)
   -- map('n', '<leader>wl', function()
   --   vim.inspect(vim.lsp.buf.list_workspace_folders())
   -- end, opts)
-  map('n', '<space>we', function()
+  local diagnostic_errors = function()
     vim.diagnostic.setqflist({ severity = 'E' }) -- all workspace errors
-  end, opts)
-  map('n', '<space>ww', function()
-    vim.diagnostic.setqflist({ severity = 'W' }) -- all workspace warnings
-  end, opts)
+  end
+  local diagnostic_warnings = function()
+    vim.diagnostic.setqflist({ severity = 'W' }) -- all workspace errors
+  end
+  map('n', '<space>we', diagnostic_errors, opts)
+  map('n', '<space>ww', diagnostic_warnings, opts)
 
+  wk.register({
+    g = {
+      ["["] = { prev_diagnostic, 'Go To Prev Diagnostic' },
+      ["]"] = { vim.diagnostic.goto_super_method, 'Go To Next Diagnostic' },
+    },
+    ["<leader>d"] = { open_diagnostic_float, 'Open Diagnostic Float' },
+    ["<space>"] = {
+      w = {
+        e = { diagnostic_errors, 'Workspace Errors' },
+        w = { diagnostic_warnings, 'Workspace Warnings' },
+      }
+    }
+  }, wk_buf_opts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -115,5 +176,5 @@ for _, setup_server in ipairs(setup_servers) do
   end
 end
 
-require'lspconfig'.dockerls.setup{}
-require('lspconfig').yamlls.setup{}
+require 'lspconfig'.dockerls.setup {}
+require('lspconfig').yamlls.setup {}

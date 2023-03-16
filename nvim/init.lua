@@ -58,5 +58,5 @@ require 'plug.notify'
 require 'plug.marks'
 -- Visualize marks
 require 'plug.leap'
--- Visualize marks
+-- Configure file type associations
 require 'plug.filetype'

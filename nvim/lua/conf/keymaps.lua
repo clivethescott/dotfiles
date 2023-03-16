@@ -1,5 +1,5 @@
 local map = function(mode, lhs, rhs, opts)
-  opts = opts or { silent = true }
+  opts = opts or { silent = true, noremap = true }
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
@@ -9,10 +9,6 @@ local opts = { silent = true, noremap = true }
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
 
--- System clipboard copy/paste
-map('v', '<space>y', '"*yi')
-map({ 'n', 'v' }, '<space>p', '"*P')
-
 -- Center search result
 map('n', 'n', 'nzzzv')
 map('n', 'N', 'Nzzzv')
@@ -20,15 +16,16 @@ map('n', '#', '#zz')
 map('n', '*', '*zz')
 
 -- Remove search highlight
-map('n', '<leader>m', ':silent! nohls<cr>')
+-- map('n', '<leader>m', ':silent! nohls<cr>') -- defined in which-key
 
 -- Alternate buffer
 map('n', 'gp', ':b#<cr>')
 
 -- Open URI under cursor
-map('n', 'gx', function()
+local open_uri = function()
   require 'helper.utils'.open_uri()
-end)
+end
+map('n', 'gx', open_uri)
 
 -- Split movements
 map('n', '<c-h>', '<c-w>h')
@@ -47,7 +44,8 @@ map('n', '<c-s>', ':w<cr>')
 map('i', '<c-s>', '<esc>:w<cr>')
 
 -- Jump to exact mark position either way
-map('n', "'", "`")
+-- Disabled not recognised by which-key
+-- map('n', "'", "`")
 
 -- Faster way to quit
 map('n', 'Q', ':q<cr>')
@@ -69,13 +67,14 @@ map('v', '<up>', '<nop>')
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
-map('n', '<space>f', function()
+local toggle_winbar = function()
   if vim.o.winbar == "" then
     vim.o.winbar = "%{%v:lua.require'helper.utils'.nvim_winbar()%}"
   else
     vim.o.winbar = ""
   end
-end)
+end
+map('n', '<space>f', toggle_winbar)
 
 -- Quickly add empty lines
 -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines=
@@ -88,21 +87,24 @@ local telescope_extras = require('plug.telescope-extras')
 map('n', '<c-e>', telescope.buffers)
 -- Use git_files if in git dir, else use find_files
 map('n', '<c-p>', telescope_extras.project_files)
-map('n', '<leader>2', function()
+local find_files = function()
   telescope.find_files {
     cwd = '~/.config/nvim'
   }
-end)
-map('n', '<leader>3', function()
+end
+map('n', '<leader>2', find_files)
+local grep_config_files = function()
   telescope.live_grep {
     cwd = '~/.config/nvim/lua'
   }
-end)
-map('n', '<leader>4', function()
+end
+map('n', '<leader>3', grep_config_files)
+local grep_zsh_files = function()
   telescope.find_files {
     cwd = '~/.config/zsh'
   }
-end)
+end
+map('n', '<leader>4', grep_zsh_files)
 
 vim.api.nvim_set_keymap('n', '<leader>gt', '<cmd>AlternateFile<cr>', opts)
 local open_file_browser = function(fopts)
@@ -118,7 +120,7 @@ map('n', '<leader>tO', function()
   }
   open_file_browser(fopts)
 end)
-map('n', '<leader>t', telescope.builtin)
+-- map('n', '<leader>t', telescope.builtin)
 map('n', '<leader>tl', telescope.resume)
 map('n', '<leader>tf', telescope.current_buffer_fuzzy_find)
 map('n', '<c-t>', telescope.current_buffer_fuzzy_find)
@@ -146,24 +148,25 @@ map('n', '<leader>gs', telescope.git_status)
 -- Metals mappings
 local metals = require 'metals'
 local tvp = require 'metals.tvp'
-map('n', '<space>wo', metals.hover_worksheet)
 map('n', '<space>to', tvp.reveal_in_tree)
 map('n', '<space>tt', tvp.toggle_tree_view)
-map('n', 'gD', metals.goto_super_method)
 
 -- DAP mappings
 local dap = require('dap')
 map('n', '<space>db', dap.toggle_breakpoint)
-map('n', '<space>dB', function()
+local dap_cond_breakpoint = function()
   dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
-end)
-map('n', '<space>dl', function()
+end
+map('n', '<space>dB', dap_cond_breakpoint)
+local dap_list_breakpoints = function()
   require 'telescope'.extensions.dap.list_breakpoints {}
-end)
+end
+map('n', '<space>dl', dap_list_breakpoints)
 map('n', '<space>dL', dap.clear_breakpoints)
-map('n', '<space>dc', function()
+local dap_commands = function()
   require 'telescope'.extensions.dap.commands {}
-end)
+end
+map('n', '<space>dc', dap_commands)
 map('n', '<space>dr', dap.continue)
 map('n', '<F5>', dap.continue)
 -- map('n', '<space>dc', dap.run_to_cursor)
@@ -173,26 +176,27 @@ map('n', '<space>di', dap.step_into)
 map('n', '<space>dI', dap.step_out)
 map('n', '<space>dd', dap.repl.toggle)
 -- map('n', '<space>dr', dap.run_last)
-map('n', '<space>dq', function()
+local dap_terminate = function()
   dap.terminate({}, {})
-end)
-map('n', '<space>dx', function()
-  dap.terminate({}, {})
-end)
-map({ 'n', 'v' }, '<space>de', function()
+end
+map('n', '<space>dq', dap_terminate)
+map('n', '<space>dx', dap_terminate)
+local show_dap_ui = function()
   local ok, dapui = pcall(require, 'dapui')
   if not ok then
     return
   end
   dapui.eval('', {})
-end)
-map('n', '<space>dt', function()
+end
+map({ 'n', 'v' }, '<space>de', show_dap_ui)
+local go_debug_test = function()
   local ok, dap_go = pcall(require, 'dap-go')
   if not ok then
     return
   end
   dap_go.debug_test()
-end)
+end
+map('n', '<space>dt', go_debug_test)
 
 -- Trouble Mappings
 vim.api.nvim_set_keymap('n', '<space>ee', '<cmd>TroubleToggle<cr>', opts)
@@ -208,13 +212,14 @@ vim.api.nvim_set_keymap('n', '<leader>1', '<cmd>NvimTreeToggle<cr>', opts)
 
 
 -- Zen Mode Mappings
-map('n', '<leader>z', function()
+local zen_mode = function()
   require('zen-mode').toggle({
     window = {
       width = .85 -- width will be 85% of the editor width
     }
   })
-end)
+end
+map('n', '<leader>z', zen_mode)
 
 -- Luasnip Mappings
 local luasnip = require('luasnip')
@@ -244,9 +249,103 @@ map({ 'i' }, '<C-u>', function()
     require('luasnip.extras.select_choice')()
   end
 end)
-map('n', '<leader>s', function()
+local edit_snippets = function()
   require("luasnip.loaders.from_lua").edit_snippet_files()
-end)
+end
+map('n', '<leader>s', edit_snippets)
 
 -- UndoTree
 vim.api.nvim_set_keymap('n', '<space>u', '<cmd>UndotreeToggle<cr>', opts)
+
+
+local wk = require 'which-key'
+wk.register({
+  ["<space>"] = {
+    ['['] = { ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", 'Add blank line above' },
+    [']'] = { ":<c-u>put =repeat(nr2char(10), v:count1)<cr>", 'Add blank line below' },
+    d = {
+      name = '+DAP',
+      b = { dap.toggle_breakpoint, 'Toggle Breakpoint' },
+      B = { dap_cond_breakpoint, 'Conditional Breakpoint' },
+      c = { dap_commands, 'Commands' },
+      d = { dap.repl.toggle, 'Toggle REPL' },
+      e = { show_dap_ui, 'Show DAP UI' },
+      i = { dap.step_into, 'Step In' },
+      I = { dap.step_out, 'Step Out' },
+      l = { dap_list_breakpoints, 'List Breakpoints' },
+      L = { dap_list_breakpoints, 'Clear Breakpoints' },
+      o = { dap.step_over, 'Step Over' },
+      q = { dap_terminate, 'Terminate' },
+      r = { dap.continue, 'Continue' },
+      t = { go_debug_test, 'Debug Go Test' },
+      x = { dap_terminate, 'Terminate' },
+    },
+    e = {
+      name = '+Trouble Diagnostics',
+      d = { '<cmd>TroubleToggle document_diagnostics<cr>', 'Buffer Diagnostics' },
+      e = { '<cmd>TroubleToggle<cr>', 'Toggle Window' },
+      l = { '<cmd>TroubleToggle loclist<cr>', 'Location List' },
+      q = { '<cmd>TroubleToggle quickfix<cr>', 'Quickfix List' },
+      r = { '<cmd>TroubleToggle lsp_references<cr>', 'LSP References' },
+      w = { '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Workspace Diagnostics' },
+    },
+    f = { toggle_winbar, 'Toggle winbar' },
+    -- map('n', '<space>to', tvp.reveal_in_tree)
+    -- map('n', '<space>tt', tvp.toggle_tree_view)
+    m = {
+      name = '+Metals',
+      c = { require 'telescope'.extensions.metals.commands, 'Commands' },
+      d = { metals.goto_super_method, 'Go To Super Method' },
+      o = { metals.hover_worksheet, 'Hover Worksheet' },
+    },
+    t = {
+      name = 'TVP',
+      o = { tvp.reveal_in_tree, 'Reveal In Tree' },
+      t = { tvp.toggle_tree_view, 'Toggle Tree' },
+    },
+    w = {
+      name = '+Resize Splits',
+      h = { '5<c-w><', 'Resize left' },
+      l = { '5<c-w>>', 'Resize right' },
+      j = { '5<c-w>-', 'Resize down' },
+      k = { '5<c-w>+', 'Resize up' },
+    }
+  },
+  ["<leader>"] = {
+    ['1'] = { '<cmd>NvimTreeToggle<cr>', 'Toggle NvimTree' },
+    ['!'] = { '<cmd>NvimTreeFindFile!<cr>', 'Find current file in NvimTree' },
+    ['2'] = { find_files, 'Find nvim config files' },
+    ['3'] = { grep_config_files, 'Live grep nvim config files' },
+    ['4'] = { grep_zsh_files, 'Find zsh config files' },
+    m = { '<cmd>silent! nohls<cr>', 'Clear search highlight' },
+    g = {
+      name = '+GoTo',
+      b = { '<cmd>Telescope git_branches<cr>', 'Git branches' },
+      c = { '<cmd>Telescope git_commits<cr>', 'Git commits' },
+      C = { '<cmd>Telescope git_bcommits<cr>', 'Git Buffer commits' },
+      o = { '<cmd>Telescope oldfiles<cr>', 'Old Files' },
+      s = { '<cmd>Telescope git_status<cr>', 'Git status' },
+      t = { '<cmd>AlternateFile<cr>', 'Alternate file' },
+    },
+    s = { edit_snippets, 'Edit Snippets' },
+    t = {
+      name = '+Telescope',
+      c = { '<cmd>Telescope commands<cr>', 'Commands' },
+      f = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
+      F = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
+      h = { '<cmd>Telescope help_tags<cr>', 'Help tags' },
+      j = { '<cmd>Telescope jump_list<cr>', 'Jump list' },
+      k = { '<cmd>Telescope keymaps<cr>', 'Keymaps' },
+      l = { '<cmd>Telescope resume<cr>', 'Resume last picker' },
+      m = { '<cmd>Telescope marks<cr>', 'Marks' },
+      o = { '<cmd>Telescope file_browser<cr>', 'Open FileBrowser in root dir' },
+      O = { '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>', 'Open FileBrowser in buffer dir' },
+      r = { '<cmd>Telescope registers<cr>', 'Registers' },
+    },
+    z = { zen_mode, 'Toggle Zen Mode' }
+  },
+  g = {
+    p = { ':b#<cr>', 'Alternate buffer' },
+    x = { open_uri, 'Open URI at cursor' },
+  },
+})

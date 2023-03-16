@@ -91,6 +91,7 @@ require('telescope').setup {
         ["<c-x>"] = actions.delete_buffer,
         -- ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        ["<C-h>"] = "which_key",
       },
       n = {
         ["<c-t>"] = trouble.open_with_trouble,
@@ -99,6 +100,7 @@ require('telescope').setup {
         ["<C-c>"] = actions.close,
         ["<c-x>"] = actions.delete_buffer,
         ["?"] = "which_key",
+        ["g?"] = "which_key",
       },
     },
   },
@@ -176,4 +178,4 @@ require('telescope').load_extension('fzf')
 require("telescope").load_extension "file_browser"
 
 -- requires nvim-telescope/telescope-dap.nvim
--- require('telescope').load_extension('dap')
+require('telescope').load_extension('dap')

@@ -19,7 +19,7 @@ M.setup = function(on_attach)
       null_ls.builtins.diagnostics.flake8, -- pip install flake8
 
       -- Formatting
-      null_ls.builtins.formatting.autopep8, -- pip install autopep8
+      null_ls.builtins.formatting.black, -- pip install autopep8
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.prettier, -- brew install prettier or equiv
       -- null_ls.builtins.formatting.goimports, -- go install golang.org/x/tools/cmd/goimports@latest

@@ -5,7 +5,7 @@ end
 
 treesitter_config.setup {
   highlight = {
-    enable = true, -- false will disable the whole extension
+    enable = true,                            -- false will disable the whole extension
     additional_vim_regex_highlighting = true, -- performance may suffer if enabled
   },
   disable = { "svelte", "phpdoc", "commonlisp" },
@@ -20,12 +20,12 @@ treesitter_config.setup {
   },
   indent = {
     enable = true,
-    disable = {'python'}
+    disable = { 'python' }
   },
   autotag = {
     enable = true,
-    filetypes = {'html', 'javascript', 'xml', 'markdown'},
-    skip_tags = {'br', 'img'},
+    filetypes = { 'html', 'javascript', 'xml', 'markdown' },
+    skip_tags = { 'br', 'img' },
   },
   textobjects = {
     select = {
@@ -33,41 +33,41 @@ treesitter_config.setup {
       lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
-        ['af'] = '@function.outer',
-        ['ap'] = '@parameter.outer',
-        ['ip'] = '@parameter.inner',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
+        ['af'] = { query = '@function.outer', desc = 'Select outer function' },
+        ['ap'] = { query = '@parameter.outer', desc = 'Select outer parameter' },
+        ['ip'] = { query = '@parameter.inner', desc = 'Select inner parameter' },
+        ['if'] = { query = '@function.inner', desc = 'Select inner function' },
+        ['ac'] = { query = '@class.outer', desc = 'Select outer class' },
+        ['ic'] = { query = '@class.inner', desc = 'Select inner class' },
       },
     },
     move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
+        [']m'] = { query = '@function.outer', desc = 'Go to function start' },
+        [']]'] = { query = '@class.outer', desc = 'Go to class start' },
       },
       goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
+        [']M'] = { query = '@function.outer', desc = 'Go to function end' },
+        [']['] = { query = '@class.outer', desc = 'Go to class end' },
       },
       goto_previous_start = {
-        ['[m'] = '@function.inner',
-        ['[['] = '@class.outer',
+        ['[m'] = { query = '@function.inner', desc = 'Go to prev function start' },
+        ['[['] = { query = '@class.outer', desc = 'Go to prev class start' },
       },
       goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
+        ['[M'] = { query = '@function.outer', desc = 'Go to prev function end' },
+        ['[]'] = { query = '@class.outer', desc = 'Go to prev class end' },
       },
     },
     swap = {
       enable = true,
       swap_next = {
-        ["<leader>a"] = "@parameter.inner",
+        ["<leader>a"] = { query = "@parameter.inner", desc = 'Swap next parameter' },
       },
       swap_previous = {
-        ["<leader>A"] = "@parameter.inner",
+        ["<leader>A"] = { query = "@parameter.inner", desc = 'Swap prev parameter' },
       },
     },
   },
@@ -79,7 +79,7 @@ treesitter_config.setup {
   playground = {
     enable = true,
     disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
     persist_queries = false, -- Whether the query persists across vim sessions
     keybindings = {
       toggle_query_editor = 'o',
@@ -101,5 +101,4 @@ if not ctx_ok then
   return
 end
 
-ctx.setup{}
-
+ctx.setup {}

@@ -57,7 +57,8 @@ vim.opt.rtp:append('/opt/homebrew/opt/fzf')
 vim.opt.autowrite = true
 
 -- Don't wait too long to complete successive keys, Also controls which-key delay
-vim.opt.timeoutlen = 500
+-- Disabled - set in whick-key config
+-- vim.opt.timeoutlen = 500
 
 -- Affects redraw speed
 vim.opt.cursorline = true
