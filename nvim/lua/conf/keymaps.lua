@@ -273,7 +273,7 @@ wk.register({
       i = { dap.step_into, 'Step In' },
       I = { dap.step_out, 'Step Out' },
       l = { dap_list_breakpoints, 'List Breakpoints' },
-      L = { dap_list_breakpoints, 'Clear Breakpoints' },
+      L = { dap.clear_breakpoints, 'Clear Breakpoints' },
       o = { dap.step_over, 'Step Over' },
       q = { dap_terminate, 'Terminate' },
       r = { dap.continue, 'Continue' },
@@ -294,8 +294,6 @@ wk.register({
       i = { '<cmd>GoImports<cr>', 'Go Imports' },
     },
     f = { toggle_winbar, 'Toggle winbar' },
-    -- map('n', '<space>to', tvp.reveal_in_tree)
-    -- map('n', '<space>tt', tvp.toggle_tree_view)
     m = {
       name = '+Metals',
       c = { require 'telescope'.extensions.metals.commands, 'Commands' },
