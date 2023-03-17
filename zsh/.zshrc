@@ -62,7 +62,7 @@ typeset -aU path
 source $ZDOTDIR/exports.zsh
 
 # Alt vi-mode plugin https://github.com/jeffreytse/zsh-vi-mode
-plugins=(git vi-mode history-substring-search zsh-autosuggestions tmux)
+plugins=(git vi-mode history-substring-search zsh-autosuggestions tmux fzf)
 
 # Path to your oh-my-zsh installation.
 export ZSH=$ZDOTDIR/.oh-my-zsh
@@ -135,7 +135,7 @@ source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
 
 # Allows <Tab> / <S-Tab> multiple selections
-export FZF_DEFAULT_OPTS="-m"
+export FZF_DEFAULT_OPTS="-m --preview '(bat --color=always --line-range :50 {}) 2> /dev/null' "
 export FZF_CTRL_T_OPTS="--preview '(bat --style=numbers --color=always --line-range :200 {}) 2> /dev/null | head -200'"
 # --preview option to display the full command on the preview window, ? toggles the preview window
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
