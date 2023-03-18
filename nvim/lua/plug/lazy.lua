@@ -104,6 +104,7 @@ local plugins = {
       'hrsh7th/cmp-nvim-lsp-document-symbol',
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-calc',
+      'hrsh7th/cmp-cmdline',
       { 'tzachar/cmp-tabnine', build = './install.sh' }
     }
   },
