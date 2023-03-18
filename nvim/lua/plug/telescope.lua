@@ -35,8 +35,9 @@ local new_maker = function(filepath, bufnr, opts)
     command = "file",
     args = { "--mime-type", "-b", filepath },
     on_exit = function(j)
-      local mime_type = vim.split(j:result()[1], "/", { plain = true, trimempty = true })[1]
-      if mime_type == "text" then
+      local og_mime_type = j:result()[1]
+      local mime_type = vim.split(og_mime_type, "/", { plain = true, trimempty = true })[1]
+      if mime_type == "text" or string.find(og_mime_type, 'json') then
         previewers.buffer_previewer_maker(filepath, bufnr, opts)
       else
         -- maybe we want to write something to the buffer here
