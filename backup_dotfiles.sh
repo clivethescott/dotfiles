@@ -7,7 +7,6 @@ ZSH_HOME=$HOME/.config/zsh
 cp $NVIM_HOME/init.lua $DOTFILES_HOME/nvim/init.lua
 rm -rf $DOTFILES_HOME/nvim/lua && cp -r $NVIM_HOME/lua $DOTFILES_HOME/nvim
 cp -r $NVIM_HOME/luasnippets $DOTFILES_HOME/nvim
-cp -r $NVIM_HOME/ftdetect $DOTFILES_HOME/nvim
 # cp $HOME/.gitconfig $HOME/.gitignore $DOTFILES_HOME/git Issue with different SSH users
 cp $HOME/.ideavimrc $DOTFILES_HOME/ideavim/.ideavimrc
 cp $HOME/.ripgreprc $DOTFILES_HOME/ripgrep/.ripgreprc

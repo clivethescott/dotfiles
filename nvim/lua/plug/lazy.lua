@@ -40,8 +40,10 @@ local plugins = {
     }
   },
   {
+    -- Enables filtering See :h telescope-fzf-native.nvim-telescope-fzf-native-nvim
     'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make'
+    build = 'make',
+    dependencies = { "nvim-telescope/telescope.nvim" }
   },
   {
     'stevearc/dressing.nvim',
@@ -94,6 +96,14 @@ local plugins = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
     }
+  },
+  {
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
+    },
   },
   {
     'hrsh7th/nvim-cmp',

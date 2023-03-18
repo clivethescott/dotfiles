@@ -7,11 +7,11 @@ require 'plug.lazy'
 
 -- vim.lsp.set_log_level "debug"
 require 'helper.utils'
-require 'helper.commands'
+require 'helper.usercommands'
 
 -- Common configuration
 require 'conf.options'
-require 'conf.autogroups'
+require 'conf.autocommands'
 require 'conf.abbreviations'
 require 'conf.keymaps'
 

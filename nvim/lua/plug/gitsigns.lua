@@ -12,23 +12,23 @@ gitsigns.setup { on_attach = function()
     vim.schedule(function() gs.next_hunk() end)
     return '<Ignore>'
   end
-  map('n', '<space>hn', next_hunk, { expr = true })
+  map('n', '<space>ghn', next_hunk, { expr = true })
 
   local prev_hunk = function()
     if vim.wo.diff then return '[c' end
     vim.schedule(function() gs.prev_hunk() end)
     return '<Ignore>'
   end
-  map('n', '<space>hp', prev_hunk, { expr = true })
+  map('n', '<space>ghp', prev_hunk, { expr = true })
 
   map('n', '<space>gp', gs.preview_hunk)
   map({ 'n', 'v' }, '<space>gU', ':Gitsigns reset_hunk<CR>')
   local blame_line = function()
     gs.blame_line { full = true }
   end
-  map('n', '<space>gB', blame_line)
-  map('n', '<space>gb', gs.toggle_current_line_blame)
-  map('n', '<space>gR', gs.reset_buffer)
+  -- map('n', '<space>gB', blame_line)
+  -- map('n', '<space>gb', gs.toggle_current_line_blame)
+  -- map('n', '<space>gR', gs.reset_buffer)
   -- map('n', '<space>hS', gs.stage_buffer)
 
   -- Text object
@@ -38,15 +38,17 @@ gitsigns.setup { on_attach = function()
   wk.register({
     ["<space>"] = {
       g = {
+        name = '+Git',
         b = { gs.toggle_current_line_blame, 'Toggle Blame' },
         B = { blame_line, 'Blame Line Full' },
+        h = {
+          name = '+Changes',
+          n = { next_hunk, 'Next Change' },
+          p = { prev_hunk, 'Prev Change' },
+        },
         p = { gs.preview_hunk, 'Preview Change' },
         R = { gs.reset_buffer, 'Reset ALL Changes' },
         u = { ':Gitsigns reset_hunk<CR>', 'Reset Change' },
-      },
-      h = {
-        n = { next_hunk, 'Go To Next Change' },
-        p = { prev_hunk, 'Go To Prev Change' },
       },
     }
   })

@@ -10,23 +10,32 @@ M.setup = function(on_attach)
       on_attach(client, bufnr)
     end,
     sources = {
+null_ls.builtins.code_actions.eslint,
+      -- The external tools for these are managed via williamboman/mason.nvim
       -- Code Actions
-      null_ls.builtins.code_actions.gitsigns, -- requires lewis6991/gitsigns.nvim
+      null_ls.builtins.code_actions.gitsigns,
+      null_ls.builtins.code_actions.gomodifytags,
+      null_ls.builtins.diagnostics.buf,
 
-      -- Diagnostics
-      -- null_ls.builtins.diagnostics.luacheck,
-      null_ls.builtins.diagnostics.mypy,   -- pip install mypy
-      null_ls.builtins.diagnostics.flake8, -- pip install flake8
+      -- Diagnostics & Linters
+      null_ls.builtins.diagnostics.cfn_lint,
+      null_ls.builtins.diagnostics.golangci_lint,
+      null_ls.builtins.diagnostics.mypy,
+      null_ls.builtins.diagnostics.ruff,
+      null_ls.builtins.diagnostics.terraform_validate,
+      null_ls.builtins.diagnostics.yamllint,
 
       -- Formatting
-      null_ls.builtins.formatting.black, -- pip install autopep8
+      null_ls.builtins.formatting.black,
+      null_ls.builtins.formatting.buf,
       null_ls.builtins.formatting.isort,
-      null_ls.builtins.formatting.prettier, -- brew install prettier or equiv
-      -- null_ls.builtins.formatting.goimports, -- go install golang.org/x/tools/cmd/goimports@latest
+      null_ls.builtins.formatting.prettier,
+      null_ls.builtins.formatting.terraform_fmt,
+      null_ls.builtins.formatting.yamlfmt,
 
       -- Hover
       null_ls.builtins.hover.dictionary,
-      -- null_ls.builtins.formatting.google_java_format, -- brew install google-java-format or equiv
+
     },
   })
 end

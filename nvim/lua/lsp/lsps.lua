@@ -1,6 +1,6 @@
 -- LSP settings
 local map = vim.keymap.set
-local has_telescope, telescope_builtin = pcall(require, 'telescope.builtin')
+local telescope_builtin = require 'telescope.builtin'
 local utils = require 'helper.utils'
 
 local on_attach = function(client, bufnr)
@@ -32,65 +32,6 @@ local on_attach = function(client, bufnr)
     }, bufnr)
   end
 
-  if has_telescope then
-    map('n', 'gd', telescope_builtin.lsp_definitions, opts)
-    map('n', 'gi', telescope_builtin.lsp_implementations, opts)
-    map('n', 'gy', telescope_builtin.lsp_type_definitions, opts)
-    map('n', 'gr', function()
-      telescope_builtin.lsp_references { include_declaration = false }
-    end, opts)
-    map('n', '<space>wS', telescope_builtin.lsp_document_symbols, opts)
-    map('n', '<space>ws', telescope_builtin.lsp_dynamic_workspace_symbols, opts)
-    map('n', '<leader>D', telescope_builtin.diagnostics, opts)
-    map('n', '<leader>c', require 'telescope'.extensions.metals.commands, opts)
-
-    wk.register({
-      g = {
-        d = { telescope_builtin.lsp_definitions, 'Go To Definition' },
-        i = { telescope_builtin.lsp_implementations, 'Go To Implementation' },
-        r = { telescope_builtin.lsp_references, 'Go To References' },
-        y = { telescope_builtin.lsp_type_definitions, 'Go To TypeDef' },
-      },
-      ["<space>"] = {
-        w = {
-          s = { telescope_builtin.lsp_dynamic_workspace_symbols, 'Dynamic Workspace Symbols' },
-          S = { telescope_builtin.lsp_document_symbols, 'Buffer Symbols' },
-        }
-      },
-      ["<leader>"] = {
-        D = { telescope_builtin.diagnostics, 'Diagnostics' },
-      }
-    }, wk_buf_opts)
-  else
-    map('n', '<space>ws', vim.lsp.buf.workspace_symbol, opts)
-    map('n', '<space>wS', vim.lsp.buf.document_symbol, opts)
-    map('n', 'gd', vim.lsp.buf.definition, opts)
-    map('n', 'gi', vim.lsp.buf.implementation, opts)
-    map('n', 'gy', vim.lsp.buf.type_definition, opts)
-    map('n', 'gr', vim.lsp.buf.references, opts)
-    map('n', '<leader>D', vim.lsp.buf.diagnostics, opts)
-  end
-
-  map('n', 'ga', vim.lsp.buf.code_action, opts)
-  map('n', 'gD', vim.lsp.buf.declaration, opts)
-  map('n', 'K', vim.lsp.buf.hover, opts)
-  map('n', 'gh', utils.show_word_help, opts)
-  map('n', 'gs', vim.lsp.buf.signature_help, opts)
-  map('n', 'gl', vim.lsp.codelens.run, opts)
-  -- map('n', '<leader>r', vim.lsp.buf.rename, opts)
-  map('n', '<leader>r', vim.lsp.buf.rename, opts)
-
-  wk.register({
-    g = {
-      a = { vim.lsp.buf.code_action, 'Code Action' },
-      D = { vim.lsp.buf.declaration, 'Go To Declaration' },
-      h = { utils.show_word_help, 'Show Word Help' },
-      l = { vim.lsp.codelens.run, 'Show Code Lens' },
-      s = { vim.lsp.buf.signature_help, 'Signature Help' },
-    },
-    K = { vim.lsp.buf.hover, 'Hover' },
-    ["<leader>r"] = { vim.lsp.buf.rename, 'Refactor Rename' },
-  }, wk_buf_opts)
   -- Formatting
 
   if caps.documentFormattingProvider then
@@ -109,12 +50,9 @@ local on_attach = function(client, bufnr)
     -- prevent previous jumping back
     vim.diagnostic.goto_prev { wrap = false }
   end
-  map('n', 'g[', prev_diagnostic, opts)
-  map('n', 'g]', vim.diagnostic.goto_next, opts)
   local open_diagnostic_float = function()
     vim.diagnostic.open_float({ scope = 'line' }) -- can be line, buffer, cursor
   end
-  map('n', '<leader>d', open_diagnostic_float, opts)
   -- map('n', '<leader>d', vim.diagnostic.setloclist, opts) -- buffer diagnostics only
 
   -- map('n', '/leader>wa', vim.lsp.buf.add_workspace_folder, opts)
@@ -128,21 +66,35 @@ local on_attach = function(client, bufnr)
   local diagnostic_warnings = function()
     vim.diagnostic.setqflist({ severity = 'W' }) -- all workspace errors
   end
-  map('n', '<space>we', diagnostic_errors, opts)
-  map('n', '<space>ww', diagnostic_warnings, opts)
 
   wk.register({
-    g = {
-      ["["] = { prev_diagnostic, 'Go To Prev Diagnostic' },
-      ["]"] = { vim.diagnostic.goto_super_method, 'Go To Next Diagnostic' },
-    },
+    ["<leader>r"] = { vim.lsp.buf.rename, 'Refactor Rename' },
     ["<leader>d"] = { open_diagnostic_float, 'Open Diagnostic Float' },
+    ["<leader>D"] = { telescope_builtin.diagnostics, 'Diagnostics' },
     ["<space>"] = {
-      w = {
+      l = {
+        name = '+LSP',
         e = { diagnostic_errors, 'Workspace Errors' },
         w = { diagnostic_warnings, 'Workspace Warnings' },
+        s = { telescope_builtin.lsp_dynamic_workspace_symbols, 'Dynamic Workspace Symbols' },
+        S = { telescope_builtin.lsp_document_symbols, 'Buffer Symbols' },
       }
-    }
+    },
+    g = {
+      name = '+GoTo',
+      ["["] = { prev_diagnostic, 'Prev Diagnostic' },
+      ["]"] = { vim.diagnostic.goto_super_method, 'Next Diagnostic' },
+      a = { vim.lsp.buf.code_action, 'Code Action' },
+      D = { vim.lsp.buf.declaration, 'Declaration' },
+      h = { utils.show_word_help, 'Show Word Help' },
+      l = { vim.lsp.codelens.run, 'Show Code Lens' },
+      s = { vim.lsp.buf.signature_help, 'Signature Help' },
+      d = { telescope_builtin.lsp_definitions, 'Definition' },
+      i = { telescope_builtin.lsp_implementations, 'Implementation' },
+      r = { telescope_builtin.lsp_references, 'References' },
+      y = { telescope_builtin.lsp_type_definitions, 'Type Def' },
+    },
+    K = { vim.lsp.buf.hover, 'Hover' },
   }, wk_buf_opts)
 end
 
@@ -160,13 +112,22 @@ end
 -- Setup mason so it can manage external tooling
 require('mason').setup()
 
+local lsp_config_servers = { 'bufls', 'golangci_lint_ls', 'gopls', 'html', 'jsonls',
+  'lua_ls', 'pyright', 'ruff_lsp', 'rust_analyzer', 'tsserver' }
 require 'mason-lspconfig'.setup({
-  -- ensure_installed = { 'sumneko_lua', 'golangci_lint_ls', 'gopls', 'html', 'json', 'tsserver', 'pyright', 'jdtls', 'rust_analyzer', 'dockerls' },
-  ensure_installed = { 'lua_ls', 'golangci_lint_ls', 'gopls', 'html', 'jsonls', 'tsserver', 'pyright',
-    'rust_analyzer' },
+  ensure_installed = lsp_config_servers
 })
+-- No extra config required, just run setup for these
+require 'lspconfig'.dockerls.setup {}
+require 'lspconfig'.bufls.setup {}
+require 'lspconfig'.graphql.setup {}
+require 'lspconfig'.html.setup {}
+require 'lspconfig'.jsonls.setup {}
+require 'lspconfig'.rust_analyzer.setup {}
+require 'lspconfig'.yamlls.setup {}
 
-local setup_servers = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'html', 'luaserver', 'json', 'pyright', 'rust' }
+-- These servers require a bit more configuration, otherwise just run setup{} like below
+local setup_servers = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'luaserver', 'pyright', 'rust' }
 table.insert(setup_servers, 'null-ls') -- add null-ls at the end
 
 for _, setup_server in ipairs(setup_servers) do
@@ -176,5 +137,9 @@ for _, setup_server in ipairs(setup_servers) do
   end
 end
 
-require 'lspconfig'.dockerls.setup {}
-require('lspconfig').yamlls.setup {}
+require("mason-null-ls").setup({ -- setup null-ls as source of truth
+  ensure_installed = nil,
+  automatic_installation = true,
+  automatic_setup = false,
+})
+
