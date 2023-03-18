@@ -79,7 +79,6 @@ require('telescope').setup {
       i = {
         ['<C-n>'] = actions.move_selection_next,
         ['<C-p>'] = actions.move_selection_previous,
-
         ['<C-u>'] = actions.preview_scrolling_up,
         ['<C-d>'] = actions.preview_scrolling_down,
         -- actions.which_key shows the mappings for your picker,
@@ -106,8 +105,8 @@ require('telescope').setup {
   },
   pickers = {
     find_files = {
-      find_command = { "fd", "--type", "f", "--hidden", "--max-depth", "10", "--strip-cwd-prefix", "--ignore-file",
-        global_ignore }
+      find_command = { "fd", "--type", "f", "--hidden", "--max-depth", "10", "--strip-cwd-prefix", "--follow",
+        "--ignore-file", global_ignore }
     },
   },
   extensions = {
