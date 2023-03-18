@@ -83,7 +83,7 @@ local on_attach = function(client, bufnr)
     g = {
       name = '+GoTo',
       ["["] = { prev_diagnostic, 'Prev Diagnostic' },
-      ["]"] = { vim.diagnostic.goto_super_method, 'Next Diagnostic' },
+      ["]"] = { vim.diagnostic.goto_next, 'Next Diagnostic' },
       a = { vim.lsp.buf.code_action, 'Code Action' },
       D = { vim.lsp.buf.declaration, 'Declaration' },
       h = { utils.show_word_help, 'Show Word Help' },
@@ -137,9 +137,9 @@ for _, setup_server in ipairs(setup_servers) do
   end
 end
 
-require("mason-null-ls").setup({ -- setup null-ls as source of truth
+require("mason-null-ls").setup({
+                                 -- setup null-ls as source of truth
   ensure_installed = nil,
   automatic_installation = true,
   automatic_setup = false,
 })
-
