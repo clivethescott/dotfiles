@@ -214,6 +214,7 @@ wk.register({
       name = '+Metals',
       c = { require 'telescope'.extensions.metals.commands, 'Commands' },
       d = { metals.goto_super_method, 'Go To Super Method' },
+      n = { metals.new_scala_file, 'New Scala File' },
       o = { metals.hover_worksheet, 'Hover Worksheet' },
       t = {
         name = 'TVP',
