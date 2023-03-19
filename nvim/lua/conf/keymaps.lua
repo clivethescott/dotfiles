@@ -240,7 +240,7 @@ wk.register({
       g = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
       G = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
       h = { '<cmd>Telescope help_tags<cr>', 'Help tags' },
-      j = { '<cmd>Telescope jump_list<cr>', 'Jump list' },
+      j = { '<cmd>Telescope jumplist<cr>', 'Jump list' },
       k = { '<cmd>Telescope keymaps<cr>', 'Keymaps' },
       l = { '<cmd>Telescope resume<cr>', 'Resume last picker' },
       m = { '<cmd>Telescope marks<cr>', 'Marks' },
