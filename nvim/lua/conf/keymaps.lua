@@ -1,13 +1,16 @@
+local default_opts = { silent = true, noremap = true }
 local map = function(mode, lhs, rhs, opts)
-  opts = opts or { silent = true, noremap = true }
+  if opts then
+    vim.tbl_extend('keep', opts, default_opts)
+  else
+    opts = default_opts
+  end
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
-local opts = { silent = true, noremap = true }
-
 -- Dealing with word wrap on long lines
-map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
-map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
+map('n', 'k', [[v:count < 2 ? 'gk' : "m'" .. v:count .. 'k']], { expr = true })
+map('n', 'j', [[v:count < 2 ? 'gj' : "m'" .. v:count .. 'j']], { expr = true })
 
 -- Center search result
 map('n', 'n', 'nzzzv')
@@ -70,8 +73,8 @@ end
 
 -- Quickly add empty lines
 -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines=
-vim.api.nvim_set_keymap('n', '<space>[', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", opts)
-vim.api.nvim_set_keymap('n', '<space>]', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>', opts)
+map('n', '<space>[', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[")
+map('n', '<space>]', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>')
 
 -- Telescope mappings
 local telescope = require('telescope.builtin')
