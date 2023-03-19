@@ -12,7 +12,7 @@ end, {})
 
 vim.api.nvim_create_user_command('GoImports', function()
   if vim.fn.executable('goimports') then
-    vim.cmd('!goimports -w %')
+    vim.cmd('silent !goimports -w %')
   end
 end, {})
 
