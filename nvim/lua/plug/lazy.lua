@@ -31,8 +31,6 @@ local plugins = {
   },
   {
     "nvim-telescope/telescope-file-browser.nvim",
-    lazy = true,
-    cmd = 'Telescope',
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
   },
   {
