@@ -230,6 +230,7 @@ wk.register({
       f = { toggle_winbar, 'Winbar' },
       l = { '<cmd>Lazy<cr>', 'Lazy Plugin Mgr' },
       m = { '<cmd>Mason<cr>', 'Mason Package Mgr' },
+      p = { '<cmd>Legendary keymaps<cr>', 'Keymap Fuzzy Search' },
       t = { '<cmd>NvimTreeToggle<cr>', 'NvimTree' },
       T = { '<cmd>NvimTreeFindFile!<cr>', 'Current file in NvimTree' },
       u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },

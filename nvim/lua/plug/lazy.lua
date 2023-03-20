@@ -24,12 +24,15 @@ local plugins = {
   {
     'kyazdani42/nvim-tree.lua',
     lazy = true,
+    cmd = { 'NvimTreeToggle', 'NvimTreeFindFile' },
     dependencies = {
       'kyazdani42/nvim-web-devicons'
     }
   },
   {
     "nvim-telescope/telescope-file-browser.nvim",
+    lazy = true,
+    cmd = 'Telescope',
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
   },
   {
@@ -52,9 +55,11 @@ local plugins = {
   {
     'numToStr/Comment.nvim',
     lazy = true,
+    keys = { 'gcc', 'gb' },
   },
   {
     'nvim-lualine/lualine.nvim',
+    lazy = false,
     dependencies = {
       'kyazdani42/nvim-web-devicons'
     }
@@ -127,14 +132,17 @@ local plugins = {
     }
   },
   {
-    'ray-x/lsp_signature.nvim'
+    'ray-x/lsp_signature.nvim',
+    lazy = true,
   },
   {
     'j-hui/fidget.nvim',
+    lazy = true,
     config = function(plugin) require 'fidget'.setup {} end
   },
   {
-    'onsails/lspkind.nvim'
+    'onsails/lspkind.nvim',
+    lazy = true,
   },
   {
     'jose-elias-alvarez/null-ls.nvim',
@@ -143,12 +151,15 @@ local plugins = {
   {
     'folke/trouble.nvim',
     lazy = true,
+    cmd = 'TroubleToggle',
     dependencies = {
       'kyazdani42/nvim-web-devicons'
     }
   },
   {
     'scalameta/nvim-metals',
+    lazy = true,
+    ft = 'scala',
     dependencies = {
       "nvim-lua/plenary.nvim"
     }
@@ -174,6 +185,7 @@ local plugins = {
   {
     'leoluz/nvim-dap-go',
     lazy = true,
+    ft = 'go',
     dependencies = {
       "mfussenegger/nvim-dap"
     }
@@ -188,6 +200,7 @@ local plugins = {
   {
     'akinsho/toggleterm.nvim',
     lazy = true,
+    cmd = 'ToggleTerm',
     version = '*'
   },
   {
@@ -196,6 +209,7 @@ local plugins = {
   {
     'folke/zen-mode.nvim',
     lazy = true,
+    cmd = 'ZenMode',
     dependencies = {
       'folke/twilight.nvim'
     }
@@ -203,9 +217,6 @@ local plugins = {
   {
     'rcarriga/nvim-notify',
     lazy = true,
-  },
-  {
-    'chentoast/marks.nvim'
   },
   {
     'nathom/filetype.nvim',
@@ -236,6 +247,24 @@ local plugins = {
         },
       })
     end,
+  },
+  {
+    'mrjones2014/legendary.nvim',
+    lazy = true,
+    cmd = 'Legendary',
+    branch = 'v2.1.0',
+    config = function()
+      require('legendary').setup({
+        which_key = {
+          auto_register = true,
+          do_binding = false,
+        },
+        log_level = 'warn',
+        select_prompt = 'Keymap Search'
+      })
+    end,
+    -- sqlite is only needed if you want to use frecency sorting
+    -- requires = 'kkharji/sqlite.lua'
   },
 }
 require("lazy").setup(plugins, {

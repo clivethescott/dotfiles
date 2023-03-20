@@ -54,9 +54,5 @@ require 'plug.neoscroll'
 require 'plug.undotree'
 -- Fancy notifications
 require 'plug.notify'
--- Visualize marks
-require 'plug.marks'
--- Visualize marks
-require 'plug.leap'
 -- Configure file type associations
 require 'plug.filetype'
