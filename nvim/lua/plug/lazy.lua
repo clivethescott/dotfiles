@@ -248,24 +248,6 @@ local plugins = {
       })
     end,
   },
-  {
-    'mrjones2014/legendary.nvim',
-    lazy = true,
-    cmd = 'Legendary',
-    branch = 'v2.1.0',
-    config = function()
-      require('legendary').setup({
-        which_key = {
-          auto_register = true,
-          do_binding = false,
-        },
-        log_level = 'warn',
-        select_prompt = 'Keymap Search'
-      })
-    end,
-    -- sqlite is only needed if you want to use frecency sorting
-    -- requires = 'kkharji/sqlite.lua'
-  },
 }
 require("lazy").setup(plugins, {
   lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json"
