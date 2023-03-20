@@ -5,7 +5,9 @@
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="af-magic"
-ZSH_TMUX_AUTOSTART=true
+if [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
+  ZSH_TMUX_AUTOSTART=true
+fi
 
 # Remove oldest history event that has a duplicate, if history needs trimming
 HIST_EXPIRE_DUPS_FIRST="true"
