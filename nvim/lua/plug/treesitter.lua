@@ -4,11 +4,13 @@ if not ok then
 end
 
 treesitter_config.setup {
+  ensure_installed = {'dockerfile', 'git_config', 'gitcommit', 'go', 'gomod', 'graphql', 'hocon', 'html', 'javascript', 'json', 'lua', 'make', 'markdown', 'proto', 'python', 'rust', 'scala', 'sql', 'terraform', 'toml', 'typescript', 'vim', 'yaml'},
+  auto_install = true,
   highlight = {
     enable = true,                            -- false will disable the whole extension
-    additional_vim_regex_highlighting = false, -- performance may suffer if enabled
+    additional_vim_regex_highlighting = true, -- performance may suffer if enabled
   },
-  disable = { "svelte", "phpdoc", "commonlisp" },
+  ignore_install = { "svelte" },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -20,7 +22,7 @@ treesitter_config.setup {
   },
   indent = {
     enable = true,
-    disable = { 'python' }
+    disable = { 'awk' }
   },
   autotag = {
     enable = true,
