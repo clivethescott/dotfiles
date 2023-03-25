@@ -127,7 +127,7 @@ require 'lspconfig'.rust_analyzer.setup {}
 require 'lspconfig'.yamlls.setup {}
 
 -- These servers require a bit more configuration, otherwise just run setup{} like below
-local setup_servers = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'luaserver', 'pyright', 'rust' }
+local setup_servers = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'luaserver', 'pyright' }
 table.insert(setup_servers, 'null-ls') -- add null-ls at the end
 
 for _, setup_server in ipairs(setup_servers) do
@@ -138,7 +138,7 @@ for _, setup_server in ipairs(setup_servers) do
 end
 
 require("mason-null-ls").setup({
-                                 -- setup null-ls as source of truth
+  -- setup null-ls as source of truth
   ensure_installed = nil,
   automatic_installation = true,
   automatic_setup = false,

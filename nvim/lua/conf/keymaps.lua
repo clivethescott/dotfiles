@@ -219,6 +219,7 @@ wk.register({
       d = { metals.goto_super_method, 'Go To Super Method' },
       n = { metals.new_scala_file, 'New Scala File' },
       o = { metals.hover_worksheet, 'Hover Worksheet' },
+      s = { metals.switch_bsp, 'Switch BSP Server' },
       t = {
         name = 'TVP',
         o = { tvp.reveal_in_tree, 'Reveal In Tree' },
@@ -237,10 +238,10 @@ wk.register({
     t = {
       name = '+Telescope',
       c = { '<cmd>Telescope commands<cr>', 'Commands' },
-      f = { '<cmd>Telescope file_browser<cr>', 'Open FileBrowser in root dir' },
-      F = { '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>', 'Open FileBrowser in buffer dir' },
-      g = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
-      G = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
+      f = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
+      F = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
+      g = { '<cmd>Telescope file_browser<cr>', 'Open FileBrowser in root dir' },
+      G = { '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>', 'Open FileBrowser in buffer dir' },
       h = { '<cmd>Telescope help_tags<cr>', 'Help tags' },
       j = { '<cmd>Telescope jumplist<cr>', 'Jump list' },
       k = { '<cmd>Telescope keymaps<cr>', 'Keymaps' },
