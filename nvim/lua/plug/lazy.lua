@@ -15,10 +15,9 @@ local plugins = {
   {
     "folke/tokyonight.nvim",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000,
     config = function()
-      -- load the colorscheme here
-      vim.g.tokyonight_style = "night"
-      vim.cmd([[colorscheme tokyonight]])
+      vim.cmd([[colorscheme tokyonight-night]])
     end,
   },
   {
