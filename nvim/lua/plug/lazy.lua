@@ -246,6 +246,14 @@ local plugins = {
       })
     end,
   },
+  {
+    "folke/todo-comments.nvim",
+    lazy = true,
+    cmd = 'TodoTelescope',
+    config = function()
+      require 'todo-comments'.setup {}
+    end
+  },
 }
 require("lazy").setup(plugins, {
   lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json"

@@ -249,6 +249,7 @@ wk.register({
       m = { '<cmd>Telescope marks<cr>', 'Marks' },
       o = { '<cmd>Telescope oldfiles<cr>', 'Old Files' },
       r = { '<cmd>Telescope registers<cr>', 'Registers' },
+      t = { '<cmd>TodoTelescope<cr>', 'TODOs' },
     },
     w = {
       name = '+Resize Splits',
