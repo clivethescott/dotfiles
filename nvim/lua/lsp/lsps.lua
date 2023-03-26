@@ -66,6 +66,11 @@ local on_attach = function(client, bufnr)
   local diagnostic_warnings = function()
     vim.diagnostic.setqflist({ severity = 'W' }) -- all workspace errors
   end
+  local lsp_definition_split = function()
+    telescope_builtin.lsp_definitions {
+      jump_type = 'vsplit'
+    }
+  end
 
   wk.register({
     ["<leader>r"] = { vim.lsp.buf.rename, 'Refactor Rename' },
@@ -85,13 +90,14 @@ local on_attach = function(client, bufnr)
       ["["] = { prev_diagnostic, 'Prev Diagnostic' },
       ["]"] = { vim.diagnostic.goto_next, 'Next Diagnostic' },
       a = { vim.lsp.buf.code_action, 'Code Action' },
-      D = { vim.lsp.buf.declaration, 'Declaration' },
-      h = { utils.show_word_help, 'Show Word Help' },
-      l = { vim.lsp.codelens.run, 'Show Code Lens' },
-      s = { vim.lsp.buf.signature_help, 'Signature Help' },
       d = { telescope_builtin.lsp_definitions, 'Definition' },
+      -- D = { vim.lsp.buf.declaration, 'Declaration' },
+      D = { lsp_definition_split, 'Definition +split' },
+      h = { utils.show_word_help, 'Show Word Help' },
       i = { telescope_builtin.lsp_implementations, 'Implementation' },
+      l = { vim.lsp.codelens.run, 'Show Code Lens' },
       r = { telescope_builtin.lsp_references, 'References' },
+      s = { vim.lsp.buf.signature_help, 'Signature Help' },
       y = { telescope_builtin.lsp_type_definitions, 'Type Def' },
     },
     K = { vim.lsp.buf.hover, 'Hover' },
