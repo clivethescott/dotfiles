@@ -208,10 +208,10 @@ wk.register({
     },
     g = {
       '+Git',
-      c = { '<cmd>Telescope git_commits<cr>', 'Git commits' },
-      C = { '<cmd>Telescope git_bcommits<cr>', 'Git Buffer commits' },
-      g = { '<cmd>Telescope git_branches<cr>', 'Git branches' },
-      s = { '<cmd>Telescope git_status<cr>', 'Git status' },
+      c = { '<cmd>Telescope git_commits<cr>', 'Commits' },
+      C = { '<cmd>Telescope git_bcommits<cr>', 'Buffer commits' },
+      g = { '<cmd>Telescope git_branches<cr>', 'Branches' },
+      s = { '<cmd>Telescope git_status<cr>', 'Status' },
     },
     m = {
       name = '+Metals',
