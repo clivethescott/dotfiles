@@ -231,9 +231,11 @@ wk.register({
       f = { toggle_winbar, 'Winbar' },
       l = { '<cmd>Lazy<cr>', 'Lazy Plugin Mgr' },
       m = { '<cmd>Mason<cr>', 'Mason Package Mgr' },
+      s = { edit_snippets, 'Edit LuaSnippets' },
       t = { '<cmd>NvimTreeToggle<cr>', 'NvimTree' },
       T = { '<cmd>NvimTreeFindFile!<cr>', 'Current file in NvimTree' },
       u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },
+      z = { zen_mode, 'Toggle Zen Mode' }
     },
     t = {
       name = '+Telescope',
@@ -272,8 +274,6 @@ wk.register({
       x = { open_uri, 'URI at cursor' },
     },
     m = { '<cmd>silent! nohls<cr>', 'Clear search highlight' },
-    s = { edit_snippets, 'Edit LuaSnippets' },
-    z = { zen_mode, 'Toggle Zen Mode' }
   },
   ['gp'] = { ':b#<cr>', 'Alternate buffer' },
 })
