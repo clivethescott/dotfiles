@@ -248,7 +248,7 @@ local plugins = {
   {
     "folke/todo-comments.nvim",
     lazy = true,
-    cmd = 'TodoTelescope',
+    cmd = {'TodoTelescope', 'TodoTrouble'},
     config = function()
       require 'todo-comments'.setup {}
     end

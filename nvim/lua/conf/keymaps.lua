@@ -204,6 +204,7 @@ wk.register({
       l = { '<cmd>TroubleToggle loclist<cr>', 'Location List' },
       q = { '<cmd>TroubleToggle quickfix<cr>', 'Quickfix List' },
       r = { '<cmd>TroubleToggle lsp_references<cr>', 'LSP References' },
+      t = { '<cmd>TodoTrouble<cr>', 'TODOs' },
       w = { '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Workspace Diagnostics' },
     },
     g = {
