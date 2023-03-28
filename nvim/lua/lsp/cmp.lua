@@ -6,7 +6,6 @@ local has_words_before = function()
 end
 
 M.setup = function()
-
   local has_cmp, cmp = pcall(require, 'cmp')
 
   if not has_cmp then
@@ -41,7 +40,7 @@ M.setup = function()
   if has_lspkind then
     cmp_format = lspkind.cmp_format {
       mode = 'symbol_text', -- show only symbol annotations
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      maxwidth = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
     }
   end
 
@@ -54,6 +53,7 @@ M.setup = function()
     },
     preselect = cmp.PreselectMode.None,
     completion = {
+      autocomplete = false,
       keyword_length = 4 -- number of characters needed to trigger auto-completion
     },
     snippet = {
@@ -76,6 +76,7 @@ M.setup = function()
       ['<C-x>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ['<C-n>'] = cmp.mapping(select_next_item, { 'i', 's' }),
+      ['<C-Space>'] = cmp.mapping.complete(),
       -- ['<Tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
 
       ['<C-p>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
@@ -84,12 +85,12 @@ M.setup = function()
     sources = cmp.config.sources({
       { name = 'path', max_item_count = 30 },
     }, {
-      { name = 'luasnip', max_item_count = 5, keyword_length = 2 },
-      { name = 'nvim_lsp', max_item_count = 20, keyword_length = 2 },
-      { name = 'nvim_lua', max_item_count = 5 },
+      { name = 'luasnip',                  max_item_count = 5,  keyword_length = 2 },
+      { name = 'nvim_lsp',                 max_item_count = 20, keyword_length = 2 },
+      { name = 'nvim_lua',                 max_item_count = 5 },
       -- { name = 'nvim_lsp_signature_help' }, -- now using lsp_signature
       { name = 'nvim_lsp_document_symbol', max_item_count = 10 },
-      { name = 'buffer', max_item_count = 5, keyword_length = 3 },
+      { name = 'buffer',                   max_item_count = 5,  keyword_length = 3 },
     }, {
       { name = 'calc' },
     })
@@ -117,6 +118,8 @@ M.setup = function()
       }
     })
   })
+
+  vim.keymap.set('i', '<C-x><C-o>', function() require 'cmp'.complete() end)
 end
 
 return M
