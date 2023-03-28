@@ -86,13 +86,11 @@ M.setup = function()
       { name = 'path', max_item_count = 30 },
     }, {
       { name = 'luasnip',                  max_item_count = 5,  keyword_length = 2 },
-      { name = 'nvim_lsp',                 max_item_count = 20, keyword_length = 2 },
+      { name = 'nvim_lsp',                 max_item_count = 30, keyword_length = 2 },
       { name = 'nvim_lua',                 max_item_count = 5 },
       -- { name = 'nvim_lsp_signature_help' }, -- now using lsp_signature
-      { name = 'nvim_lsp_document_symbol', max_item_count = 10 },
+      { name = 'nvim_lsp_document_symbol', max_item_count = 5 },
       { name = 'buffer',                   max_item_count = 5,  keyword_length = 3 },
-    }, {
-      { name = 'calc' },
     })
   })
 
