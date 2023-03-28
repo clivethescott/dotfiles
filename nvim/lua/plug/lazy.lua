@@ -134,7 +134,6 @@ local plugins = {
   },
   {
     'j-hui/fidget.nvim',
-    lazy = true,
     config = function(plugin) require 'fidget'.setup {} end
   },
   {
