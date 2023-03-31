@@ -71,6 +71,11 @@ local on_attach = function(client, bufnr)
       jump_type = 'vsplit'
     }
   end
+  local lsp_references = function()
+    telescope_builtin.lsp_references{
+      include_declaration = false
+    }
+  end
 
   wk.register({
     ["<leader>r"] = { vim.lsp.buf.rename, 'Refactor Rename' },
@@ -93,10 +98,10 @@ local on_attach = function(client, bufnr)
       d = { telescope_builtin.lsp_definitions, 'Definition' },
       -- D = { vim.lsp.buf.declaration, 'Declaration' },
       D = { lsp_definition_split, 'Definition +split' },
-      h = { utils.show_word_help, 'Show Word Help' },
+      h = { utils.show_word_help, 'Word Help' },
       i = { telescope_builtin.lsp_implementations, 'Implementation' },
       l = { vim.lsp.codelens.run, 'Show Code Lens' },
-      r = { telescope_builtin.lsp_references, 'References' },
+      r = { lsp_references, 'References' },
       s = { vim.lsp.buf.signature_help, 'Signature Help' },
       y = { telescope_builtin.lsp_type_definitions, 'Type Def' },
     },
