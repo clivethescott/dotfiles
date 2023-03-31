@@ -75,6 +75,7 @@ M.setup = function()
       -- ['<C-x>'] = cmp.mapping.abort(),
       ['<C-x>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ['<C-n>'] = cmp.mapping(select_next_item, { 'i', 's' }),
       ['<C-Space>'] = cmp.mapping.complete(),
       -- ['<Tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
