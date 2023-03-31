@@ -4,7 +4,7 @@ if not ok then
 end
 
 nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
-  disable_netrw = true,
+  disable_netrw = false,
   hijack_cursor = false,
   hijack_netrw = true,
   respect_buf_cwd = true,

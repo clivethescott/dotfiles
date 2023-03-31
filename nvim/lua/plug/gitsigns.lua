@@ -33,14 +33,11 @@ gitsigns.setup { on_attach = function()
     ["<space>"] = {
       g = {
         name = '+Git',
+        [']'] = { next_hunk, 'Next Change' },
+        ['['] = { prev_hunk, 'Prev Change' },
         b = { gs.toggle_current_line_blame, 'Toggle Blame' },
         B = { blame_line, 'Blame Line Full' },
         d = { gs.preview_hunk, 'Diff Change' },
-        h = {
-          name = '+Changes',
-          n = { next_hunk, 'Next Change' },
-          p = { prev_hunk, 'Prev Change' },
-        },
         u = { gs.reset_hunk, 'Undo Current Change' },
         U = { gs.reset_buffer, 'Undo Buffer Changes' },
       },

@@ -30,7 +30,7 @@ local plugins = {
   },
   {
     "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   },
   {
     'nvim-telescope/telescope.nvim',
@@ -81,6 +81,7 @@ local plugins = {
   },
   {
     'romgrk/nvim-treesitter-context',
+    lazy = true,
     dependencies = {
       'nvim-treesitter'
     }
@@ -245,11 +246,21 @@ local plugins = {
   {
     "folke/todo-comments.nvim",
     lazy = true,
-    cmd = {'TodoTelescope', 'TodoTrouble'},
+    cmd = { 'TodoTelescope', 'TodoTrouble' },
     config = function()
       require 'todo-comments'.setup {}
     end
   },
+  {
+    "tpope/vim-fugitive",
+    lazy = true,
+    cmd = { 'G', 'Git', 'Gedit', 'Gsplit', 'Gvdiffsplit', 'Gread', 'GBrowse' },
+  },
+  {
+    "tpope/vim-rhubarb",
+    lazy = true,
+    dependencies = { 'tpope/vim-fugitive' },
+  }
 }
 require("lazy").setup(plugins, {
   lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json"

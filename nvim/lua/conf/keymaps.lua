@@ -209,10 +209,15 @@ wk.register({
     },
     g = {
       '+Git',
-      c = { '<cmd>Telescope git_commits<cr>', 'Commits' },
-      C = { '<cmd>Telescope git_bcommits<cr>', 'Buffer commits' },
+      c = { '<cmd>Git commit -v<cr>', 'Commit' },
+      D = { '<cmd>Gvdiffsplit<cr>', 'Diff Staged with Current' },
       g = { '<cmd>Telescope git_branches<cr>', 'Branches' },
-      s = { '<cmd>Telescope git_status<cr>', 'Status' },
+      h = { '<cmd>GBrowse<cr>', 'Open in Github' },
+      l = { '<cmd>Git log<cr>', 'Log' },
+      L = { '<cmd>Telescope git_bcommits<cr>', 'Buffer Log' },
+      r = { '<cmd>Gread<cr>', 'Undo Buffer Changes' },
+      s = { '<cmd>Git<cr>', 'Status Summary' },
+      S = { '<cmd>Telescope git_status<cr>', 'Status + diff' },
     },
     m = {
       name = '+Metals',
