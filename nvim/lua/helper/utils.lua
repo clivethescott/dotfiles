@@ -2,7 +2,7 @@ local M = {}
 
 function M.resolvedCapabilities(client_id)
   client_id = client_id or 1
-  vim.pretty_print(vim.lsp.get_client_by_id(client_id).server_capabilities)
+  vim.print(vim.lsp.get_client_by_id(client_id).server_capabilities)
 end
 
 function M.uuid()
