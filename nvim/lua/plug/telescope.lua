@@ -94,6 +94,8 @@ require('telescope').setup {
         ["<C-h>"] = "which_key",
       },
       n = {
+        ['v'] = actions.select_vertical,
+        ['s'] = actions.select_horizontal,
         ["<c-t>"] = trouble.open_with_trouble,
         ["<C-h>"] = fb_actions.goto_home_dir,
         ["<esc>"] = actions.close,

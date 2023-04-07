@@ -46,21 +46,15 @@ treesitter_config.setup {
     move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        [']m'] = { query = '@function.outer', desc = 'Go to function start' },
-        [']]'] = { query = '@class.outer', desc = 'Go to class start' },
-      },
-      goto_next_end = {
-        [']M'] = { query = '@function.outer', desc = 'Go to function end' },
-        [']['] = { query = '@class.outer', desc = 'Go to class end' },
-      },
       goto_previous_start = {
-        ['[m'] = { query = '@function.inner', desc = 'Go to prev function start' },
-        ['[['] = { query = '@class.outer', desc = 'Go to prev class start' },
+        ['[c'] = { query = '@class.outer', desc = 'Go to prev class' },
+        ['[p'] = { query = '@parmeter.outer', desc = 'Go to prev param' },
+        ['[m'] = { query = '@function.outer', desc = 'Go to prev function' },
       },
-      goto_previous_end = {
-        ['[M'] = { query = '@function.outer', desc = 'Go to prev function end' },
-        ['[]'] = { query = '@class.outer', desc = 'Go to prev class end' },
+      goto_next_start = {
+        [']c'] = { query = '@class.outer', desc = 'Go to next class' },
+        [']p'] = { query = '@parmeter.outer', desc = 'Go to next param' },
+        [']m'] = { query = '@function.outer', desc = 'Go to next function' },
       },
     },
     swap = {

@@ -175,8 +175,23 @@ local edit_snippets = function()
   require("luasnip.loaders.from_lua").edit_snippet_files()
 end
 
+local prev_todo = function()
+  require 'todo-comments'.jump_prev()
+end
+local next_todo = function()
+  require 'todo-comments'.jump_next()
+end
+
 local wk = require 'which-key'
 wk.register({
+  ["["] = {
+    name = '+Previous',
+    t = { prev_todo, 'TODO' },
+  },
+  ["]"] = {
+    name = '+Next',
+    t = { next_todo, 'TODO' },
+  },
   ["<space>"] = {
     ['['] = { ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", 'Add blank line above' },
     [']'] = { ":<c-u>put =repeat(nr2char(10), v:count1)<cr>", 'Add blank line below' },

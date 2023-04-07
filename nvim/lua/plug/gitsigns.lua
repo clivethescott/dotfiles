@@ -30,6 +30,14 @@ gitsigns.setup { on_attach = function()
 
   local wk = require 'which-key'
   wk.register({
+    ["["] = {
+      name = '+Previous',
+      g = { prev_hunk, 'Git Change' },
+    },
+    ["]"] = {
+      name = '+Next',
+      g = { next_hunk, 'Git Change' },
+    },
     ["<space>"] = {
       g = {
         name = '+Git',

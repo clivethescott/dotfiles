@@ -66,11 +66,6 @@ local on_attach = function(client, bufnr)
   local diagnostic_warnings = function()
     vim.diagnostic.setqflist({ severity = 'W' }) -- all workspace errors
   end
-  local lsp_definition_split = function()
-    telescope_builtin.lsp_definitions {
-      jump_type = 'vsplit'
-    }
-  end
   local lsp_references = function()
     telescope_builtin.lsp_references{
       include_declaration = false
@@ -78,6 +73,14 @@ local on_attach = function(client, bufnr)
   end
 
   wk.register({
+    ["["] = {
+      name = '+Previous',
+      e = { prev_diagnostic, 'Diagnostic' },
+    },
+    ["]"] = {
+      name = '+Next',
+      e = { vim.diagnostic.goto_next, 'Diagnostic' },
+    },
     ["<leader>r"] = { vim.lsp.buf.rename, 'Refactor Rename' },
     ["<leader>d"] = { open_diagnostic_float, 'Open Diagnostic Float' },
     ["<leader>D"] = { telescope_builtin.diagnostics, 'Diagnostics' },
@@ -95,13 +98,13 @@ local on_attach = function(client, bufnr)
       ["["] = { prev_diagnostic, 'Prev Diagnostic' },
       ["]"] = { vim.diagnostic.goto_next, 'Next Diagnostic' },
       a = { vim.lsp.buf.code_action, 'Code Action' },
-      d = { telescope_builtin.lsp_definitions, 'Definition' },
-      -- D = { vim.lsp.buf.declaration, 'Declaration' },
-      D = { lsp_definition_split, 'Definition +split' },
+      d = { telescope_builtin.lsp_definitions, 'Definition <Telescope>' },
+      D = { '<cmd>Trouble lsp_definitions<cr>', 'Definition <Trouble>' },
       h = { utils.show_word_help, 'Word Help' },
       i = { telescope_builtin.lsp_implementations, 'Implementation' },
       l = { vim.lsp.codelens.run, 'Show Code Lens' },
-      r = { lsp_references, 'References' },
+      r = { lsp_references, 'References <Telescope>' },
+      R = { '<cmd>Trouble lsp_references<cr>', 'References <Trouble>' },
       s = { vim.lsp.buf.signature_help, 'Signature Help' },
       y = { telescope_builtin.lsp_type_definitions, 'Type Def' },
     },

@@ -10,7 +10,7 @@ M.setup = function(on_attach)
       on_attach(client, bufnr)
     end,
     sources = {
-null_ls.builtins.code_actions.eslint,
+      null_ls.builtins.code_actions.eslint,
       -- The external tools for these are managed via williamboman/mason.nvim
       -- Code Actions
       null_ls.builtins.code_actions.gitsigns,
@@ -32,6 +32,7 @@ null_ls.builtins.code_actions.eslint,
       null_ls.builtins.formatting.prettier,
       null_ls.builtins.formatting.terraform_fmt,
       null_ls.builtins.formatting.yamlfmt,
+      null_ls.builtins.formatting.tidy,
 
       -- Hover
       null_ls.builtins.hover.dictionary,
