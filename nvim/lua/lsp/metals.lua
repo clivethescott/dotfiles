@@ -34,13 +34,12 @@ M.setup = function(on_attach, capabilities)
   vim.api.nvim_create_autocmd("FileType", {
     pattern = { "scala", "sbt", "sc" },
     callback = function()
-      -- Metals mappings
-      metals.initialize_or_attach(metals_config)
-
+      if not os.getenv('NOMETALS') then
+        metals.initialize_or_attach(metals_config)
+      end
     end,
     group = nvim_metals_group,
   })
-
 end
 
 return M
