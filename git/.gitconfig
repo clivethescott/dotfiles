@@ -1,29 +1,31 @@
 [user]
 	name = Clive Gurure
 	email = clivethescott@gmail.com
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[includeIf "gitdir:~/wizenoze/source/"]
-  path = .gitconfig-wizenoze
 [init]
 	defaultBranch = main
 [core]
 	excludesfile = /Users/clive/.gitignore
   pager = delta
 [interactive]
-    diffFilter = delta --color-only
-
+  diffFilter = delta --color-only
 [delta]
-    navigate = true  # use n and N to move between diff sections
-    light = false    # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-    side-by-side = true
-    line-numbers = true
+  navigate = true  # use n and N to move between diff sections
+  light = false    # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  side-by-side = true
+  line-numbers = true
 
 [merge]
-    conflictstyle = diff3
+  tool = "nvim"
+  ; conflictstyle = diff3
+
+[mergetool]
+	keepBackup = false
+	prompt = false
+
+[mergetool "nvim"]
+	cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
 
 [diff]
-    colorMoved = default
+  colorMoved = default
+[push]
+	autoSetupRemote = true
