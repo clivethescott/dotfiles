@@ -9,17 +9,10 @@ vim.opt.termguicolors = true
 
 vim.opt.lazyredraw = true
 
--- Configure and enable onedark theme
---[[ local onedarkTheme = require('onedark')
-onedarkTheme.setup {
-  style = 'darker' -- or dark(er), cool, deep, warm(er)
-}
-onedarkTheme.load() ]]
-
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = 'menuone,noinsert,noselect'
 
--- Override ignorecase if search includes uppe case chars
+-- Override ignorecase if search includes upper case chars
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 
@@ -94,11 +87,9 @@ vim.g.loaded_perl_provider = 0
 vim.g.python3_host_prog = '/opt/homebrew/opt/python@3.10/bin/python3'
 vim.g.loaded_ruby_provider = 0
 
-vim.opt.foldmethod = 'expr'
+vim.opt.foldmethod = 'syntax'
 vim.opt.foldminlines = 99
 vim.opt.foldlevel = 1
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-
--- Show Lines before/after cursor
-vim.opt.scrolloff = 1
+-- Disable for now doesn't work properly with gitconfig files
+-- vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
