@@ -9,6 +9,7 @@ require("filetype").setup({
       tfvars = "terraform",
       tfstate = "json",
       pp = "json",
+      sql = "sql",
     },
     literal = {
       -- Set the filetype of files named "MyBackupFile" to lua
