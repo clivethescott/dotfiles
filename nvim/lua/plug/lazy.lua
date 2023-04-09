@@ -274,6 +274,11 @@ local plugins = {
       }
     end
   },
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = 'Spectre',
+  },
 }
 require("lazy").setup(plugins, {
   lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json"
