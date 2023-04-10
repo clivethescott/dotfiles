@@ -252,15 +252,6 @@ local plugins = {
     end
   },
   {
-    "tpope/vim-fugitive",
-    lazy = true,
-    cmd = { 'G', 'Git', 'Gedit', 'Gsplit', 'Gvdiffsplit', 'Gread', 'GBrowse' },
-  },
-  {
-    "tpope/vim-rhubarb",
-    dependencies = { 'tpope/vim-fugitive' },
-  },
-  {
     "sindrets/diffview.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },

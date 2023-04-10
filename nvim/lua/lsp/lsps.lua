@@ -127,7 +127,7 @@ end
 require('mason').setup()
 
 local lsp_config_servers = { 'bufls', 'golangci_lint_ls', 'gopls', 'html', 'jsonls',
-  'lua_ls', 'pyright', 'ruff_lsp', 'rust_analyzer', 'tsserver' }
+  'lua_ls', 'pyright', 'ruff_lsp','tsserver' }
 require 'mason-lspconfig'.setup({
   ensure_installed = lsp_config_servers
 })
@@ -153,7 +153,6 @@ end
 
 require("mason-null-ls").setup({
   -- setup null-ls as source of truth
-  ensure_installed = nil,
   automatic_installation = true,
   automatic_setup = false,
 })
