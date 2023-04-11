@@ -249,7 +249,6 @@ wk.register({
       f = { toggle_winbar, 'Winbar' },
       l = { '<cmd>Lazy<cr>', 'Plugin Mgr' },
       m = { '<cmd>Mason<cr>', 'LSP Server Mgr' },
-      r = { '<cmd>Spectre<cr>', 'Search n Replace' },
       t = { '<cmd>NvimTreeToggle<cr>', 'NvimTree' },
       u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },
       z = { zen_mode, 'Toggle Zen Mode' }
@@ -257,8 +256,8 @@ wk.register({
     t = {
       name = '+Telescope',
       c = { '<cmd>Telescope commands<cr>', 'Commands' },
-      f = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
-      F = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
+      f = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
+      F = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
       g = { '<cmd>Telescope file_browser<cr>', 'Open FileBrowser in root dir' },
       G = { '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>', 'Open FileBrowser in buffer dir' },
       h = { '<cmd>Telescope help_tags<cr>', 'Help tags' },
@@ -267,6 +266,7 @@ wk.register({
       l = { '<cmd>Telescope resume<cr>', 'Resume last picker' },
       m = { '<cmd>Telescope marks<cr>', 'Marks' },
       o = { '<cmd>Telescope oldfiles<cr>', 'Old Files' },
+      q = { '<cmd>Telescope quickfix<cr>', 'Quickfix List' },
       r = { '<cmd>Telescope registers<cr>', 'Registers' },
       t = { '<cmd>TodoTelescope<cr>', 'TODOs' },
     },
