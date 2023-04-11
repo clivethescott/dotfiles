@@ -262,8 +262,6 @@ wk.register({
       c = { '<cmd>Telescope commands<cr>', 'Commands' },
       f = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
       F = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
-      g = { '<cmd>Telescope file_browser<cr>', 'Open FileBrowser in root dir' },
-      G = { '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>', 'Open FileBrowser in buffer dir' },
       h = { '<cmd>Telescope help_tags<cr>', 'Help tags' },
       j = { '<cmd>Telescope jumplist<cr>', 'Jump list' },
       k = { '<cmd>Telescope keymaps<cr>', 'Keymaps' },

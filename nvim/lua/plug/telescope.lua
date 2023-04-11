@@ -51,7 +51,6 @@ end
 
 local trouble = require("trouble.providers.telescope")
 local global_ignore = os.getenv('HOME') .. '/.gitignore'
-local fb_actions = require "telescope".extensions.file_browser.actions
 
 require('telescope').setup {
   defaults = {
@@ -85,6 +84,7 @@ require('telescope').setup {
         -- actions.which_key shows the mappings for your picker,
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
         ["<esc>"] = actions.close,
+        ["<c-[>"] = actions.close,
         ["<C-c>"] = { "<esc>", type = "command" },
         ["<C-h>"] = "which_key",
       },
@@ -97,7 +97,6 @@ require('telescope').setup {
         ['s'] = actions.select_horizontal,
         ["r"] = trouble.open_with_trouble,
         ["a"] = actions.toggle_all,
-        ["h"] = fb_actions.goto_home_dir,
         ["x"] = actions.delete_buffer,
         ["q"] = actions.send_selected_to_qflist,
         ["<esc>"] = actions.close,
@@ -112,72 +111,12 @@ require('telescope').setup {
         "--ignore-file", global_ignore }
     },
   },
-  extensions = {
-    file_browser = {
-      -- path
-      -- cwd
-      cwd_to_path = false,
-      grouped = true,
-      files = true,
-      add_dirs = true,
-      depth = 1,
-      auto_depth = false,
-      select_buffer = false,
-      hidden = false,
-      -- respect_gitignore
-      -- browse_files
-      -- browse_folders
-      hide_parent_dir = false,
-      collapse_dirs = false,
-      quiet = false,
-      dir_icon = "",
-      dir_icon_hl = "Default",
-      display_stat = { date = true, size = true },
-      hijack_netrw = false,
-      use_fd = true,
-      git_status = true,
-      mappings = {
-        ["i"] = {
-          ["<A-c>"] = false,
-          ["<S-CR>"] = false,
-          ["<A-r>"] = false,
-          ["<A-m>"] = false,
-          ["<A-y>"] = false,
-          ["<A-d>"] = false,
-          ["<C-o>"] = fb_actions.open, -- Open with system default application
-          ["<C-g>"] = fb_actions.goto_parent_dir,
-          ["<C-a>"] = fb_actions.goto_home_dir,
-          ["<C-w>"] = fb_actions.goto_cwd,
-          ["<C-t>"] = fb_actions.change_cwd,
-          ["<C-f>"] = fb_actions.toggle_browser,
-          ["<C-h>"] = fb_actions.toggle_hidden,
-          ["<C-s>"] = fb_actions.toggle_all,
-        },
-        ["n"] = {
-          ["a"] = fb_actions.create,
-          ["r"] = fb_actions.rename,
-          ["x"] = fb_actions.move,
-          ["y"] = fb_actions.copy,
-          ["d"] = fb_actions.remove,
-          ["o"] = fb_actions.open,
-          ["gp"] = fb_actions.goto_parent_dir,
-          ["gh"] = fb_actions.goto_home_dir,
-          ["gc"] = fb_actions.goto_cwd,
-          ["gg"] = fb_actions.change_cwd,
-          ["f"] = fb_actions.toggle_browser,
-          ["g."] = fb_actions.toggle_hidden,
-          ["s"] = fb_actions.toggle_all,
-        },
-      },
-    },
-  },
 }
 
 -- Enable telescope fzf native
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
-require("telescope").load_extension "file_browser"
 
 -- requires nvim-telescope/telescope-dap.nvim
 require('telescope').load_extension('dap')
