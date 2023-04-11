@@ -187,10 +187,14 @@ wk.register({
   ["["] = {
     name = '+Previous',
     t = { prev_todo, 'TODO' },
+    q = { "<cmd>cprevious<cr>", 'Quickfix Entry' },
+    Q = { "<cmd>cNfile<cr>", 'Quickfix Entry in last file' },
   },
   ["]"] = {
     name = '+Next',
     t = { next_todo, 'TODO' },
+    q = { "<cmd>cnext<cr>", 'Quickfix Entry' },
+    Q = { "<cmd>cnfile<cr>", 'Quickfix Entry in next file' },
   },
   ["<space>"] = {
     ['['] = { ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", 'Add blank line above' },
