@@ -3,13 +3,14 @@ export KEYTIMEOUT=50 # make zsh vi mode switch faster
 export BROWSER=open
 export EDITOR=nvim
 export VISUAL=$EDITOR
-export GOPATH=$HOME/Code/Go
+export GOPATH=~/Code/Go
 export GOBIN=$GOPATH/bin
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 export FZF_DEFAULT_COMMAND='fd --type file'
 export FZF_CTRL_T_COMMAND='rg --files'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export TERM=screen-256color
+export XDG_CONFIG_HOME=$HOME/.config
 # export JAVA_HOME=$(/usr/libexec/java_home -v 17) Use cs java --jvm zulu:17 --setup
 export HOMEBREW_NO_ANALYTICS=1
 
