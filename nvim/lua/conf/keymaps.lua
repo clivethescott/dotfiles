@@ -294,6 +294,7 @@ wk.register({
     },
     m = { '<cmd>silent! nohls<cr>', 'Clear search highlight' },
     s = { edit_snippets, 'Edit LuaSnippets' },
+    t = { '<cmd>tabclose<cr>', 'Close tab' },
   },
   ['gp'] = { ':b#<cr>', 'Alternate buffer' },
 })
