@@ -199,6 +199,7 @@ wk.register({
   ["<space>"] = {
     ['['] = { ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", 'Add blank line above' },
     [']'] = { ":<c-u>put =repeat(nr2char(10), v:count1)<cr>", 'Add blank line below' },
+    p = { telescope.find_files, 'Find files in current dir'},
     d = {
       name = '+DAP',
       b = { dap.toggle_breakpoint, 'Toggle Breakpoint' },

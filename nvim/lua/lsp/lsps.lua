@@ -127,7 +127,7 @@ end
 require('mason').setup()
 
 local lsp_config_servers = { 'bufls', 'golangci_lint_ls', 'gopls', 'html', 'jsonls',
-  'lua_ls', 'pyright', 'ruff_lsp','tsserver' }
+  'lua_ls', 'pyright', 'ruff_lsp','tsserver', 'terraformls' }
 require 'mason-lspconfig'.setup({
   ensure_installed = lsp_config_servers
 })
@@ -139,6 +139,7 @@ require 'lspconfig'.html.setup {}
 require 'lspconfig'.jsonls.setup {}
 require 'lspconfig'.rust_analyzer.setup {}
 require 'lspconfig'.yamlls.setup {}
+require 'lspconfig'.terraformls.setup{}
 
 -- These servers require a bit more configuration, otherwise just run setup{} like below
 local setup_servers = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'luaserver', 'pyright' }
