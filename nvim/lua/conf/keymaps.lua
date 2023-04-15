@@ -182,6 +182,13 @@ local next_todo = function()
   require 'todo-comments'.jump_next()
 end
 
+local nvimtree_findfile = function()
+  require 'nvim-tree.api'.tree.open { find_file = true }
+end
+local nvimtree_toggle = function()
+  require 'nvim-tree.api'.tree.toggle { find_file = false, focus = true }
+end
+
 local wk = require 'which-key'
 wk.register({
   ["["] = {
@@ -199,7 +206,7 @@ wk.register({
   ["<space>"] = {
     ['['] = { ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", 'Add blank line above' },
     [']'] = { ":<c-u>put =repeat(nr2char(10), v:count1)<cr>", 'Add blank line below' },
-    p = { telescope.find_files, 'Find files in current dir'},
+    p = { telescope.find_files, 'Find files in current dir' },
     d = {
       name = '+DAP',
       b = { dap.toggle_breakpoint, 'Toggle Breakpoint' },
@@ -254,7 +261,7 @@ wk.register({
       f = { toggle_winbar, 'Winbar' },
       l = { '<cmd>Lazy<cr>', 'Plugin Mgr' },
       m = { '<cmd>Mason<cr>', 'LSP Server Mgr' },
-      t = { '<cmd>NvimTreeToggle<cr>', 'NvimTree' },
+      t = { nvimtree_toggle, 'NvimTree' },
       u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },
       z = { zen_mode, 'Toggle Zen Mode' }
     },
@@ -282,8 +289,8 @@ wk.register({
     }
   },
   ["<leader>"] = {
-    ['1'] = { '<cmd>NvimTreeToggle<cr>', 'Toggle NvimTree' },
-    ['!'] = { '<cmd>NvimTreeFindFile<cr>', 'Find current file in NvimTree' },
+    ['1'] = { nvimtree_toggle, 'Toggle NvimTree' },
+    ['!'] = { nvimtree_findfile, 'Find current file in NvimTree' },
     ['2'] = { find_files, 'Find nvim config files' },
     ['3'] = { grep_config_files, 'Live grep nvim config files' },
     ['4'] = { grep_zsh_files, 'Find zsh config files' },
