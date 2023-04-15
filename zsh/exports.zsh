@@ -13,6 +13,7 @@ export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
 # export JAVA_HOME=$(/usr/libexec/java_home -v 17) Use cs java --jvm zulu:17 --setup
 export HOMEBREW_NO_ANALYTICS=1
+export HISTSIZE=50000
 
 CARGO_HOME=$HOME/.cargo
 APP_HOME=$HOME/apps
