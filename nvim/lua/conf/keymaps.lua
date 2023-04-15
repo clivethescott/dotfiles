@@ -283,7 +283,7 @@ wk.register({
   },
   ["<leader>"] = {
     ['1'] = { '<cmd>NvimTreeToggle<cr>', 'Toggle NvimTree' },
-    ['!'] = { '<cmd>NvimTreeFindFile!<cr>', 'Find current file in NvimTree' },
+    ['!'] = { '<cmd>NvimTreeFindFile<cr>', 'Find current file in NvimTree' },
     ['2'] = { find_files, 'Find nvim config files' },
     ['3'] = { grep_config_files, 'Live grep nvim config files' },
     ['4'] = { grep_zsh_files, 'Find zsh config files' },
