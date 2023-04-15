@@ -1,5 +1,5 @@
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-export KEYTIMEOUT=50 # make zsh vi mode switch faster
+export KEYTIMEOUT=10 # make zsh vi mode switch faster
 export BROWSER=open
 export EDITOR=nvim
 export VISUAL=$EDITOR
