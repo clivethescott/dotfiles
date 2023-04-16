@@ -27,8 +27,6 @@ local plugins = {
     dependencies = {
       'kyazdani42/nvim-web-devicons'
     },
-    -- Until https://github.com/nvim-tree/nvim-tree.lua/pull/2141 is fixed!
-    commit = 'b601b5aa25627f68d3d73ba9269b49e4f04ce126'
   },
   {
     'nvim-telescope/telescope.nvim',
