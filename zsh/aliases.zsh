@@ -37,6 +37,7 @@ alias rm='rm -iv'
 alias gd='git diff'
 alias gs='git status'
 alias gp='git push'
+alias awsp="source _awsp"
 alias gd='git diff'
 alias venv='python3 -m venv'
 alias python='python3'
