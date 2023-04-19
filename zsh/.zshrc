@@ -23,6 +23,9 @@ source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/functions.zsh
 source $ZDOTDIR/keybindings.zsh
 
+if [[ -n "$AWS_PROFILE" ]]; then
+  PROMPT="$PROMPT $(aws_prof)"
+fi
 # Switches cursor depending on vi mode
 cursor_mode
 # Additional vi-mode text objects

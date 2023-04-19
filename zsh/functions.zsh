@@ -4,6 +4,13 @@ function tomcat() {
     echo `ps -ef | grep org.apache.catalina.startup.Bootstrap | grep -v grep | awk '{ print $2 }' | tail -1`
     # echo "kill -9 $running_tomcats"
 }
+
+function aws_prof {
+  local profile="${AWS_PROFILE:=default}"
+
+  echo -n "%{$fg_bold[blue]%}aws:(%{$fg[yellow]%}${profile}%{$fg_bold[blue]%})%{$reset_color%} "
+}
+
 function cursor_mode() {
     # Source: https://thevaluable.dev/zsh-install-configure-mouseless/ 
     # See https://ttssh2.osdn.jp/manual/4/en/usage/tips/vim.html for cursor shapes
