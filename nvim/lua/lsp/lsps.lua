@@ -135,7 +135,9 @@ require 'mason-lspconfig'.setup({
 require 'lspconfig'.dockerls.setup {}
 require 'lspconfig'.bufls.setup {}
 require 'lspconfig'.graphql.setup {}
-require 'lspconfig'.html.setup {}
+require 'lspconfig'.html.setup {
+  capabilities = capabilities
+}
 require 'lspconfig'.jsonls.setup {}
 require 'lspconfig'.rust_analyzer.setup {}
 require 'lspconfig'.yamlls.setup {}

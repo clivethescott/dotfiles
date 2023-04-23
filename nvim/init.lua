@@ -54,5 +54,3 @@ require 'plug.neoscroll'
 require 'plug.undotree'
 -- Fancy notifications
 require 'plug.notify'
--- Configure file type associations
-require 'plug.filetype'

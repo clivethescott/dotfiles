@@ -210,9 +210,6 @@ local plugins = {
     lazy = true,
   },
   {
-    'nathom/filetype.nvim',
-  },
-  {
     'mbbill/undotree',
     lazy = true,
     cmd = 'UndotreeToggle'

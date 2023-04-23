@@ -84,7 +84,7 @@ vim.opt.smartindent = true
 -- Nvim config
 vim.g.loaded_python_provider = 0
 vim.g.loaded_perl_provider = 0
-vim.g.python3_host_prog = '/opt/homebrew/opt/python@3.10/bin/python3'
+vim.g.python3_host_prog = '/opt/homebrew/opt/python@3.11/bin/python3'
 vim.g.loaded_ruby_provider = 0
 
 vim.opt.foldmethod = 'syntax'
@@ -93,3 +93,7 @@ vim.opt.foldlevel = 1
 -- Disable for now doesn't work properly with gitconfig files
 -- vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
+-- https://github.com/nathom/filetype.nvim/issues/91
+-- https://neovim.discourse.group/t/introducing-filetype-lua-and-a-call-for-help/1806
+vim.g.do_filetype_lua = true
+vim.g.did_load_filetypes = false

@@ -90,7 +90,7 @@ end
 map('n', '<leader>2', find_files)
 local grep_config_files = function()
   telescope.live_grep {
-    cwd = '~/.config/nvim/lua'
+    cwd = '~/.config/nvim'
   }
 end
 map('n', '<leader>3', grep_config_files)
@@ -268,8 +268,8 @@ wk.register({
     t = {
       name = '+Telescope',
       c = { '<cmd>Telescope commands<cr>', 'Commands' },
-      f = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
-      F = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
+      F = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
+      f = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
       h = { '<cmd>Telescope help_tags<cr>', 'Help tags' },
       j = { '<cmd>Telescope jumplist<cr>', 'Jump list' },
       k = { '<cmd>Telescope keymaps<cr>', 'Keymaps' },
