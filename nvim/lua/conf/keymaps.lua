@@ -259,8 +259,9 @@ wk.register({
       name = '+Open Window',
       d = { '<cmd>DiffviewOpen<cr>', 'Diffview' },
       f = { toggle_winbar, 'Winbar' },
-      l = { '<cmd>Lazy<cr>', 'Plugin Mgr' },
-      m = { '<cmd>Mason<cr>', 'LSP Server Mgr' },
+      l = { '<cmd>Lazy<cr>', 'Lazy Plugin Mgr' },
+      m = { '<cmd>Mason<cr>', 'Mason LSP Server Mgr' },
+      o = { '<cmd>Oil --float<cr>', 'Oil File Manager' },
       t = { nvimtree_toggle, 'NvimTree' },
       u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },
       z = { zen_mode, 'Toggle Zen Mode' }

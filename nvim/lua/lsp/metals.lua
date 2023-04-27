@@ -16,7 +16,7 @@ M.setup = function(on_attach, capabilities)
     showInferredType = true,
     serverProperties = { "-Xmx1G" },
     superMethodLensesEnabled = true,
-    -- enableSemanticHighlighting = true,
+    enableSemanticHighlighting = true,
     excludedPackages = {
       "akka.actor.typed.javadsl",
       "com.github.swagger.akka.javadsl"

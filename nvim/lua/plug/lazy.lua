@@ -21,11 +21,24 @@ local plugins = {
     end,
   },
   {
-    'kyazdani42/nvim-tree.lua',
+    'nvim-tree/nvim-tree.lua',
     lazy = true,
     cmd = { 'NvimTreeToggle', 'NvimTreeFindFile' },
     dependencies = {
-      'kyazdani42/nvim-web-devicons'
+      'nvim-tree/nvim-web-devicons'
+    },
+  },
+  {
+    'stevearc/oil.nvim',
+    lazy = true,
+    cmd = { 'Oil' },
+    config = function() require 'oil'.setup() end,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons'
+    },
+    opts = {
+      default_file_explorer = false,
+      skip_confirm_for_simple_edits = true,
     },
   },
   {
@@ -54,7 +67,7 @@ local plugins = {
     'nvim-lualine/lualine.nvim',
     lazy = false,
     dependencies = {
-      'kyazdani42/nvim-web-devicons'
+      'nvim-tree/nvim-web-devicons'
     }
   },
   {
@@ -144,7 +157,7 @@ local plugins = {
     lazy = true,
     cmd = 'TroubleToggle',
     dependencies = {
-      'kyazdani42/nvim-web-devicons'
+      'nvim-tree/nvim-web-devicons'
     }
   },
   {
