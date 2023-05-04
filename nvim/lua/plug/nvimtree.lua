@@ -40,6 +40,9 @@ nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
     number = true,
     relativenumber = true,
   },
+  renderer = {
+    group_empty = true,
+  },
   filters = {
     dotfiles = false,
     custom = { '.git', '.DS_Store', 'target', '.bloop', '.bsp', '.metals' },
@@ -63,7 +66,7 @@ nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
   },
 }
 
-vim.keymap.set('n', 'T', cycle_sort, {desc = 'Cycle Sort'})
+vim.keymap.set('n', 'T', cycle_sort, { desc = 'Cycle Sort' })
 
 -- auto open files upon creation
 api.events.subscribe(api.events.Event.FileCreated, function(file)
