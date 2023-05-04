@@ -24,7 +24,7 @@ M.setup = function(on_attach, capabilities)
       },
     },
     init_options = {
-      usePlaceholders = true,
+      usePlaceholders = false,
     },
   }
 
