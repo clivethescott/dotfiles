@@ -1,0 +1,18 @@
+gui:
+  showIcons: true
+git:
+  commitPrefixes:
+    subscription-scheduler:
+      pattern: "^ASTX-(\\d{4}).*?"
+      replace: "ASTX-$1 "
+update:
+  method: never  # updated via homebrew
+disableStartupPopups: true
+keybinding:
+  universal:
+    prevItem: '<c-p>'  # go one line up
+    nextItem: '<c-n>'  # go one line down
+    createPatchOptionsMenu: 'P'
+    scrollUpMain-alt1: null  # was prev K
+    pushFiles: 'K'  # was prev P
+    pullFiles: 'p'
