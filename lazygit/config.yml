@@ -10,9 +10,12 @@ update:
 disableStartupPopups: true
 keybinding:
   universal:
-    prevItem: '<c-p>'  # go one line up
-    nextItem: '<c-n>'  # go one line down
+    prevItem: '<c-p>'
+    nextItem: '<c-n>'
     createPatchOptionsMenu: 'P'
-    scrollUpMain-alt1: null  # was prev K
-    pushFiles: 'K'  # was prev P
+    scrollUpMain-alt1: null
+    pushFiles: 'K'
     pullFiles: 'p'
+    quit-alt1: '<c-[>'
+    copyToClipboard: 'y'
+    openRecentRepos: '<c-o>'
