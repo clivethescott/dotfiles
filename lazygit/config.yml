@@ -6,8 +6,9 @@ git:
       pattern: "^ASTX-(\\d{4}).*?"
       replace: "ASTX-$1 "
 update:
-  method: never  # updated via homebrew
+  method: never
 disableStartupPopups: true
+quitOnTopLevelReturn: true
 keybinding:
   universal:
     prevItem: '<c-p>'
@@ -16,6 +17,6 @@ keybinding:
     scrollUpMain-alt1: null
     pushFiles: 'K'
     pullFiles: 'p'
-    quit-alt1: '<c-[>'
+    return: '<c-[>'
     copyToClipboard: 'y'
     openRecentRepos: '<c-o>'
