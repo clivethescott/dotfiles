@@ -82,25 +82,23 @@ local telescope_extras = require('plug.telescope-extras')
 map('n', '<c-e>', telescope.buffers)
 -- Use git_files if in git dir, else use find_files
 map('n', '<c-p>', telescope_extras.project_files)
-local find_files = function()
+local find_nvim_files = function()
   telescope.find_files {
     cwd = '~/.config/nvim'
   }
 end
-map('n', '<leader>2', find_files)
-local grep_config_files = function()
+local grep_nvim_files = function()
   telescope.live_grep {
-    cwd = '~/.config/nvim'
+    cwd = '~/.config/nvim',
+    follow = true,
   }
 end
-map('n', '<leader>3', grep_config_files)
 local grep_zsh_files = function()
   telescope.find_files {
-    cwd = '~/.config/zsh'
+    cwd = '~/.config/zsh',
+    follow = true,
   }
 end
-map('n', '<leader>4', grep_zsh_files)
-
 -- Metals mappings
 local metals = require 'metals'
 local tvp = require 'metals.tvp'
@@ -292,8 +290,8 @@ wk.register({
   ["<leader>"] = {
     ['1'] = { nvimtree_toggle, 'Toggle NvimTree' },
     ['!'] = { nvimtree_findfile, 'Find current file in NvimTree' },
-    ['2'] = { find_files, 'Find nvim config files' },
-    ['3'] = { grep_config_files, 'Live grep nvim config files' },
+    ['2'] = { find_nvim_files, 'Find nvim config files' },
+    ['3'] = { grep_nvim_files, 'Live grep nvim config files' },
     ['4'] = { grep_zsh_files, 'Find zsh config files' },
     g = {
       name = '+GoTo',
