@@ -73,7 +73,8 @@ require('telescope').setup {
     },
     vimgrep_arguments = {
       "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case",
-      "--trim" -- add this to trim indentation in results window
+      "--trim", -- add this to trim indentation in results window
+      "--follow"
     },
     mappings = {
       i = {
