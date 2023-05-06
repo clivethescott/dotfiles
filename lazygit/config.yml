@@ -13,9 +13,8 @@ keybinding:
   universal:
     prevItem: '<c-p>'
     nextItem: '<c-n>'
-    createPatchOptionsMenu: 'P'
     scrollUpMain-alt1: null
-    pushFiles: 'K'
+    pushFiles: 'P'
     pullFiles: 'p'
     return: '<c-[>'
     copyToClipboard: 'y'
