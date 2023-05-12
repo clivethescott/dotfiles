@@ -82,6 +82,7 @@ local on_attach = function(client, bufnr)
       e = { vim.diagnostic.goto_next, 'Diagnostic' },
     },
     ["<leader>r"] = { vim.lsp.buf.rename, 'Refactor Rename' },
+    ["®"] = { vim.lsp.buf.rename, 'Refactor Rename' },
     ["<leader>d"] = { open_diagnostic_float, 'Open Diagnostic Float' },
     ["<leader>D"] = { telescope_builtin.diagnostics, 'Diagnostics' },
     ["<space>"] = {

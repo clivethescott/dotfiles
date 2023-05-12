@@ -82,6 +82,10 @@ local telescope_extras = require('plug.telescope-extras')
 map('n', '<c-e>', telescope.buffers)
 -- Use git_files if in git dir, else use find_files
 map('n', '<c-p>', telescope_extras.project_files)
+map('n', 'π', telescope.find_files)
+map('n', 'Ï', telescope.live_grep)
+map('n', 'ƒ', telescope.current_buffer_fuzzy_find)
+
 local find_nvim_files = function()
   telescope.find_files {
     cwd = '~/.config/nvim'
@@ -187,7 +191,19 @@ local nvimtree_toggle = function()
   require 'nvim-tree.api'.tree.toggle { find_file = false, focus = true }
 end
 
-local wk = require 'which-key'
+
+local Terminal       = require('toggleterm.terminal').Terminal
+local lazygit        = Terminal:new({
+  cmd = "lazygit",
+  hidden = true,
+  direction = 'tab',
+})
+local toggle_lazygit = function()
+  lazygit:toggle()
+end
+map('n', '«', toggle_lazygit)
+
+local wk             = require 'which-key'
 wk.register({
   ["["] = {
     name = '+Previous',
@@ -238,6 +254,7 @@ wk.register({
       h = { '<cmd>DiffviewFileHistory<cr>', 'File History' },
       l = { '<cmd>Telescope git_bcommits<cr>', 'Buffer Commits' },
       L = { '<cmd>Telescope git_commits<cr>', 'All Commits' },
+      o = { toggle_lazygit, 'Lazy Git' },
       s = { '<cmd>Telescope git_status<cr>', 'Status + diff' },
     },
     m = {
