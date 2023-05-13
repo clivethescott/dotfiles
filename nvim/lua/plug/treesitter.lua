@@ -8,7 +8,7 @@ treesitter_config.setup {
   auto_install = true,
   highlight = {
     enable = true,                            -- false will disable the whole extension
-    additional_vim_regex_highlighting = false, -- performance may suffer if enabled
+    additional_vim_regex_highlighting = true, -- performance may suffer if enabled
   },
   ignore_install = { "svelte" },
   incremental_selection = {

@@ -17,9 +17,10 @@ local plugins = {
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme tokyonight-night]])
+      vim.cmd([[colorscheme tokyonight-moon]])
     end,
   },
+  { "ellisonleao/gruvbox.nvim", lazy = true },
   {
     'nvim-tree/nvim-tree.lua',
     lazy = true,
@@ -98,6 +99,7 @@ local plugins = {
   {
     'windwp/nvim-ts-autotag',
     lazy = true,
+    ft = { 'html' },
     dependencies = {
       'nvim-treesitter'
     }
@@ -142,7 +144,7 @@ local plugins = {
   },
   {
     'j-hui/fidget.nvim',
-    config = function(plugin) require 'fidget'.setup {} end
+    config = function(_) require 'fidget'.setup {} end
   },
   {
     'onsails/lspkind.nvim',
