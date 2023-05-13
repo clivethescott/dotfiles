@@ -4,3 +4,8 @@ if not ok then
 end
 
 comment.setup({})
+
+local ft = require('Comment.ft')
+
+-- set line and block comment string
+ft.sbt = {'//%s', '/*%s*/'}
