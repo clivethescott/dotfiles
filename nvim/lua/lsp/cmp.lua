@@ -54,7 +54,7 @@ M.setup = function()
     preselect = cmp.PreselectMode.None,
     completion = {
       -- autocomplete = true,
-      keyword_length = 2 -- number of characters needed to trigger auto-completion
+      keyword_length = 1 -- number of characters needed to trigger auto-completion
     },
     snippet = {
       -- REQUIRED - you must specify a snippet engine
