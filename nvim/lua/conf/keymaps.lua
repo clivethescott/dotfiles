@@ -78,10 +78,9 @@ map('n', '<space>]', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>')
 
 -- Telescope mappings
 local telescope = require('telescope.builtin')
-local telescope_extras = require('plug.telescope-extras')
 map('n', '<c-e>', telescope.buffers)
 -- Use git_files if in git dir, else use find_files
-map('n', '<c-p>', telescope_extras.project_files)
+map('n', '<c-p>', require 'plug.telescope-extras'.project_files)
 map('n', 'π', telescope.find_files)
 map('n', 'Ï', telescope.live_grep)
 map('n', 'ƒ', telescope.current_buffer_fuzzy_find)
@@ -103,37 +102,25 @@ local grep_zsh_files = function()
     follow = true,
   }
 end
--- Metals mappings
-local metals = require 'metals'
-local tvp = require 'metals.tvp'
 
 -- DAP mappings
-local dap = require('dap')
 local dap_commands = function()
   require 'telescope'.extensions.dap.commands {}
 end
 local dap_terminate = function()
-  dap.terminate({}, {})
+  require 'dap'.terminate({}, {})
 end
 local dap_cond_breakpoint = function()
-  dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+  require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))
 end
 local dap_list_breakpoints = function()
   require 'telescope'.extensions.dap.list_breakpoints {}
 end
 local show_dap_ui = function()
-  local ok, dapui = pcall(require, 'dapui')
-  if not ok then
-    return
-  end
-  dapui.eval('', {})
+  require 'dapui'.eval('', {})
 end
 local go_debug_test = function()
-  local ok, dap_go = pcall(require, 'dap-go')
-  if not ok then
-    return
-  end
-  dap_go.debug_test()
+  require 'dap-go'.debug_test()
 end
 
 -- Zen Mode Mappings
@@ -146,8 +133,8 @@ local zen_mode = function()
 end
 
 -- Luasnip Mappings
-local luasnip = require('luasnip')
 map({ 'i', 's' }, '<Tab>', function()
+  local luasnip = require 'luasnip'
   if luasnip.expand_or_jumpable() then
     luasnip.jump(1)
   else
@@ -155,6 +142,7 @@ map({ 'i', 's' }, '<Tab>', function()
   end
 end, { expr = true })
 map({ 'i', 's' }, '<S-Tab>', function()
+  local luasnip = require 'luasnip'
   if luasnip.jumpable(-1) then
     luasnip.jump(-1)
   else
@@ -163,13 +151,14 @@ map({ 'i', 's' }, '<S-Tab>', function()
 end, { expr = true })
 -- minimal choice change, same as when using vim.ui.select below
 map({ 'i' }, '<C-y>', function()
+  local luasnip = require 'luasnip'
   if luasnip.choice_active() then
     luasnip.change_choice(1)
   end
 end)
 -- Luasnip choice selection using vim.ui.select
 map({ 'i' }, '<C-u>', function()
-  if luasnip.get_active_snip() then
+  if require 'luasnip'.get_active_snip() then
     require('luasnip.extras.select_choice')()
   end
 end)
@@ -198,12 +187,20 @@ local lazygit        = Terminal:new({
   hidden = true,
   direction = 'tab',
 })
+local gradle         = Terminal:new({
+  cmd = "./gradlew bootRun",
+  hidden = true,
+  direction = 'tab',
+})
+local toggle_gradle = function()
+  gradle:toggle()
+end
 local toggle_lazygit = function()
   lazygit:toggle()
 end
-map('n', '«', toggle_lazygit)
+map('n', '«', toggle_gradle)
 
-local wk             = require 'which-key'
+local wk = require 'which-key'
 wk.register({
   ["["] = {
     name = '+Previous',
@@ -223,18 +220,18 @@ wk.register({
     p = { telescope.find_files, 'Find files in current dir' },
     d = {
       name = '+DAP',
-      b = { dap.toggle_breakpoint, 'Toggle Breakpoint' },
+      b = { require 'dap'.toggle_breakpoint, 'Toggle Breakpoint' },
       B = { dap_cond_breakpoint, 'Conditional Breakpoint' },
       c = { dap_commands, 'Commands' },
-      d = { dap.repl.toggle, 'Toggle REPL' },
+      d = { require 'dap'.repl.toggle, 'Toggle REPL' },
       e = { show_dap_ui, 'Show DAP UI' },
-      i = { dap.step_into, 'Step In' },
-      I = { dap.step_out, 'Step Out' },
+      i = { require 'dap'.step_into, 'Step In' },
+      I = { require 'dap'.step_out, 'Step Out' },
       l = { dap_list_breakpoints, 'List Breakpoints' },
-      L = { dap.clear_breakpoints, 'Clear Breakpoints' },
-      o = { dap.step_over, 'Step Over' },
+      L = { require 'dap'.clear_breakpoints, 'Clear Breakpoints' },
+      o = { require 'dap'.step_over, 'Step Over' },
       q = { dap_terminate, 'Terminate' },
-      r = { dap.continue, 'Continue' },
+      r = { require 'dap'.continue, 'Continue' },
       t = { go_debug_test, 'Debug Go Test' },
       x = { dap_terminate, 'Terminate' },
     },
@@ -257,17 +254,39 @@ wk.register({
       o = { toggle_lazygit, 'Lazy Git' },
       s = { '<cmd>Telescope git_status<cr>', 'Status + diff' },
     },
+    j = {
+      name = '+Java',
+      b = {
+        name = '+Build',
+        c = { function() require 'jdtls'.compile('incremental') end, 'Compile Incremental' },
+        C = { function() require 'jdtls'.compile('full') end, 'Compile Full' },
+        p = { function() require 'jdtls'.build_projects({ select_mode = 'prompt', full_build = true }) end,
+          'Compile Full' },
+      },
+      e = {
+        name = '+Extract',
+        c = { require 'jdtls'.extract_constant, 'Constant' },
+        m = { require 'jdtls'.extract_method, 'Method' },
+        v = { require 'jdtls'.extract_variable, 'Variable (current exp)' },
+        V = { require 'jdtls'.extract_variable_all, 'Variable (all exp)' },
+      },
+      g = { toggle_gradle, 'Spring Boot Run' },
+      i = { require 'jdtls'.organize_imports, 'Organize Imports' },
+      o = { require 'jdtls'.javap, 'Show Bytecode' },
+      r = { function() require 'jdtls'.update_projects_config({ select_mode = 'prompt' }) end, 'Reload Project' },
+      u = { require 'jdtls'.super_implementation, 'Go to super implementation' },
+    },
     m = {
       name = '+Metals',
       c = { require 'telescope'.extensions.metals.commands, 'Commands' },
-      d = { metals.goto_super_method, 'Go To Super Method' },
-      n = { metals.new_scala_file, 'New Scala File' },
-      o = { metals.hover_worksheet, 'Hover Worksheet' },
-      s = { metals.switch_bsp, 'Switch BSP Server' },
+      d = { require 'metals'.goto_super_method, 'Go To Super Method' },
+      n = { require 'metals'.new_scala_file, 'New Scala File' },
+      o = { require 'metals'.hover_worksheet, 'Hover Worksheet' },
+      s = { require 'metals'.switch_bsp, 'Switch BSP Server' },
       t = {
         name = 'TVP',
-        o = { tvp.reveal_in_tree, 'Reveal In Tree' },
-        t = { tvp.toggle_tree_view, 'Toggle Tree' },
+        o = { require 'metals.tvp'.reveal_in_tree, 'Reveal In Tree' },
+        t = { require 'metals.tvp'.toggle_tree_view, 'Toggle Tree' },
       },
     },
     o = {
@@ -276,7 +295,6 @@ wk.register({
       f = { toggle_winbar, 'Winbar' },
       l = { '<cmd>Lazy<cr>', 'Lazy Plugin Mgr' },
       m = { '<cmd>Mason<cr>', 'Mason LSP Server Mgr' },
-      o = { '<cmd>Oil --float<cr>', 'Oil File Manager' },
       t = { nvimtree_toggle, 'NvimTree' },
       u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },
       z = { zen_mode, 'Toggle Zen Mode' }

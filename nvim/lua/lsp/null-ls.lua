@@ -33,6 +33,7 @@ M.setup = function(on_attach)
       null_ls.builtins.formatting.terraform_fmt,
       null_ls.builtins.formatting.yamlfmt,
       null_ls.builtins.formatting.tidy,
+      -- null_ls.builtins.formatting.google_java_format,
 
       -- Hover
       null_ls.builtins.hover.dictionary,

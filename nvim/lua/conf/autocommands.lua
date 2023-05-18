@@ -36,15 +36,15 @@ api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
-api.nvim_create_autocmd({ 'FileType' }, {
-  desc = 'Reset proper indent for Java files',
-  group = events_group,
-  pattern = { 'java' },
-  callback = function()
-    vim.opt_local.shiftwidth = 4
-    vim.opt_local.tabstop = 4
-  end,
-})
+-- api.nvim_create_autocmd({ 'FileType' }, {
+--   desc = 'Reset proper indent for Java files',
+--   group = events_group,
+--   pattern = { 'java' },
+--   callback = function()
+    -- vim.opt_local.shiftwidth = 2
+    -- vim.opt_local.tabstop = 2
+--   end,
+-- })
 
 api.nvim_create_autocmd({ 'BufWritePost' }, {
   desc = 'Auto re-source luasnip config',

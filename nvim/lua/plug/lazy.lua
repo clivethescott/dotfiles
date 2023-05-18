@@ -30,30 +30,13 @@ local plugins = {
     },
   },
   {
-    'stevearc/oil.nvim',
-    lazy = true,
-    cmd = { 'Oil' },
-    config = function() require 'oil'.setup() end,
-    dependencies = {
-      'nvim-tree/nvim-web-devicons'
-    },
-    opts = {
-      default_file_explorer = false,
-      skip_confirm_for_simple_edits = true,
-    },
-  },
-  {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      -- Enables filtering See :h telescope-fzf-native.nvim-telescope-fzf-native-nvim
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     }
-  },
-  {
-    -- Enables filtering See :h telescope-fzf-native.nvim-telescope-fzf-native-nvim
-    'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make',
-    dependencies = { "nvim-telescope/telescope.nvim" }
   },
   {
     'stevearc/dressing.nvim',
@@ -81,27 +64,15 @@ local plugins = {
     'nvim-treesitter/nvim-treesitter',
     build = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end
-  },
-  {
-    'nvim-treesitter/nvim-treesitter-textobjects',
+    end,
     dependencies = {
-      'nvim-treesitter'
-    }
-  },
-  {
-    'romgrk/nvim-treesitter-context',
-    lazy = true,
-    dependencies = {
-      'nvim-treesitter'
-    }
-  },
-  {
-    'windwp/nvim-ts-autotag',
-    lazy = true,
-    ft = { 'html' },
-    dependencies = {
-      'nvim-treesitter'
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'romgrk/nvim-treesitter-context',
+      {
+        'windwp/nvim-ts-autotag',
+        lazy = true,
+        ft = { 'html' },
+      }
     }
   },
   {
@@ -112,12 +83,17 @@ local plugins = {
     }
   },
   {
-    "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    'jose-elias-alvarez/null-ls.nvim',
+    lazy = true,
     dependencies = {
-      "williamboman/mason.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
-    },
+      {
+        "jay-babu/mason-null-ls.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+          "williamboman/mason.nvim",
+        },
+      },
+    }
   },
   {
     'hrsh7th/nvim-cmp',
@@ -128,6 +104,14 @@ local plugins = {
       'hrsh7th/cmp-nvim-lsp-document-symbol',
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-cmdline',
+      {
+        'ray-x/lsp_signature.nvim',
+        lazy = true,
+      },
+      {
+        'onsails/lspkind.nvim',
+        lazy = true,
+      },
     }
   },
   {
@@ -139,20 +123,16 @@ local plugins = {
     }
   },
   {
-    'ray-x/lsp_signature.nvim',
-    lazy = true,
-  },
-  {
     'j-hui/fidget.nvim',
-    config = function(_) require 'fidget'.setup {} end
-  },
-  {
-    'onsails/lspkind.nvim',
-    lazy = true,
-  },
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    lazy = true,
+    config = function(_)
+      require 'fidget'.setup {
+        sources = {
+          jdtls = {        -- Name of LSP client
+            ignore = true, -- Ignore notifications from this source
+          },
+        },
+      }
+    end
   },
   {
     'folke/trouble.nvim',
@@ -173,36 +153,18 @@ local plugins = {
   {
     'mfussenegger/nvim-dap',
     lazy = true,
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    lazy = true,
     dependencies = {
-      "mfussenegger/nvim-dap"
+      { "rcarriga/nvim-dap-ui",            lazy = true },
+      { 'theHamsta/nvim-dap-virtual-text', lazy = true },
+      { 'leoluz/nvim-dap-go',              ft = 'go',  lazy = true },
+      {
+        'nvim-telescope/telescope-dap.nvim',
+        dependencies = {
+          'nvim-telescope/telescope.nvim' }
+      },
     }
   },
-  {
-    'theHamsta/nvim-dap-virtual-text',
-    lazy = true,
-    dependencies = {
-      "mfussenegger/nvim-dap"
-    }
-  },
-  {
-    'leoluz/nvim-dap-go',
-    lazy = true,
-    ft = 'go',
-    dependencies = {
-      "mfussenegger/nvim-dap"
-    }
-  },
-  {
-    'nvim-telescope/telescope-dap.nvim',
-    lazy = true,
-    dependencies = {
-      "mfussenegger/nvim-dap"
-    }
-  },
+  { 'mfussenegger/nvim-jdtls',  lazy = true, ft = 'java' },
   {
     'akinsho/toggleterm.nvim',
     lazy = true,
@@ -211,14 +173,6 @@ local plugins = {
   },
   {
     'windwp/nvim-autopairs'
-  },
-  {
-    'folke/zen-mode.nvim',
-    lazy = true,
-    cmd = 'ZenMode',
-    dependencies = {
-      'folke/twilight.nvim'
-    }
   },
   {
     'rcarriga/nvim-notify',
@@ -233,7 +187,7 @@ local plugins = {
     "folke/which-key.nvim",
     config = function()
       vim.o.timeout = true
-      vim.o.timeoutlen = 500
+      vim.o.timeoutlen = 300
       require("which-key").setup({
         plugins = {
           presets = {

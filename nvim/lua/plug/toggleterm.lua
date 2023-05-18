@@ -6,6 +6,7 @@ end
 toggleterm.setup {
   open_mapping = [[<c-\>]],
   direction = 'float',    -- 'vertical' | 'horizontal' | 'tab' | 'float',
+  start_in_insert = false,
   close_on_exit = true, -- close the terminal window when the process exits
   shell = vim.o.shell,  -- change the default shell
   -- This field is only relevant if direction is set to 'float'
