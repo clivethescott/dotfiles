@@ -1,3 +1,4 @@
+local postfix_matchers = require("luasnip.extras.postfix").matches
 return {
   s("iff", {
     t({ "if err != nil {", "\t" }),
@@ -73,4 +74,9 @@ return {
     }}
   ]], { i(0) })
   ),
+  postfix({ trig = '.ife', dscr = 'Postfix wrap with iferror', match_pattern = postfix_matchers.line }, {
+    f(function(_, parent)
+      return { "if err :=" .. parent.snippet.env.POSTFIX_MATCH .. "; err != nil {", "}" }
+    end, {}),
+  }),
 }
