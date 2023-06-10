@@ -124,6 +124,7 @@ local plugins = {
   },
   {
     'j-hui/fidget.nvim',
+    tag = 'legacy',
     config = function(_)
       require 'fidget'.setup {
         sources = {
