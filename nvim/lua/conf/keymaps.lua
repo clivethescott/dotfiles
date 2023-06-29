@@ -192,7 +192,7 @@ local gradle         = Terminal:new({
   hidden = true,
   direction = 'tab',
 })
-local toggle_gradle = function()
+local toggle_gradle  = function()
   gradle:toggle()
 end
 local toggle_lazygit = function()
