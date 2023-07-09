@@ -158,9 +158,3 @@ for _, setup_server in ipairs(setup_servers) do
     server.setup(on_attach, capabilities)
   end
 end
-
-require("mason-null-ls").setup({
-  -- setup null-ls as source of truth
-  automatic_installation = true,
-  automatic_setup = false,
-})
