@@ -83,19 +83,6 @@ local plugins = {
     }
   },
   {
-    'jose-elias-alvarez/null-ls.nvim',
-    lazy = true,
-    dependencies = {
-      {
-        "jay-babu/mason-null-ls.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = {
-          "williamboman/mason.nvim",
-        },
-      },
-    }
-  },
-  {
     'hrsh7th/nvim-cmp',
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
