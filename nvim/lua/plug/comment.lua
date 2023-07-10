@@ -9,3 +9,4 @@ local ft = require('Comment.ft')
 
 -- set line and block comment string
 ft.sbt = {'//%s', '/*%s*/'}
+ft.lua = {'--%s', '/*%s*/'}

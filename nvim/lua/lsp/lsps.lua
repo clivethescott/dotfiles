@@ -104,6 +104,7 @@ local on_attach = function(client, bufnr)
       h = { utils.show_word_help, 'Word Help' },
       i = { telescope_builtin.lsp_implementations, 'Implementation' },
       l = { vim.lsp.codelens.run, 'Show Code Lens' },
+      m = { vim.lsp.codelens.refresh, 'Refresh Code Lens' },
       r = { lsp_references, 'References <Telescope>' },
       R = { '<cmd>Trouble lsp_references<cr>', 'References <Trouble>' },
       s = { vim.lsp.buf.signature_help, 'Signature Help' },
@@ -128,7 +129,7 @@ end
 require('mason').setup()
 
 local lsp_config_servers = { 'bufls', 'golangci_lint_ls', 'gopls', 'html', 'jsonls',
-  'lua_ls', 'pyright', 'ruff_lsp', 'tsserver', 'terraformls', 'jdtls', 'rust_analyzer' }
+  'lua_ls', 'pyright', 'ruff_lsp', 'tsserver', 'terraformls', 'jdtls', }
 require 'mason-lspconfig'.setup({
   ensure_installed = lsp_config_servers
 })
@@ -147,6 +148,24 @@ require 'lspconfig'.yamlls.setup {
   }
 }
 require 'lspconfig'.terraformls.setup {}
+local codelldb_path = vim.fn.stdpath('data') .. '/mason/packages/codelldb/extension/adapter/codelldb'
+local liblldb_path = vim.fn.stdpath('data') .. '/mason/packages/codelldb/extension/lldb/lib/liblldb.dylib'
+require 'rust-tools'.setup {
+  tools = {
+    autoSetHints = true,
+    runnables = { use_telescope = true },
+    inlay_hints = { show_parameter_hints = true },
+    hover_actions = { auto_focus = true }
+  },
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  },
+  dap = {
+    adapter = require 'rust-tools.dap'.get_codelldb_adapter(
+      codelldb_path, liblldb_path)
+  },
+}
 
 -- These servers require a bit more configuration, otherwise just run setup{} like below
 local setup_servers = { 'cmp', 'metals', 'dap', 'golang', 'tsserver', 'luaserver', 'pyright', 'java' }

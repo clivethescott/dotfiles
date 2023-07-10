@@ -26,6 +26,15 @@ api.nvim_create_autocmd({ 'BufWritePre' }, {
   end,
 })
 
+-- api.nvim_create_autocmd({ 'LspAttach' }, {
+--   callback = function(args)
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--     if client.server_capabilities.codeLensProvider.resolveProvider then
+--       vim.lsp.codelens.refresh()
+--     end
+--   end,
+-- })
+
 -- Some filetype plugins will reset formatoptions, hence needed this way
 api.nvim_create_autocmd({ 'FileType' }, {
   desc = 'Dont auto-continue comments',
@@ -36,16 +45,6 @@ api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
--- api.nvim_create_autocmd({ 'FileType' }, {
---   desc = 'Reset proper indent for Java files',
---   group = events_group,
---   pattern = { 'java' },
---   callback = function()
-    -- vim.opt_local.shiftwidth = 2
-    -- vim.opt_local.tabstop = 2
---   end,
--- })
-
 api.nvim_create_autocmd({ 'BufWritePost' }, {
   desc = 'Auto re-source luasnip config',
   group = events_group,
@@ -54,4 +53,3 @@ api.nvim_create_autocmd({ 'BufWritePost' }, {
     vim.cmd 'source ~/.config/nvim/lua/plug/luasnip.lua'
   end,
 })
-

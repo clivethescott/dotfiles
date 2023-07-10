@@ -4,25 +4,17 @@ if not ok then
 end
 
 treesitter_config.setup {
-  ensure_installed = {'dockerfile', 'git_config', 'gitcommit', 'go', 'gomod', 'graphql', 'hocon', 'html', 'javascript', 'json', 'lua', 'make', 'markdown', 'proto', 'python', 'rust', 'scala', 'sql', 'terraform', 'toml', 'typescript', 'vim', 'yaml'},
+  ensure_installed = { 'dockerfile', 'git_config', 'gitcommit', 'go', 'gomod', 'graphql', 'hocon', 'html', 'javascript',
+    'json', 'lua', 'make', 'markdown', 'proto', 'python', 'rust', 'scala', 'sql', 'terraform', 'toml', 'typescript',
+    'vim', 'yaml' },
   auto_install = true,
   highlight = {
     enable = true,                            -- false will disable the whole extension
-    additional_vim_regex_highlighting = true, -- performance may suffer if enabled
+    additional_vim_regex_highlighting = false, -- performance may suffer if enabled
   },
   ignore_install = { "svelte" },
-  incremental_selection = {
-    enable = false,
-    keymaps = {
-      init_selection = '<CR>',
-      scope_incremental = '<CR>',
-      node_incremental = '<TAB>',
-      node_decremental = '<S-TAB>',
-    },
-  },
   indent = {
     enable = true,
-    disable = { 'awk' }
   },
   autotag = {
     enable = true,
@@ -57,14 +49,10 @@ treesitter_config.setup {
         [']m'] = { query = '@function.outer', desc = 'Go to next function' },
       },
     },
-    swap = {
-      enable = false,
-      swap_next = {
-        ["<leader>a"] = { query = "@parameter.inner", desc = 'Swap next parameter' },
-      },
-      swap_previous = {
-        ["<leader>A"] = { query = "@parameter.inner", desc = 'Swap prev parameter' },
-      },
+    rainbow = {
+      enable = true,
+      extended_mode = true,
+      max_file_lines = nil,
     },
   },
   query_linter = {

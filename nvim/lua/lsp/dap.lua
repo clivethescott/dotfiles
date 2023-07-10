@@ -1,3 +1,15 @@
+local setup_extra_adapters = function(dap)
+  dap.defaults.fallback.exception_breakpoints = { 'default' }
+  dap.adapters.codelldb = {
+    type = 'server',
+    port = 13000,
+    executable = {
+      command = 'codelldb',
+      args = { '--port', '13000' },
+    },
+    name = 'lldb'
+  }
+end
 local setup_dap_go = function()
   local ok, dap_go = pcall(require, 'dap-go')
   if not ok then
@@ -50,8 +62,11 @@ local setup_ui = function(dap)
   end
 end
 
-local setup_dap_configs = function(dap)
 
+local get_program = function() return vim.fn.input('program: ', vim.loop.cwd() .. '/' .. vim.fn.expand('%f'), 'file') end
+local get_args = function() return vim.split(vim.fn.input('args: ', '', 'file'), ' ') end
+
+local setup_dap_configs = function(dap)
   dap.configurations.scala = {
     {
       type = "scala",
@@ -70,6 +85,20 @@ local setup_dap_configs = function(dap)
       },
     },
   }
+
+  dap.configurations.rust = {
+    {
+      name = 'Debug',
+      type = 'codelldb',
+      request = "launch",
+      cwd = '${workspaceFolder}',
+      terminal = 'integrated',
+      console = 'integratedTerminal',
+      stopOnEntry = false,
+      sourceLanguages = { 'rust' },
+      program = get_program,
+    }
+  }
 end
 
 local M = {}
@@ -80,6 +109,7 @@ M.setup = function()
     return
   end
 
+  setup_extra_adapters(dap)
   setup_dap_configs(dap)
   setup_ui(dap)
   setup_dap_virt_text()
