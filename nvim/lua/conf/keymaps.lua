@@ -178,24 +178,20 @@ local nvimtree_toggle = function()
 end
 
 
-local Terminal       = require('toggleterm.terminal').Terminal
-local lazygit        = Terminal:new({
-  cmd = "lazygit",
+local Terminal      = require('toggleterm.terminal').Terminal
+local cargo         = Terminal:new({
+  cmd = "cargo run",
   hidden = true,
   direction = 'tab',
 })
-local gradle         = Terminal:new({
+local gradle        = Terminal:new({
   cmd = "./gradlew bootRun",
   hidden = true,
   direction = 'tab',
 })
-local toggle_gradle  = function()
+local toggle_gradle = function()
   gradle:toggle()
 end
-local toggle_lazygit = function()
-  lazygit:toggle()
-end
-map('n', '«', toggle_gradle)
 
 local wk = require 'which-key'
 wk.register({
@@ -248,7 +244,6 @@ wk.register({
       h = { '<cmd>DiffviewFileHistory<cr>', 'File History' },
       l = { '<cmd>Telescope git_bcommits<cr>', 'Buffer Commits' },
       L = { '<cmd>Telescope git_commits<cr>', 'All Commits' },
-      o = { toggle_lazygit, 'Lazy Git' },
       s = { '<cmd>Telescope git_status<cr>', 'Status + diff' },
     },
     j = {
