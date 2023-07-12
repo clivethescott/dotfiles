@@ -10,13 +10,11 @@ fi
 
 # Customize to your needs...
 
-# Plugin manager
-source /opt/homebrew/share/antigen/antigen.zsh
-antigen use oh-my-zsh
-antigen bundle vi-mode
-antigen bundle fzf
-# antigen theme af-magic
-antigen apply
+# zplug Plugin manager
+# source /opt/homebrew/opt/zplug/init.zsh
+# setup fzf (could load this as a plugin)
+source /opt/homebrew/opt/fzf/shell/completion.zsh
+source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 
 source $ZDOTDIR/setopt.zsh 
 source $ZDOTDIR/aliases.zsh

@@ -8,8 +8,7 @@ toggleterm.setup {
   direction = 'float',    -- 'vertical' | 'horizontal' | 'tab' | 'float',
   start_in_insert = true,
   close_on_exit = true, -- close the terminal window when the process exits
-  -- shell = vim.o.shell,  -- change the default shell
-  shell = '/bin/zsh --no-rcs',  -- change the default shell
+  shell = vim.o.shell,  -- change the default shell
   -- This field is only relevant if direction is set to 'float'
   float_opts = {
     -- The border key is *almost* the same as 'nvim_open_win'
