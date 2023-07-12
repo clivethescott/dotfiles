@@ -3,15 +3,9 @@ vim.opt_local.tabstop = 4
 vim.opt_local.softtabstop = 4
 vim.opt_local.shiftwidth = 4
 
-local default_opts = { silent = true, noremap = true }
-local map = function(mode, lhs, rhs, opts)
-  if opts then
-    vim.tbl_extend('keep', opts, default_opts)
-  else
-    opts = default_opts
-  end
-  vim.keymap.set(mode, lhs, rhs, opts)
-end
+local opts = { silent = true, noremap = true, buffer = true }
 
-vim.cmd[[command! -count=1 CargoRun lua require'toggleterm'.exec("cargo run", <count>, 12)]]
-map('n', '<C-b>', ':CargoRun<cr>')
+local build = function()
+  require 'toggleterm'.exec("cargo run")
+end
+vim.keymap.set('n', '<C-b>', build, opts)
