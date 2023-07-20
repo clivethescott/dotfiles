@@ -37,19 +37,28 @@ M.setup = function()
 
   local has_lspkind, lspkind = pcall(require, 'lspkind')
   local cmp_format = {}
-  if has_lspkind then
-    cmp_format = lspkind.cmp_format {
-      mode = 'symbol_text', -- show only symbol annotations
-      maxwidth = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-    }
-  end
+  local source_mapping = {
+    buffer = "[Buffer]",
+    nvim_lsp = "[LSP]",
+    nvim_lua = "[Lua]",
+    luasnip = "[Snip]",
+    path = "[Path]",
+  }
 
   cmp.setup({
     experimental = {
       ghost_text = false,
     },
     formatting = {
-      format = cmp_format
+      format = function(entry, vim_item)
+        -- if you have lspkind installed, you can use it like
+        -- in the following line:
+        vim_item.kind = lspkind.symbolic(vim_item.kind, { mode = "symbol" })
+        vim_item.menu = source_mapping[entry.source.name]
+        local maxwidth = 80
+        vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
+        return vim_item
+      end,
     },
     preselect = cmp.PreselectMode.None,
     completion = {
@@ -74,7 +83,7 @@ M.setup = function()
       -- ['<C-y>'] = cmp.mapping.complete(),
       -- ['<C-x>'] = cmp.mapping.abort(),
       ['<C-x>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),  -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ['<C-n>'] = cmp.mapping(select_next_item, { 'i', 's' }),
       ['<C-Space>'] = cmp.mapping.complete(),
@@ -86,12 +95,13 @@ M.setup = function()
     sources = cmp.config.sources({
       { name = 'path', max_item_count = 30 },
     }, {
-      { name = 'nvim_lsp',                 max_item_count = 25},
-      { name = 'luasnip',                  max_item_count = 5,  keyword_length = 2 },
+      { name = 'nvim_lsp',                 max_item_count = 25 },
+      { name = 'luasnip',                  max_item_count = 5, keyword_length = 2 },
+      { name = 'cmp_tabnine',              max_item_count = 5, keyword_length = 3 },
       { name = 'nvim_lua',                 max_item_count = 5 },
       -- { name = 'nvim_lsp_signature_help' }, -- now using lsp_signature
       { name = 'nvim_lsp_document_symbol', max_item_count = 5 },
-      { name = 'buffer',                   max_item_count = 5,  keyword_length = 3 },
+      { name = 'buffer',                   max_item_count = 5, keyword_length = 3 },
     })
   })
 
