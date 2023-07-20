@@ -14,6 +14,10 @@ M.setup = function(on_attach, capabilities)
     end,
     settings = {
       gopls = {
+        semanticTokens = true,
+        codelenses = {
+          generate = true,
+        },
         experimentalPostfixCompletions = true,
         analyses = {
           unusedparams = true,
