@@ -84,6 +84,7 @@ map('n', '<c-p>', require 'plug.telescope-extras'.project_files)
 map('n', 'π', telescope.find_files)
 map('n', 'Ï', telescope.live_grep)
 map('n', 'ƒ', telescope.current_buffer_fuzzy_find)
+map('n', '<C-_>', require'Comment.api'.toggle.linewise.current)
 
 local find_nvim_files = function()
   telescope.find_files {
