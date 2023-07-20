@@ -92,7 +92,6 @@ function M.alt_go_file()
   end
 
   vim.fn.execute(edit_file)
-
 end
 
 local function count_lsp_res_changes(lsp_results)
@@ -128,8 +127,8 @@ local formatting_options = function(bufnr, async)
   }
 end
 
-    function M.lsp_buf_format_sync(bufnr)
-  local opts = formatting_options(bufnr, false)
+function M.lsp_buf_format_sync(ev)
+  local opts = formatting_options(ev.buf, false)
   vim.lsp.buf.format(opts)
 end
 

@@ -21,8 +21,8 @@ api.nvim_create_autocmd({ 'BufWritePre' }, {
   desc = 'Files to format before save',
   group = events_group,
   pattern = { '*.scala', '*.sc', '*.py', '*.go', '*.java', '*.rs', },
-  callback = function()
-    require 'helper.utils'.lsp_buf_format_sync()
+  callback = function(ev)
+    require 'helper.utils'.lsp_buf_format_sync(ev)
   end,
 })
 
