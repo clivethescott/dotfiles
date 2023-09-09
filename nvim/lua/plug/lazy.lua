@@ -126,6 +126,9 @@ local plugins = {
           jdtls = {        -- Name of LSP client
             ignore = true, -- Ignore notifications from this source
           },
+          lua_ls = {
+            ignore = true, -- Ignore notifications from this source
+          }
         },
       }
     end
@@ -222,6 +225,10 @@ local plugins = {
         }
       }
     end
+  },
+  {
+    "udalov/kotlin-vim",
+    ft = 'kotlin',
   },
 }
 require("lazy").setup(plugins, {

@@ -1,3 +1,6 @@
+function gdoc() {
+  go doc $1 | bat --language=go
+}
 # Kill tomcat
 function tomcat() {
 

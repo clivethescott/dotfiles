@@ -9,7 +9,7 @@ M.setup = function(on_attach, capabilities)
   -- enables `metals/status` and also other helpful messages that are shown to you
   metals_config.init_options.statusBarProvider = "on"
   metals_config.settings = {
-    serverVersion = '1.0.0',
+    serverVersion = '1.0.1',
     fallbackScalaVersion = '3.3.0',
     showImplicitArguments = true,
     showImplicitConversionsAndClasses = false,

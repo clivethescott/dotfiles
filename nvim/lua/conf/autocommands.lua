@@ -36,14 +36,14 @@ api.nvim_create_autocmd({ 'BufWritePre' }, {
 -- })
 
 -- Some filetype plugins will reset formatoptions, hence needed this way
-api.nvim_create_autocmd({ 'FileType' }, {
-  desc = 'Dont auto-continue comments',
-  group = events_group,
-  pattern = { '*' },
-  callback = function()
-    vim.opt_local.formatoptions:remove { 'c', 'r', 'o' } -- :h fo-table
-  end,
-})
+-- api.nvim_create_autocmd({ 'FileType' }, {
+--   desc = 'Dont auto-continue comments',
+--   group = events_group,
+--   pattern = { '*' },
+--   callback = function()
+--     vim.opt_local.formatoptions:remove { 'c', 'r', 'o' } -- :h fo-table
+--   end,
+-- })
 
 api.nvim_create_autocmd({ 'BufWritePost' }, {
   desc = 'Auto re-source luasnip config',
