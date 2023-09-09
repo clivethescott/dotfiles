@@ -16,6 +16,6 @@ keybinding:
     scrollUpMain-alt1: null
     pushFiles: 'P'
     pullFiles: 'p'
-    return: '<c-[>'
+    # return: '<c-[>'
     copyToClipboard: 'y'
     openRecentRepos: '<c-o>'
