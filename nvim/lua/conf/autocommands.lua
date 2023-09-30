@@ -17,15 +17,23 @@ api.nvim_create_autocmd({ 'BufReadPost' }, {
   end,
 })
 
-api.nvim_create_autocmd({ 'BufWritePre' }, {
-  desc = 'Files to format before save',
+api.nvim_create_autocmd({ 'BufWritePost' }, {
+  desc = 'LSP format before save',
   group = events_group,
-  pattern = { '*.scala', '*.sc', '*.py', '*.go', '*.java', '*.rs', },
+  pattern = { '*.scala', '*.sc', '*.go', '*.java', '*.rs', },
   callback = function(ev)
     require 'helper.utils'.lsp_buf_format_sync(ev)
   end,
 })
 
+api.nvim_create_autocmd({ 'BufWritePost' }, {
+  desc = 'Formatter nvim format before save',
+  group = events_group,
+  pattern = { '*.py' },
+  callback = function()
+    vim.cmd ":FormatWrite"
+  end,
+})
 -- api.nvim_create_autocmd({ 'LspAttach' }, {
 --   callback = function(args)
 --     local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -51,5 +59,13 @@ api.nvim_create_autocmd({ 'BufWritePost' }, {
   pattern = { 'luasnip.lua' },
   callback = function()
     vim.cmd 'source ~/.config/nvim/lua/plug/luasnip.lua'
+  end,
+})
+
+api.nvim_create_autocmd({ "BufWritePost" }, {
+  group = events_group,
+  pattern = { '*.clj', '*.py' },
+  callback = function()
+    require("lint").try_lint()
   end,
 })
