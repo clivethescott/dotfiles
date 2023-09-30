@@ -149,6 +149,12 @@ require 'lspconfig'.yamlls.setup {
 }
 require 'lspconfig'.terraformls.setup {}
 require 'lspconfig'.kotlin_language_server.setup {}
+require 'lspconfig'.clojure_lsp.setup {
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+  end,
+}
 
 local codelldb_path = vim.fn.stdpath('data') .. '/mason/packages/codelldb/extension/adapter/codelldb'
 local liblldb_path = vim.fn.stdpath('data') .. '/mason/packages/codelldb/extension/lldb/lib/liblldb.dylib'

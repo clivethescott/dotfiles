@@ -230,6 +230,73 @@ local plugins = {
     "udalov/kotlin-vim",
     ft = 'kotlin',
   },
+  {
+    "mfussenegger/nvim-lint",
+    ft = { 'clojure', 'python', 'go', 'yaml' },
+    config = function()
+      require("lint").linters_by_ft = {
+        clojure = { "clj-kondo" },
+        python = { "flake8", "mypy" },
+        go = { "golangcilint" },
+        yaml = { "yamllint", "cfn_lint" },
+      }
+    end,
+  },
+  {
+    "clojure-vim/vim-jack-in",
+    dependencies = { "radenling/vim-dispatch-neovim", "tpope/vim-dispatch" },
+    ft = 'clojure',
+  },
+  {
+    "hiphish/rainbow-delimiters.nvim",
+    ft = 'clojure',
+  },
+  {
+    "Olical/conjure",
+    ft = { "clojure", "python" }, -- etc
+    -- [Optional] cmp-conjure for cmp
+    dependencies = {
+      {
+        "PaterJason/cmp-conjure",
+        config = function()
+          local cmp = require("cmp")
+          local config = cmp.get_config()
+          table.insert(config.sources, {
+            name = "buffer",
+            option = {
+              sources = {
+                { name = "conjure" },
+              },
+            },
+          })
+          cmp.setup(config)
+        end,
+      },
+    },
+    config = function(_, opts)
+      require("conjure.main").main()
+      require("conjure.mapping")["on-filetype"]()
+    end,
+    init = function()
+      -- Set configuration options here
+      vim.g["conjure#debug"] = true
+      vim.g["conjure#mapping#prefix"] = "\\"
+      vim.g["conjure#mapping#doc_word"] = false -- don't bind to K
+    end,
+  },
+  {
+    "mhartington/formatter.nvim", -- non-LSP formatting support
+    ft = { 'python' },
+    config = function()
+      require('formatter').setup {
+        filetype = {
+          python = {
+            require 'formatter.filetypes.python'.black,
+          }
+        }
+      }
+    end
+  },
 }
 require("lazy").setup(plugins, {
   lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json"
