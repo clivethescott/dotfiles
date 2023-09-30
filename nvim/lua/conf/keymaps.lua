@@ -196,6 +196,11 @@ end
 
 local wk            = require 'which-key'
 wk.register({
+  ["\\"] = {
+    name = '+Clojure',
+    t = { "<cmd>ConjureLogToggle<cr>", "Toggle Log" },
+    r = { "<cmd>ConjureEvalBuf<cr>", "Evaluate buffer" },
+  },
   ["["] = {
     name = '+Previous',
     t = { prev_todo, 'TODO' },
@@ -238,17 +243,6 @@ wk.register({
       r = { '<cmd>TroubleToggle lsp_references<cr>', 'LSP References' },
       t = { '<cmd>TodoTrouble<cr>', 'TODOs' },
       w = { '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Workspace Diagnostics' },
-    },
-    f = {
-      name = '+Clojure',
-      l = { "<cmd>ConjureLogToggle<cr>", "Toggle Log" },
-      r = {
-        name = '+Eval',
-        b = { "<cmd>ConjureEvalBuf<cr>", "Evaluate buffer" },
-        r = { "<cmd>ConjureEvalBuf<cr>", "Evaluate buffer" },
-        v = { "<cmd>ConjureEvalVisual<cr>", "Evaluate selection" },
-        w = { "<cmd>ConjureEvalWord<cr>", "Evaluate word" },
-      },
     },
     g = {
       '+Git',
@@ -346,4 +340,4 @@ wk.register({
 })
 
 
-vim.keymap.set('v', '<space>frv', ":ConjureEvalVisual<cr>" , default_opts)
+vim.keymap.set('v', "\\r", ":ConjureEvalVisual<cr>", default_opts)

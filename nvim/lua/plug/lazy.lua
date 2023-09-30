@@ -273,6 +273,7 @@ local plugins = {
       vim.g["conjure#log#hud#ignore_low_priority"] = true
       vim.g["conjure#log#hud#anchor"] = "SE"
       vim.g["conjure#log#hud#width"] = 1.0
+      vim.g["conjure#log#hud#enabled"] = false
     end,
   },
   {
