@@ -11,7 +11,7 @@ export FZF_CTRL_T_COMMAND='rg --files'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
-# export JAVA_HOME=$(/usr/libexec/java_home -v 17) Use cs java --jvm zulu:17 --setup
+export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21/libexec/openjdk.jdk/Contents/Home
 export HOMEBREW_NO_ANALYTICS=1
 export HISTSIZE=50000
 
