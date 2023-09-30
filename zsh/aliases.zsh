@@ -4,7 +4,7 @@ alias tree='ls --tree'
 alias pdfcat='gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=temp.pdf source*.pdf' # uses ghostscript
 alias bloop='bloop-jvm'
 alias less=bat
-alias ls='COLUMNS=120 exa'
+alias ls='lsd'
 alias rustdocs="cargo doc --open"
 alias godocs="echo 'Go Docs starting on http://localhost:3000' && godoc -http=:3000"
 alias lg='lazygit'
