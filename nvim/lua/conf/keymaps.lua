@@ -84,7 +84,7 @@ map('n', '<c-p>', require 'plug.telescope-extras'.project_files)
 map('n', 'π', telescope.find_files)
 map('n', 'Ï', telescope.live_grep)
 map('n', 'ƒ', telescope.current_buffer_fuzzy_find)
-map('n', '<C-_>', require'Comment.api'.toggle.linewise.current)
+map('n', '<C-_>', require 'Comment.api'.toggle.linewise.current)
 
 local find_nvim_files = function()
   telescope.find_files {
@@ -194,7 +194,7 @@ local toggle_gradle = function()
   gradle:toggle()
 end
 
-local wk = require 'which-key'
+local wk            = require 'which-key'
 wk.register({
   ["["] = {
     name = '+Previous',
@@ -238,6 +238,17 @@ wk.register({
       r = { '<cmd>TroubleToggle lsp_references<cr>', 'LSP References' },
       t = { '<cmd>TodoTrouble<cr>', 'TODOs' },
       w = { '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Workspace Diagnostics' },
+    },
+    f = {
+      name = '+Clojure',
+      l = { "<cmd>ConjureLogToggle<cr>", "Toggle Log" },
+      r = {
+        name = '+Eval',
+        b = { "<cmd>ConjureEvalBuf<cr>", "Evaluate buffer" },
+        r = { "<cmd>ConjureEvalBuf<cr>", "Evaluate buffer" },
+        v = { "<cmd>ConjureEvalVisual<cr>", "Evaluate selection" },
+        w = { "<cmd>ConjureEvalWord<cr>", "Evaluate word" },
+      },
     },
     g = {
       '+Git',
@@ -333,3 +344,6 @@ wk.register({
   },
   ['gp'] = { ':b#<cr>', 'Alternate buffer' },
 })
+
+
+vim.keymap.set('v', '<space>frv', ":ConjureEvalVisual<cr>" , default_opts)

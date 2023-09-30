@@ -279,9 +279,13 @@ local plugins = {
     end,
     init = function()
       -- Set configuration options here
-      vim.g["conjure#debug"] = true
-      vim.g["conjure#mapping#prefix"] = "\\"
+      vim.g["conjure#debug"] = false
+      -- vim.g["conjure#mapping#prefix"] = "<space>c"
       vim.g["conjure#mapping#doc_word"] = false -- don't bind to K
+      vim.g["conjure#mapping#enable_ft_mappings"] = false -- will config via which-key
+      vim.g["conjure#log#hud#ignore_low_priority"] = true
+      vim.g["conjure#log#hud#anchor"] = "SE"
+      vim.g["conjure#log#hud#width"] = 1.0
     end,
   },
   {
