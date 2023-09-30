@@ -32,29 +32,6 @@ M.setup = function(on_attach, capabilities)
     },
   }
 
-  -- ./golangci-lint help linters
-  local lint_command = { "golangci-lint", "run", "--out-format", "json" }
-  local custom_lint_config = false
-
-  if custom_lint_config then
-    local enabled_presets = "bugs,comment,metalinter,sql,style,unused"
-    local disabled_linters = "exhaustivestruct,golint,interfacer,scopelint,wsl"
-
-    table.insert(lint_command, "--presets")
-    table.insert(lint_command, enabled_presets)
-    table.insert(lint_command, "--disable")
-    table.insert(lint_command, disabled_linters)
-  end
-
-  -- go/brew install golangci-lint or equiv
-  lspconfig.golangci_lint_ls.setup {
-    capabilities = capabilities,
-    filetypes = { 'go' },
-    on_attach = on_attach,
-    init_options = {
-      command = lint_command,
-    }
-  }
 end
 
 return M
