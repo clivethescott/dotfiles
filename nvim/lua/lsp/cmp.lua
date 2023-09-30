@@ -102,6 +102,7 @@ M.setup = function()
       -- { name = 'nvim_lsp_signature_help' }, -- now using lsp_signature
       { name = 'nvim_lsp_document_symbol', max_item_count = 5 },
       { name = 'buffer',                   max_item_count = 5, keyword_length = 3 },
+      { name = "conjure" },
     })
   })
 

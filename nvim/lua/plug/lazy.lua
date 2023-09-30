@@ -102,6 +102,11 @@ local plugins = {
       {
         'ray-x/lsp_signature.nvim',
         lazy = true,
+        config = function()
+          require 'lsp_signature'.setup {
+            zindex = 40,
+          }
+        end,
       },
       {
         'onsails/lspkind.nvim',
@@ -254,26 +259,8 @@ local plugins = {
   {
     "Olical/conjure",
     ft = { "clojure", "python" }, -- etc
-    -- [Optional] cmp-conjure for cmp
-    dependencies = {
-      {
-        "PaterJason/cmp-conjure",
-        config = function()
-          local cmp = require("cmp")
-          local config = cmp.get_config()
-          table.insert(config.sources, {
-            name = "buffer",
-            option = {
-              sources = {
-                { name = "conjure" },
-              },
-            },
-          })
-          cmp.setup(config)
-        end,
-      },
-    },
-    config = function(_, opts)
+    dependencies = { "PaterJason/cmp-conjure" },
+    config = function()
       require("conjure.main").main()
       require("conjure.mapping")["on-filetype"]()
     end,
@@ -281,7 +268,7 @@ local plugins = {
       -- Set configuration options here
       vim.g["conjure#debug"] = false
       -- vim.g["conjure#mapping#prefix"] = "<space>c"
-      vim.g["conjure#mapping#doc_word"] = false -- don't bind to K
+      vim.g["conjure#mapping#doc_word"] = false           -- don't bind to K
       vim.g["conjure#mapping#enable_ft_mappings"] = false -- will config via which-key
       vim.g["conjure#log#hud#ignore_low_priority"] = true
       vim.g["conjure#log#hud#anchor"] = "SE"
