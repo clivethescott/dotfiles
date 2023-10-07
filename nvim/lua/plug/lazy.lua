@@ -100,12 +100,14 @@ local plugins = {
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-cmdline',
       {
+        'tzachar/cmp-tabnine',
+        build = './install.sh',
+      },
+      {
         'ray-x/lsp_signature.nvim',
         lazy = true,
         config = function()
-          require 'lsp_signature'.setup {
-            zindex = 40,
-          }
+          require 'lsp_signature'.setup {}
         end,
       },
       {
@@ -232,15 +234,10 @@ local plugins = {
     end
   },
   {
-    "udalov/kotlin-vim",
-    ft = 'kotlin',
-  },
-  {
     "mfussenegger/nvim-lint",
-    ft = { 'clojure', 'python', 'go', 'yaml' },
+    ft = { 'python', 'go', 'yaml' },
     config = function()
       require("lint").linters_by_ft = {
-        clojure = { "clj-kondo" },
         python = { "flake8", "mypy" },
         go = { "golangcilint" },
         yaml = { "yamllint", "cfn_lint" },
@@ -248,33 +245,8 @@ local plugins = {
     end,
   },
   {
-    "clojure-vim/vim-jack-in",
-    dependencies = { "radenling/vim-dispatch-neovim", "tpope/vim-dispatch" },
-    ft = 'clojure',
-  },
-  {
     "hiphish/rainbow-delimiters.nvim",
-    ft = 'clojure',
-  },
-  {
-    "Olical/conjure",
-    ft = { "clojure", "python" }, -- etc
-    dependencies = { "PaterJason/cmp-conjure" },
-    config = function()
-      require("conjure.main").main()
-      require("conjure.mapping")["on-filetype"]()
-    end,
-    init = function()
-      -- Set configuration options here
-      vim.g["conjure#debug"] = false
-      -- vim.g["conjure#mapping#prefix"] = "<space>c"
-      vim.g["conjure#mapping#doc_word"] = false           -- don't bind to K
-      vim.g["conjure#mapping#enable_ft_mappings"] = false -- will config via which-key
-      vim.g["conjure#log#hud#ignore_low_priority"] = true
-      vim.g["conjure#log#hud#anchor"] = "SE"
-      vim.g["conjure#log#hud#width"] = 1.0
-      vim.g["conjure#log#hud#enabled"] = false
-    end,
+    ft = { 'rust', 'scala' },
   },
   {
     "mhartington/formatter.nvim", -- non-LSP formatting support
@@ -289,6 +261,17 @@ local plugins = {
       }
     end
   },
+  {
+    "kosayoda/nvim-lightbulb",
+    config = function()
+      require 'nvim-lightbulb'.setup {
+        autocmd = {
+          enabled = true
+        },
+      }
+    end,
+    ft = { 'scala', 'rust' },
+  }
 }
 require("lazy").setup(plugins, {
   lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json"

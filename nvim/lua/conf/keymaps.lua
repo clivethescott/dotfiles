@@ -196,11 +196,6 @@ end
 
 local wk            = require 'which-key'
 wk.register({
-  ["\\"] = {
-    name = '+Clojure',
-    t = { "<cmd>ConjureLogToggle<cr>", "Toggle Log" },
-    r = { "<cmd>ConjureEvalBuf<cr>", "Evaluate buffer" },
-  },
   ["["] = {
     name = '+Previous',
     t = { prev_todo, 'TODO' },
@@ -339,5 +334,3 @@ wk.register({
   ['gp'] = { ':b#<cr>', 'Alternate buffer' },
 })
 
-
-vim.keymap.set('v', "\\r", ":ConjureEvalVisual<cr>", default_opts)

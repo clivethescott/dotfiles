@@ -96,5 +96,13 @@ return {
       i(1),
       i(2, "???"),
     })
+  ),
+  s({ trig = "main", dscr = "Scala 3 main method" },
+    fmt([[ 
+      @main def {}() = {}
+    ]], {
+      i(1),
+      i(2, "???"),
+    })
   )
 }
