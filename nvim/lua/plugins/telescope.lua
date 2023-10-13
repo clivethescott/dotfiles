@@ -1,3 +1,15 @@
+return {
+  'nvim-telescope/telescope.nvim',
+  branch = '0.1.x',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    -- Enables filtering See :h telescope-fzf-native.nvim-telescope-fzf-native-nvim
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+'mfussenegger/nvim-dap',
+'nvim-telescope/telescope-dap.nvim',
+  },
+  config = function()
+
 local actions = require("telescope.actions")
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
@@ -49,7 +61,6 @@ local new_maker = function(filepath, bufnr, opts)
   }):sync()
 end
 
-local trouble = require("trouble.providers.telescope")
 local global_ignore = os.getenv('HOME') .. '/.gitignore'
 
 require('telescope').setup {
@@ -96,7 +107,7 @@ require('telescope').setup {
         ['<C-d>'] = actions.preview_scrolling_down,
         ['v'] = actions.select_vertical,
         ['s'] = actions.select_horizontal,
-        ["r"] = trouble.open_with_trouble,
+        ["r"] = function() require'trouble.providers.telescope'.open_with_trouble() end,
         ["a"] = actions.toggle_all,
         ["x"] = actions.delete_buffer,
         ["q"] = actions.send_selected_to_qflist,
@@ -121,3 +132,5 @@ require('telescope').load_extension('fzf')
 
 -- requires nvim-telescope/telescope-dap.nvim
 require('telescope').load_extension('dap')
+  end
+}

@@ -1,9 +1,8 @@
-local ok, dressing = pcall(require, 'dressing')
-if not ok then
-  return
-end
+return {
+  'stevearc/dressing.nvim',
+  config = function()
 
-dressing.setup({
+  require'dressing'.setup({
   input = {
     -- Set to false to disable the vim.ui.input implementation
     enabled = true,
@@ -52,3 +51,5 @@ dressing.setup({
     get_config = nil,
   },
 })
+  end
+}

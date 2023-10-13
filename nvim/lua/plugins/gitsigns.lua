@@ -1,10 +1,12 @@
-local ok, gitsigns = pcall(require, 'gitsigns')
-if not ok then
-  return
-end
-
-local map = vim.keymap.set
-gitsigns.setup { on_attach = function()
+return {
+  'lewis6991/gitsigns.nvim',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    "folke/which-key.nvim",
+  },
+  config = function()
+  local map = vim.keymap.set
+  require'gitsigns'.setup { on_attach = function()
   local gs = package.loaded.gitsigns
   -- Navigation
   local next_hunk = function()
@@ -75,4 +77,6 @@ end,
     ignore_whitespace = false,
   },
   current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>'
+}
+  end
 }

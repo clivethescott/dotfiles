@@ -101,19 +101,22 @@ local setup_dap_configs = function(dap)
   }
 end
 
-local M = {}
+return {
+  'mfussenegger/nvim-dap',
+  dependencies = {
+      { "rcarriga/nvim-dap-ui" },
+      { 'theHamsta/nvim-dap-virtual-text' },
+      { 'leoluz/nvim-dap-go', ft = 'go', lazy = true },
+    },
+  config = function()
 
-M.setup = function()
-  local ok, dap = pcall(require, 'dap')
-  if not ok then
-    return
+    local dap = require'dap'
+
+    setup_extra_adapters(dap)
+    setup_dap_configs(dap)
+    setup_ui(dap)
+    setup_dap_virt_text()
+    setup_dap_go()
+
   end
-
-  setup_extra_adapters(dap)
-  setup_dap_configs(dap)
-  setup_ui(dap)
-  setup_dap_virt_text()
-  setup_dap_go()
-end
-
-return M
+}

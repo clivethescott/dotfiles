@@ -1,8 +1,23 @@
-local ok, treesitter_config = pcall(require, 'nvim-treesitter.configs')
-if not ok then
-  return
-end
-
+return {
+  'nvim-treesitter/nvim-treesitter',
+  build = function()
+    pcall(require('nvim-treesitter.install').update { with_sync = true })
+   end,
+   dependencies = {
+     'nvim-treesitter/nvim-treesitter-textobjects',
+     {
+       'romgrk/nvim-treesitter-context',
+       config = function()
+         require'treesitter-context'.setup{}
+       end
+     },
+     {
+       'windwp/nvim-ts-autotag',
+       ft = { 'html' },
+     }
+   },
+   config = function()
+     local treesitter_config = require'nvim-treesitter.configs'
 treesitter_config.setup {
   ensure_installed = { 'dockerfile', 'git_config', 'gitcommit', 'go', 'gomod', 'graphql', 'hocon', 'html', 'javascript',
     'json', 'lua', 'make', 'markdown', 'proto', 'python', 'rust', 'scala', 'sql', 'terraform', 'toml', 'typescript',
@@ -64,10 +79,5 @@ treesitter_config.setup {
     enable = false,
   },
 }
-
-local ctx_ok, ctx = pcall(require, 'treesitter-context')
-if not ctx_ok then
-  return
-end
-
-ctx.setup {}
+   end
+}

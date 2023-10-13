@@ -1,18 +1,37 @@
-local M = {}
-
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-M.setup = function()
-  local has_cmp, cmp = pcall(require, 'cmp')
-
-  if not has_cmp then
-    return
-  end
-
-  local has_luasnip, luasnip = pcall(require, 'luasnip')
+return {
+  'hrsh7th/nvim-cmp',
+  event = 'InsertEnter',
+  dependencies = {
+    'L3MON4D3/LuaSnip',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-nvim-lsp-document-symbol',
+    'hrsh7th/cmp-nvim-lua',
+    'hrsh7th/cmp-cmdline',
+    {
+      'tzachar/cmp-tabnine',
+      build = './install.sh',
+    },
+    {
+      'ray-x/lsp_signature.nvim',
+      lazy = true,
+      config = function()
+        require 'lsp_signature'.setup {}
+      end,
+    },
+    {
+      'onsails/lspkind.nvim',
+    },
+  },
+  config = function()
+  local cmp = require'cmp'
+  local luasnip = require'luasnip'
   local select_next_item = function(fallback)
     if cmp.visible() then
       cmp.select_next_item()
@@ -130,6 +149,5 @@ M.setup = function()
   })
 
   vim.keymap.set('i', '<C-x><C-o>', function() require 'cmp'.complete() end)
-end
-
-return M
+  end
+}

@@ -1,9 +1,12 @@
-local ok, trouble = pcall(require, 'trouble')
-if not ok then
-  return
-end
-
-trouble.setup {
+return {
+   'folke/trouble.nvim',
+   lazy = true,
+   cmd = 'TroubleToggle',
+   dependencies = {
+     'nvim-tree/nvim-web-devicons'
+   },
+  config = function()
+require'trouble'.setup {
   mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
   auto_open = false,              -- automatically open the list when you have diagnostics
   auto_close = true,              -- automatically close the list when you have no diagnostics
@@ -40,4 +43,6 @@ trouble.setup {
     other = "﫠"
   },
   use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+}
+  end
 }

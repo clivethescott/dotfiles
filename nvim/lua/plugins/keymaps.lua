@@ -1,3 +1,42 @@
+local project_files = function()
+  local fopts = {
+    hidden = true,
+    no_ignore = false,
+    show_untracked = true
+  }
+  -- local is_git_dir = require 'telescope.utils'.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree" })[1]
+  vim.fn.system('git rev-parse --is-inside-work-tree')
+  local is_git_dir = vim.v.shell_error == 0
+  local telescope = require'telescope.builtin'
+
+  if is_git_dir then
+    telescope.git_files(fopts)
+  else
+    telescope.find_files(fopts)
+  end
+end
+
+return {
+  "folke/which-key.nvim",
+  config = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 300
+    require("which-key").setup({
+      plugins = {
+        presets = {
+          operators = false,
+          motions = false,
+        },
+      },
+      key_labels = {
+        ["<space>"] = "SPACE",
+        ["<tab>"] = "TAB",
+      },
+      window = {
+        position = "top",
+      },
+    })
+
 local default_opts = { silent = true, noremap = true }
 local map = function(mode, lhs, rhs, opts)
   if opts then
@@ -77,28 +116,27 @@ map('n', '<space>[', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[")
 map('n', '<space>]', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>')
 
 -- Telescope mappings
-local telescope = require('telescope.builtin')
-map('n', '<c-e>', telescope.buffers)
+map('n', '<c-e>', function() require'telescope.builtin'.buffers() end )
 -- Use git_files if in git dir, else use find_files
-map('n', '<c-p>', require 'plug.telescope-extras'.project_files)
-map('n', 'π', telescope.find_files)
-map('n', 'Ï', telescope.live_grep)
-map('n', 'ƒ', telescope.current_buffer_fuzzy_find)
-map('n', '<C-_>', require 'Comment.api'.toggle.linewise.current)
+map('n', '<c-p>', project_files)
+map('n', 'π', function() require'telescope.builtin'.find_files() end)
+map('n', 'Ï', function() require'telescope.builtin'.live_grep() end)
+map('n', 'ƒ', function() require'telescope.builtin'.current_buffer_fuzzy_find() end)
+map('n', '<C-_>', function() require 'Comment.api'.toggle.linewise.current() end)
 
 local find_nvim_files = function()
-  telescope.find_files {
+  require'telescope.builtin'.find_files {
     cwd = '~/.config/nvim'
   }
 end
 local grep_nvim_files = function()
-  telescope.live_grep {
+  require'telescope.builtin'.live_grep {
     cwd = '~/.config/nvim',
     follow = true,
   }
 end
 local grep_zsh_files = function()
-  telescope.find_files {
+  require'telescope.builtin'.find_files {
     cwd = '~/.config/zsh',
     follow = true,
   }
@@ -178,22 +216,6 @@ local nvimtree_toggle = function()
   require 'nvim-tree.api'.tree.toggle { find_file = false, focus = true }
 end
 
-
-local Terminal      = require('toggleterm.terminal').Terminal
-local cargo         = Terminal:new({
-  cmd = "cargo run",
-  hidden = true,
-  direction = 'tab',
-})
-local gradle        = Terminal:new({
-  cmd = "./gradlew bootRun",
-  hidden = true,
-  direction = 'tab',
-})
-local toggle_gradle = function()
-  gradle:toggle()
-end
-
 local wk            = require 'which-key'
 wk.register({
   ["["] = {
@@ -211,21 +233,21 @@ wk.register({
   ["<space>"] = {
     ['['] = { ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", 'Add blank line above' },
     [']'] = { ":<c-u>put =repeat(nr2char(10), v:count1)<cr>", 'Add blank line below' },
-    p = { telescope.find_files, 'Find files in current dir' },
+    p = { function() require'telescope.builtin'.find_files() end, 'Find files in current dir' },
     d = {
       name = '+DAP',
-      b = { require 'dap'.toggle_breakpoint, 'Toggle Breakpoint' },
+      b = { function() require 'dap'.toggle_breakpoint() end, 'Toggle Breakpoint' },
       B = { dap_cond_breakpoint, 'Conditional Breakpoint' },
       c = { dap_commands, 'Commands' },
-      d = { require 'dap'.repl.toggle, 'Toggle REPL' },
+      d = { function() require 'dap'.repl.toggle() end, 'Toggle REPL' },
       e = { show_dap_ui, 'Show DAP UI' },
-      i = { require 'dap'.step_into, 'Step In' },
-      I = { require 'dap'.step_out, 'Step Out' },
+      i = { function() require 'dap'.step_into() end, 'Step In' },
+      I = { function() require 'dap'.step_out() end, 'Step Out' },
       l = { dap_list_breakpoints, 'List Breakpoints' },
-      L = { require 'dap'.clear_breakpoints, 'Clear Breakpoints' },
-      o = { require 'dap'.step_over, 'Step Over' },
+      L = { function() require 'dap'.clear_breakpoints() end, 'Clear Breakpoints' },
+      o = { function() require 'dap'.step_over() end, 'Step Over' },
       q = { dap_terminate, 'Terminate' },
-      r = { require 'dap'.continue, 'Continue' },
+      r = { function() require 'dap'.continue() end, 'Continue' },
       t = { go_debug_test, 'Debug Go Test' },
       x = { dap_terminate, 'Terminate' },
     },
@@ -258,28 +280,28 @@ wk.register({
       },
       e = {
         name = '+Extract',
-        c = { require 'jdtls'.extract_constant, 'Constant' },
-        m = { require 'jdtls'.extract_method, 'Method' },
-        v = { require 'jdtls'.extract_variable, 'Variable (current exp)' },
-        V = { require 'jdtls'.extract_variable_all, 'Variable (all exp)' },
+        c = { function() require 'jdtls'.extract_constant() end, 'Constant' },
+        m = { function() require 'jdtls'.extract_method() end, 'Method' },
+        v = { function() require 'jdtls'.extract_variable() end, 'Variable (current exp)' },
+        V = { function() require 'jdtls'.extract_variable_all() end, 'Variable (all exp)' },
       },
       g = { toggle_gradle, 'Spring Boot Run' },
-      i = { require 'jdtls'.organize_imports, 'Organize Imports' },
-      o = { require 'jdtls'.javap, 'Show Bytecode' },
+      i = { function() require 'jdtls'.organize_imports() end, 'Organize Imports' },
+      o = { function() require 'jdtls'.javap() end, 'Show Bytecode' },
       r = { function() require 'jdtls'.update_projects_config({ select_mode = 'prompt' }) end, 'Reload Project' },
-      u = { require 'jdtls'.super_implementation, 'Go to super implementation' },
+      u = { function() require 'jdtls'.super_implementation() end, 'Go to super implementation' },
     },
     m = {
       name = '+Metals',
-      c = { require 'telescope'.extensions.metals.commands, 'Commands' },
-      d = { require 'metals'.goto_super_method, 'Go To Super Method' },
-      n = { require 'metals'.new_scala_file, 'New Scala File' },
-      o = { require 'metals'.hover_worksheet, 'Hover Worksheet' },
-      s = { require 'metals'.switch_bsp, 'Switch BSP Server' },
+      c = { function() require 'telescope'.extensions.metals.commands() end, 'Commands' },
+      d = { function() require 'metals'.goto_super_method() end, 'Go To Super Method' },
+      n = { function() require 'metals'.new_scala_file() end, 'New Scala File' },
+      o = { function() require 'metals'.hover_worksheet() end, 'Hover Worksheet' },
+      s = { function() require 'metals'.switch_bsp() end, 'Switch BSP Server' },
       t = {
         name = 'TVP',
-        o = { require 'metals.tvp'.reveal_in_tree, 'Reveal In Tree' },
-        t = { require 'metals.tvp'.toggle_tree_view, 'Toggle Tree' },
+        o = { function() require 'metals.tvp'.reveal_in_tree() end, 'Reveal In Tree' },
+        t = { function() require 'metals.tvp'.toggle_tree_view() end, 'Toggle Tree' },
       },
     },
     o = {
@@ -333,4 +355,7 @@ wk.register({
   },
   ['gp'] = { ':b#<cr>', 'Alternate buffer' },
 })
+  end,
+}
+
 

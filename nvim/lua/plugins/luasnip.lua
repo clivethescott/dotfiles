@@ -1,8 +1,11 @@
-local ok, ls = pcall(require, 'luasnip')
-if not ok then
-  return
-end
-
+return {
+   'L3MON4D3/LuaSnip',
+   dependencies = {
+     'saadparwaiz1/cmp_luasnip',
+     'rafamadriz/friendly-snippets'
+   },
+   config = function()
+     local ls = require'luasnip'
 local types = require("luasnip.util.types")
 
 ls.config.setup {
@@ -40,3 +43,5 @@ lua_loader.lazy_load()
 vim.api.nvim_create_user_command('LuaSnipEdit', function()
   lua_loader.edit_snippet_files()
 end, {})
+   end
+}
