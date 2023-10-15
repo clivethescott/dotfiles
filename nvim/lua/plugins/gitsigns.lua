@@ -54,7 +54,7 @@ return {
     'nvim-lua/plenary.nvim',
     "folke/which-key.nvim",
   },
-  event = 'VeryLazy',
+  event = { 'BufReadPost', 'BufNewFile' },
   config = function()
     require 'gitsigns'.setup {
       on_attach = on_attach,
