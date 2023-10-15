@@ -277,28 +277,6 @@ return {
           L = { '<cmd>Telescope git_commits<cr>', 'All Commits' },
           s = { '<cmd>Telescope git_status<cr>', 'Status + diff' },
         },
-        j = {
-          name = '+Java',
-          b = {
-            name = '+Build',
-            c = { function() require 'jdtls'.compile('incremental') end, 'Compile Incremental' },
-            C = { function() require 'jdtls'.compile('full') end, 'Compile Full' },
-            p = { function() require 'jdtls'.build_projects({ select_mode = 'prompt', full_build = true }) end,
-              'Compile Full' },
-          },
-          e = {
-            name = '+Extract',
-            c = { function() require 'jdtls'.extract_constant() end, 'Constant' },
-            m = { function() require 'jdtls'.extract_method() end, 'Method' },
-            v = { function() require 'jdtls'.extract_variable() end, 'Variable (current exp)' },
-            V = { function() require 'jdtls'.extract_variable_all() end, 'Variable (all exp)' },
-          },
-          g = { toggle_gradle, 'Spring Boot Run' },
-          i = { function() require 'jdtls'.organize_imports() end, 'Organize Imports' },
-          o = { function() require 'jdtls'.javap() end, 'Show Bytecode' },
-          r = { function() require 'jdtls'.update_projects_config({ select_mode = 'prompt' }) end, 'Reload Project' },
-          u = { function() require 'jdtls'.super_implementation() end, 'Go to super implementation' },
-        },
         m = {
           name = '+Metals',
           c = { function() require 'telescope'.extensions.metals.commands() end, 'Commands' },

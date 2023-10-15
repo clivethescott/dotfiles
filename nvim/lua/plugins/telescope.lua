@@ -6,9 +6,6 @@ return {
     'nvim-lua/plenary.nvim',
     -- Enables filtering See :h telescope-fzf-native.nvim-telescope-fzf-native-nvim
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-    'mfussenegger/nvim-dap',
-    'nvim-telescope/telescope-dap.nvim',
-    'rmagatti/auto-session',
   },
   config = function()
     local actions = require("telescope.actions")
@@ -99,14 +96,7 @@ return {
       },
     }
 
-    -- Enable telescope fzf native
-    -- To get fzf loaded and working with telescope, you need to call
-    -- load_extension, somewhere after setup function:
+    -- 'nvim-telescope/telescope-fzf-native.nvim'
     require('telescope').load_extension('fzf')
-
-    -- requires nvim-telescope/telescope-dap.nvim
-    require('telescope').load_extension('dap')
-
-    require("telescope").load_extension "session-lens"
   end
 }

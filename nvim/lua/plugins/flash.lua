@@ -3,6 +3,10 @@ return {
   event = "VeryLazy",
   ---@type Flash.Config
   opts = {
+    search = {
+      multi_window = false,
+      incremental = true,
+    },
     modes = {
       char = {
         jump_labels = true,
@@ -12,7 +16,7 @@ return {
     },
     jump = {
       -- automatically jump when there is only one match
-      autojump = true
+      autojump = false
     },
     label = {
       -- Enable this to use rainbow colors to highlight labels
@@ -25,13 +29,13 @@ return {
   -- stylua: ignore
   keys = {
     {
-      "s",
+      "<space>j",
       mode = { "n", "x", "o" },
       function() require("flash").jump() end,
       desc = "Flash"
     },
     {
-      "S",
+      "<space>J",
       mode = { "n", "x", "o" },
       function() require("flash").treesitter() end,
       desc = "Flash Treesitter"
