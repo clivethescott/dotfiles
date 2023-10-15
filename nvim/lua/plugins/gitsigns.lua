@@ -1,12 +1,5 @@
-return {
-  'lewis6991/gitsigns.nvim',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    "folke/which-key.nvim",
-  },
-  config = function()
+local on_attach = function()
   local map = vim.keymap.set
-  require'gitsigns'.setup { on_attach = function()
   local gs = package.loaded.gitsigns
   -- Navigation
   local next_hunk = function()
@@ -53,30 +46,41 @@ return {
       },
     }
   })
-end,
-  signs = {
-    add          = { hl = 'GitSignsAdd', text = '+', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
-    change       = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
-    delete       = { hl = 'GitSignsDelete', text = '-', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
-    topdelete    = { hl = 'GitSignsDelete', text = '?', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
-    changedelete = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+end
+
+return {
+  'lewis6991/gitsigns.nvim',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    "folke/which-key.nvim",
   },
-  signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-  numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
-  linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
-  watch_gitdir = {
-    interval = 1000,
-    follow_files = true
-  },
-  attach_to_untracked = true,
-  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-  current_line_blame_opts = {
-    virt_text = true,
-    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-    delay = 1000,
-    ignore_whitespace = false,
-  },
-  current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>'
-}
+  event = 'VeryLazy',
+  config = function()
+    require 'gitsigns'.setup {
+      on_attach = on_attach,
+      signs = {
+        add          = { hl = 'GitSignsAdd', text = '+', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
+        change       = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+        delete       = { hl = 'GitSignsDelete', text = '-', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+        topdelete    = { hl = 'GitSignsDelete', text = '?', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+        changedelete = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+      },
+      signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+      numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
+      linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
+      watch_gitdir = {
+        interval = 1000,
+        follow_files = true
+      },
+      attach_to_untracked = true,
+      current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+      current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+        delay = 1000,
+        ignore_whitespace = false,
+      },
+      current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>'
+    }
   end
 }

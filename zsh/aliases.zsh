@@ -2,7 +2,6 @@
 alias nn='fd --type f --print0 | fzf-tmux -p --read0 --print0 --exit-0 | xargs -r -0 nvim'
 alias tree='ls --tree'
 alias pdfcat='gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=temp.pdf source*.pdf' # uses ghostscript
-alias bloop='bloop-jvm'
 alias less=bat
 alias ls='lsd'
 alias rustdocs="cargo doc --open"

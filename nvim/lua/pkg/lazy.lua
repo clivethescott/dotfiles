@@ -14,5 +14,13 @@ vim.opt.rtp:prepend(lazypath)
 require 'lazy'.setup({
   { import = "plugins" }
 }, {
-  lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json"
+  lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json",
+  change_detection = {
+    notify = false
+  },
+  checker = {
+    enabled = true,
+    notify = true,    -- get a notification when new updates are found
+    frequency = 60*60*24*7, -- check for updates every week
+  },
 })

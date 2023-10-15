@@ -97,3 +97,6 @@ vim.opt.foldlevel = 1
 -- https://neovim.discourse.group/t/introducing-filetype-lua-and-a-call-for-help/1806
 vim.g.do_filetype_lua = true
 vim.g.did_load_filetypes = false
+
+-- Recommended for https://github.com/rmagatti/auto-session
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

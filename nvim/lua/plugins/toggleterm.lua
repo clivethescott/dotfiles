@@ -1,6 +1,7 @@
 return {
   'akinsho/toggleterm.nvim',
   cmd = 'ToggleTerm',
+  keys = {[[<C-\>]]},
   version = '*',
   config = function()
     require'toggleterm'.setup {

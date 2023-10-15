@@ -58,7 +58,7 @@ api.nvim_create_autocmd({ 'BufWritePost' }, {
   group = events_group,
   pattern = { 'luasnip.lua' },
   callback = function()
-    vim.cmd 'source ~/.config/nvim/lua/plug/luasnip.lua'
+    vim.cmd 'source ~/.config/nvim/lua/plugins/luasnip.lua'
   end,
 })
 

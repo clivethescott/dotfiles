@@ -1,15 +1,7 @@
 local setup_extra_adapters = function(dap)
   dap.defaults.fallback.exception_breakpoints = { 'default' }
-  dap.adapters.codelldb = {
-    type = 'server',
-    port = 13000,
-    executable = {
-      command = 'codelldb',
-      args = { '--port', '13000' },
-    },
-    name = 'lldb'
-  }
 end
+
 local setup_dap_go = function()
   local ok, dap_go = pcall(require, 'dap-go')
   if not ok then
@@ -24,7 +16,7 @@ local setup_dap_virt_text = function()
     return
   end
 
-  dap_virt_text.setup()
+  dap_virt_text.setup({})
 
   vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DiagnosticSignError', linehl = '', numhl = '' })
   vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'DiagnosticSignError', linehl = '', numhl = '' })
@@ -85,38 +77,23 @@ local setup_dap_configs = function(dap)
       },
     },
   }
-
-  dap.configurations.rust = {
-    {
-      name = 'Debug',
-      type = 'codelldb',
-      request = "launch",
-      cwd = '${workspaceFolder}',
-      terminal = 'integrated',
-      console = 'integratedTerminal',
-      stopOnEntry = false,
-      sourceLanguages = { 'rust' },
-      program = get_program,
-    }
-  }
 end
 
 return {
   'mfussenegger/nvim-dap',
+  event = 'VeryLazy',
   dependencies = {
-      { "rcarriga/nvim-dap-ui" },
-      { 'theHamsta/nvim-dap-virtual-text' },
-      { 'leoluz/nvim-dap-go', ft = 'go', lazy = true },
-    },
+    { "rcarriga/nvim-dap-ui" },
+    { 'theHamsta/nvim-dap-virtual-text' },
+    { 'leoluz/nvim-dap-go',             ft = 'go', lazy = true },
+  },
   config = function()
-
-    local dap = require'dap'
+    local dap = require 'dap'
 
     setup_extra_adapters(dap)
     setup_dap_configs(dap)
     setup_ui(dap)
     setup_dap_virt_text()
     setup_dap_go()
-
   end
 }
