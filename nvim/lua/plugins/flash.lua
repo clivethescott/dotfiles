@@ -11,7 +11,8 @@ return {
       char = {
         jump_labels = true,
         multi_line = true,
-        enabled = true
+        enabled = false,
+        keys = { "f", "F", "t", "T", ";", "," },
       }
     },
     jump = {
@@ -29,13 +30,13 @@ return {
   -- stylua: ignore
   keys = {
     {
-      "<space>j",
+      "s",
       mode = { "n", "x", "o" },
       function() require("flash").jump() end,
       desc = "Flash"
     },
     {
-      "<space>J",
+      "S",
       mode = { "n", "x", "o" },
       function() require("flash").treesitter() end,
       desc = "Flash Treesitter"
