@@ -1,3 +1,9 @@
 ; extends
-(trait_definition 
-  body: (template_body)? @trait.inner) @trait.outer
+(function_definition 
+  parameters: (parameters)? @function.params)
+
+(class_definition 
+  class_parameters: (class_parameters)? @class.params)
+
+(for_expression
+  enumerators: (enumerators)? @for.inner) @for.outer

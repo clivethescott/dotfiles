@@ -2,7 +2,7 @@ return {
   'nvim-treesitter/nvim-treesitter',
   event = 'BufReadPost',
   build = function()
-    pcall(require('nvim-treesitter.install').update { with_sync = true })
+    pcall(require('nvim-treesitter.install').update { with_sync = false })
   end,
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
@@ -44,14 +44,14 @@ return {
           enable = true,
           lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
           -- include_surrounding_whitespace = function(opts)
-            -- return opts.query and string.find(opts.query, "outer") or false
+          -- return opts.query and string.find(opts.query, "outer") or false
           -- end,
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
             ['af'] = { query = '@function.outer', desc = 'Select outer function' },
             ['if'] = { query = '@function.inner', desc = 'Select inner function' },
 
-            ['ap'] = { query = '@parameter.outer', desc = 'Select outer parameter' },
+            ['ap'] = { query = '@function.params', desc = 'Select outer parameter' },
 
             ["ai"] = { query = "@call.outer", desc = "Select outer part of a function invoke" },
             ["ii"] = { query = "@call.inner", desc = "Select inner part of a function invoke" },
@@ -65,8 +65,8 @@ return {
             ["ab"] = { query = "@conditional.outer", desc = "Select outer part of a conditional" },
             ["ib"] = { query = "@conditional.inner", desc = "Select inner part of a conditional" },
 
-            ["at"] = { query = "@trait.outer", desc = "Select outer part of a trait" },
-            ["it"] = { query = "@trait.inner", desc = "Select inner part of a trait" },
+            ["ay"] = { query = "@for.outer", desc = "Outer for expression" },
+            ["iy"] = { query = "@for.inner", desc = "Inner for expression" },
           },
         },
         move = {
@@ -75,14 +75,17 @@ return {
           goto_previous_start = {
             ['[c'] = { query = '@class.outer', desc = 'Go to prev class' },
             ['[p'] = { query = '@parameter.outer', desc = 'Go to prev param' },
+            ['[P'] = { query = '@function.params', desc = 'Go to prev params' },
             ['[f'] = { query = '@function.outer', desc = 'Go to prev function' },
             ["[i"] = { query = "@call.outer", desc = "Prev function call start" },
+            ["[y"] = { query = "@for.outer", desc = "Previous for expression" },
           },
           goto_next_start = {
             [']c'] = { query = '@class.outer', desc = 'Go to next class' },
             [']p'] = { query = '@parameter.outer', desc = 'Go to next param' },
             [']f'] = { query = '@function.outer', desc = 'Go to next function' },
             ["]i"] = { query = "@call.outer", desc = "Prev function call end" },
+            ["]y"] = { query = "@for.outer", desc = "Next for expression" },
           },
         },
         rainbow = {
