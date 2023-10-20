@@ -5,7 +5,7 @@ return {
   },
   config = function()
     require "auto-session".setup {
-      auto_restore_enabled        = false,
+      auto_restore_enabled        = true,
       log_level                   = 'error',
       auto_save_enabled           = true,
       auto_session_allowed_dirs   = {

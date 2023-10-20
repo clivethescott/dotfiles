@@ -117,7 +117,7 @@ return {
     map('n', '<space>]', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>')
 
     -- Telescope mappings
-    map('n', '<c-e>', function() require 'telescope.builtin'.buffers() end)
+    map('n', '<c-e>', function() require 'telescope.builtin'.buffers { sort_lastused = true } end)
     -- Use git_files if in git dir, else use find_files
     map('n', '<c-p>', project_files)
     map('n', 'π', function() require 'telescope.builtin'.find_files() end)
