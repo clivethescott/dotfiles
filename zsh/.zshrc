@@ -10,11 +10,10 @@ fi
 
 # Customize to your needs...
 
-# zplug Plugin manager
-# source /opt/homebrew/opt/zplug/init.zsh
-# setup fzf (could load this as a plugin)
 source /opt/homebrew/opt/fzf/shell/completion.zsh
 source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+# brew install zsh-vi-mode
+source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 source $ZDOTDIR/setopt.zsh 
 source $ZDOTDIR/aliases.zsh
