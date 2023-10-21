@@ -87,14 +87,12 @@ vim.g.loaded_perl_provider = 0
 vim.g.python3_host_prog = '/opt/homebrew/opt/python@3.11/bin/python3'
 vim.g.loaded_ruby_provider = 0
 
-vim.opt.foldmethod = 'syntax'
-vim.opt.foldminlines = 99
-vim.opt.foldlevel = 1
+vim.opt.foldmethod = 'expr'
+vim.opt.foldminlines = 30
+-- vim.opt.foldlevel = 2
 -- Disable for now doesn't work properly with gitconfig files
--- vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
--- https://github.com/nathom/filetype.nvim/issues/91
--- https://neovim.discourse.group/t/introducing-filetype-lua-and-a-call-for-help/1806
 vim.g.do_filetype_lua = true
 vim.g.did_load_filetypes = false
 
