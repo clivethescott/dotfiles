@@ -140,6 +140,14 @@ local setup_go = function(lspconfig, capabilities)
   }
 end
 
+local setup_rust = function(capabilities)
+  require 'lspconfig'.rust_analyzer.setup {
+    capabilities = capabilities,
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+    end,
+  }
+end
 local setup_metals = function(capabilities)
   local has_metals, metals = pcall(require, 'metals')
   if not has_metals then
@@ -272,7 +280,6 @@ return {
       capabilities = capabilities
     }
     require 'lspconfig'.jsonls.setup {}
-    require 'lspconfig'.rust_analyzer.setup {}
     require 'lspconfig'.yamlls.setup {
       settings = {
         yaml = { keyOrdering = false },
@@ -284,5 +291,6 @@ return {
     setup_tsserver(lspconfig, capabilities)
     setup_luaserver(lspconfig, capabilities)
     setup_metals(capabilities)
+    setup_rust(capabilities)
   end
 }
