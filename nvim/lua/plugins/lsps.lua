@@ -34,6 +34,7 @@ local on_attach = function(client, bufnr)
 
   if caps.documentFormattingProvider then
     map('n', '<leader>f', utils.lsp_buf_format, opts)
+    map('n', 'gq', utils.lsp_buf_format, opts)
     wk.register({
       ["<leader>f"] = { utils.lsp_buf_format, 'Format Buffer' },
     }, wk_buf_opts)

@@ -42,16 +42,24 @@ return {
             width = 0.9
           }
         },
+
         path_display = {
           -- shorten = { len = 1, exclude = { -3, -2, -1 } }
           truncate = {},
           -- tail = {},
         },
+
+        -- path_display = function(opts, path)
+        --   local tail = require("telescope.utils").path_tail(path)
+        --   local dir_name = vim.fn.fnamemodify(path, ":p:h")
+        --   return string.format("%s--->%s", tail, dir_name)
+        -- end,
         prompt_prefix = "     ",
         file_ignore_patterns = {}, -- Note that setting this may affect Telescope rendering of document symbols
         buffer_previewer_maker = new_maker,
         preview = {
           treesitter = false,
+          filesize_limit = 5, -- MB
         },
         vimgrep_arguments = {
           "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case",

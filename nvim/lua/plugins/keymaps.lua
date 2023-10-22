@@ -1,18 +1,27 @@
-local project_files = function()
-  local fopts = {
+local M = {}
+
+-- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
+-- We cache the results of "git rev-parse"
+-- Process creation is expensive in Windows, so this reduces latency
+local is_inside_work_tree = {}
+M.project_files = function()
+  local opts = {
     hidden = true,
     no_ignore = false,
     show_untracked = true
   }
-  -- local is_git_dir = require 'telescope.utils'.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree" })[1]
-  vim.fn.system('git rev-parse --is-inside-work-tree')
-  local is_git_dir = vim.v.shell_error == 0
-  local telescope = require 'telescope.builtin'
 
-  if is_git_dir then
-    telescope.git_files(fopts)
+  local cwd = vim.fn.getcwd()
+  if is_inside_work_tree[cwd] == nil then
+    vim.fn.system("git rev-parse --is-inside-work-tree")
+    is_inside_work_tree[cwd] = vim.v.shell_error == 0
+  end
+
+  local telescope = require 'telescope.builtin'
+  if is_inside_work_tree[cwd] then
+    telescope.git_files(opts)
   else
-    telescope.find_files(fopts)
+    telescope.find_files(opts)
   end
 end
 
@@ -119,7 +128,7 @@ return {
     -- Telescope mappings
     map('n', '<c-e>', function() require 'telescope.builtin'.buffers { sort_lastused = true } end)
     -- Use git_files if in git dir, else use find_files
-    map('n', '<c-p>', project_files)
+    map('n', '<c-p>', M.project_files)
     map('n', 'π', function() require 'telescope.builtin'.find_files() end)
     map('n', 'Ï', function() require 'telescope.builtin'.live_grep() end)
     map('n', 'ƒ', function() require 'telescope.builtin'.current_buffer_fuzzy_find() end)
