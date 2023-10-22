@@ -2,6 +2,7 @@ return {
   {
     "folke/todo-comments.nvim",
     cmd = { 'TodoTelescope', 'TodoTrouble' },
+    keys = { '<space>tt', '<space>et' },
     opts = {},
   },
   {

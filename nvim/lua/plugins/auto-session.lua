@@ -3,6 +3,7 @@ return {
   dependencies = {
     'nvim-telescope/telescope.nvim'
   },
+  keys = { '<space>s' },
   config = function()
     require "auto-session".setup {
       auto_restore_enabled        = true,

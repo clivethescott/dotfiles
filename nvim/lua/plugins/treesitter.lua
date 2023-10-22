@@ -16,7 +16,7 @@ return {
       'windwp/nvim-ts-autotag',
       ft = { 'html' },
     },
-    { 'nvim-treesitter/playground' }
+    { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' }
   },
   config = function()
     local treesitter_config = require 'nvim-treesitter.configs'
