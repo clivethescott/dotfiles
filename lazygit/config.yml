@@ -14,8 +14,8 @@ keybinding:
     prevItem: '<c-p>'
     nextItem: '<c-n>'
     scrollUpMain-alt1: null
-    pushFiles: 'P'
-    pullFiles: 'p'
+    # pushFiles: 'P'
+    # pullFiles: 'p'
     # return: '<c-[>'
     copyToClipboard: 'y'
     openRecentRepos: '<c-o>'
