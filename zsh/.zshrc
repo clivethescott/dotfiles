@@ -20,6 +20,10 @@ source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/functions.zsh
 source $ZDOTDIR/keybindings.zsh
 
+if [[ -f "$ZDOTDIR/tokens.zsh" ]]; then
+  source $ZDOTDIR/tokens.zsh
+fi
+
 # if [[ -n "$AWS_PROFILE" ]]; then
 #   PROMPT+="$(aws_prof) ${editor_info[testing]}"
 # fi
