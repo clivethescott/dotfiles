@@ -1,8 +1,13 @@
 gui:
-  showIcons: true
+  branchColors:
+      'master': '#ff0000'
+      'main': '#ff0000'
 git:
   commitPrefixes:
     subscription-scheduler:
+      pattern: "^ASTX-(\\d{4}).*?"
+      replace: "ASTX-$1 "
+    subscription-service-v2:
       pattern: "^ASTX-(\\d{4}).*?"
       replace: "ASTX-$1 "
 update:
@@ -14,8 +19,7 @@ keybinding:
     prevItem: '<c-p>'
     nextItem: '<c-n>'
     scrollUpMain-alt1: null
-    # pushFiles: 'P'
-    # pullFiles: 'p'
-    # return: '<c-[>'
     copyToClipboard: 'y'
     openRecentRepos: '<c-o>'
+services:
+  'github.bamtech.co': 'github:github.bamtech.co'
