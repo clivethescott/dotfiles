@@ -58,6 +58,7 @@ return {
         file_ignore_patterns = {}, -- Note that setting this may affect Telescope rendering of document symbols
         buffer_previewer_maker = new_maker,
         preview = {
+          hide_on_startup = true,
           treesitter = false,
           filesize_limit = 5, -- MB
         },
@@ -76,8 +77,9 @@ return {
             -- e.g. git_{create, delete, ...}_branch for the git_branches picker
             ["<esc>"] = actions.close,
             ["<c-[>"] = { "<esc>", type = "command" },
-            ["<C-c>"] = { "<esc>", type = "command" },
+            ["<C-c>"] = actions.close,
             ["<C-h>"] = "which_key",
+            ["<C-i>"] = require('telescope.actions.layout').toggle_preview
           },
           n = {
             ['<C-n>'] = actions.move_selection_next,

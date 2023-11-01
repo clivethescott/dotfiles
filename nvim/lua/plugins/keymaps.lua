@@ -318,8 +318,8 @@ return {
         t = {
           name = '+Telescope',
           c = { '<cmd>Telescope commands<cr>', 'Commands' },
-          F = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
-          f = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
+          f = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
+          F = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
           h = { '<cmd>Telescope help_tags<cr>', 'Help tags' },
           j = { '<cmd>Telescope jumplist<cr>', 'Jump list' },
           k = { '<cmd>Telescope keymaps<cr>', 'Keymaps' },
