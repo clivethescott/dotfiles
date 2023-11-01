@@ -18,7 +18,6 @@ source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $ZDOTDIR/setopt.zsh 
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/functions.zsh
-source $ZDOTDIR/keybindings.zsh
 
 if [[ -f "$ZDOTDIR/tokens.zsh" ]]; then
   source $ZDOTDIR/tokens.zsh
@@ -62,13 +61,8 @@ export FZF_TMUX_OPTS="-d 60%"
 
 # if you prefer to start in a tmux split pane
 export FZF_TMUX=1
-bindkey "^G" fzf-cd-widget
-bindkey "^E" fzf-file-widget
 
-# < FZF
-
-bindkey "^P" history-substring-search-up
-bindkey "^N" history-substring-search-down
+source $ZDOTDIR/keybindings.zsh
 
 # Disable Ctrl-S Flow control
 stty -ixon
