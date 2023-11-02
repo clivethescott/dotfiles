@@ -67,6 +67,9 @@ return {
 
             ["ay"] = { query = "@for.outer", desc = "Outer for expression" },
             ["iy"] = { query = "@for.inner", desc = "Inner for expression" },
+
+            ["ao"] = { query = "@object.outer", desc = "Outer object" },
+            ["io"] = { query = "@object.inner", desc = "Inner object" },
           },
         },
         move = {
