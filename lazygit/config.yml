@@ -1,7 +1,12 @@
 gui:
   branchColors:
-      'master': '#ff0000'
-      'main': '#ff0000'
+      'master': '#ff5500'
+      'main': '#ff5500'
+  nerdFontsVersion: "3"
+  authorColors:
+    'Clive Gurure': 'green'
+    'Clive Scott': 'green'
+    '*': 'yellow'
 git:
   commitPrefixes:
     subscription-scheduler:
@@ -10,10 +15,14 @@ git:
     subscription-service-v2:
       pattern: "^ASTX-(\\d{4}).*?"
       replace: "ASTX-$1 "
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+  disableForcePushing: true
+confirmOnQuit: true
 update:
   method: never
 disableStartupPopups: true
-quitOnTopLevelReturn: true
 keybinding:
   universal:
     prevItem: '<c-p>'
