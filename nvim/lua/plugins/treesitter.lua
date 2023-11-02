@@ -51,6 +51,12 @@ return {
             ['af'] = { query = '@function.outer', desc = 'Select outer function' },
             ['if'] = { query = '@function.inner', desc = 'Select inner function' },
 
+            ['am'] = { query = '@function.outer', desc = 'Select outer function' },
+            ['im'] = { query = '@function.inner', desc = 'Select inner function' },
+
+            -- ['av'] = { query = '@val.outer', desc = 'Select outer val' },
+            ['av'] = { query = '@val.right', desc = 'Select val expression' },
+
             ['ap'] = { query = '@function.params', desc = 'Select outer parameter' },
 
             ["ai"] = { query = "@call.outer", desc = "Select outer part of a function invoke" },
