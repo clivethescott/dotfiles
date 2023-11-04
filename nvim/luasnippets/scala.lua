@@ -104,5 +104,12 @@ return {
       i(1),
       i(2, "???"),
     })
+  ),
+  s({ trig = "fa", dscr = "F[_] higher kinded type" },
+    fmt([[ 
+      F[_]{}
+    ]], {
+      i(1),
+    })
   )
 }

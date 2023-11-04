@@ -5,9 +5,7 @@ return {
     "nvim-lua/plenary.nvim"
   },
   config = function()
-    local lsp = require'conf.lsp'
-    local capabilities = lsp.capabilities()
-    local metals = require'metals'
+    local metals = require 'metals'
     local metals_config = metals.bare_config()
     -- NOTE: It's highly recommended to set your `statusBarProvider` to `on`. This
     -- enables `metals/status` and also other helpful messages that are shown to you
@@ -26,21 +24,19 @@ return {
         "com.github.swagger.akka.javadsl"
       }
     }
-    metals_config.capabilities = capabilities
+    metals_config.capabilities = require 'cmp_nvim_lsp'.default_capabilities()
 
-    metals_config.on_attach = function(client, bufnr)
-      lsp.on_attach(client, bufnr)
+    metals_config.on_attach = function()
+      -- client and bufnr will be used in lspconfig
       metals.setup_dap()
       -- other settings for metals here
     end
 
     local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = { "scala", "sc" },
+      pattern = { "scala", "sbt", "sc" },
       callback = function()
-        if not os.getenv('NOMETALS') then
-          metals.initialize_or_attach(metals_config)
-        end
+        metals.initialize_or_attach(metals_config)
       end,
       group = nvim_metals_group,
     })

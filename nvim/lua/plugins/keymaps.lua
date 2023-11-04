@@ -139,6 +139,11 @@ return {
         cwd = '~/.config/nvim'
       }
     end
+    local find_dotfiles = function()
+      require 'telescope.builtin'.find_files {
+        cwd = '~/dotfiles'
+      }
+    end
     local grep_nvim_files = function()
       require 'telescope.builtin'.live_grep {
         cwd = '~/.config/nvim',
@@ -344,6 +349,7 @@ return {
         ['2'] = { find_nvim_files, 'Find nvim config files' },
         ['3'] = { grep_nvim_files, 'Live grep nvim config files' },
         ['4'] = { grep_zsh_files, 'Find zsh config files' },
+        ['5'] = { find_dotfiles, 'Find dot files' },
         g = {
           name = '+GoTo',
           f = { '<cmd>AlternateFile<cr>', 'Alternate file' },
