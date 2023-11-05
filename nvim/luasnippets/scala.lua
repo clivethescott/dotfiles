@@ -87,7 +87,7 @@ return {
       i(3, "version")
     })
   ),
-  s({ trig = "fory", dscr = "for yield expr" },
+  s({ trig = "for", dscr = "for yield expr" },
     fmt([[ 
       for {{
         {}

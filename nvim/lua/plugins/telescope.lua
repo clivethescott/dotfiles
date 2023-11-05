@@ -33,7 +33,8 @@ return {
       }):sync()
     end
 
-    local global_ignore = os.getenv('HOME') .. '/.gitignore'
+    local home = os.getenv('HOME')
+    local global_ignore = home .. '/.gitignore'
 
     require('telescope').setup {
       defaults = {
@@ -105,6 +106,19 @@ return {
           find_command = { "fd", "--type", "f", "--hidden", "--max-depth", "10", "--strip-cwd-prefix", "--follow",
             "--ignore-file", global_ignore }
         },
+      },
+      extensions = {
+        frecency = {
+          show_scores = false,
+          show_unindexed = true,
+          ignore_patterns = { "*.git/*", "*/tmp/*", "*/target/*", "*/.metals/*" },
+          disable_devicons = false,
+          workspaces = {
+            ["zsh"] = home .. "/.config/zsh",
+            ["vim"] = home .. "/.config/nvim/lua",
+            ["dot"] = home .. "/dotfiles",
+          }
+        }
       },
     }
 
