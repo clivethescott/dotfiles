@@ -1,10 +1,9 @@
 return {
   "kosayoda/nvim-lightbulb",
-  event = 'InsertEnter',
+  event = 'LspAttach',
   opts = {
     autocmd = {
       enabled = true
     },
   },
-  ft = { 'scala', 'rust' },
 }

@@ -1,6 +1,5 @@
 return {
   'folke/trouble.nvim',
-  lazy = true,
   cmd = 'TroubleToggle',
   keys = { '<space>e' },
   dependencies = {
