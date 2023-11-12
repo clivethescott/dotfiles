@@ -22,7 +22,7 @@ return {
     local treesitter_config = require 'nvim-treesitter.configs'
     treesitter_config.setup {
       ensure_installed = { 'dockerfile', 'git_config', 'gitcommit', 'go', 'gomod', 'graphql', 'hocon', 'html',
-        'javascript',
+        'javascript', 'http',
         'json', 'lua', 'make', 'markdown', 'proto', 'python', 'rust', 'scala', 'sql', 'terraform', 'toml', 'typescript',
         'vim', 'yaml' },
       auto_install = true,
@@ -58,6 +58,8 @@ return {
             ['av'] = { query = '@val.right', desc = 'Select val expression' },
 
             ['ap'] = { query = '@function.params', desc = 'Select outer parameter' },
+
+            ["aj"] = { query = "@json.outer", desc = "Select outer JSON" },
 
             ["ai"] = { query = "@call.outer", desc = "Select outer part of a function invoke" },
             ["ii"] = { query = "@call.inner", desc = "Select inner part of a function invoke" },

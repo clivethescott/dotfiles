@@ -314,6 +314,11 @@ return {
           u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },
           z = { zen_mode, 'Toggle Zen Mode' }
         },
+        r = {
+          name = '+Run',
+          r = { function() require 'rest-nvim'.run() end, 'Run REST request' },
+          l = { function() require 'rest-nvim'.run_last() end, 'Run last REST request' },
+        },
         s = {
           name = '+Session',
           s = { '<cmd>SessionSave<cr>', 'Save session for dir' },
