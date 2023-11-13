@@ -7,12 +7,6 @@ return {
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     {
-      'romgrk/nvim-treesitter-context',
-      config = function()
-        require 'treesitter-context'.setup {}
-      end
-    },
-    {
       'windwp/nvim-ts-autotag',
       ft = { 'html' },
     },
