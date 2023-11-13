@@ -1,6 +1,6 @@
 return {
   'rcarriga/nvim-notify',
-  event = 'LspAttach',
+  event = 'VeryLazy',
   config = function()
     local notify = require 'notify'
     notify.setup({
