@@ -295,8 +295,8 @@ return {
           name = '+Metals',
           c = { function() require 'telescope'.extensions.metals.commands() end, 'Commands' },
           d = { function() require 'metals'.goto_super_method() end, 'Go To Super Method' },
+          k = { function() require 'metals'.hover_worksheet() end, 'Hover Worksheet' },
           n = { function() require 'metals'.new_scala_file() end, 'New Scala File' },
-          o = { function() require 'metals'.hover_worksheet() end, 'Hover Worksheet' },
           s = { function() require 'metals'.switch_bsp() end, 'Switch BSP Server' },
           t = {
             name = 'TVP',
