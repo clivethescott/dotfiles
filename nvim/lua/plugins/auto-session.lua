@@ -6,7 +6,7 @@ return {
   event = 'VeryLazy',
   config = function()
     require "auto-session".setup {
-      auto_restore_enabled        = true,
+      auto_restore_enabled        = false,
       log_level                   = 'error',
       auto_save_enabled           = true,
       auto_session_allowed_dirs   = {
