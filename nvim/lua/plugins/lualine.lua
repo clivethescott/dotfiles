@@ -9,7 +9,6 @@ return {
     'nvim-tree/nvim-web-devicons'
   },
   opts = {
-    extensions = { 'nvim-tree' },
     options = {
       icons_enabled = true,
       theme = 'tokyonight',
