@@ -78,7 +78,6 @@ return {
           enable = true,
           set_jumps = true, -- whether to set jumps in the jumplist
           goto_previous_start = {
-            ['[c'] = { query = '@class.outer', desc = 'Go to prev class' },
             ['[p'] = { query = '@parameter.outer', desc = 'Go to prev param' },
             ['[P'] = { query = '@function.params', desc = 'Go to prev params' },
             ['[f'] = { query = '@function.outer', desc = 'Go to prev function' },
@@ -86,7 +85,6 @@ return {
             ["[y"] = { query = "@for.outer", desc = "Previous for expression" },
           },
           goto_next_start = {
-            [']c'] = { query = '@class.outer', desc = 'Go to next class' },
             [']p'] = { query = '@parameter.outer', desc = 'Go to next param' },
             [']f'] = { query = '@function.outer', desc = 'Go to next function' },
             ["]i"] = { query = "@call.outer", desc = "Prev function call end" },

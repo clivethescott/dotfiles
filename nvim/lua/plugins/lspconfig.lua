@@ -110,10 +110,7 @@ local on_attach = function(client, bufnr)
     },
     K = {
       function()
-        local winid = require('ufo').peekFoldedLinesUnderCursor()
-        if not winid then
-          vim.lsp.buf.hover()
-        end
+        vim.lsp.buf.hover()
       end, 'Hover' },
   }, wk_buf_opts)
 end
@@ -199,10 +196,7 @@ end
 local mk_capabilities = function()
   local caps = vim.lsp.protocol.make_client_capabilities()
   caps.textDocument.completion.completionItem.snippetSupport = true -- broadcasting snippet capability for completion
-  caps.textDocument.foldingRange = {                                -- kevinhwang91/nvim-ufo
-    dynamicRegistration = false,
-    lineFoldingOnly = true
-  }
+
   caps.textDocument.completion.completionItem.resolveSupport = {
     properties = { "documentation", "detail", "additionalTextEdits" },
   }

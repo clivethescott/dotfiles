@@ -289,14 +289,13 @@ return {
           h = { '<cmd>DiffviewFileHistory<cr>', 'File History' },
           l = { '<cmd>Telescope git_bcommits<cr>', 'Buffer Commits' },
           L = { '<cmd>Telescope git_commits<cr>', 'All Commits' },
-          s = { '<cmd>Telescope git_status<cr>', 'Status + diff' },
+          s = { '<cmd>DiffviewOpen<cr>', 'Git status' },
         },
         m = {
           name = '+Metals',
           c = { function() require 'telescope'.extensions.metals.commands() end, 'Commands' },
           d = { function() require 'metals'.goto_super_method() end, 'Go To Super Method' },
           k = { function() require 'metals'.hover_worksheet() end, 'Hover Worksheet' },
-          n = { function() require 'metals'.new_scala_file() end, 'New Scala File' },
           s = { function() require 'metals'.switch_bsp() end, 'Switch BSP Server' },
           t = {
             name = 'TVP',
