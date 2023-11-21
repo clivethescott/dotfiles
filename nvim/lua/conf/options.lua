@@ -100,4 +100,4 @@ vim.g.did_load_filetypes = false
 -- Recommended for https://github.com/rmagatti/auto-session
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
-vim.opt.diffoptions = "filler,context:0" -- hide the rest
+vim.opt.diffopt = "filler,context:0" -- hide the rest
