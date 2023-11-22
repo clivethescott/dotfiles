@@ -6,6 +6,7 @@ return {
     'nvim-lua/plenary.nvim',
     -- Enables filtering See :h telescope-fzf-native.nvim-telescope-fzf-native-nvim
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    "nvim-telescope/telescope-file-browser.nvim",
   },
   config = function()
     local actions = require("telescope.actions")
@@ -113,5 +114,6 @@ return {
 
     -- 'nvim-telescope/telescope-fzf-native.nvim'
     require('telescope').load_extension('fzf')
+    require 'telescope'.load_extension "file_browser"
   end
 }

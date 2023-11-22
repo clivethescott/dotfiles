@@ -213,22 +213,18 @@ return {
         require('luasnip.extras.select_choice')()
       end
     end)
-    local edit_snippets     = function()
+    local edit_snippets = function()
       require("luasnip.loaders.from_lua").edit_snippet_files()
     end
 
-    local prev_todo         = function()
+    local prev_todo     = function()
       require 'todo-comments'.jump_prev()
     end
-    local next_todo         = function()
+    local next_todo     = function()
       require 'todo-comments'.jump_next()
     end
 
-    local nvimtree_findfile = function()
-      require 'nvim-tree.api'.tree.open { find_file = true }
-    end
-
-    local wk                = require 'which-key'
+    local wk            = require 'which-key'
     wk.register({
       ["["] = {
         name = '+Previous',
@@ -335,6 +331,8 @@ return {
           l = { '<cmd>Telescope resume<cr>', 'Resume last picker' },
           m = { '<cmd>Telescope marks<cr>', 'Marks' },
           o = { '<cmd>Telescope oldfiles<cr>', 'Old Files' },
+          p = { '<cmd>Telescope file_browser<cr>', 'File Browser' },
+          P = { '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>', 'File Browser at current path' },
           q = { '<cmd>Telescope quickfix<cr>', 'Quickfix List' },
           r = { '<cmd>Telescope registers<cr>', 'Registers' },
           t = { '<cmd>TodoTelescope<cr>', 'TODOs' },
@@ -348,8 +346,8 @@ return {
         }
       },
       ["<leader>"] = {
-        ['1'] = { '<cmd>Oil<cr>', 'Open Oil' },
-        ['!'] = { nvimtree_findfile, 'Find current file in NvimTree' },
+        ['1'] = { '<cmd>Telescope file_browser<cr>', 'File Browser' },
+        ['!'] = { '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>', 'File Browser at current path' },
         ['2'] = { find_nvim_files, 'Find nvim config files' },
         ['3'] = { grep_nvim_files, 'Live grep nvim config files' },
         ['4'] = { grep_zsh_files, 'Find zsh config files' },

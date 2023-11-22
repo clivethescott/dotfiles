@@ -12,7 +12,7 @@ return {
     metals_config.init_options.statusBarProvider = "on"
     metals_config.settings = {
       serverVersion = '1.1.0',
-      fallbackScalaVersion = '3.3.1',
+      fallbackScalaVersion = '3.3.0',
       showImplicitArguments = true,
       showImplicitConversionsAndClasses = false,
       showInferredType = true,
