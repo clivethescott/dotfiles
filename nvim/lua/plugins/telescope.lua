@@ -77,7 +77,7 @@ return {
             ['<C-d>'] = actions.preview_scrolling_down,
             -- actions.which_key shows the mappings for your picker,
             -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-            ["<esc>"] = actions.close,
+            -- ["<esc>"] = actions.close,
             ["<c-[>"] = { "<esc>", type = "command" },
             ["<C-c>"] = actions.close,
             ["<C-h>"] = "which_key",

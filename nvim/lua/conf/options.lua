@@ -96,6 +96,7 @@ vim.opt.foldminlines = 20
 
 vim.g.do_filetype_lua = true
 vim.g.did_load_filetypes = false
+vim.opt.modeline = false
 
 -- Recommended for https://github.com/rmagatti/auto-session
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
