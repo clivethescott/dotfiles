@@ -87,7 +87,7 @@ return {
       i(3, "version")
     })
   ),
-  s({ trig = "for", dscr = "for yield expr" },
+  s({ trig = "fory", dscr = "for yield expr" },
     fmt([[ 
       for {{
         {}
@@ -105,7 +105,7 @@ return {
       i(2, "???"),
     })
   ),
-  s({ trig = "fa", dscr = "F[_] higher kinded type" },
+  s({ trig = "ff", dscr = "F[_] higher kinded type" },
     fmt([[ 
       F[_]{}
     ]], {
