@@ -17,7 +17,7 @@ return {
     treesitter_config.setup {
       ensure_installed = { 'dockerfile', 'git_config', 'gitcommit', 'go', 'gomod', 'graphql', 'hocon', 'html',
         'javascript', 'http',
-        'json', 'lua', 'make', 'markdown', 'proto', 'python', 'rust', 'scala', 'sql', 'terraform', 'toml', 'typescript',
+        'json', 'lua', 'make', 'markdown', 'markdown_inline', 'proto', 'python', 'rust', 'scala', 'sql', 'terraform', 'toml', 'typescript',
         'vim', 'yaml' },
       auto_install = true,
       highlight = {

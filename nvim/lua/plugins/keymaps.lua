@@ -299,6 +299,19 @@ return {
             t = { function() require 'metals.tvp'.toggle_tree_view() end, 'Toggle Tree' },
           },
         },
+        n = {
+          name = '+Obsidian',
+          n = { '<cmd>ObsidianNew<cr>', 'New Note' },
+          e = { '<cmd>ObsidianQuickSwitch<cr>', 'Switch To Note' },
+          o = {
+            name = '+Open',
+            n = { '<cmd>ObsidianToday<cr>', "Today's Note" },
+            y = { '<cmd>ObsidianYesterday<cr>', "Yesterday's Note" },
+            t = { '<cmd>ObsidianTomorrow<cr>', "Tomorrow's Note" },
+          },
+          p = { '<cmd>ObsidianSearch<cr>', 'Search for Note' },
+          r = { '<cmd>ObsidianRename<cr>', 'Rename' },
+        },
         o = {
           name = '+Open Window',
           d = { '<cmd>DiffviewOpen<cr>', 'Diffview' },
