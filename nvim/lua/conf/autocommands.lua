@@ -73,7 +73,7 @@ api.nvim_create_autocmd({ "BufWritePost" }, {
 api.nvim_create_autocmd({ "BufReadPost" }, {
   desc = 'Listchars for indentation based languages',
   group = events_group,
-  pattern = { '*.py', '*.yaml', '*.yml' },
+  pattern = { '*.py', '*.yaml', '*.yml', '*.sc' },
   callback = function()
     vim.wo.list = true
     vim.wo.listchars = "leadmultispace:·"
