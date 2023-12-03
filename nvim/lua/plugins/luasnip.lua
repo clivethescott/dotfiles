@@ -1,6 +1,7 @@
 return {
   'L3MON4D3/LuaSnip',
   event = 'InsertEnter',
+  version = "2.x",
   dependencies = {
     'saadparwaiz1/cmp_luasnip',
     'rafamadriz/friendly-snippets'
@@ -12,8 +13,8 @@ return {
     ls.config.setup {
       history = false,
       -- update_events = 'TextChanged,TextChangedI', -- updates as you type, default is InsertLeave
-      enable_autosnippets = true,                                         -- enabling this has a performance penalty
-      ft_func = require("luasnip.extras.filetype_functions").from_cursor, -- use treesitter to get ft
+      enable_autosnippets = true,                                             -- enabling this has a performance penalty
+      ft_func = require("luasnip.extras.filetype_functions").from_cursor_pos, -- use treesitter to get ft
       -- delete_check_events = 'TextChanged', -- enable to delete virt text when snippet is deleted
       ext_opts = {
         [types.choiceNode] = {
