@@ -241,10 +241,38 @@ return {
     require 'lspconfig'.rust_analyzer.setup {}
     require 'lspconfig'.yamlls.setup {
       settings = {
-        yaml = { keyOrdering = false },
+        yaml = {
+          keyOrdering = false,
+          format = {
+            enable = true,
+          },
+          hover = true,
+          completion = true,
+          customTags = {
+            "!fn",
+            "!And",
+            "!If",
+            "!Not",
+            "!Equals",
+            "!Or",
+            "!FindInMap sequence",
+            "!Base64",
+            "!Cidr",
+            "!Ref",
+            "!Ref Scalar",
+            "!Sub",
+            "!GetAtt",
+            "!GetAZs",
+            "!ImportValue",
+            "!Select",
+            "!Split",
+            "!Join sequence"
+          },
+        },
       }
     }
     require 'lspconfig'.terraformls.setup {}
+    require 'lspconfig'.smithy_ls.setup {}
 
     setup_go(lspconfig, capabilities)
     setup_python(lspconfig, capabilities)
