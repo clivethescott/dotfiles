@@ -78,7 +78,7 @@ return {
       },
       preselect = cmp.PreselectMode.None,
       completion = {
-        autocomplete = false,
+        -- autocomplete = true,
         keyword_length = 1 -- number of characters needed to trigger auto-completion
       },
       snippet = {
@@ -100,7 +100,7 @@ return {
         ['<CR>'] = cmp.mapping.confirm({ select = true }),  -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<C-n>'] = cmp.mapping(select_next_item, { 'i', 's' }),
-        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.complete(),
         -- ['<Tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
 
         ['<C-p>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
@@ -109,14 +109,14 @@ return {
       sources = cmp.config.sources({
         { name = 'path', max_item_count = 30 },
       }, {
-        { name = 'luasnip',                  max_item_count = 3, keyword_length = 2 },
+        { name = 'luasnip',                  max_item_count = 3, keyword_length = 1 },
         { name = 'nvim_lsp',                 max_item_count = 25 },
         { name = 'cmp_tabnine',              max_item_count = 5, keyword_length = 3 },
         { name = 'nvim_lua',                 max_item_count = 5 },
         -- { name = 'nvim_lsp_signature_help' }, -- now using lsp_signature
         { name = 'nvim_lsp_document_symbol', max_item_count = 5 },
         { name = 'buffer',                   max_item_count = 5, keyword_length = 3 },
-        { name = "dictionary",               max_item_count = 3, keyword_length = 5 },
+        -- { name = "dictionary",               max_item_count = 3, keyword_length = 5 },
       })
     })
 

@@ -111,5 +111,12 @@ return {
     ]], {
       i(1),
     })
+  ),
+  s({ trig = "?", dscr = "Unimplemented definition" },
+    fmt([[ 
+      ???{}
+    ]], {
+      i(1),
+    })
   )
 }
