@@ -54,7 +54,8 @@ vim.opt.autowrite = true
 
 -- Don't wait too long to complete successive keys, Also controls which-key delay
 -- Disabled - set in whick-key config
--- vim.opt.timeoutlen = 500
+vim.opt.timeoutlen = 100
+vim.opt.ttimeoutlen = 100
 
 -- Affects redraw speed
 vim.opt.cursorline = true
@@ -104,3 +105,15 @@ vim.opt.modeline = false
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 vim.opt.diffopt = "filler,context:0" -- hide the rest
+vim.opt.inccommand = "split"
+
+-- Hide netrw banner on start, toggle later
+vim.g.netrw_banner = 0
+
+-- toggle with I
+vim.g.netrw_banner = 0
+-- hide dotfiles
+vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
+vim.g.netrw_localcopydircmd = 'cp -r'
+-- 30% split size
+vim.g.netrw_winsize = 30

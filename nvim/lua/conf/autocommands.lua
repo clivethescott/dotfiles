@@ -34,15 +34,6 @@ api.nvim_create_autocmd({ 'BufWritePost' }, {
     vim.cmd ":FormatWrite"
   end,
 })
--- api.nvim_create_autocmd({ 'LspAttach' }, {
---   callback = function(args)
---     local client = vim.lsp.get_client_by_id(args.data.client_id)
---     if client.server_capabilities.codeLensProvider.resolveProvider then
---       vim.lsp.codelens.refresh()
---     end
---   end,
--- })
-
 -- Some filetype plugins will reset formatoptions, hence needed this way
 -- api.nvim_create_autocmd({ 'FileType' }, {
 --   desc = 'Dont auto-continue comments',

@@ -287,6 +287,13 @@ return {
           L = { '<cmd>Telescope git_commits<cr>', 'All Commits' },
           s = { '<cmd>DiffviewOpen<cr>', 'Git status' },
         },
+        i = {
+          name = '+Netrw',
+          m = { '<cmd>:NetrwMarkList<cr>', 'Mark List' },
+          o = { '<cmd>:Explore<cr>', 'Open current working directory' },
+          O = { '<cmd>:Lexplore %:p:h<cr>', 'Open current file directory' },
+          v = { '<cmd>:Lexplore %:p:h<cr>', 'Vsplit current file directory' },
+        },
         m = {
           name = '+Metals',
           c = { function() require 'telescope'.extensions.metals.commands() end, 'Commands' },
@@ -299,25 +306,13 @@ return {
             t = { function() require 'metals.tvp'.toggle_tree_view() end, 'Toggle Tree' },
           },
         },
-        n = {
-          name = '+Obsidian',
-          n = { '<cmd>ObsidianNew<cr>', 'New Note' },
-          e = { '<cmd>ObsidianQuickSwitch<cr>', 'Switch To Note' },
-          o = {
-            name = '+Open',
-            n = { '<cmd>ObsidianToday<cr>', "Today's Note" },
-            y = { '<cmd>ObsidianYesterday<cr>', "Yesterday's Note" },
-            t = { '<cmd>ObsidianTomorrow<cr>', "Tomorrow's Note" },
-          },
-          p = { '<cmd>ObsidianSearch<cr>', 'Search for Note' },
-          r = { '<cmd>ObsidianRename<cr>', 'Rename' },
-        },
         o = {
           name = '+Open Window',
           d = { '<cmd>DiffviewOpen<cr>', 'Diffview' },
           f = { toggle_winbar, 'Winbar' },
           l = { '<cmd>Lazy<cr>', 'Lazy Plugin Mgr' },
           m = { '<cmd>Mason<cr>', 'Mason LSP Server Mgr' },
+          n = { '<cmd>ObsidianSearch<cr>', 'Search for Obsidian Note' },
           o = { '<cmd>Oil --float<cr>', 'Oil' },
           u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },
           z = { zen_mode, 'Toggle Zen Mode' }
@@ -344,8 +339,6 @@ return {
           l = { '<cmd>Telescope resume<cr>', 'Resume last picker' },
           m = { '<cmd>Telescope marks<cr>', 'Marks' },
           o = { '<cmd>Telescope oldfiles<cr>', 'Old Files' },
-          p = { '<cmd>Telescope file_browser<cr>', 'File Browser' },
-          P = { '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>', 'File Browser at current path' },
           q = { '<cmd>Telescope quickfix<cr>', 'Quickfix List' },
           r = { '<cmd>Telescope registers<cr>', 'Registers' },
           t = { '<cmd>TodoTelescope<cr>', 'TODOs' },
@@ -359,8 +352,7 @@ return {
         }
       },
       ["<leader>"] = {
-        ['1'] = { '<cmd>Telescope file_browser<cr>', 'File Browser' },
-        ['!'] = { '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>', 'File Browser at current path' },
+        ['1'] = { '<cmd>Oil --float<cr>', 'Oil' },
         ['2'] = { find_nvim_files, 'Find nvim config files' },
         ['3'] = { grep_nvim_files, 'Live grep nvim config files' },
         ['4'] = { grep_zsh_files, 'Find zsh config files' },

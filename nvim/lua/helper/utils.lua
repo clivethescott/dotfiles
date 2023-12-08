@@ -147,4 +147,8 @@ function M.show_word_help()
   vim.fn.execute('h ' .. cword)
 end
 
+function M.netrw_mark_list()
+  vim.cmd[[echo join(netrw#Expose("netrwmarkfilelist"), "\n")]]
+end
+
 return M

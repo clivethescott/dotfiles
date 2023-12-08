@@ -24,3 +24,8 @@ vim.api.nvim_create_user_command('AlternateFile', function()
     require 'helper.utils'.alt_scala_file()
   end
 end, {})
+
+
+vim.api.nvim_create_user_command('NetrwMarkList', function()
+  require 'helper.utils'.netrw_mark_list()
+end, {})
