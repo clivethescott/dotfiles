@@ -85,8 +85,8 @@ return {
     map('n', '<space>wj', '5<c-w>-')
 
     -- Saving
-    map('n', '<c-s>', ':w<cr>')
-    map('i', '<c-s>', '<esc>:w<cr>')
+    map('n', '<c-s>', ':update<cr>')
+    map('i', '<c-s>', '<esc>:update<cr>')
 
     -- Jump to exact mark position either way
     -- Disabled not recognised by which-key
