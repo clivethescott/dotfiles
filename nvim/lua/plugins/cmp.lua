@@ -78,7 +78,7 @@ return {
       },
       preselect = cmp.PreselectMode.None,
       completion = {
-        -- autocomplete = true,
+        -- autocomplete = false,
         keyword_length = 1 -- number of characters needed to trigger auto-completion
       },
       snippet = {

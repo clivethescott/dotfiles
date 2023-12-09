@@ -57,6 +57,7 @@ vim.opt.autowrite = true
 vim.opt.timeoutlen = 500
 
 -- Affects redraw speed
+-- vim.opt.cursorcolumn = false
 vim.opt.cursorline = true
 
 -- Always show the signcolumn, otherwise it would shift the text each time

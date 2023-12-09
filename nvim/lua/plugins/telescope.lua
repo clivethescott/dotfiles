@@ -80,21 +80,34 @@ return {
             ["<c-[>"] = { "<esc>", type = "command" },
             ["<C-c>"] = actions.close,
             ["<C-h>"] = "which_key",
-            ["<C-i>"] = require('telescope.actions.layout').toggle_preview
+            ["<C-i>"] = require('telescope.actions.layout').toggle_preview,
+            ["<C-o>"] = function(prompt_bufnr) -- open file and continue
+              actions.select_default(prompt_bufnr)
+              require("telescope.builtin").resume()
+            end,
+            ["<C-q>"] = actions.close,
+            ["<C-y>"] = function(prompt_bufnr)
+              actions.send_to_qflist(prompt_bufnr)
+              vim.cmd('copen')
+            end,
+            ["<C-g>"] = actions.send_selected_to_qflist,
+            ["<C-t>"] = actions.toggle_selection,
+            ["<C-s>"] = actions.select_vertical,
           },
           n = {
             ['<C-n>'] = actions.move_selection_next,
             ['<C-p>'] = actions.move_selection_previous,
             ['<C-u>'] = actions.preview_scrolling_up,
             ['<C-d>'] = actions.preview_scrolling_down,
-            ['v'] = actions.select_vertical,
-            ['s'] = actions.select_horizontal,
-            ["r"] = function() require 'trouble.providers.telescope'.open_with_trouble() end,
-            ["t"] = actions.toggle_selection,
-            ["T"] = actions.toggle_all,
-            ["x"] = actions.delete_buffer,
+            ["<C-q>"] = actions.close,
+            ['gv'] = actions.select_vertical,
+            ['gs'] = actions.select_horizontal,
+            ["go"] = function() require 'trouble.providers.telescope'.open_with_trouble() end,
+            ["gt"] = actions.toggle_selection,
+            ["gT"] = actions.toggle_all,
+            ["gx"] = actions.delete_buffer,
             ["q"] = actions.close,
-            ["o"] = actions.send_selected_to_qflist,
+            ["gq"] = actions.send_selected_to_qflist,
             ["<esc>"] = actions.close,
             ["?"] = "which_key",
             ["g?"] = "which_key",
