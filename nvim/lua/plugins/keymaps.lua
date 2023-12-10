@@ -292,7 +292,7 @@ return {
           m = { '<cmd>:NetrwMarkList<cr>', 'Mark List' },
           o = { '<cmd>:Explore<cr>', 'Open current working directory' },
           O = { '<cmd>:Lexplore %:p:h<cr>', 'Open current file directory' },
-          v = { '<cmd>:Lexplore %:p:h<cr>', 'Vsplit current file directory' },
+          v = { '<cmd>:Vexplore %:p:h<cr>', 'Vsplit current file directory' },
         },
         m = {
           name = '+Metals',

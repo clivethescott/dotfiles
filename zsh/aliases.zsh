@@ -16,6 +16,7 @@ alias bc='bc -l'
 alias dcu='docker compose up -d'
 alias dcd='docker compose down'
 alias ag='rg'
+alias vip='nvim -u ~/dotfiles/nvim/fast.lua'
 alias vi=nvim
 alias vim=nvim
 alias localip="hostname -I | cut -f1 -d' '"
