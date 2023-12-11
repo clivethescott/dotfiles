@@ -288,9 +288,11 @@ return {
           s = { '<cmd>DiffviewOpen<cr>', 'Git status' },
         },
         i = {
-          name = '+Netrw',
+          name = '+File Manager',
+          -- name = '+Netrw',
+          -- o = { '<cmd>:Explore<cr>', 'Open current working directory' },
           m = { '<cmd>:NetrwMarkList<cr>', 'Mark List' },
-          o = { '<cmd>:Explore<cr>', 'Open current working directory' },
+          o = { '<cmd>Oil --float<cr>', 'Oil' },
           O = { '<cmd>:Lexplore %:p:h<cr>', 'Open current file directory' },
           v = { '<cmd>:Vexplore %:p:h<cr>', 'Vsplit current file directory' },
         },
@@ -313,20 +315,28 @@ return {
           f = { toggle_winbar, 'Winbar' },
           l = { '<cmd>Lazy<cr>', 'Lazy Plugin Mgr' },
           m = { '<cmd>Mason<cr>', 'Mason LSP Server Mgr' },
-          n = { '<cmd>ObsidianSearch<cr>', 'Search for Obsidian Note' },
+          t = { '<cmd>NvimTreeToggle<cr>', 'Toggle Nvim Tree' },
+          T = { '<cmd>NvimTreeFindFile<cr>', 'Find File In Tree' },
           o = { '<cmd>Oil --float<cr>', 'Oil' },
           u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },
           z = { zen_mode, 'Toggle Zen Mode' }
-        },
-        r = {
-          name = '+Run',
-          r = { function() require 'rest-nvim'.run() end, 'Run REST request' },
-          l = { function() require 'rest-nvim'.run_last() end, 'Run last REST request' },
         },
         s = {
           name = '+Session',
           s = { '<cmd>SessionSave<cr>', 'Save session for dir' },
           r = { '<cmd>SessionRestore<cr>', 'Restore session for dir' },
+          R = {
+            function()
+              -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#workaround-when-using-rmagattiauto-session
+              local api = require('nvim-tree.api')
+              local view = require('nvim-tree.view')
+
+              if not view.is_visible() then
+                api.tree.open()
+              end
+              require 'auto-session'.AutoSessionRestore()
+            end,
+            'Restore session for dir' },
           l = { function() require("auto-session.session-lens").search_session() end, 'List sessions' },
         },
         t = {
@@ -353,7 +363,8 @@ return {
         }
       },
       ["<leader>"] = {
-        ['1'] = { '<cmd>Oil --float<cr>', 'Oil' },
+        ['!'] = { '<cmd>NvimTreeFindFile<cr>', 'Find File In Nvim Tree' },
+        ['1'] = { '<cmd>NvimTreeToggle<cr>', 'Toggle Nvim Tree' },
         ['2'] = { find_nvim_files, 'Find nvim config files' },
         ['3'] = { grep_nvim_files, 'Live grep nvim config files' },
         ['4'] = { grep_zsh_files, 'Find zsh config files' },
