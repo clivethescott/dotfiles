@@ -293,6 +293,7 @@ return {
           -- o = { '<cmd>:Explore<cr>', 'Open current working directory' },
           m = { '<cmd>:NetrwMarkList<cr>', 'Mark List' },
           o = { '<cmd>Oil --float<cr>', 'Oil' },
+          t = { '<cmd>NvimTreeToggle<cr>', 'Toggle Nvim Tree' },
           O = { '<cmd>:Lexplore %:p:h<cr>', 'Open current file directory' },
           v = { '<cmd>:Vexplore %:p:h<cr>', 'Vsplit current file directory' },
         },
