@@ -5,7 +5,23 @@ return {
     require('formatter').setup {
       filetype = {
         python = {
-          require 'formatter.filetypes.python'.black,
+          require 'formatter.filetypes.python'.ruff,
+          require 'formatter.filetypes.python'.isort,
+        },
+        go = {
+          require 'formatter.filetypes.go'.goimports,
+        },
+        json = {
+          require 'formatter.filetypes.json'.prettier,
+        },
+        sql = {
+          require 'formatter.filetypes.sql'.sqlfluff,
+        },
+        terraform = {
+          require 'formatter.filetypes.terraform'.terraformfmt,
+        },
+        yaml = {
+          require 'formatter.filetypes.yaml'.prettier,
         }
       }
     }
