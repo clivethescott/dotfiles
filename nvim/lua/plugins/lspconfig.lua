@@ -210,12 +210,26 @@ end
 
 return {
   'neovim/nvim-lspconfig',
-  event = 'VeryLazy',
+  event = 'BufReadPost',
+  -- event = 'VeryLazy', causes an issue where LspAttach is not called if opening files directly
   dependencies = {
     'williamboman/mason.nvim',
     "folke/which-key.nvim",
   },
   config = function()
+
+    local lsp_group = vim.api.nvim_create_augroup('LspActionsGroup', { clear = true })
+
+    vim.api.nvim_create_autocmd({ "LspAttach" }, {
+      group = lsp_group,
+      callback = function(args)
+        local bufnr = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+        on_attach(client, bufnr)
+      end,
+    })
+
     local lspconfig = require 'lspconfig'
     local capabilities = mk_capabilities()
 
@@ -269,16 +283,5 @@ return {
     setup_luaserver(lspconfig, capabilities)
     setup_rust(lspconfig, capabilities)
 
-    local lsp_group = vim.api.nvim_create_augroup('LspActionsGroup', { clear = true })
-
-    vim.api.nvim_create_autocmd({ "LspAttach" }, {
-      group = lsp_group,
-      callback = function(args)
-        local bufnr = args.buf
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-        on_attach(client, bufnr)
-      end,
-    })
   end
 }
