@@ -14,6 +14,13 @@ return {
       -- min_width = {20, 0.2} means "the greater of 20 columns or 20% of total"
       max_width = { 140, 0.9 },
       min_width = { 40, 0.4 },
+      -- IncRename Tip - try these `dressing.nvim` settings to position the input box above the
+      -- > cursor to not cover the word being renamed
+      override = function(conf)
+        conf.col = -1
+        conf.row = 0
+        return conf
+      end
 
     },
     select = {

@@ -70,6 +70,10 @@ local on_attach = function(client, bufnr)
     }
   end
 
+  vim.keymap.set("n", "<leader>r", function()
+    return ":IncRename " .. vim.fn.expand("<cword>")
+  end, { expr = true })
+
   wk.register({
     ["["] = {
       name = '+Previous',
@@ -79,7 +83,7 @@ local on_attach = function(client, bufnr)
       name = '+Next',
       e = { vim.diagnostic.goto_next, 'Diagnostic' },
     },
-    ["<leader>r"] = { vim.lsp.buf.rename, 'Refactor Rename' },
+    ["<leader>R"] = { vim.lsp.buf.rename, 'Refactor Rename' },
     ["®"] = { vim.lsp.buf.rename, 'Refactor Rename' },
     ["<leader>d"] = { open_diagnostic_float, 'Open Diagnostic Float' },
     ["<leader>D"] = { telescope_builtin.diagnostics, 'Diagnostics' },
@@ -217,7 +221,6 @@ return {
     "folke/which-key.nvim",
   },
   config = function()
-
     local lsp_group = vim.api.nvim_create_augroup('LspActionsGroup', { clear = true })
 
     vim.api.nvim_create_autocmd({ "LspAttach" }, {
@@ -282,6 +285,5 @@ return {
     setup_tsserver(lspconfig, capabilities)
     setup_luaserver(lspconfig, capabilities)
     setup_rust(lspconfig, capabilities)
-
   end
 }
