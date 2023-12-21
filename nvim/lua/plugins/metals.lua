@@ -11,7 +11,7 @@ return {
     -- enables `metals/status` and also other helpful messages that are shown to you
     metals_config.init_options.statusBarProvider = "on"
     metals_config.settings = {
-      serverVersion = '1.1.0',
+      serverVersion = '1.2.0',
       fallbackScalaVersion = '3.3.0',
       showImplicitArguments = true,
       showImplicitConversionsAndClasses = false,
