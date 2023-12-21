@@ -7,7 +7,7 @@ vim.opt.dictionary:append('/usr/share/dict/words')
 -- vim.opt.spelllang = 'en_gb'
 
 vim.wo.list = true
-vim.wo.listchars = "leadmultispace:·"
+vim.wo.listchars = "tab:··,leadmultispace:·"
 -- Enables Nicer colors in the terminal
 vim.opt.termguicolors = true
 
@@ -29,9 +29,6 @@ vim.opt.writebackup = false
 vim.opt.undodir = nvim_data_dir .. '/undodir'
 vim.opt.undofile = true
 vim.opt.swapfile = false
--- Show listchars
--- vim.opt.list = true
--- vim.opt.listchars = {eol = '↵'}
 
 -- Sensible split behaviour
 vim.opt.splitbelow = true
@@ -101,6 +98,8 @@ vim.opt.foldminlines = 20
 
 vim.g.do_filetype_lua = true
 vim.g.did_load_filetypes = false
+
+-- Disable modeline
 vim.opt.modeline = false
 
 -- Recommended for https://github.com/rmagatti/auto-session
