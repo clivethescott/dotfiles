@@ -68,6 +68,9 @@ return {
       on_attach = on_attach,
       sort_by = sort_by,
       filters = { custom = { "^.git$", "^target$" } },
+      renderer = {
+        group_empty = true,
+      },
       view = {
         number = true,
         relativenumber = true,
