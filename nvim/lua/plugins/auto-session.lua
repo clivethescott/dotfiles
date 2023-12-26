@@ -10,7 +10,7 @@ return {
       log_level                   = 'error',
       auto_save_enabled           = true,
       auto_session_allowed_dirs   = {
-        "~/Code/*",
+        "~/Code/Scala/*",
         "~/IdeaProjects/*",
       },
       auto_session_use_git_branch = true,

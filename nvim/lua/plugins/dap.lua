@@ -31,6 +31,7 @@ return {
     { 'leoluz/nvim-dap-go',               opts = {}, ft = 'go' },
     { 'nvim-telescope/telescope.nvim' },
     { 'nvim-telescope/telescope-dap.nvim' },
+    "rcarriga/nvim-dap-ui",
   },
   config = function()
     local dap = require 'dap'

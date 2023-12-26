@@ -27,6 +27,7 @@ return {
     end
     dap.listeners.before.event_exited["dapui_config"] = function()
       ui.close()
+      vim.notify('Debug Session Ended', vim.log.levels.INFO)
     end
   end
 }

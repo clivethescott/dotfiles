@@ -10,8 +10,8 @@ return {
 
     require 'mason-lspconfig'.setup({
       ensure_installed = {
-        'bufls', 'golangci_lint_ls', 'gopls', 'html', 'jsonls',
-        'lua_ls', 'pyright', 'ruff_lsp', 'tsserver', 'terraformls', 'jdtls',
+        'golangci_lint_ls', 'gopls', 'html', 'jsonls',
+        'lua_ls', 'pyright', 'ruff_lsp', 'tsserver', 'terraformls',
       }
     })
   end

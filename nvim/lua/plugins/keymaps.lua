@@ -317,6 +317,7 @@ return {
           d = { '<cmd>DiffviewOpen<cr>', 'Diffview' },
           f = { toggle_winbar, 'Winbar' },
           l = { '<cmd>Lazy<cr>', 'Lazy Plugin Mgr' },
+          L = { '<cmd>Lazy sync<cr>', 'Lazy Sync' },
           m = { '<cmd>Mason<cr>', 'Mason LSP Server Mgr' },
           t = { '<cmd>NvimTreeToggle<cr>', 'Toggle Nvim Tree' },
           T = { '<cmd>NvimTreeFindFile<cr>', 'Find File In Tree' },

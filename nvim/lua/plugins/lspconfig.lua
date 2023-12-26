@@ -70,6 +70,14 @@ local on_attach = function(client, bufnr)
     }
   end
 
+  local code_lens_run = function()
+    if client.name == 'rust_analyzer' then
+      require("rust-tools").hover_actions.hover_actions()
+    else
+      vim.lsp.codelens.run()
+    end
+  end
+
   vim.keymap.set("n", "<leader>r", function()
     return ":IncRename " .. vim.fn.expand("<cword>")
   end, { expr = true })
@@ -105,7 +113,7 @@ local on_attach = function(client, bufnr)
       D = { '<cmd>Trouble lsp_definitions<cr>', 'Definition <Trouble>' },
       h = { utils.show_word_help, 'Word Help' },
       i = { telescope_builtin.lsp_implementations, 'Implementation' },
-      l = { vim.lsp.codelens.run, 'Show Code Lens' },
+      l = { code_lens_run, 'Show Code Lens' },
       m = { vim.lsp.codelens.refresh, 'Refresh Code Lens' },
       r = { lsp_references, 'References <Telescope>' },
       R = { '<cmd>Trouble lsp_references<cr>', 'References <Trouble>' },
@@ -141,12 +149,6 @@ local setup_go = function(lspconfig, capabilities)
     init_options = {
       usePlaceholders = false,
     },
-  }
-end
-
-local setup_rust = function(lspconfig, capabilities)
-  lspconfig.rust_analyzer.setup {
-    capabilities = capabilities,
   }
 end
 
@@ -244,7 +246,6 @@ return {
       capabilities = capabilities
     }
     require 'lspconfig'.jsonls.setup {}
-    require 'lspconfig'.rust_analyzer.setup {}
     require 'lspconfig'.yamlls.setup {
       settings = {
         yaml = {
@@ -284,6 +285,5 @@ return {
     setup_python(lspconfig, capabilities)
     setup_tsserver(lspconfig, capabilities)
     setup_luaserver(lspconfig, capabilities)
-    setup_rust(lspconfig, capabilities)
   end
 }
