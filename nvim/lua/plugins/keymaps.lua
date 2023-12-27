@@ -314,6 +314,7 @@ return {
         },
         o = {
           name = '+Open Window',
+          a = { '<cmd>AerialToggle<cr>', 'Aerial Outline' },
           d = { '<cmd>DiffviewOpen<cr>', 'Diffview' },
           f = { toggle_winbar, 'Winbar' },
           l = { '<cmd>Lazy<cr>', 'Lazy Plugin Mgr' },
@@ -345,6 +346,7 @@ return {
         },
         t = {
           name = '+Telescope',
+          a = { '<cmd>Telescope aerial<cr>', 'Outline' },
           c = { '<cmd>Telescope commands<cr>', 'Commands' },
           f = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
           -- F = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
