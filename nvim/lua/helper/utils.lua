@@ -94,26 +94,6 @@ function M.alt_go_file()
   vim.fn.execute(edit_file)
 end
 
-local function count_lsp_res_changes(lsp_results)
-  local count = { instances = 0, files = 0 }
-  if (lsp_results.documentChanges) then
-    for _, changed_file in pairs(lsp_results.documentChanges) do
-      count.files = count.files + 1
-      count.instances = count.instances + #changed_file.edits
-    end
-  elseif (lsp_results.changes) then
-    for _, changed_file in pairs(lsp_results.changes) do
-      count.instances = count.instances + #changed_file
-      count.files = count.files + 1
-    end
-  end
-  return count
-end
-
-local is_empty_str = function(str)
-  return not str or #str == 0
-end
-
 -- local skip_lsp_format_clients = {}
 local formatting_options = function(bufnr, async)
   async = async or true
