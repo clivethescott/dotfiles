@@ -60,12 +60,12 @@ return {
       luasnip = "[Snip]",
       path = "[Path]",
     }
-
     cmp.setup({
       experimental = {
         ghost_text = false,
       },
       formatting = {
+        fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
           -- if you have lspkind installed, you can use it like
           -- in the following line:
@@ -88,8 +88,8 @@ return {
         end,
       },
       window = {
-        -- completion = cmp.config.window.bordered(),
-        -- documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
       },
       mapping = cmp.mapping.preset.insert({
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
