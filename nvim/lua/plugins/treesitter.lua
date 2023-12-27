@@ -16,7 +16,7 @@ return {
     local treesitter_config = require 'nvim-treesitter.configs'
     treesitter_config.setup {
       ensure_installed = { 'dockerfile', 'git_config', 'gitcommit', 'go', 'gomod', 'graphql', 'hocon', 'html',
-        'javascript', 'http',
+        'javascript', 'http', 'xml', 'properties',
         'json', 'lua', 'make', 'markdown', 'markdown_inline', 'proto', 'python', 'rust', 'scala', 'sql', 'terraform', 'toml', 'typescript',
         'vim', 'yaml' },
       auto_install = true,

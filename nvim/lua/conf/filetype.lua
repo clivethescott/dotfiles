@@ -4,5 +4,6 @@ vim.filetype.add({
   },
   extension = {
     ['pp'] = 'json', -- Spinnaker pipeline
+    ['conf'] = 'jproperties',
   }
 })
