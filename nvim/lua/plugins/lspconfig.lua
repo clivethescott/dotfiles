@@ -133,6 +133,15 @@ local setup_go = function(lspconfig, capabilities)
     filetypes = { 'go' },
     settings = {
       gopls = {
+        hints = {
+          assignVariableTypes = true,
+          compositeLiteralFields = true,
+          compositeLiteralTypes = true,
+          constantValues = true,
+          functionTypeParameters = true,
+          parameterNames = true,
+          rangeVariableTypes = true,
+        },
         semanticTokens = true,
         codelenses = {
           generate = true,
@@ -169,7 +178,33 @@ end
 local setup_tsserver = function(lspconfig, capabilities)
   lspconfig.tsserver.setup {
     capabilities = capabilities,
-    root_dir = lspconfig.util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json')
+    root_dir = lspconfig.util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json'),
+    settings = {
+      typescript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        }
+      },
+      javascript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        }
+      }
+    },
   }
 end
 
@@ -196,6 +231,12 @@ local setup_luaserver = function(lspconfig, capabilities)
         },
       },
     },
+  }
+end
+
+local setup_ocaml = function(lspconfig, capabilities)
+  lspconfig.ocamllsp.setup {
+    capabilities = capabilities,
   }
 end
 
@@ -230,7 +271,10 @@ return {
       callback = function(args)
         local bufnr = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-
+        if vim.fn.has("nvim-0.10") == 1 and client.server_capabilities.inlayHintProvider then
+          vim.lsp.inlay_hint.enable(args.buf, true)
+        end
+        require("lsp-inlayhints").on_attach(client, bufnr)
         on_attach(client, bufnr)
       end,
     })
@@ -285,5 +329,6 @@ return {
     setup_python(lspconfig, capabilities)
     setup_tsserver(lspconfig, capabilities)
     setup_luaserver(lspconfig, capabilities)
+    setup_ocaml(lspconfig, capabilities)
   end
 }

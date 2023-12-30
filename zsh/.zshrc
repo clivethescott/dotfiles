@@ -71,3 +71,6 @@ setopt noflowcontrol
 # Increase the number of max open files/descriptions
 ulimit -n 2048
 eval "$(zoxide init zsh)"
+
+# opam configuration
+[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh"  > /dev/null 2> /dev/null
