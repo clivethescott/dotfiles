@@ -260,6 +260,7 @@ return {
   event = 'BufReadPost',
   -- event = 'VeryLazy', causes an issue where LspAttach is not called if opening files directly
   dependencies = {
+    "lvimuser/lsp-inlayhints.nvim",
     'williamboman/mason.nvim',
     "folke/which-key.nvim",
   },

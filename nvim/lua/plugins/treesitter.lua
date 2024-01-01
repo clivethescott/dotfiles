@@ -27,6 +27,7 @@ return {
       ignore_install = { "svelte" },
       indent = {
         enable = true,
+        disable = { 'ocaml' } -- strange issue where let is indent (set in :h indentkeys)
       },
       autotag = {
         enable = true,

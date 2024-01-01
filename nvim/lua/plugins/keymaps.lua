@@ -205,7 +205,7 @@ return {
     end, { expr = true })
     -- minimal choice change, same as when using vim.ui.select below
     map({ 'i' }, '<C-y>', function()
-      require 'luasnip'.expand()
+      require 'luasnip'.change_choice(1)
     end)
     -- Luasnip choice selection using vim.ui.select
     map({ 'i' }, '<C-u>', function()
@@ -384,6 +384,7 @@ return {
         m = { '<cmd>silent! nohls<cr>', 'Clear search highlight' },
         s = { edit_snippets, 'Edit LuaSnippets' },
         t = { '<cmd>tabclose<cr>', 'Close tab' },
+        z = { '<cmd>ZenMode<cr>', 'Toggle Zenmode' },
       },
       ['gp'] = { ':b#<cr>', 'Alternate buffer' },
     })
