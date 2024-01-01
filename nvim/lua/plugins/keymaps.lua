@@ -213,27 +213,34 @@ return {
         require('luasnip.extras.select_choice')()
       end
     end)
-    local edit_snippets = function()
+    local edit_snippets     = function()
       require("luasnip.loaders.from_lua").edit_snippet_files()
     end
 
-    local prev_todo     = function()
+    local prev_todo         = function()
       require 'todo-comments'.jump_prev()
     end
-    local next_todo     = function()
+    local next_todo         = function()
       require 'todo-comments'.jump_next()
     end
 
-    local wk            = require 'which-key'
+    local jump_to_tscontext = function()
+      -- jump to previous treesitter context
+      require("treesitter-context").go_to_context(vim.v.count1)
+    end
+
+    local wk                = require 'which-key'
     wk.register({
       ["["] = {
         name = '+Previous',
+        c = { jump_to_tscontext, 'Jump to context' },
         t = { prev_todo, 'TODO' },
         q = { "<cmd>cprevious<cr>", 'Quickfix Entry' },
         Q = { "<cmd>cNfile<cr>", 'Quickfix Entry in last file' },
       },
       ["]"] = {
         name = '+Next',
+        c = { jump_to_tscontext, 'Jump to context' },
         t = { next_todo, 'TODO' },
         q = { "<cmd>cnext<cr>", 'Quickfix Entry' },
         Q = { "<cmd>cnfile<cr>", 'Quickfix Entry in next file' },

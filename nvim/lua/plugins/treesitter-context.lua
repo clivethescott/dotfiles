@@ -1,7 +1,5 @@
 return {
   'romgrk/nvim-treesitter-context',
-  ft = {'python', 'yaml', 'json'},
-  config = function()
-    require 'treesitter-context'.setup {}
-  end
+  ft = {'python', 'yaml', 'json', 'go', 'scala'},
+  config = true,
 }
