@@ -214,7 +214,25 @@ return {
       end
     end)
     local edit_snippets     = function()
-      require("luasnip.loaders.from_lua").edit_snippet_files()
+      require("luasnip.loaders").edit_snippet_files {
+        format = function(file, source_name)
+          if source_name == 'lua' then
+            return '$Config/' .. vim.fn.fnamemodify(file, ':t')
+          else
+            -- ignore plugin managed sources in the selection
+            return nil
+          end
+        end,
+        extend = function(ft, paths)
+          if #paths == 0 then
+            local luasnippets_dir = vim.fn.stdpath('config') .. '/luasnippets'
+            return {
+              { "$Config/" .. ft .. ".lua", string.format("%s/%s.lua", luasnippets_dir, ft) }
+            }
+          end
+          return {}
+        end
+      }
     end
 
     local prev_todo         = function()

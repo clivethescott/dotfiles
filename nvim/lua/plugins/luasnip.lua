@@ -1,6 +1,6 @@
 return {
   'L3MON4D3/LuaSnip',
-  event = 'InsertEnter',
+  event = 'BufReadPost',
   version = "2.x",
   dependencies = {
     'saadparwaiz1/cmp_luasnip',
