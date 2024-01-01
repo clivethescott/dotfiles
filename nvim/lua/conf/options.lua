@@ -6,8 +6,8 @@ vim.opt.dictionary:append('/usr/share/dict/words')
 -- vim.opt.spell = true
 -- vim.opt.spelllang = 'en_gb'
 
-vim.wo.list = true
-vim.wo.listchars = "tab:··,leadmultispace:·"
+vim.opt.list = true
+vim.opt.listchars = "tab:··,leadmultispace:·"
 -- Enables Nicer colors in the terminal
 vim.opt.termguicolors = true
 
