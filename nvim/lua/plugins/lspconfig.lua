@@ -109,7 +109,16 @@ local on_attach = function(client, bufnr)
       ["["] = { prev_diagnostic, 'Prev Diagnostic' },
       ["]"] = { vim.diagnostic.goto_next, 'Next Diagnostic' },
       a = { vim.lsp.buf.code_action, 'Code Action' },
-      d = { telescope_builtin.lsp_definitions, 'Definition <Telescope>' },
+      d = {
+        function()
+          if client.name == 'lua_ls' then
+            telescope_builtin.lsp_type_definitions()
+          else
+            telescope_builtin.lsp_definitions()
+          end
+        end,
+        'Definition <Telescope>'
+      },
       D = { '<cmd>Trouble lsp_definitions<cr>', 'Definition <Trouble>' },
       h = { utils.show_word_help, 'Word Help' },
       i = { telescope_builtin.lsp_implementations, 'Implementation' },

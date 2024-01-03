@@ -205,7 +205,8 @@ return {
     end, { expr = true })
     -- minimal choice change, same as when using vim.ui.select below
     map({ 'i' }, '<C-y>', function()
-      require 'luasnip'.change_choice(1)
+      -- require 'luasnip'.change_choice(1)
+      require 'luasnip'.expand()
     end)
     -- Luasnip choice selection using vim.ui.select
     map({ 'i' }, '<C-u>', function()

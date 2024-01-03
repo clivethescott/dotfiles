@@ -9,7 +9,12 @@ return {
     'numToStr/Comment.nvim',
     event = 'VeryLazy',
     config = function()
-      require 'Comment'.setup({})
+      require 'Comment'.setup {
+        mappings = {
+          -- disable mappings like `gco`, `gcO`, `gcA`
+          extra = false,
+        },
+      }
       local ft = require('Comment.ft')
 
       -- set line and block comment string

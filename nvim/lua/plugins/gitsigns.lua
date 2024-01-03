@@ -15,10 +15,6 @@ local on_attach = function()
   local blame_line = function()
     gs.blame_line { full = true }
   end
-  -- map('n', '<space>gB', blame_line)
-  -- map('n', '<space>gb', gs.toggle_current_line_blame)
-  -- map('n', '<space>gR', gs.reset_buffer)
-  -- map('n', '<space>hS', gs.stage_buffer)
 
   -- Text object
   map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
