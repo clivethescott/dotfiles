@@ -252,7 +252,7 @@ return {
     wk.register({
       ["["] = {
         name = '+Previous',
-        c = { jump_to_tscontext, 'Jump to context' },
+        T = { jump_to_tscontext, 'Jump to context' },
         t = { prev_todo, 'TODO' },
         q = { "<cmd>cprevious<cr>", 'Quickfix Entry' },
         Q = { "<cmd>cNfile<cr>", 'Quickfix Entry in last file' },
