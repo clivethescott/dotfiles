@@ -52,7 +52,9 @@ return {
             -- ['av'] = { query = '@val.outer', desc = 'Select outer val' },
             ['av'] = { query = '@val.right', desc = 'Select val expression' },
 
-            ['ap'] = { query = '@function.params', desc = 'Select outer parameter' },
+            ['ag'] = { query = '@function.params', desc = 'Select outer parameter' },
+            ['aG'] = { query = '@function.name', desc = 'Select function name' },
+
 
             ["aj"] = { query = "@json.outer", desc = "Select outer JSON" },
 
@@ -61,6 +63,11 @@ return {
 
             ['ac'] = { query = '@class.outer', desc = 'Select outer class' },
             ['ic'] = { query = '@class.inner', desc = 'Select inner class' },
+
+            ['as'] = { query = '@struct.outer', desc = 'Select outer struct' },
+            ['aS'] = { query = '@impl.outer', desc = 'Select outer impl' },
+            ['is'] = { query = '@struct.inner', desc = 'Select inner struct' },
+            ['iS'] = { query = '@impl.inner', desc = 'Select inner impl' },
 
             ['al'] = { query = '@assignment.lhs', desc = 'Select lhs assignment' },
             ['ar'] = { query = '@assignment.rhs', desc = 'Select rhs assignment' },
@@ -82,14 +89,20 @@ return {
             ['[p'] = { query = '@parameter.outer', desc = 'Go to prev param' },
             ['[P'] = { query = '@function.params', desc = 'Go to prev params' },
             ['[f'] = { query = '@function.outer', desc = 'Go to prev function' },
-            ["[i"] = { query = "@call.outer", desc = "Prev function call start" },
+            ['[F'] = { query = '@function.inner', desc = 'Go to prev function inner' },
+            -- ["[i"] = { query = "@call.outer", desc = "Prev function call start" },
             ["[y"] = { query = "@for.outer", desc = "Previous for expression" },
+            ["[s"] = { query = "@struct.outer", desc = "Previous struct" },
+            ["[S"] = { query = "@impl.outer", desc = "Previous struct impl" },
           },
           goto_next_start = {
             [']p'] = { query = '@parameter.outer', desc = 'Go to next param' },
             [']f'] = { query = '@function.outer', desc = 'Go to next function' },
-            ["]i"] = { query = "@call.outer", desc = "Prev function call end" },
+            [']F'] = { query = '@function.inner', desc = 'Go to next function inner' },
+            -- ["]i"] = { query = "@call.outer", desc = "Prev function call end" },
             ["]y"] = { query = "@for.outer", desc = "Next for expression" },
+            ["]s"] = { query = "@struct.outer", desc = "Next struct" },
+            ["]S"] = { query = "@impl.outer", desc = "Next struct impl" },
           },
         },
         rainbow = {
