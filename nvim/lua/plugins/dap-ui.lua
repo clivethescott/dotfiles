@@ -1,6 +1,6 @@
 return {
   "rcarriga/nvim-dap-ui",
-  keys = {'<space>d'},
+  keys = { '<space>d' },
   dependencies = { 'mfussenegger/nvim-dap' },
   config = function()
     local ui = require 'dapui'
@@ -18,14 +18,18 @@ return {
     })
 
     -- You can use nvim-dap events to open and close the windows automatically
-    dap.listeners.after.event_initialized["dapui_config"] = function()
+    dap.listeners.before.attach.dapui_config = function()
       vim.notify('Debug Session Started', vim.log.levels.INFO)
       ui.open()
     end
-    dap.listeners.before.event_terminated["dapui_config"] = function()
+    dap.listeners.before.launch.dapui_config = function()
+      vim.notify('Debug Session Started', vim.log.levels.INFO)
+      ui.open()
+    end
+    dap.listeners.before.event_exited.dapui_config = function()
       ui.close()
     end
-    dap.listeners.before.event_exited["dapui_config"] = function()
+    dap.listeners.before.event_terminated.dapui_config = function()
       ui.close()
       vim.notify('Debug Session Ended', vim.log.levels.INFO)
     end
