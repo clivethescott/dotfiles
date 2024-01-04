@@ -1,6 +1,7 @@
 return {
   "simrat39/rust-tools.nvim",
   ft = 'rust',
+  cond = false, -- GH repo has been archived
   dependencies = {
     'neovim/nvim-lspconfig',
     'nvim-lua/plenary.nvim',

@@ -72,7 +72,7 @@ local on_attach = function(client, bufnr)
 
   local code_lens_run = function()
     if client.name == 'rust_analyzer' then
-      require("rust-tools").hover_actions.hover_actions()
+      pcall(require, 'rust-tools').hover_actions.hover_actions()
     else
       vim.lsp.codelens.run()
     end
