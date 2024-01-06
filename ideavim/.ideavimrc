@@ -1,3 +1,4 @@
+" ref: https://www.cyberwizard.io/posts/the-ultimate-ideavim-setup/
 let mapleader = ','
 " Disable that annoying bell sound
 set visualbell
@@ -7,10 +8,16 @@ set clipboard+=unnamed
 set clipboard+=ideaput
 set number relativenumber
 set hlsearch
-set incsearch
-set smartcase
-set showmode
+set ignorecase incsearch smartcase
+set showmode showcmd
 set ideajoin
+
+" plugins
+set highlightedyank
+set sneak
+set nerdtree
+" setup idea-which-key
+set whick-key notimeout timeoutlen=5000
 
 nnoremap <leader>m :nohls<cr>
 nnoremap gp :b#<cr>
@@ -18,6 +25,11 @@ nnoremap Y yy
 nnoremap ' `
 nmap <Leader>v :vsplit<CR>
 nmap <Leader>s :split<CR>
+
+inoremap <C-n> <Action>(PopupMenu-selectNext)
+inoremap <C-p> <Action>(PopupMenu-selectPrev)
+
+" Easy visual indentation
 vnoremap < <gv
 vnoremap > >gv
 " Greatest remap EVER!! 
@@ -89,4 +101,9 @@ nnoremap <leader>zo :action ExpandAllRegions<CR>
 map <D-[> <Esc>
 map <D-u> :action EditorPageUp<cr>
 map <D-d> :action EditorPageDown<cr>
+map <D-e> <action>(RecentFiles)
 map <C-c> <Esc>
+
+
+map <leader>1 :NERDTreeToggle<CR>
+map <leader>r <Action>(RenameElement)
