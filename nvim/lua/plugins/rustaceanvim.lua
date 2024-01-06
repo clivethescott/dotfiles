@@ -21,7 +21,7 @@ return {
       tools = {
         executor = require("rustaceanvim.executors").toggleterm,
         hover_actions = {
-          auto_focus = true,
+          auto_focus = false,
         },
       },
       dap = {

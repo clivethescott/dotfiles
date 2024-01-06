@@ -71,10 +71,12 @@ local on_attach = function(client, bufnr)
   end
 
   local code_lens_run = function()
-    if client.name == 'rust_analyzer' then
-      pcall(require, 'rust-tools').hover_actions.hover_actions()
-    else
-      vim.lsp.codelens.run()
+    if client.server_capabilities.codeLensProvider then
+      if client.name == 'rust_analyzer' then
+        vim.cmd.RustLsp('hover')
+      else
+        vim.lsp.codelens.run()
+      end
     end
   end
 
@@ -129,10 +131,7 @@ local on_attach = function(client, bufnr)
       s = { vim.lsp.buf.signature_help, 'Signature Help' },
       y = { telescope_builtin.lsp_type_definitions, 'Type Def' },
     },
-    K = {
-      function()
-        vim.lsp.buf.hover()
-      end, 'Hover' },
+    K = { vim.lsp.buf.hover, 'Hover' },
   }, wk_buf_opts)
 end
 
@@ -223,7 +222,11 @@ local setup_luaserver = function(lspconfig, capabilities)
     settings = {
       Lua = {
         completion = {
-          callSnippet = "Replace"
+          callSnippet = "Replace",
+          postfix = true,
+        },
+        hint = {
+          enable = true,
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global and
@@ -286,6 +289,17 @@ return {
         end
         require("lsp-inlayhints").on_attach(client, bufnr)
         on_attach(client, bufnr)
+
+        vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
+          group = lsp_group,
+          pattern = { '*.rust', '*.go', '*.python' },
+          desc = 'Refresh code lens for supported languages',
+          callback = function()
+            if client.server_capabilities.codeLensProvider then
+              vim.lsp.codelens.refresh()
+            end
+          end
+        })
       end,
     })
 
