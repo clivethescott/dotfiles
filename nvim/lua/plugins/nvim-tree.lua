@@ -68,6 +68,9 @@ return {
       on_attach = on_attach,
       sort_by = sort_by,
       filters = { custom = { "^.git$", "^target$" } },
+      notify = {
+        threshold = vim.log.levels.WARN,
+      },
       renderer = {
         group_empty = true,
       },
