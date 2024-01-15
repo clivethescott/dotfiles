@@ -4,7 +4,7 @@ return {
   version = "2.x",
   dependencies = {
     'saadparwaiz1/cmp_luasnip',
-    'rafamadriz/friendly-snippets'
+    'rafamadriz/friendly-snippets',
   },
   config = function()
     local ls = require 'luasnip'
@@ -13,7 +13,7 @@ return {
     ls.config.setup {
       history = false,
       -- update_events = 'TextChanged,TextChangedI', -- updates as you type, default is InsertLeave
-      enable_autosnippets = true,                                             -- enabling this has a performance penalty
+      enable_autosnippets = false,                                            -- enabling this has a performance penalty
       ft_func = require("luasnip.extras.filetype_functions").from_cursor_pos, -- use treesitter to get ft
       delete_check_events = { "InsertLeave" },                                -- enable to delete virt text when snippet is deleted
       ext_opts = {

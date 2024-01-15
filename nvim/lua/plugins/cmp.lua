@@ -97,7 +97,7 @@ return {
         ['<CR>'] = cmp.mapping.confirm({ select = true }),  -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<C-n>'] = cmp.mapping(select_next_item, { 'i', 's' }),
-        ['<C-e>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
         -- ['<Tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
 
         ['<C-p>'] = cmp.mapping(select_prev_item, { 'i', 's' }),

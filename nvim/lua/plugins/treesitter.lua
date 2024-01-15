@@ -49,7 +49,7 @@ return {
             ['am'] = { query = '@function.outer', desc = 'Select outer function' },
             ['im'] = { query = '@function.inner', desc = 'Select inner function' },
 
-            -- ['av'] = { query = '@val.outer', desc = 'Select outer val' },
+            ['aV'] = { query = '@val.outer', desc = 'Select outer val' },
             ['av'] = { query = '@val.right', desc = 'Select val expression' },
 
             ['ag'] = { query = '@function.params', desc = 'Select outer parameter' },

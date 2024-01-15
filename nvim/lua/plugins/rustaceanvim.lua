@@ -19,6 +19,7 @@ return {
 
     vim.g.rustaceanvim = {
       tools = {
+        reload_workspace_from_cargo_toml = true,
         executor = require("rustaceanvim.executors").toggleterm,
         hover_actions = {
           auto_focus = false,

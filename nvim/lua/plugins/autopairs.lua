@@ -8,7 +8,7 @@ return {
     local npairs = require 'nvim-autopairs'
     npairs.setup({
       fast_wrap = {
-        map = '<c-e>',
+        map = '<M-e>',
         chars = { '{', '[', '(', '"', "'" },
         pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], '%s+', ''),
         end_key = '$',

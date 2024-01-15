@@ -12,4 +12,4 @@
   body: (template_body)? @object.inner) @object.outer
 
 (val_definition
-  value: (call_expression)? @val.right) @val.outer
+  value: (_)? @val.right) @val.outer
