@@ -5,7 +5,8 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     -- Enables filtering See :h telescope-fzf-native.nvim-telescope-fzf-native-nvim
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    { 'nvim-telescope/telescope-fzf-native.nvim',     build = 'make' },
+    { 'nvim-telescope/telescope-live-grep-args.nvim', version = "^1.0.0", },
   },
   config = function()
     local actions = require("telescope.actions")
@@ -121,10 +122,25 @@ return {
         },
       },
       extensions = {
+        live_grep_args = {
+          auto_quoting = true, -- enable/disable auto-quoting
+          -- define mappings, e.g.
+          mappings = {         -- extend mappings
+            i = {
+              ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --type all" }),
+              -- ["<C-k>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+            },
+          },
+          -- ... also accepts theme settings, for example:
+          -- theme = "dropdown", -- use dropdown theme
+          -- theme = { }, -- use own theme spec
+          -- layout_config = { mirror=true }, -- mirror preview pane
+        }
       },
     }
 
     -- 'nvim-telescope/telescope-fzf-native.nvim'
     require('telescope').load_extension('fzf')
+    require('telescope').load_extension('live_grep_args')
   end
 }
