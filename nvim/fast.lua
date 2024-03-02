@@ -29,9 +29,6 @@ vim.opt.writebackup = false
 vim.opt.undodir = nvim_data_dir .. '/undodir'
 vim.opt.undofile = true
 vim.opt.swapfile = false
--- Show listchars
-vim.opt.list = true
-vim.opt.listchars = "leadmultispace:·"
 
 -- Sensible split behaviour
 vim.opt.splitbelow = true
@@ -195,3 +192,55 @@ vim.api.nvim_create_user_command('FZF', function()
     endtry
   ]]
 end, {})
+
+
+local events_group = vim.api.nvim_create_augroup('CustomEventsGroup', { clear = true })
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+  desc = 'Listchars for indentation based languages',
+  group = events_group,
+  pattern = { '*.py', '*.yaml', '*.yml', '*.sc' },
+  callback = function()
+    vim.wo.list = true
+    vim.wo.listchars = "leadmultispace:·"
+  end,
+})
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+
+require 'lazy'.setup({
+  {
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      -- calling `setup` is optional for customization
+      require("fzf-lua").setup({})
+    end
+  }
+}, {
+  lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json",
+  change_detection = {
+    notify = false
+  },
+  checker = {
+    enabled = true,
+    notify = true,                -- get a notification when new updates are found
+    frequency = 60 * 60 * 24 * 7, -- check for updates every week
+  },
+})
+
+vim.keymap.set("n", "<C-P>", function() require('fzf-lua').files() end, { silent = true })
+vim.keymap.set("n", "<space>tl", function() require('fzf-lua').resume() end, { silent = true })
+vim.keymap.set("n", "<space>ty", "<cmd>:FzfLua<cr>", { silent = true })
