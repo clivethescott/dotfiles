@@ -5,7 +5,6 @@ vim.lsp.start({
   cmd = { launcher_path }, -- see shell script for command
   root_dir = vim.fs.dirname(vim.fs.find({ 'smithy-build.json' }, { upward = false })[1]),
 }, {
-  reuse_client = true,
   init_options = {
     statusBarProvider = 'show-message',
     isHttpEnabled = true,
@@ -13,5 +12,5 @@ vim.lsp.start({
       snippetAutoIndent = false,
     },
   },
-    on_attach = vim.notify("Smithy LSP started")
+  on_attach = vim.notify("Smithy LSP started")
 })
