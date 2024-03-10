@@ -347,7 +347,6 @@ return {
       }
     }
     require 'lspconfig'.terraformls.setup {}
-    require 'lspconfig'.smithy_ls.setup {}
 
     setup_go(lspconfig, capabilities)
     setup_python(lspconfig, capabilities)
