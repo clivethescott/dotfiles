@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+ # port 0 means we use std in/out to exchange with the
+cs launch com.disneystreaming.smithy:smithy-language-server:0.0.30 --main-class software.amazon.smithy.lsp.Main -- 0
