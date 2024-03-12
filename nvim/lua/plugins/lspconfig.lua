@@ -101,9 +101,14 @@ local on_attach = function(client, bufnr)
       l = {
         name = '+LSP',
         e = { diagnostic_errors, 'Workspace Errors' },
-        w = { diagnostic_warnings, 'Workspace Warnings' },
+        r = {
+          '+Restart/Reload',
+          s = { utils.restart_smithy, 'Restart Smithy' },
+          m = { function() require 'metals'.restart_metals() end, 'Restart Metals' },
+        },
         s = { telescope_builtin.lsp_dynamic_workspace_symbols, 'Dynamic Workspace Symbols' },
         S = { telescope_builtin.lsp_document_symbols, 'Buffer Symbols' },
+        w = { diagnostic_warnings, 'Workspace Warnings' },
       }
     },
     g = {

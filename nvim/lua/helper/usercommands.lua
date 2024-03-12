@@ -30,6 +30,10 @@ vim.api.nvim_create_user_command('NetrwMarkList', function()
   require 'helper.utils'.netrw_mark_list()
 end, {})
 
+vim.api.nvim_create_user_command('SmithyRestart', function()
+  require 'helper.utils'.restart_smithy()
+end, {})
+
 vim.api.nvim_create_user_command('QuickFixOpenAll', function()
   vim.cmd [[
       if empty(getqflist())

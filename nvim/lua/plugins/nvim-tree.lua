@@ -71,6 +71,7 @@ return {
       notify = {
         threshold = vim.log.levels.WARN,
       },
+      sync_root_with_cwd = true,
       renderer = {
         group_empty = true,
       },

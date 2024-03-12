@@ -5,6 +5,41 @@ function M.resolvedCapabilities(client_id)
   vim.print(vim.lsp.get_client_by_id(client_id).server_capabilities)
 end
 
+function M.start_smithy()
+  local launcher_path = vim.fn.stdpath('config') .. '/launchers/smithy-language-server'
+  vim.lsp.start({
+    name = 'smithy-language-server',
+    cmd = { launcher_path }, -- see shell script for command
+    root_dir = vim.fs.dirname(vim.fs.find({ 'smithy-build.json' }, { upward = true })[1]),
+  }, {
+    init_options = {
+      statusBarProvider = 'show-message',
+      isHttpEnabled = true,
+      compilerOptions = {
+        snippetAutoIndent = false,
+      },
+    },
+    debounce_text_changes = 300,
+  })
+end
+
+local smithy_file_types = { 'smithy' }
+M.restart_smithy = function()
+  for _, buf in pairs(vim.fn.getbufinfo({ bufloaded = true })) do
+    if vim.tbl_contains(smithy_file_types, vim.api.nvim_get_option_value("filetype", { buf = buf.bufnr })) then
+      local clients = vim.lsp.get_active_clients({ buffer = buf.bufnr, name = "smithy-language-server" })
+      for _, client in ipairs(clients) do
+        client.stop()
+      end
+    end
+  end
+
+  vim.notify('Restarting Smithy')
+  vim.defer_fn(function()
+    M.start_smithy()
+  end, 2000)
+end
+
 function M.uuid()
   local uuid = vim.fn.system("uuidgen | tr -d '\n'")
   return string.lower(uuid)
@@ -128,7 +163,7 @@ function M.show_word_help()
 end
 
 function M.netrw_mark_list()
-  vim.cmd[[echo join(netrw#Expose("netrwmarkfilelist"), "\n")]]
+  vim.cmd [[echo join(netrw#Expose("netrwmarkfilelist"), "\n")]]
 end
 
 return M
