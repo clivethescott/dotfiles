@@ -241,6 +241,7 @@ require 'lazy'.setup({
   },
 })
 
-vim.keymap.set("n", "<C-P>", function() require('fzf-lua').files() end, { silent = true })
-vim.keymap.set("n", "<space>tl", function() require('fzf-lua').resume() end, { silent = true })
-vim.keymap.set("n", "<space>ty", "<cmd>:FzfLua<cr>", { silent = true })
+map('n', "<C-P>", function() require('fzf-lua').files() end, { silent = true })
+map('n', "<space>tl", function() require('fzf-lua').resume() end, { silent = true })
+map('n', "<space>ty", "<cmd>:FzfLua<cr>", { silent = true })
+map('n', '<leader>m', '<cmd>silent! nohls<cr>', { silent = true })
