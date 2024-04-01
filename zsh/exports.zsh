@@ -11,10 +11,11 @@ export FZF_CTRL_T_COMMAND='rg --files'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
-export JAVA_HOME=/opt/homebrew/Cellar/openjdk@17/17.0.9/libexec/openjdk.jdk/Contents/Home
+export JAVA_HOME=/opt/homebrew/Cellar/openjdk@17/17.0.10/libexec/openjdk.jdk/Contents/Home
 export HOMEBREW_NO_ANALYTICS=1
 export HISTSIZE=50000
 export XDG_CONFIG_HOME=~/.config
+export NVIM_SETUP=home
 
 CARGO_HOME=$HOME/.cargo
 APP_HOME=$HOME/apps

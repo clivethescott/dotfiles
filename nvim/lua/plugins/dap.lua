@@ -1,5 +1,15 @@
 local setup_extra_adapters = function(dap)
   dap.defaults.fallback.exception_breakpoints = { 'default' }
+  dap.adapters.codelldb = {
+    type = "server",
+    port = "${port}",
+    executable = {
+      -- command = vim.fn.exepath('codelldb'),
+      command = 'codelldb',
+      args = { "--port", "${port}" },
+      detached = false,
+    }
+  }
 end
 
 local setup_dap_configs = function(dap)
@@ -21,11 +31,29 @@ local setup_dap_configs = function(dap)
       },
     },
   }
+
+  dap.configurations.rust = {
+    {
+      type = "codelldb",
+      request = "launch",
+      name = "Launch File",
+      program = function()
+        return vim.fn.input({
+          prompt = 'Path to executable: ',
+          default = vim.fn.getcwd() .. '/',
+          completion = 'file',
+        })
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = false,
+      showDisassembly = "never",
+    },
+  }
 end
 
 return {
   'mfussenegger/nvim-dap',
-  keys = '<space>d',
+  -- keys = '<space>d',
   dependencies = {
     { 'theHamsta/nvim-dap-virtual-text',  opts = {} },
     { 'leoluz/nvim-dap-go',               opts = {}, ft = 'go' },
@@ -33,6 +61,9 @@ return {
     { 'nvim-telescope/telescope-dap.nvim' },
     "rcarriga/nvim-dap-ui",
   },
+  cond = function()
+    return require 'helper.utils'.is_home_setup()
+  end,
   config = function()
     local dap = require 'dap'
 

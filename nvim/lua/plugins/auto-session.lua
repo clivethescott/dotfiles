@@ -3,6 +3,9 @@ return {
   dependencies = {
     'nvim-telescope/telescope.nvim'
   },
+  cond = function()
+    return require 'helper.utils'.is_work_setup()
+  end,
   event = 'VeryLazy',
   config = function()
     require "auto-session".setup {

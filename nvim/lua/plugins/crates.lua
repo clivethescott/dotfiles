@@ -4,4 +4,7 @@ return {
   event = { "BufRead Cargo.toml" },
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = true,
+  cond = function()
+    return require 'helper.utils'.is_home_setup()
+  end,
 }

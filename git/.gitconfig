@@ -6,6 +6,8 @@
 [core]
 	excludesfile = /Users/clive/.gitignore
   pager = delta
+[commit]
+  verbose = true
 [interactive]
   diffFilter = delta --color-only
 [delta]
@@ -14,18 +16,31 @@
   side-by-side = true
   line-numbers = true
 
+[diff]
+  algorithm = patience
+  compactionHeuristic = true
+  tool = nvimdiff
+  colorMoved = default
+
 [merge]
-  tool = "nvim"
-  ; conflictstyle = diff3
+  tool = "diffview"
 
 [mergetool]
-	keepBackup = false
 	prompt = false
+	keepBackup = false
+  conflictstyle = diff3
+
+[difftool "nvimdiff"]
+	cmd = nvim -d -c \"wincmd w\" -c \"wincmd L\" \"$LOCAL\" \"$REMOTE\"
 
 [mergetool "nvim"]
-	cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
+	cmd = nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
 
-[diff]
-  colorMoved = default
+[mergetool "fugitive"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+
+[mergetool "diffview"]
+  cmd = nvim -c \"DiffviewOpen\"
+
 [push]
 	autoSetupRemote = true

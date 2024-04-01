@@ -5,6 +5,13 @@ function M.resolvedCapabilities(client_id)
   vim.print(vim.lsp.get_client_by_id(client_id).server_capabilities)
 end
 
+function M.is_work_setup()
+  return string.find(os.getenv('NVIM_SETUP') or '', 'work') or false
+end
+function M.is_home_setup()
+  return string.find(os.getenv('NVIM_SETUP') or '', 'home') or false
+end
+
 function M.start_smithy()
   local launcher_path = vim.fn.stdpath('config') .. '/launchers/smithy-language-server'
   vim.lsp.start({
