@@ -53,7 +53,6 @@ end
 
 return {
   'mfussenegger/nvim-dap',
-  -- keys = '<space>d',
   dependencies = {
     { 'theHamsta/nvim-dap-virtual-text',  opts = {} },
     { 'leoluz/nvim-dap-go',               opts = {}, ft = 'go' },
@@ -62,7 +61,7 @@ return {
     "rcarriga/nvim-dap-ui",
   },
   cond = function()
-    return require 'helper.utils'.is_home_setup()
+    return false -- require 'helper.utils'.is_home_setup()
   end,
   config = function()
     local dap = require 'dap'

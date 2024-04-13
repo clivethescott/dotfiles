@@ -120,6 +120,8 @@ return {
       end
     end
 
+    local home = os.getenv('HOME')
+    local minimal_ignore = home .. '/.gitignore_minimal'
     -- Quickly add empty lines
     -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines=
     map('n', '<space>[', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[")
@@ -129,7 +131,14 @@ return {
     map('n', '<c-e>', function() require 'telescope.builtin'.buffers { sort_lastused = true } end)
     -- Use git_files if in git dir, else use find_files
     map('n', '<c-p>', M.project_files)
-    map('n', 'π', function() require 'telescope.builtin'.find_files() end)
+    map('n', 'π', function()
+      require 'telescope.builtin'.find_files {
+        find_command = { "fd", "--type", "f", "--hidden", "--max-depth", "10", "--strip-cwd-prefix", "--ignore-file", minimal_ignore },
+        no_ignore = true,
+        no_ignore_parent = true,
+        hidden = true,
+      }
+    end)
     map('n', 'Ï', function() require 'telescope.builtin'.live_grep() end)
     map('n', 'ƒ', function() require 'telescope.builtin'.current_buffer_fuzzy_find() end)
     map('n', '<C-_>', function() require 'Comment.api'.toggle.linewise.current() end)
@@ -175,15 +184,6 @@ return {
     end
     local go_debug_test = function()
       require 'dap-go'.debug_test()
-    end
-
-    -- Zen Mode Mappings
-    local zen_mode = function()
-      require('zen-mode').toggle({
-        window = {
-          width = .85 -- width will be 85% of the editor width
-        }
-      })
     end
 
     -- Luasnip Mappings
@@ -307,11 +307,15 @@ return {
         },
         g = {
           '+Git',
+          d = { '<cmd>DiffviewOpen<cr>', 'Git diff' },
           g = { '<cmd>Telescope git_branches<cr>', 'Branches' },
-          h = { '<cmd>DiffviewFileHistory<cr>', 'File History' },
+          h = { '<cmd>DiffviewFileHistory %<cr>', 'Current file History' },
+          H = { '<cmd>DiffviewFileHistory<cr>', 'Branch History' },
           l = { '<cmd>Telescope git_bcommits<cr>', 'Buffer Commits' },
           L = { '<cmd>Telescope git_commits<cr>', 'All Commits' },
+          p = { '<cmd>:Git! push<cr>', 'Push' },
           s = { '<cmd>DiffviewOpen<cr>', 'Git status' },
+          x = { '<cmd>DiffviewClose<cr>', 'Close diff' },
         },
         i = {
           name = '+File Manager',
@@ -350,7 +354,6 @@ return {
           T = { '<cmd>NvimTreeFindFile<cr>', 'Find File In Tree' },
           o = { '<cmd>Oil --float<cr>', 'Oil' },
           u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },
-          z = { zen_mode, 'Toggle Zen Mode' }
         },
         s = {
           name = '+Session',
@@ -412,7 +415,6 @@ return {
         m = { '<cmd>silent! nohls<cr>', 'Clear search highlight' },
         s = { edit_snippets, 'Edit LuaSnippets' },
         t = { '<cmd>tabclose<cr>', 'Close tab' },
-        z = { '<cmd>ZenMode<cr>', 'Toggle Zenmode' },
       },
       ['gp'] = { ':b#<cr>', 'Alternate buffer' },
     })

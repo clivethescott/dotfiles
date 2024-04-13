@@ -5,7 +5,6 @@ return {
     delete_to_trash = true,
     default_file_explorer = false, -- allow usage of netrw
     skip_confirm_for_simple_edits = true,
-    trash_command = 'trash',
     use_default_keymaps = false,
     keymaps = {
       ["g?"] = "actions.show_help",
