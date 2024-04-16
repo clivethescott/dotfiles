@@ -3,6 +3,15 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local nobuffer_large_files = function()
+  local buf = vim.api.nvim_get_current_buf()
+  local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+  if byte_size > 1024 * 1024 then -- 1 Megabyte max
+    return {}
+  end
+  return { buf }
+end
+
 return {
   'hrsh7th/nvim-cmp',
   event = 'InsertEnter',
@@ -14,7 +23,6 @@ return {
     'hrsh7th/cmp-nvim-lsp-document-symbol',
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-cmdline',
-    'uga-rosa/cmp-dictionary',
     {
       'ray-x/lsp_signature.nvim',
       event = "VeryLazy",
@@ -111,8 +119,14 @@ return {
         { name = 'nvim_lua',                 max_item_count = 5 },
         -- { name = 'nvim_lsp_signature_help' }, -- now using lsp_signature
         { name = 'nvim_lsp_document_symbol', max_item_count = 5 },
-        { name = 'buffer',                   max_item_count = 5, keyword_length = 3 },
-        -- { name = "dictionary",               max_item_count = 3, keyword_length = 5 },
+        {
+          name = 'buffer',
+          max_item_count = 5,
+          keyword_length = 3,
+          option = {
+            get_bufnrs = nobuffer_large_files,
+          }
+        },
       })
     })
 
@@ -120,7 +134,12 @@ return {
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
-        { name = 'buffer' }
+        {
+          name = 'buffer',
+          option = {
+            get_bufnrs = nobuffer_large_files,
+          }
+        }
       }
     })
 
