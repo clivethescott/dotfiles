@@ -5,11 +5,11 @@ end
 
 local nobuffer_large_files = function()
   local buf = vim.api.nvim_get_current_buf()
-  local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
-  if byte_size > 1024 * 1024 then -- 1 Megabyte max
-    return {}
+  local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+  if ok and stats and stats.size < 1024 * 1024 then
+    return { buf }
   end
-  return { buf }
+  return {}
 end
 
 return {
