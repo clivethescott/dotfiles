@@ -1,6 +1,7 @@
 return {
   "stevearc/aerial.nvim",
   event = 'LspAttach',
+  cond = false,
   config = function()
     require 'aerial'.setup {
       layout = {
