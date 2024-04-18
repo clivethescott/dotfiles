@@ -19,6 +19,8 @@ vim.opt.completeopt = 'menuone,noinsert,noselect'
 -- Override ignorecase if search includes upper case chars
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
+vim.opt.incsearch = false
+vim.opt.hlsearch = true
 
 -- Briefly show matching bracket
 vim.opt.showmatch = true
@@ -68,7 +70,7 @@ vim.opt.colorcolumn = '100'
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 
 -- Don't show mode change messages
 vim.opt.showmode = false

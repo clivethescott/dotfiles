@@ -3,7 +3,7 @@ return {
   version = '^3', -- Recommended
   ft = { 'rust' },
   cond = function()
-    return require 'helper.utils'.is_home_setup()
+    return require 'helper.utils'.plugin_conf().rust_enabled
   end,
   init = function()
     local cfg = require('rustaceanvim.config')

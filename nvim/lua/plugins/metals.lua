@@ -10,11 +10,19 @@ return {
     -- NOTE: It's highly recommended to set your `statusBarProvider` to `on`. This
     -- enables `metals/status` and also other helpful messages that are shown to you
     metals_config.init_options.statusBarProvider = "on"
+    metals_config.inlayHints = {
+      typeParameters = {
+        enable = true
+      },
+      hintsInPatternMatch = {
+        enable = true,
+      }
+    }
     metals_config.settings = {
-      serverVersion = '1.2.2',
-      fallbackScalaVersion = '3.3.1',
+      -- serverVersion = '1.3.0',
+      fallbackScalaVersion = '3.3.3',
       showImplicitArguments = true,
-      showImplicitConversionsAndClasses = false,
+      showImplicitConversionsAndClasses = true,
       showInferredType = true,
       serverProperties = { "-Xmx1G" },
       superMethodLensesEnabled = true,
@@ -22,7 +30,11 @@ return {
       excludedPackages = {
         "akka.actor.typed.javadsl",
         "com.github.swagger.akka.javadsl"
-      }
+      },
+      testUserInterface = "Test Explorer",
+      autoImportBuild = 'all',
+      defaultBspToBuildTool = true,
+
     }
     metals_config.capabilities = require 'cmp_nvim_lsp'.default_capabilities()
 

@@ -134,12 +134,12 @@ return {
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
-        {
-          name = 'buffer',
-          option = {
-            get_bufnrs = nobuffer_large_files,
-          }
-        }
+        -- {
+        --   name = 'buffer',
+        --   option = {
+        --     get_bufnrs = nobuffer_large_files,
+        --   }
+        -- }
       }
     })
 

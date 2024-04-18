@@ -61,7 +61,7 @@ return {
     "rcarriga/nvim-dap-ui",
   },
   cond = function()
-    return false -- require 'helper.utils'.is_home_setup()
+    return require 'helper.utils'.plugin_conf().dap_enabled
   end,
   config = function()
     local dap = require 'dap'
