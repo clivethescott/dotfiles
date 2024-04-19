@@ -165,6 +165,8 @@ map('n', '<space>io', ':Explore<cr>')
 map('n', '<space>iO', ':Lexplore %:p:h<cr>')
 map('n', '<space>iv', ':Vexplore %:p:h<cr>')
 
+map('n', '<leader>m', ':nohls<cr>')
+
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
@@ -205,43 +207,3 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
   end,
 })
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-
-
-require 'lazy'.setup({
-  {
-    "ibhagwan/fzf-lua",
-    -- optional for icon support
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      -- calling `setup` is optional for customization
-      require("fzf-lua").setup({})
-    end
-  }
-}, {
-  lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json",
-  change_detection = {
-    notify = false
-  },
-  checker = {
-    enabled = true,
-    notify = true,                -- get a notification when new updates are found
-    frequency = 60 * 60 * 24 * 7, -- check for updates every week
-  },
-})
-
-map('n', "<C-P>", function() require('fzf-lua').files() end, { silent = true })
-map('n', "<space>tl", function() require('fzf-lua').resume() end, { silent = true })
-map('n', "<space>ty", "<cmd>:FzfLua<cr>", { silent = true })
-map('n', '<leader>m', '<cmd>silent! nohls<cr>', { silent = true })
