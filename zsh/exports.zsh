@@ -11,11 +11,17 @@ export FZF_CTRL_T_COMMAND='rg --files'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
-export JAVA_HOME=/opt/homebrew/Cellar/openjdk@17/17.0.10/libexec/openjdk.jdk/Contents/Home
+export JAVA_HOME=/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home
 export HOMEBREW_NO_ANALYTICS=1
 export HISTSIZE=50000
 export XDG_CONFIG_HOME=~/.config
 export NVIM_SETUP=home
+# tokyonight theme for fzf
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+--color=fg:#c8d3f5,bg:#222436,hl:#ff966c \
+--color=fg+:#c8d3f5,bg+:#2f334d,hl+:#ff966c \
+--color=info:#82aaff,prompt:#86e1fc,pointer:#86e1fc \
+--color=marker:#c3e88d,spinner:#c3e88d,header:#c3e88d"
 
 CARGO_HOME=$HOME/.cargo
 APP_HOME=$HOME/apps

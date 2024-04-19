@@ -5,8 +5,8 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     -- Enables filtering See :h telescope-fzf-native.nvim-telescope-fzf-native-nvim
-    { 'nvim-telescope/telescope-fzf-native.nvim',     build = 'make' },
-    { 'nvim-telescope/telescope-live-grep-args.nvim', version = "^1.0.0", },
+    { 'nvim-telescope/telescope-fzf-native.nvim',     build = 'make',     event = 'VeryLazy' },
+    { 'nvim-telescope/telescope-live-grep-args.nvim', version = "^1.0.0", event = 'VeryLazy' },
   },
   config = function()
     local actions = require("telescope.actions")

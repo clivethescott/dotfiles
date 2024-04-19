@@ -5,11 +5,11 @@ function M.resolvedCapabilities(client_id)
   vim.print(vim.lsp.get_client_by_id(client_id).server_capabilities)
 end
 
-function M.is_work_setup()
-  return string.find(os.getenv('NVIM_SETUP') or '', 'work') or false
-end
-function M.is_home_setup()
-  return string.find(os.getenv('NVIM_SETUP') or '', 'home') or false
+function M.plugin_conf()
+  return {
+    dap_enabled = false,
+    rust_enabled = false,
+  }
 end
 
 function M.start_smithy()

@@ -5,9 +5,6 @@ end
 return {
   'nvim-lualine/lualine.nvim',
   event = 'VeryLazy',
-  dependencies = {
-    'nvim-tree/nvim-web-devicons'
-  },
   opts = {
     options = {
       icons_enabled = true,
@@ -15,7 +12,7 @@ return {
       globalstatus = true,
     },
     sections = {
-      lualine_a = { 'mode' },
+      -- lualine_a = { 'mode' },
       lualine_b = { 'branch', 'diff',
         {
           'diagnostics',
@@ -26,16 +23,14 @@ return {
           sources = { 'nvim_lsp', 'nvim_diagnostic' },
 
           -- Displays diagnostics for the defined severity types
-          sections = { 'error', 'warn', 'info', 'hint' },
+          sections = { 'error', 'warn' },
 
           diagnostics_color = {
             -- Same values as the general color option can be used here.
             error = 'DiagnosticError', -- Changes diagnostics' error color.
             warn  = 'DiagnosticWarn',  -- Changes diagnostics' warn color.
-            info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
-            hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
           },
-          symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' },
+          symbols = { error = 'E', warn = 'W' },
           colored = true,           -- Displays diagnostics status in color if set to true.
           update_in_insert = false, -- Update diagnostics in insert mode.
           always_visible = false,   -- Show diagnostics even if there are none.
@@ -59,37 +54,16 @@ return {
             unnamed = '[No Name]', -- Text to show for unnamed buffers.
           }
         },
-        {
-          "aerial",
-          -- The separator to be used to separate symbols in status line.
-          sep = " ) ",
-
-          -- The number of symbols to render top-down. In order to render only 'N' last
-          -- symbols, negative numbers may be supplied. For instance, 'depth = -1' can
-          -- be used in order to render only current symbol.
-          depth = nil,
-
-          -- When 'dense' mode is on, icons are not rendered near their symbols. Only
-          -- a single icon that represents the kind of current symbol is rendered at
-          -- the beginning of status line.
-          dense = false,
-
-          -- The separator to be used to separate symbols in dense mode.
-          dense_sep = ".",
-
-          -- Color the symbol icons.
-          colored = true,
-        },
       },
-      lualine_x = { 'encoding', 'filetype' },
+      lualine_x = { 'filetype' },
       lualine_y = { 'progress' },
-      lualine_z = { 'location' }
+      lualine_z = {}
     },
     inactive_sections = {
       lualine_a = {},
       lualine_b = {},
       lualine_c = { 'filename' },
-      lualine_x = { 'location' },
+      lualine_x = {},
       lualine_y = {},
       lualine_z = {}
     },

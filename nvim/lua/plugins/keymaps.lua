@@ -243,26 +243,20 @@ return {
       require 'todo-comments'.jump_next()
     end
 
-    local jump_to_tscontext = function()
-      -- jump to previous treesitter context
-      require("treesitter-context").go_to_context(vim.v.count1)
-    end
-
     local wk                = require 'which-key'
     wk.register({
       ["["] = {
         name = '+Previous',
-        T = { jump_to_tscontext, 'Jump to context' },
+        c = { "<cmd>cprevious<cr>", 'Quickfix Entry' },
+        C = { "<cmd>cNfile<cr>", 'Quickfix Entry in last file' },
         t = { prev_todo, 'TODO' },
         q = { "<cmd>cprevious<cr>", 'Quickfix Entry' },
-        Q = { "<cmd>cNfile<cr>", 'Quickfix Entry in last file' },
       },
       ["]"] = {
         name = '+Next',
-        c = { jump_to_tscontext, 'Jump to context' },
         t = { next_todo, 'TODO' },
-        q = { "<cmd>cnext<cr>", 'Quickfix Entry' },
-        Q = { "<cmd>cnfile<cr>", 'Quickfix Entry in next file' },
+        c = { "<cmd>cnext<cr>", 'Quickfix Entry' },
+        C = { "<cmd>cnfile<cr>", 'Quickfix Entry in next file' },
       },
       ["<space>"] = {
         ['['] = { ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", 'Add blank line above' },
@@ -344,7 +338,6 @@ return {
         },
         o = {
           name = '+Open Window',
-          a = { '<cmd>AerialToggle<cr>', 'Aerial Outline' },
           d = { '<cmd>DiffviewOpen<cr>', 'Diffview' },
           f = { toggle_winbar, 'Winbar' },
           l = { '<cmd>Lazy<cr>', 'Lazy Plugin Mgr' },
@@ -375,7 +368,6 @@ return {
         },
         t = {
           name = '+Telescope',
-          a = { '<cmd>Telescope aerial<cr>', 'Outline' },
           c = { '<cmd>Telescope commands<cr>', 'Commands' },
           f = { '<cmd>Telescope live_grep_args<cr>', 'Live grep args' },
           F = { function() require("telescope-live-grep-args.shortcuts").grep_word_under_cursor() end, 'Live grep cword' },
