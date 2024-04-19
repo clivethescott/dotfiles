@@ -1,9 +1,9 @@
 return {
   'stevearc/oil.nvim',
-  cmd = 'Oil',
+  event = 'VeryLazy',
   opts = {
     delete_to_trash = true,
-    default_file_explorer = false, -- allow usage of netrw
+    default_file_explorer = true, -- allow usage of netrw or not
     skip_confirm_for_simple_edits = true,
     use_default_keymaps = false,
     keymaps = {
