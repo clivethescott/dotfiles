@@ -40,7 +40,10 @@ return {
 
     metals_config.on_attach = function()
       -- client and bufnr will be used in lspconfig
-      metals.setup_dap()
+      local dap_enabled = require 'helper.utils'.plugin_conf().dap_enabled
+      if dap_enabled then
+        metals.setup_dap()
+      end
       -- other settings for metals here
     end
 

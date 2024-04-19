@@ -5,15 +5,11 @@ return {
   opts = {
     progress = {
       suppress_on_insert = true,
+      ignore = { 'lua_ls' },
       display = {
-        overrides = {
-          jdtls = {      -- Name of LSP client
-            ignore = true, -- Ignore notifications from this source
-          },
-          lua_ls = {
-            ignore = true, -- Ignore notifications from this source
-          }
-        },
+        render_limit = 5,
+        done_ttl = 1,
+        progress_ttl = 5,
       }
     },
   }
