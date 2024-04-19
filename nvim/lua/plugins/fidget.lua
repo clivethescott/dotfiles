@@ -1,14 +1,19 @@
 return {
   'j-hui/fidget.nvim',
-  tag = 'legacy',
+  tag = "v1.0.0",
   event = 'LspAttach',
   opts = {
-    sources = {
-      jdtls = {           -- Name of LSP client
-        ignore = true,    -- Ignore notifications from this source
-      },
-      lua_ls = {
-        ignore = true,    -- Ignore notifications from this source
+    progress = {
+      suppress_on_insert = true,
+      display = {
+        overrides = {
+          jdtls = {      -- Name of LSP client
+            ignore = true, -- Ignore notifications from this source
+          },
+          lua_ls = {
+            ignore = true, -- Ignore notifications from this source
+          }
+        },
       }
     },
   }
