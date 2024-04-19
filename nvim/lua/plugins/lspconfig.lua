@@ -348,6 +348,9 @@ return {
       }
     }
     require 'lspconfig'.terraformls.setup {}
+    require 'lspconfig'.hls.setup {
+      filetypes = { 'haskell', 'lhaskell', 'cabal' },
+    }
 
     setup_go(lspconfig, capabilities)
     setup_python(lspconfig, capabilities)
