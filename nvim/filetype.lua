@@ -8,5 +8,6 @@ vim.filetype.add({
     tfstate = "json",
     pp = "json",
     sql = "sql",
+    hurl = "hurl",
   },
 })
