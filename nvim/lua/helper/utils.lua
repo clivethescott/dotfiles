@@ -8,7 +8,7 @@ end
 function M.plugin_conf()
   return {
     dap_enabled = false,
-    rust_enabled = false,
+    rust_enabled = true,
   }
 end
 
