@@ -84,7 +84,7 @@ return {
       preselect = cmp.PreselectMode.None,
       completion = {
         -- autocomplete = false,
-        keyword_length = 1 -- number of characters needed to trigger auto-completion
+        keyword_length = 2 -- number of characters needed to trigger auto-completion
       },
       snippet = {
         -- REQUIRED - you must specify a snippet engine
@@ -121,7 +121,7 @@ return {
         { name = 'nvim_lsp_document_symbol', max_item_count = 5 },
         {
           name = 'buffer',
-          max_item_count = 5,
+          max_item_count = 1,
           keyword_length = 3,
           option = {
             get_bufnrs = nobuffer_large_files,

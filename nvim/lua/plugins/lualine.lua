@@ -7,7 +7,7 @@ return {
   event = 'VeryLazy',
   opts = {
     options = {
-      icons_enabled = true,
+      icons_enabled = false,
       theme = 'tokyonight',
       globalstatus = true,
     },
@@ -47,7 +47,6 @@ return {
           -- 2: Absolute path
 
           shorting_target = 40, -- Shortens path to leave 40 spaces in the window
-          -- for other components. (terrible name, any suggestions?)
           symbols = {
             modified = '[+]',      -- Text to show when the file is modified.
             readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
