@@ -162,3 +162,9 @@ function cd() {
       fi
   fi
 }
+
+function load_atuin() {
+  eval "$(atuin init zsh)"
+  # TODO: figure out why these aren't being sourced even though in $fpath
+  source /opt/homebrew/share/zsh/site-functions/_atuin 
+}
