@@ -11,9 +11,9 @@ fi
 # Customize to your needs...
 
 source /opt/homebrew/opt/fzf/shell/completion.zsh
-source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
-# brew install zsh-vi-mode
-source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+# source /opt/homebrew/opt/fzf/shell/key-bindings.zsh --> using atuin
+# brew install zsh-vi-mode Not sure why I installed this but causes key conflicts with atuin
+# source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 source $ZDOTDIR/setopt.zsh 
 source $ZDOTDIR/aliases.zsh
@@ -74,3 +74,7 @@ eval "$(zoxide init zsh)"
 
 # opam configuration
 [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh"  > /dev/null 2> /dev/null
+
+eval "$(atuin init zsh)"
+# TODO: figure out why these aren't being sourced even though in $fpath
+source /opt/homebrew/share/zsh/site-functions/_atuin 
