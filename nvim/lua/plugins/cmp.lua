@@ -1,6 +1,7 @@
 local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("^%s*$") == nil
 end
 
 local nobuffer_large_files = function()
@@ -71,15 +72,11 @@ return {
       },
       formatting = {
         fields = { 'kind', 'abbr', 'menu' },
-        format = function(entry, vim_item)
-          -- if you have lspkind installed, you can use it like
-          -- in the following line:
-          vim_item.kind = lspkind.symbolic(vim_item.kind, { mode = "symbol" })
-          vim_item.menu = source_mapping[entry.source.name]
-          local maxwidth = 80
-          vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
-          return vim_item
-        end,
+        format = lspkind.cmp_format({
+          mode = 'symbol',
+          show_labelDetails = true,
+          symbol_map = { Copilot = "" },
+        }),
       },
       preselect = cmp.PreselectMode.None,
       completion = {
@@ -112,20 +109,21 @@ return {
         -- ['<S-Tab>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
       }),
       sources = cmp.config.sources({
-        { name = 'path', max_item_count = 30 },
-      }, {
-        { name = 'nvim_lsp',                 max_item_count = 25 },
-        { name = 'luasnip',                  max_item_count = 3, keyword_length = 1 },
-        { name = 'nvim_lua',                 max_item_count = 5 },
+        { name = 'nvim_lsp',                 max_item_count = 25, group_index = 1 },
+        { name = 'copilot',                  max_item_count = 3,  group_index = 2 },
+        { name = 'luasnip',                  max_item_count = 3,  keyword_length = 2 },
+        { name = 'nvim_lsp_document_symbol', max_item_count = 5,  group_index = 2 },
+        { name = 'path',                     max_item_count = 30, group_index = 3 },
+        { name = 'nvim_lua',                 max_item_count = 5,  group_index = 4 },
         -- { name = 'nvim_lsp_signature_help' }, -- now using lsp_signature
-        { name = 'nvim_lsp_document_symbol', max_item_count = 5 },
         {
           name = 'buffer',
           max_item_count = 1,
           keyword_length = 3,
           option = {
             get_bufnrs = nobuffer_large_files,
-          }
+          },
+          group_index = 4
         },
       })
     })
