@@ -214,7 +214,7 @@ return {
         require('luasnip.extras.select_choice')()
       end
     end)
-    local edit_snippets     = function()
+    local edit_snippets = function()
       require("luasnip.loaders").edit_snippet_files {
         format = function(file, source_name)
           if source_name == 'lua' then
@@ -236,20 +236,20 @@ return {
       }
     end
 
-    local prev_todo         = function()
+    local prev_todo     = function()
       require 'todo-comments'.jump_prev()
     end
-    local next_todo         = function()
+    local next_todo     = function()
       require 'todo-comments'.jump_next()
     end
 
-    local wk                = require 'which-key'
+    local wk            = require 'which-key'
     wk.register({
       ["["] = {
         name = '+Previous',
-        t = { prev_todo, 'TODO' },
         q = { "<cmd>cprevious<cr>", 'Quickfix Entry' },
         Q = { "<cmd>cNfile<cr>", 'Quickfix Entry in last file' },
+        t = { prev_todo, 'TODO' },
       },
       ["]"] = {
         name = '+Next',
