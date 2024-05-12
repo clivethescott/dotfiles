@@ -8,6 +8,27 @@ gui:
     'Clive Scott': 'green'
     '*': 'yellow'
   enlargedSideViewLocation: "top"
+  theme:
+    activeBorderColor:
+      - '#89b4fa'
+      - bold
+    inactiveBorderColor:
+      - '#a6adc8'
+    optionsTextColor:
+      - '#89b4fa'
+    selectedLineBgColor:
+      - '#313244'
+    cherryPickedCommitBgColor:
+      - '#45475a'
+    cherryPickedCommitFgColor:
+      - '#89b4fa'
+    unstagedChangesColor:
+      - '#f38ba8'
+    defaultFgColor:
+      - '#cdd6f4'
+    searchingActiveBorderColor:
+      - '#f9e2af'
+
 git:
   commitPrefixes:
     subscription-scheduler:
@@ -28,8 +49,9 @@ keybinding:
   universal:
     prevItem: '<c-p>'
     nextItem: '<c-n>'
-    scrollUpMain-alt1: null
+    scrollUpMain-alt1: <disabled>
     copyToClipboard: 'y'
     openRecentRepos: '<c-o>'
 services:
   'github.bamtech.co': 'github:github.bamtech.co'
+#
