@@ -10,10 +10,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
-  -- More contrast for Line numbers when using tokyonight
+-- More contrast for Line numbers when using tokyonight
 if vim.g.colors_name == 'tokyonight' then
-  vim.api.nvim_set_hl(0, 'LineNr', { fg = '#737aa2'})
+  vim.api.nvim_set_hl(0, 'LineNr', { fg = '#737aa2' })
 end
 
 vim.api.nvim_set_hl(0, 'WinBarPath', { fg = '#545c7e' })
 vim.api.nvim_set_hl(0, 'WinBarModified', { fg = '#e0af68' })
+

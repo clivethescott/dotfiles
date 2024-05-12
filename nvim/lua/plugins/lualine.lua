@@ -8,7 +8,7 @@ return {
   opts = {
     options = {
       icons_enabled = false,
-      theme = 'tokyonight',
+      theme = 'catppuccin-mocha',
       globalstatus = true,
     },
     sections = {

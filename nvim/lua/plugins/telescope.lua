@@ -5,9 +5,9 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     -- Enables filtering See :h telescope-fzf-native.nvim-telescope-fzf-native-nvim
-    -- { 'nvim-telescope/telescope-fzf-native.nvim',     build = 'make',     event = 'VeryLazy' },
+    { 'nvim-telescope/telescope-fzf-native.nvim',     build = 'make',     event = 'VeryLazy' },
     -- File name has highest priority
-    { 'natecraddock/telescope-zf-native.nvim',        event = 'VeryLazy' },
+    -- { 'natecraddock/telescope-zf-native.nvim',        event = 'VeryLazy' },
     { 'nvim-telescope/telescope-live-grep-args.nvim', version = "^1.0.0", event = 'VeryLazy' },
   },
   config = function()
@@ -143,8 +143,8 @@ return {
     }
 
     -- 'nvim-telescope/telescope-fzf-native.nvim'
-    -- require('telescope').load_extension('fzf')
-    require('telescope').load_extension('zf-native')
+    require('telescope').load_extension('fzf')
+    -- require('telescope').load_extension('zf-native')
     require('telescope').load_extension('live_grep_args')
   end
 }
