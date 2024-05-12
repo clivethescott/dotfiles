@@ -5,6 +5,13 @@ return {
     pcall(require('nvim-treesitter.install').update { with_sync = false })
   end,
   dependencies = {
+    { 'nvim-treesitter/nvim-treesitter-textobjects', event = 'InsertEnter' },
+    {
+      'windwp/nvim-ts-autotag',
+      ft = { 'html' },
+      event = 'InsertEnter',
+    },
+    { 'nvim-treesitter/playground',                  cmd = 'TSPlaygroundToggle' }
   },
   config = function()
     local treesitter_config = require 'nvim-treesitter.configs'
