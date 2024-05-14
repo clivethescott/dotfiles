@@ -80,6 +80,7 @@ return {
 
     -- Resize v-splits
     map('n', '<space>wh', '5<c-w><')
+    map('n', '<M-<up>>', '5<c-w><')
     map('n', '<space>wk', '5<c-w>+')
     map('n', '<space>wl', '5<c-w>>')
     map('n', '<space>wj', '5<c-w>-')
