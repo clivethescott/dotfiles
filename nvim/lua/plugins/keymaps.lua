@@ -186,32 +186,29 @@ return {
       require 'dap-go'.debug_test()
     end
 
+
     -- Luasnip Mappings
-    map({ 'i', 's' }, '<Tab>', function()
-      local luasnip = require 'luasnip'
-      if luasnip.expand_or_jumpable() then
-        luasnip.jump(1)
-      else
-        return '<Tab>'
+    map({ 'i', 's' }, '<C-j>', function()
+      local ls = require 'luasnip'
+      if ls.jumpable(1) then
+        ls.jump(1)
       end
-    end, { expr = true })
-    map({ 'i', 's' }, '<S-Tab>', function()
-      local luasnip = require 'luasnip'
-      if luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        return '<S-Tab>'
+    end)
+    map({ 'i', 's' }, '<C-k>', function()
+      local ls = require 'luasnip'
+      if ls.jumpable(-1) then
+        ls.jump(-1)
       end
-    end, { expr = true })
+    end)
     -- minimal choice change, same as when using vim.ui.select below
     map({ 'i' }, '<C-y>', function()
-      -- require 'luasnip'.change_choice(1)
       require 'luasnip'.expand()
     end)
     -- Luasnip choice selection using vim.ui.select
-    map({ 'i' }, '<C-u>', function()
-      if require 'luasnip'.get_active_snip() then
-        require('luasnip.extras.select_choice')()
+    map({ 'i' }, '<C-e>', function()
+      local ls = require'luasnip'
+      if ls.choice_active() then
+        ls.change_choice(1)
       end
     end)
     local edit_snippets = function()

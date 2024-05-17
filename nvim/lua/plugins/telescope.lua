@@ -38,6 +38,10 @@ return {
 
     local home = os.getenv('HOME')
     local global_ignore = home .. '/.gitignore'
+    local open_continue = function(prompt_bufnr) -- open file and continue
+      actions.select_default(prompt_bufnr)
+      require("telescope.builtin").resume()
+    end
 
     require('telescope').setup {
       defaults = {
@@ -72,46 +76,22 @@ return {
           "--trim", -- add this to trim indentation in results window
           "--follow"
         },
+        -- https://github.com/nvim-telescope/telescope.nvim#default-mappings
         mappings = {
           i = {
-            ['<C-n>'] = actions.move_selection_next,
-            ['<C-p>'] = actions.move_selection_previous,
-            ['<C-u>'] = actions.preview_scrolling_up,
-            ['<C-d>'] = actions.preview_scrolling_down,
-            -- actions.which_key shows the mappings for your picker,
-            -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-            -- ["<esc>"] = actions.close,
             ["<c-[>"] = { "<esc>", type = "command" },
-            ["<C-c>"] = actions.close,
             ["<C-h>"] = "which_key",
             ["<C-i>"] = require('telescope.actions.layout').toggle_preview,
-            ["<C-o>"] = function(prompt_bufnr) -- open file and continue
-              actions.select_default(prompt_bufnr)
-              require("telescope.builtin").resume()
-            end,
-            ["<C-q>"] = actions.close,
-            ["<C-y>"] = function(prompt_bufnr)
-              actions.send_to_qflist(prompt_bufnr)
-              vim.cmd('copen')
-            end,
-            ["<C-g>"] = actions.send_selected_to_qflist,
-            ["<C-t>"] = actions.toggle_selection,
-            ["<C-s>"] = actions.select_vertical,
+            ["<C-s>"] = actions.select_horizontal,
           },
           n = {
-            ['<C-n>'] = actions.move_selection_next,
-            ['<C-p>'] = actions.move_selection_previous,
-            ['<C-u>'] = actions.preview_scrolling_up,
-            ['<C-d>'] = actions.preview_scrolling_down,
-            ["<C-q>"] = actions.close,
-            ['gv'] = actions.select_vertical,
-            ['gs'] = actions.select_horizontal,
-            ["go"] = function() require 'trouble.providers.telescope'.open_with_trouble() end,
-            ["gt"] = actions.toggle_selection,
-            ["gT"] = actions.toggle_all,
-            ["gx"] = actions.delete_buffer,
+            ["<M-a>"] = actions.toggle_all,
+            ["<M-o>"] = open_continue,
+            ["<M-d>"] = actions.delete_buffer,
+            ["<M-t>"] = function() require 'trouble.providers.telescope'.open_with_trouble() end,
+            ["<C-i>"] = require('telescope.actions.layout').toggle_preview,
+            ["<C-s>"] = actions.select_horizontal,
             ["q"] = actions.close,
-            ["gq"] = actions.send_selected_to_qflist,
             ["<esc>"] = actions.close,
             ["?"] = "which_key",
             ["g?"] = "which_key",
