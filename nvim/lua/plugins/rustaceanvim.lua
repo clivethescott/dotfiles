@@ -1,6 +1,6 @@
 return {
   "mrcjkb/rustaceanvim",
-  version = '^3', -- Recommended
+  version = '^4', -- Recommended
   ft = { 'rust' },
   cond = function()
     return require 'helper.utils'.plugin_conf().rust_enabled
