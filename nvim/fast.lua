@@ -9,7 +9,7 @@ vim.opt.spelllang = 'en_gb'
 
 -- Enables Nicer colors in the terminal
 vim.opt.termguicolors = true
-vim.cmd [[ colorscheme habamax ]]
+-- vim.cmd [[ colorscheme habamax ]] -- use the new default theme in Neovim!
 
 vim.opt.lazyredraw = true
 

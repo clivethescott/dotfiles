@@ -19,7 +19,7 @@ vim.opt.completeopt = 'menuone,noinsert,noselect'
 -- Override ignorecase if search includes upper case chars
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
-vim.opt.incsearch = false
+vim.opt.incsearch = true
 vim.opt.hlsearch = true
 
 -- Briefly show matching bracket
@@ -45,7 +45,7 @@ vim.opt.updatetime = 100
 
 vim.opt.wildignore:append({ '*/tmp/*', '*.so', '*.swp', '*.zip', '*.jar', '*/node_modules/*', '*/target/*',
   '*/.git/*', '*.class', '*.pyc', '*/plugged/*', '*/undodir/*', '*.png', '*.dex' })
-vim.opt.grepprg = 'rg --vimgrep --smart-case'
+-- vim.opt.grepprg = 'rg --vimgrep --smart-case' -- nvim now auto detects ripgrep!
 
 vim.opt.path:append(nvim_config_dir)
 vim.opt.rtp:append('/opt/homebrew/opt/fzf')

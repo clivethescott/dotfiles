@@ -34,6 +34,18 @@ api.nvim_create_autocmd({ 'BufWritePost' }, {
     vim.cmd ":FormatWrite"
   end,
 })
+
+api.nvim_create_autocmd({ 'BufEnter', 'InsertLeave' }, {
+  desc = 'Refresh code lens',
+  group = events_group,
+  pattern = { '*.py', '*.scala', '*.go', '*.java', '*.rust' },
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.id)
+    if client and client.supports_method('textDocument/codeLens') then
+      vim.lsp.codelens.refresh({ bufnr = 0 })
+    end
+  end,
+})
 -- Some filetype plugins will reset formatoptions, hence needed this way
 -- api.nvim_create_autocmd({ 'FileType' }, {
 --   desc = 'Dont auto-continue comments',
@@ -72,9 +84,9 @@ api.nvim_create_autocmd({ "BufReadPost" }, {
 })
 
 vim.api.nvim_create_autocmd("BufRead", {
-    group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
-    pattern = "Cargo.toml",
-    callback = function()
-        require'cmp'.setup.buffer({ sources = { { name = "crates" } } })
-    end,
+  group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
+  pattern = "Cargo.toml",
+  callback = function()
+    require 'cmp'.setup.buffer({ sources = { { name = "crates" } } })
+  end,
 })

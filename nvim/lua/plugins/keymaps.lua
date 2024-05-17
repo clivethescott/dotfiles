@@ -142,7 +142,6 @@ return {
     end)
     map('n', 'Ï', function() require 'telescope.builtin'.live_grep() end)
     map('n', 'ƒ', function() require 'telescope.builtin'.current_buffer_fuzzy_find() end)
-    map('n', '<C-_>', function() require 'Comment.api'.toggle.linewise.current() end)
 
     local find_nvim_files = function()
       require 'telescope.builtin'.find_files {

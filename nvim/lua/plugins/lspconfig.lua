@@ -83,15 +83,19 @@ local on_attach = function(client, bufnr)
   wk.register({
     ["["] = {
       name = '+Previous',
+      -- d = { prev_diagnostic, 'Diagnostic' }, -- nvim default
       e = { prev_diagnostic, 'Diagnostic' },
     },
     ["]"] = {
       name = '+Next',
+      -- d = { next_diagnostic, 'Diagnostic' }, -- nvim default
       e = { vim.diagnostic.goto_next, 'Diagnostic' },
     },
     ["<leader>r"] = { vim.lsp.buf.rename, 'Refactor Rename' },
     ["®"] = { vim.lsp.buf.rename, 'Refactor Rename' },
     ["<leader>d"] = { open_diagnostic_float, 'Open Diagnostic Float' },
+    -- ["<C-w>d"] = { open_diagnostic_float, 'Open Diagnostic Float' }, -- nvim default
+    -- ["<C-w><C-d>"] = { open_diagnostic_float, 'Open Diagnostic Float' }, -- nvim default
     ["<leader>D"] = { telescope_builtin.diagnostics, 'Diagnostics' },
     ["<space>"] = {
       l = {
@@ -126,13 +130,13 @@ local on_attach = function(client, bufnr)
       h = { utils.show_word_help, 'Word Help' },
       i = { telescope_builtin.lsp_implementations, 'Implementation' },
       l = { code_lens_run, 'Show Code Lens' },
-      m = { vim.lsp.codelens.refresh, 'Refresh Code Lens' },
+      m = { function() vim.lsp.codelens.refresh { bufnr = 0 } end, 'Refresh Code Lens' },
       r = { lsp_references, 'References <Telescope>' },
       R = { '<cmd>Trouble lsp_references<cr>', 'References <Trouble>' },
       s = { vim.lsp.buf.signature_help, 'Signature Help' },
       y = { telescope_builtin.lsp_type_definitions, 'Type Def' },
     },
-    K = { vim.lsp.buf.hover, 'Hover' },
+    K = { vim.lsp.buf.hover, 'Hover' }, -- nvim default
   }, wk_buf_opts)
 end
 
@@ -273,7 +277,6 @@ return {
   event = 'BufReadPost',
   -- event = 'VeryLazy', causes an issue where LspAttach is not called if opening files directly
   dependencies = {
-    "lvimuser/lsp-inlayhints.nvim",
     'williamboman/mason.nvim',
     "folke/which-key.nvim",
   },
@@ -285,10 +288,9 @@ return {
       callback = function(args)
         local bufnr = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if vim.fn.has("nvim-0.10") == 1 and client.server_capabilities.inlayHintProvider then
-          vim.lsp.inlay_hint.enable(args.buf, true)
+        if client.server_capabilities.inlayHintProvider then
+          vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
         end
-        require("lsp-inlayhints").on_attach(client, bufnr)
         on_attach(client, bufnr)
 
         vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
