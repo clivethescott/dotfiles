@@ -59,13 +59,6 @@ return {
     end
 
     local lspkind = require 'lspkind'
-    local source_mapping = {
-      buffer = "[Buffer]",
-      nvim_lsp = "[LSP]",
-      nvim_lua = "[Lua]",
-      luasnip = "[Snip]",
-      path = "[Path]",
-    }
     cmp.setup({
       experimental = {
         ghost_text = false,
