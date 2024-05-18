@@ -21,7 +21,7 @@ return {
     metals_config.settings = {
       serverVersion = '1.3.1',
       fallbackScalaVersion = '3.3.3',
-      showImplicitArguments = true,
+      showImplicitArguments = false,
       showImplicitConversionsAndClasses = true,
       showInferredType = true,
       serverProperties = { "-Xmx1G" },
