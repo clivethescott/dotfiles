@@ -12,29 +12,6 @@ return {
   },
   config = function()
     local actions = require("telescope.actions")
-    local previewers = require("telescope.previewers")
-    local Job = require("plenary.job")
-
-    -- don't preview binaries
-    local new_maker = function(filepath, bufnr, opts)
-      filepath = vim.fn.expand(filepath)
-      Job:new({
-        command = "file",
-        args = { "--mime-type", "-b", filepath },
-        on_exit = function(j)
-          local og_mime_type = j:result()[1]
-          local mime_type = vim.split(og_mime_type, "/", { plain = true, trimempty = true })[1]
-          if mime_type == "text" or string.find(og_mime_type, 'json') then
-            previewers.buffer_previewer_maker(filepath, bufnr, opts)
-          else
-            -- maybe we want to write something to the buffer here
-            vim.schedule(function()
-              vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "BINARY" })
-            end)
-          end
-        end
-      }):sync()
-    end
 
     local home = os.getenv('HOME')
     local global_ignore = home .. '/.gitignore'
@@ -65,11 +42,10 @@ return {
         -- end,
         prompt_prefix = "     ",
         file_ignore_patterns = {}, -- Note that setting this may affect Telescope rendering of document symbols
-        buffer_previewer_maker = new_maker,
         preview = {
           hide_on_startup = true,
-          treesitter = false,
-          filesize_limit = 5, -- MB
+          -- treesitter = false,
+          filesize_limit = 1, -- MB
         },
         vimgrep_arguments = {
           "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case",
@@ -83,6 +59,8 @@ return {
             ["<C-h>"] = "which_key",
             ["<C-i>"] = require('telescope.actions.layout').toggle_preview,
             ["<C-s>"] = actions.select_horizontal,
+            ["<M-s>"] = actions.select_horizontal,
+            ["<M-v>"] = actions.select_vertical,
           },
           n = {
             ["<M-a>"] = actions.toggle_all,
@@ -91,6 +69,8 @@ return {
             ["<M-t>"] = function() require 'trouble.providers.telescope'.open_with_trouble() end,
             ["<C-i>"] = require('telescope.actions.layout').toggle_preview,
             ["<C-s>"] = actions.select_horizontal,
+            ["<M-s>"] = actions.select_horizontal,
+            ["<M-v>"] = actions.select_vertical,
             ["q"] = actions.close,
             ["<esc>"] = actions.close,
             ["?"] = "which_key",
@@ -114,10 +94,6 @@ return {
               -- ["<C-k>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
             },
           },
-          -- ... also accepts theme settings, for example:
-          -- theme = "dropdown", -- use dropdown theme
-          -- theme = { }, -- use own theme spec
-          -- layout_config = { mirror=true }, -- mirror preview pane
         }
       },
     }

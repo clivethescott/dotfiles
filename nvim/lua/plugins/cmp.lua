@@ -26,7 +26,7 @@ return {
     'hrsh7th/cmp-cmdline',
     {
       'ray-x/lsp_signature.nvim',
-      event = "VeryLazy",
+      event = "BufReadPost",
       config = true,
     },
     {
@@ -93,7 +93,6 @@ return {
         -- ['<C-x>'] = cmp.mapping.abort(),
         ['<C-x>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),  -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<C-n>'] = cmp.mapping(select_next_item, { 'i', 's' }),
         ['<C-e>'] = cmp.mapping.abort(),
         -- ['<Tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),

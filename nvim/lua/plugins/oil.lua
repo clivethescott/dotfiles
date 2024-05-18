@@ -11,7 +11,6 @@ return {
       ["<CR>"] = "actions.select",
       ["<M-v>"] = "actions.select_vsplit",
       ["<M-s>"] = "actions.select_split",
-      ["<C-t>"] = "actions.select_tab",
       ["<C-i>"] = "actions.preview",
       ["<C-c>"] = "actions.close",
       ["<M-r>"] = "actions.refresh",
