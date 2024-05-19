@@ -88,7 +88,9 @@ return {
       },
       mapping = cmp.mapping.preset.insert({
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-k>'] = cmp.mapping.scroll_docs(-4),
         -- ['<C-y>'] = cmp.mapping.complete(),
         -- ['<C-x>'] = cmp.mapping.abort(),
         ['<C-x>'] = cmp.mapping.abort(),
@@ -98,6 +100,7 @@ return {
         -- ['<Tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
 
         ['<C-p>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
+
         -- ['<S-Tab>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
       }),
       sources = cmp.config.sources({
