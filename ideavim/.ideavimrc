@@ -1,4 +1,5 @@
 " ref: https://www.cyberwizard.io/posts/the-ultimate-ideavim-setup/
+" Finding action ids: https://github.com/JetBrains/ideavim?tab=readme-ov-file#finding-action-ids
 let mapleader = ','
 " Disable that annoying bell sound
 set visualbell
@@ -14,10 +15,10 @@ set ideajoin
 
 " plugins
 set highlightedyank
-set sneak
-set nerdtree
+" set sneak
+" set nerdtree
 " setup idea-which-key
-set whick-key notimeout timeoutlen=5000
+" set whick-key notimeout timeoutlen=5000
 
 nnoremap <leader>m :nohls<cr>
 nnoremap gp :b#<cr>
@@ -26,8 +27,8 @@ nnoremap ' `
 nmap <Leader>v :vsplit<CR>
 nmap <Leader>s :split<CR>
 
-inoremap <C-n> <Action>(PopupMenu-selectNext)
-inoremap <C-p> <Action>(PopupMenu-selectPrev)
+" inoremap <C-n> <Action>(PopupMenu-selectNext)
+" inoremap <C-p> <Action>(PopupMenu-selectPrev)
 
 " Easy visual indentation
 vnoremap < <gv
@@ -58,10 +59,17 @@ nnoremap gf :action GotoFile<CR>
 nnoremap gr :action ShowUsages<CR>
 nnoremap gc :action CopyReference<CR>
 nnoremap gy :action GotoTypeDeclaration<CR>
-nnoremap g[ :action GotoPreviousError<CR>
-nnoremap g] :action GotoNextError<CR>
+nnoremap [c :action Diff.PrevChange<CR>
+nnoremap ]c :action Diff.NextChange<CR>
+nnoremap <space>gd :action Diff.ShowDiff<CR>
+nnoremap [d :action GotoPreviousError<CR>
+nnoremap ]d :action GotoNextError<CR>
+nnoremap [g :action VcsShowPrevChangeMarker<CR>
+nnoremap ]g :action VcsShowNextChangeMarker<CR>
+
 nnoremap <leader>f :action ReformatCode<CR>
 nnoremap <leader>e :action RecentChangedFiles<CR>
+imap <D-e> :action RecentChangedFiles<CR>
 
 nnoremap K :action ParameterInfo<CR>
 " Make shift + arrow key work again
@@ -98,12 +106,17 @@ nnoremap zo :action ExpandRegion<CR>
 nnoremap <leader>zc :action CollapseAllRegions<CR>
 nnoremap <leader>zo :action ExpandAllRegions<CR>
 
-map <D-[> <Esc>
+imap <D-[> <Esc>
 map <D-u> :action EditorPageUp<cr>
 map <D-d> :action EditorPageDown<cr>
 map <D-e> <action>(RecentFiles)
 map <C-c> <Esc>
 
 
-map <leader>1 :NERDTreeToggle<CR>
+map <leader>1 :action ActivateProjectToolWindow<CR>
+" map <leader>! :action SelectInProjectView<CR>
 map <leader>r <Action>(RenameElement)
+
+nnoremap <space>tc :action GotoAction<CR>
+nnoremap <space>tf :action FindInPath<CR>
+nnoremap <space>mo :action ActivatebspToolWindow<CR>
