@@ -206,12 +206,12 @@ return {
     end)
     -- Luasnip choice selection using vim.ui.select
     map({ 'i' }, '<C-e>', function()
-      local ls = require'luasnip'
+      local ls = require 'luasnip'
       if ls.choice_active() then
         ls.change_choice(1)
       end
     end)
-    local edit_snippets = function()
+    local edit_snippets      = function()
       require("luasnip.loaders").edit_snippet_files {
         format = function(file, source_name)
           if source_name == 'lua' then
@@ -233,14 +233,20 @@ return {
       }
     end
 
-    local prev_todo     = function()
+    local prev_todo          = function()
       require 'todo-comments'.jump_prev()
     end
-    local next_todo     = function()
+    local next_todo          = function()
       require 'todo-comments'.jump_next()
     end
 
-    local wk            = require 'which-key'
+    local toggle_inlay_hints = function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    end
+
+    map({ 'n', 'i' }, '<M-i>', toggle_inlay_hints)
+
+    local wk = require 'which-key'
     wk.register({
       ["["] = {
         name = '+Previous',
