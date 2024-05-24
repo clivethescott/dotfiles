@@ -155,14 +155,9 @@ local setup_go = function(lspconfig, capabilities)
           parameterNames = true,
           rangeVariableTypes = true,
         },
-        semanticTokens = true,
-        codelenses = {
-          generate = true,
-        },
         experimentalPostfixCompletions = true,
         analyses = {
-          unusedparams = true,
-          shadow = true,
+          unusedvariable = true,
         },
         staticcheck = true,
         gofumpt = true,
@@ -288,9 +283,9 @@ return {
       callback = function(args)
         local bufnr = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client.server_capabilities.inlayHintProvider then
-          vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-        end
+        -- if client.server_capabilities.inlayHintProvider then
+        --   vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+        -- end
         on_attach(client, bufnr)
 
         vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
