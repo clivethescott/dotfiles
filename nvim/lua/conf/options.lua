@@ -113,3 +113,4 @@ vim.opt.scrolloff = 1
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.tmux_navigator_no_mappings = 1
