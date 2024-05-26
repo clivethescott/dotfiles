@@ -93,7 +93,7 @@ return {
     map('n', 'Q', ':q<cr>')
 
     -- Faster way to yank line
-    map('n', 'Y', 'y$')
+    map('n', 'Y', 'yy')
 
     -- Shouldn't be using these anyway
     map('n', '<left>', '<nop>')
