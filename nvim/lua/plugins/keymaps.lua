@@ -73,14 +73,10 @@ return {
     end
 
     -- Split movements
-    map('n', '<c-h>', '<c-w>h')
-    map('n', '<c-j>', '<c-w>j')
-    map('n', '<c-k>', '<c-w>k')
-    map('n', '<c-l>', '<c-w>l')
+    -- Replace with tmux-navigator
 
     -- Resize v-splits
     map('n', '<space>wh', '5<c-w><')
-    map('n', '<M-<up>>', '5<c-w><')
     map('n', '<space>wk', '5<c-w>+')
     map('n', '<space>wl', '5<c-w>>')
     map('n', '<space>wj', '5<c-w>-')
@@ -97,7 +93,7 @@ return {
     map('n', 'Q', ':q<cr>')
 
     -- Faster way to yank line
-    map('n', 'Y', 'yy')
+    map('n', 'Y', 'y$')
 
     -- Shouldn't be using these anyway
     map('n', '<left>', '<nop>')
@@ -113,6 +109,9 @@ return {
     map('v', '<', '<gv')
     map('v', '>', '>gv')
 
+
+    map('n', '<M-[>', '<C-o>')
+    map('n', '<M-]>', '<C-i>')
     local toggle_winbar = function()
       if vim.o.winbar == "" then
         vim.o.winbar = "%{%v:lua.require'helper.utils'.nvim_winbar()%}"
@@ -383,7 +382,7 @@ return {
           o = { '<cmd>Telescope oldfiles<cr>', 'Old Files' },
           q = { '<cmd>Telescope quickfix<cr>', 'Quickfix List' },
           r = { '<cmd>Telescope registers<cr>', 'Registers' },
-          t = { '<cmd>TodoTelescope<cr>', 'TODOs' },
+          g = { '<cmd>TodoTelescope<cr>', 'TODOs' },
         },
         w = {
           name = '+Resize Splits',
