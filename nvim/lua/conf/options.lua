@@ -109,6 +109,7 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 vim.opt.diffopt = "filler,context:0" -- hide the rest
 vim.opt.inccommand = "split"
+vim.opt.scrolloff = 1
 
-  vim.g.loaded_netrw = 1
-  vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
