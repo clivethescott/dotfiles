@@ -8,6 +8,11 @@ export GOBIN=$GOPATH/bin
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 export FZF_DEFAULT_COMMAND='fd --type file'
 export FZF_CTRL_T_COMMAND='rg --files'
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
@@ -30,4 +35,4 @@ PYTHON_PATH=/opt/homebrew/opt/python@3.12
 
 export PATH=/opt/homebrew/bin:$JAVA_HOME/bin:$COURSIER_HOME/bin:$GOBIN:$PYTHON_PATH/bin:$CARGO_HOME/bin:$PATH
 
-
+fpath+=/opt/homebrew/share/zsh/site-functions
