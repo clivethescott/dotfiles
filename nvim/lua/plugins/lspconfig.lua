@@ -65,6 +65,7 @@ local on_attach = function(client, bufnr)
     vim.diagnostic.setqflist({ severity = 'W' }) -- all workspace errors
   end
   local lsp_references = function()
+    -- TODO: use others like incoming/outgoing refs?
     telescope_builtin.lsp_references {
       include_declaration = false
     }
