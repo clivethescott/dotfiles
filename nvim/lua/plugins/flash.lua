@@ -1,6 +1,6 @@
 return {
   "folke/flash.nvim",
-  event = "VeryLazy",
+  event = "LspAttach",
   ---@type Flash.Config
   opts = {
     search = {
