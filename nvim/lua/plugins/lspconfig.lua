@@ -125,8 +125,8 @@ local on_attach = function(client, bufnr)
     },
     g = {
       name = '+GoTo',
-      ["["] = { vim.diagnostic.goto_prev { wrap = false }, 'Prev Diagnostic' },
-      ["]"] = { vim.diagnostic.goto_next { wrap = false }, 'Next Diagnostic' },
+      ["["] = { function() vim.diagnostic.goto_prev { wrap = false } end, 'Prev Diagnostic' },
+      ["]"] = { function() vim.diagnostic.goto_next { wrap = false } end, 'Next Diagnostic' },
       a = { vim.lsp.buf.code_action, 'Code Action' },
       d = {
         function()
