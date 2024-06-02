@@ -1,11 +1,3 @@
-vim.api.nvim_create_user_command('GitBlame', function()
-  require 'helper.utils'.gitBlame()
-end, {})
-
-vim.api.nvim_create_user_command('GitBlameClear', function()
-  require 'helper.utils'.gitBlameClear()
-end, {})
-
 vim.api.nvim_create_user_command('LspStatus', function()
   require 'helper.utils'.resolvedCapabilities()
 end, {})
@@ -25,10 +17,14 @@ vim.api.nvim_create_user_command('AlternateFile', function()
   end
 end, {})
 
-
-vim.api.nvim_create_user_command('NetrwMarkList', function()
-  require 'helper.utils'.netrw_mark_list()
+vim.api.nvim_create_user_command('G', function()
+  require 'neogit'.open({ kind = 'replace' })
 end, {})
+
+vim.api.nvim_create_user_command('Git', function()
+  require 'neogit'.open({ kind = 'replace' })
+end, {})
+
 
 vim.api.nvim_create_user_command('SmithyRestart', function()
   require 'helper.utils'.restart_smithy()

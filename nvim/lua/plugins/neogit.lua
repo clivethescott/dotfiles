@@ -1,6 +1,6 @@
 return {
   "NeogitOrg/neogit",
-  cmd = {'Neogit'},
+  cmd = {'Neogit', 'G', 'Git'},
   keys = {'<space>og'},
   dependencies = {
     "nvim-lua/plenary.nvim",         -- required
