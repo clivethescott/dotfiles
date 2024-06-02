@@ -240,7 +240,8 @@ return {
     end
 
     local toggle_inlay_hints = function()
-      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+      local opts = {}
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(opts))
     end
 
     map({ 'n', 'i' }, '<M-i>', toggle_inlay_hints)

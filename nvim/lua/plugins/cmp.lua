@@ -1,12 +1,13 @@
 local has_words_before = function()
-  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+  if vim.api.nvim_get_option_value("buftype", { buf = 0 }) == "prompt" then return false end
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("^%s*$") == nil
 end
 
 local nobuffer_large_files = function()
   local buf = vim.api.nvim_get_current_buf()
-  local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+  local uv = vim.uv -- easier to search in docs
+  local ok, stats = pcall(uv.fs_stat, vim.api.nvim_buf_get_name(buf))
   if ok and stats and stats.size < 1024 * 1024 then
     return { buf }
   end
@@ -64,6 +65,7 @@ return {
         ghost_text = false,
       },
       formatting = {
+        expandable_indicator = false,
         fields = { 'kind', 'abbr', 'menu' },
         format = lspkind.cmp_format({
           mode = 'symbol',
@@ -94,7 +96,7 @@ return {
         -- ['<C-y>'] = cmp.mapping.complete(),
         -- ['<C-x>'] = cmp.mapping.abort(),
         ['<C-x>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),  -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<C-n>'] = cmp.mapping(select_next_item, { 'i', 's' }),
         ['<C-e>'] = cmp.mapping.abort(),
         -- ['<Tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
@@ -104,6 +106,10 @@ return {
         -- ['<S-Tab>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
       }),
       sources = cmp.config.sources({
+        {
+          name = "lazydev",
+          group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+        },
         { name = 'nvim_lsp',                 max_item_count = 25, group_index = 1 },
         { name = 'copilot',                  max_item_count = 3,  group_index = 2 },
         { name = 'luasnip',                  max_item_count = 3,  keyword_length = 2 },
