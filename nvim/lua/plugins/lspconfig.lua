@@ -43,11 +43,6 @@ local on_attach = function(client, bufnr)
     map('v', '<leader>f', utils.lsp_range_format, opts)
   end
 
-  -- Diagnostics
-  local prev_diagnostic = function()
-    -- prevent previous jumping back
-    vim.diagnostic.goto_prev { wrap = false }
-  end
   local open_diagnostic_float = function()
     vim.diagnostic.open_float({ scope = 'line' }) -- can be line, buffer, cursor
   end
@@ -85,12 +80,28 @@ local on_attach = function(client, bufnr)
     ["["] = {
       name = '+Previous',
       -- d = { prev_diagnostic, 'Diagnostic' }, -- nvim default
-      e = { prev_diagnostic, 'Diagnostic' },
+      e = {
+        function()
+          vim.diagnostic.goto_prev {
+            wrap = false,
+            severity = { min = vim.diagnostic.severity.WARN }
+          }
+        end,
+        'Warning or Error'
+      },
     },
     ["]"] = {
       name = '+Next',
       -- d = { next_diagnostic, 'Diagnostic' }, -- nvim default
-      e = { vim.diagnostic.goto_next, 'Diagnostic' },
+      e = {
+        function()
+          vim.diagnostic.goto_next {
+            wrap = false,
+            severity = { min = vim.diagnostic.severity.WARN }
+          }
+        end,
+        'Warning or Error'
+      },
     },
     ["<leader>r"] = { vim.lsp.buf.rename, 'Refactor Rename' },
     ["®"] = { vim.lsp.buf.rename, 'Refactor Rename' },
@@ -114,8 +125,8 @@ local on_attach = function(client, bufnr)
     },
     g = {
       name = '+GoTo',
-      ["["] = { prev_diagnostic, 'Prev Diagnostic' },
-      ["]"] = { vim.diagnostic.goto_next, 'Next Diagnostic' },
+      ["["] = { vim.diagnostic.goto_prev { wrap = false }, 'Prev Diagnostic' },
+      ["]"] = { vim.diagnostic.goto_next { wrap = false }, 'Next Diagnostic' },
       a = { vim.lsp.buf.code_action, 'Code Action' },
       d = {
         function()
