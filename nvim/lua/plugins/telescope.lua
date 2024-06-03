@@ -12,6 +12,7 @@ return {
   },
   config = function()
     local actions = require("telescope.actions")
+    local open_with_trouble = require("trouble.sources.telescope").open
 
     local home = os.getenv('HOME')
     local global_ignore = home .. '/.gitignore'
@@ -59,14 +60,16 @@ return {
             ["<C-h>"] = "which_key",
             ["<C-i>"] = require('telescope.actions.layout').toggle_preview,
             ["<C-s>"] = actions.select_horizontal,
+            -- ["<C-q>"] = actions.quickfix.., -- default
             ["<M-s>"] = actions.select_horizontal,
+            ["<M-t>"] = open_with_trouble,
             ["<M-v>"] = actions.select_vertical,
           },
           n = {
             ["<M-a>"] = actions.toggle_all,
             ["<M-o>"] = open_continue,
             ["<M-d>"] = actions.delete_buffer,
-            ["<M-t>"] = function() require 'trouble.providers.telescope'.open_with_trouble() end,
+            ["<M-t>"] = open_with_trouble,
             ["<C-i>"] = require('telescope.actions.layout').toggle_preview,
             ["<C-s>"] = actions.select_horizontal,
             ["<M-s>"] = actions.select_horizontal,

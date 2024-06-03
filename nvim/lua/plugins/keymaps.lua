@@ -58,8 +58,8 @@ return {
     end
 
     -- Dealing with word wrap on long lines
-    map('n', 'k', [[v:count < 2 ? 'gk' : "m'" .. v:count .. 'k']], { expr = true })
-    map('n', 'j', [[v:count < 2 ? 'gj' : "m'" .. v:count .. 'j']], { expr = true })
+    -- map('n', 'k', [[v:count < 2 ? 'gk' : "m'" .. v:count .. 'k']], { expr = true })
+    -- map('n', 'j', [[v:count < 2 ? 'gj' : "m'" .. v:count .. 'j']], { expr = true })
 
     -- Center search result
     map('n', 'n', 'nzzzv')
@@ -240,7 +240,8 @@ return {
     end
 
     local toggle_inlay_hints = function()
-      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+      local opts = {}
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(opts))
     end
 
     map({ 'n', 'i' }, '<M-i>', toggle_inlay_hints)
@@ -282,16 +283,22 @@ return {
         },
         e = {
           name = '+Trouble Diagnostics',
-          d = { '<cmd>TroubleToggle document_diagnostics<cr>', 'Buffer Diagnostics' },
-          e = { '<cmd>TroubleToggle<cr>', 'Toggle Window' },
-          l = { '<cmd>TroubleToggle loclist<cr>', 'Location List' },
-          q = { '<cmd>TroubleToggle quickfix<cr>', 'Quickfix List' },
-          r = { '<cmd>TroubleToggle lsp_references<cr>', 'LSP References' },
+          d = { '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', 'Buffer Diagnostics' },
+          e = { '<cmd>Trouble diagnostics toggle<cr>', 'Toggle Window' },
+          l = {
+            name = '+LSP',
+            r = { '<cmd>Trouble lsp_references<cr>', 'References' },
+            i = { '<cmd>Trouble lsp_implementations<cr>', 'References' },
+            -- TODO: configure incoming/outgoing references type def or maybe vim LSP itself?
+          },
+          q = { '<cmd>Trouble qflist toggle<cr>', 'Quickfix Toggle' },
+          r = { '<cmd>Trouble lsp toggle focus=false win.position=right<cr>', 'LSP References' },
           t = { '<cmd>TodoTrouble<cr>', 'TODOs' },
-          w = { '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Workspace Diagnostics' },
+          -- w = { '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Workspace Diagnostics' },
         },
         f = {
           name = '+Oil',
+          f    = { '<cmd>Oil --float ~/.config/nvim/lua/plugins<cr>', 'Open Oil In Plugins dir' },
           h    = { function() require 'oil.actions'.toggle_hidden.callback() end, 'Toggle Hidden files' },
           H    = { function() require 'oil.actions'.show_help.callback() end, 'Show Help' },
           o    = { function() require 'oil.actions'.open_external.callback() end, 'Open External' },
@@ -302,27 +309,16 @@ return {
         },
         g = {
           '+Git',
-          d = { '<cmd>DiffviewOpen<cr>', 'Git diff' },
+          d = {
+            name = '+Diffview',
+            h = { '<cmd>DiffviewFileHistory %<cr>', 'Current file History' },
+            H = { '<cmd>DiffviewFileHistory<cr>', 'Branch History' },
+            o = { '<cmd>DiffviewOpen<cr>', 'Git diff' },
+            q = { '<cmd>DiffviewClose<cr>', 'Close diff' },
+          },
           g = { '<cmd>Telescope git_branches<cr>', 'Branches' },
-          h = { '<cmd>DiffviewFileHistory %<cr>', 'Current file History' },
-          H = { '<cmd>DiffviewFileHistory<cr>', 'Branch History' },
           l = { '<cmd>Telescope git_bcommits<cr>', 'Buffer Commits' },
           L = { '<cmd>Telescope git_commits<cr>', 'All Commits' },
-          p = { '<cmd>:Git! push<cr>', 'Push' },
-          s = { '<cmd>DiffviewOpen<cr>', 'Git status' },
-          x = { '<cmd>DiffviewClose<cr>', 'Close diff' },
-        },
-        i = {
-          name = '+File Manager',
-          -- name = '+Netrw',
-          -- o = { '<cmd>:Explore<cr>', 'Open current working directory' },
-          m = { '<cmd>:NetrwMarkList<cr>', 'Mark List' },
-          o = { '<cmd>NvimTreeToggle<cr>', 'Toggle Nvim Tree' },
-          ['+'] = { '<cmd>NvimTreeResize +5<cr>', 'Increase NvimTree width' },
-          ['='] = { '<cmd>NvimTreeResize +5<cr>', 'Increase NvimTree width' },
-          ['-'] = { '<cmd>NvimTreeResize -5<cr>', 'Decrease NvimTree width' },
-          O = { '<cmd>:Lexplore %:p:h<cr>', 'Open current file directory' },
-          v = { '<cmd>:Vexplore %:p:h<cr>', 'Vsplit current file directory' },
         },
         m = {
           name = '+Metals',
@@ -341,11 +337,10 @@ return {
           name = '+Open Window',
           d = { '<cmd>DiffviewOpen<cr>', 'Diffview' },
           f = { toggle_winbar, 'Winbar' },
+          g = { '<cmd>Neogit kind=replace<cr>', 'Neogit' },
           l = { '<cmd>Lazy<cr>', 'Lazy Plugin Mgr' },
           L = { '<cmd>Lazy sync<cr>', 'Lazy Sync' },
           m = { '<cmd>Mason<cr>', 'Mason LSP Server Mgr' },
-          t = { '<cmd>NvimTreeToggle<cr>', 'Toggle Nvim Tree' },
-          T = { '<cmd>NvimTreeFindFile<cr>', 'Find File In Tree' },
           o = { '<cmd>Oil --float<cr>', 'Oil' },
           u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },
         },
@@ -393,8 +388,8 @@ return {
         }
       },
       ["<leader>"] = {
-        ['!'] = { '<cmd>NvimTreeFindFile<cr>', 'Find File In Nvim Tree' },
-        ['1'] = { '<cmd>NvimTreeToggle<cr>', 'Toggle Nvim Tree' },
+        ['!'] = { '<cmd>Oil --float<cr>', 'Find File In Oil' },
+        ['1'] = { '<cmd>Oil --float<cr>', 'Toggle Oil' },
         ['2'] = { find_nvim_files, 'Find nvim config files' },
         ['3'] = { grep_nvim_files, 'Live grep nvim config files' },
         ['4'] = { grep_zsh_files, 'Find zsh config files' },

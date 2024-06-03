@@ -17,8 +17,10 @@ function M.start_smithy()
   vim.lsp.start({
     name = 'smithy-language-server',
     cmd = { launcher_path }, -- see shell script for command
-    root_dir = vim.fs.dirname(vim.fs.find({ 'smithy-build.json' }, { upward = true })[1]),
+    root_dir = vim.fs.root(0, { 'smithy-build.json' }),
   }, {
+    reuse_client = function() return true end,
+    bufnr = 0,
     init_options = {
       statusBarProvider = 'show-message',
       isHttpEnabled = true,
@@ -32,9 +34,9 @@ end
 
 local smithy_file_types = { 'smithy' }
 M.restart_smithy = function()
-  for _, buf in pairs(vim.fn.getbufinfo({ bufloaded = true })) do
+  for _, buf in pairs(vim.fn.getbufinfo({ bufloaded = 1 })) do
     if vim.tbl_contains(smithy_file_types, vim.api.nvim_get_option_value("filetype", { buf = buf.bufnr })) then
-      local clients = vim.lsp.get_active_clients({ buffer = buf.bufnr, name = "smithy-language-server" })
+      local clients = vim.lsp.get_clients({ buffer = buf.bufnr, name = "smithy-language-server" })
       for _, client in ipairs(clients) do
         client.stop()
       end

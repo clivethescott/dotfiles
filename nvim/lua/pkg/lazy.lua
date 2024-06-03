@@ -20,7 +20,12 @@ require 'lazy'.setup({
   },
   checker = {
     enabled = false,
-    notify = true,    -- get a notification when new updates are found
-    frequency = 60*60*24*7, -- check for updates every week
+    notify = true,                -- get a notification when new updates are found
+    frequency = 60 * 60 * 24 * 7, -- check for updates every week
   },
+  performance = {
+    disabled_plugins = {
+      'gzip', 'netrwPlugin', 'tarPlugin', 'tohtml', 'tutor', 'zipPlugin'
+    }
+  }
 })
