@@ -24,13 +24,6 @@ if [[ -f "$ZDOTDIR/tokens.zsh" ]]; then
   source $ZDOTDIR/tokens.zsh
 fi
 
-# if [[ -n "$AWS_PROFILE" ]]; then
-#   PROMPT+="$(aws_prof) ${editor_info[testing]}"
-# fi
-# Switches cursor depending on vi mode
-cursor_mode
-# Additional vi-mode text objects
-vimtextobjects
 
 #Fix slowness of pastes with zsh-syntax-highlighting.zsh
 pasteinit() {
