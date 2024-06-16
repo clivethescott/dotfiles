@@ -53,7 +53,7 @@ return {
   term = 'wezterm',
   keys = cmd_bindings(),
   hide_tab_bar_if_only_one_tab = true,
-  font_size = 15,
+  font_size = 16,
   font = wezterm.font 'FiraCode Nerd Font',
   color_scheme = 'catppuccin-mocha',
   window_decorations = "RESIZE",
