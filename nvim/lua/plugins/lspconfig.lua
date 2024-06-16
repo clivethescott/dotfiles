@@ -14,22 +14,10 @@ local on_attach = function(client, bufnr)
     nowait = false,
   }
 
-  local has_sig, sig = pcall(require, 'lsp_signature')
-  if has_sig then
-    sig.on_attach({
-      bind = true, --This is mandatory, otherwise border config won't get registered.
-      handler_opts = {
-        border = "rounded"
-      },
-      transparency = 20,
-      padding = ' ',
-      floating_window_off_x = 5,
-      floating_window_above_cur_line = true,
-      hint_prefix = " ",
-    }, bufnr)
-  end
-
   -- Formatting
+
+  -- alt to gs
+  map({ 'n', 'i' }, '<M-y>', vim.lsp.buf.signature_help)
 
   if caps.documentFormattingProvider then
     map('n', '<leader>f', utils.lsp_buf_format, opts)
@@ -145,7 +133,6 @@ local on_attach = function(client, bufnr)
       m = { function() vim.lsp.codelens.refresh { bufnr = 0 } end, 'Refresh Code Lens' },
       r = { lsp_references, 'References <Telescope>' },
       R = { '<cmd>Trouble lsp_references<cr>', 'References <Trouble>' },
-      s = { vim.lsp.buf.signature_help, 'Signature Help' },
       y = { telescope_builtin.lsp_type_definitions, 'Type Def' },
     },
     K = { vim.lsp.buf.hover, 'Hover' }, -- nvim default

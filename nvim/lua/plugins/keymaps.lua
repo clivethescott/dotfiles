@@ -309,7 +309,7 @@ return {
         },
         g = {
           '+Git',
-          d = {
+          D = {
             name = '+Diffview',
             h = { '<cmd>DiffviewFileHistory %<cr>', 'Current file History' },
             H = { '<cmd>DiffviewFileHistory<cr>', 'Branch History' },
@@ -319,6 +319,7 @@ return {
           g = { '<cmd>Telescope git_branches<cr>', 'Branches' },
           l = { '<cmd>Telescope git_bcommits<cr>', 'Buffer Commits' },
           L = { '<cmd>Telescope git_commits<cr>', 'All Commits' },
+          o = { '<cmd>Neogit kind=replace<cr>', 'Neogit' },
         },
         m = {
           name = '+Metals',
@@ -343,24 +344,6 @@ return {
           m = { '<cmd>Mason<cr>', 'Mason LSP Server Mgr' },
           o = { '<cmd>Oil --float<cr>', 'Oil' },
           u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },
-        },
-        s = {
-          name = '+Session',
-          s = { '<cmd>SessionSave<cr>', 'Save session for dir' },
-          r = { '<cmd>SessionRestore<cr>', 'Restore session for dir' },
-          R = {
-            function()
-              -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#workaround-when-using-rmagattiauto-session
-              local api = require('nvim-tree.api')
-              local view = require('nvim-tree.view')
-
-              if not view.is_visible() then
-                api.tree.open()
-              end
-              require 'auto-session'.AutoSessionRestore()
-            end,
-            'Restore session for dir' },
-          l = { function() require("auto-session.session-lens").search_session() end, 'List sessions' },
         },
         t = {
           name = '+Telescope',
@@ -405,6 +388,7 @@ return {
         t = { '<cmd>tabclose<cr>', 'Close tab' },
       },
       ['gp'] = { ':b#<cr>', 'Alternate buffer' },
+      ['gs'] = { '<cmd>Neogit kind=floating<cr>', 'Git status' },
     })
   end,
 }
