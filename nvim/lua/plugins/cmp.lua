@@ -26,11 +26,6 @@ return {
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-cmdline',
     {
-      'ray-x/lsp_signature.nvim',
-      event = "BufReadPost",
-      config = true,
-    },
-    {
       'onsails/lspkind.nvim',
     },
   },
@@ -116,7 +111,6 @@ return {
         { name = 'nvim_lsp_document_symbol', max_item_count = 5,  group_index = 2 },
         { name = 'path',                     max_item_count = 30, group_index = 3 },
         { name = 'nvim_lua',                 max_item_count = 5,  group_index = 4 },
-        -- { name = 'nvim_lsp_signature_help' }, -- now using lsp_signature
         {
           name = 'buffer',
           max_item_count = 1,
