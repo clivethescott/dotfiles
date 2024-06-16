@@ -20,7 +20,7 @@ return {
     require('lualine').setup {
       options = {
         icons_enabled = false,
-        theme = 'catppuccin-mocha',
+        theme = 'catppuccin-macchiato',
         globalstatus = true,
       },
       sections = {
