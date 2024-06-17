@@ -282,21 +282,23 @@ return {
       callback = function(args)
         local bufnr = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        -- if client.server_capabilities.inlayHintProvider then
-        --   vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-        -- end
-        on_attach(client, bufnr)
+        if client then
+          -- if client.server_capabilities.inlayHintProvider then
+          --   vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+          -- end
+          on_attach(client, bufnr)
 
-        vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
-          group = lsp_group,
-          pattern = { '*.rust', '*.go', '*.python' },
-          desc = 'Refresh code lens for supported languages',
-          callback = function()
-            if client.server_capabilities.codeLensProvider then
-              vim.lsp.codelens.refresh()
+          vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
+            group = lsp_group,
+            pattern = { '*.rust', '*.go', '*.python' },
+            desc = 'Refresh code lens for supported languages',
+            callback = function()
+              if client.server_capabilities.codeLensProvider then
+                vim.lsp.codelens.refresh()
+              end
             end
-          end
-        })
+          })
+        end
       end,
     })
 
