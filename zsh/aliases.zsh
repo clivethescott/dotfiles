@@ -1,4 +1,6 @@
 # alias ls='ls -hG'
+alias dashlane=dcli
+alias pbclear='pbcopy < /dev/null'
 alias nn='fd --type f --print0 | fzf-tmux -p --read0 --print0 --exit-0 | xargs -r -0 nvim'
 alias tree='ls --tree'
 alias pdfcat='gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=temp.pdf source*.pdf' # uses ghostscript
@@ -49,3 +51,4 @@ alias tf='terraform'
 alias py=python3.12
 alias cp1='devx cloud aws-login -r arn:aws:iam::789659335040:role/bamazon-TeamMercury --session-duration 3600 && eval "$(aws configure export-credentials --profile HULU_SSO --format env)"'
 alias cp1prod='devx cloud aws-login -r arn:aws:iam::141988508569:role/bamazon-TeamMercuryLimitedAccess --session-duration 3600 && eval "$(aws configure export-credentials --profile HULU_SSO --format env)"'
+alias cp2prod='devx cloud aws-login -r arn:aws:iam::317969680733:role/bamazon-TeamMercury --session-duration 3600 && eval "$(aws configure export-credentials --profile HULU_SSO --format env)"'
