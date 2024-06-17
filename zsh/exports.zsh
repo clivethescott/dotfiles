@@ -14,7 +14,6 @@ export FZF_CTRL_T_OPTS="
   --preview 'bat -n --color=always {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export TERM=screen-256color
 export XDG_CONFIG_HOME=$HOME/.config
 export JAVA_HOME=/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home
 export HOMEBREW_NO_ANALYTICS=1
