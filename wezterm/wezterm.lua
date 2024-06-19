@@ -29,7 +29,7 @@ local cmd_bindings = function()
       key = 'q',
       mods = 'CMD|OPT',
       action = action.QuitApplication
-    },
+    }
   }
 
   for _, char in ipairs(chars) do
@@ -43,6 +43,16 @@ local cmd_bindings = function()
   return result
 end
 
+local mouse_binds = function()
+  return {
+    {
+      -- Use CMD+Shift+click, see config.bypass_mouse_reporting_modifiers
+      event = { Up = { streak = 1, button = 'Middle' } },
+      mods = 'CMD',
+      action = action.OpenLinkAtMouseCursor,
+    },
+  }
+end
 -- maximise window on startup
 wezterm.on('gui-startup', function(cmd)
   local _, _, window = mux.spawn_window(cmd or {})
@@ -52,10 +62,15 @@ end)
 return {
   term = 'wezterm',
   keys = cmd_bindings(),
+  mouse_bindings = mouse_binds(),
+  disable_default_mouse_bindings = true,
+  disable_default_key_bindings = true,
   hide_tab_bar_if_only_one_tab = true,
-  font_size = 16,
+  font_size = 17,
+  scrollback_lines = 10000,
   font = wezterm.font 'FiraCode Nerd Font',
   color_scheme = 'catppuccin-mocha',
   window_decorations = "RESIZE",
   audible_bell = "Disabled",
+  window_close_confirmation = "NeverPrompt",
 }
