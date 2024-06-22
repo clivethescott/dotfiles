@@ -1,7 +1,7 @@
 return {
   'L3MON4D3/LuaSnip',
   event = 'BufReadPost',
-  version = "2.x",
+  version = "v2.x",
   dependencies = {
     'saadparwaiz1/cmp_luasnip',
     'rafamadriz/friendly-snippets',
