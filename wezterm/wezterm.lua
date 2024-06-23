@@ -30,6 +30,11 @@ local cmd_bindings = function()
       mods = 'CMD|OPT',
       action = action.QuitApplication
     },
+    {
+      key = 'f',
+      mods = 'CMD|SHIFT',
+      action = action.Search({ CaseInSensitiveString = '' })
+    },
   }
 
   for _, char in ipairs(chars) do
@@ -43,6 +48,13 @@ local cmd_bindings = function()
   return result
 end
 
+local mouse_bindings = {
+  {
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'CTRL',
+    action = action.OpenLinkAtMouseCursor,
+  },
+}
 -- maximise window on startup
 wezterm.on('gui-startup', function(cmd)
   local _, _, window = mux.spawn_window(cmd or {})
@@ -52,6 +64,7 @@ end)
 return {
   term = 'wezterm',
   keys = cmd_bindings(),
+  mouse_bindings = mouse_bindings,
   hide_tab_bar_if_only_one_tab = true,
   font_size = 16,
   font = wezterm.font 'FiraCode Nerd Font',
