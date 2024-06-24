@@ -19,7 +19,7 @@ return {
       }
     }
     metals_config.settings = {
-      serverVersion = '1.3.1',
+      serverVersion = '1.3.2',
       fallbackScalaVersion = '3.3.3',
       showImplicitArguments = false,
       showImplicitConversionsAndClasses = true,
@@ -34,7 +34,6 @@ return {
       testUserInterface = "Test Explorer",
       autoImportBuild = 'all',
       defaultBspToBuildTool = true,
-
     }
     metals_config.capabilities = require 'cmp_nvim_lsp'.default_capabilities()
 
