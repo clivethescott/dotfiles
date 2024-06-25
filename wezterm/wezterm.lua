@@ -66,9 +66,11 @@ return {
   keys = cmd_bindings(),
   mouse_bindings = mouse_bindings,
   hide_tab_bar_if_only_one_tab = true,
-  font_size = 16,
+  font_size = 17,
+  scrollback_lines = 10000,
   font = wezterm.font 'FiraCode Nerd Font',
   color_scheme = 'catppuccin-mocha',
   window_decorations = "RESIZE",
   audible_bell = "Disabled",
+  window_close_confirmation = "NeverPrompt",
 }
