@@ -91,6 +91,7 @@ nmap <Leader>gg :action Git.Branches<CR>
 nmap <Leader>gb :action Git.Branches<CR>
 nmap <Leader>gr :action IdeaVim.ReloadVimRc.reload<CR>
 nmap <Leader>ge :e ~/.ideavimrc<CR>
+nmap <Leader>go :e ~/.ideavimrc<CR>
 nmap <Leader>zz :action ToggleDistractionFreeMode<CR>
 
 nnoremap <c-\> :action SplitVertically<CR>
@@ -100,7 +101,9 @@ nnoremap <C-j> <c-w>j
 nnoremap <C-k> <c-w>k
 nnoremap <c-=> :action Unsplit<CR>
 nnoremap [[ :action MethodUp<CR>
+nnoremap [m :action MethodUp<CR>
 nnoremap ]] :action MethodDown<CR>
+nnoremap ]m :action MethodDown<CR>
 nnoremap zc :action CollapseRegion<CR>
 nnoremap zo :action ExpandRegion<CR>
 nnoremap <leader>zc :action CollapseAllRegions<CR>
@@ -120,3 +123,4 @@ map <leader>r <Action>(RenameElement)
 nnoremap <space>tc :action GotoAction<CR>
 nnoremap <space>tf :action FindInPath<CR>
 nnoremap <space>mo :action ActivatebspToolWindow<CR>
+nnoremap <leader>d :action ShowErrorDescription<CR>
