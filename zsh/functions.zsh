@@ -106,6 +106,8 @@ function cd() {
     ## If env folder is found then activate the vitualenv
       if [[ -d ./venv ]] ; then
         source ./venv/bin/activate
+      elif [[ -d ./.venv ]] ; then
+        source ./.venv/bin/activate
       fi
   else
     ## check the current folder belong to earlier VIRTUAL_ENV folder
@@ -116,6 +118,8 @@ function cd() {
         deactivate
         if [[ -d ./venv ]] ; then
           source ./venv/bin/activate
+        elif [[ -d ./.venv ]] ; then
+          source ./.venv/bin/activate
         fi
       fi
   fi
