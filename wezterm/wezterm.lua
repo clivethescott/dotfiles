@@ -35,6 +35,11 @@ local cmd_bindings = function()
       mods = 'CMD|SHIFT',
       action = action.Search({ CaseInSensitiveString = '' })
     },
+    {
+      key = 'p',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.ActivateCommandPalette,
+    },
   }
 
   for _, char in ipairs(chars) do
