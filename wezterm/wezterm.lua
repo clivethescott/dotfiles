@@ -35,6 +35,16 @@ local cmd_bindings = function()
       mods = 'CMD|SHIFT',
       action = action.Search({ CaseInSensitiveString = '' })
     },
+    {
+      key = 'Enter',
+      mods = 'CMD',
+      action = action.ActivateCopyMode
+    },
+    {
+      key = 'C',
+      mods = 'CMD|SHIFT',
+      action = action.ActivateCopyMode
+    },
   }
 
   for _, char in ipairs(chars) do
