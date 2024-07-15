@@ -36,9 +36,14 @@ local cmd_bindings = function()
       action = action.Search({ CaseInSensitiveString = '' })
     },
     {
-      key = 'p',
+      key = 'Enter',
+      mods = 'CMD',
+      action = action.ActivateCopyMode
+    },
+    {
+      key = 'C',
       mods = 'CMD|SHIFT',
-      action = wezterm.action.ActivateCommandPalette,
+      action = action.ActivateCopyMode
     },
   }
 
@@ -71,7 +76,7 @@ return {
   keys = cmd_bindings(),
   mouse_bindings = mouse_bindings,
   hide_tab_bar_if_only_one_tab = true,
-  font_size = 17,
+  font_size = 16,
   scrollback_lines = 10000,
   font = wezterm.font 'FiraCode Nerd Font',
   color_scheme = 'catppuccin-mocha',
