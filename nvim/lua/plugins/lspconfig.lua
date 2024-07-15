@@ -22,8 +22,8 @@ local on_attach = function(client, bufnr)
   if caps.documentFormattingProvider then
     map('n', '<leader>f', utils.lsp_buf_format, opts)
     map('n', 'gq', utils.lsp_buf_format, opts)
-    wk.register({
-      ["<leader>f"] = { utils.lsp_buf_format, 'Format Buffer' },
+    wk.add({
+      { "<leader>f", utils.lsp_buf_format, desc = 'Format Buffer' },
     }, wk_buf_opts)
   end
 
@@ -64,59 +64,63 @@ local on_attach = function(client, bufnr)
     end
   end
 
-  wk.register({
-    ["["] = {
-      name = '+Previous',
-      -- d = { prev_diagnostic, 'Diagnostic' }, -- nvim default
-      e = {
-        function()
-          vim.diagnostic.goto_prev {
-            wrap = false,
-            severity = { min = vim.diagnostic.severity.WARN }
-          }
-        end,
-        'Warning or Error'
-      },
+  wk.add({
+    {
+      "[e",
+      function()
+        vim.diagnostic.goto_prev {
+          wrap = false,
+          severity = { min = vim.diagnostic.severity.WARN }
+        }
+      end,
+      desc = 'Previous Warning or Error'
     },
-    ["]"] = {
-      name = '+Next',
-      -- d = { next_diagnostic, 'Diagnostic' }, -- nvim default
-      e = {
-        function()
-          vim.diagnostic.goto_next {
-            wrap = false,
-            severity = { min = vim.diagnostic.severity.WARN }
-          }
-        end,
-        'Warning or Error'
-      },
+    {
+      "]e",
+      function()
+        vim.diagnostic.goto_next {
+          wrap = false,
+          severity = { min = vim.diagnostic.severity.WARN }
+        }
+      end,
+      desc = 'Next Warning or Error'
     },
-    ["<leader>r"] = { vim.lsp.buf.rename, 'Refactor Rename' },
-    ["®"] = { vim.lsp.buf.rename, 'Refactor Rename' },
-    ["<leader>d"] = { open_diagnostic_float, 'Open Diagnostic Float' },
+    { "<leader>r", vim.lsp.buf.rename,            desc = 'Refactor Rename' },
+    { "®",         vim.lsp.buf.rename,            desc = 'Refactor Rename' },
+    { "<leader>d", open_diagnostic_float,         desc = 'Open Diagnostic Float' },
     -- ["<C-w>d"] = { open_diagnostic_float, 'Open Diagnostic Float' }, -- nvim default
     -- ["<C-w><C-d>"] = { open_diagnostic_float, 'Open Diagnostic Float' }, -- nvim default
-    ["<leader>D"] = { telescope_builtin.diagnostics, 'Diagnostics' },
-    ["<space>"] = {
-      l = {
-        name = '+LSP',
-        e = { diagnostic_errors, 'Workspace Errors' },
-        r = {
-          '+Restart/Reload',
-          s = { utils.restart_smithy, 'Restart Smithy' },
-          m = { function() require 'metals'.restart_metals() end, 'Restart Metals' },
-        },
-        s = { telescope_builtin.lsp_dynamic_workspace_symbols, 'Dynamic Workspace Symbols' },
-        S = { telescope_builtin.lsp_document_symbols, 'Buffer Symbols' },
-        w = { diagnostic_warnings, 'Workspace Warnings' },
-      }
+    { "<leader>D", telescope_builtin.diagnostics, desc = 'Diagnostics' },
+    {
+      group = '+LSP',
+      { "<space>le",  diagnostic_errors,    desc = 'Workspace Errors' },
+      { "<space>lrs", utils.restart_smithy, desc = 'Restart Smithy' },
+      {
+        "<space>lrs",
+        function() require 'metals'.restart_metals() end,
+        desc = 'Restart Metals'
+      },
+      {
+        "<space>ls",
+        telescope_builtin.lsp_dynamic_workspace_symbols,
+        desc = 'Dynamic Workspace Symbols'
+      },
+      {
+        "<space>lS",
+        telescope_builtin.lsp_document_symbols,
+        desc = 'Buffer Symbols'
+      },
+      { "<space>lw", diagnostic_warnings, desc = 'Workspace Warnings' },
     },
-    g = {
-      name = '+GoTo',
-      ["["] = { function() vim.diagnostic.goto_prev { wrap = false } end, 'Prev Diagnostic' },
-      ["]"] = { function() vim.diagnostic.goto_next { wrap = false } end, 'Next Diagnostic' },
-      a = { vim.lsp.buf.code_action, 'Code Action' },
-      d = {
+    {
+      group = '+GoTo',
+      {
+        "ga",
+        vim.lsp.buf.code_action,
+        desc = 'Code Action'
+      },
+      {
+        "gd",
         function()
           if client.name == 'lua_ls' then
             telescope_builtin.lsp_type_definitions()
@@ -124,18 +128,22 @@ local on_attach = function(client, bufnr)
             telescope_builtin.lsp_definitions()
           end
         end,
-        'Definition <Telescope>'
+        desc = 'Definition <Telescope>'
       },
-      D = { '<cmd>Trouble lsp_definitions<cr>', 'Definition <Trouble>' },
-      h = { utils.show_word_help, 'Word Help' },
-      i = { telescope_builtin.lsp_implementations, 'Implementation' },
-      l = { code_lens_run, 'Show Code Lens' },
-      m = { function() vim.lsp.codelens.refresh { bufnr = 0 } end, 'Refresh Code Lens' },
-      r = { lsp_references, 'References <Telescope>' },
-      R = { '<cmd>Trouble lsp_references<cr>', 'References <Trouble>' },
-      y = { telescope_builtin.lsp_type_definitions, 'Type Def' },
+      { "gD", '<cmd>Trouble lsp_definitions<cr>',    desc = 'Definition <Trouble>' },
+      { "gh", utils.show_word_help,                  desc = 'Word Help' },
+      { "gi", telescope_builtin.lsp_implementations, desc = 'Implementation' },
+      { "gl", code_lens_run,                         desc = 'Show Code Lens' },
+      {
+        "gm",
+        function() vim.lsp.codelens.refresh { bufnr = 0 } end,
+        desc = 'Refresh Code Lens'
+      },
+      { "gr", lsp_references,                         desc = 'References <Telescope>' },
+      { "gR", '<cmd>Trouble lsp_references<cr>',      desc = 'References <Trouble>' },
+      { "gy", telescope_builtin.lsp_type_definitions, desc = 'Type Def' },
     },
-    K = { vim.lsp.buf.hover, 'Hover' }, -- nvim default
+    { "K", vim.lsp.buf.hover, desc = 'Hover' }, -- nvim default
   }, wk_buf_opts)
 end
 

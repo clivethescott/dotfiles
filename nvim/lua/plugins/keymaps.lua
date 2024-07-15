@@ -38,13 +38,6 @@ return {
           motions = false,
         },
       },
-      key_labels = {
-        ["<space>"] = "SPACE",
-        ["<tab>"] = "TAB",
-      },
-      window = {
-        position = "top",
-      },
     })
 
     local default_opts = { silent = true, noremap = true }
@@ -66,11 +59,6 @@ return {
     map('n', 'N', 'Nzzzv')
     map('n', '#', '#zz')
     map('n', '*', '*zz')
-
-    -- Open URI under cursor
-    local open_uri = function()
-      require 'helper.utils'.open_uri()
-    end
 
     -- Split movements
     -- Replace with tmux-navigator
@@ -247,149 +235,168 @@ return {
     map({ 'n', 'i' }, '<M-i>', toggle_inlay_hints)
 
     local wk = require 'which-key'
-    wk.register({
-      ["["] = {
-        name = '+Previous',
-        q = { "<cmd>cprevious<cr>", 'Quickfix Entry' },
-        Q = { "<cmd>cNfile<cr>", 'Quickfix Entry in last file' },
-        t = { prev_todo, 'TODO' },
+    wk.add({
+      {
+        group = '+Previous',
+        { "[q", "<cmd>cprevious<cr>", desc = 'Quickfix Entry' },
+        { "[Q", "<cmd>cNfile<cr>",    desc = 'Quickfix Entry in last file' },
+        { "[t", prev_todo,            desc = 'TODO' },
       },
-      ["]"] = {
-        name = '+Next',
-        t = { next_todo, 'TODO' },
-        q = { "<cmd>cnext<cr>", 'Quickfix Entry' },
-        Q = { "<cmd>cnfile<cr>", 'Quickfix Entry in next file' },
+      {
+        group = '+Next',
+        { "]t", next_todo,         desc = 'TODO' },
+        { "]q", "<cmd>cnext<cr>",  desc = 'Quickfix Entry' },
+        { "]Q", "<cmd>cnfile<cr>", desc = 'Quickfix Entry in next file' },
       },
-      ["<space>"] = {
-        ['['] = { ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", 'Add blank line above' },
-        [']'] = { ":<c-u>put =repeat(nr2char(10), v:count1)<cr>", 'Add blank line below' },
-        p = { function() require 'telescope.builtin'.find_files() end, 'Find files in current dir' },
-        d = {
-          name = '+DAP',
-          b = { function() require 'dap'.toggle_breakpoint() end, 'Toggle Breakpoint' },
-          B = { dap_cond_breakpoint, 'Conditional Breakpoint' },
-          c = { dap_commands, 'Commands' },
-          d = { function() require 'dap'.repl.toggle() end, 'Toggle REPL' },
-          e = { show_dap_ui, 'Show DAP UI' },
-          i = { function() require 'dap'.step_into() end, 'Step In' },
-          I = { function() require 'dap'.step_out() end, 'Step Out' },
-          l = { dap_list_breakpoints, 'List Breakpoints' },
-          L = { function() require 'dap'.clear_breakpoints() end, 'Clear Breakpoints' },
-          o = { function() require 'dap'.step_over() end, 'Step Over' },
-          q = { dap_terminate, 'Terminate' },
-          r = { function() require 'dap'.continue() end, 'Continue' },
-          t = { go_debug_test, 'Debug Go Test' },
-          x = { dap_terminate, 'Terminate' },
-        },
-        e = {
-          name = '+Trouble Diagnostics',
-          d = { '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', 'Buffer Diagnostics' },
-          e = { '<cmd>Trouble diagnostics toggle<cr>', 'Toggle Window' },
-          l = {
-            name = '+LSP',
-            r = { '<cmd>Trouble lsp_references<cr>', 'References' },
-            i = { '<cmd>Trouble lsp_implementations<cr>', 'References' },
-            -- TODO: configure incoming/outgoing references type def or maybe vim LSP itself?
-          },
-          q = { '<cmd>Trouble qflist toggle<cr>', 'Quickfix Toggle' },
-          r = { '<cmd>Trouble lsp toggle focus=false win.position=right<cr>', 'LSP References' },
-          t = { '<cmd>TodoTrouble<cr>', 'TODOs' },
-          -- w = { '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Workspace Diagnostics' },
-        },
-        f = {
-          name = '+Oil',
-          f    = { '<cmd>Oil --float ~/.config/nvim/lua/plugins<cr>', 'Open Oil In Plugins dir' },
-          h    = { function() require 'oil.actions'.toggle_hidden.callback() end, 'Toggle Hidden files' },
-          H    = { function() require 'oil.actions'.show_help.callback() end, 'Show Help' },
-          o    = { function() require 'oil.actions'.open_external.callback() end, 'Open External' },
-          p    = { function() require 'oil.actions'.preview.callback() end, 'Show Preview' },
-          r    = { function() require 'oil.actions'.refresh.callback() end, 'Refresh' },
-          s    = { function() require 'oil.actions'.change_sort.callback() end, 'Change sort' },
-          v    = { function() require 'oil.actions'.select_vsplit.callback() end, 'Open vsplit' },
-        },
-        g = {
-          '+Git',
-          D = {
-            name = '+Diffview',
-            h = { '<cmd>DiffviewFileHistory %<cr>', 'Current file History' },
-            H = { '<cmd>DiffviewFileHistory<cr>', 'Branch History' },
-            o = { '<cmd>DiffviewOpen<cr>', 'Git diff' },
-            q = { '<cmd>DiffviewClose<cr>', 'Close diff' },
-          },
-          g = { '<cmd>Telescope git_branches<cr>', 'Branches' },
-          l = { '<cmd>Telescope git_bcommits<cr>', 'Buffer Commits' },
-          L = { '<cmd>Telescope git_commits<cr>', 'All Commits' },
-          o = { '<cmd>Neogit kind=replace<cr>', 'Neogit' },
-        },
-        m = {
-          name = '+Metals',
-          c = { function() require 'telescope'.extensions.metals.commands() end, 'Commands' },
-          d = { function() require 'metals'.goto_super_method() end, 'Go To Super Method' },
-          k = { function() require 'metals'.hover_worksheet() end, 'Hover Worksheet' },
-          n = { function() require 'metals'.new_scala_file() end, 'New File' },
-          s = { function() require 'metals'.switch_bsp() end, 'Switch BSP Server' },
-          t = {
-            name = 'TVP',
-            o = { function() require 'metals.tvp'.reveal_in_tree() end, 'Reveal In Tree' },
-            t = { function() require 'metals.tvp'.toggle_tree_view() end, 'Toggle Tree' },
-          },
-        },
-        o = {
-          name = '+Open Window',
-          d = { '<cmd>DiffviewOpen<cr>', 'Diffview' },
-          f = { toggle_winbar, 'Winbar' },
-          g = { '<cmd>Neogit', 'Neogit' },
-          n = { '<cmd>Neogit', 'Neogit' },
-          l = { '<cmd>Lazy<cr>', 'Lazy Plugin Mgr' },
-          L = { '<cmd>Lazy sync<cr>', 'Lazy Sync' },
-          m = { '<cmd>Mason<cr>', 'Mason LSP Server Mgr' },
-          o = { '<cmd>Oil --float<cr>', 'Oil' },
-          u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },
-        },
-        t = {
-          name = '+Telescope',
-          c = { '<cmd>Telescope commands<cr>', 'Commands' },
-          f = { '<cmd>Telescope live_grep_args<cr>', 'Live grep args' },
-          F = { function() require("telescope-live-grep-args.shortcuts").grep_word_under_cursor() end, 'Live grep cword' },
-          -- f = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
-          -- F = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
-          h = { '<cmd>Telescope help_tags<cr>', 'Help tags' },
-          j = { '<cmd>Telescope jumplist<cr>', 'Jump list' },
-          k = { '<cmd>Telescope keymaps<cr>', 'Keymaps' },
-          l = { '<cmd>Telescope resume<cr>', 'Resume last picker' },
-          m = { '<cmd>Telescope marks<cr>', 'Marks' },
-          o = { '<cmd>Telescope oldfiles<cr>', 'Old Files' },
-          q = { '<cmd>Telescope quickfix<cr>', 'Quickfix List' },
-          r = { '<cmd>Telescope registers<cr>', 'Registers' },
-          g = { '<cmd>TodoTelescope<cr>', 'TODOs' },
-        },
-        w = {
-          name = '+Resize Splits',
-          h = { '5<c-w><', 'Resize left' },
-          l = { '5<c-w>>', 'Resize right' },
-          j = { '5<c-w>-', 'Resize down' },
-          k = { '5<c-w>+', 'Resize up' },
-        }
+      { '<space>[', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[",       desc = 'Add blank line above' },
+      { '<space>]', ":<c-u>put =repeat(nr2char(10), v:count1)<cr>",          desc = 'Add blank line below' },
+      { '<space>p', function() require 'telescope.builtin'.find_files() end, desc = 'Find files in current dir' },
+      {
+        group = '+DAP',
+        { '<space>db', function() require 'dap'.toggle_breakpoint() end, desc = 'Toggle Breakpoint' },
+        { '<space>dB', dap_cond_breakpoint,                              desc = 'Conditional Breakpoint' },
+        { '<space>dc', dap_commands,                                     desc = 'Commands' },
+        { '<space>dd', function() require 'dap'.repl.toggle() end,       desc = 'Toggle REPL' },
+        { '<space>de', show_dap_ui,                                      desc = 'Show DAP UI' },
+        { '<space>di', function() require 'dap'.step_into() end,         desc = 'Step In' },
+        { '<space>dI', function() require 'dap'.step_out() end,          desc = 'Step Out' },
+        { '<space>dl', dap_list_breakpoints,                             desc = 'List Breakpoints' },
+        { '<space>dL', function() require 'dap'.clear_breakpoints() end, desc = 'Clear Breakpoints' },
+        { '<space>do', function() require 'dap'.step_over() end,         desc = 'Step Over' },
+        { '<space>dq', dap_terminate,                                    desc = 'Terminate' },
+        { '<space>dr', function() require 'dap'.continue() end,          desc = 'Continue' },
+        { '<space>dt', go_debug_test,                                    desc = 'Debug Go Test' },
+        { '<space>dx', dap_terminate,                                    desc = 'Terminate' },
       },
-      ["<leader>"] = {
-        ['!'] = { '<cmd>Oil --float<cr>', 'Find File In Oil' },
-        ['1'] = { '<cmd>Oil --float<cr>', 'Toggle Oil' },
-        ['2'] = { find_nvim_files, 'Find nvim config files' },
-        ['3'] = { grep_nvim_files, 'Live grep nvim config files' },
-        ['4'] = { grep_zsh_files, 'Find zsh config files' },
-        ['5'] = { find_dotfiles, 'Find dot files' },
-        g = {
-          name = '+GoTo',
-          f = { '<cmd>AlternateFile<cr>', 'Alternate file' },
-          i = { '<cmd>GoImports<cr>', 'Go Imports' },
-          x = { open_uri, 'URI at cursor' },
-        },
-        m = { '<cmd>silent! nohls<cr>', 'Clear search highlight' },
-        s = { edit_snippets, 'Edit LuaSnippets' },
-        t = { '<cmd>tabclose<cr>', 'Close tab' },
+      {
+        group = '+Trouble Diagnostics',
+        { '<space>ed',  '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',           desc = 'Buffer Diagnostics' },
+        { '<space>ee',  '<cmd>Trouble diagnostics toggle<cr>',                        desc = 'Toggle Window' },
+        { '<space>elr', '<cmd>Trouble lsp_references<cr>',                            desc = 'References' },
+        -- TODO: configure incoming/outgoing references type def or maybe vim LSP itself?
+        { '<space>eli', '<cmd>Trouble lsp_implementations<cr>',                       desc = 'References' },
+        { '<space>eq',  '<cmd>Trouble qflist toggle<cr>',                             desc = 'Quickfix Toggle' },
+        { '<space>er',  '<cmd>Trouble lsp toggle focus=false win.position=right<cr>', desc = 'LSP References' },
+        { '<space>et',  '<cmd>TodoTrouble<cr>',                                       desc = 'TODOs' },
+        -- w = { '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Workspace Diagnostics' },
       },
-      ['gp'] = { ':b#<cr>', 'Alternate buffer' },
-      ['gs'] = { '<cmd>Neogit kind=floating<cr>', 'Git status' },
+      {
+        group = '+Oil',
+        { '<space>ff', '<cmd>Oil --float ~/.config/nvim/lua/plugins<cr>',             desc = 'Open Oil In Plugins dir' },
+        { '<space>fh', function() require 'oil.actions'.toggle_hidden.callback() end, desc = 'Toggle Hidden files' },
+        { '<space>fH', function() require 'oil.actions'.show_help.callback() end,     desc = 'Show Help' },
+        { '<space>fo', function() require 'oil.actions'.open_external.callback() end, desc = 'Open External' },
+        { '<space>fp', function() require 'oil.actions'.preview.callback() end,       desc = 'Show Preview' },
+        { '<space>fr', function() require 'oil.actions'.refresh.callback() end,       desc = 'Refresh' },
+        { '<space>fs', function() require 'oil.actions'.change_sort.callback() end,   desc = 'Change sort' },
+        { '<space>fv', function() require 'oil.actions'.select_vsplit.callback() end, desc = 'Open vsplit' },
+      },
+      {
+        group = '+Diffview',
+        { '<space>gDh', '<cmd>DiffviewFileHistory %<cr>', desc = 'Current file History' },
+        { '<space>gDH', '<cmd>DiffviewFileHistory<cr>',   desc = 'Branch History' },
+        { '<space>gDo', '<cmd>DiffviewOpen<cr>',          desc = 'Git diff' },
+        { '<space>gDq', '<cmd>DiffviewClose<cr>',         desc = 'Close diff' },
+      },
+      {
+        group = '+Git',
+        { '<space>gg', '<cmd>Telescope git_branches<cr>', desc = 'Branches' },
+        { '<space>gl', '<cmd>Telescope git_bcommits<cr>', desc = 'Buffer Commits' },
+        { '<space>gL', '<cmd>Telescope git_commits<cr>',  desc = 'All Commits' },
+        { '<space>go', '<cmd>Neogit kind=replace<cr>',    desc = 'Neogit' },
+      },
+      {
+        group = '+Metals',
+        {
+          '<space>mc',
+          function() require 'telescope'.extensions.metals.commands() end,
+          desc = 'Commands'
+        },
+        {
+          '<space>md',
+          function() require 'metals'.goto_super_method() end,
+          desc = 'Go To Super Method'
+        },
+        {
+          '<space>mk',
+          function() require 'metals'.hover_worksheet() end,
+          desc = 'Hover Worksheet'
+        },
+        {
+          '<space>mn',
+          function() require 'metals'.new_scala_file() end,
+          desc = 'New File'
+        },
+        {
+          '<space>ms',
+          function() require 'metals'.switch_bsp() end,
+          desc = 'Switch BSP Server'
+        },
+        {
+          '<space>mto',
+          function() require 'metals.tvp'.reveal_in_tree() end,
+          desc = 'Reveal In Tree'
+        },
+        {
+          '<space>mtt',
+          function() require 'metals.tvp'.toggle_tree_view() end,
+          desc = 'Toggle Tree'
+        },
+      },
+      {
+        group = '+Open Window',
+        { '<space>od', '<cmd>DiffviewOpen<cr>',   desc = 'Diffview' },
+        { '<space>of', toggle_winbar,             desc = 'Winbar' },
+        { '<space>og', '<cmd>Neogit',             desc = 'Neogit' },
+        { '<space>on', '<cmd>Neogit',             desc = 'Neogit' },
+        { '<space>ol', '<cmd>Lazy<cr>',           desc = 'Lazy Plugin Mgr' },
+        { '<space>oL', '<cmd>Lazy sync<cr>',      desc = 'Lazy Sync' },
+        { '<space>om', '<cmd>Mason<cr>',          desc = 'Mason LSP Server Mgr' },
+        { '<space>oo', '<cmd>Oil --float<cr>',    desc = 'Oil' },
+        { '<space>ou', '<cmd>UndotreeToggle<cr>', desc = 'UndoTree' },
+      },
+      {
+        group = '+Telescope',
+        { '<space>tc', '<cmd>Telescope commands<cr>',       desc = 'Commands' },
+        { '<space>tf', '<cmd>Telescope live_grep_args<cr>', desc = 'Live grep args' },
+        {
+          '<space>tF',
+          function() require("telescope-live-grep-args.shortcuts").grep_word_under_cursor() end,
+          desc = 'Live grep cword'
+        },
+        -- f = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
+        -- F = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Buffer fuzzy find' },
+        { '<space>th', '<cmd>Telescope help_tags<cr>', desc = 'Help tags' },
+        { '<space>tj', '<cmd>Telescope jumplist<cr>',  desc = 'Jump list' },
+        { '<space>tk', '<cmd>Telescope keymaps<cr>',   desc = 'Keymaps' },
+        { '<space>tl', '<cmd>Telescope resume<cr>',    desc = 'Resume last picker' },
+        { '<space>tm', '<cmd>Telescope marks<cr>',     desc = 'Marks' },
+        { '<space>to', '<cmd>Telescope oldfiles<cr>',  desc = 'Old Files' },
+        { '<space>tq', '<cmd>Telescope quickfix<cr>',  desc = 'Quickfix List' },
+        { '<space>tr', '<cmd>Telescope registers<cr>', desc = 'Registers' },
+        { '<space>tg', '<cmd>TodoTelescope<cr>',       desc = 'TODOs' },
+      },
+      {
+        group = '+Resize Splits',
+        { '<space>wh', '5<c-w><', desc = 'Resize left' },
+        { '<space>wl', '5<c-w>>', desc = 'Resize right' },
+        { '<space>wj', '5<c-w>-', desc = 'Resize down' },
+        { '<space>wk', '5<c-w>+', desc = 'Resize up' },
+      },
+      {
+        group = '+Locate file',
+        { '<leader>!', '<cmd>Oil --float<cr>',   desc = 'Find File In Oil' },
+        { '<leader>1', '<cmd>Oil --float<cr>',   desc = 'Toggle Oil' },
+        { '<leader>2', find_nvim_files,          desc = 'Find nvim config files' },
+        { '<leader>3', grep_nvim_files,          desc = 'Live grep nvim config files' },
+        { '<leader>4', grep_zsh_files,           desc = 'Find zsh config files' },
+        { '<leader>5', find_dotfiles,            desc = 'Find dot files' },
+        { '<leader>m', '<cmd>silent! nohls<cr>', desc = 'Clear search highlight' },
+        { '<leader>s', edit_snippets,            desc = 'Edit LuaSnippets' },
+        { '<leader>t', '<cmd>tabclose<cr>',      desc = 'Close tab' },
+      },
+      { 'gp', ':b#<cr>',                       desc = 'Alternate buffer' },
+      { 'gs', '<cmd>Neogit kind=floating<cr>', desc = 'Git status' },
     })
   end,
 }

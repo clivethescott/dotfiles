@@ -1,6 +1,6 @@
 return {
   "rcarriga/nvim-dap-ui",
-  keys = { '<space>d' },
+  keys = { '<space>dr' },
   dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' },
   config = function()
     local ui = require 'dapui'

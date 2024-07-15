@@ -20,27 +20,19 @@ local on_attach = function()
   map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 
   local wk = require 'which-key'
-  wk.register({
-    ["["] = {
-      name = '+Previous',
-      g = { prev_hunk, 'Git Change' },
+  wk.add({
+    {
+      group = '+Git',
+      { "[g", prev_hunk,                    desc = 'Prev Git Change' },
+      { "]g", next_hunk,                    desc = 'Next Git Change' },
+      { 'g]', next_hunk,                    desc = 'Next Git Change' },
+      { 'g[', prev_hunk,                    desc = 'Prev Git Change' },
+      { 'gb', gs.toggle_current_line_blame, desc = 'Toggle Blame' },
+      { 'gB', blame_line,                   desc = 'Blame Line Full' },
+      { 'gd', gs.preview_hunk,              desc = 'Diff Change' },
+      { 'gu', gs.reset_hunk,                desc = 'Undo Current Change' },
+      { 'gU', gs.reset_buffer,              desc = 'Undo Buffer Changes' },
     },
-    ["]"] = {
-      name = '+Next',
-      g = { next_hunk, 'Git Change' },
-    },
-    ["<space>"] = {
-      g = {
-        name = '+Git',
-        [']'] = { next_hunk, 'Next Change' },
-        ['['] = { prev_hunk, 'Prev Change' },
-        b = { gs.toggle_current_line_blame, 'Toggle Blame' },
-        B = { blame_line, 'Blame Line Full' },
-        d = { gs.preview_hunk, 'Diff Change' },
-        u = { gs.reset_hunk, 'Undo Current Change' },
-        U = { gs.reset_buffer, 'Undo Buffer Changes' },
-      },
-    }
   })
 end
 
