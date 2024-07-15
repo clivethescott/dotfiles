@@ -77,6 +77,7 @@ return {
   mouse_bindings = mouse_bindings,
   hide_tab_bar_if_only_one_tab = true,
   font_size = 16,
+  line_height = 1.2,
   scrollback_lines = 10000,
   font = wezterm.font 'FiraCode Nerd Font',
   color_scheme = 'catppuccin-mocha',
