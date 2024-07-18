@@ -27,11 +27,11 @@ local on_attach = function()
       { "]g", next_hunk,                    desc = 'Next Git Change' },
       { 'g]', next_hunk,                    desc = 'Next Git Change' },
       { 'g[', prev_hunk,                    desc = 'Prev Git Change' },
-      { 'gb', gs.toggle_current_line_blame, desc = 'Toggle Blame' },
-      { 'gB', blame_line,                   desc = 'Blame Line Full' },
-      { 'gd', gs.preview_hunk,              desc = 'Diff Change' },
-      { 'gu', gs.reset_hunk,                desc = 'Undo Current Change' },
-      { 'gU', gs.reset_buffer,              desc = 'Undo Buffer Changes' },
+      { '<space>gb', gs.toggle_current_line_blame, desc = 'Toggle Blame' },
+      { '<space>gB', blame_line,                   desc = 'Blame Line Full' },
+      { '<space>gd', gs.preview_hunk,              desc = 'Diff Change' },
+      { '<space>gu', gs.reset_hunk,                desc = 'Undo Current Change' },
+      { '<space>gU', gs.reset_buffer,              desc = 'Undo Buffer Changes' },
     },
   })
 end
