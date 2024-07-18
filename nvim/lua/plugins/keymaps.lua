@@ -395,8 +395,18 @@ return {
         { '<leader>s', edit_snippets,            desc = 'Edit LuaSnippets' },
         { '<leader>t', '<cmd>tabclose<cr>',      desc = 'Close tab' },
       },
-      { 'gp', ':b#<cr>',                       desc = 'Alternate buffer' },
-      { 'gs', '<cmd>Neogit kind=floating<cr>', desc = 'Git status' },
+      {
+        group = '+Obsidian',
+        { '<space>np',  '<cmd>ObsidianQuickSwitch<cr>',   desc = 'Open/Switch Note' },
+        { '<space>nn',  '<cmd>ObsidianQuickSwitch<cr>',   desc = 'Open/Switch Note' },
+        { '<space>ne',  '<cmd>ObsidianNew<cr>',           desc = 'New Note' },
+        { '<space>nov', '<cmd>ObsidianFollowLink vsplit', desc = 'Open Link in vsplit' },
+        { '<space>nos', '<cmd>ObsidianFollowLink hsplit', desc = 'Open Link in hsplit' },
+        { '<space>nt',  '<cmd>ObsidianTOC',               desc = 'Show TOC' },
+      },
+      { 'gp',       ':b#<cr>',                       desc = 'Alternate buffer' },
+      { 'gs',       '<cmd>Neogit kind=floating<cr>', desc = 'Git status' },
+      { '<space>y', ':%y<cr>',                       desc = 'Yank buffer' },
     })
   end,
 }

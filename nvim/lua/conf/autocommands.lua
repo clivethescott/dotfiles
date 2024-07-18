@@ -116,3 +116,20 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format({ async = false })
   end,
 })
+
+
+api.nvim_create_autocmd({ 'InsertLeave' }, {
+  group = events_group,
+  pattern = '*.md',
+  callback = function()
+    vim.opt.conceallevel = 1
+  end
+})
+
+api.nvim_create_autocmd({ 'InsertEnter' }, {
+  group = events_group,
+  pattern = '*.md',
+  callback = function()
+    vim.opt.conceallevel = 0
+  end
+})

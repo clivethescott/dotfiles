@@ -18,6 +18,9 @@ require 'lazy'.setup({
   change_detection = {
     notify = false
   },
+  rocks = {
+    enabled = false,
+  },
   checker = {
     enabled = false,
     notify = true,                -- get a notification when new updates are found
