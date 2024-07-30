@@ -404,6 +404,25 @@ return {
         { '<space>nos', '<cmd>ObsidianFollowLink hsplit', desc = 'Open Link in hsplit' },
         { '<space>nt',  '<cmd>ObsidianTOC',               desc = 'Show TOC' },
       },
+      {
+        group = '+Session',
+        {
+          '<space>so',
+          function() require 'persistence'.load() end,
+          desc = 'Load session for current directory'
+        },
+        { '<space>se', function() require 'persistence'.select() end, desc = 'Select session' },
+        {
+          '<space>sl',
+          function() require 'persistence'.load({ last = true }) end,
+          desc = 'Load last session'
+        },
+        {
+          '<space>sq',
+          function() require 'persistence'.stop() end,
+          desc = 'Stop session tracking'
+        },
+      },
       { 'gp',       ':b#<cr>',                       desc = 'Alternate buffer' },
       { 'gs',       '<cmd>Neogit kind=floating<cr>', desc = 'Git status' },
       { '<space>y', ':%y<cr>',                       desc = 'Yank buffer' },
