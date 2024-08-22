@@ -357,6 +357,7 @@ return {
     require 'lspconfig'.hls.setup {
       filetypes = { 'haskell', 'lhaskell', 'cabal' },
     }
+    require 'lspconfig'.jdtls.setup {}
 
     setup_go(lspconfig, capabilities)
     setup_python(lspconfig, capabilities)
