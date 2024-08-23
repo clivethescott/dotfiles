@@ -61,7 +61,7 @@ end
 local mouse_bindings = {
   {
     event = { Up = { streak = 1, button = 'Left' } },
-    mods = 'CTRL',
+    mods = 'CMD',
     action = action.OpenLinkAtMouseCursor,
   },
 }
@@ -76,7 +76,7 @@ return {
   keys = cmd_bindings(),
   mouse_bindings = mouse_bindings,
   hide_tab_bar_if_only_one_tab = true,
-  font_size = 16,
+  font_size = 15,
   line_height = 1.2,
   scrollback_lines = 10000,
   font = wezterm.font 'FiraCode Nerd Font',
