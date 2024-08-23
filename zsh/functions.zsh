@@ -1,11 +1,9 @@
 function gdoc() {
   go doc $1 | bat --language=go
 }
-# Kill tomcat
-function tomcat() {
 
-    echo `ps -ef | grep org.apache.catalina.startup.Bootstrap | grep -v grep | awk '{ print $2 }' | tail -1`
-    # echo "kill -9 $running_tomcats"
+function gb() {
+ git checkout "$(git branch --all | fzf | tr -d '[:space:]')"
 }
 
 function aws_prof {
@@ -16,9 +14,6 @@ function aws_prof {
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
-
-# View man pages in Preview
-function pman() { ps=`mktemp -t manpageXXXX`.ps ; man -t $@ > "$ps" ; open "$ps" ; }
 
 # Create a ZIP archive of a file or folder.
 function makezip() { zip -r "${1%%/}.zip" "$1" ; }
@@ -72,10 +67,6 @@ function unzipAll()
 function parse_git_branch() {
 
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-
-function fman() {
-  sh ~/ShellScripts/fman.sh
 }
 
 function zz() {
