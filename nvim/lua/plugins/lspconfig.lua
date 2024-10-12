@@ -177,6 +177,11 @@ local setup_go = function(lspconfig, capabilities)
 end
 
 local setup_python = function(lspconfig, capabilities)
+  lspconfig.ruff.setup{
+    capabilities = capabilities,
+    -- settings = {
+    -- }
+  }
   lspconfig.pyright.setup {
     capabilities = capabilities,
     settings = {

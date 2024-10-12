@@ -6,7 +6,6 @@ return {
       filetype = {
         python = {
           require 'formatter.filetypes.python'.ruff,
-          require 'formatter.filetypes.python'.isort,
         },
         go = {
           require 'formatter.filetypes.go'.goimports,

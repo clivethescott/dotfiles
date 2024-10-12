@@ -85,6 +85,9 @@ function zz() {
       if [[ -d ./venv ]] ; then
         source ./venv/bin/activate
       fi
+      if [[ -d ./.venv ]] ; then
+        source ./.venv/bin/activate
+      fi
   else
     ## check the current folder belong to earlier VIRTUAL_ENV folder
     # if yes then do nothing
