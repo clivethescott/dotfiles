@@ -3,6 +3,7 @@ local nvim_config_dir = vim.fn.stdpath('config')
 local nvim_data_dir = vim.fn.stdpath('data')
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.dictionary:append('/usr/share/dict/words')
+vim.opt.mouse=''
 -- vim.opt.spell = true
 -- vim.opt.spelllang = 'en_gb'
 
