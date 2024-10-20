@@ -65,6 +65,20 @@ local mouse_bindings = {
     action = action.OpenLinkAtMouseCursor,
   },
 }
+
+local hyperlink_rules = wezterm.default_hyperlink_rules()
+local user_name = os.getenv('USER') or 'clive'
+-- absolute file system URL e.g /Users/clive/Music/test.txt
+table.insert(hyperlink_rules, {
+  regex = [[(/Users/[\w./]+)\S?\b]],
+  format = "file:///$1",
+})
+-- relative file system URL e.g ~/Music/test.txt
+table.insert(hyperlink_rules, {
+  regex = [[~/([\w./]+)\S?\b]],
+  format = string.format("file:///Users/%s/$1", user_name),
+})
+
 -- maximise window on startup
 wezterm.on('gui-startup', function(cmd)
   local _, _, window = mux.spawn_window(cmd or {})
@@ -84,4 +98,5 @@ return {
   window_decorations = "RESIZE",
   audible_bell = "Disabled",
   window_close_confirmation = "NeverPrompt",
+  hyperlink_rules = hyperlink_rules,
 }
