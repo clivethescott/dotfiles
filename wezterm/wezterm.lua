@@ -70,14 +70,34 @@ local hyperlink_rules = wezterm.default_hyperlink_rules()
 local user_name = os.getenv('USER') or 'clive'
 -- absolute file system URL e.g /Users/clive/Music/test.txt
 table.insert(hyperlink_rules, {
-  regex = [[(/Users/[\w./]+)\S?\b]],
+  regex = [[(/Users/[\w./:]+)\S?\b]],
   format = "file:///$1",
 })
 -- relative file system URL e.g ~/Music/test.txt
 table.insert(hyperlink_rules, {
-  regex = [[~/([\w./]+)\S?\b]],
+  regex = [[~/([\w./:]+)\S?\b]],
   format = string.format("file:///Users/%s/$1", user_name),
 })
+
+-- change action for open hyperlink
+-- open doens't like file names with line numbers
+wezterm.on('open-uri', function(window, pane, uri)
+  local start, match_end = uri:find "file:///"
+  if start == 1 then
+    local path = uri:sub(match_end + 1)
+    window:perform_action(
+      wezterm.action.SpawnCommandInNewWindow {
+        args = { '/opt/homebrew/bin/subl', path },
+      },
+      pane
+    )
+    -- prevent the default action from opening in a browser
+    return false
+  end
+  -- otherwise, by not specifying a return value, we allow later
+  -- handlers and ultimately the default action to caused the
+  -- URI to be opened in the browser
+end)
 
 -- maximise window on startup
 wezterm.on('gui-startup', function(cmd)
@@ -99,4 +119,5 @@ return {
   audible_bell = "Disabled",
   window_close_confirmation = "NeverPrompt",
   hyperlink_rules = hyperlink_rules,
+  prefer_to_spawn_tabs = true,
 }
