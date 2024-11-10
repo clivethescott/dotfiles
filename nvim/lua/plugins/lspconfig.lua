@@ -320,7 +320,7 @@ return {
 
     -- No extra config required, just run setup for these
     require 'lspconfig'.dockerls.setup {}
-    require 'lspconfig'.bufls.setup {}
+    require 'lspconfig'.buf_ls.setup {}
     require 'lspconfig'.graphql.setup {}
     require 'lspconfig'.html.setup {
       capabilities = capabilities
