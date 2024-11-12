@@ -191,7 +191,7 @@ local setup_python = function(lspconfig, capabilities)
 end
 
 local setup_tsserver = function(lspconfig, capabilities)
-  lspconfig.tsserver.setup {
+  lspconfig.ts_ls.setup {
     capabilities = capabilities,
     root_dir = lspconfig.util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json'),
     settings = {
@@ -315,7 +315,7 @@ return {
 
     -- No extra config required, just run setup for these
     require 'lspconfig'.dockerls.setup {}
-    require 'lspconfig'.bufls.setup {}
+    require 'lspconfig'.buf_ls.setup {}
     require 'lspconfig'.graphql.setup {}
     require 'lspconfig'.html.setup {
       capabilities = capabilities

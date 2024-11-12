@@ -10,8 +10,7 @@ return {
 
     require 'mason-lspconfig'.setup({
       ensure_installed = {
-        'gopls', 'html', 'jsonls', 'rust_analyzer', 'lua_ls', 'pyright', 'tsserver',
-        'tsserver', 'yamlls',
+        'gopls', 'html', 'jsonls', 'rust_analyzer', 'lua_ls', 'pyright', 'ts_ls', 'yamlls',
       }
     })
   end

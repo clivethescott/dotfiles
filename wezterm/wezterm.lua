@@ -71,17 +71,25 @@ wezterm.on('gui-startup', function(cmd)
   window:gui_window():maximize()
 end)
 
+local hyperlink_rules = table.insert(wezterm.default_hyperlink_rules(), {
+  {
+    regex = '/Users[a-zA-Z0-9\\./-]+',
+    format = '$0'
+  },
+})
+
 return {
   term = 'wezterm',
   keys = cmd_bindings(),
   mouse_bindings = mouse_bindings,
   hide_tab_bar_if_only_one_tab = true,
-  font_size = 15,
-  line_height = 1.2,
+  font_size = 16,
+  line_height = 1.3,
   scrollback_lines = 10000,
-  font = wezterm.font 'FiraCode Nerd Font',
+  font = wezterm.font('FiraCode Nerd Font', { weight = 'DemiBold'}),
   color_scheme = 'catppuccin-mocha',
   window_decorations = "RESIZE",
   audible_bell = "Disabled",
   window_close_confirmation = "NeverPrompt",
+  hyperlink_rules = hyperlink_rules,
 }
