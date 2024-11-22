@@ -3,7 +3,7 @@ function gdoc() {
 }
 
 function gb() {
- git checkout "$(git branch --all | fzf | tr -d '[:space:]')"
+ git switch -c "$(git branch --all | fzf | tr -d '[:space:]')"
 }
 
 function aws_prof {
