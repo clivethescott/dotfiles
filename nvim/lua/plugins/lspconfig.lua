@@ -177,7 +177,7 @@ local setup_go = function(lspconfig, capabilities)
 end
 
 local setup_python = function(lspconfig, capabilities)
-  lspconfig.ruff.setup{
+  lspconfig.ruff.setup {
     capabilities = capabilities,
     -- settings = {
     -- }
@@ -266,6 +266,11 @@ end
 
 local mk_capabilities = function()
   local caps = vim.lsp.protocol.make_client_capabilities()
+  -- nvim ufo
+  caps.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+  }
   caps.textDocument.completion.completionItem.snippetSupport = true -- broadcasting snippet capability for completion
 
   caps.textDocument.completion.completionItem.resolveSupport = {

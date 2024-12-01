@@ -19,7 +19,7 @@ return {
       }
     }
     metals_config.settings = {
-      serverVersion = '1.3.5',
+      serverVersion = '1.4.1',
       fallbackScalaVersion = '3.3.3',
       showImplicitArguments = false,
       showImplicitConversionsAndClasses = true,

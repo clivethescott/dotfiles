@@ -426,6 +426,11 @@ return {
       { 'gp',       ':b#<cr>',                       desc = 'Alternate buffer' },
       { 'gs',       '<cmd>Neogit kind=floating<cr>', desc = 'Git status' },
       { '<space>y', ':%y<cr>',                       desc = 'Yank buffer' },
+      {
+        group = '+Folding',
+        { 'zR', function() require 'ufo'.openAllFolds() end, desc = 'Open all folds' },
+        { 'zM', function() require 'ufo'.closeAllFolds() end, desc = 'Close all folds' },
+      },
     })
   end,
 }
