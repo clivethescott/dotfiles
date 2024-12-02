@@ -137,7 +137,7 @@ return {
     end
     local find_dotfiles = function()
       require 'telescope.builtin'.find_files {
-        cwd = '~/dotfiles'
+        cwd = '~/.config'
       }
     end
     local grep_nvim_files = function()
@@ -347,8 +347,8 @@ return {
         group = '+Open Window',
         { '<space>od', '<cmd>DiffviewOpen<cr>',   desc = 'Diffview' },
         { '<space>of', toggle_winbar,             desc = 'Winbar' },
-        { '<space>og', '<cmd>Neogit',             desc = 'Neogit' },
-        { '<space>on', '<cmd>Neogit',             desc = 'Neogit' },
+        { '<space>og', '<cmd>Neogit<cr>',             desc = 'Neogit' },
+        { '<space>on', '<cmd>Neogit<cr>',             desc = 'Neogit' },
         { '<space>ol', '<cmd>Lazy<cr>',           desc = 'Lazy Plugin Mgr' },
         { '<space>oL', '<cmd>Lazy sync<cr>',      desc = 'Lazy Sync' },
         { '<space>om', '<cmd>Mason<cr>',          desc = 'Mason LSP Server Mgr' },

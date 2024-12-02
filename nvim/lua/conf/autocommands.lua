@@ -120,7 +120,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 api.nvim_create_autocmd({ 'InsertLeave' }, {
   group = events_group,
-  pattern = '*.md',
+  pattern = {'*.md', '*.json'},
   callback = function()
     vim.opt.conceallevel = 1
   end
@@ -128,7 +128,7 @@ api.nvim_create_autocmd({ 'InsertLeave' }, {
 
 api.nvim_create_autocmd({ 'InsertEnter' }, {
   group = events_group,
-  pattern = '*.md',
+  pattern = {'*.md', '*.json'},
   callback = function()
     vim.opt.conceallevel = 0
   end
