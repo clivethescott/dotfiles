@@ -31,7 +31,8 @@ CARGO_HOME=$HOME/.cargo
 APP_HOME=$HOME/apps
 COURSIER_HOME=$HOME/Library/Application\ Support/Coursier
 PYTHON_PATH=/opt/homebrew/opt/python@3.13
+GHCUP=$HOME/.ghcup
 
-export PATH=/opt/homebrew/bin:$JAVA_HOME/bin:$COURSIER_HOME/bin:$GOBIN:$PYTHON_PATH/bin:$CARGO_HOME/bin:$PATH
+export PATH=/opt/homebrew/bin:$JAVA_HOME/bin:$COURSIER_HOME/bin:$GOBIN:$PYTHON_PATH/bin:$CARGO_HOME/bin:$GHCUP/bin:$PATH
 
 fpath+=/opt/homebrew/share/zsh/site-functions

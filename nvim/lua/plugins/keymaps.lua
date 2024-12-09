@@ -130,6 +130,16 @@ return {
     map('n', 'Ï', function() require 'telescope.builtin'.live_grep() end)
     map('n', 'ƒ', function() require 'telescope.builtin'.current_buffer_fuzzy_find() end)
 
+    for _, mode in pairs({ 'n', 'v' }) do
+      map(mode, '<space>gh',
+        function()
+          require "gitlinker".get_buf_range_url(mode,
+            { action_callback = require "gitlinker.actions".open_in_browser })
+        end)
+      map(mode, '<space>gH',
+        function() require "gitlinker".get_repo_url({ action_callback = require "gitlinker.actions".open_in_browser }) end)
+    end
+
     local find_nvim_files = function()
       require 'telescope.builtin'.find_files {
         cwd = '~/.config/nvim'
@@ -426,6 +436,11 @@ return {
       { 'gp',       ':b#<cr>',                       desc = 'Alternate buffer' },
       { 'gs',       '<cmd>Neogit kind=floating<cr>', desc = 'Git status' },
       { '<space>y', ':%y<cr>',                       desc = 'Yank buffer' },
+      {
+        group = '+Folding',
+        { 'zR', function() require 'ufo'.openAllFolds() end,  desc = 'Open all folds' },
+        { 'zM', function() require 'ufo'.closeAllFolds() end, desc = 'Close all folds' },
+      },
     })
   end,
 }
