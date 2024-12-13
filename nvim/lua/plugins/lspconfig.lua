@@ -233,26 +233,28 @@ local setup_luaserver = function(lspconfig, capabilities)
     capabilities = capabilities,
     settings = {
       Lua = {
-        completion = {
-          callSnippet = "Replace",
-          postfix = true,
-        },
-        hint = {
-          enable = true,
+        runtime = {
+          -- Tell the language server which version of Lua you're using
+          -- (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT'
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global and
           -- Luasnip shortcuts https://github.com/L3MON4D3/LuaSnip/blob/69cb81cf7490666890545fef905d31a414edc15b/lua/luasnip/config.lua#L82-L104
           globals = { 'vim', 'parse', 's', 'sn', 't', 'f', 'i', 'c', 'fmt', 'rep' },
         },
-        workspace = {
-          maxPreload = 2000,
-          preloadFileSize = 50000,
-          checkThirdParty = false,
-        },
         telemetry = {
           enable = false,
         },
+        workspace = {
+          checkThirdParty = false,
+          library = {
+            vim.env.VIMRUNTIME,
+            -- Depending on the usage, you might want to add additional paths here.
+            "${3rd}/luv/library"
+            -- "${3rd}/busted/library",
+          }
+        }
       },
     },
   }
@@ -306,16 +308,27 @@ return {
           -- end
           on_attach(client, bufnr)
 
-          vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
-            group = lsp_group,
-            pattern = { '*.rust', '*.go', '*.python' },
-            desc = 'Refresh code lens for supported languages',
-            callback = function()
-              if client.server_capabilities.codeLensProvider then
+          if client.supports_method('textDocument/codeLens') then
+            vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
+              group = lsp_group,
+              buffer = bufnr,
+              desc = 'Refresh code lens for supported languages',
+              callback = function()
                 vim.lsp.codelens.refresh()
               end
-            end
-          })
+            })
+          end
+
+          if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              group = lsp_group,
+              buffer = bufnr,
+              desc = 'Format on save',
+              callback = function()
+                vim.lsp.buf.format({ bufnr = bufnr, id = client.id })
+              end
+            })
+          end
         end
       end,
     })
