@@ -11,17 +11,16 @@ M.project_files = function()
     show_untracked = true
   }
 
-  local cwd = vim.fn.getcwd()
+  local cwd = vim.uv.cwd() or vim.env.HOME
   if is_inside_work_tree[cwd] == nil then
     vim.fn.system("git rev-parse --is-inside-work-tree")
     is_inside_work_tree[cwd] = vim.v.shell_error == 0
   end
 
-  local telescope = require 'telescope.builtin'
   if is_inside_work_tree[cwd] then
-    telescope.git_files(opts)
+    require 'telescope.builtin'.git_files(opts)
   else
-    telescope.find_files(opts)
+    require 'telescope.builtin'.find_files(opts)
   end
 end
 
@@ -40,66 +39,66 @@ return {
       },
     })
 
-    local default_opts = { silent = true, noremap = true }
-    local map = function(mode, lhs, rhs, opts)
-      if opts then
-        vim.tbl_extend('keep', opts, default_opts)
-      else
-        opts = default_opts
-      end
-      vim.keymap.set(mode, lhs, rhs, opts)
-    end
+    -- local default_opts = { silent = true, noremap = true }
+    -- local map = function(mode, lhs, rhs, opts)
+    --   if opts then
+    --     vim.tbl_extend('keep', opts, default_opts)
+    --   else
+    --     opts = default_opts
+    --   end
+    --   vim.keymap.set(mode, lhs, rhs, opts)
+    -- end
 
     -- Dealing with word wrap on long lines
-    map('n', 'k', [[v:count < 2 ? 'gk' : "m'" .. v:count .. 'k']], { expr = true })
-    map('n', 'j', [[v:count < 2 ? 'gj' : "m'" .. v:count .. 'j']], { expr = true })
+    vim.keymap.set('n', 'k', [[v:count < 2 ? 'gk' : "m'" .. v:count .. 'k']], { expr = true })
+    vim.keymap.set('n', 'j', [[v:count < 2 ? 'gj' : "m'" .. v:count .. 'j']], { expr = true })
 
     -- Center search result
-    map('n', 'n', 'nzzzv')
-    map('n', 'N', 'Nzzzv')
-    map('n', '#', '#zz')
-    map('n', '*', '*zz')
+    vim.keymap.set('n', 'n', 'nzzzv')
+    vim.keymap.set('n', 'N', 'Nzzzv')
+    vim.keymap.set('n', '#', '#zz')
+    vim.keymap.set('n', '*', '*zz')
 
     -- Split movements
     -- Replace with tmux-navigator
 
     -- Resize v-splits
-    map('n', '<space>wh', '5<c-w><')
-    map('n', '<space>wk', '5<c-w>+')
-    map('n', '<space>wl', '5<c-w>>')
-    map('n', '<space>wj', '5<c-w>-')
+    vim.keymap.set('n', '<space>wh', '5<c-w><')
+    vim.keymap.set('n', '<space>wk', '5<c-w>+')
+    vim.keymap.set('n', '<space>wl', '5<c-w>>')
+    vim.keymap.set('n', '<space>wj', '5<c-w>-')
 
     -- Saving
-    map('n', '<c-s>', ':update<cr>')
-    map('i', '<c-s>', '<esc>:update<cr>')
+    vim.keymap.set('n', '<c-s>', ':update<cr>', { silent = true })
+    vim.keymap.set('i', '<c-s>', '<esc>:update<cr>', { silent = true })
 
     -- Jump to exact mark position either way
     -- Disabled not recognised by which-key
-    -- map('n', "'", "`")
+    vim.keymap.set('n', "'", "`")
 
     -- Faster way to quit
-    map('n', 'Q', ':q<cr>')
+    vim.keymap.set('n', 'Q', ':q<cr>')
 
     -- Faster way to yank line
-    map('n', 'Y', 'yy')
+    vim.keymap.set('n', 'Y', 'yy')
 
     -- Shouldn't be using these anyway
-    map('n', '<left>', '<nop>')
-    map('v', '<left>', '<nop>')
-    map('n', '<right>', '<nop>')
-    map('v', '<right>', '<nop>')
-    map('n', '<down>', '<nop>')
-    map('v', '<down>', '<nop>')
-    map('n', '<up>', '<nop>')
-    map('v', '<up>', '<nop>')
+    vim.keymap.set('n', '<left>', '<nop>')
+    vim.keymap.set('v', '<left>', '<nop>')
+    vim.keymap.set('n', '<right>', '<nop>')
+    vim.keymap.set('v', '<right>', '<nop>')
+    vim.keymap.set('n', '<down>', '<nop>')
+    vim.keymap.set('v', '<down>', '<nop>')
+    vim.keymap.set('n', '<up>', '<nop>')
+    vim.keymap.set('v', '<up>', '<nop>')
 
     -- Keep selection after visual indent/outdent
-    map('v', '<', '<gv')
-    map('v', '>', '>gv')
+    vim.keymap.set('v', '<', '<gv')
+    vim.keymap.set('v', '>', '>gv')
 
 
-    map('n', '<M-[>', '<C-o>')
-    map('n', '<M-]>', '<C-i>')
+    vim.keymap.set('n', '<M-[>', '<C-o>')
+    vim.keymap.set('n', '<M-]>', '<C-i>')
     local toggle_winbar = function()
       if vim.o.winbar == "" then
         vim.o.winbar = "%{%v:lua.require'helper.utils'.nvim_winbar()%}"
@@ -112,14 +111,14 @@ return {
     local minimal_ignore = home .. '/.gitignore_minimal'
     -- Quickly add empty lines
     -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines=
-    map('n', '<space>[', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[")
-    map('n', '<space>]', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>')
+    vim.keymap.set('n', '<space>[', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[")
+    vim.keymap.set('n', '<space>]', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>')
 
-    -- Telescope mappings
-    map('n', '<c-e>', function() require 'telescope.builtin'.buffers { sort_lastused = true } end)
+    -- Telescope vim.keymap.setpings
+    vim.keymap.set('n', '<c-e>', function() require 'telescope.builtin'.buffers { sort_lastused = true } end)
     -- Use git_files if in git dir, else use find_files
-    map('n', '<c-p>', M.project_files)
-    map('n', 'π', function()
+    vim.keymap.set('n', '<c-p>', M.project_files)
+    vim.keymap.set('n', 'π', function()
       require 'telescope.builtin'.find_files {
         find_command = { "fd", "--type", "f", "--hidden", "--max-depth", "10", "--strip-cwd-prefix", "--ignore-file", minimal_ignore },
         no_ignore = true,
@@ -127,18 +126,16 @@ return {
         hidden = true,
       }
     end)
-    map('n', 'Ï', function() require 'telescope.builtin'.live_grep() end)
-    map('n', 'ƒ', function() require 'telescope.builtin'.current_buffer_fuzzy_find() end)
+    vim.keymap.set('n', 'Ï', function() require 'telescope.builtin'.live_grep() end)
+    vim.keymap.set('n', 'ƒ', function() require 'telescope.builtin'.current_buffer_fuzzy_find() end)
 
-    for _, mode in pairs({ 'n', 'v' }) do
-      map(mode, '<space>gh',
-        function()
-          require "gitlinker".get_buf_range_url(mode,
-            { action_callback = require "gitlinker.actions".open_in_browser })
-        end)
-      map(mode, '<space>gH',
-        function() require "gitlinker".get_repo_url({ action_callback = require "gitlinker.actions".open_in_browser }) end)
-    end
+    vim.keymap.set('v', '<space>gh',
+      function()
+        require "gitlinker".get_buf_range_url('v',
+          { action_callback = require "gitlinker.actions".open_in_browser })
+      end)
+    vim.keymap.set('n', '<space>gH',
+      function() require "gitlinker".get_repo_url({ action_callback = require "gitlinker.actions".open_in_browser }) end)
 
     local find_nvim_files = function()
       require 'telescope.builtin'.find_files {
@@ -153,12 +150,6 @@ return {
     local grep_nvim_files = function()
       require 'telescope.builtin'.live_grep {
         cwd = '~/.config/nvim',
-        follow = true,
-      }
-    end
-    local grep_zsh_files = function()
-      require 'telescope.builtin'.find_files {
-        cwd = '~/.config/zsh',
         follow = true,
       }
     end
@@ -177,6 +168,7 @@ return {
       require 'telescope'.extensions.dap.list_breakpoints {}
     end
     local show_dap_ui = function()
+      ---@diagnostic disable-next-line: missing-fields
       require 'dapui'.eval('', {})
     end
     local go_debug_test = function()
@@ -185,24 +177,24 @@ return {
 
 
     -- Luasnip Mappings
-    map({ 'i', 's' }, '<C-j>', function()
+    vim.keymap.set({ 'i', 's' }, '<C-j>', function()
       local ls = require 'luasnip'
       if ls.jumpable(1) then
         ls.jump(1)
       end
     end)
-    map({ 'i', 's' }, '<C-k>', function()
+    vim.keymap.set({ 'i', 's' }, '<C-k>', function()
       local ls = require 'luasnip'
       if ls.jumpable(-1) then
         ls.jump(-1)
       end
     end)
     -- minimal choice change, same as when using vim.ui.select below
-    map({ 'i' }, '<C-y>', function()
+    vim.keymap.set({ 'i' }, '<C-y>', function()
       require 'luasnip'.expand()
     end)
     -- Luasnip choice selection using vim.ui.select
-    map({ 'i' }, '<C-e>', function()
+    vim.keymap.set({ 'i' }, '<C-e>', function()
       local ls = require 'luasnip'
       if ls.choice_active() then
         ls.change_choice(1)
@@ -242,7 +234,11 @@ return {
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(opts))
     end
 
-    map({ 'n', 'i' }, '<M-i>', toggle_inlay_hints)
+    vim.keymap.set({ 'n', 'i' }, '<M-i>', toggle_inlay_hints)
+    -- Lua dev
+    vim.keymap.set('n', '<space>x', ":.lua<cr>", { silent = true })
+    vim.keymap.set('n', '<space>X', "<cmd>source %<cr>", { silent = true })
+    vim.keymap.set('v', '<space>x', ":lua<cr>", { silent = true })
 
     local wk = require 'which-key'
     wk.add({
@@ -357,8 +353,8 @@ return {
         group = '+Open Window',
         { '<space>od', '<cmd>DiffviewOpen<cr>',   desc = 'Diffview' },
         { '<space>of', toggle_winbar,             desc = 'Winbar' },
-        { '<space>og', '<cmd>Neogit<cr>',             desc = 'Neogit' },
-        { '<space>on', '<cmd>Neogit<cr>',             desc = 'Neogit' },
+        { '<space>og', '<cmd>Neogit<cr>',         desc = 'Neogit' },
+        { '<space>on', '<cmd>Neogit<cr>',         desc = 'Neogit' },
         { '<space>ol', '<cmd>Lazy<cr>',           desc = 'Lazy Plugin Mgr' },
         { '<space>oL', '<cmd>Lazy sync<cr>',      desc = 'Lazy Sync' },
         { '<space>om', '<cmd>Mason<cr>',          desc = 'Mason LSP Server Mgr' },
@@ -399,7 +395,6 @@ return {
         { '<leader>1', '<cmd>Oil --float<cr>',   desc = 'Toggle Oil' },
         { '<leader>2', find_nvim_files,          desc = 'Find nvim config files' },
         { '<leader>3', grep_nvim_files,          desc = 'Live grep nvim config files' },
-        { '<leader>4', grep_zsh_files,           desc = 'Find zsh config files' },
         { '<leader>5', find_dotfiles,            desc = 'Find dot files' },
         { '<leader>m', '<cmd>silent! nohls<cr>', desc = 'Clear search highlight' },
         { '<leader>s', edit_snippets,            desc = 'Edit LuaSnippets' },

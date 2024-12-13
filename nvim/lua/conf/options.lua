@@ -1,9 +1,7 @@
 -- Always use the clipboard directly (instead of +/* registers)
-local nvim_config_dir = vim.fn.stdpath('config')
-local nvim_data_dir = vim.fn.stdpath('data')
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.dictionary:append('/usr/share/dict/words')
-vim.opt.mouse=''
+vim.opt.mouse = ''
 -- vim.opt.spell = true
 -- vim.opt.spelllang = 'en_gb'
 
@@ -29,7 +27,8 @@ vim.opt.showmatch = true
 -- No need to backup, when we have undo files enabled
 vim.opt.backup = false
 vim.opt.writebackup = false
-vim.opt.undodir = nvim_data_dir .. '/undodir'
+---@diagnostic disable-next-line: param-type-mismatch
+vim.opt.undodir = vim.fs.joinpath(vim.fn.stdpath('data'), 'undodir')
 vim.opt.undofile = true
 vim.opt.swapfile = false
 
@@ -48,7 +47,7 @@ vim.opt.wildignore:append({ '*/tmp/*', '*.so', '*.swp', '*.zip', '*.jar', '*/nod
   '*/.git/*', '*.class', '*.pyc', '*/plugged/*', '*/undodir/*', '*.png', '*.dex' })
 -- vim.opt.grepprg = 'rg --vimgrep --smart-case' -- nvim now auto detects ripgrep!
 
-vim.opt.path:append(nvim_config_dir)
+vim.opt.path:append(vim.fn.stdpath('config'))
 vim.opt.rtp:append('/opt/homebrew/opt/fzf')
 
 -- Save on make
@@ -96,7 +95,7 @@ vim.g.loaded_node_provider = 0
 vim.opt.foldmethod = 'syntax'
 vim.opt.foldminlines = 20
 vim.opt.foldminlines = 20
-vim.opt.foldlevelstart=99 -- keep folds on save for ufo?
+vim.opt.foldlevelstart = 99 -- keep folds on save for ufo?
 -- vim.opt.foldlevel = 2
 -- Disable for now doesn't work properly with gitconfig files
 -- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
@@ -119,3 +118,5 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.tmux_navigator_no_mappings = 1
 
 vim.opt.conceallevel = 1
+
+vim.opt.formatoptions:remove "o"
