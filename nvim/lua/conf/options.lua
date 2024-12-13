@@ -96,7 +96,7 @@ vim.g.loaded_node_provider = 0
 vim.opt.foldmethod = 'syntax'
 vim.opt.foldminlines = 20
 vim.opt.foldminlines = 20
-vim.opt.foldlevelstart=1 -- keep folds on save for ufo?
+vim.opt.foldlevelstart=99 -- keep folds on save for ufo?
 -- vim.opt.foldlevel = 2
 -- Disable for now doesn't work properly with gitconfig files
 -- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'

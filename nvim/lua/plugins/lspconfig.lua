@@ -19,7 +19,7 @@ local on_attach = function(client, bufnr)
   -- alt to gs
   map({ 'n', 'i' }, '<M-y>', vim.lsp.buf.signature_help)
 
-  if caps.documentFormattingProvider then
+  if caps.documentFormattingProvider or client.supports_method('textDocument/formatting') then
     map('n', '<leader>f', utils.lsp_buf_format, opts)
     map('n', 'gq', utils.lsp_buf_format, opts)
     wk.add({
