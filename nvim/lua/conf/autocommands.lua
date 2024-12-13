@@ -83,14 +83,6 @@ api.nvim_create_autocmd({ "BufReadPost" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufRead", {
-  group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
-  pattern = "Cargo.toml",
-  callback = function()
-    require 'cmp'.setup.buffer({ sources = { { name = "crates" } } })
-  end,
-})
-
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = events_group,
   pattern = "*.go",
@@ -120,7 +112,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 api.nvim_create_autocmd({ 'InsertLeave' }, {
   group = events_group,
-  pattern = {'*.md', '*.json'},
+  pattern = { '*.md', '*.json' },
   callback = function()
     vim.opt.conceallevel = 1
   end
@@ -128,7 +120,7 @@ api.nvim_create_autocmd({ 'InsertLeave' }, {
 
 api.nvim_create_autocmd({ 'InsertEnter' }, {
   group = events_group,
-  pattern = {'*.md', '*.json'},
+  pattern = { '*.md', '*.json' },
   callback = function()
     vim.opt.conceallevel = 0
   end
