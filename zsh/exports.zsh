@@ -33,6 +33,6 @@ COURSIER_HOME=$HOME/Library/Application\ Support/Coursier
 PYTHON_PATH=/opt/homebrew/opt/python@3.13
 GHCUP=$HOME/.ghcup
 
-export PATH=/opt/homebrew/bin:$JAVA_HOME/bin:$COURSIER_HOME/bin:$GOBIN:$PYTHON_PATH/bin:$CARGO_HOME/bin:$GHCUP/bin:$PATH
+export PATH=/opt/homebrew/bin:$JAVA_HOME/bin:$COURSIER_HOME/bin:$GOBIN:$PYTHON_PATH/bin:$CARGO_HOME/bin:$GHCUP/bin:$APP_HOME/nvim/bin:$PATH
 
 fpath+=/opt/homebrew/share/zsh/site-functions
