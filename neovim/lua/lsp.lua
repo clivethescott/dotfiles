@@ -24,7 +24,8 @@ local formatting = function(client, bufnr, au_group)
   local format = function()
     vim.lsp.buf.format({ bufnr = bufnr, id = client.id, timeout_ms = 2000, async = false })
   end
-  vim.keymap.set('n', 'gq', format, { buffer = true })
+  vim.keymap.set('n', 'gq', format, { buffer = true, desc = 'Format buffer' })
+  vim.keymap.set('n', '<leader>f', format, { buffer = true, desc = 'Format buffer' })
   vim.api.nvim_create_autocmd('BufWritePre', {
     group = au_group,
     buffer = bufnr,

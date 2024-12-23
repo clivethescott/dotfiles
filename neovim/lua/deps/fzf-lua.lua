@@ -4,14 +4,18 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     require("fzf-lua").setup({
-      "telescope",
       winopts = {
         height = 0.9,
         width = 0.9,
         preview = {
           default = 'bat',
           hidden = 'hidden'
-        }
+        },
+        on_create = function()
+          -- called once upon creation of the fzf main window
+          -- can be used to add custom fzf-lua mappings, e.g:
+          vim.keymap.set("t", "<C-i>", "<F4>", { silent = true, buffer = true })
+        end,
       },
     })
     require("fzf-lua").register_ui_select()

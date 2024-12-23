@@ -123,3 +123,7 @@ vim.g.tmux_navigator_no_mappings = 1
 vim.opt.conceallevel = 1
 
 vim.opt.formatoptions:remove "o"
+
+-- which key
+vim.o.timeout = true
+vim.o.timeoutlen = 300
