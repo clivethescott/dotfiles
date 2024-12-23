@@ -35,3 +35,6 @@ require 'lazy'.setup({
     }
   }
 })
+
+vim.cmd.colorscheme "catppuccin"
+vim.keymap.set('n', '<space>ol', '<cmd>Lazy<cr>', { desc = 'Lazy Package Mgr' })

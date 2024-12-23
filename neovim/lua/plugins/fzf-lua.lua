@@ -30,7 +30,7 @@ return {
       { silent = true, desc = "Spell suggest" })
 
     vim.keymap.set("n", "<leader>2",
-      function() require("fzf-lua").files { cwd = '~/.config/nvim' } end,
+      function() require("fzf-lua").files { cwd = '~/.config/neovim' } end,
       { silent = true, desc = "Nvim files" })
 
     local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
