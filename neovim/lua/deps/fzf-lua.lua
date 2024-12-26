@@ -20,7 +20,6 @@ return {
     })
     require("fzf-lua").register_ui_select()
 
-
     vim.keymap.set({ "n", "v", "i" }, "<C-x><C-f>",
       function() require("fzf-lua").complete_path() end,
       { silent = true, desc = "Fuzzy complete path" })
@@ -35,6 +34,10 @@ return {
 
     vim.keymap.set("n", "<leader>2",
       function() require("fzf-lua").files { cwd = '~/.config/neovim' } end,
+      { silent = true, desc = "Nvim files" })
+
+    vim.keymap.set("n", "<leader>3",
+      function() require("fzf-lua").live_grep_glob { cwd = '~/.config/neovim' } end,
       { silent = true, desc = "Nvim files" })
 
     local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')

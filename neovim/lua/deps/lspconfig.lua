@@ -130,9 +130,12 @@ local mk_capabilities = function()
     properties = { "documentation", "detail", "additionalTextEdits" },
   }
   local has_cmp, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
+  local has_blink, blink = pcall(require, 'blink.cmp')
   if has_cmp then
     -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
     server_capabilities = cmp_lsp.default_capabilities()
+  elseif has_blink then
+    server_capabilities = blink.get_lsp_capabilities()
   end
   return server_capabilities
 end

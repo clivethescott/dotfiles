@@ -9,13 +9,4 @@ return {
       },
     },
   },
-  keys = {
-    {
-      "<space>?",
-      function()
-        require("which-key").show({ global = false })
-      end,
-      desc = "Show which key",
-    },
-  },
 }
