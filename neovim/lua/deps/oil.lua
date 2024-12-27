@@ -1,6 +1,8 @@
 return {
   'stevearc/oil.nvim',
   event = 'VeryLazy',
+  ---@module 'oil'
+  ---@type oil.SetupOpts
   opts = {
     delete_to_trash = true,
     default_file_explorer = true, -- allow usage of netrw or not
@@ -15,6 +17,6 @@ return {
   },
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
-    { '<leader>1', '<cmd>Oil<cr>', desc='Oil' },
+    { '<leader>1', '<cmd>Oil<cr>', desc = 'Oil' },
   }
 }

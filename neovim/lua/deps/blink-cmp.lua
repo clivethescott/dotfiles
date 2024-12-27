@@ -5,10 +5,9 @@ return {
   },
   -- use a release tag to download pre-built binaries
   version = '*',
-  ---@module 'blink.cmp'
-  ---@type blink.cmp.Config
   opts = {
-    -- 'default' for mappings similar to built-in completion
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     keymap = {
       preset = 'none',
       ['<c-p>'] = { 'select_prev', 'fallback' },
@@ -27,10 +26,14 @@ return {
       }
     },
     sources = {
-      default = { 'lsp', 'snippets', 'buffer', 'path', },
+      default = { 'lsp', 'snippets', 'buffer', 'lazydev', 'path', },
       providers = {
         lsp = {
           fallbacks = { 'buffer' },
+        },
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
         },
       },
     },

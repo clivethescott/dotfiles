@@ -18,14 +18,13 @@ vim.keymap.set('v', '<space>x', ":lua<cr>", { silent = true, desc = 'Exec Lua' }
 vim.keymap.set('n', 'k', [[v:count < 2 ? 'gk' : "m'" .. v:count .. 'k']], { expr = true })
 vim.keymap.set('n', 'j', [[v:count < 2 ? 'gj' : "m'" .. v:count .. 'j']], { expr = true })
 
-if not vim.fn.has("nvim-0.11") then
+if vim.fn.has("nvim-0.11") ~= 1 then
   -- Quickly add empty lines, provided later in nvim
   -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines=
-  vim.keymap.set('n', '[<space>', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", {desc='Add line before'})
-  vim.keymap.set('n', ']<space>', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>', {desc='Add line after'})
+  vim.keymap.set('n', '[<space>', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", { desc = 'Add line before' })
+  vim.keymap.set('n', ']<space>', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>', { desc = 'Add line after' })
 end
 
 -- Misc
 vim.keymap.set('n', '<space><space>', ":b#<cr>", { silent = true, desc = 'Alt buffer' })
 vim.keymap.set('n', '<leader>m', "<cmd>silent! nohls<cr>", { silent = true, desc = 'Clear highlight' })
-

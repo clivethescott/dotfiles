@@ -28,7 +28,7 @@ return {
       function() require("fzf-lua").complete_path() end,
       { silent = true, desc = "Fuzzy complete path" })
 
-    vim.keymap.set({ "n", "v", "i" }, "<C-x><C-f>",
+    vim.keymap.set({ "n", "v", "i" }, "<C-x><C-l>",
       function() require("fzf-lua").lines() end,
       { silent = true, desc = "Buffer lines" })
 
