@@ -17,6 +17,9 @@ vim.opt.rtp:prepend(lazypath)
 require 'lazy'.setup({
   { import = "deps" }
 }, {
+  defaults = {
+    version = '*' -- install the latest stable version of plugins that support Semver.
+  },
   lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock-2.json",
   change_detection = {
     notify = false

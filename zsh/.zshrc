@@ -10,7 +10,7 @@ fi
 
 # Customize to your needs...
 
-source /opt/homebrew/opt/fzf/shell/completion.zsh
+source $ZDOTDIR/completion/completion.zsh
 # source /opt/homebrew/opt/fzf/shell/key-bindings.zsh --> using atuin
 # brew install zsh-vi-mode Not sure why I installed this but causes key conflicts with atuin
 # source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
