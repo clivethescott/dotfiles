@@ -21,8 +21,10 @@ return {
       ['<c-g>'] = { function() require 'blink.cmp'.show_documentation() end },
       cmdline = {
         preset = 'enter',
-        ['<tab>'] = { 'accept' },
-        ['<cr>'] = { 'fallback' }, -- get out of cmdline on enter
+        ['<tab>'] = { 'select_next' },
+        ['<s-tab>'] = { 'select_prev' },
+        ['<C-y>'] = { 'select_and_accept' },
+        ['<cr>'] = { 'accept', 'fallback' },
       }
     },
     sources = {
@@ -40,7 +42,11 @@ return {
     completion = {
       accept = { auto_brackets = { enabled = false }, }, -- use nvim-autopairs
       -- trigger = { signature_help = { enabled = false } },
-      list = { selection = 'preselect' },
+      list = {
+        selection = function(ctx)
+          return ctx.mode == 'cmdline' and 'auto_insert' or 'preselect'
+        end
+      },
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 2000,
