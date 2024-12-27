@@ -49,7 +49,4 @@ alias tf='terraform'
 alias py=python3.13
 alias dashlane=dcli
 alias pbclear='pbcopy < /dev/null'
-alias cp1='devx cloud aws-login -r arn:aws:iam::789659335040:role/bamazon-TeamMercury --session-duration 3600 && eval "$(aws configure export-credentials --profile HULU_SSO --format env)"'
-alias cp1prod='devx cloud aws-login -r arn:aws:iam::141988508569:role/bamazon-TeamMercuryLimitedAccess --session-duration 3600 && eval "$(aws configure export-credentials --profile HULU_SSO --format env)"'
-alias cp2prod='devx cloud aws-login -r arn:aws:iam::317969680733:role/bamazon-TeamMercury --session-duration 3600 && eval "$(aws configure export-credentials --profile HULU_SSO --format env)"'
 alias mvn=mvnd

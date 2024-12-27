@@ -12,19 +12,18 @@ return {
       ['<c-p>'] = { 'select_prev', 'fallback' },
       ['<c-n>'] = { 'select_next', 'fallback' },
       ['<C-y>'] = { 'select_and_accept' },
-      ['<cr>'] = { 'accept', 'fallback' },
-      ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
-      ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
       ['<c-j>'] = { 'snippet_forward', 'fallback' },
       ['<c-k>'] = { 'snippet_backward', 'fallback' },
-      ['<c-g>'] = { function() require 'blink.cmp'.show_documentation() end },
+      -- ['<c-g>'] = { function() require 'blink.cmp'.show_documentation() end },
       cmdline = {
         preset = 'enter',
         ['<tab>'] = { 'select_next' },
         ['<s-tab>'] = { 'select_prev' },
         ['<C-y>'] = { 'select_and_accept' },
-        ['<cr>'] = { 'accept', 'fallback' },
       }
+    },
+    appearance = {
+
     },
     sources = {
       default = { 'lsp', 'snippets', 'buffer', 'lazydev', 'path', },

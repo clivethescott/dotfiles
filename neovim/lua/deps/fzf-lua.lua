@@ -36,6 +36,11 @@ return {
       function() require("fzf-lua").spell_suggest() end,
       { silent = true, desc = "Spell suggest" })
 
+
+    vim.keymap.set({ "n", "v", "i" }, "<C-x><c-i>",
+      function() require("fzf-lua").lsp_live_workspace_symbols() end,
+      { silent = true, desc = "Live Workspace symbols" })
+
     vim.keymap.set("n", "<leader>2",
       function() require("fzf-lua").files { cwd = '~/.config/neovim' } end,
       { silent = true, desc = "Nvim files" })

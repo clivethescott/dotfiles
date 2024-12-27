@@ -4,7 +4,7 @@ bindkey "\e\e[C" forward-word
 bindkey "^G" fzf-cd-widget
 bindkey "^E" fzf-file-widget
 bindkey "^U" backward-kill-line
-bindkey '^e' autosuggest-accept
+bindkey '^y' autosuggest-accept
 
 bindkey "^P" history-substring-search-up
 bindkey "^N" history-substring-search-down
