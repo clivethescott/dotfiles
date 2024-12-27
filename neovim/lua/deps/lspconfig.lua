@@ -117,28 +117,6 @@ local setup_ocaml = function(capabilities)
   }
 end
 
-local mk_capabilities = function()
-  local server_capabilities = vim.lsp.protocol.make_client_capabilities()
-  -- nvim ufo
-  server_capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
-  }
-  server_capabilities.textDocument.completion.completionItem.snippetSupport = true -- broadcasting snippet capability for completion
-
-  server_capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = { "documentation", "detail", "additionalTextEdits" },
-  }
-  local has_cmp, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
-  local has_blink, blink = pcall(require, 'blink.cmp')
-  if has_cmp then
-    -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-    server_capabilities = cmp_lsp.default_capabilities()
-  elseif has_blink then
-    server_capabilities = blink.get_lsp_capabilities()
-  end
-  return server_capabilities
-end
 
 return {
   'neovim/nvim-lspconfig',
@@ -164,7 +142,7 @@ return {
       end,
     })
 
-    local capabilities = mk_capabilities()
+    local capabilities = require 'utils'.lsp_client_capabilities()
 
     -- No extra config required, just run setup for these
     require 'lspconfig'.dockerls.setup {}

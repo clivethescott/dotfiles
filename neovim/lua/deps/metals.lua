@@ -25,7 +25,7 @@ return {
       showImplicitConversionsAndClasses = true,
       showInferredType = true,
       serverProperties = { "-Xmx1G" },
-      superMethodLensesEnabled = true,
+      superMethodLensesEnabled = false,
       enableSemanticHighlighting = true,
       excludedPackages = {
         "akka.actor.typed.javadsl",
@@ -35,11 +35,11 @@ return {
       autoImportBuild = 'all',
       defaultBspToBuildTool = true,
     }
-    metals_config.capabilities = require 'cmp_nvim_lsp'.default_capabilities()
+    metals_config.capabilities = require 'utils'.lsp_client_capabilities()
 
     metals_config.on_attach = function()
       -- client and bufnr will be used in lspconfig
-      local dap_enabled = require 'helper.utils'.plugin_conf().dap_enabled
+      local dap_enabled = false -- TODO: setup DAP if needed
       if dap_enabled then
         metals.setup_dap()
       end

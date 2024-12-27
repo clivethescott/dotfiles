@@ -52,7 +52,13 @@ return {
       { silent = true, desc = "Nvim files" })
   end,
   keys = {
-    { "<c-p>",     "<cmd>FzfLua files<cr>",          desc = "FZF files" },
+    {
+      "<c-p>",
+      function()
+        require("fzf-lua").files({ file_ignore_patterns = { "^%.metals", "^%.scala" } })
+      end,
+      desc = "FZF files"
+    },
     { "<c-e>",     "<cmd>FzfLua buffers<cr>",        desc = "FZF buffers" },
     { "<space>tl", "<cmd>FzfLua resume<cr>",         desc = "FZF resume" },
     { "<space>tq", "<cmd>FzfLua quickfix<cr>",       desc = "FZF quickfix" },

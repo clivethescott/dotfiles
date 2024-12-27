@@ -5,6 +5,31 @@ function M.resolvedCapabilities(client_id)
   vim.print(vim.lsp.get_client_by_id(client_id).server_capabilities)
 end
 
+function M.lsp_client_capabilities()
+  local server_capabilities = vim.lsp.protocol.make_client_capabilities()
+  -- nvim ufo
+  local has_ufo, _          = pcall(require, 'kevinhwang91/nvim-ufo')
+  if has_ufo then
+    server_capabilities.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true
+    }
+  end
+  server_capabilities.textDocument.completion.completionItem.snippetSupport = true -- broadcasting snippet capability for completion
+  server_capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = { "documentation", "detail", "additionalTextEdits" },
+  }
+  local has_cmp, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
+  local has_blink, blink = pcall(require, 'blink.cmp')
+  if has_cmp then
+    -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+    server_capabilities = cmp_lsp.default_capabilities()
+  elseif has_blink then
+    server_capabilities = blink.get_lsp_capabilities()
+  end
+  return server_capabilities
+end
+
 function M.start_smithy()
   local launcher_path = vim.fs.joinpath(vim.fn.stdpath('config'), '/launchers/smithy-language-server')
   vim.lsp.start({
