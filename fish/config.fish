@@ -3,6 +3,15 @@ if status is-interactive
   # disable default keybindings
   set -gx ATUIN_NOBIND "true"
   atuin init fish | source
+
+  # tmux
+  if not set -q TMUX
+    if tmux has-session -t home
+	    exec tmux attach-session -t home
+    else
+     tmux new-session -s home
+    end
+  end
 end
 
 # Disable the fish greeting message
@@ -46,9 +55,15 @@ end
 fish_add_path "/opt/homebrew/bin/"
 # Setup brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+
+abbr -a -g lg lazygit
+abbr -a -g dashlane dcli
+abbr -a -g jless 'jless --relative-line-numbers'
+
 if type -q nvim
   abbr -a -g vim nvim
-  abbr -a -g vi nvim -u ~/dotfiles/nvim/fast.luva
+  abbr -a -g vi 'nvim -u ~/dotfiles/nvim/fast.luva'
 end
  
 # `ls` → `lsd`
