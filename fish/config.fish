@@ -1,19 +1,3 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-  # disable default keybindings
-  set -gx ATUIN_NOBIND "true"
-  atuin init fish | source
-
-  # tmux
-  if not set -q TMUX
-    if tmux has-session -t home
-	    exec tmux attach-session -t home
-    else
-     tmux new-session -s home
-    end
-  end
-end
-
 # Disable the fish greeting message
 set fish_greeting ""
 # Emulates vim's cursor shape behavior
@@ -32,22 +16,46 @@ set fish_cursor_external line
 set fish_cursor_visual block
 # vi-mode
 set -g fish_key_bindings fish_vi_key_bindings
+set -gx EDITOR nvim
 
+# setup atuin
+if status is-login
+  # disable default keybindings
+  set -gx ATUIN_NOBIND "true"
+  atuin init fish | source
+end
+
+# tmux auto-start
+if status is-login; and not set -q TMUX
+  if tmux has-session -t home
+    exec tmux attach-session -t home
+  else
+   tmux new-session -s home
+  end
+end
+
+# auto-suggestion mappings
 if status is-interactive
   for mode in insert default visual
     # mimic right key to complete auto-suggestion
-    # disable the preset in fish_user_key_bindings
+    # disable the preset in fish_user_key_bindings or may get reset
     bind -M $mode \cy forward-char
     bind -M $mode \ce forward-char
+  end
+end
 
-    # atuin
-    bind \cr _atuin_search
+# history + atuin
+if status is-interactive
+  bind \cr _atuin_search
+  for mode in insert visual
     bind -M $mode \cr _atuin_search
-
     bind -M $mode \cn history-prefix-search-forward
     bind -M $mode \cp history-prefix-search-backward
   end
+end
 
+# edit commands in vim
+if status is-interactive
   for mode in default visual
     bind -M $mode vv edit_command_buffer
   end
@@ -60,6 +68,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 
 abbr -a -g lg lazygit
+abbr -a -g gd 'git diff'
 abbr -a -g gs 'git status'
 abbr -a -g gp 'git push'
 abbr -a -g dashlane dcli
