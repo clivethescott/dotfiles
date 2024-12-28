@@ -28,18 +28,9 @@ return {
       function() require("fzf-lua").complete_path() end,
       { silent = true, desc = "Fuzzy complete path" })
 
-    vim.keymap.set({ "n", "v", "i" }, "<C-x><C-l>",
-      function() require("fzf-lua").lines() end,
-      { silent = true, desc = "Buffer lines" })
-
     vim.keymap.set({ "n", "v", "i" }, "<C-x>s",
       function() require("fzf-lua").spell_suggest() end,
       { silent = true, desc = "Spell suggest" })
-
-
-    vim.keymap.set({ "n", "v", "i" }, "<C-x><c-i>",
-      function() require("fzf-lua").lsp_live_workspace_symbols() end,
-      { silent = true, desc = "Live Workspace symbols" })
 
     vim.keymap.set("n", "<leader>2",
       function() require("fzf-lua").files { cwd = '~/.config/neovim' } end,
@@ -73,7 +64,9 @@ return {
     { "<space>th", "<cmd>FzfLua helptags<cr>",       desc = "FZF helptags" },
     { "<space>tm", "<cmd>FzfLua marks<cr>",          desc = "FZF marks" },
     { "<space>tr", "<cmd>FzfLua registers<cr>",      desc = "FZF registers" },
-    { "<space>tb", "<cmd>FzfLua tmux_buffers<cr>",   desc = "FZF tmux paste" },
+    { "<space>tb", "<cmd>FzfLua blines<cr>",         desc = "FZF buffer lines" },
+    { "<space>tB", "<cmd>FzfLua tmux_buffers<cr>",   desc = "FZF Tmux buffers" },
+    { "<space>tw", "<cmd>FzfLua lsp_live_workspace_symbols<cr>",   desc = "LSP workspace symbols" },
     {
       "<space>to",
       function() require 'fzf-lua'.oldfiles { include_current_session = true } end,

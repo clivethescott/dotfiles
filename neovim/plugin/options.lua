@@ -2,8 +2,8 @@
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.dictionary:append('/usr/share/dict/words')
 vim.opt.mouse = ''
--- vim.opt.spell = true
--- vim.opt.spelllang = 'en_gb'
+vim.opt.spell = true
+vim.opt.spelllang = 'en_gb'
 
 vim.opt.list = true
 vim.opt.listchars = "tab:··,leadmultispace:·"
