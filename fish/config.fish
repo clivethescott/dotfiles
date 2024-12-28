@@ -78,3 +78,4 @@ if type -q bat
 end
  
 set PATH /opt/homebrew/bin /Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
+
