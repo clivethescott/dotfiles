@@ -62,6 +62,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 abbr -a -g lg lazygit
 abbr -a -g dashlane dcli
 abbr -a -g jless 'jless --relative-line-numbers'
+abbr -a -g gs 'git status'
 
 if type -q nvim
   abbr -a -g vim nvim
