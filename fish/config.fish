@@ -21,6 +21,7 @@ set fish_cursor_visual block
 # vi-mode
 set -g fish_key_bindings fish_vi_key_bindings
 set -gx EDITOR nvim
+set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 # setup atuin
 if status is-interactive
