@@ -38,12 +38,14 @@ if status is-interactive
     # mimic right key to complete auto-suggestion
     # disable the preset in fish_user_key_bindings
     bind -M $mode \cy forward-char
+    bind -M $mode \ce forward-char
 
     # atuin
     bind \cr _atuin_search
-    bind -M $mode \cn _atuin_bind_up
-    bind -M $mode \cp _atuin_bind_up
     bind -M $mode \cr _atuin_search
+
+    bind -M $mode \cn history-prefix-search-forward
+    bind -M $mode \cp history-prefix-search-backward
   end
 
   for mode in default visual
