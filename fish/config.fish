@@ -1,3 +1,7 @@
+if status is-interactive; and test -f $__fish_config_dir/themes/Catppuccin\ Macchiato.theme
+  fish_config theme choose "Catppuccin Macchiato"
+end
+
 # Disable the fish greeting message
 set fish_greeting ""
 # Emulates vim's cursor shape behavior
@@ -19,14 +23,14 @@ set -g fish_key_bindings fish_vi_key_bindings
 set -gx EDITOR nvim
 
 # setup atuin
-if status is-login
+if status is-interactive
   # disable default keybindings
   set -gx ATUIN_NOBIND "true"
   atuin init fish | source
 end
 
 # tmux auto-start
-if status is-login; and not set -q TMUX
+if status is-interactive; and not set -q TMUX
   if tmux has-session -t home
     exec tmux attach-session -t home
   else
