@@ -1,28 +1,65 @@
-function fish_prompt
-    set -l pointer_color red
-    test $status = 0; and set pointer_color yellow
- 
-    set -q __fish_git_prompt_showupstream
-    or set -g __fish_git_prompt_showupstream auto
- 
-    if not set -q VIRTUAL_ENV_DISABLE_PROMPT
-        set -g VIRTUAL_ENV_DISABLE_PROMPT true
+# Run fish_config in the browser to see whats available!
+function fish_prompt --description 'Main prompt'
+    set -l last_pipestatus $pipestatus
+    set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
+
+    set -l color_cwd
+    set -l suffix
+    if functions -q fish_is_root_user; and fish_is_root_user
+        if set -q fish_color_cwd_root
+            set color_cwd $fish_color_cwd_root
+        else
+            set color_cwd $fish_color_cwd
+        end
+        set suffix '#'
+    else
+        set color_cwd $fish_color_cwd
+        set suffix '$'
     end
- 
-    set_color $fish_color_cwd
-    printf '%s' (prompt_pwd --dir-length=0)
+
+    # PWD
+    set_color $color_cwd
+    echo -n (prompt_pwd)
     set_color normal
- 
-    # git
-    set_color white -d
-    set -l prompt_git (fish_git_prompt '%s')
-    test -n "$prompt_git"
-    and printf ' %s' $prompt_git
+
+    set -l status_color (set_color $fish_color_status)
+    set -l statusb_color (set_color --bold $fish_color_status)
+    set -l prompt_status (__fish_print_pipestatus "[" "]" "|" "$status_color" "$statusb_color" $last_pipestatus)
+    echo -n $prompt_status
     set_color normal
- 
-    # Line 2
-    echo
-    set_color $pointer_color
-    printf '» '
+
+    echo -n "$suffix "
+end
+
+
+function fish_right_prompt --description "Git info"
+    if not set -q __fish_git_prompt_show_informative_status
+        set -g __fish_git_prompt_show_informative_status 1
+    end
+    if not set -q __fish_git_prompt_hide_untrackedfiles
+        set -g __fish_git_prompt_hide_untrackedfiles 1
+    end
+    if not set -q __fish_git_prompt_color_branch
+        set -g __fish_git_prompt_color_branch magenta --bold
+    end
+    if not set -q __fish_git_prompt_showupstream
+        set -g __fish_git_prompt_showupstream informative
+    end
+    if not set -q __fish_git_prompt_color_dirtystate
+        set -g __fish_git_prompt_color_dirtystate blue
+    end
+    if not set -q __fish_git_prompt_color_stagedstate
+        set -g __fish_git_prompt_color_stagedstate yellow
+    end
+    if not set -q __fish_git_prompt_color_invalidstate
+        set -g __fish_git_prompt_color_invalidstate red
+    end
+    if not set -q __fish_git_prompt_color_untrackedfiles
+        set -g __fish_git_prompt_color_untrackedfiles $fish_color_normal
+    end
+    if not set -q __fish_git_prompt_color_cleanstate
+        set -g __fish_git_prompt_color_cleanstate green --bold
+    end
     set_color normal
+    printf '%s ' (fish_vcs_prompt)
 end
