@@ -3,6 +3,7 @@ return {
   dependencies = {
     'rafamadriz/friendly-snippets',
   },
+  event = 'VeryLazy',
   -- use a release tag to download pre-built binaries
   opts = {
     ---@module 'blink.cmp'
