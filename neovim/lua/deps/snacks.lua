@@ -18,7 +18,10 @@ return {
     gitbrowse = { enabled = true },
     input = { enabled = true },
     lazygit = { enabled = true },
-    notifier = { enabled = true },
+    notifier = {
+      enabled = true,
+      level = vim.log.levels.WARN,
+    },
     quickfile = { enabled = true },
     scratch = { enabled = true, },
     scroll = { enabled = true },
@@ -27,8 +30,13 @@ return {
     terminal = { enabled = true },
   },
   keys = {
-    { "<space>gs", function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
-    { "<space>gh", function() require 'snacks'.gitbrowse() end,      desc = "Open in Github" },
+    { "<space>gs", function() require 'snacks'.lazygit() end,   desc = "Lazygit" },
+    { "<space>gh", function() require 'snacks'.gitbrowse() end, desc = "Open in Github" },
+    {
+      "<space>no",
+      function() require 'snacks'.notifier.show_history() end,
+      desc = "Notifications"
+    },
     { "<leader>s", function() require 'snacks'.scratch() end,        desc = "Toggle Scratch Buffer" },
     { "<leader>S", function() require 'snacks'.scratch.select() end, desc = "Select Scratch Buffer" },
   },

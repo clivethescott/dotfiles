@@ -10,8 +10,11 @@ return {
 
     require 'mason-lspconfig'.setup({
       ensure_installed = {
-        'jsonls', 'rust_analyzer', 'lua_ls', 'ts_ls',
+        'jsonls', 'rust_analyzer', 'lua_ls', 'ts_ls', 'gopls', 'ruff', 'pyright'
       }
     })
-  end
+  end,
+  keys = {
+    { '<space>om', '<cmd>Mason<cr>', 'Mason' }
+  }
 }

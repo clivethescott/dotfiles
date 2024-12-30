@@ -20,8 +20,6 @@ set fish_cursor_external line
 set fish_cursor_visual block
 # vi-mode
 set -g fish_key_bindings fish_vi_key_bindings
-set -gx EDITOR nvim
-set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 # setup atuin
 if status is-interactive
@@ -95,5 +93,8 @@ if type -q bat
   abbr --add -g cat 'bat'
 end
  
+set -gx EDITOR nvim
+set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
+
 set PATH /opt/homebrew/bin /Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
 
