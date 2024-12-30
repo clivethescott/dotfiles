@@ -19,7 +19,7 @@ set fish_cursor_external line
 # visual mode, but due to fish_cursor_default, is redundant here
 set fish_cursor_visual block
 # more info in prompt
-set fish_prompt_pwd_full_dirs 3
+set fish_prompt_pwd_full_dirs 2
 set fish_prompt_pwd_dir_length 3
 # vi-mode
 set -g fish_key_bindings fish_vi_key_bindings
@@ -81,7 +81,8 @@ abbr -a -g dashlane dcli
 abbr -a -g jless 'jless --relative-line-numbers'
 
 if type -q nvim
-  abbr -a -g vim nvim
+  abbr -a -g nvim 'NVIM_APPNAME=neovim nvim'
+  abbr -a -g vim 'NVIM_APPNAME=neovim nvim'
   abbr -a -g vi 'nvim -u ~/dotfiles/nvim/fast.luva'
 end
  
@@ -94,6 +95,10 @@ end
 # Requires `brew install bat`
 if type -q bat
   abbr --add -g cat 'bat'
+end
+
+if status is-interactive; and test -f ./tokens.fish
+  source ./tokens.fish
 end
  
 set -gx EDITOR nvim
