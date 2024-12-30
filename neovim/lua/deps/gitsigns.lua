@@ -19,7 +19,7 @@ local on_attach = function()
   vim.keymap.set('n', '<space>gd', gs.preview_hunk, { desc = 'Show Diff' })
   vim.keymap.set('n', '<space>gu', gs.reset_hunk, { desc = 'Undo Change' })
   vim.keymap.set('n', '<space>gU', gs.reset_buffer, { desc = 'Undo All Changes' })
-  vim.keymap.set('n', '<space>gb', gs.toggle_current_line_blame, { desc = 'Toggle blame' })
+  vim.keymap.set('n', '<space>gB', gs.toggle_current_line_blame, { desc = 'Toggle blame' })
 end
 
 return {

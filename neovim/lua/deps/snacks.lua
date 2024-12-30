@@ -16,6 +16,7 @@ return {
       },
     },
     gitbrowse = { enabled = true },
+    git = { enabled = true },
     input = { enabled = true },
     lazygit = { enabled = true },
     notifier = {
@@ -30,8 +31,9 @@ return {
     terminal = { enabled = true },
   },
   keys = {
-    { "<space>gs", function() require 'snacks'.lazygit() end,   desc = "Lazygit" },
-    { "<space>gh", function() require 'snacks'.gitbrowse() end, desc = "Open in Github" },
+    { "<space>gs", function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
+    { "<space>gh", function() require 'snacks'.gitbrowse() end,      desc = "Open in Github" },
+    { "<space>gb", function() require 'snacks'.git.blame_line() end, desc = "Blame line" },
     {
       "<space>no",
       function() require 'snacks'.notifier.show_history() end,
