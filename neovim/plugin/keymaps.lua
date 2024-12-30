@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<c-s>', ':update<cr>')
+vim.keymap.set('n', '<c-s>', '<cmd>update<cr>')
 vim.keymap.set('i', '<c-s>', '<esc>:update<cr>')
 
 vim.keymap.set('n', 'Q', ':q<cr>')

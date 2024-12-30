@@ -38,7 +38,8 @@ function M.on_attach(client, bufnr)
   local lsp_group = vim.api.nvim_create_augroup('LspAttachedGroup', { clear = true })
 
   if client.supports_method('textDocument/rename') then
-    vim.keymap.set('n', '<space>lr', vim.lsp.buf.rename, { buffer = true, desc = 'LSP Format' })
+    vim.keymap.set('n', '<space>lr', vim.lsp.buf.rename, { buffer = true, desc = 'LSP Rename' })
+    vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = true, desc = 'LSP Rename' })
   end
 
   if client.supports_method('textDocument/codeAction') then

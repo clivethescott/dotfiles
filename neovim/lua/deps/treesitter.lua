@@ -9,7 +9,6 @@ return {
     {
       'windwp/nvim-ts-autotag',
       ft = { 'html' },
-      event = 'InsertEnter',
     },
   },
   config = function()
@@ -17,7 +16,7 @@ return {
     treesitter_config.setup {
       ensure_installed = { 'dockerfile', 'git_config', 'gitcommit', 'graphql', 'hocon', 'html',
         'http', 'properties', 'json', 'lua', 'markdown', 'markdown_inline', 'python', 'rust', 'scala', 'sql', 'toml',
-        'vim', 'yaml' },
+        'vim', 'yaml', 'fish' },
       auto_install = true,
       sync_install = false,
       highlight = {

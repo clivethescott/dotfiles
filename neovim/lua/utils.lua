@@ -6,9 +6,9 @@ function M.resolvedCapabilities(client_id)
 end
 
 function M.lsp_client_capabilities()
-  local server_capabilities = vim.lsp.protocol.make_client_capabilities()
-  -- nvim ufo
-  local has_ufo, _          = pcall(require, 'kevinhwang91/nvim-ufo')
+  local server_capabilities =
+      vim.lsp.protocol.make_client_capabilities()
+  local has_ufo, _ = pcall(require, 'kevinhwang91/nvim-ufo')
   if has_ufo then
     server_capabilities.textDocument.foldingRange = {
       dynamicRegistration = false,
