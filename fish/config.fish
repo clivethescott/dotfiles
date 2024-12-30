@@ -18,6 +18,9 @@ set fish_cursor_external line
 # The following variable can be used to configure cursor shape in
 # visual mode, but due to fish_cursor_default, is redundant here
 set fish_cursor_visual block
+# more info in prompt
+set fish_prompt_pwd_full_dirs 3
+set fish_prompt_pwd_dir_length 3
 # vi-mode
 set -g fish_key_bindings fish_vi_key_bindings
 
