@@ -4,8 +4,8 @@ return {
   event = 'BufReadPost',
   cmd = { 'TodoFzfLua', 'TodoTrouble', 'TodoQuickFix' },
   keys = {
-    { ']t', function() require("todo-comments").jump_next() end, 'Next TODO' },
-    { '[t', function() require("todo-comments").jump_prev() end, 'Previous TODO' },
+    { ']t', function() require("todo-comments").jump_next() end, desc = 'Next TODO' },
+    { '[t', function() require("todo-comments").jump_prev() end, desc = 'Previous TODO' },
   },
   opts = {},
 }
