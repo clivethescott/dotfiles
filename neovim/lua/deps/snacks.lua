@@ -55,16 +55,19 @@ return {
       pattern = "VeryLazy",
       callback = function()
         -- Setup some globals for debugging (lazy-loaded)
+        local Snacks = require 'snacks'
         _G.dd = function(...)
-          require 'snacks'.debug.inspect(...)
+          Snacks.debug.inspect(...)
         end
         _G.bt = function()
-          require 'snacks'.debug.backtrace()
+          Snacks.debug.backtrace()
         end
         -- vim.print = _G.dd -- Override print to use snacks for `:=` command
 
-        require 'snacks'.toggle.inlay_hints():map("<space>sti")
-        require 'snacks'.toggle.dim():map("<space>std")
+        Snacks.toggle.inlay_hints():map("<space>sti")
+        Snacks.toggle.dim():map("<space>std")
+        Snacks.toggle.option("conceallevel",
+          { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<space>stc")
         -- Snacks.dim()
       end,
     })
