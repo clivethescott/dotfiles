@@ -31,10 +31,10 @@ return {
     terminal = { enabled = true },
   },
   keys = {
-    { "gs",         function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
-    { "<space>sgl", function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
-    { "<space>sgh", function() require 'snacks'.gitbrowse() end,      desc = "Open in Github" },
-    { "<space>sgb", function() require 'snacks'.git.blame_line() end, desc = "Blame line" },
+    { "gs",        function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
+    { "<space>gl", function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
+    { "<space>gh", function() require 'snacks'.gitbrowse() end,      desc = "Open in Github" },
+    { "<space>gb", function() require 'snacks'.git.blame_line() end, desc = "Blame line" },
     {
       "<space>sn",
       function() require 'snacks'.notifier.show_history() end,

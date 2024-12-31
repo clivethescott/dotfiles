@@ -81,8 +81,7 @@ abbr -a -g dashlane dcli
 abbr -a -g jless 'jless --relative-line-numbers'
 
 if type -q nvim
-  abbr -a -g nvim 'NVIM_APPNAME=neovim nvim'
-  abbr -a -g vim 'NVIM_APPNAME=neovim nvim'
+  abbr -a -g vim nvim
   abbr -a -g vi 'nvim -u ~/dotfiles/nvim/fast.luva'
 end
  
