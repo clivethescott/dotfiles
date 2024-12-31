@@ -61,7 +61,7 @@ return {
         _G.bt = function()
           require 'snacks'.debug.backtrace()
         end
-        vim.print = _G.dd -- Override print to use snacks for `:=` command
+        -- vim.print = _G.dd -- Override print to use snacks for `:=` command
 
         require 'snacks'.toggle.inlay_hints():map("<space>sti")
         require 'snacks'.toggle.dim():map("<space>std")

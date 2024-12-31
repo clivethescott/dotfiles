@@ -5,6 +5,14 @@ function M.resolvedCapabilities(client_id)
   vim.print(vim.lsp.get_client_by_id(client_id).server_capabilities)
 end
 
+function M.obsidian_search()
+  vim.ui.input({ prompt = 'Query>' }, function(query)
+    if query then
+      vim.cmd('ObsidianSearch ' .. query )
+    end
+  end)
+end
+
 function M.lsp_client_capabilities()
   local server_capabilities =
       vim.lsp.protocol.make_client_capabilities()

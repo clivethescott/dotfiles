@@ -28,6 +28,11 @@ return {
       function() require("fzf-lua").complete_path() end,
       { silent = true, desc = "Fuzzy complete path" })
 
+
+    vim.keymap.set({ "n", "v", "i" }, "<C-x><C-l>",
+      function() require("fzf-lua").complete_line() end,
+      { silent = true, desc = "Fuzzy complete lines" })
+
     vim.keymap.set({ "n", "v", "i" }, "<C-x>s",
       function() require("fzf-lua").spell_suggest() end,
       { silent = true, desc = "Spell suggest" })
@@ -55,18 +60,18 @@ return {
       end,
       desc = "FZF files"
     },
-    { "<c-e>",     "<cmd>FzfLua buffers<cr>",        desc = "FZF buffers" },
-    { "<space>tl", "<cmd>FzfLua resume<cr>",         desc = "FZF resume" },
-    { "<space>tq", "<cmd>FzfLua quickfix<cr>",       desc = "FZF quickfix" },
-    { "<space>tf", "<cmd>FzfLua live_grep_glob<cr>", desc = "FZF live grep" },
-    { "<space>tF", "<cmd>FzfLua grep_cword<cr>",     desc = "FZF grep cword" },
-    { "<space>tc", "<cmd>FzfLua commands<cr>",       desc = "FZF commands" },
-    { "<space>th", "<cmd>FzfLua helptags<cr>",       desc = "FZF helptags" },
-    { "<space>tm", "<cmd>FzfLua marks<cr>",          desc = "FZF marks" },
-    { "<space>tr", "<cmd>FzfLua registers<cr>",      desc = "FZF registers" },
-    { "<space>tb", "<cmd>FzfLua blines<cr>",         desc = "FZF buffer lines" },
-    { "<space>tB", "<cmd>FzfLua tmux_buffers<cr>",   desc = "FZF Tmux buffers" },
-    { "<space>tw", "<cmd>FzfLua lsp_live_workspace_symbols<cr>",   desc = "LSP workspace symbols" },
+    { "<c-e>",     "<cmd>FzfLua buffers<cr>",                    desc = "FZF buffers" },
+    { "<space>tl", "<cmd>FzfLua resume<cr>",                     desc = "FZF resume" },
+    { "<space>tq", "<cmd>FzfLua quickfix<cr>",                   desc = "FZF quickfix" },
+    { "<space>tf", "<cmd>FzfLua live_grep_glob<cr>",             desc = "FZF live grep" },
+    { "<space>tF", "<cmd>FzfLua grep_cword<cr>",                 desc = "FZF grep cword" },
+    { "<space>tc", "<cmd>FzfLua commands<cr>",                   desc = "FZF commands" },
+    { "<space>th", "<cmd>FzfLua helptags<cr>",                   desc = "FZF helptags" },
+    { "<space>tm", "<cmd>FzfLua marks<cr>",                      desc = "FZF marks" },
+    { "<space>tr", "<cmd>FzfLua registers<cr>",                  desc = "FZF registers" },
+    { "<space>tb", "<cmd>FzfLua lines<cr>",                      desc = "FZF buffer lines" },
+    { "<space>tB", "<cmd>FzfLua tmux_buffers<cr>",               desc = "FZF Tmux buffers" },
+    { "<space>tw", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = "LSP workspace symbols" },
     {
       "<space>to",
       function() require 'fzf-lua'.oldfiles { include_current_session = true } end,
