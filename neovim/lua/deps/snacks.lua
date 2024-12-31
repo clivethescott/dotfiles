@@ -31,7 +31,7 @@ return {
     terminal = { enabled = true },
   },
   keys = {
-    { "gs",        function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
+    { "gs",         function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
     { "<space>sgl", function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
     { "<space>sgh", function() require 'snacks'.gitbrowse() end,      desc = "Open in Github" },
     { "<space>sgb", function() require 'snacks'.git.blame_line() end, desc = "Blame line" },

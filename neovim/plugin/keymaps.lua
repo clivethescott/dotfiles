@@ -28,3 +28,11 @@ end
 -- Misc
 vim.keymap.set('n', '<space><space>', ":b#<cr>", { silent = true, desc = 'Alt buffer' })
 vim.keymap.set('n', '<leader>m', "<cmd>silent! nohls<cr>", { silent = true, desc = 'Clear highlight' })
+vim.keymap.set('n', '<space>ow',
+  function()
+    if vim.o.winbar == "" then
+      vim.o.winbar = "%{%v:lua.require'utils'.nvim_winbar()%}"
+    else
+      vim.o.winbar = ""
+    end
+  end, { desc = 'Toggle Winbar' })

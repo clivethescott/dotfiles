@@ -46,6 +46,24 @@ function M.on_attach(client, bufnr)
     vim.keymap.set('n', '<space>la', vim.lsp.buf.code_action, { buffer = true, desc = 'LSP Code Action' })
   end
 
+  if client.supports_method('textDocument/declaration') then
+    vim.keymap.set('n', 'gD', function()
+      require 'fzf-lua'.lsp_declarations()
+    end, { buffer = true, desc = 'LSP Declaration' })
+    vim.keymap.set('n', 'gd', vim.lsp.buf.declaration, { buffer = true, silent = true })
+  elseif client.supports_method('textDocument/definition') then
+    vim.keymap.set('n', 'gD', function()
+      require 'fzf-lua'.lsp_definitions()
+    end, { buffer = true, desc = 'LSP Definition' })
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = true, silent = true })
+  else
+  end
+
+  if client.supports_method('textDocument/inlayHint') then
+    vim.keymap.set({ 'n', 'i' }, '<M-i>',
+      function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end, { desc = 'Toggle inlay hints' })
+  end
+
   if client.supports_method('textDocument/references') then
     vim.keymap.set('n', '<space>lR', function()
       require 'fzf-lua'.lsp_references()
