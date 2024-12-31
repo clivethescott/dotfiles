@@ -1,0 +1,9 @@
+{
+  "printone": {
+    "prefix": "printone",
+    "body": [
+      "println!(\"{}\", ${1});"
+    ],
+    "description": "Print one thing"
+  }
+}
