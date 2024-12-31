@@ -31,16 +31,17 @@ return {
     terminal = { enabled = true },
   },
   keys = {
-    { "<space>gs", function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
-    { "<space>gh", function() require 'snacks'.gitbrowse() end,      desc = "Open in Github" },
-    { "<space>gb", function() require 'snacks'.git.blame_line() end, desc = "Blame line" },
+    { "gs",        function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
+    { "<space>sgl", function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
+    { "<space>sgh", function() require 'snacks'.gitbrowse() end,      desc = "Open in Github" },
+    { "<space>sgb", function() require 'snacks'.git.blame_line() end, desc = "Blame line" },
     {
-      "<space>no",
+      "<space>sn",
       function() require 'snacks'.notifier.show_history() end,
       desc = "Notifications"
     },
-    { "<leader>s", function() require 'snacks'.scratch() end,        desc = "Toggle Scratch Buffer" },
-    { "<leader>S", function() require 'snacks'.scratch.select() end, desc = "Select Scratch Buffer" },
+    { "<space>sb", function() require 'snacks'.scratch() end,        desc = "Toggle Scratch Buffer" },
+    { "<space>sB", function() require 'snacks'.scratch.select() end, desc = "Select Scratch Buffer" },
   },
   init = function()
     vim.keymap.set({ 'n', 'i', 'v' }, '<c-t>',
@@ -62,8 +63,8 @@ return {
         end
         vim.print = _G.dd -- Override print to use snacks for `:=` command
 
-        require 'snacks'.toggle.inlay_hints():map("<space>sh")
-        require 'snacks'.toggle.dim():map("<space>sd")
+        require 'snacks'.toggle.inlay_hints():map("<space>sti")
+        require 'snacks'.toggle.dim():map("<space>std")
         -- Snacks.dim()
       end,
     })
