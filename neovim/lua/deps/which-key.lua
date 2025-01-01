@@ -6,8 +6,8 @@ return {
     wk.setup {
       plugins = {
         presets = {
-          operators = false,
-          motions = false,
+          operators = true,
+          motions = true,
         },
       },
     }

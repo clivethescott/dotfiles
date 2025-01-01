@@ -29,10 +29,11 @@ return {
     },
   },
   keys = {
-    { '<space>no', '<cmd>ObsidianQuickSwitch<cr>',                   desc = 'Open/Switch Note' },
-    { '<space>ne', '<cmd>ObsidianNew<cr>',                           desc = 'New Note' },
-    { '<space>nv', '<cmd>ObsidianFollowLink vsplit<cr>',             desc = 'Open Link vsplit' },
-    { '<space>ns', '<cmd>ObsidianFollowLink hsplit<cr>',             desc = 'Open Link hsplit' },
-    { '<space>nf', function() require 'utils'.obsidian_search() end, desc = 'Search Note' },
+    { '<space>no', '<cmd>ObsidianQuickSwitch<cr>',       desc = 'Open/Switch Note' },
+    { '<space>ne', '<cmd>ObsidianNew<cr>',               desc = 'New Note' },
+    { '<space>nv', '<cmd>ObsidianFollowLink vsplit<cr>', desc = 'Open Link vsplit' },
+    { '<space>ns', '<cmd>ObsidianFollowLink hsplit<cr>', desc = 'Open Link hsplit' },
+    { '<space>nf', '<cmd>ObsidianSearch<cr>',            desc = 'Grep Search Note' },
+    -- { '<space>nf', function() require 'utils'.obsidian_search() end, desc = 'Search Note' },
   }
 }

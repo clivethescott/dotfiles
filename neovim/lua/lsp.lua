@@ -20,8 +20,8 @@ local codelens = function(client, bufnr, au_group)
   })
 end
 
-local formatting = function(client, bufnr, au_group)
-  local conform_format = function()
+local formatting = function(client, bufnr)
+  vim.keymap.set({ 'n', 'v' }, '<leader>f', function()
     require 'conform'.format({
       timeout_ms = 2000,
       bufnr = bufnr,
@@ -29,19 +29,7 @@ local formatting = function(client, bufnr, au_group)
       lsp_format = "fallback",
       id = client.id,
     })
-  end
-  -- local lsp_format = function()
-  --   vim.lsp.buf.format({ bufnr = bufnr, id = client.id, timeout_ms = 2000, async = false })
-  -- end
-
-  vim.keymap.set('n', 'gq', conform_format, { buffer = true, desc = 'Format buffer' })
-  vim.keymap.set('n', '<leader>f', conform_format, { buffer = true, desc = 'Format buffer' })
-  vim.api.nvim_create_autocmd('BufWritePre', {
-    group = au_group,
-    buffer = bufnr,
-    desc = 'Format on save',
-    callback = conform_format,
-  })
+  end, { buffer = true, desc = 'LSP Format' })
 end
 
 function M.on_attach(client, bufnr)
@@ -92,7 +80,7 @@ function M.on_attach(client, bufnr)
     vim.b.formatexpr = "v:lua.require'conform'.formatexpr()"
   end
   if client.supports_method("textDocument/formatting") or has_conform then
-    formatting(client, bufnr, lsp_group)
+    formatting(client, bufnr)
   end
 end
 
