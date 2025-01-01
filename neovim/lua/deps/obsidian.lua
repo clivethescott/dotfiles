@@ -10,8 +10,8 @@ return {
   opts = {
     workspaces = {
       {
-        name = "work",
-        path = "~/Documents/Obsidian/Disney/Disney",
+        name = "notes",
+        path = "~/Documents/Obsidian/Notes",
       },
     },
     log_level = vim.log.levels.WARN,
