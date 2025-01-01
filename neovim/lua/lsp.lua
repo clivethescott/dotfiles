@@ -21,16 +21,26 @@ local codelens = function(client, bufnr, au_group)
 end
 
 local formatting = function(client, bufnr, au_group)
-  local format = function()
-    vim.lsp.buf.format({ bufnr = bufnr, id = client.id, timeout_ms = 2000, async = false })
+  local conform_format = function()
+    require 'conform'.format({
+      timeout_ms = 2000,
+      bufnr = bufnr,
+      async = false,
+      lsp_format = "fallback",
+      id = client.id,
+    })
   end
-  vim.keymap.set('n', 'gq', format, { buffer = true, desc = 'Format buffer' })
-  vim.keymap.set('n', '<leader>f', format, { buffer = true, desc = 'Format buffer' })
+  -- local lsp_format = function()
+  --   vim.lsp.buf.format({ bufnr = bufnr, id = client.id, timeout_ms = 2000, async = false })
+  -- end
+
+  vim.keymap.set('n', 'gq', conform_format, { buffer = true, desc = 'Format buffer' })
+  vim.keymap.set('n', '<leader>f', conform_format, { buffer = true, desc = 'Format buffer' })
   vim.api.nvim_create_autocmd('BufWritePre', {
     group = au_group,
     buffer = bufnr,
     desc = 'Format on save',
-    callback = format,
+    callback = conform_format,
   })
 end
 
@@ -70,15 +80,18 @@ function M.on_attach(client, bufnr)
         jump_to_single_result = true, ignore_current_line = true, includeDeclaration = false
       })
     end, { buffer = true, desc = 'LSP References' })
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, {desc='LSP References'})
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'LSP References' })
   end
 
   if client.supports_method('textDocument/codeLens') then
     codelens(client, bufnr, lsp_group)
   end
 
-  if client.supports_method("textDocument/formatting") then
-    -- vim.api.keymap.set({'n', 'v'}, 'gq', vim.lsp.buf.format) -- provided
+  local has_conform, _ = pcall(require, 'conform') -- has LSP as fallback
+  if has_conform then
+    vim.b.formatexpr = "v:lua.require'conform'.formatexpr()"
+  end
+  if client.supports_method("textDocument/formatting") or has_conform then
     formatting(client, bufnr, lsp_group)
   end
 end
