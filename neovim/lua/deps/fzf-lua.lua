@@ -8,12 +8,20 @@ return {
         ["--layout"] = "default", -- prompt at bottom
         ["--cycle"] = true
       },
+      file_ignore_patterns = { "%.bsp" },
+      grep = {
+        rg_glob   = true,
+        glob_flag = "--iglob",
+      },
       winopts = {
         height = 0.9,
         width = 0.9,
         preview = {
           default = 'bat',
           hidden = 'hidden'
+        },
+        files = {
+          git_icons = false,
         },
         on_create = function()
           -- called once upon creation of the fzf main window
@@ -46,11 +54,12 @@ return {
       { silent = true, desc = "Nvim files" })
 
     local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
+    vim.keymap.set("n", "<leader>4",
+      function() require("fzf-lua").files { cwd = plugins_dir } end,
+      { silent = true, desc = "Nvim plugin files" })
     vim.keymap.set("n", "<leader>5",
-      function()
-        require("fzf-lua").live_grep_glob { cwd = plugins_dir }
-      end,
-      { silent = true, desc = "Nvim files" })
+      function() require("fzf-lua").live_grep_glob { cwd = plugins_dir } end,
+      { silent = true, desc = "Nvim plugin grep" })
   end,
   keys = {
     {
