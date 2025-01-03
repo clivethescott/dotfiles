@@ -44,12 +44,12 @@ return {
     { "<space>sB", function() require 'snacks'.scratch.select() end, desc = "Select Scratch Buffer" },
   },
   init = function()
-    vim.keymap.set({ 'n', 'i', 'v' }, '<c-t>',
+    vim.keymap.set({ 'n', 'i', 'v' }, [[<M-\>]],
       function()
         require 'snacks'.terminal.toggle(nil, { win = { position = 'float' } })
       end,
       { desc = "Open Terminal" })
-    vim.keymap.set('t', '<c-t>', '<cmd>close<cr>', { desc = 'Hide Terminal' })
+    vim.keymap.set('t', [[<M-\>]], '<cmd>close<cr>', { desc = 'Hide Terminal' })
 
     vim.api.nvim_create_autocmd("User", {
       pattern = "VeryLazy",
