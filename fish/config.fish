@@ -23,6 +23,9 @@ set fish_prompt_pwd_full_dirs 2
 set fish_prompt_pwd_dir_length 3
 # vi-mode
 set -g fish_key_bindings fish_vi_key_bindings
+# bind fzf
+# bind --user to see configured 
+fzf_configure_bindings --history= --git_status= --variables= --git_log=\eG --directory=\eF --processes=\eP
 
 # setup atuin
 if status is-interactive
