@@ -36,3 +36,9 @@ vim.keymap.set('n', '<space>ow',
       vim.o.winbar = ""
     end
   end, { desc = 'Toggle Winbar' })
+
+-- quickfix
+vim.keymap.set('n', '[q', '<cmd>cprevious<cr>', { desc = 'Prev Quickfix entry' })
+vim.keymap.set('n', '[Q', '<cmd>cNfile<cr>', { desc = 'Quickfix last file' })
+vim.keymap.set('n', ']q', '<cmd>cnext<cr>', { desc = 'Next Quickfix entry' })
+vim.keymap.set('n', ']Q', '<cmd>cnfile<cr>', { desc = 'Quickfix next file' })
