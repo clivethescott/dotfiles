@@ -32,6 +32,29 @@ local formatting = function(client, bufnr)
   end, { buffer = true, desc = 'LSP Format' })
 end
 
+local diagnostics = function(bufnr)
+  vim.keymap.set('n', '<leader>d',
+    function() vim.diagnostic.open_float({ scope = 'line' }) end,
+    { desc = 'Line Diagnostic', buffer = bufnr })
+
+  vim.keymap.set('n', '[e',
+    function()
+      vim.diagnostic.goto_prev {
+        wrap = false,
+        severity = { min = vim.diagnostic.severity.WARN }
+      }
+    end, { desc = 'Next Warning or Error', buffer = bufnr })
+
+  vim.keymap.set('n', ']e',
+    function()
+      vim.diagnostic.goto_next {
+        wrap = true,
+        severity = { min = vim.diagnostic.severity.WARN }
+      }
+    end,
+    { desc = 'Next Warning or Error', buffer = bufnr })
+end
+
 function M.on_attach(client, bufnr)
   local lsp_group = vim.api.nvim_create_augroup('LspAttachedGroup', { clear = true })
 
@@ -81,6 +104,11 @@ function M.on_attach(client, bufnr)
   end
   if client.supports_method("textDocument/formatting") or has_conform then
     formatting(client, bufnr)
+  end
+
+  if client.supports_method('textDocument/diagnostic') then
+    -- <c-w>d
+    diagnostics(bufnr)
   end
 end
 
