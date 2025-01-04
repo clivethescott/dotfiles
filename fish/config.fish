@@ -2,6 +2,8 @@ if status is-interactive; and test -f $__fish_config_dir/themes/Catppuccin\ Macc
   fish_config theme choose "Catppuccin Macchiato"
 end
 
+set -gx EDITOR nvim
+
 # Disable the fish greeting message
 set fish_greeting ""
 # Emulates vim's cursor shape behavior
@@ -23,9 +25,15 @@ set fish_prompt_pwd_full_dirs 2
 set fish_prompt_pwd_dir_length 3
 # vi-mode
 set -g fish_key_bindings fish_vi_key_bindings
+
 # bind fzf
-# bind --user to see configured 
-fzf_configure_bindings --history= --git_status= --variables= --git_log=\eG --directory=\eF --processes=\eP
+# bind --user to see configured, e.g \E is meta+shift+e
+fzf_configure_bindings --history= --git_status= --variables= --git_log=\eG --directory=\ef --processes=\eP
+set fzf_diff_highlighter delta --paging=never --width=20 # should not pipe its output to a pager
+set fzf_fd_opts --max-depth 5
+set fzf_preview_dir_cmd lsd -l --color always
+# open file in $EDITOR
+set fzf_directory_opts --bind "ctrl-y:execute($EDITOR {})"
 
 # setup atuin
 if status is-interactive
@@ -103,8 +111,9 @@ if status is-interactive; and test -f ./tokens.fish
   source ./tokens.fish
 end
  
-set -gx EDITOR nvim
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build"
+set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
 
 set PATH /opt/homebrew/bin /Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
 
