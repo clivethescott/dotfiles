@@ -9,7 +9,7 @@ return {
     skip_confirm_for_simple_edits = true,
     use_default_keymaps = true,
     keymaps = {
-      ["<C-i>"] = "actions.preview",
+      ["<M-i>"] = "actions.preview",
     },
     view_options = {
       show_hidden = false,
