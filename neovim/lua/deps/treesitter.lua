@@ -33,6 +33,15 @@ return {
         filetypes = { 'html', 'javascript', 'xml', 'markdown' },
         skip_tags = { 'br', 'img' },
       },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<M-space>",
+          node_incremental = "<M-space>",
+          scope_incremental = false,
+          node_decremental = "<bs>",
+        },
+      },
       textobjects = {
         select = {
           enable = true,
@@ -85,7 +94,7 @@ return {
           enable = true,
           set_jumps = true, -- whether to set jumps in the jumplist
           goto_previous_start = {
-            ['[p'] = { query = '@parameter.outer', desc = 'Go to prev param' },
+            ['[p'] = { query = '@parameter.inner', desc = 'Go to prev param' },
             ['[P'] = { query = '@function.params', desc = 'Go to prev params' },
             ['[f'] = { query = '@function.outer', desc = 'Go to prev function' },
             ['[F'] = { query = '@function.inner', desc = 'Go to prev function inner' },
@@ -95,7 +104,7 @@ return {
             ["[S"] = { query = "@impl.outer", desc = "Previous struct impl" },
           },
           goto_next_start = {
-            [']p'] = { query = '@parameter.outer', desc = 'Go to next param' },
+            [']p'] = { query = '@parameter.inner', desc = 'Go to next param' },
             [']f'] = { query = '@function.outer', desc = 'Go to next function' },
             [']F'] = { query = '@function.inner', desc = 'Go to next function inner' },
             -- ["]i"] = { query = "@call.outer", desc = "Prev function call end" },
