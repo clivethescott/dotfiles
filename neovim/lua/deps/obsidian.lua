@@ -8,6 +8,12 @@ return {
     "ibhagwan/fzf-lua",
   },
   opts = {
+    completion = {
+      nvim_cmp = false,
+    },
+    picker = {
+      name = 'fzf-lua',
+    },
     workspaces = {
       {
         name = "notes",
