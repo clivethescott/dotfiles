@@ -107,8 +107,8 @@ if type -q bat
   abbr --add -g cat 'bat'
 end
 
-if status is-interactive; and test -f ./tokens.fish
-  source ./tokens.fish
+if status is-interactive; and test -f ~/.config/fish/tokens.fish
+  source ~/.config/fish/tokens.fish
 end
  
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
