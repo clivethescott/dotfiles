@@ -19,6 +19,10 @@ return {
         name = "notes",
         path = "~/Documents/Obsidian/Notes",
       },
+      {
+        name = "work",
+        path = "~/Documents/Obsidian/Work",
+      },
     },
     log_level = vim.log.levels.WARN,
     note_frontmatter_func = function(note)
