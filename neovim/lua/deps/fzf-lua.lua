@@ -84,7 +84,7 @@ return {
     { "<space>tl", "<cmd>FzfLua resume<cr>",                     desc = "Resume" },
     { "<space>tq", "<cmd>FzfLua quickfix<cr>",                   desc = "Quickfix" },
     { "<space>tf", "<cmd>FzfLua live_grep_glob<cr>",             desc = "Live grep" },
-    { "<space>tF", "<cmd>FzfLua grep_cword<cr>",                 desc = "Grep cword" },
+    { "<space>tF", "<cmd>FzfLua grep_cWORD<cr>",                 desc = "Grep cword" },
     { "<space>tc", "<cmd>FzfLua commands<cr>",                   desc = "Commands" },
     { "<space>th", "<cmd>FzfLua helptags<cr>",                   desc = "Helptags" },
     { "<space>tm", "<cmd>FzfLua marks<cr>",                      desc = "Marks" },

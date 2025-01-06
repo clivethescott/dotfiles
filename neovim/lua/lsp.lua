@@ -43,7 +43,7 @@ local diagnostics = function(bufnr)
         wrap = false,
         severity = { min = vim.diagnostic.severity.WARN }
       }
-    end, { desc = 'Next Warning or Error', buffer = bufnr })
+    end, { desc = 'Prev Warning or Error', buffer = bufnr })
 
   vim.keymap.set('n', ']e',
     function()
@@ -106,7 +106,7 @@ function M.on_attach(client, bufnr)
     formatting(client, bufnr)
   end
 
-  if client.supports_method('textDocument/diagnostic') then
+  if client.supports_method('textDocument/diagnostic') or client.name == 'metals' then
     -- <c-w>d
     diagnostics(bufnr)
   end

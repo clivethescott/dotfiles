@@ -90,6 +90,7 @@ abbr -a -g gs 'git status'
 abbr -a -g gp 'git push'
 abbr -a -g dashlane dcli
 abbr -a -g jless 'jless --relative-line-numbers'
+abbr -a -g jv 'jira issue view'
 
 if type -q nvim
   abbr -a -g vim nvim

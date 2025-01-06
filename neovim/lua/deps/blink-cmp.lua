@@ -24,11 +24,11 @@ return {
         ['<C-y>'] = { 'select_and_accept' },
       }
     },
-    appearance = {
-
-    },
     sources = {
       default = { 'lsp', 'snippets', 'buffer', 'lazydev', 'path', },
+      cmdline = {
+        max_items = 20, -- set cmdline = {} to disable cmdline completions
+      },
       providers = {
         buffer = {
           max_items = 1,
@@ -50,9 +50,9 @@ return {
         },
       },
     },
+    signature = { enabled = true },
     completion = {
       accept = { auto_brackets = { enabled = false }, }, -- use nvim-autopairs
-      -- trigger = { signature_help = { enabled = false } },
       list = {
         selection = function(ctx)
           return ctx.mode == 'cmdline' and 'auto_insert' or 'preselect'
