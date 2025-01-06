@@ -25,7 +25,7 @@ return {
       }
     },
     sources = {
-      default = { 'lsp', 'snippets', 'buffer', 'lazydev', 'path', },
+      default = { 'lsp', 'snippets', 'buffer', 'lazydev', 'path', 'copilot' },
       cmdline = {
         max_items = 20, -- set cmdline = {} to disable cmdline completions
       },
@@ -33,6 +33,21 @@ return {
         buffer = {
           max_items = 1,
           score_offset = -1,
+        },
+        copilot = {
+          name = "copilot",
+          module = "blink-cmp-copilot",
+          score_offset = 100,
+          async = true,
+          transform_items = function(_, items) -- show Copilot in menu, default is Text
+            local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+            local kind_idx = #CompletionItemKind + 1
+            CompletionItemKind[kind_idx] = "Copilot"
+            for _, item in ipairs(items) do
+              item.kind = kind_idx
+            end
+            return items
+          end,
         },
         lsp = {
           fallbacks = { 'buffer' },
