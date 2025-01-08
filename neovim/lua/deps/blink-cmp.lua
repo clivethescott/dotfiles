@@ -37,7 +37,7 @@ return {
         copilot = {
           name = "copilot",
           module = "blink-cmp-copilot",
-          score_offset = 100,
+          score_offset = -2,
           async = true,
           transform_items = function(_, items) -- show Copilot in menu, default is Text
             local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
@@ -69,9 +69,10 @@ return {
     completion = {
       accept = { auto_brackets = { enabled = false }, }, -- use nvim-autopairs
       list = {
-        selection = function(ctx)
-          return ctx.mode == 'cmdline' and 'auto_insert' or 'preselect'
-        end
+        selection = {
+          preselect = true,
+          auto_insert = false
+        }
       },
       documentation = {
         auto_show = true,

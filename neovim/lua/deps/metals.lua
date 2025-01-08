@@ -24,7 +24,7 @@ return {
       showImplicitArguments = false,
       showImplicitConversionsAndClasses = true,
       showInferredType = true,
-      serverProperties = { "-Xmx1G" },
+      serverProperties = { "-Xmx4G", "-Xms1G" },
       superMethodLensesEnabled = false,
       enableSemanticHighlighting = true,
       excludedPackages = {
