@@ -53,7 +53,6 @@ return {
           fallbacks = { 'buffer' },
           max_items = 10,
           score_offset = 2,
-          min_keyword_length = 2,
         },
         lazydev = {
           name = "LazyDev",

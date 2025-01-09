@@ -1,10 +1,18 @@
+local no_autosave_fts = {'smithy', 'lua'}
 return {
   "stevearc/conform.nvim",
   event = 'BufReadPost',
   opts = {
-    format_on_save = {
-      timeout_ms = 2000,
-      lsp_format = "fallback",
+    format_after_save = function(bufnr)
+      local ft = vim.b[bufnr].filetype
+      if vim.tbl_contains(no_autosave_fts, ft) then
+        return { lsp_format = "never" }
+      else
+        return {} -- use defaults: https://github.com/stevearc/conform.nvim/issues/565
+      end
+    end,
+    default_format_opts = {
+      lsp_format = "never",
     },
     formatters_by_ft = {
       lua = { "stylua" },

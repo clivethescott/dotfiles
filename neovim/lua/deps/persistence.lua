@@ -1,4 +1,4 @@
-local track_repos = { 'subscription-service-v2' }
+local track_repos = { 'subscription-service-v2', 'api-registry' }
 return {
   "folke/persistence.nvim",
   event = "BufReadPre",
