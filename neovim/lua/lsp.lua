@@ -85,6 +85,11 @@ function M.on_attach(client, bufnr)
       function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end, { desc = 'Toggle inlay hints' })
   end
 
+
+  if client.supports_method('textDocument/implementation') then
+    vim.keymap.set('n', '<space>li', vim.lsp.buf.implementation, { desc = 'LSP implementation' })
+  end
+
   if client.supports_method('textDocument/references') then
     vim.keymap.set('n', '<space>lR', function()
       require 'fzf-lua'.lsp_references({

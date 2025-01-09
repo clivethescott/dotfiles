@@ -94,7 +94,7 @@ abbr -a -g jv 'jira issue view'
 
 if type -q nvim
   abbr -a -g vim nvim
-  abbr -a -g vi 'nvim -u ~/dotfiles/nvim/fast.luva'
+  abbr -a -g vi 'nvim -u ~/dotfiles/nvim/fast.lua'
 end
  
 # `ls` → `lsd`
@@ -115,6 +115,7 @@ end
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build"
 set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
+set -gx JAVA_HOME "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
 
-set PATH /opt/homebrew/bin /Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
+set PATH /opt/homebrew/bin $JAVA_HOME/bin $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
 

@@ -93,6 +93,7 @@ return {
     { "<space>tw", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = "LSP workspace symbols" },
     { "<space>td", "<cmd>FzfLua diagnostics_document<cr>",       desc = "Diagnostics" },
     { "gR",        "<cmd>FzfLua lsp_references<cr>",             desc = "LSP References" },
+    { "<space>lI", "<cmd>FzfLua lsp_implementations<cr>",        desc = "LSP Implementations" },
     {
       "<space>to",
       function() require 'fzf-lua'.oldfiles { include_current_session = true } end,
