@@ -20,7 +20,7 @@ require 'lazy'.setup({
   defaults = {
     version = '*' -- install the latest stable version of plugins that support Semver.
   },
-  lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock-2.json",
+  lockfile = vim.fs.joinpath(vim.fn.stdpath("config"), "lazy-lock.json"),
   change_detection = {
     notify = false
   },
