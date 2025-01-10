@@ -27,17 +27,18 @@ return {
     sources = {
       default = { 'lsp', 'snippets', 'buffer', 'lazydev', 'path', 'copilot' },
       cmdline = {
-        max_items = 20, -- set cmdline = {} to disable cmdline completions
+        max_items = 5, -- set cmdline = {} to disable cmdline completions
       },
       providers = {
         buffer = {
-          max_items = 1,
+          max_items = 2,
           score_offset = -1,
         },
         copilot = {
           name = "copilot",
           module = "blink-cmp-copilot",
           score_offset = -2,
+          max_items = 3,
           async = true,
           transform_items = function(_, items) -- show Copilot in menu, default is Text
             local CompletionItemKind = require("blink.cmp.types").CompletionItemKind

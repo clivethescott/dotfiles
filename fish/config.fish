@@ -92,6 +92,7 @@ abbr -a -g dashlane dcli
 abbr -a -g jless 'jless --relative-line-numbers'
 abbr -a -g jv 'jira issue view'
 
+
 if type -q nvim
   abbr -a -g vim nvim
   abbr -a -g vi 'nvim -u ~/dotfiles/nvim/fast.lua'
@@ -116,6 +117,19 @@ set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build"
 set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
 set -gx JAVA_HOME "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
+set -gx BAT_THEME OneHalfDark
+
+# Add completions from stuff installed with Homebrew.
+if test "$os" = Darwin
+    if test -d "/opt/homebrew/share/fish/completions"
+        set -p fish_complete_path /opt/homebrew/share/fish/completions
+    end
+    if test -d "/opt/homebrew/share/fish/completions/share/fish/vendor_completions.d"
+        set -p fish_complete_path /ope/homebrew/share/fish/vendor_completions.d
+    end
+end
+
+# fzf --fish | source
 
 set PATH /opt/homebrew/bin $JAVA_HOME/bin $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
 

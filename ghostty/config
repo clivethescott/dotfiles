@@ -25,17 +25,29 @@ keybind = cmd+x=text:\x18
 keybind = cmd+y=text:\x19
 keybind = cmd+z=text:\x1A
 keybind = cmd+[=text:\x1B
+keybind = cmd+option+q=quit
 keybind = global:cmd+grave_accent=toggle_quick_terminal
 
-theme = catppuccin-mocha
-font-size = 16
 macos-option-as-alt = true
-
-
-mouse-hide-while-typing = true
-font-family = "FiraCode Nerd Font"
-
 macos-titlebar-style = hidden
+macos-auto-secure-input = true
+
+theme = catppuccin-mocha
+
+# Font
+font-family = "FiraCode Nerd Font"
+font-style = "Medium"
+font-size = 16.5
+
 window-width = 5000
 window-height = 5000
 
+
+mouse-hide-while-typing = true
+copy-on-select = true
+quit-after-last-window-closed = true
+quick-terminal-position = center
+shell-integration = "fish"
+shell-integration-features = cursor,title
+
+auto-update = check
