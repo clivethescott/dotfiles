@@ -124,8 +124,8 @@ if test "$os" = Darwin
     if test -d "/opt/homebrew/share/fish/completions"
         set -p fish_complete_path /opt/homebrew/share/fish/completions
     end
-    if test -d "/opt/homebrew/share/fish/completions/share/fish/vendor_completions.d"
-        set -p fish_complete_path /ope/homebrew/share/fish/vendor_completions.d
+    if test -d "/opt/homebrew/share/fish/vendor_completions.d"
+        set -p fish_complete_path /opt/homebrew/share/fish/vendor_completions.d
     end
 end
 
