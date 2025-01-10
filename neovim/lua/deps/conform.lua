@@ -1,4 +1,4 @@
-local no_autosave_fts = { 'smithy', 'lua' }
+local no_autosave_fts = { 'smithy'}
 return {
   "stevearc/conform.nvim",
   event = 'BufReadPost',

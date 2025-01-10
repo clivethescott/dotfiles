@@ -109,6 +109,10 @@ if type -q bat
   abbr --add -g cat 'bat'
 end
 
+if type -q ast-grep
+  alias sg ast-grep
+end
+
 if status is-interactive; and test -f ~/.config/fish/tokens.fish
   source ~/.config/fish/tokens.fish
 end
