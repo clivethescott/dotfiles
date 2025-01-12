@@ -109,6 +109,10 @@ if type -q bat
   abbr --add -g cat 'bat'
 end
 
+if type -q ast-grep
+  alias sg ast-grep
+end
+
 if status is-interactive; and test -f ~/.config/fish/tokens.fish
   source ~/.config/fish/tokens.fish
 end
@@ -124,8 +128,8 @@ if test "$os" = Darwin
     if test -d "/opt/homebrew/share/fish/completions"
         set -p fish_complete_path /opt/homebrew/share/fish/completions
     end
-    if test -d "/opt/homebrew/share/fish/completions/share/fish/vendor_completions.d"
-        set -p fish_complete_path /ope/homebrew/share/fish/vendor_completions.d
+    if test -d "/opt/homebrew/share/fish/vendor_completions.d"
+        set -p fish_complete_path /opt/homebrew/share/fish/vendor_completions.d
     end
 end
 

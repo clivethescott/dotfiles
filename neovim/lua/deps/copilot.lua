@@ -8,5 +8,12 @@ return {
   },
   dependencies = {
     "giuxtaposition/blink-cmp-copilot"
+  },
+  filetypes = {
+    ["grug-far"] = false,
+    ["grug-far-history"] = false,
+    ["grug-far-help"] = false,
+    ["fish"] = false,
+    ["zsh"] = false,
   }
 }
