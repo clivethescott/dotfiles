@@ -13,6 +13,7 @@ return {
       ['<c-p>'] = { 'select_prev', 'fallback' },
       ['<c-n>'] = { 'select_next', 'fallback' },
       ['<C-y>'] = { 'select_and_accept' },
+      ['<cr>'] = { 'select_and_accept', 'fallback' },
       ['<c-j>'] = { 'snippet_forward', 'fallback' },
       ['<c-k>'] = { 'snippet_backward', 'fallback' },
       ['<c-f>'] = { 'scroll_documentation_up', 'fallback' },
@@ -37,7 +38,7 @@ return {
         copilot = {
           name = "copilot",
           module = "blink-cmp-copilot",
-          score_offset = -2,
+          score_offset = -1,
           max_items = 3,
           async = true,
           transform_items = function(_, items) -- show Copilot in menu, default is Text
@@ -53,14 +54,12 @@ return {
         lsp = {
           fallbacks = { 'buffer' },
           max_items = 10,
-          score_offset = 2,
         },
         lazydev = {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
         },
         snippets = {
-          score_offset = 3,
           max_items = 3,
         },
       },

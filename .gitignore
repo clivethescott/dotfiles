@@ -1,3 +1,4 @@
 *.swp
 *.DS_Store
 .luarc.json
+fish/tokens.fish

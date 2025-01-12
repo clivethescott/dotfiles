@@ -90,8 +90,8 @@ return {
     { "<space>tm", "<cmd>FzfLua marks<cr>",                      desc = "Marks" },
     { "<space>tr", "<cmd>FzfLua registers<cr>",                  desc = "Registers" },
     { "<space>tb", "<cmd>FzfLua lines<cr>",                      desc = "Buffer lines" },
-    { "<space>tw", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = "LSP workspace symbols" },
-    { "<space>td", "<cmd>FzfLua diagnostics_document<cr>",       desc = "Diagnostics" },
+    { "<space>lw", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = "LSP workspace symbols" },
+    { "<space>ld", "<cmd>FzfLua diagnostics_document<cr>",       desc = "Diagnostics" },
     { "gR",        "<cmd>FzfLua lsp_references<cr>",             desc = "LSP References" },
     { "<space>lI", "<cmd>FzfLua lsp_implementations<cr>",        desc = "LSP Implementations" },
     {

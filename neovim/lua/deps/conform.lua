@@ -1,4 +1,4 @@
-local no_autosave_fts = { 'smithy', 'lua' }
+local no_autosave_fts = { 'smithy' }
 return {
   "stevearc/conform.nvim",
   event = 'BufReadPost',
@@ -11,7 +11,8 @@ return {
         return {} -- use defaults: https://github.com/stevearc/conform.nvim/issues/565
       end
     end,
-    notify_no_formatters = false,
+    quiet = true,
+    notify_on_error = false,
     formatters_by_ft = {
       -- Conform will run multiple formatters sequentially
       python = { "isort", "black" },

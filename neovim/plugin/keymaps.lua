@@ -21,8 +21,10 @@ vim.keymap.set('n', 'j', [[v:count < 2 ? 'gj' : "m'" .. v:count .. 'j']], { expr
 if vim.fn.has("nvim-0.11") ~= 1 then
   -- Quickly add empty lines, provided later in nvim
   -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines=
-  vim.keymap.set('n', '[<space>', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[", { desc = 'Add line before' })
-  vim.keymap.set('n', ']<space>', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>', { desc = 'Add line after' })
+  vim.keymap.set('n', '[<space>', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[",
+    { desc = 'Add line before', silent = true })
+  vim.keymap.set('n', ']<space>', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>',
+    { desc = 'Add line after', silent = true })
 end
 
 -- Misc
