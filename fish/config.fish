@@ -122,6 +122,7 @@ set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:tog
 set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
 set -gx JAVA_HOME "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
 set -gx BAT_THEME OneHalfDark
+set GOBIN $HOME/Code/Go/bin
 
 # Add completions from stuff installed with Homebrew.
 if test "$os" = Darwin
@@ -135,5 +136,5 @@ end
 
 # fzf --fish | source
 
-set PATH /opt/homebrew/bin $JAVA_HOME/bin $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
+set PATH /opt/homebrew/bin $GOBIN $JAVA_HOME/bin $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
 
