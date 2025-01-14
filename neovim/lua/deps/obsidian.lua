@@ -16,12 +16,12 @@ return {
     },
     workspaces = {
       {
-        name = "notes",
-        path = "~/Documents/Obsidian/Notes",
-      },
-      {
         name = "work",
         path = "~/Documents/Obsidian/Work",
+      },
+      {
+        name = "notes",
+        path = "~/Documents/Obsidian/Notes",
       },
     },
     log_level = vim.log.levels.WARN,
@@ -44,6 +44,7 @@ return {
     { '<space>nv', '<cmd>ObsidianFollowLink vsplit<cr>', desc = 'Open Link vsplit' },
     { '<space>ns', '<cmd>ObsidianFollowLink hsplit<cr>', desc = 'Open Link hsplit' },
     { '<space>nf', '<cmd>ObsidianSearch<cr>',            desc = 'Grep Search Note' },
+    { '<space>nw', '<cmd>ObsidianWorkspace<cr>',            desc = 'Switch Workspace' },
     -- { '<space>nf', function() require 'utils'.obsidian_search() end, desc = 'Search Note' },
   }
 }
