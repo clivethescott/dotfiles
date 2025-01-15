@@ -71,6 +71,10 @@ return {
     vim.keymap.set("n", "<leader>5",
       function() require("fzf-lua").live_grep_glob { cwd = plugins_dir } end,
       { silent = true, desc = "Nvim plugin grep" })
+
+    vim.keymap.set("n", "<space>ro",
+      function() require("fzf-lua").files { cwd = '~/Code/Hurl' } end,
+      { silent = true, desc = "Hurl files" })
   end,
   keys = {
     {
