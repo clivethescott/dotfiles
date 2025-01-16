@@ -26,8 +26,9 @@ set fish_prompt_pwd_dir_length 3
 # vi-mode
 set -g fish_key_bindings fish_vi_key_bindings
 
-# bind fzf
+# https://github.com/PatrickF1/fzf.fish
 # bind --user to see configured, e.g \E is meta+shift+e
+
 fzf_configure_bindings --history= --git_status= --variables= --git_log=\eG --directory=\ef --processes=\eP
 set fzf_diff_highlighter delta --paging=never --width=20 # should not pipe its output to a pager
 set fzf_fd_opts --max-depth 5
@@ -113,6 +114,13 @@ if type -q ast-grep
   alias sg ast-grep
 end
 
+if type -q fzf
+  # https://junegunn.github.io/fzf/
+  abbr --add -g gco "git branch | fzf --preview 'git show --color=always {-1}' \
+--bind 'enter:become(git switch {-1})' \
+--height 40% --layout reverse"
+end
+
 if status is-interactive; and test -f ~/.config/fish/tokens.fish
   source ~/.config/fish/tokens.fish
 end
@@ -125,7 +133,7 @@ set -gx BAT_THEME OneHalfDark
 set GOBIN $HOME/Code/Go/bin
 
 # Add completions from stuff installed with Homebrew.
-if test "$os" = Darwin
+if status is-interactive; and test "$os" = Darwin
     if test -d "/opt/homebrew/share/fish/completions"
         set -p fish_complete_path /opt/homebrew/share/fish/completions
     end
@@ -135,6 +143,11 @@ if test "$os" = Darwin
 end
 
 # fzf --fish | source
+if status is-interactive
+# import from z => zoxide import --merge --from=z ~/.local/share/z/data
+  set -gx _ZO_FZF_OPTS "$FZF_DEFAULT_OPTS"
+# Replace cd with z, cdi for fzf version
+  zoxide init fish --cmd cd | source
+end
 
 set PATH /opt/homebrew/bin $GOBIN $JAVA_HOME/bin $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
-
