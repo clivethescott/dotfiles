@@ -3,7 +3,7 @@ vim.keymap.set('i', '<c-s>', '<esc>:update<cr>')
 
 vim.keymap.set('n', 'Q', ':q<cr>')
 vim.keymap.set('n', 'Y', 'yy')
-vim.keymap.set('n', '<space>y', ':silent! %y<cr>', { desc = 'Yank buffer' })
+vim.keymap.set('n', '<space>y', ':%y<cr>', { desc = 'Yank buffer', silent = true })
 
 -- Keep selection after visual indent/outdentyy
 vim.keymap.set('v', '<', '<gv')

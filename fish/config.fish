@@ -93,6 +93,10 @@ abbr -a -g dashlane dcli
 abbr -a -g jless 'jless --relative-line-numbers'
 abbr -a -g jv 'jira issue view'
 
+if type -q terraform
+  abbr -a -g tf terraform
+end
+
 
 if type -q nvim
   abbr -a -g vim nvim
@@ -130,6 +134,7 @@ set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:tog
 set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
 set -gx JAVA_HOME "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
 set -gx BAT_THEME OneHalfDark
+#set -gx SBT_OPTS "-XX:MaxMetaspaceSize=2G XX:ReservedCodeCacheSize=256M -XX:+UseZGC -Xms1G -Xmx4G -Xss8M -Dsbt.repository.config=sbt.repositories"
 set GOBIN $HOME/Code/Go/bin
 
 # Add completions from stuff installed with Homebrew.
@@ -143,11 +148,11 @@ if status is-interactive; and test "$os" = Darwin
 end
 
 # fzf --fish | source
-if status is-interactive
+if status is-interactive; and type -q zoxide
 # import from z => zoxide import --merge --from=z ~/.local/share/z/data
   set -gx _ZO_FZF_OPTS "$FZF_DEFAULT_OPTS"
-# Replace cd with z, cdi for fzf version
-  zoxide init fish --cmd cd | source
+# z, zi for fzf
+  zoxide init fish | source
 end
 
 set PATH /opt/homebrew/bin $GOBIN $JAVA_HOME/bin $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH

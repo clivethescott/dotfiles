@@ -84,6 +84,13 @@ return {
       end,
       desc = "FZF files"
     },
+    {
+      "<space>tp",
+      function()
+        require("fzf-lua").files({cwd = vim.fn.expand("%:p:h")})
+      end,
+      desc = "FZF files (lwd)"
+    },
     { "<c-e>",     "<cmd>FzfLua buffers<cr>",                    desc = "Buffers" },
     { "<space>tl", "<cmd>FzfLua resume<cr>",                     desc = "Resume" },
     { "<space>tq", "<cmd>FzfLua quickfix<cr>",                   desc = "Quickfix" },
