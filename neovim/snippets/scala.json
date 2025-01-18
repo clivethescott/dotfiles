@@ -1,0 +1,11 @@
+{
+  "fory": {
+    "prefix": "fory",
+    "body": [
+      "for {",
+      "${1:???}",
+      "} yield ${2:???}"
+    ],
+    "description": "For yield"
+  }
+}
