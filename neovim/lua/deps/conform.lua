@@ -3,6 +3,9 @@ return {
   "stevearc/conform.nvim",
   event = 'BufReadPost',
   opts = {
+    default_format_opts = {
+      lsp_format = "fallback",
+    },
     format_after_save = function(bufnr)
       local ft = vim.b[bufnr].filetype
       if vim.tbl_contains(no_autosave_fts, ft) then
