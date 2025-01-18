@@ -156,3 +156,4 @@ if status is-interactive; and type -q zoxide
 end
 
 set PATH /opt/homebrew/bin $GOBIN $JAVA_HOME/bin $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
+set PATH ~/orbstack/bin $PATH
