@@ -24,7 +24,7 @@ local formatting = function(client, bufnr)
   vim.keymap.set({ 'n', 'v' }, '<leader>f', function()
     require 'conform'.format({
       timeout_ms = 2000,
-      bufnr = bufnr,
+      bufnr = bufnr or 0,
       async = false,
       lsp_format = "fallback",
       id = client.id,
@@ -57,6 +57,8 @@ end
 
 function M.on_attach(client, bufnr)
   local lsp_group = vim.api.nvim_create_augroup('LspAttachedGroup', { clear = true })
+
+  if client.name == 'copilot' then return end
 
   if client.supports_method('textDocument/rename') then
     vim.keymap.set('n', '<space>lr', vim.lsp.buf.rename, { buffer = true, desc = 'LSP Rename' })

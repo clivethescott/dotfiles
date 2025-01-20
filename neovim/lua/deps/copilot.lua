@@ -15,5 +15,6 @@ return {
     ["grug-far-help"] = false,
     ["fish"] = false,
     ["zsh"] = false,
+    ["lua"] = false,
   }
 }
