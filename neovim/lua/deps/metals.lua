@@ -35,7 +35,7 @@ return {
       autoImportBuild = 'all',
       defaultBspToBuildTool = true,
     }
-    metals_config.capabilities = require 'utils'.lsp_client_capabilities()
+    metals_config.capabilities = require 'lsp'.client_capabilities()
 
     metals_config.on_attach = function()
       -- client and bufnr will be used in lspconfig

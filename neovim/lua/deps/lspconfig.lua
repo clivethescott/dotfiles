@@ -142,7 +142,7 @@ return {
       end,
     })
 
-    local capabilities = require 'utils'.lsp_client_capabilities()
+    local capabilities = require 'lsp'.client_capabilities()
 
     -- No extra config required, just run setup for these
     require 'lspconfig'.dockerls.setup {}

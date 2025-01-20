@@ -117,4 +117,26 @@ function M.on_attach(client, bufnr)
   end
 end
 
+function M.client_capabilities()
+  local capabilities = nil
+  local has_blink, blink = pcall(require, 'blink.cmp')
+
+  if has_blink then
+    capabilities = blink.get_lsp_capabilities()
+  else
+    capabilities = vim.lsp.protocol.make_client_capabilities()
+  end
+
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+  }
+  capabilities.textDocument.completion.completionItem.snippetSupport = true -- broadcasting snippet capability for completion
+  capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = { "documentation", "detail", "additionalTextEdits" },
+  }
+
+  return capabilities
+end
+
 return M

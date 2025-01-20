@@ -92,11 +92,10 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 
-vim.opt.foldcolumn = '0' -- '0' is not bad
-vim.opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldmethod = 'syntax'
-vim.opt.foldminlines = 20
-vim.opt.foldlevelstart = 99 -- keep folds on save for ufo?
+vim.opt.foldcolumn = '0'
+vim.opt.foldmethod = 'manual'
+vim.opt.foldminlines = 5
+vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.foldnestmax = 3
 -- vim.opt.foldlevel = 2
