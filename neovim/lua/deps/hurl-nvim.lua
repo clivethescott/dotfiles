@@ -1,6 +1,15 @@
-local set_env = function(env)
-  vim.g.hurl_env = env
-  vim.cmd('HurlSetEnvFile ' .. env .. '.env')
+local switch_env = function()
+  local envs = { 'dev', 'qa', 'prod' }
+  local current_env = vim.g.hurl_env or ''
+  local change_env = vim.tbl_filter(function(env) return env ~= current_env end, envs)
+  vim.ui.select(change_env, {
+    prompt = 'Switch environment:[' .. current_env .. ']'
+  }, function(choice)
+    if choice ~= nil then
+      vim.cmd('HurlSetEnvFile ' .. choice .. '.env')
+      vim.g.hurl_env = choice
+    end
+  end)
 end
 return {
   "jellydn/hurl.nvim",
@@ -29,15 +38,12 @@ return {
     },
   },
   keys = {
-    { "<space>ra", "<cmd>HurlRunner<CR>",             desc = "Run All requests" },
-    { "<space>rr", "<cmd>HurlRunnerAt<CR>",           desc = "Run Current",          mode = "n" },
-    { "<space>rv", ":HurlRunner<CR>",                 desc = "Run Current",          mode = "v" },
-    { "<space>rR", "<cmd>HurlVerbose<CR>",            desc = "Run Current (verbose)" },
-    { "<space>rd", "<cmd>HurlSetEnvFile dev.env<CR>", desc = "Switch to Dev env" },
-    { "<space>rd", function() set_env("dev") end,     desc = "Switch to Dev env" },
-    { "<space>rq", function() set_env("qa") end,      desc = "Switch to QA env" },
-    { "<space>rp", function() set_env("prod") end,    desc = "Switch to Prod env" },
-    { "<space>re", "<cmd>HurlManageVariable<CR>",     desc = "Show Environment" },
+    { "<space>ra", "<cmd>HurlRunner<CR>",       desc = "Run All requests" },
+    { "<space>rr", "<cmd>HurlRunnerAt<CR>",     desc = "Run Current",          mode = "n" },
+    { "<space>rv", ":HurlRunner<CR>",           desc = "Run Current",          mode = "v" },
+    { "<space>rR", "<cmd>HurlVerbose<CR>",      desc = "Run Current (verbose)" },
+    { "<space>re", function() switch_env() end, desc = "Switch env" },
+    -- { "<space>re", "<cmd>HurlManageVariable<CR>",     desc = "Show Environment" },
     -- { "<leader>te", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to entry" },
     -- { "<leader>tE", "<cmd>HurlRunnerToEnd<CR>", desc = "Run Api request from current entry to end" },
     -- { "<leader>tm", "<cmd>HurlToggleMode<CR>", desc = "Hurl Toggle Mode" },
