@@ -20,6 +20,10 @@ return {
           ["alt-t"]   = actions.file_tabedit,
         },
       },
+      -- files = {
+      -- rg_opts = [[--color=never --files --hidden --follow -g "!.git"]],
+      -- fd_opts = "--color=never --type f --hidden --follow --exclude .git",
+      -- },
       grep = {
         rg_glob   = true,
         glob_flag = "--iglob",
@@ -42,7 +46,6 @@ return {
       },
     })
     require("fzf-lua").register_ui_select()
-
     vim.keymap.set({ "n", "v", "i" }, "<C-x><C-f>",
       function() require("fzf-lua").complete_path() end,
       { silent = true, desc = "FZF complete path" })
@@ -87,7 +90,7 @@ return {
     {
       "<space>tp",
       function()
-        require("fzf-lua").files({cwd = vim.fn.expand("%:p:h")})
+        require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") })
       end,
       desc = "FZF files (lwd)"
     },
