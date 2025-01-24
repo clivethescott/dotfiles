@@ -7,9 +7,7 @@ return {
   config = function()
     local metals = require 'metals'
     local metals_config = metals.bare_config()
-    -- NOTE: It's highly recommended to set your `statusBarProvider` to `on`. This
-    -- enables `metals/status` and also other helpful messages that are shown to you
-    metals_config.init_options.statusBarProvider = "on"
+    metals_config.init_options.statusBarProvider = "off" -- use fidget
     metals_config.inlayHints = {
       typeParameters = {
         enable = true
@@ -19,8 +17,8 @@ return {
       }
     }
     metals_config.settings = {
-      serverVersion = '1.4.2',
-      fallbackScalaVersion = '3.3.3',
+      serverVersion = '1.5.0',
+      fallbackScalaVersion = '3.6.3',
       showImplicitArguments = false,
       showImplicitConversionsAndClasses = true,
       showInferredType = true,
