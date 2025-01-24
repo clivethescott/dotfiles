@@ -4,7 +4,7 @@ return {
   event = 'BufReadPost',
   opts = {
     default_format_opts = {
-      lsp_format = "fallback",
+      lsp_format = "never",
     },
     format_after_save = function(bufnr)
       local ft = vim.b[bufnr].filetype
