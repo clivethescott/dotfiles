@@ -125,6 +125,11 @@ if type -q fzf
 --height 40% --layout reverse"
 end
 
+
+if type -q python3
+ abbr --add -g py python3
+end
+
 if status is-interactive; and test -f ~/.config/fish/tokens.fish
   source ~/.config/fish/tokens.fish
 end
