@@ -4,6 +4,8 @@ vim.keymap.set('i', '<c-s>', '<esc>:update<cr>')
 vim.keymap.set('n', 'Q', ':q<cr>')
 vim.keymap.set('n', 'Y', 'yy')
 vim.keymap.set('n', '<space>y', ':%y<cr>', { desc = 'Yank buffer', silent = true })
+vim.keymap.set('v', '<space>y', '"*y', { desc = 'Yank selection', silent = true })
+vim.keymap.set({ 'n', 'v' }, '<space>p', '"*p', { desc = 'Paste from sys clipboard', silent = true })
 
 -- Keep selection after visual indent/outdentyy
 vim.keymap.set('v', '<', '<gv')

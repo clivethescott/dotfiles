@@ -1,5 +1,5 @@
 -- Always use the clipboard directly (instead of +/* registers)
-vim.opt.clipboard = 'unnamedplus'
+-- vim.opt.clipboard = 'unnamedplus'
 vim.opt.dictionary:append('/usr/share/dict/words')
 vim.opt.mouse = ''
 vim.opt.spell = true
