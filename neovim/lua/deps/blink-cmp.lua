@@ -10,14 +10,12 @@ return {
     ---@type blink.cmp.Config
     keymap = {
       preset = 'none',
-      ['<c-p>'] = { 'select_prev', 'fallback' },
-      ['<c-n>'] = { 'select_next', 'fallback' },
+      ['<c-p>'] = { 'show', 'select_prev', 'fallback' },
+      ['<c-n>'] = { 'show', 'select_next', 'fallback' },
       ['<C-y>'] = { 'select_and_accept' },
       ['<cr>'] = { 'select_and_accept', 'fallback' },
       ['<c-j>'] = { 'snippet_forward', 'fallback' },
       ['<c-k>'] = { 'snippet_backward', 'fallback' },
-      ['<c-f>'] = { 'scroll_documentation_up', 'fallback' },
-      ['<c-b>'] = { 'scroll_documentation_down', 'fallback' },
       cmdline = {
         preset = 'enter',
         ['<tab>'] = { 'select_next' },
@@ -66,6 +64,7 @@ return {
     },
     signature = { enabled = true },
     completion = {
+      ghost_text = { enabled = true },
       accept = { auto_brackets = { enabled = false }, }, -- use nvim-autopairs
       list = {
         selection = {
@@ -75,14 +74,14 @@ return {
       },
       documentation = {
         auto_show = true,
-        auto_show_delay_ms = 2000,
+        auto_show_delay_ms = 500,
         treesitter_highlighting = true, -- disable if perf issues
         window = {
           min_width = 40,
         }
       },
       menu = {
-        auto_show = true,
+        auto_show = false,
         -- nvim-cmp style menu
         draw = {
           columns = {

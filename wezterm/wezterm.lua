@@ -120,7 +120,7 @@ return {
   font_size = 16,
   line_height = 1.3,
   scrollback_lines = 10000,
-  font = wezterm.font('FiraCode Nerd Font', { weight = 'DemiBold'}),
+  font = wezterm.font('FiraCode Nerd Font', { weight = 'DemiBold' }),
   color_scheme = 'catppuccin-mocha',
   window_decorations = "RESIZE",
   audible_bell = "Disabled",
