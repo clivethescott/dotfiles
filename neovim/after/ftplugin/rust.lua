@@ -5,6 +5,11 @@ vim.opt_local.shiftwidth = 4
 
 vim.keymap.set({ 'n', 'i', 'v' }, '<c-b>',
   function()
-    require 'snacks'.terminal.open('cargo check', { interactive = false })
+    require 'snacks'.terminal.open({
+        'cargo', 'clippy', '--',
+        '-Dwarnings', -- warnings as errors
+        '-W', 'clippy::pedantic'
+      },
+      { interactive = false })
   end,
-  { desc = "Cargo build" })
+  { desc = "Cargo lint" })
