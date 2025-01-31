@@ -5,12 +5,7 @@ local conf_dir      = '~/.config/nvim'
 local picker_layout = {
   reverse = true,
   ui_select = true,
-  formatters = {
-    -- file = {
-    --   filename_first = false,
-    --   truncate = 30,
-    -- },
-  },
+  preview = false,
   layout = {
     box = "horizontal",
     backdrop = false,
@@ -19,13 +14,13 @@ local picker_layout = {
     border = "none",
     {
       box = "vertical",
-      { win = "list",  title = " Results ", title_pos = "center", border = "rounded" },
-      { win = "input", height = 1,          border = "rounded",   title = "{title} {live} {flags}", title_pos = "center" },
+      { win = "list",  title = " Files search ", title_pos = "center", border = "rounded" },
+      { win = "input", height = 1,               border = "rounded",   title = "{title} {live} {flags}", title_pos = "center" },
     },
     {
       win = "preview",
       title = "{preview:Preview}",
-      width = 0.6,
+      width = 0.45,
       border = "rounded",
       title_pos = "center",
     },
@@ -65,6 +60,19 @@ return {
     terminal = { enabled = true },
     picker = {
       enabled = true,
+      win = {
+        input = {
+          keys = {
+            ["<a-i>"] = { "toggle_preview", mode = { "i", "n" } },
+          },
+        },
+      },
+      formatters = {
+        file = {
+          filename_first = true,
+          truncate = 80,
+        },
+      },
       layout = picker_layout,
     },
   },
