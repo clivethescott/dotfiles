@@ -2,7 +2,7 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
 -- Setup lazy
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy/lazy.nvim")
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -42,3 +42,9 @@ require 'lazy'.setup({
 
 vim.cmd.colorscheme "catppuccin-macchiato"
 vim.keymap.set('n', '<space>ol', '<cmd>Lazy<cr>', { desc = 'Lazy Package Mgr' })
+
+
+local rtp_extras = vim.fs.joinpath(vim.fn.stdpath("config"), "lua/rtp")
+if vim.loop.fs_stat(rtp_extras) then
+  vim.opt.rtp:append(rtp_extras)
+end

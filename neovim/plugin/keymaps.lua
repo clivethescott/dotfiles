@@ -7,6 +7,9 @@ vim.keymap.set('n', '<space>y', ':%y<cr>', { desc = 'Yank buffer', silent = true
 vim.keymap.set('v', '<space>y', '"*y', { desc = 'Yank selection', silent = true })
 vim.keymap.set({ 'n', 'v' }, '<space>p', '"*p', { desc = 'Paste from sys clipboard', silent = true })
 
+-- Resize split
+-- :vertical resize +10 OR :vertical resize 90
+
 -- Keep selection after visual indent/outdentyy
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')

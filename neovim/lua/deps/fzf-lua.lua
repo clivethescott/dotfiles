@@ -20,10 +20,10 @@ return {
           ["alt-t"]   = actions.file_tabedit,
         },
       },
-      -- files = {
-      -- rg_opts = [[--color=never --files --hidden --follow -g "!.git"]],
-      -- fd_opts = "--color=never --type f --hidden --follow --exclude .git",
-      -- },
+      files = {
+        hidden = true,
+        follow = false,
+      },
       grep = {
         rg_glob   = true,
         glob_flag = "--iglob",

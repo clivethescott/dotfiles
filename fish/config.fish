@@ -44,13 +44,13 @@ if status is-interactive
 end
 
 # tmux auto-start
-if status is-interactive; and not set -q TMUX
-  if tmux has-session -t home
-    exec tmux attach-session -t home
-  else
-   tmux new-session -s home
-  end
-end
+#if status is-interactive; and set -q TMUX
+#  if tmux has-session -t home
+#    exec tmux attach-session -t home
+#  else if tmux has-session -t subscription
+#    exec tmux attach-session -t subscription
+#  end
+#end
 
 # auto-suggestion mappings
 if status is-interactive
