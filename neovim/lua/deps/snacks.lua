@@ -1,4 +1,36 @@
-local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
+local plugins_dir   = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
+local conf_dir      = '~/.config/nvim'
+
+---@type snacks.picker.layout.Config
+local picker_layout = {
+  reverse = true,
+  ui_select = true,
+  formatters = {
+    -- file = {
+    --   filename_first = false,
+    --   truncate = 30,
+    -- },
+  },
+  layout = {
+    box = "horizontal",
+    backdrop = false,
+    width = 0.95,
+    height = 0.85,
+    border = "none",
+    {
+      box = "vertical",
+      { win = "list",  title = " Results ", title_pos = "center", border = "rounded" },
+      { win = "input", height = 1,          border = "rounded",   title = "{title} {live} {flags}", title_pos = "center" },
+    },
+    {
+      win = "preview",
+      title = "{preview:Preview}",
+      width = 0.6,
+      border = "rounded",
+      title_pos = "center",
+    },
+  },
+}
 
 return {
   "folke/snacks.nvim",
@@ -33,9 +65,7 @@ return {
     terminal = { enabled = true },
     picker = {
       enabled = true,
-      layout = {
-        ui_select = true,
-      }
+      layout = picker_layout,
     },
   },
   keys = {
@@ -48,15 +78,15 @@ return {
       function() require 'snacks'.picker.notifications() end,
       desc = "Notifications"
     },
-    { "<space>sb",  function() require 'snacks'.scratch() end,           desc = "Toggle Scratch Buffer" },
-    { "<space>sB",  function() require 'snacks'.scratch.select() end,    desc = "Select Scratch Buffer" },
-    { "<space>sp",  function() require 'snacks'.picker() end,            desc = "Pickers" },
-    { "<space>sgd",  function() require 'snacks'.picker.git_status() end, desc = "Git Status" },
-    { "<space>sgs",  function() require 'snacks'.picker.git_branches() end, desc = "Git Branches" },
-    { "<space>sgl",  function() require 'snacks'.picker.git_log_file() end, desc = "Buffer Commits" },
-    { "<c-p>",      function() require 'snacks'.picker.smart() end,      desc = "Files + Buffers" },
-    { "<c-e>",      function() require 'snacks'.picker.buffers() end,    desc = "Buffers" },
-    { "<space>tf",  function() require 'snacks'.picker.grep() end,       desc = "Grep" },
+    { "<space>sb",  function() Snacks.scratch() end,                     desc = "Toggle Scratch Buffer" },
+    { "<space>sB",  function() Snacks.scratch.select() end,              desc = "Select Scratch Buffer" },
+    { "<space>sp",  function() Snacks.picker() end,                      desc = "Pickers" },
+    { "<space>sgd", function() Snacks.picker.git_status() end,           desc = "Git Status" },
+    { "<space>sgs", function() Snacks.picker.git_branches() end,         desc = "Git Branches" },
+    { "<space>sgl", function() Snacks.picker.git_log_file() end,         desc = "Buffer Commits" },
+    { "<c-p>",      function() Snacks.picker.smart() end,                desc = "Files + Buffers" },
+    { "<c-e>",      function() Snacks.picker.buffers() end,              desc = "Buffers" },
+    { "<space>tf",  function() Snacks.picker.grep() end,                 desc = "Grep" },
     { "<space>tF",  function() Snacks.picker.grep_word() end,            desc = "Grep selection or word", mode = { "n", "x" } },
     { "<space>to",  function() Snacks.picker.recent() end,               desc = "Recent Files" },
     { "<space>tq",  function() Snacks.picker.qflist() end,               desc = "Quickfix List" },
@@ -65,23 +95,29 @@ return {
     { "<space>th",  function() Snacks.picker.help() end,                 desc = "Help tags" },
     { "<space>tm",  function() Snacks.picker.marks() end,                desc = "Marks" },
     { "<space>tj",  function() Snacks.picker.jumps() end,                desc = "Jumps" },
-    { "<space>tu",  function() Snacks.picker.undo() end,                desc = "Undo" },
+    { "<space>tu",  function() Snacks.picker.undo() end,                 desc = "Undo" },
     { "<space>tr",  function() Snacks.picker.registers() end,            desc = "Registers" },
     { "<space>tb",  function() Snacks.picker.lines() end,                desc = "Buffer lines" },
     -- { "<space>lm",  function() Snacks.picker.lsp_definitions() end,      desc = "Goto Definition" },
-    { "<space>ld",  function() Snacks.picker.diagnostics() end,          desc = "Diagnostics" },
+    { "<space>lD",  function() Snacks.picker.diagnostics() end,          desc = "Snacks Diagnostics" },
     { "<space>lR",  function() Snacks.picker.lsp_references() end,       nowait = true,                   desc = "References" },
     { "<space>lI",  function() Snacks.picker.lsp_implementations() end,  desc = "Goto Implementation" },
     { "<space>ly",  function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
-    { "<leader>lw", function() Snacks.picker.lsp_symbols() end,          desc = "LSP Symbols" },
+    { "<space>lw",  function() Snacks.picker.lsp_symbols() end,          desc = "LSP Symbols" },
     {
       "<leader>2",
-      function()
-        require 'snacks'.picker.files {
-          dirs = { '~/.config/neovim' }
-        }
-      end,
-      desc = "Nvim config"
+      function() Snacks.picker.files { dirs = { conf_dir } } end,
+      desc = "Config files"
+    },
+    {
+      "<leader>5",
+      function() Snacks.picker.grep { dirs = { plugins_dir } } end,
+      desc = "Plugin files"
+    },
+    {
+      "<leader>3",
+      function() Snacks.picker.grep { dirs = { conf_dir } } end,
+      desc = "Grep config"
     },
   },
   init = function()

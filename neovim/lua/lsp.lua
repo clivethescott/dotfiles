@@ -33,6 +33,11 @@ local formatting = function(client, bufnr)
 end
 
 local diagnostics = function(bufnr)
+
+  vim.keymap.set('n', '<space>ld',
+    function() vim.diagnostic.setqflist() end,
+    { desc = 'LSP Diagnostic', buffer = bufnr })
+
   vim.keymap.set('n', '<leader>d',
     function() vim.diagnostic.open_float({ scope = 'line' }) end,
     { desc = 'Line Diagnostic', buffer = bufnr })

@@ -14,6 +14,7 @@ return {
 
     wk.add({
       { "<space>g",  group = "Git" },
+      { "<space>sg",  group = "Git" },
       { "<space>n",  group = "Obsidian" },
       { "<space>o",  group = "Open" },
       { "<space>l",  group = "LSP" },
