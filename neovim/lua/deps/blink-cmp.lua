@@ -51,7 +51,7 @@ return {
         },
         lsp = {
           fallbacks = { 'buffer' },
-          max_items = 10,
+          max_items = 20,
         },
         lazydev = {
           name = "LazyDev",
