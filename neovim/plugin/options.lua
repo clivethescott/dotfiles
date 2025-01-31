@@ -55,7 +55,7 @@ vim.opt.autowrite = true
 
 -- Don't wait too long to complete successive keys, Also controls which-key delay
 -- Disabled - set in whick-key config
-vim.opt.timeoutlen = 500
+vim.opt.timeoutlen = 700
 
 -- Affects redraw speed
 -- vim.opt.cursorcolumn = false
