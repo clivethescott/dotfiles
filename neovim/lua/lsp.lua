@@ -33,7 +33,6 @@ local formatting = function(client, bufnr)
 end
 
 local diagnostics = function(bufnr)
-
   vim.keymap.set('n', '<space>ld',
     function() vim.diagnostic.setqflist() end,
     { desc = 'LSP Diagnostic', buffer = bufnr })
@@ -76,12 +75,12 @@ function M.on_attach(client, bufnr)
 
   if client.supports_method('textDocument/declaration') then
     vim.keymap.set('n', 'gD', function()
-      require 'fzf-lua'.lsp_declarations({ jump_to_single_result = true })
+      require 'snacks'.picker.lsp_declarations()
     end, { buffer = true, desc = 'LSP Declaration' })
     vim.keymap.set('n', 'gd', vim.lsp.buf.declaration, { buffer = true, silent = true })
   elseif client.supports_method('textDocument/definition') then
     vim.keymap.set('n', 'gD', function()
-      require 'fzf-lua'.lsp_definitions({ jump_to_single_result = true })
+      require 'snacks'.lsp_definitions()
     end, { buffer = true, desc = 'LSP Definition' })
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = true, silent = true })
   else
@@ -99,9 +98,7 @@ function M.on_attach(client, bufnr)
 
   if client.supports_method('textDocument/references') then
     vim.keymap.set('n', '<space>lR', function()
-      require 'fzf-lua'.lsp_references({
-        jump_to_single_result = true, ignore_current_line = true, includeDeclaration = false
-      })
+      require 'snacks'.lsp_references { includeDeclaration = false }
     end, { buffer = true, desc = 'LSP References' })
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'LSP References' })
   end
