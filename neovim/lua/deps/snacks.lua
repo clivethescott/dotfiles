@@ -1,5 +1,7 @@
-local plugins_dir   = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
-local conf_dir      = '~/.config/nvim'
+---@diagnostic disable: missing-fields
+---@diagnostic disable-next-line: param-type-mismatch
+local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
+local conf_dir  = '~/.config/nvim'
 
 ---@type snacks.picker.layout.Config
 local picker_layout = {
@@ -27,6 +29,25 @@ local picker_layout = {
   },
 }
 
+---@type snacks.picker.Config
+local picker_config = {
+  enabled = true,
+  win = {
+    input = {
+      keys = {
+        ["<a-i>"] = { "toggle_preview", mode = { "i", "n" } },
+      },
+    },
+  },
+  formatters = {
+    file = {
+      filename_first = true,
+      truncate = 80,
+    },
+  },
+  layout = picker_layout,
+}
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -52,29 +73,13 @@ return {
       enabled = true,
       level = vim.log.levels.WARN,
     },
+    picker = picker_config,
     quickfile = { enabled = true },
     scratch = { enabled = true, },
     scroll = { enabled = false }, -- issues in search + position when switching buffers
     statuscolumn = { enabled = true },
     toggle = { enabled = true },
     terminal = { enabled = true },
-    picker = {
-      enabled = true,
-      win = {
-        input = {
-          keys = {
-            ["<a-i>"] = { "toggle_preview", mode = { "i", "n" } },
-          },
-        },
-      },
-      formatters = {
-        file = {
-          filename_first = true,
-          truncate = 80,
-        },
-      },
-      layout = picker_layout,
-    },
   },
   keys = {
     { "gs",        function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
@@ -83,7 +88,8 @@ return {
     { "<space>gb", function() require 'snacks'.git.blame_line() end, desc = "Blame line" },
     {
       "<space>sn",
-      function() require 'snacks'.picker.notifications() end,
+      ---@diagnostic disable-next-line: undefined-field
+      function() Snacks.picker.notifications() end,
       desc = "Notifications"
     },
     { "<space>sb",  function() Snacks.scratch() end,                     desc = "Toggle Scratch Buffer" },
@@ -92,7 +98,9 @@ return {
     { "<space>sgd", function() Snacks.picker.git_status() end,           desc = "Git Status" },
     { "<space>sgs", function() Snacks.picker.git_branches() end,         desc = "Git Branches" },
     { "<space>sgl", function() Snacks.picker.git_log_file() end,         desc = "Buffer Commits" },
-    { "<c-p>",      function() Snacks.picker.smart() end,                desc = "Files + Buffers" },
+---@diagnostic disable-next-line: undefined-field
+    { "<c-p>",      function() Snacks.picker.files() end,                desc = "Files" },
+    { "<c-m>",      function() Snacks.picker.smart() end,                desc = "Files + Buffers" },
     { "<c-e>",      function() Snacks.picker.buffers() end,              desc = "Buffers" },
     { "<space>tf",  function() Snacks.picker.grep() end,                 desc = "Grep" },
     { "<space>tF",  function() Snacks.picker.grep_word() end,            desc = "Grep selection or word", mode = { "n", "x" } },
@@ -103,6 +111,7 @@ return {
     { "<space>th",  function() Snacks.picker.help() end,                 desc = "Help tags" },
     { "<space>tm",  function() Snacks.picker.marks() end,                desc = "Marks" },
     { "<space>tj",  function() Snacks.picker.jumps() end,                desc = "Jumps" },
+---@diagnostic disable-next-line: undefined-field
     { "<space>tu",  function() Snacks.picker.undo() end,                 desc = "Undo" },
     { "<space>tr",  function() Snacks.picker.registers() end,            desc = "Registers" },
     { "<space>tb",  function() Snacks.picker.lines() end,                desc = "Buffer lines" },
