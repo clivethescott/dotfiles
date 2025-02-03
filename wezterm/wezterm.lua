@@ -12,8 +12,13 @@ local cmd_bindings = function()
   local result = {
     {
       key = 'v',
-      mods = 'CMD',
+      mods = 'CMD|SHIFT',
       action = action.PasteFrom 'Clipboard',
+    },
+    {
+      key = 'r',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.ReloadConfiguration,
     },
     {
       key = '-',
@@ -114,6 +119,7 @@ local hyperlink_rules = table.insert(wezterm.default_hyperlink_rules(), {
 
 return {
   term = 'wezterm',
+  disable_default_key_bindings = true, -- https://wezfurlong.org/wezterm/config/default-keys.html?h=keys
   keys = cmd_bindings(),
   mouse_bindings = mouse_bindings,
   hide_tab_bar_if_only_one_tab = true,
