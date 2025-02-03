@@ -4,7 +4,7 @@ local mux = wezterm.mux
 local action = wezterm.action
 
 local cmd_bindings = function()
-  local all_characters = [[`1234567890=qwertyuiop[]\asdfghjkl;'zxcbnm./^*$#|?!]]
+  local all_characters = [[`1234567890=qwertyuiop[]\asdfghjklv;'zxcbnm./^*$#|?!]]
   local chars = {}
 
   -- convert string to list

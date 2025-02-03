@@ -35,13 +35,14 @@ return {
     }
     metals_config.capabilities = require 'lsp'.client_capabilities()
 
-    metals_config.on_attach = function()
+    metals_config.on_attach = function(client, bufnr)
       -- client and bufnr will be used in lspconfig
       local dap_enabled = false -- TODO: setup DAP if needed
       if dap_enabled then
         metals.setup_dap()
       end
       -- other settings for metals here
+      require 'lsp'.on_attach(client, bufnr)
     end
 
     local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })

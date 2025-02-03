@@ -1,7 +1,7 @@
 ---@diagnostic disable: missing-fields
 ---@diagnostic disable-next-line: param-type-mismatch
-local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
-local conf_dir  = '~/.config/nvim'
+local plugins_dir   = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
+local conf_dir      = '~/.config/nvim'
 
 ---@type snacks.picker.layout.Config
 local picker_layout = {
@@ -36,6 +36,12 @@ local picker_config = {
     input = {
       keys = {
         ["<a-i>"] = { "toggle_preview", mode = { "i", "n" } },
+        ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
+        ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
+        ["<c-q>"] = { "qflist", mode = { "i", "n" } },
+        ["<a-g>"] = { "toggle_ignored", mode = { "i", "n" } },
+        ["<a-h>"] = { "toggle_hidden", mode = { "i", "n" } },
+        ["/"] = "toggle_focus",
       },
     },
   },
@@ -83,7 +89,8 @@ return {
   },
   keys = {
     { "gs",        function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
-    { "<space>gl", function() require 'snacks'.lazygit() end,        desc = "Lazygit" },
+    { "<space>gl", function() Snacks.picker.git_log_line() end,      desc = "Line Commits" },
+    { "<space>gL", function() Snacks.picker.git_log_file() end,      desc = "Buffer Commits" },
     { "<space>gh", function() require 'snacks'.gitbrowse() end,      desc = "Open in Github" },
     { "<space>gb", function() require 'snacks'.git.blame_line() end, desc = "Blame line" },
     {
@@ -95,23 +102,24 @@ return {
     { "<space>sb",  function() Snacks.scratch() end,                     desc = "Toggle Scratch Buffer" },
     { "<space>sB",  function() Snacks.scratch.select() end,              desc = "Select Scratch Buffer" },
     { "<space>sp",  function() Snacks.picker() end,                      desc = "Pickers" },
+    { "<space>sf",  function() Snacks.picker.explorer() end,             desc = "Explorer" },
     { "<space>sgd", function() Snacks.picker.git_status() end,           desc = "Git Status" },
     { "<space>sgs", function() Snacks.picker.git_branches() end,         desc = "Git Branches" },
-    { "<space>sgl", function() Snacks.picker.git_log_file() end,         desc = "Buffer Commits" },
----@diagnostic disable-next-line: undefined-field
+    { "<space>sgl", function() Snacks.picker.git_log_line() end,         desc = "Line Commits" },
+    { "<space>sgL", function() Snacks.picker.git_log_file() end,         desc = "Buffer Commits" },
+    ---@diagnostic disable-next-line: undefined-field
     { "<c-p>",      function() Snacks.picker.files() end,                desc = "Files" },
-    { "<c-m>",      function() Snacks.picker.smart() end,                desc = "Files + Buffers" },
     { "<c-e>",      function() Snacks.picker.buffers() end,              desc = "Buffers" },
     { "<space>tf",  function() Snacks.picker.grep() end,                 desc = "Grep" },
     { "<space>tF",  function() Snacks.picker.grep_word() end,            desc = "Grep selection or word", mode = { "n", "x" } },
-    { "<space>to",  function() Snacks.picker.recent() end,               desc = "Recent Files" },
+    { "<space>to",  function() Snacks.picker.smart() end,                desc = "Recent Files" },
     { "<space>tq",  function() Snacks.picker.qflist() end,               desc = "Quickfix List" },
     { "<space>tl",  function() Snacks.picker.resume() end,               desc = "Resume" },
     { "<space>tc",  function() Snacks.picker.commands() end,             desc = "Commands" },
     { "<space>th",  function() Snacks.picker.help() end,                 desc = "Help tags" },
     { "<space>tm",  function() Snacks.picker.marks() end,                desc = "Marks" },
     { "<space>tj",  function() Snacks.picker.jumps() end,                desc = "Jumps" },
----@diagnostic disable-next-line: undefined-field
+    ---@diagnostic disable-next-line: undefined-field
     { "<space>tu",  function() Snacks.picker.undo() end,                 desc = "Undo" },
     { "<space>tr",  function() Snacks.picker.registers() end,            desc = "Registers" },
     { "<space>tb",  function() Snacks.picker.lines() end,                desc = "Buffer lines" },
