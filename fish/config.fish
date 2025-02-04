@@ -137,7 +137,8 @@ end
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build"
 set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
-set -gx JAVA_HOME "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
+#set -gx JAVA_HOME "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
+set -gx JAVA_HOME "/Library/Java/JavaVirtualMachines/graalvm-jdk-21.0.6+8.1/Contents/Home"
 set -gx BAT_THEME OneHalfDark
 #set -gx SBT_OPTS "-XX:MaxMetaspaceSize=2G XX:ReservedCodeCacheSize=256M -XX:+UseZGC -Xms1G -Xmx4G -Xss8M -Dsbt.repository.config=sbt.repositories"
 set GOBIN $HOME/Code/Go/bin
