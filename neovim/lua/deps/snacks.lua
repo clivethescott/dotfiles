@@ -16,7 +16,7 @@ local picker_layout = {
     border = "none",
     {
       box = "vertical",
-      { win = "list",  title = " Files search ", title_pos = "center", border = "rounded" },
+      { win = "list",  title_pos = "center", border = "rounded" },
       { win = "input", height = 1,               border = "rounded",   title = "{title} {live} {flags}", title_pos = "center" },
     },
     {
@@ -116,6 +116,7 @@ return {
     { "<space>tq",  function() Snacks.picker.qflist() end,               desc = "Quickfix List" },
     { "<space>tl",  function() Snacks.picker.resume() end,               desc = "Resume" },
     { "<space>tc",  function() Snacks.picker.commands() end,             desc = "Commands" },
+    { "<space>tC",  function() Snacks.picker.command_history() end,      desc = "Command history" },
     { "<space>th",  function() Snacks.picker.help() end,                 desc = "Help tags" },
     { "<space>tm",  function() Snacks.picker.marks() end,                desc = "Marks" },
     { "<space>tj",  function() Snacks.picker.jumps() end,                desc = "Jumps" },
