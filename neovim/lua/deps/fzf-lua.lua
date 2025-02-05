@@ -2,7 +2,7 @@ return {
   "ibhagwan/fzf-lua",
   event = 'VeryLazy',
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  cond = false, -- snacks.picker
+  cond = vim.g.use_picker == 'fzf-lua',
   config = function()
     local actions = require("fzf-lua").actions
     require("fzf-lua").setup({

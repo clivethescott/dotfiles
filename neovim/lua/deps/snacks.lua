@@ -31,7 +31,7 @@ local picker_layout = {
 
 ---@type snacks.picker.Config
 local picker_config = {
-  enabled = true,
+  enabled = vim.g.use_picker == 'snacks.picker',
   win = {
     input = {
       keys = {

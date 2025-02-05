@@ -75,12 +75,20 @@ function M.on_attach(client, bufnr)
 
   if client.supports_method('textDocument/declaration') then
     vim.keymap.set('n', 'gD', function()
-      require 'snacks'.picker.lsp_declarations()
+      if vim.g.use_picker == 'snacks.picker' then
+        require 'snacks'.picker.lsp_declarations()
+      elseif vim.g.use_picker == 'fzf-lua' then
+        require 'fzf-lua'.lsp_declarations()
+      end
     end, { buffer = true, desc = 'LSP Declaration' })
     vim.keymap.set('n', 'gd', vim.lsp.buf.declaration, { buffer = true, silent = true })
   elseif client.supports_method('textDocument/definition') then
     vim.keymap.set('n', 'gD', function()
-      require 'snacks'.lsp_definitions()
+      if vim.g.use_picker == 'snacks.picker' then
+        require 'snacks'.lsp_definitions()
+      elseif vim.g.use_picker == 'fzf-lua' then
+        require 'fzf-lua'.lsp_definitions()
+      end
     end, { buffer = true, desc = 'LSP Definition' })
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = true, silent = true })
   else
@@ -98,9 +106,14 @@ function M.on_attach(client, bufnr)
 
   if client.supports_method('textDocument/references') then
     vim.keymap.set('n', '<space>lR', function()
-      require 'snacks'.lsp_references { includeDeclaration = false }
+      if vim.g.use_picker == 'snacks.picker' then
+        require 'snacks'.lsp_references { includeDeclaration = false }
+      elseif vim.g.use_picker == 'fzf-lua' then
+        require 'fzf-lua'.lsp_references { includeDeclaration = false }
+      end
     end, { buffer = true, desc = 'LSP References' })
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'LSP References' })
+    vim.keymap.set('n', 'gr', function() vim.lsp.buf.references { includeDeclaration = false } end,
+      { desc = 'LSP References' })
   end
 
   if client.supports_method('textDocument/codeLens') then
