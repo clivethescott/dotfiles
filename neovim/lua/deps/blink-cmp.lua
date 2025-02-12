@@ -24,7 +24,7 @@ return {
       }
     },
     sources = {
-      default = { 'lsp', 'snippets', 'buffer', 'lazydev', 'path', 'copilot' },
+      default = { 'lsp', 'snippets', 'buffer', 'markdown', 'lazydev', 'path' },
       cmdline = {
         max_items = 5, -- set cmdline = {} to disable cmdline completions
       },
@@ -33,22 +33,6 @@ return {
           max_items = 2,
           score_offset = -1,
         },
-        copilot = {
-          name = "copilot",
-          module = "blink-cmp-copilot",
-          score_offset = -1,
-          max_items = 3,
-          async = true,
-          transform_items = function(_, items) -- show Copilot in menu, default is Text
-            local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-            local kind_idx = #CompletionItemKind + 1
-            CompletionItemKind[kind_idx] = "Copilot"
-            for _, item in ipairs(items) do
-              item.kind = kind_idx
-            end
-            return items
-          end,
-        },
         lsp = {
           fallbacks = { 'buffer' },
           max_items = 20,
@@ -56,6 +40,11 @@ return {
         lazydev = {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
+        },
+        markdown = {
+          name = 'RenderMarkdown',
+          module = 'render-markdown.integ.blink',
+          fallbacks = { 'lsp' },
         },
         snippets = {
           max_items = 3,

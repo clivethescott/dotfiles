@@ -189,6 +189,9 @@ return {
       filetypes = { 'haskell', 'lhaskell', 'cabal' },
     }
     -- require 'lspconfig'.jdtls.setup {}
+    require 'lspconfig'.kotlin_language_server.setup {
+      capabilities = capabilities,
+    }
 
     setup_go(capabilities)
     setup_python(capabilities)

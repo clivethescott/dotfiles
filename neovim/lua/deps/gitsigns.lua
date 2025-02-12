@@ -1,25 +1,34 @@
 local on_attach = function()
-  local gs = package.loaded.gitsigns
+  local gitsigns = require 'gitsigns'
   -- Navigation
   local next_hunk = function()
-    if vim.wo.diff then return ']c' end
-    vim.schedule(function() gs.next_hunk() end)
-    return '<Ignore>'
+    if vim.wo.diff then
+      vim.cmd.normal({ ']c', bang = true })
+    else
+      gitsigns.nav_hunk('next')
+    end
   end
   local prev_hunk = function()
-    if vim.wo.diff then return '[c' end
-    vim.schedule(function() gs.prev_hunk() end)
-    return '<Ignore>'
+    if vim.wo.diff then
+      vim.cmd.normal({ ']c', bang = true })
+    else
+      gitsigns.nav_hunk('last')
+    end
   end
   -- Text object
-  vim.keymap.set({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+  vim.keymap.set({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
 
   vim.keymap.set('n', ']g', next_hunk, { desc = 'Next Hunk' })
   vim.keymap.set('n', '[g', prev_hunk, { desc = 'Prev Hunk' })
-  vim.keymap.set('n', '<space>gd', gs.preview_hunk, { desc = 'Show Diff' })
-  vim.keymap.set({ 'n', 'v' }, '<space>gu', gs.reset_hunk, { desc = 'Undo Change' })
-  vim.keymap.set('n', '<space>gU', gs.reset_buffer, { desc = 'Undo All Changes' })
-  vim.keymap.set('n', '<space>gB', gs.toggle_current_line_blame, { desc = 'Toggle blame' })
+  vim.keymap.set('n', '<space>gd', gitsigns.preview_hunk, { desc = 'Show Diff' })
+
+  vim.keymap.set('n', '<space>gu', gitsigns.reset_hunk, { desc = 'Undo Change' })
+  vim.keymap.set('v', '<space>gu', function() gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, { desc = 'Undo Change' })
+  vim.keymap.set('n', '<space>gU', gitsigns.reset_buffer, { desc = 'Undo All Changes' })
+
+  vim.keymap.set('n', '<space>gB', gitsigns.toggle_current_line_blame, { desc = 'Toggle blame' })
+  vim.keymap.set('n', '<space>gQ', function() gitsigns.setqflist('all') end, { desc = 'All changes to quickfix' })
+  vim.keymap.set('n', '<space>gq', gitsigns.setqflist, { desc = 'Buf changes to quickfix' })
 end
 
 return {
@@ -28,18 +37,16 @@ return {
     'nvim-lua/plenary.nvim',
   },
   event = { 'BufReadPost', 'BufNewFile' },
-  config = function()
-    require 'gitsigns'.setup {
-      on_attach = on_attach,
-      signs = {
-        add          = { text = '+' },
-        change       = { text = '~' },
-        delete       = { text = '-' },
-        topdelete    = { text = '?' },
-        changedelete = { text = '~' },
-      },
-      current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-      current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>'
-    }
-  end
+  opts = {
+    on_attach = on_attach,
+    signs = {
+      add          = { text = '+' },
+      change       = { text = '~' },
+      delete       = { text = '-' },
+      topdelete    = { text = '?' },
+      changedelete = { text = '~' },
+    },
+    current_line_blame = false,   -- Toggle with `:Gitsigns toggle_current_line_blame`
+    current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>'
+  }
 }

@@ -1,7 +1,6 @@
 -- Always use the clipboard directly (instead of +/* registers)
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.dictionary:append('/usr/share/dict/words')
-vim.opt.mouse = ''
 vim.opt.spell = true
 vim.opt.spelllang = 'en_gb'
 
@@ -54,8 +53,8 @@ vim.opt.rtp:append('/opt/homebrew/opt/fzf')
 vim.opt.autowrite = true
 
 -- Don't wait too long to complete successive keys, Also controls which-key delay
--- Disabled - set in whick-key config
-vim.opt.timeoutlen = 700
+vim.o.timeout = true
+vim.opt.timeoutlen = 500
 
 -- Affects redraw speed
 -- vim.opt.cursorcolumn = false
@@ -122,7 +121,3 @@ vim.g.tmux_navigator_no_mappings = 1
 vim.opt.conceallevel = 1
 
 vim.opt.formatoptions:remove "o"
-
--- which key
-vim.o.timeout = true
-vim.o.timeoutlen = 300
