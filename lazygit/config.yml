@@ -39,7 +39,8 @@ git:
       replace: "ASTX-$1 "
   paging:
     colorArg: always
-    pager: delta --dark --paging=never
+    # pager: delta --dark --paging=never
+    externalDiffCommand: difft --color=always
   disableForcePushing: true
 confirmOnQuit: true
 update:

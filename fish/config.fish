@@ -142,6 +142,7 @@ set -gx JAVA_HOME "/Library/Java/JavaVirtualMachines/graalvm-jdk-21.0.6+8.1/Cont
 set -gx BAT_THEME OneHalfDark
 #set -gx SBT_OPTS "-XX:MaxMetaspaceSize=2G XX:ReservedCodeCacheSize=256M -XX:+UseZGC -Xms1G -Xmx4G -Xss8M -Dsbt.repository.config=sbt.repositories"
 set GOBIN $HOME/Code/Go/bin
+set -gx XDG_CONFIG_HOME $HOME/.config
 
 # Add completions from stuff installed with Homebrew.
 if status is-interactive; and test "$os" = Darwin

@@ -5,22 +5,30 @@
 	defaultBranch = main
 [core]
 	excludesfile = /Users/clive/.gitignore
-  pager = delta
 [commit]
   verbose = true
 [interactive]
-  diffFilter = delta --color-only
-[delta]
-  navigate = true  # use n and N to move between diff sections
-  light = false    # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-  side-by-side = true
-  line-numbers = true
+  ; diffFilter = delta --color-only
+
+[difftool]
+  # Run the difftool immediately, don't ask 'are you sure' each time.
+  prompt = false
+
+# https://difftastic.wilfred.me.uk/git.html
+[difftool "difftastic"]
+  # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
+  cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+
+[difftool "nvimdiff"]
+	cmd = nvim -d -c \"wincmd w\" -c \"wincmd L\" \"$LOCAL\" \"$REMOTE\"
+
+[pager]
+  difftool = true
 
 [diff]
-  algorithm = patience
   compactionHeuristic = true
-  tool = nvimdiff
-  colorMoved = default
+  tool = difftastic
+  external = difft
 
 [merge]
   tool = "nvim"
@@ -30,30 +38,6 @@
 	keepBackup = false
   conflictstyle = diff3
 
-[difftool "nvimdiff"]
-	cmd = nvim -d -c \"wincmd w\" -c \"wincmd L\" \"$LOCAL\" \"$REMOTE\"
-
-[mergetool "nvim"]
-	cmd = nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
-
-[mergetool "fugitive"]
-  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
-
-[mergetool "diffview"]
-  cmd = nvim -c \"DiffviewOpen\"
-
 [push]
 	autoSetupRemote = true
 
-[delta]
-  minus-style                   = syntax "#3a273a"
-  minus-non-emph-style          = syntax "#3a273a"
-  minus-emph-style              = syntax "#6b2e43"
-  minus-empty-line-marker-style = syntax "#3a273a"
-  line-numbers-minus-style      = "#b55a67"
-  plus-style                    = syntax "#273849"
-  plus-non-emph-style           = syntax "#273849"
-  plus-emph-style               = syntax "#305f6f"
-  plus-empty-line-marker-style  = syntax "#273849"
-  line-numbers-plus-style       = "#627259"
-  line-numbers-zero-style       = "#3b4261"

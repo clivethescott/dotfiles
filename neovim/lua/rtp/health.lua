@@ -5,6 +5,7 @@ local must_install_tools = {
   bat = 'Bat viewer',
   fzf = 'FZF Fuzzy finder',
   delta = 'Delta Git pretty diffs',
+  difft = 'difftastic diffs with Treesitter',
   ['ast-grep'] = 'AST grep',
   ['scala-cli'] = 'Scala CLI',
   hurl = 'Hurl REST client',
