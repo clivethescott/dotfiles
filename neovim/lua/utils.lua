@@ -1,32 +1,8 @@
 local M = {}
-local cache = {}
 
 function M.resolvedCapabilities(client_id)
   client_id = client_id or 1
   vim.print(vim.lsp.get_client_by_id(client_id).server_capabilities)
-end
-
----@return obsidian.Picker|?
-local get_obsidian_fzf_picker = function()
-  local client = require 'obsidian'.get_client()
-  local PickerName = require 'obsidian.config'.Picker
-  local pickers = require 'obsidian'.pickers
-
-  local picker = pickers.get(client, PickerName.fzf_lua)
-  cache['obsidian_fzf_picker'] = picker
-
-  return picker
-end
-
-function M.obsidian_search()
-  local fzf_picker = cache['obsidian_fzf_picker'] or get_obsidian_fzf_picker()
-  fzf_picker:grep_notes {
-    prompt_title = 'Live Grep Notes',
-    query = '',
-    callback = function(path)
-      vim.print(path)
-    end,
-  }
 end
 
 function M.start_smithy()

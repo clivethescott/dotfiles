@@ -1,10 +1,33 @@
 ---@diagnostic disable: missing-fields
 ---@diagnostic disable-next-line: param-type-mismatch
-local plugins_dir   = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
-local conf_dir      = '~/.config/nvim'
+local plugins_dir        = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
+local conf_dir           = '~/.config/nvim'
+
+---@type snacks.dashboard.Section
+local dashboard_sections = {
+  { section = "header" },
+  { section = "keys", gap = 1, padding = 1 },
+  { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+  { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+  {
+    pane = 2,
+    icon = " ",
+    title = "Git Status",
+    section = "terminal",
+    enabled = function()
+      return Snacks.git.get_root() ~= nil
+    end,
+    cmd = "git status --short --branch --renames",
+    height = 5,
+    padding = 1,
+    ttl = 5 * 60,
+    indent = 3,
+  },
+  { section = "startup" },
+}
 
 ---@type snacks.picker.layout.Config
-local picker_layout = {
+local picker_layout      = {
   reverse = true,
   ui_select = true,
   preview = false,
@@ -30,7 +53,7 @@ local picker_layout = {
 }
 
 ---@type snacks.picker.Config
-local picker_config = {
+local picker_config      = {
   enabled = vim.g.use_picker == 'snacks.picker',
   win = {
     input = {
@@ -64,12 +87,7 @@ return {
     dim = { enabled = true },
     dashboard = {
       enabled = true,
-      sections = {
-        { section = "header" },
-        { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-        { icon = " ", title = "Sessions", section = "projects", indent = 2, padding = 1 },
-        { section = "startup" },
-      },
+      sections = dashboard_sections,
     },
     gitbrowse = { enabled = true },
     git = { enabled = true },
