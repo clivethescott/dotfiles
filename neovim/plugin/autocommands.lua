@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- https://github.com/neovim/neovim/issues/16339#issuecomment-1457394370
 vim.api.nvim_create_autocmd('BufRead', {
-  pattern = {'*.lua', '*.scala', '*.rust', '*.conf'},
+  pattern = {'*.lua', '*.scala', '*.rust', '*.conf', '*.smithy'},
   callback = function(opts)
     vim.api.nvim_create_autocmd('BufWinEnter', {
       once = true, -- set to false to run this multiple times

@@ -32,10 +32,13 @@ gui:
 git:
   commitPrefixes:
     subscription-scheduler:
-      pattern: "^ASTX-(\\d{4}).*?"
+      pattern: "^ASTX-(\\d{4}).*"
       replace: "ASTX-$1 "
     subscription-service-v2:
-      pattern: "^ASTX-(\\d{4}).*?"
+      pattern: "^ASTX-(\\d{4}).*"
+      replace: "ASTX-$1 "
+    api-registry:
+      pattern: "^ASTX-(\\d{4}).*"
       replace: "ASTX-$1 "
   paging:
     colorArg: always
