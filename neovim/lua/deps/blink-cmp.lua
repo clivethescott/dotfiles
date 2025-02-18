@@ -8,6 +8,18 @@ return {
   opts = {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
+    cmdline = {
+      enabled = true,
+      keymap = {
+        preset = 'enter',
+        ['<tab>'] = { 'select_next' },
+        ['<s-tab>'] = { 'select_prev' },
+        ['<C-y>'] = { 'select_and_accept' },
+      },
+      sources = {
+        max_items = 5, -- set cmdline = {} to disable cmdline completions
+      },
+    },
     keymap = {
       preset = 'none',
       ['<c-p>'] = { 'show', 'select_prev', 'fallback' },
@@ -16,18 +28,9 @@ return {
       ['<cr>'] = { 'select_and_accept', 'fallback' },
       ['<c-j>'] = { 'snippet_forward', 'fallback' },
       ['<c-k>'] = { 'snippet_backward', 'fallback' },
-      cmdline = {
-        preset = 'enter',
-        ['<tab>'] = { 'select_next' },
-        ['<s-tab>'] = { 'select_prev' },
-        ['<C-y>'] = { 'select_and_accept' },
-      }
     },
     sources = {
       default = { 'lsp', 'snippets', 'buffer', 'markdown', 'lazydev', 'path' },
-      cmdline = {
-        max_items = 5, -- set cmdline = {} to disable cmdline completions
-      },
       providers = {
         buffer = {
           max_items = 2,

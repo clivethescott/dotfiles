@@ -2,7 +2,7 @@ return {
   'saecki/crates.nvim',
   event = { "BufRead Cargo.toml" },
   tag = 'stable',
-  config = {
+  opts = {
     lsp = {
       enabled = true,
       on_attach = function(client, bufnr)
