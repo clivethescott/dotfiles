@@ -4,6 +4,14 @@ return {
   -- lazy = false, Lazy-loading will cause more time for the previews to load when starting Neovim?
   ft = {'markdown', 'rust'},
   dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+
+  ---@module 'render-markdown'
+  ---@type render.md.UserConfig
+  opts = {
+    code = {
+      disable_background = {'diff', 'rust'},
+    }
+  },
   keys = {
     {
       '<space>no',
