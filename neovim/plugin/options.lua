@@ -110,7 +110,12 @@ vim.opt.modeline = false
 -- Recommended for https://github.com/rmagatti/auto-session
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
-vim.opt.diffopt = "filler,context:0" -- hide the rest
+vim.opt.diffopt:append {
+  'linematch:50',
+  'vertical', -- https://github.com/lewis6991/gitsigns.nvim/issues/724
+  'foldcolumn:0',
+  'indent-heuristic',
+}
 vim.opt.inccommand = "split"
 vim.opt.scrolloff = 1
 
