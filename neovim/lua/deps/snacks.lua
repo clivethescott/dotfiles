@@ -102,7 +102,7 @@ return {
     scratch = { enabled = true, },
     scroll = { enabled = false }, -- issues in search + position when switching buffers
     statuscolumn = { enabled = true },
-    toggle = { enabled = true },
+    toggle = { enabled = true, which_key = false },
     terminal = { enabled = true },
   },
   keys = {
