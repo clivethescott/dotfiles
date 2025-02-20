@@ -45,7 +45,7 @@ git:
     # pager: delta --dark --paging=never
     externalDiffCommand: difft --color=always
   disableForcePushing: true
-confirmOnQuit: true
+confirmOnQuit: false
 update:
   method: never
 disableStartupPopups: true
