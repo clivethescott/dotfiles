@@ -23,6 +23,26 @@ local dashboard_sections = {
     ttl = 5 * 60,
     indent = 3,
   },
+  {
+    pane = 2,
+    icon = " ",
+    section = "terminal",
+    title = "Open PRs",
+    cmd = 'gh pr list -L 5 --author "@me"',
+    key = "P",
+    enabled = function()
+      local git_root = Snacks.git.get_root() or ''
+      local match = string.find(git_root, 'subscription', 1, true) or
+          string.find(git_root, 'registry', 1, true) or
+          0
+      return match > 0
+    end,
+    ttl = 5 * 60,
+    action = function()
+      vim.fn.jobstart('gh pr list --author "@me" --web', { detach = true })
+    end,
+    height = 7,
+  },
   { section = "startup" },
 }
 
