@@ -6,9 +6,8 @@ local conf_dir           = '~/.config/nvim'
 ---@type snacks.dashboard.Section
 local dashboard_sections = {
   { section = "header" },
-  { section = "keys", gap = 1, padding = 1 },
+  { section = "keys", gap = 0.5, padding = 1 },
   { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-  { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
   {
     pane = 2,
     icon = " ",
@@ -18,13 +17,13 @@ local dashboard_sections = {
       return Snacks.git.get_root() ~= nil
     end,
     cmd = "git status --short --branch --renames",
-    height = 5,
+    height = 10,
     padding = 1,
     ttl = 5 * 60,
     indent = 3,
   },
   {
-    pane = 2,
+    pane = 1,
     icon = " ",
     section = "terminal",
     title = "Open PRs",
@@ -37,11 +36,12 @@ local dashboard_sections = {
           0
       return match > 0
     end,
-    ttl = 5 * 60,
+    ttl = 1 * 60,
     action = function()
       vim.fn.jobstart('gh pr list --author "@me" --web', { detach = true })
     end,
-    height = 7,
+    height = 8,
+    width = 150,
   },
   { section = "startup" },
 }
@@ -107,6 +107,7 @@ return {
     dim = { enabled = true },
     dashboard = {
       enabled = true,
+      width = 70,
       sections = dashboard_sections,
     },
     gitbrowse = { enabled = true },
