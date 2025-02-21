@@ -9,7 +9,7 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     cmdline = {
-      enabled = true,
+      enabled = false,
       keymap = {
         preset = 'enter',
         ['<tab>'] = { 'select_next' },
