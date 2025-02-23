@@ -1,7 +1,8 @@
 ---@diagnostic disable: missing-fields
 ---@diagnostic disable-next-line: param-type-mismatch
 local plugins_dir        = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
-local conf_dir           = '~/.config/nvim'
+local conf_dirs          = { '~/.config/nvim', '~/.config/wezterm', '~/.config/tmux',
+  '~/.config/fish', '~/.config/atuin', '~/.config/lazygit' }
 
 ---@type snacks.dashboard.Section
 local dashboard_sections = {
@@ -17,7 +18,7 @@ local dashboard_sections = {
       return Snacks.git.get_root() ~= nil
     end,
     cmd = "git status --short --branch --renames",
-    height = 10,
+    height = 3,
     padding = 1,
     ttl = 5 * 60,
     indent = 3,
@@ -40,7 +41,7 @@ local dashboard_sections = {
     action = function()
       vim.fn.jobstart('gh pr list --author "@me" --web', { detach = true })
     end,
-    height = 8,
+    height = 5,
     width = 150,
   },
   { section = "startup" },
@@ -50,7 +51,7 @@ local dashboard_sections = {
 local picker_layout      = {
   reverse = true,
   ui_select = true,
-  preview = false,
+  hidden = { "preview" },
   layout = {
     box = "horizontal",
     backdrop = false,
@@ -112,6 +113,7 @@ return {
     },
     gitbrowse = { enabled = true },
     git = { enabled = true },
+    image = { enabled = false },
     input = { enabled = true },
     lazygit = { enabled = true },
     notifier = {
@@ -171,7 +173,7 @@ return {
     { "<space>lw",  function() Snacks.picker.lsp_symbols() end,          desc = "LSP Symbols" },
     {
       "<leader>2",
-      function() Snacks.picker.files { dirs = { conf_dir } } end,
+      function() Snacks.picker.files { dirs = conf_dirs } end,
       desc = "Config files"
     },
     {
@@ -181,7 +183,7 @@ return {
     },
     {
       "<leader>3",
-      function() Snacks.picker.grep { dirs = { conf_dir } } end,
+      function() Snacks.picker.grep { dirs = conf_dirs } end,
       desc = "Grep config"
     },
   },
