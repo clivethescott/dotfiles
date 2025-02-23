@@ -16,7 +16,7 @@
   "nui.nvim": { "branch": "main", "commit": "a0fd35fcbb4cb479366f1dc5f20145fd718a3733" },
   "nvim-autopairs": { "branch": "master", "commit": "68f0e5c3dab23261a945272032ee6700af86227a" },
   "nvim-lspconfig": { "branch": "master", "commit": "bf81bef7d75a0f4a0cf61462b318ea00b3c97cc8" },
-  "nvim-metals": { "branch": "main", "commit": "ef6e9957aae0ade96eb64d30eaf5d5b638a55703" },
+  "nvim-metals": { "branch": "main", "commit": "5d27f4918ea954772725d6741f84a71cfaff932a" },
   "nvim-treesitter": { "branch": "master", "commit": "cfc6f2c117aaaa82f19bcce44deec2c194d900ab" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "ad8f0a472148c3e0ae9851e26a722ee4e29b1595" },
   "nvim-ts-autotag": { "branch": "main", "commit": "a1d526af391f6aebb25a8795cbc05351ed3620b5" },
@@ -29,5 +29,5 @@
   "snacks.nvim": { "branch": "main", "commit": "51542bb8f43cbd0ca9d2ff3c5ad8a86fd76475a1" },
   "todo-comments.nvim": { "branch": "main", "commit": "ae0a2afb47cf7395dc400e5dc4e05274bf4fb9e0" },
   "trouble.nvim": { "branch": "main", "commit": "748ca2789044607f19786b1d837044544c55e80a" },
-  "which-key.nvim": { "branch": "main", "commit": "b74a3c85f03225bc91f4f5a9056518d3fa9a3470" }
+  "which-key.nvim": { "branch": "main", "commit": "fcbf4eea17cb299c02557d576f0d568878e354a4" }
 }
