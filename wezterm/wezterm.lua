@@ -84,6 +84,11 @@ table.insert(hyperlink_rules, {
   format = string.format("file:///Users/%s/$1", user_name),
 })
 
+table.insert(hyperlink_rules, {
+    regex = '/Users[a-zA-Z0-9\\./-]+',
+    format = '$0'
+})
+
 -- change action for open hyperlink
 -- open doens't like file names with line numbers
 wezterm.on('open-uri', function(window, pane, uri)
@@ -109,13 +114,6 @@ wezterm.on('gui-startup', function(cmd)
   local _, _, window = mux.spawn_window(cmd or {})
   window:gui_window():maximize()
 end)
-
-local hyperlink_rules = table.insert(wezterm.default_hyperlink_rules(), {
-  {
-    regex = '/Users[a-zA-Z0-9\\./-]+',
-    format = '$0'
-  },
-})
 
 return {
   term = 'wezterm',
