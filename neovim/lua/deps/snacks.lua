@@ -47,32 +47,6 @@ local dashboard_sections = {
   { section = "startup" },
 }
 
----@type snacks.picker.layout.Config
-local picker_layout      = {
-  reverse = true,
-  ui_select = true,
-  hidden = { "preview" },
-  layout = {
-    box = "horizontal",
-    backdrop = false,
-    width = 0.95,
-    height = 0.85,
-    border = "none",
-    {
-      box = "vertical",
-      { win = "list",  title_pos = "center", border = "rounded" },
-      { win = "input", height = 1,           border = "rounded", title = "{title} {live} {flags}", title_pos = "center" },
-    },
-    {
-      win = "preview",
-      title = "{preview:Preview}",
-      width = 0.45,
-      border = "rounded",
-      title_pos = "center",
-    },
-  },
-}
-
 ---@type snacks.picker.Config
 local picker_config      = {
   enabled = vim.g.use_picker == 'snacks.picker',
@@ -95,7 +69,8 @@ local picker_config      = {
       truncate = 80,
     },
   },
-  layout = picker_layout,
+  layout = { hidden = { "preview" } },
+  ui_select = true,
 }
 
 return {
@@ -125,7 +100,7 @@ return {
     scratch = { enabled = true, },
     scroll = { enabled = false }, -- issues in search + position when switching buffers
     statuscolumn = { enabled = true },
-    toggle = { enabled = true, which_key = false },
+    toggle = { enabled = true, which_key = true },
     terminal = { enabled = true },
   },
   keys = {
@@ -174,12 +149,17 @@ return {
     {
       "<leader>2",
       function() Snacks.picker.files { dirs = conf_dirs } end,
-      desc = "Config files"
+      desc = "Open Config files"
+    },
+    {
+      "<leader>4",
+      function() Snacks.picker.files { dirs = { plugins_dir } } end,
+      desc = "Open Plugin files"
     },
     {
       "<leader>5",
       function() Snacks.picker.grep { dirs = { plugins_dir } } end,
-      desc = "Plugin files"
+      desc = "Grep Plugin files"
     },
     {
       "<leader>3",
