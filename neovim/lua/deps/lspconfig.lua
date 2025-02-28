@@ -193,6 +193,24 @@ return {
       capabilities = capabilities,
     }
 
+    require 'lspconfig'.rust_analyzer.setup {
+      capabilities = vim.tbl_extend('keep', capabilities, {
+        experimental = {
+          serverStatusNotification = true
+        }
+      }),
+      -- Have to -> rustup component add rust-analyzer
+      -- toolchain installs a wrapper that isn't the real binary
+      cmd = { 'rust-analyzer' },
+      settings = {
+        ['rust-analyzer'] = {
+          diagnostics = { -- example
+            enable = true,
+          }
+        }
+      }
+    }
+
     setup_go(capabilities)
     setup_python(capabilities)
     setup_tsserver(capabilities)

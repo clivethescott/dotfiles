@@ -1,14 +1,8 @@
 local M = {}
 
-local codelens = function(client, bufnr, au_group)
+local codelens = function(bufnr, au_group)
   vim.keymap.set('n', '<space>ll',
-    function()
-      if client.name == 'rust_analyzer' then
-        vim.cmd.RustLsp('hover')
-      else
-        vim.lsp.codelens.run()
-      end
-    end, { buffer = true, desc = 'Run Codelens' })
+    function() vim.lsp.codelens.run() end, { buffer = true, desc = 'Run Codelens' })
 
   vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
     group = au_group,
@@ -85,7 +79,8 @@ function M.on_attach(client, bufnr)
   elseif client.supports_method('textDocument/definition') then
     vim.keymap.set('n', 'gD', function()
       if vim.g.use_picker == 'snacks.picker' then
-        require 'snacks'picker.lsp_definitions()
+        require 'snacks'
+        picker.lsp_definitions()
       elseif vim.g.use_picker == 'fzf-lua' then
         require 'fzf-lua'.lsp_definitions()
       end
@@ -117,7 +112,7 @@ function M.on_attach(client, bufnr)
   end
 
   if client.supports_method('textDocument/codeLens') then
-    codelens(client, bufnr, lsp_group)
+    codelens(bufnr, lsp_group)
   end
 
   local has_conform, _ = pcall(require, 'conform') -- has LSP as fallback
