@@ -51,6 +51,11 @@ local dashboard_sections = {
 local picker_config      = {
   enabled = vim.g.use_picker == 'snacks.picker',
   win = {
+    list = {
+      wo = {
+        relativenumber = true,
+      }
+    },
     input = {
       keys = {
         ["<a-i>"] = { "toggle_preview", mode = { "i", "n" } },
