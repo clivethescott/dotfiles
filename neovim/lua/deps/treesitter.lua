@@ -6,10 +6,6 @@ return {
   end,
   dependencies = {
     { 'nvim-treesitter/nvim-treesitter-textobjects', event = 'InsertEnter' },
-    {
-      'windwp/nvim-ts-autotag',
-      ft = { 'html' },
-    },
   },
   config = function()
     local treesitter_config = require 'nvim-treesitter.configs'
