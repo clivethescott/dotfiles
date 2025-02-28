@@ -79,6 +79,8 @@ if status is-interactive
   end
 end
 
+#bind -M insert ctrl-c __fish_cancel_commandline
+
 # setup homebrew
 fish_add_path "/opt/homebrew/bin/"
 # Setup brew
