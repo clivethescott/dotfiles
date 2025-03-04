@@ -59,8 +59,8 @@ keybinding:
     openRecentRepos: '<c-o>'
 services:
   'github.bamtech.co': 'github:github.bamtech.co'
-customCommands:
-  - key: '<c-r>'
-    command: 'git pull --rebase'
-    description: 'Pull with rebase'
-    context: 'global'
+# customCommands:
+  # - key: '<c-y>'
+  #   command: 'git pull --rebase'
+  #   description: 'Pull with rebase'
+  #   context: 'global'

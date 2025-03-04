@@ -13,6 +13,7 @@ local setup_go = function(capabilities)
           parameterNames = true,
           rangeVariableTypes = true,
         },
+        semanticTokens = true,
         experimentalPostfixCompletions = true,
         analyses = {
           unusedvariable = true,

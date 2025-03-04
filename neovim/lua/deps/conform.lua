@@ -18,6 +18,7 @@ return {
     notify_on_error = false,
     formatters_by_ft = {
       -- Conform will run multiple formatters sequentially
+      go = { "goimports", "gofumpt", "gofmt" },
       python = { "isort", "black" },
       rust = { "rustfmt", lsp_format = "fallback" },
       javascript = { "prettierd", "prettier", stop_after_first = true },

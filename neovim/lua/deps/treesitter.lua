@@ -91,6 +91,7 @@ return {
           set_jumps = true, -- whether to set jumps in the jumplist
           goto_previous_start = {
             ['[p'] = { query = '@parameter.inner', desc = 'Go to prev param' },
+
             ['[P'] = { query = '@function.params', desc = 'Go to prev params' },
             ['[f'] = { query = '@function.outer', desc = 'Go to prev function' },
             ['[F'] = { query = '@function.inner', desc = 'Go to prev function inner' },
@@ -98,6 +99,12 @@ return {
             ["[y"] = { query = "@for.outer", desc = "Previous for expression" },
             ["[s"] = { query = "@struct.outer", desc = "Previous struct" },
             ["[S"] = { query = "@impl.outer", desc = "Previous struct impl" },
+          },
+          goto_previous_end = {
+            ['[a'] = { query = '@assignment.lhs', desc = 'Goto lhs assignment' },
+          },
+          goto_next_end = {
+            [']a'] = { query = '@assignment.rhs', desc = 'Goto rhs assignment' },
           },
           goto_next_start = {
             [']p'] = { query = '@parameter.inner', desc = 'Go to next param' },
@@ -110,7 +117,7 @@ return {
           },
         },
         rainbow = {
-          enable = true,
+          enable = false,
           extended_mode = true,
           max_file_lines = 1000,
         },

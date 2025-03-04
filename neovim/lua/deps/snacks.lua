@@ -41,7 +41,7 @@ local dashboard_sections = {
     action = function()
       vim.fn.jobstart('gh pr list --author "@me" --web', { detach = true })
     end,
-    height = 5,
+    height = 10,
     width = 150,
   },
   { section = "startup" },
