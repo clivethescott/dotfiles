@@ -32,7 +32,7 @@ local dashboard_sections = {
     key = "P",
     enabled = function()
       local git_root = Snacks.git.get_root() or ''
-      local match = string.find(git_root, 'subscription', 1, true) or
+      local match = string.find(git_root, 'subscription-service', 1, true) or
           string.find(git_root, 'registry', 1, true) or
           0
       return match > 0
