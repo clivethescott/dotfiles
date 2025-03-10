@@ -1,6 +1,8 @@
 vim.filetype.add({
   extension = {
     hcl = "hcl",
+    http = "http",
+    rest = "http",
     terraformrc = "hcl",
     tf = "terraform",
     sc = "scala",

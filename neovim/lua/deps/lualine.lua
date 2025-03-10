@@ -2,8 +2,8 @@ local metals_status = function()
   return vim.g['metals_status'] or ''
 end
 
-local hurl_env = function ()
-  return vim.g['hurl_env'] or ''
+local http_env = function ()
+  return vim.g['http_env'] or ''
 end
 
 return {
@@ -52,7 +52,7 @@ return {
             always_visible = false,   -- Show diagnostics even if there are none.
           },
           -- { 'lsp_progress' }, -- provided by arkav/lualine-lsp-progress
-          { hurl_env },
+          { http_env },
           { metals_status }
         },
         lualine_c = {
