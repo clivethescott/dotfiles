@@ -1,13 +1,13 @@
 local switch_env = function()
   local envs = { 'dev', 'qa', 'prod' }
-  local current_env = vim.g.hurl_env or ''
+  local current_env = vim.g.http_env or ''
   local change_env = vim.tbl_filter(function(env) return env ~= current_env end, envs)
   vim.ui.select(change_env, {
     prompt = 'Switch environment:[' .. current_env .. ']'
   }, function(choice)
     if choice ~= nil then
       vim.cmd('HurlSetEnvFile ' .. choice .. '.env')
-      vim.g.hurl_env = choice
+      vim.g.http_env = choice
     end
   end)
 end
@@ -18,7 +18,6 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
   },
-  cond = false,
   ft = "hurl",
   opts = {
     debug = true,
