@@ -19,6 +19,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
   },
   ft = "hurl",
+  cond = false,
   opts = {
     debug = true,
     auto_close = false,
