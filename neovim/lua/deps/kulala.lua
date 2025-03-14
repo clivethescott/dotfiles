@@ -20,7 +20,7 @@ return {
   ft = { "http", "rest" },
   opts = {
     global_keymaps = {
-      ["Send request"] = { -- sets global mapping
+      ["Send request <cr>"] = { -- sets global mapping
         "<space>hr",
         function() require("kulala").run() end,
         mode = { "n", "v" },
@@ -44,8 +44,11 @@ return {
         ft = fts,
       },
       ["Copy as cURL"] = { "<space>hc", function() require("kulala").copy() end, ft = fts },
+      ["Paste from curl"] = { "<space>hp", function() require("kulala").from_curl() end, ft = fts },
       ["Select environment"] = { "<space>he", switch_env, ft = fts },
       ["Clear globals"] = { "<space>hC", function() require("kulala").scripts_clear_global() end, ft = fts },
+
+      ["Find request"] = { "<space>hs", function() require("kulala").search() end, ft = { "http", "rest" }, },
       ["Inspect current request"] = { "<space>hi", function() require("kulala").inspect() end, ft = fts },
     },
     kulala_keymaps = true,
@@ -53,5 +56,6 @@ return {
     request_timeout = 5000,
     -- Current available pane contains { "body", "headers", "headers_body", "script_output", "stats", "verbose" },
     default_winbar_panes = { 'body', 'headers' },
+    default_view = 'headers_body',
   },
 }

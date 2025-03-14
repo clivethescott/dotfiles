@@ -1,13 +1,14 @@
 return {
   "Saghen/blink.cmp",
+  build = "cargo build --release",
   dependencies = {
     'rafamadriz/friendly-snippets',
   },
   event = 'VeryLazy',
   -- use a release tag to download pre-built binaries
-  opts = {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
+  opts = {
     cmdline = {
       enabled = false,
       keymap = {
