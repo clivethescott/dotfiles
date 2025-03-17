@@ -8,3 +8,5 @@ vim.api.nvim_set_hl(0, "@variable.identifier", { link = "Type" })
 vim.api.nvim_set_hl(0, "@variable.value", { link = "Character" })
 vim.api.nvim_set_hl(0, "@header.value", { link = "FloatTitle" })
 vim.api.nvim_set_hl(0, "@request.name", { link = "String" })
+
+vim.bo.commentstring = '# %s'
