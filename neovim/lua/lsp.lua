@@ -14,15 +14,9 @@ local codelens = function(bufnr, au_group)
   })
 end
 
-local formatting = function(client, bufnr)
+local formatting = function(bufnr)
   vim.keymap.set({ 'n', 'v' }, '<leader>f', function()
-    require 'conform'.format({
-      timeout_ms = 2000,
-      bufnr = bufnr or 0,
-      async = false,
-      lsp_format = "fallback",
-      id = client.id,
-    })
+    require'utils'.lsp_buf_format(bufnr)
   end, { buffer = true, desc = 'LSP Format' })
 end
 
@@ -115,12 +109,8 @@ function M.on_attach(client, bufnr)
     codelens(bufnr, lsp_group)
   end
 
-  local has_conform, _ = pcall(require, 'conform') -- has LSP as fallback
-  if has_conform then
-    vim.b.formatexpr = "v:lua.require'conform'.formatexpr()"
-  end
-  if client.supports_method("textDocument/formatting") or has_conform then
-    formatting(client, bufnr)
+  if client.supports_method("textDocument/formatting") then
+    formatting(bufnr)
   end
 
   if client.supports_method('textDocument/diagnostic') or client.name == 'metals' then

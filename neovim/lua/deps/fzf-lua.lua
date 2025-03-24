@@ -7,7 +7,7 @@ return {
     local actions = require("fzf-lua").actions
     require("fzf-lua").setup({
       fzf_opts = {
-        ["--layout"] = "default", -- prompt at bottom
+        -- ["--layout"] = "default", -- prompt at bottom
         ["--cycle"] = true
       },
       file_ignore_patterns = { "%.bsp" },
@@ -19,6 +19,7 @@ return {
           ["alt-s"]   = actions.file_split,
           ["alt-v"]   = actions.file_vsplit,
           ["alt-t"]   = actions.file_tabedit,
+          ["alt-f"]   = actions.toggle_hidden,
         },
       },
       files = {
@@ -42,7 +43,7 @@ return {
         on_create = function()
           -- called once upon creation of the fzf main window
           -- can be used to add custom fzf-lua mappings, e.g:
-          vim.keymap.set("t", "<M-i>", "<F4>", { silent = true, buffer = true })
+          vim.keymap.set("t", "<M-i>", "<F5>", { silent = true, buffer = true })
         end,
       },
     })
