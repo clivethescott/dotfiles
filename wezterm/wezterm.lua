@@ -1,4 +1,3 @@
--- Pull in the wezterm API
 local wezterm = require 'wezterm'
 local mux = wezterm.mux
 local action = wezterm.action
@@ -40,16 +39,71 @@ local cmd_bindings = function()
       mods = 'CMD|SHIFT',
       action = action.Search({ CaseInSensitiveString = '' })
     },
-    {
-      key = 'Enter',
-      mods = 'CMD',
-      action = action.ActivateCopyMode
-    },
-    {
-      key = 'C',
-      mods = 'CMD|SHIFT',
-      action = action.ActivateCopyMode
-    },
+    -- {
+    --   key = 'C',
+    --   mods = 'LEADER',
+    --   action = action.ActivateCopyMode
+    -- },
+    -- {
+    --   key = 'c',
+    --   mods = 'LEADER',
+    --   action = action.SpawnTab 'CurrentPaneDomain',
+    -- },
+    -- {
+    --   mods   = "LEADER",
+    --   key    = "s",
+    --   action = action.SplitVertical { domain = 'CurrentPaneDomain' }
+    -- },
+    -- {
+    --   mods   = "LEADER",
+    --   key    = "v",
+    --   action = action.SplitHorizontal { domain = 'CurrentPaneDomain' }
+    -- },
+    -- {
+    --   mods = 'LEADER',
+    --   key = 'z',
+    --   action = action.TogglePaneZoomState
+    -- },
+    -- {
+    --   mods = 'LEADER',
+    --   key = 'h',
+    --   action = action.ActivatePaneDirection 'Left',
+    -- },
+    -- {
+    --   mods = 'LEADER',
+    --   key = 'l',
+    --   action = action.ActivatePaneDirection 'Right',
+    -- },
+    -- {
+    --   mods = 'LEADER',
+    --   key = 'k',
+    --   action = action.ActivatePaneDirection 'Up',
+    -- },
+    -- {
+    --   mods = 'LEADER',
+    --   key = 'j',
+    --   action = action.ActivatePaneDirection 'Down',
+    -- },
+    -- -- pane selection mode
+    -- {
+    --   mods = 'LEADER',
+    --   key = 'f',
+    --   action = wezterm.action.PaneSelect {
+    --     mode = 'Activate',
+    --   },
+    -- },
+    -- {
+    --   mods = 'LEADER',
+    --   key = 'r',
+    --   action = wezterm.action.PaneSelect {
+    --     mode = 'SwapWithActive',
+    --   },
+    -- },
+    -- {
+    --   mods = 'LEADER',
+    --   key = 'r',
+    --   action = wezterm.action.RotatePanes 'Clockwise',
+    -- },
   }
 
   for _, char in ipairs(chars) do
@@ -85,8 +139,8 @@ table.insert(hyperlink_rules, {
 })
 
 table.insert(hyperlink_rules, {
-    regex = '/Users[a-zA-Z0-9\\./-]+',
-    format = '$0'
+  regex = '/Users[a-zA-Z0-9\\./-]+',
+  format = '$0'
 })
 
 -- change action for open hyperlink
@@ -130,4 +184,10 @@ return {
   audible_bell = "Disabled",
   window_close_confirmation = "NeverPrompt",
   hyperlink_rules = hyperlink_rules,
+  -- leader = { key = 'a', mods = 'CMD', timeout_milliseconds = 2000 },
+  -- unix_domains = {
+  --   { name = 'default' }
+  -- },
+  -- If you prefer to connect manually, leave out this line.
+  -- default_gui_startup_args = { 'connect', 'default' },
 }
