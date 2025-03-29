@@ -10,6 +10,20 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+vim.api.nvim_create_autocmd({ "LspAttach" }, {
+    group = vim.api.nvim_create_augroup('LspConfig', { clear = true }),
+    callback = function(args)
+      local bufnr = args.buf
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      if client then
+        -- if client.server_capabilities.inlayHintProvider then
+        --   vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+        -- end
+        require 'lsp'.on_attach(client, bufnr)
+      end
+    end,
+})
+
 -- https://github.com/neovim/neovim/issues/16339#issuecomment-1457394370
 vim.api.nvim_create_autocmd('BufRead', {
   pattern = {'*.lua', '*.scala', '*.rust', '*.conf', '*.smithy'},

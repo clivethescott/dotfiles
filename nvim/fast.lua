@@ -99,18 +99,6 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 vim.opt.diffopt = "filler,context:0" -- hide the rest
 vim.opt.inccommand = "split"
 
--- toggle with I
-vim.g.netrw_banner = 0
--- hide dotfiles
-vim.cmd [[ let g:netrw_list_hide="\.pdf$,\.jpg$,\.git/,\.metals/".netrw_gitignore#Hide() ]]
--- 50% split size
-vim.g.netrw_winsize = 50
--- tree style listing
-vim.g.netrw_liststyle = 3
--- show line numbers
-vim.g.netrw_bufsettings = 'nomodifiable nobuflisted nowrap readonly number relativenumber'
-
-
 local default_opts = { silent = true, noremap = true }
 local map = function(mode, lhs, rhs, opts)
   if opts then

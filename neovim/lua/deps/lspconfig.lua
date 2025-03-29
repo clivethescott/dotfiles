@@ -122,6 +122,7 @@ end
 return {
   'neovim/nvim-lspconfig',
   event = 'BufReadPost',
+  cond = false,
   -- event = 'VeryLazy', causes an issue where LspAttach is not called if opening files directly
   dependencies = {
     'williamboman/mason.nvim',

@@ -2,6 +2,8 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 vim.g.use_picker = 'fzf-lua'
 
+vim.lsp.enable({'gopls', 'luals', 'ocamllsp'})
+
 -- Setup lazy
 local lazypath = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy/lazy.nvim")
 if not vim.loop.fs_stat(lazypath) then

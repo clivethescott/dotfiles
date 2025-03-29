@@ -1,5 +1,1 @@
-vim.keymap.set({ 'n', 'i', 'v' }, '<c-b>',
-  function()
-    require 'snacks'.terminal.open('go vet', { interactive = false })
-  end,
-  { desc = "Go vet" })
+vim.keymap.set({ 'n', 'i', 'v' }, '<c-b>', ':2TermExec cmd="go vet" direction=tab', { desc = "Go vet" })

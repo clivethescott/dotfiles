@@ -57,7 +57,7 @@ return {
     },
     signature = { enabled = true },
     completion = {
-      ghost_text = { enabled = false },
+      ghost_text = { enabled = true },
       accept = { auto_brackets = { enabled = false }, }, -- use nvim-autopairs
       list = {
         selection = {
@@ -74,7 +74,7 @@ return {
         }
       },
       menu = {
-        auto_show = true,
+        auto_show = false,
         draw = {
           -- We don't need label_description now because label and label_description are already
           -- combined together in label by colorful-menu.nvim.

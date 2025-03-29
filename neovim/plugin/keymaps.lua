@@ -1,13 +1,15 @@
-vim.keymap.set('n', '<c-s>', '<cmd>update<cr>')
-vim.keymap.set('i', '<c-s>', '<esc>:update<cr>')
+vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
+vim.keymap.set('i', '<C-s>', '<esc>:update<cr>')
 
+-- Rename terminal without keeping old alt
+--https://vi.stackexchange.com/questions/9566/how-to-change-buffer-name-for-neovim-terminal-special-buffer
+-- keepalt file newName
 vim.keymap.set('n', 'Q', ':q<cr>')
 vim.keymap.set('n', 'Y', 'yy')
 vim.keymap.set('n', "'", '`')
 vim.keymap.set('n', '<space>y', ":let @+=expand('%:t')<cr>", { desc = 'Yank file name'})
 vim.keymap.set('n', '<space>Y', ':%y<cr>', { desc = 'Yank buffer', silent = true })
 vim.keymap.set({ 'n', 'v' }, '<space>p', '"*p', { desc = 'Paste from sys clipboard', silent = true })
-
 -- Resize split
 -- :vertical resize +10 OR :vertical resize 90
 
@@ -44,9 +46,8 @@ vim.keymap.set('n', '<space>ow',
       vim.o.winbar = ""
     end
   end, { desc = 'Toggle Winbar' })
-
 -- quickfix
-vim.keymap.set('n', '[q', '<cmd>cprevious<cr>', { desc = 'Prev Quickfix entry' })
-vim.keymap.set('n', '[Q', '<cmd>cNfile<cr>', { desc = 'Quickfix last file' })
-vim.keymap.set('n', ']q', '<cmd>cnext<cr>', { desc = 'Next Quickfix entry' })
-vim.keymap.set('n', ']Q', '<cmd>cnfile<cr>', { desc = 'Quickfix next file' })
+-- default ]q [q [Q ]Q for location list,
+-- default ]l [l [L ]L for location list,
+-- default ]t [t [T ]T for tag list,
+-- default ]b [b for buffer list,
