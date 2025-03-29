@@ -14,9 +14,15 @@ local codelens = function(bufnr, au_group)
   })
 end
 
-local formatting = function(bufnr)
+local formatting = function(client, bufnr)
   vim.keymap.set({ 'n', 'v' }, '<leader>f', function()
-    require'utils'.lsp_buf_format(bufnr)
+    require 'conform'.format({
+      timeout_ms = 2000,
+      bufnr = bufnr or 0,
+      async = false,
+      lsp_format = "fallback",
+      id = client.id,
+    })
   end, { buffer = true, desc = 'LSP Format' })
 end
 
@@ -52,13 +58,33 @@ function M.on_attach(client, bufnr)
 
   if client.name == 'copilot' then return end
 
+  -- Prefer LSP folding if client supports it
+  -- https://www.reddit.com/r/neovim/comments/1jmqd7t/sorry_ufo_these_7_lines_replaced_you/
+  if client:supports_method('textDocument/foldingRange') then
+    local win = vim.api.nvim_get_current_win()
+    vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+  end
+
+  if client:supports_method('textDocument/completion') then
+    vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = false })
+  end
+
+
+  if client:supports_method('textDocument/signatureHelp') then
+    vim.keymap.set({ 'n', 'i' }, '<M-s>', vim.lsp.buf.signature_help, { buffer = true, desc = 'Signature help' })
+    -- default vim.keymap.set('i', '<c-s>',vim.lsp.buf.signature_help)
+  end
+
+
   if client.supports_method('textDocument/rename') then
     vim.keymap.set('n', '<space>lr', vim.lsp.buf.rename, { buffer = true, desc = 'LSP Rename' })
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = true, desc = 'LSP Rename' })
+    -- default vim.keymap.set('n', 'grn', vim.lsp.buf.rename)
   end
 
   if client.supports_method('textDocument/codeAction') then
     vim.keymap.set('n', '<space>la', vim.lsp.buf.code_action, { buffer = true, desc = 'LSP Code Action' })
+    -- default vim.keymap.set('n', 'gra', vim.lsp.code_action)
   end
 
   if client.supports_method('textDocument/declaration') then
@@ -91,9 +117,11 @@ function M.on_attach(client, bufnr)
 
   if client.supports_method('textDocument/implementation') then
     vim.keymap.set('n', '<space>li', vim.lsp.buf.implementation, { desc = 'LSP implementation' })
+    -- default vim.keymap.set('n', 'gri', vim.lsp.buf.implementation)
   end
 
   if client.supports_method('textDocument/references') then
+    -- default vim.keymap.set('n', 'grr', vim.lsp.buf.references)
     vim.keymap.set('n', 'gR', function()
       if vim.g.use_picker == 'snacks.picker' then
         require 'snacks'.picker.lsp_references { includeDeclaration = false }
@@ -109,8 +137,12 @@ function M.on_attach(client, bufnr)
     codelens(bufnr, lsp_group)
   end
 
-  if client.supports_method("textDocument/formatting") then
-    formatting(bufnr)
+  local has_conform, _ = pcall(require, 'conform') -- has LSP as fallback
+  if has_conform then
+    vim.b.formatexpr = "v:lua.require'conform'.formatexpr()"
+  end
+  if client.supports_method("textDocument/formatting") or has_conform then
+    formatting(client, bufnr)
   end
 
   if client.supports_method('textDocument/diagnostic') or client.name == 'metals' then
