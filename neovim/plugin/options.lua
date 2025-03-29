@@ -99,9 +99,6 @@ vim.o.foldtext = ""
 vim.opt.foldcolumn = "0"
 vim.opt.fillchars:append({fold = " "})
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
--- vim.opt.foldnestmax = 3
--- Disable for now doesn't work properly with gitconfig files
--- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 vim.g.do_filetype_lua = true
 vim.g.did_load_filetypes = false

@@ -43,7 +43,7 @@ return {
         on_create = function()
           -- called once upon creation of the fzf main window
           -- can be used to add custom fzf-lua mappings, e.g:
-          vim.keymap.set("t", "<M-i>", "<F5>", { silent = true, buffer = true })
+          vim.keymap.set("t", "<M-i>", "<F4>", { silent = true, buffer = true })
         end,
       },
     })
