@@ -2,8 +2,18 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 vim.g.use_picker = 'fzf-lua'
 
-vim.lsp.enable({'gopls', 'luals', 'ocamllsp'})
 
+vim.diagnostic.config({
+  -- Use the default configuration
+  virtual_lines = true,
+  -- Alternatively, customize specific options
+  -- virtual_lines = {
+  --  -- Only show virtual line diagnostics for the current cursor line
+  --  current_line = true,
+  -- },
+  update_in_insert = false,
+  severity_sort = true,
+})
 -- Setup lazy
 local lazypath = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy/lazy.nvim")
 if not vim.loop.fs_stat(lazypath) then

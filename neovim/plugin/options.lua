@@ -91,6 +91,8 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 
+vim.o.winborder = 'rounded'
+
 vim.o.foldenable = true
 vim.o.foldlevel = 99
 -- vim.opt.foldminlines = 5
