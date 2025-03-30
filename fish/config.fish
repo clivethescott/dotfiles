@@ -29,7 +29,7 @@ set -g fish_key_bindings fish_vi_key_bindings
 # https://github.com/PatrickF1/fzf.fish
 # bind --user to see configured, e.g \E is meta+shift+e
 
-fzf_configure_bindings --history= --git_status= --variables= --git_log=\eG --directory=\ef --processes=\eP
+fzf_configure_bindings --history= --git_status=\cg --variables= --git_log= --directory=\ct --processes=\ef
 set fzf_diff_highlighter delta --paging=never --width=20 # should not pipe its output to a pager
 set fzf_fd_opts --max-depth 5
 set fzf_preview_dir_cmd lsd -l --color always
