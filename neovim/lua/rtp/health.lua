@@ -15,6 +15,7 @@ local must_install_tools = {
   atuin = 'atuin',
   procs = 'procs Process viewer',
   jless = 'jless JSON viewer',
+  nu = 'nu shell',
 }
 local M = {}
 M.check = function()
