@@ -20,7 +20,7 @@ return {
       -- Conform will run multiple formatters sequentially
       go = { "goimports", "gofumpt", "gofmt" },
       ocaml = { "ocamlformat" },
-      http = { "kulalaformat" },
+      -- http = { "kulalaformat" },
       python = { "isort", "black" },
       rust = { "rustfmt", lsp_format = "fallback" },
       javascript = { "prettierd", "prettier", stop_after_first = true },
