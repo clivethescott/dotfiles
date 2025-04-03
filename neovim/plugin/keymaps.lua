@@ -1,6 +1,10 @@
 vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
 vim.keymap.set('i', '<C-s>', '<esc>:update<cr>')
 
+vim.keymap.set('n', '<space>lD', function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = 'Toggle diagnostics' })
+
 -- Rename terminal without keeping old alt
 --https://vi.stackexchange.com/questions/9566/how-to-change-buffer-name-for-neovim-terminal-special-buffer
 -- keepalt file newName
