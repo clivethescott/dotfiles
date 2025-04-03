@@ -20,6 +20,7 @@ return {
           ["alt-v"]   = actions.file_vsplit,
           ["alt-t"]   = actions.file_tabedit,
           ["alt-f"]   = actions.toggle_hidden,
+          ["alt-g"]   = actions.toggle_ignore,
         },
       },
       files = {
