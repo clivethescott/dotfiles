@@ -99,6 +99,9 @@ if type -q terraform
   abbr -a -g tf terraform
 end
 
+if type -q xh
+  abbr -a -g http xh
+end
 
 if type -q nvim
   abbr -a -g vim nvim
