@@ -196,3 +196,22 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
   end,
 })
 
+local home = os.getenv('HOME')
+local global_ignore = home .. '/.gitignore'
+
+-- See :h findfunc
+-- Ref https://github.com/adiSuper94/config/blob/189d82910f9a0dcc3e093a5e26b9b944ae0ecbea/nvim/lua/plugins/fuzzysearch.lua#L12-L24
+function Fd(file_pattern, _)
+  -- if first char is * then fuzzy search
+  if file_pattern:sub(1, 1) == "*" then
+    file_pattern = file_pattern:gsub(".", ".*%0") .. ".*"
+  end
+
+  local cmd = { "fd", "--type", "file", "--hidden", "--max-depth", "10", "--strip-cwd-prefix", "--follow",
+    "--color=never", "--full-path",
+    "--ignore-file", global_ignore, "--exclude=.git",
+    '"' .. file_pattern .. '"' }
+  return vim.fn.systemlist(table.concat(cmd, " "))
+end
+
+vim.opt.findfunc = "v:lua.Fd"
