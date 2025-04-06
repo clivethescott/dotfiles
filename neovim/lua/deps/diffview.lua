@@ -2,6 +2,7 @@ return {
   'sindrets/diffview.nvim',
   event = 'VeryLazy',
   keys = {
-    { "gs", '<cmd>DiffviewOpen<cr>', desc = "Open Diffview" }
+    { "gs", '<cmd>DiffviewOpen<cr>', desc = "Open Diffview" },
+    { "gS", '<cmd>DiffviewClose<cr>', desc = "Close Diffview" },
   },
 }
