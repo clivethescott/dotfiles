@@ -9,6 +9,7 @@ return {
   event = 'VeryLazy',
 
   keys = {
+    { "gs", function() require 'neogit'.open() end, desc = "Neogit" },
     { "<space>gc", function() require 'neogit'.open({ 'commit' }) end, desc = "Neogit Commit" },
     { "<space>go", function() require 'neogit'.open() end, desc = "Open Neogit" },
   },

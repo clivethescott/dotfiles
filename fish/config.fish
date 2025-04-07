@@ -130,6 +130,9 @@ if type -q fzf
 --height 40% --layout reverse"
 end
 
+if type -q gh
+  abbr --add -g ghr 'gh pr checkout'
+end
 
 if type -q python3
  abbr --add -g py python3
