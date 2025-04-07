@@ -2,15 +2,17 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 vim.g.use_picker = 'fzf-lua'
 
-
 vim.diagnostic.config({
-  -- Use the default configuration
-  virtual_lines = true,
+  jump = {
+    float = true
+  },
+  -- virtual_lines = true,
   -- Alternatively, customize specific options
-  -- virtual_lines = {
-  --  -- Only show virtual line diagnostics for the current cursor line
-  --  current_line = true,
-  -- },
+  virtual_lines = {
+   -- Only show virtual line diagnostics for the current cursor line
+   current_line = true,
+  },
+  virtual_text = true,
   update_in_insert = false,
   severity_sort = true,
 })
