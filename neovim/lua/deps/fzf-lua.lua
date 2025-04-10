@@ -10,7 +10,7 @@ return {
         -- ["--layout"] = "default", -- prompt at bottom
         ["--cycle"] = true
       },
-      file_ignore_patterns = { "%.bsp", "%_build" },
+      file_ignore_patterns = { "%.bsp", "%_build", "%.obsidian" },
       actions = {
         files = { -- actions.files is inherited by: files, git_files, git_status, grep....
           ['ctrl-q']  = { fn = actions.file_edit_or_qf, prefix = 'select-all+' },
