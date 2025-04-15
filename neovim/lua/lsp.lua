@@ -29,7 +29,7 @@ end
 local diagnostics = function(bufnr)
   vim.keymap.set('n', '<space>ld',
     function() vim.diagnostic.setqflist() end,
-    { desc = 'LSP Diagnostic', buffer = bufnr })
+    { desc = 'LSP Diagnostics to qflist', buffer = bufnr })
 
   vim.keymap.set('n', '<leader>d',
     function() vim.diagnostic.open_float({ scope = 'line' }) end,
