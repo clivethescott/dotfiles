@@ -212,12 +212,6 @@ return {
       }
     }
 
-
-    require 'lspconfig'.kulala_ls.setup {
-      capabilities = capabilities,
-      cmd = { "kulala-ls", "--stdio" }
-    }
-
     setup_go(capabilities)
     setup_python(capabilities)
     setup_tsserver(capabilities)
