@@ -99,6 +99,10 @@ if type -q terraform
   abbr -a -g tf terraform
 end
 
+if type -q gitui
+  abbr -a -g gt gitui
+end
+
 if type -q xh
   abbr -a -g http xh
 end

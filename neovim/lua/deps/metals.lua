@@ -32,6 +32,14 @@ return {
       testUserInterface = "Test Explorer",
       autoImportBuild = 'all',
       defaultBspToBuildTool = true,
+      -- inlayHints = {
+      --   byNameParameters = { enable = true },
+      --   hintsInPatternMatch = { enable = true },
+      --   implicitArguments = { enable = true },
+      --   implicitConversions = { enable = true },
+      --   inferredTypes = { enable = true },
+      --   typeParameters = { enable = true },
+      -- }
     }
     metals_config.capabilities = require 'lsp'.client_capabilities()
 
