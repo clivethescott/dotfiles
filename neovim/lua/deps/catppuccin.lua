@@ -2,7 +2,6 @@ return {
   "catppuccin/nvim",
   name = "catppuccin",
   event = 'VeryLazy',
-  cond = false,
   -- priority = 1000,
   opts = {
     integrations = {
