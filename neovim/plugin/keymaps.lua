@@ -1,6 +1,14 @@
 vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
 vim.keymap.set('i', '<C-s>', '<esc>:update<cr>')
 
+vim.keymap.set("n", "k", function()
+    return vim.v.count > 1 and "m'" .. vim.v.count .. "k" or "k"
+end, { expr = true })
+
+vim.keymap.set("n", "j", function()
+    return vim.v.count > 1 and "m'" .. vim.v.count .. "j" or "j"
+end, { expr = true })
+
 vim.keymap.set('n', '<space>lD', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = 'Toggle diagnostics' })

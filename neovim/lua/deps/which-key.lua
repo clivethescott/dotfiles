@@ -13,6 +13,7 @@ return {
     }
 
     wk.add({
+      { "<space>f",  group = "Files" },
       { "<space>g",  group = "Git" },
       { "<space>h",  group = "HTTP" },
       { "<space>sg",  group = "Git" },

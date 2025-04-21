@@ -6,11 +6,10 @@ return {
     "ibhagwan/fzf-lua",       -- optional
   },
   config = true,
-  event = 'VeryLazy',
-
+  cmd = { 'Neogit' },
   keys = {
-    { "gs", function() require 'neogit'.open() end, desc = "Neogit" },
+    { "gs",        function() require 'neogit'.open() end,             desc = "Neogit" },
     { "<space>gc", function() require 'neogit'.open({ 'commit' }) end, desc = "Neogit Commit" },
-    { "<space>go", function() require 'neogit'.open() end, desc = "Open Neogit" },
+    { "<space>go", function() require 'neogit'.open() end,             desc = "Open Neogit" },
   },
 }
