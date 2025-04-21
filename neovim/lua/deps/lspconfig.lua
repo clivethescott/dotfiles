@@ -1,124 +1,3 @@
-local setup_go = function(capabilities)
-  require 'lspconfig'.gopls.setup {
-    capabilities = capabilities,
-    filetypes = { 'go' },
-    settings = {
-      gopls = {
-        hints = {
-          assignVariableTypes = true,
-          compositeLiteralFields = true,
-          compositeLiteralTypes = true,
-          constantValues = true,
-          functionTypeParameters = true,
-          parameterNames = true,
-          rangeVariableTypes = true,
-        },
-        semanticTokens = true,
-        experimentalPostfixCompletions = true,
-        analyses = {
-          unusedvariable = true,
-        },
-        staticcheck = true,
-        gofumpt = true,
-      },
-    },
-    init_options = {
-      usePlaceholders = false,
-    },
-  }
-end
-
-local setup_python = function(capabilities)
-  require 'lspconfig'.ruff.setup {
-    capabilities = capabilities,
-    -- settings = {
-    -- }
-  }
-  require 'lspconfig'.pyright.setup {
-    capabilities = capabilities,
-    settings = {
-      python = {
-        analysis = {
-          loglevel = 'Error',
-          typeCheckingMode = 'strict'
-        }
-      }
-    }
-  }
-end
-
-local setup_tsserver = function(capabilities)
-  require 'lspconfig'.ts_ls.setup {
-    capabilities = capabilities,
-    root_dir = require 'lspconfig'.util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json'),
-    settings = {
-      typescript = {
-        inlayHints = {
-          includeInlayParameterNameHints = 'all',
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
-        }
-      },
-      javascript = {
-        inlayHints = {
-          includeInlayParameterNameHints = 'all',
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
-        }
-      }
-    },
-  }
-end
-
-local setup_luaserver = function(capabilities)
-  require 'lspconfig'.lua_ls.setup {
-    capabilities = capabilities,
-    settings = {
-      Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using
-          -- (most likely LuaJIT in the case of Neovim)
-          version = 'LuaJIT'
-        },
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global and
-          -- Luasnip shortcuts https://github.com/L3MON4D3/LuaSnip/blob/69cb81cf7490666890545fef905d31a414edc15b/lua/luasnip/config.lua#L82-L104
-          globals = { 'vim', 'parse', 's', 'sn', 't', 'f', 'i', 'c', 'fmt', 'rep' },
-        },
-        telemetry = {
-          enable = false,
-        },
-        workspace = {
-          checkThirdParty = false,
-          library = {
-            vim.env.VIMRUNTIME,
-            -- Depending on the usage, you might want to add additional paths here.
-            "${3rd}/luv/library"
-            -- "${3rd}/busted/library",
-          }
-        }
-      },
-    },
-  }
-end
-
-local setup_ocaml = function(capabilities)
-  require 'lspconfig'.ocamllsp.setup {
-    capabilities = capabilities,
-  }
-end
-
-
 return {
   'neovim/nvim-lspconfig',
   event = 'BufReadPost',
@@ -142,16 +21,10 @@ return {
         end
       end,
     })
-
-    local capabilities = require 'lsp'.client_capabilities()
-
-    -- No extra config required, just run setup for these
     require 'lspconfig'.dockerls.setup {}
     require 'lspconfig'.buf_ls.setup {}
     require 'lspconfig'.graphql.setup {}
-    require 'lspconfig'.html.setup {
-      capabilities = capabilities
-    }
+    require 'lspconfig'.html.setup {}
     require 'lspconfig'.jsonls.setup {}
     require 'lspconfig'.yamlls.setup {
       settings = {
@@ -186,21 +59,7 @@ return {
       }
     }
     require 'lspconfig'.terraformls.setup {}
-    require 'lspconfig'.hls.setup {
-      filetypes = { 'haskell', 'lhaskell', 'cabal' },
-    }
-    -- require 'lspconfig'.jdtls.setup {}
-    require 'lspconfig'.kotlin_language_server.setup {
-      capabilities = capabilities,
-    }
-
     require 'lspconfig'.rust_analyzer.setup {
-      capabilities = vim.tbl_extend('keep', capabilities, {
-        experimental = {
-          serverStatusNotification = true
-        }
-      }),
-      -- Have to -> rustup component add rust-analyzer
       -- toolchain installs a wrapper that isn't the real binary
       cmd = { 'rust-analyzer' },
       settings = {
@@ -212,10 +71,88 @@ return {
       }
     }
 
-    setup_go(capabilities)
-    setup_python(capabilities)
-    setup_tsserver(capabilities)
-    setup_luaserver(capabilities)
-    setup_ocaml(capabilities)
+    require 'lspconfig'.gopls.setup {
+      filetypes = { 'go' },
+      settings = {
+        gopls = {
+          hints = {
+            assignVariableTypes = true,
+            compositeLiteralFields = true,
+            compositeLiteralTypes = true,
+            constantValues = true,
+            functionTypeParameters = true,
+            parameterNames = true,
+            rangeVariableTypes = true,
+          },
+          semanticTokens = true,
+          experimentalPostfixCompletions = true,
+          analyses = {
+            unusedvariable = true,
+          },
+          staticcheck = true,
+          gofumpt = true,
+        },
+      },
+      init_options = {
+        usePlaceholders = false,
+      },
+    }
+    require 'lspconfig'.ruff.setup {}
+    require 'lspconfig'.pyright.setup {
+      settings = {
+        python = {
+          analysis = {
+            loglevel = 'Error',
+            typeCheckingMode = 'strict'
+          }
+        }
+      }
+    }
+    require 'lspconfig'.ts_ls.setup {
+      root_dir = require 'lspconfig'.util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json'),
+      settings = {
+        typescript = {
+          inlayHints = {
+            includeInlayParameterNameHints = 'all',
+          }
+        },
+        javascript = {
+          inlayHints = {
+            includeInlayParameterNameHints = 'all',
+          }
+        }
+      },
+    }
+    require 'lspconfig'.lua_ls.setup {
+      settings = {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT'
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global and
+            -- Luasnip shortcuts https://github.com/L3MON4D3/LuaSnip/blob/69cb81cf7490666890545fef905d31a414edc15b/lua/luasnip/config.lua#L82-L104
+            globals = { 'vim', 'parse', 's', 'sn', 't', 'f', 'i', 'c', 'fmt', 'rep' },
+          },
+          telemetry = {
+            enable = false,
+          },
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME,
+              -- Depending on the usage, you might want to add additional paths here.
+              "${3rd}/luv/library"
+              -- "${3rd}/busted/library",
+            }
+          }
+        },
+      },
+    }
+
+    local capabilities = require 'lsp'.client_capabilities()
+    vim.lsp.config('*', { capabilities = capabilities })
   end
 }
