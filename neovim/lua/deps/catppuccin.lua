@@ -1,7 +1,9 @@
 return {
   "catppuccin/nvim",
   name = "catppuccin",
-  priority = 1000,
+  event = 'VeryLazy',
+  cond = false,
+  -- priority = 1000,
   opts = {
     integrations = {
       gitsigns = true,
