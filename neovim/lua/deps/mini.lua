@@ -29,15 +29,22 @@ return {
   {
     'echasnovski/mini.files',
     event = 'VeryLazy',
-    opts = {
-      windows = {
-        preview = true,
-        width_preview = 75,
-      },
-      options = {
-        permanent_delete = false,
+    config = function()
+      local files = require 'mini.files'
+      files.setup {
+        windows = {
+          preview = true,
+          width_preview = 75,
+        },
+        options = {
+          permanent_delete = false,
+        }
       }
-    },
+      vim.api.nvim_create_user_command('Files', function(args)
+        local path = args.fargs and args.fargs[1] or nil
+        files.open(path)
+      end, { nargs = '?', complete = 'dir', desc = 'File explorer at path' })
+    end,
     keys = {
       { '<leader>1', function() require 'mini.files'.open() end,                             desc = 'Open Files in cwd' },
       { '<space>fo', function() require 'mini.files'.open() end,                             desc = 'Open Files in cwd' },
