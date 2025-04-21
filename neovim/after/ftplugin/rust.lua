@@ -13,3 +13,10 @@ vim.keymap.set({ 'n', 'i', 'v' }, '<c-b>',
       { interactive = false })
   end,
   { desc = "Cargo lint" })
+
+-- highlight todos
+vim.b.minihipatterns_config = {
+  highlighters = {
+    rust_todo = { pattern = 'todo!', group = 'MiniHipatternsTodo' },
+  },
+}
