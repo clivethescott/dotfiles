@@ -8,7 +8,7 @@ return {
   opts = {
     options = {
       icons_enabled = false,
-      theme = 'moonfly',
+      theme = 'catppuccin-macchiato',
       globalstatus = true,
     },
     sections = {
