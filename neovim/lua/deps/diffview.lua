@@ -1,6 +1,6 @@
 return {
   'sindrets/diffview.nvim',
-  cmd = 'DiffviewOpen',
+  cmd = {'DiffviewOpen', 'DiffviewFileHistory'},
   keys = {
     { "<space>gz", '<cmd>DiffviewClose<cr>', desc = "Close Diffview" },
   },

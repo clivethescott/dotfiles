@@ -110,7 +110,7 @@ end
 if type -q nvim
   abbr -a -g vim nvim
   abbr -a -g nv nvim
-  abbr -a -g vi 'nvim -u ~/dotfiles/nvim/fast.lua'
+  abbr -a -g vi 'nvim -u NONE'
 end
  
 # `ls` → `lsd`

@@ -55,7 +55,7 @@ require 'lazy'.setup({
   }
 })
 
-vim.cmd.colorscheme "moonfly"
+vim.cmd.colorscheme "catppuccin-mocha"
 vim.keymap.set('n', '<space>ol', '<cmd>Lazy<cr>', { desc = 'Lazy Package Mgr' })
 
 
