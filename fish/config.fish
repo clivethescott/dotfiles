@@ -92,8 +92,12 @@ abbr -a -g gd 'git diff'
 abbr -a -g gs 'git status'
 abbr -a -g gp 'git push'
 abbr -a -g dashlane dcli
-abbr -a -g jless 'jless --relative-line-numbers'
 abbr -a -g jv 'jira issue view'
+
+if type -q jless
+  abbr -a -g jless 'jless --relative-line-numbers'
+  abbr -a -g yless 'jless --relative-line-numbers --yaml'
+end
 
 if type -q terraform
   abbr -a -g tf terraform
