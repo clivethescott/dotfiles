@@ -109,7 +109,8 @@ vim.g.did_load_filetypes = false
 vim.opt.modeline = false
 
 -- Recommended for https://github.com/rmagatti/auto-session
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+-- vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.opt.sessionoptions:remove "folds" -- fold errors on session restore
 
 vim.opt.diffopt:append {
   'linematch:50',
