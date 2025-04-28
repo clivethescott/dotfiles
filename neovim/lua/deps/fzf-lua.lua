@@ -104,6 +104,7 @@ return {
     { "<space>tF", "<cmd>FzfLua grep_cWORD<cr>",                 desc = "Grep cword" },
     { "<space>tc", "<cmd>FzfLua commands<cr>",                   desc = "Commands" },
     { "<space>th", "<cmd>FzfLua helptags<cr>",                   desc = "Helptags" },
+    { "<space>tt", "<cmd>FzfLua tagstack<cr>",                   desc = "Tagstack" },
     { "<space>tm", "<cmd>FzfLua marks<cr>",                      desc = "Marks" },
     { "<space>tr", "<cmd>FzfLua registers<cr>",                  desc = "Registers" },
     { "<space>tb", "<cmd>FzfLua lines<cr>",                      desc = "Open Buffers lines" },
