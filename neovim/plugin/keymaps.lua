@@ -1,13 +1,35 @@
-vim.keymap.set('n', '<c-s>', '<cmd>update<cr>')
-vim.keymap.set('i', '<c-s>', '<esc>:update<cr>')
+vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
+vim.keymap.set('i', '<C-s>', '<esc>:update<cr>')
 
+vim.keymap.set("n", "k", function()
+    return vim.v.count > 1 and "m'" .. vim.v.count .. "k" or "k"
+end, { expr = true })
+
+vim.keymap.set("n", "j", function()
+    return vim.v.count > 1 and "m'" .. vim.v.count .. "j" or "j"
+end, { expr = true })
+
+vim.keymap.set('n', '<space>lD', function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = 'Toggle diagnostics' })
+
+-- Rename terminal without keeping old alt
+--https://vi.stackexchange.com/questions/9566/how-to-change-buffer-name-for-neovim-terminal-special-buffer
+-- keepalt file newName
+vim.keymap.set({ 'n', 't' }, '<leader>R', function()
+  vim.ui.input({ prompt = 'Enter new name: ' }, function(name)
+    if name ~= nil then
+      vim.cmd(':keepalt file ' .. name)
+    end
+  end)
+end)
 vim.keymap.set('n', 'Q', ':q<cr>')
+vim.keymap.set('n', '<leader>q', ':q!<cr>')
 vim.keymap.set('n', 'Y', 'yy')
 vim.keymap.set('n', "'", '`')
-vim.keymap.set('n', '<space>y', ":let @+=expand('%:t')<cr>", { desc = 'Yank file name'})
+vim.keymap.set('n', '<space>y', ":let @+=expand('%:t')<cr>", { desc = 'Yank file name' })
 vim.keymap.set('n', '<space>Y', ':%y<cr>', { desc = 'Yank buffer', silent = true })
 vim.keymap.set({ 'n', 'v' }, '<space>p', '"*p', { desc = 'Paste from sys clipboard', silent = true })
-
 -- Resize split
 -- :vertical resize +10 OR :vertical resize 90
 
@@ -17,7 +39,7 @@ vim.keymap.set('v', '>', '>gv')
 
 -- Lua dev
 vim.keymap.set('n', '<space>x', ":.lua<cr>", { silent = true, desc = 'Exec Lua' })
-vim.keymap.set('n', '<space>X', "<cmd>source %<cr>", { silent = true, desc = 'Exec Lua' })
+vim.keymap.set('n', '<space>X', "<cmd>source %<cr>", { silent = true, desc = 'Exec Lua file' })
 vim.keymap.set('v', '<space>x', ":lua<cr>", { silent = true, desc = 'Exec Lua' })
 
 -- Dealing with word wrap on long lines
@@ -44,9 +66,8 @@ vim.keymap.set('n', '<space>ow',
       vim.o.winbar = ""
     end
   end, { desc = 'Toggle Winbar' })
-
 -- quickfix
-vim.keymap.set('n', '[q', '<cmd>cprevious<cr>', { desc = 'Prev Quickfix entry' })
-vim.keymap.set('n', '[Q', '<cmd>cNfile<cr>', { desc = 'Quickfix last file' })
-vim.keymap.set('n', ']q', '<cmd>cnext<cr>', { desc = 'Next Quickfix entry' })
-vim.keymap.set('n', ']Q', '<cmd>cnfile<cr>', { desc = 'Quickfix next file' })
+-- default ]q [q [Q ]Q for location list,
+-- default ]l [l [L ]L for location list,
+-- default ]t [t [T ]T for tag list,
+-- default ]b [b for buffer list,

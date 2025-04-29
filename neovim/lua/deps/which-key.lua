@@ -13,14 +13,13 @@ return {
     }
 
     wk.add({
+      { "<space>f",  group = "Files" },
       { "<space>g",  group = "Git" },
       { "<space>h",  group = "HTTP" },
-      { "<space>sg",  group = "Git" },
+      { "<space>s",  group = "Sessions" },
       { "<space>n",  group = "Obsidian" },
       { "<space>o",  group = "Open" },
       { "<space>l",  group = "LSP" },
-      { "<space>s",  group = "Snacks" },
-      { "<space>st", group = "Toggle" },
       { "<space>t",  group = "FZF" },
     })
   end

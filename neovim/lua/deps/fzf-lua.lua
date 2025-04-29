@@ -10,7 +10,7 @@ return {
         -- ["--layout"] = "default", -- prompt at bottom
         ["--cycle"] = true
       },
-      file_ignore_patterns = { "%.bsp" },
+      file_ignore_patterns = { "%.bsp", "%_build", "%.obsidian" },
       actions = {
         files = { -- actions.files is inherited by: files, git_files, git_status, grep....
           ['ctrl-q']  = { fn = actions.file_edit_or_qf, prefix = 'select-all+' },
@@ -20,6 +20,7 @@ return {
           ["alt-v"]   = actions.file_vsplit,
           ["alt-t"]   = actions.file_tabedit,
           ["alt-f"]   = actions.toggle_hidden,
+          ["alt-g"]   = actions.toggle_ignore,
         },
       },
       files = {
@@ -43,7 +44,7 @@ return {
         on_create = function()
           -- called once upon creation of the fzf main window
           -- can be used to add custom fzf-lua mappings, e.g:
-          vim.keymap.set("t", "<M-i>", "<F5>", { silent = true, buffer = true })
+          vim.keymap.set("t", "<M-i>", "<F4>", { silent = true, buffer = true })
         end,
       },
     })
@@ -103,11 +104,12 @@ return {
     { "<space>tF", "<cmd>FzfLua grep_cWORD<cr>",                 desc = "Grep cword" },
     { "<space>tc", "<cmd>FzfLua commands<cr>",                   desc = "Commands" },
     { "<space>th", "<cmd>FzfLua helptags<cr>",                   desc = "Helptags" },
+    { "<space>tt", "<cmd>FzfLua tagstack<cr>",                   desc = "Tagstack" },
     { "<space>tm", "<cmd>FzfLua marks<cr>",                      desc = "Marks" },
     { "<space>tr", "<cmd>FzfLua registers<cr>",                  desc = "Registers" },
-    { "<space>tb", "<cmd>FzfLua lines<cr>",                      desc = "Buffer lines" },
+    { "<space>tb", "<cmd>FzfLua lines<cr>",                      desc = "Open Buffers lines" },
     { "<space>lw", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = "LSP workspace symbols" },
-    { "<space>ld", "<cmd>FzfLua diagnostics_document<cr>",       desc = "Diagnostics" },
+    { "<space>ldo", "<cmd>FzfLua diagnostics_document<cr>",       desc = "Diagnostics" },
     { "gR",        "<cmd>FzfLua lsp_references<cr>",             desc = "LSP References" },
     { "<space>lI", "<cmd>FzfLua lsp_implementations<cr>",        desc = "LSP Implementations" },
     {

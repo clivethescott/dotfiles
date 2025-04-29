@@ -7,6 +7,14 @@ return {
   dependencies = {
     { 'nvim-treesitter/nvim-treesitter-textobjects', event = 'InsertEnter' },
   },
+  init = function()
+    -- https://mise.jdx.dev/mise-cookbook/neovim.html#code-highlight-for-run-commands
+    require("vim.treesitter.query").add_predicate("is-mise?", function(_, _, bufnr, _)
+      local filepath = vim.api.nvim_buf_get_name(tonumber(bufnr) or 0)
+      local filename = vim.fn.fnamemodify(filepath, ":t")
+      return string.match(filename, ".*mise.*%.toml$")
+    end, { force = true, all = false })
+  end,
   config = function()
     local treesitter_config = require 'nvim-treesitter.configs'
     treesitter_config.setup {
@@ -40,50 +48,19 @@ return {
       },
       textobjects = {
         select = {
-          enable = true,
+          enable = false,
           lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
           -- include_surrounding_whitespace = function(opts)
           -- return opts.query and string.find(opts.query, "outer") or false
           -- end,
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
-            ['af'] = { query = '@function.outer', desc = 'Select outer function' },
-            ['if'] = { query = '@function.inner', desc = 'Select inner function' },
+            -- Managed by mini.ai custom_textobjects
+            -- ['af'] = { query = '@function.outer', desc = 'Select outer function' },
+            -- ['if'] = { query = '@function.inner', desc = 'Select inner function' },
 
-            ['am'] = { query = '@function.outer', desc = 'Select outer function' },
-            ['im'] = { query = '@function.inner', desc = 'Select inner function' },
-
-            ['aV'] = { query = '@val.outer', desc = 'Select outer val' },
-            ['av'] = { query = '@val.right', desc = 'Select val expression' },
-
-            ['ag'] = { query = '@function.params', desc = 'Select outer parameter' },
-            ['aG'] = { query = '@function.name', desc = 'Select function name' },
-
-
-            ["aj"] = { query = "@json.outer", desc = "Select outer JSON" },
-
-            ["ai"] = { query = "@call.outer", desc = "Select outer part of a function invoke" },
-            ["ii"] = { query = "@call.inner", desc = "Select inner part of a function invoke" },
-
-            ['ac'] = { query = '@class.outer', desc = 'Select outer class' },
-            ['ic'] = { query = '@class.inner', desc = 'Select inner class' },
-
-            ['as'] = { query = '@struct.outer', desc = 'Select outer struct' },
-            ['aS'] = { query = '@impl.outer', desc = 'Select outer impl' },
-            ['is'] = { query = '@struct.inner', desc = 'Select inner struct' },
-            ['iS'] = { query = '@impl.inner', desc = 'Select inner impl' },
-
-            ['al'] = { query = '@assignment.lhs', desc = 'Select lhs assignment' },
-            ['ar'] = { query = '@assignment.rhs', desc = 'Select rhs assignment' },
-
-            ["ab"] = { query = "@conditional.outer", desc = "Select outer part of a conditional" },
-            ["ib"] = { query = "@conditional.inner", desc = "Select inner part of a conditional" },
-
-            ["ay"] = { query = "@for.outer", desc = "Outer for expression" },
-            ["iy"] = { query = "@for.inner", desc = "Inner for expression" },
-
-            ["ao"] = { query = "@object.outer", desc = "Outer object" },
-            ["io"] = { query = "@object.inner", desc = "Inner object" },
+            -- ['ag'] = { query = '@function.params', desc = 'Select outer parameter' },
+            -- ['aG'] = { query = '@function.name', desc = 'Select function name' },
           },
         },
         move = {
@@ -95,10 +72,6 @@ return {
             ['[P'] = { query = '@function.params', desc = 'Go to prev params' },
             ['[f'] = { query = '@function.outer', desc = 'Go to prev function' },
             ['[F'] = { query = '@function.inner', desc = 'Go to prev function inner' },
-            -- ["[i"] = { query = "@call.outer", desc = "Prev function call start" },
-            ["[y"] = { query = "@for.outer", desc = "Previous for expression" },
-            ["[s"] = { query = "@struct.outer", desc = "Previous struct" },
-            ["[S"] = { query = "@impl.outer", desc = "Previous struct impl" },
           },
           goto_previous_end = {
             ['[a'] = { query = '@assignment.lhs', desc = 'Goto lhs assignment' },

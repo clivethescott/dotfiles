@@ -29,7 +29,7 @@ set -g fish_key_bindings fish_vi_key_bindings
 # https://github.com/PatrickF1/fzf.fish
 # bind --user to see configured, e.g \E is meta+shift+e
 
-fzf_configure_bindings --history= --git_status= --variables= --git_log=\eG --directory=\ef --processes=\eP
+fzf_configure_bindings --history= --git_status=\eG --variables= --git_log= --directory=\eF --processes=\eP
 set fzf_diff_highlighter delta --paging=never --width=20 # should not pipe its output to a pager
 set fzf_fd_opts --max-depth 5
 set fzf_preview_dir_cmd lsd -l --color always
@@ -92,17 +92,29 @@ abbr -a -g gd 'git diff'
 abbr -a -g gs 'git status'
 abbr -a -g gp 'git push'
 abbr -a -g dashlane dcli
-abbr -a -g jless 'jless --relative-line-numbers'
 abbr -a -g jv 'jira issue view'
+
+if type -q jless
+  abbr -a -g jless 'jless --relative-line-numbers'
+  abbr -a -g yless 'jless --relative-line-numbers --yaml'
+end
 
 if type -q terraform
   abbr -a -g tf terraform
 end
 
+if type -q gitui
+  abbr -a -g gt gitui
+end
+
+if type -q xh
+  abbr -a -g http xh
+end
 
 if type -q nvim
   abbr -a -g vim nvim
-  abbr -a -g vi 'nvim -u ~/dotfiles/nvim/fast.lua'
+  abbr -a -g nv nvim
+  abbr -a -g vi 'nvim -u NONE'
 end
  
 # `ls` → `lsd`
@@ -127,6 +139,9 @@ if type -q fzf
 --height 40% --layout reverse"
 end
 
+if type -q gh
+  abbr --add -g ghr 'gh pr checkout'
+end
 
 if type -q python3
  abbr --add -g py python3
@@ -167,11 +182,42 @@ end
 set PATH /opt/homebrew/bin $GOBIN $JAVA_HOME/bin $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
 set PATH ~/orbstack/bin ~/.local/bin $PATH
 
+# moonfly theme for the Fish shell
+#
+# Upstream: github.com/bluz71/vim-moonfly-colors
 
-# BEGIN opam configuration
-# This is useful if you're using opam as it adds:
-#   - the correct directories to the PATH
-#   - auto-completion for the opam binary
-# This section can be safely removed at any time if needed.
-test -r '/Users/clive/.opam/opam-init/init.fish' && source '/Users/clive/.opam/opam-init/init.fish' > /dev/null 2> /dev/null; or true
-# END opam configuration
+# Syntax highlighting colors.
+set -g fish_color_autosuggestion 626262
+set -g fish_color_cancel 626262
+set -g fish_color_command 7cb3ff
+set -g fish_color_comment 949494 --italics
+set -g fish_color_cwd 87d787
+set -g fish_color_cwd_root ff5189
+set -g fish_color_end 949494
+set -g fish_color_error ff5d5d
+set -g fish_color_escape 949494
+set -g fish_color_history_current c6c6c6 --background=323437
+set -g fish_color_host e4e4e4
+set -g fish_color_host_remote e4e4e4
+set -g fish_color_keyword cf87e8
+set -g fish_color_match c6c6c6 --background=323437
+set -g fish_color_normal bdbdbd
+set -g fish_color_operator e65e72
+set -g fish_color_option bdbdbd
+set -g fish_color_param 61d5ae
+set -g fish_color_quote c6c684
+set -g fish_color_redirection 8cc85f
+set -g fish_color_search_match --background=323437
+set -g fish_color_selection --background=323437
+set -g fish_color_status ff5d5d
+set -g fish_color_user 36c692
+set -g fish_color_valid_path
+
+# Completion pager colors.
+set -g fish_pager_color_completion c6c6c6
+set -g fish_pager_color_description 949494
+set -g fish_pager_color_prefix 74b2ff
+set -g fish_pager_color_progress 949494
+set -g fish_pager_color_selected_background --background=323437
+set -g fish_pager_color_selected_completion e4e4e4
+set -g fish_pager_color_selected_description e4e4e4

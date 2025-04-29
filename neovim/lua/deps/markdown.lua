@@ -15,12 +15,12 @@ return {
   keys = {
     {
       '<space>no',
-      function() require 'snacks'.picker.files { dirs = { notes_dir } } end,
+      function() require 'fzf-lua'.files { cwd = notes_dir } end,
       desc = 'Open/Switch Note'
     },
     {
       '<space>nf',
-      function() require 'snacks'.picker.grep { dirs = { notes_dir } } end,
+      function() require 'fzf-lua'.live_grep_glob { cwd = notes_dir } end,
       desc = 'Grep Search Note'
     },
   },

@@ -10,15 +10,15 @@ vim.opt.listchars = "tab:··,leadmultispace:·"
 vim.opt.termguicolors = true
 
 vim.opt.lazyredraw = true
-
 -- Set completeopt to have a better completion experience
-vim.opt.completeopt = 'menuone,noinsert,noselect'
+vim.opt.completeopt = 'menuone,noinsert,noselect,fuzzy'
+vim.o.winborder = 'rounded'
 
 -- Override ignorecase if search includes upper case chars
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 
 -- Briefly show matching bracket
 vim.opt.showmatch = true
@@ -91,15 +91,16 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 
-vim.opt.foldcolumn = '0'
-vim.opt.foldmethod = 'manual'
-vim.opt.foldminlines = 5
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
-vim.opt.foldnestmax = 3
--- vim.opt.foldlevel = 2
--- Disable for now doesn't work properly with gitconfig files
--- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.winborder = 'rounded'
+
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+-- vim.opt.foldminlines = 5
+vim.o.foldmethod = "expr"
+-- vim.o.foldtext = ""
+vim.opt.foldcolumn = "0"
+vim.opt.fillchars:append({ fold = " ", eob = " " })
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 vim.g.do_filetype_lua = true
 vim.g.did_load_filetypes = false
@@ -108,7 +109,8 @@ vim.g.did_load_filetypes = false
 vim.opt.modeline = false
 
 -- Recommended for https://github.com/rmagatti/auto-session
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+-- vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.opt.sessionoptions:remove "folds" -- fold errors on session restore
 
 vim.opt.diffopt:append {
   'linematch:50',

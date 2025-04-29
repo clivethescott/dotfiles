@@ -13,4 +13,7 @@ vim.filetype.add({
     hurl = "hurl",
     conf = "hocon",
   },
+  pattern = {
+    ['.*%.gitconfig'] = "gitconfig",
+  }
 })

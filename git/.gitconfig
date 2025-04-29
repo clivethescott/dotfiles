@@ -1,23 +1,15 @@
-[user]
-	name = Clive Gurure
-	email = clivethescott@gmail.com
+[include]
+    path = .local.gitconfig
+[include]
+    path = ~/dotfiles/git/delta-gitconfig
 [init]
 	defaultBranch = main
-[core]
-	excludesfile = /Users/clive/.gitignore
 [commit]
   verbose = true
-[interactive]
-  ; diffFilter = delta --color-only
 
 [difftool]
   # Run the difftool immediately, don't ask 'are you sure' each time.
   prompt = false
-
-# https://difftastic.wilfred.me.uk/git.html
-[difftool "difftastic"]
-  # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
-  cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
 
 [difftool "nvimdiff"]
 	cmd = nvim -d -c \"wincmd w\" -c \"wincmd L\" \"$LOCAL\" \"$REMOTE\"
@@ -27,8 +19,7 @@
 
 [diff]
   compactionHeuristic = true
-  tool = difftastic
-  external = difft
+  tool = ???
 
 [merge]
   tool = "nvim"
@@ -36,7 +27,7 @@
 [mergetool]
 	prompt = false
 	keepBackup = false
-  conflictstyle = diff3
+  conflictstyle = zdiff3
 
 [push]
 	autoSetupRemote = true

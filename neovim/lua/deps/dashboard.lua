@@ -1,3 +1,10 @@
+local show_git = function ()
+  local git_root = Snacks.git.get_root() or ''
+      local match = string.find(git_root, 'subscription-service', 1, true) or
+          string.find(git_root, 'registry', 1, true) or
+          0
+      return match > 0
+end
 ---@type snacks.dashboard.Section
 local dashboard_sections = {
   { section = "header" },
@@ -8,9 +15,7 @@ local dashboard_sections = {
     icon = " ",
     title = "Git Status",
     section = "terminal",
-    enabled = function()
-      return Snacks.git.get_root() ~= nil
-    end,
+    enabled = show_git,
     cmd = "git status --short --branch --renames",
     height = 3,
     padding = 1,
@@ -24,13 +29,7 @@ local dashboard_sections = {
     title = "Open PRs",
     cmd = 'gh pr list -L 5 --author "@me"',
     key = "P",
-    enabled = function()
-      local git_root = Snacks.git.get_root() or ''
-      local match = string.find(git_root, 'subscription-service', 1, true) or
-          string.find(git_root, 'registry', 1, true) or
-          0
-      return match > 0
-    end,
+    enabled = show_git,
     ttl = 1 * 60,
     action = function()
       vim.fn.jobstart('gh pr list --author "@me" --web', { detach = true })

@@ -2,14 +2,13 @@ local fts = { "http", "rest" }
 
 local switch_env = function()
   local envs = { 'dev', 'qa', 'prod' }
-  local current_env = vim.g.http_env or ''
+  local current_env = require'kulala'.get_selected_env() or ''
   local change_env = vim.tbl_filter(function(env) return env ~= current_env end, envs)
   vim.ui.select(change_env, {
     prompt = 'Switch environment:[' .. current_env .. ']'
   }, function(choice)
     if choice ~= nil then
       require('kulala').set_selected_env(choice)
-      vim.g.http_env = choice
     end
   end)
 end

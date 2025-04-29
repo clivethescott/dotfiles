@@ -17,7 +17,7 @@ return {
       }
     }
     metals_config.settings = {
-      serverVersion = '1.5.1',
+      serverVersion = '1.5.2',
       fallbackScalaVersion = '3.6.3',
       showImplicitArguments = true,
       showImplicitConversionsAndClasses = true,
@@ -32,6 +32,14 @@ return {
       testUserInterface = "Test Explorer",
       autoImportBuild = 'all',
       defaultBspToBuildTool = true,
+      -- inlayHints = {
+      --   byNameParameters = { enable = true },
+      --   hintsInPatternMatch = { enable = true },
+      --   implicitArguments = { enable = true },
+      --   implicitConversions = { enable = true },
+      --   inferredTypes = { enable = true },
+      --   typeParameters = { enable = true },
+      -- }
     }
     metals_config.capabilities = require 'lsp'.client_capabilities()
 
