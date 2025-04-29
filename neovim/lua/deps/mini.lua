@@ -49,6 +49,7 @@ return {
       { '<leader>1', function() require 'mini.files'.open() end,                             desc = 'Open Files in cwd' },
       { '<space>fo', function() require 'mini.files'.open() end,                             desc = 'Open Files in cwd' },
       { '<space>fO', function() require 'mini.files'.open(vim.api.nvim_buf_get_name(0)) end, desc = 'Select file in explorer' },
+      { '<leader>!', function() require 'mini.files'.open(vim.api.nvim_buf_get_name(0)) end, desc = 'Select file in explorer' },
       {
         '<space>fs',
         function()

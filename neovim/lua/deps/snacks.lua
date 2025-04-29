@@ -1,9 +1,9 @@
-local show_git = function ()
+local show_git = function()
   local git_root = Snacks.git.get_root() or ''
-      local match = string.find(git_root, 'subscription-service', 1, true) or
-          string.find(git_root, 'registry', 1, true) or
-          0
-      return match > 0
+  local match = string.find(git_root, 'subscription-service', 1, true) or
+      string.find(git_root, 'registry', 1, true) or
+      0
+  return match > 0
 end
 ---@type snacks.dashboard.Section
 local dashboard_sections = {
@@ -51,5 +51,9 @@ return {
       width = 70,
       sections = dashboard_sections,
     },
+    lazygit = { enabled = true },
   },
+  keys = {
+    { "gs", function() require 'snacks'.lazygit.open() end, desc = "Lazygit" },
+  }
 }
