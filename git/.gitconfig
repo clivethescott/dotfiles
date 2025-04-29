@@ -1,5 +1,5 @@
 [include]
-    path = .gitconfig-local
+    path = .local.gitconfig
 [include]
     path = ~/dotfiles/git/delta-gitconfig
 [init]
@@ -10,9 +10,6 @@
 [difftool]
   # Run the difftool immediately, don't ask 'are you sure' each time.
   prompt = false
-
-[include]
-    path = .local.gitconfig
 
 [difftool "nvimdiff"]
 	cmd = nvim -d -c \"wincmd w\" -c \"wincmd L\" \"$LOCAL\" \"$REMOTE\"
