@@ -175,10 +175,10 @@ return {
   keys = cmd_bindings(),
   mouse_bindings = mouse_bindings,
   hide_tab_bar_if_only_one_tab = true,
-  font_size = 16,
+  font_size = 16.5,
   line_height = 1.3,
   scrollback_lines = 10000,
-  font = wezterm.font('FiraCode Nerd Font'), -- brew install font-fira-code-nerd-font
+  font = wezterm.font('Hack Nerd Font Mono'),
   color_scheme = 'catppuccin-mocha',
   window_decorations = "RESIZE",
   audible_bell = "Disabled",
