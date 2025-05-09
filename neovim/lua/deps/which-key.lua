@@ -18,6 +18,8 @@ return {
       { "<space>h",  group = "HTTP" },
       { "<space>s",  group = "Sessions" },
       { "<space>n",  group = "Obsidian" },
+      { "<space>nt", desc = "Toggle checkbox" },
+      { "<space>na", desc = "Smart action" },
       { "<space>o",  group = "Open" },
       { "<space>l",  group = "LSP" },
       { "<space>t",  group = "FZF" },
