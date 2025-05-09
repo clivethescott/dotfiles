@@ -1,4 +1,4 @@
-local notes_dir = '~/Documents/Obsidian/'
+local notes_dir = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes'
 return {
   "MeanderingProgrammer/render-markdown.nvim",
   -- lazy = false, Lazy-loading will cause more time for the previews to load when starting Neovim?
