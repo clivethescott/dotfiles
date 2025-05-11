@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 brew upgrade
 if type -q mise
   mise upgrade

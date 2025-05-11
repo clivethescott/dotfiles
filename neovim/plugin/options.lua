@@ -18,7 +18,7 @@ vim.o.winborder = 'rounded'
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 
 -- Briefly show matching bracket
 vim.opt.showmatch = true
