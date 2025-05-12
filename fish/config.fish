@@ -99,6 +99,14 @@ abbr -a gd 'git diff'
 abbr -a gs 'git status'
 abbr -a gp 'git push'
 
+if type -q minikube
+  alias mk 'minikube kubectl --'
+end
+
+if type -q kubectl
+  abbr -a k kubectl
+end
+
 if type -q dcli
   abbr -a dashlane dcli
 end
