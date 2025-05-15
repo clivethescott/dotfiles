@@ -172,17 +172,21 @@ if status is-interactive; and test -f ~/.config/fish/tokens.fish
   source ~/.config/fish/tokens.fish
 end
  
-set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -gx MANPAGER "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build"
 set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
 #set -gx JAVA_HOME "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
 set -gx JAVA_HOME "/Library/Java/JavaVirtualMachines/graalvm-jdk-21.0.6+8.1/Contents/Home"
-set -gx BAT_THEME OneHalfDark
+set -gx BAT_THEME "Catppuccin Mocha"
 #set -gx SBT_OPTS "-XX:MaxMetaspaceSize=2G XX:ReservedCodeCacheSize=256M -XX:+UseZGC -Xms1G -Xmx4G -Xss8M -Dsbt.repository.config=sbt.repositories"
 set GOBIN $HOME/Code/Go/bin
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx TEALDEER_CONFIG_DIR $HOME/.config/tealdeer
 abbr -a tldr tldr -p macos --pager
+
+# https://github.com/sharkdp/bat#highlighting---help-messages
+abbr -a --position anywhere -- --help '--help | bat -plhelp'
+abbr -a --position anywhere -- -h '-h | bat -plhelp'
 
 # Add completions from stuff installed with Homebrew.
 if status is-interactive; and test "$os" = Darwin

@@ -12,7 +12,7 @@ return {
     workspaces = {
       {
         name = "Notes",
-        path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes",
+        path = "~/ObsidianNotes",
       },
     },
     log_level = vim.log.levels.WARN,
