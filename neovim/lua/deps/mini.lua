@@ -15,8 +15,17 @@ return {
       local ai = require 'mini.ai'
       ai.setup {
         custom_textobjects = {
-          F = ai.gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
-          P = ai.gen_spec.treesitter({ a = '@parameter.outer', i = '@parameter.inner' }),
+          f = ai.gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
+          p = ai.gen_spec.treesitter({ a = '@parameter.outer', i = '@parameter.inner' }),
+          g = function()
+            return {
+              from = { line = 1, col = 1 },
+              to = {
+                line = vim.fn.line('$'),
+                col = math.max(vim.fn.getline('$'):len(), 1)
+              }
+            }
+          end
         },
       }
     end

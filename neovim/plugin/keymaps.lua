@@ -28,7 +28,6 @@ vim.keymap.set('n', '<leader>q', ':q!<cr>')
 vim.keymap.set('n', 'Y', 'yy')
 vim.keymap.set('n', "'", '`')
 vim.keymap.set('n', '<space>y', ":let @+=expand('%:t')<cr>", { desc = 'Yank file name' })
-vim.keymap.set('n', '<space>Y', ':%y<cr>', { desc = 'Yank buffer', silent = true })
 vim.keymap.set({ 'n', 'v' }, '<space>p', '"*p', { desc = 'Paste from sys clipboard', silent = true })
 -- Resize split
 -- :vertical resize +10 OR :vertical resize 90
