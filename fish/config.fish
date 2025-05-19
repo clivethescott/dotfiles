@@ -151,6 +151,7 @@ end
 # Requires `brew install bat`
 if type -q bat
   abbr --add -g cat 'bat'
+  # https://github.com/sharkdp/bat#highlighting---help-messages
   abbr -a --position anywhere -- --help '--help | bat -plhelp'
   abbr -a --position anywhere -- -h '-h | bat -plhelp'
 end
@@ -189,10 +190,6 @@ set GOBIN $HOME/Code/Go/bin
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx TEALDEER_CONFIG_DIR $HOME/.config/tealdeer
 abbr -a tldr tldr -p macos --pager
-
-# https://github.com/sharkdp/bat#highlighting---help-messages
-abbr -a --position anywhere -- --help '--help | bat -plhelp'
-abbr -a --position anywhere -- -h '-h | bat -plhelp'
 
 # Add completions from stuff installed with Homebrew.
 if status is-interactive; and test "$os" = Darwin
