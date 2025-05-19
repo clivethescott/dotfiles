@@ -98,6 +98,7 @@ end
 abbr -a gd 'git diff'
 abbr -a gs 'git status'
 abbr -a gp 'git push'
+abbr --add unset 'set --erase'
 
 if type -q minikube
   alias mk 'minikube kubectl --'
@@ -105,6 +106,9 @@ end
 
 if type -q kubectl
   abbr -a k kubectl
+  abbr -a kcontext kubectl config current-context
+  abbr -a kcluster kubectl config use-context
+  abbr -a knamespace kubectl config set-context --current --namespace=
 end
 
 if type -q dcli
