@@ -2,7 +2,7 @@ local fts = { "http", "rest" }
 
 local switch_env = function()
   local envs = { 'dev', 'qa', 'prod' }
-  local current_env = require'kulala'.get_selected_env() or ''
+  local current_env = require 'kulala'.get_selected_env() or ''
   local change_env = vim.tbl_filter(function(env) return env ~= current_env end, envs)
   vim.ui.select(change_env, {
     prompt = 'Switch environment:[' .. current_env .. ']'
@@ -19,6 +19,13 @@ return {
   ft = { "http", "rest" },
   opts = {
     global_keymaps = {
+      ["Send request"] = false,
+      ["Open scratchpad"] = {
+        "<space>hb",
+        function() require("kulala").scratchpad() end,
+        mode = { "n", "v" },
+        ft = fts,
+      },
       ["Send request <cr>"] = { -- sets global mapping
         "<space>hr",
         function() require("kulala").run() end,

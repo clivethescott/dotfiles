@@ -33,7 +33,16 @@ return {
   {
     'echasnovski/mini.pairs',
     event = 'InsertEnter',
-    config = true,
+    opts = {
+      mappings = {
+        ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\`].', register = { cr = false } },
+      }
+    }
+  },
+  {
+    'echasnovski/mini.surround',
+    event = 'VeryLazy',
+    confwg = true,
   },
   {
     'echasnovski/mini.files',
