@@ -82,10 +82,16 @@ end
 #bind -M insert ctrl-c __fish_cancel_commandline
 
 # setup homebrew
+fish_add_path "/opt/homebrew/opt/uutils-coreutils/libexec/uubin"
 fish_add_path "/opt/homebrew/bin/"
 # Setup brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+
+if type -q uv
+  abbr -a pip uv pip
+  abbr -a pip3 uv pip
+end
 
 if type -q lazygit
   abbr -a lg lazygit
