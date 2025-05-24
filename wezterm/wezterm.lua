@@ -39,71 +39,157 @@ local cmd_bindings = function()
       mods = 'CMD|SHIFT',
       action = action.Search({ CaseInSensitiveString = '' })
     },
-    -- {
-    --   key = 'C',
-    --   mods = 'LEADER',
-    --   action = action.ActivateCopyMode
-    -- },
-    -- {
-    --   key = 'c',
-    --   mods = 'LEADER',
-    --   action = action.SpawnTab 'CurrentPaneDomain',
-    -- },
-    -- {
-    --   mods   = "LEADER",
-    --   key    = "s",
-    --   action = action.SplitVertical { domain = 'CurrentPaneDomain' }
-    -- },
-    -- {
-    --   mods   = "LEADER",
-    --   key    = "v",
-    --   action = action.SplitHorizontal { domain = 'CurrentPaneDomain' }
-    -- },
-    -- {
-    --   mods = 'LEADER',
-    --   key = 'z',
-    --   action = action.TogglePaneZoomState
-    -- },
-    -- {
-    --   mods = 'LEADER',
-    --   key = 'h',
-    --   action = action.ActivatePaneDirection 'Left',
-    -- },
-    -- {
-    --   mods = 'LEADER',
-    --   key = 'l',
-    --   action = action.ActivatePaneDirection 'Right',
-    -- },
-    -- {
-    --   mods = 'LEADER',
-    --   key = 'k',
-    --   action = action.ActivatePaneDirection 'Up',
-    -- },
-    -- {
-    --   mods = 'LEADER',
-    --   key = 'j',
-    --   action = action.ActivatePaneDirection 'Down',
-    -- },
-    -- -- pane selection mode
-    -- {
-    --   mods = 'LEADER',
-    --   key = 'f',
-    --   action = wezterm.action.PaneSelect {
-    --     mode = 'Activate',
-    --   },
-    -- },
-    -- {
-    --   mods = 'LEADER',
-    --   key = 'r',
-    --   action = wezterm.action.PaneSelect {
-    --     mode = 'SwapWithActive',
-    --   },
-    -- },
-    -- {
-    --   mods = 'LEADER',
-    --   key = 'r',
-    --   action = wezterm.action.RotatePanes 'Clockwise',
-    -- },
+    {
+      key = 'x',
+      mods = 'LEADER',
+      action = wezterm.action.CloseCurrentPane { confirm = true },
+    },
+    { key = 'Q', mods = 'LEADER', action = wezterm.action.QuitApplication },
+    {
+      key = 'H',
+      mods = 'LEADER',
+      action = wezterm.action.AdjustPaneSize { 'Left', 5 },
+    },
+    {
+      key = 'J',
+      mods = 'LEADER',
+      action = wezterm.action.AdjustPaneSize { 'Down', 5 },
+    },
+    { key = 'K', mods = 'LEADER', action = wezterm.action.AdjustPaneSize { 'Up', 5 } },
+    {
+      key = 'L',
+      mods = 'LEADER',
+      action = wezterm.action.AdjustPaneSize { 'Right', 5 },
+    },
+    {
+      key = ':',
+      mods = 'LEADER',
+      action = wezterm.action.ActivateCommandPalette,
+    },
+    {
+      key = '[',
+      mods = 'LEADER',
+      action = action.ActivateCopyMode
+    },
+    {
+      key = 'c',
+      mods = 'LEADER',
+      action = action.SpawnTab 'CurrentPaneDomain',
+    },
+    {
+      mods   = "LEADER",
+      key    = "s",
+      action = action.SplitVertical { domain = 'CurrentPaneDomain' }
+    },
+    {
+      mods   = "LEADER",
+      key    = "v",
+      action = action.SplitHorizontal { domain = 'CurrentPaneDomain' }
+    },
+    {
+      mods = 'LEADER',
+      key = 'z',
+      action = action.TogglePaneZoomState
+    },
+    {
+      mods = 'LEADER',
+      key = 'h',
+      action = action.ActivatePaneDirection 'Left',
+    },
+    {
+      mods = 'LEADER',
+      key = 'l',
+      action = action.ActivatePaneDirection 'Right',
+    },
+    {
+      mods = 'LEADER',
+      key = 'k',
+      action = action.ActivatePaneDirection 'Up',
+    },
+    {
+      mods = 'LEADER',
+      key = 'j',
+      action = action.ActivatePaneDirection 'Down',
+    },
+    -- pane selection mode
+    {
+      mods = 'LEADER',
+      key = 'f',
+      action = wezterm.action.PaneSelect {
+        mode = 'Activate',
+      },
+    },
+    {
+      mods = 'LEADER',
+      key = 'r',
+      action = wezterm.action.PaneSelect {
+        mode = 'SwapWithActive',
+      },
+    },
+    {
+      mods = 'LEADER',
+      key = 'r',
+      action = wezterm.action.RotatePanes 'Clockwise',
+    },
+    {
+      mods = 'LEADER',
+      key = 'n',
+      action = wezterm.action.ActivateTabRelative(1),
+    },
+    {
+      mods = 'LEADER',
+      key = 'p',
+      action = wezterm.action.ActivateTabRelative(1),
+    },
+    { -- Rename tab title
+      key = ',',
+      mods = 'LEADER',
+      action = wezterm.action.PromptInputLine {
+        description = 'Enter new name for tab',
+        action = wezterm.action_callback(function(window, _, line)
+          -- line will be `nil` if they hit escape without entering anything
+          -- An empty string if they just hit enter
+          -- Or the actual line of text they wrote
+          if line then
+            window:active_tab():set_title(line)
+          end
+        end),
+      },
+    },
+    { -- Show the launcher in fuzzy selection mode and have it list all workspaces
+      key = 'e',
+      mods = 'LEADER',
+      action = wezterm.action.ShowLauncherArgs {
+        flags = 'FUZZY|WORKSPACES',
+      },
+    },
+    { -- Prompt for a name to use for a new workspace and switch to it.
+      key = 'E',
+      mods = 'LEADER',
+      action = wezterm.action.PromptInputLine {
+        description = wezterm.format {
+          { Attribute = { Intensity = 'Bold' } },
+          { Foreground = { AnsiColor = 'Fuchsia' } },
+          { Text = 'Enter name for new workspace' },
+        },
+        action = wezterm.action_callback(function(window, pane, line)
+          -- line will be `nil` if they hit escape without entering anything
+          -- An empty string if they just hit enter
+          -- Or the actual line of text they wrote
+          if line then
+            window:perform_action(
+              wezterm.action.SwitchToWorkspace {
+                name = line,
+              },
+              pane
+            )
+          end
+        end),
+      },
+    },
+    { key = ')', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(1) },
+    { key = '(', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(-1) },
+
   }
 
   for _, char in ipairs(chars) do
@@ -114,6 +200,15 @@ local cmd_bindings = function()
     })
   end
 
+  -- ActivateTab now accepts negative numbers; these wrap around from the start of the tabs to the end,
+  -- so -1 references the right-most tab, -2 the tab to its left and so on.
+  for pane = 1, 8 do
+    table.insert(result, {
+      key = tostring(pane),
+      mods = 'LEADER',
+      action = wezterm.action.ActivateTab(pane - 1),
+    })
+  end
   return result
 end
 
@@ -169,25 +264,45 @@ wezterm.on('gui-startup', function(cmd)
   window:gui_window():maximize()
 end)
 
+wezterm.on('update-right-status', function(window, _)
+  window:set_right_status(window:active_workspace())
+end)
+
 return {
   term = 'wezterm',
   disable_default_key_bindings = true, -- https://wezfurlong.org/wezterm/config/default-keys.html?h=keys
   keys = cmd_bindings(),
   mouse_bindings = mouse_bindings,
-  hide_tab_bar_if_only_one_tab = true,
+  hide_tab_bar_if_only_one_tab = false,
   font_size = 16.5,
   line_height = 1.3,
   scrollback_lines = 10000,
   font = wezterm.font('Hack Nerd Font Mono'),
+  use_fancy_tab_bar = false,
   color_scheme = 'catppuccin-mocha',
   window_decorations = "RESIZE",
   audible_bell = "Disabled",
   window_close_confirmation = "NeverPrompt",
   hyperlink_rules = hyperlink_rules,
-  -- leader = { key = 'a', mods = 'CMD', timeout_milliseconds = 2000 },
+  leader = { key = 'a', mods = 'CMD', timeout_milliseconds = 2000 },
+  colors = {
+    tab_bar = {
+      background = '#1e1e2e',
+      active_tab = {
+        bg_color = '#1e1e2e',
+        -- The color of the text for the tab
+        fg_color = '#f5c2e7',
+      },
+      inactive_tab = {
+        bg_color = '#11111b',
+        -- The color of the text for the tab
+        fg_color = '#9399b2',
+      }
+    }
+  },
   -- unix_domains = {
-  --   { name = 'default' }
+  --   { name = 'home' }
   -- },
-  -- If you prefer to connect manually, leave out this line.
-  -- default_gui_startup_args = { 'connect', 'default' },
+  -- -- If you prefer to connect manually, leave out this line.
+  -- default_gui_startup_args = { 'connect', 'home' },
 }
