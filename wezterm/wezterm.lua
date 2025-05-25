@@ -22,6 +22,14 @@ wezterm.on('update-right-status', function(window, pane)
   })
 end)
 
+wezterm.on('format-tab-title', function(tab, _)
+  local zoomed = tab.active_pane.is_zoomed and '[Z] ' or ''
+  local title = utils.tab_title(tab)
+  return {
+    { Text = ' ' .. title .. ' ' .. zoomed },
+  }
+end)
+
 local color_scheme = utils.patch_color_scheme('catppuccin-mocha', wezterm)
 
 return {
