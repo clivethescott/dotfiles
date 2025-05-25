@@ -1,3 +1,4 @@
+-- TODO: session management?  https://mwop.net/blog/2024-07-04-how-i-use-wezterm.html
 local wezterm = require 'wezterm' --[[@as Wezterm]]
 local mux = wezterm.mux
 local utils = require 'wez-utils'

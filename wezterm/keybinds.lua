@@ -61,14 +61,24 @@ M.get = function(wezterm)
     },
     { key = 'Q', mods = 'LEADER', action = wezterm.action.QuitApplication },
     {
-      key = 'H',
-      mods = 'LEADER',
-      action = wezterm.action.AdjustPaneSize { 'Left', 5 },
+      key = 'LeftArrow',
+      mods = 'CMD',
+      action = wezterm.action.AdjustPaneSize { 'Left', 2 },
     },
     {
-      key = 'J',
-      mods = 'LEADER',
-      action = wezterm.action.AdjustPaneSize { 'Down', 5 },
+      key = 'DownArrow',
+      mods = 'CMD',
+      action = wezterm.action.AdjustPaneSize { 'Down', 2 },
+    },
+    {
+      key = 'UpArrow',
+      mods = 'CMD',
+      action = wezterm.action.AdjustPaneSize { 'Up', 2 },
+    },
+    {
+      key = 'RightArrow',
+      mods = 'CMD',
+      action = wezterm.action.AdjustPaneSize { 'Right', 2 },
     },
     { key = 'K', mods = 'LEADER', action = wezterm.action.AdjustPaneSize { 'Up', 5 } },
     {
