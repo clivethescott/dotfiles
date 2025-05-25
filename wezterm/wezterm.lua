@@ -2,6 +2,21 @@ local wezterm = require 'wezterm'
 local mux = wezterm.mux
 local action = wezterm.action
 
+local run_cmd = function(cmd)
+  local handle = io.popen(cmd)
+  if handle ~= nil then
+    local out = handle:read('*a')
+    handle:close()
+    return out:gsub('[\n\r]', '') -- replace cmd newline
+  else
+    return ''
+  end
+end
+
+local cmds = {}
+cmds.lazygit = run_cmd('/opt/homebrew/bin/mise which lazygit')
+
+
 local cmd_bindings = function()
   local all_characters = [[`1234567890=qwertyuiop[]\asdfghjklv;'zxcbnm./^*$#|?!]]
   local chars = {}
@@ -69,7 +84,12 @@ local cmd_bindings = function()
     {
       key = '[',
       mods = 'LEADER',
-      action = action.ActivateCopyMode
+      action = action.ActivateCopyMode -- default
+    },
+    {
+      key = '{',
+      mods = 'LEADER',
+      action = action.QuickSelect -- default
     },
     {
       key = 'c',
@@ -130,6 +150,13 @@ local cmd_bindings = function()
       mods = 'LEADER',
       key = 'r',
       action = wezterm.action.RotatePanes 'Clockwise',
+    },
+    {
+      mods = 'LEADER',
+      key = 'g',
+      action = wezterm.action.SpawnCommandInNewTab {
+        args = { cmds.lazygit },
+      }
     },
     {
       mods = 'LEADER',
@@ -258,14 +285,15 @@ wezterm.on('open-uri', function(window, pane, uri)
   -- URI to be opened in the browser
 end)
 
--- maximise window on startup
+-- maximise window on startup, doesn't work when connecting to domains
 wezterm.on('gui-startup', function(cmd)
   local _, _, window = mux.spawn_window(cmd or {})
   window:gui_window():maximize()
 end)
 
 wezterm.on('update-right-status', function(window, _)
-  window:set_right_status(window:active_workspace())
+  local date = wezterm.strftime '%H:%M | %A %d %b'
+  window:set_right_status(date .. ' | ' .. window:active_workspace())
 end)
 
 return {
@@ -285,18 +313,27 @@ return {
   window_close_confirmation = "NeverPrompt",
   hyperlink_rules = hyperlink_rules,
   leader = { key = 'a', mods = 'CMD', timeout_milliseconds = 2000 },
+  -- quick_select_patterns = {
+  -- [[^/Users/(?:\w|/|)+\.(?:txt|csv|scala)$]]
+  -- },
+  inactive_pane_hsb = {
+    saturation = 0.4,
+    brightness = 0.4,
+  },
   colors = {
+    selection_bg = '#fab387',
+    selection_fg = '#313244',
     tab_bar = {
       background = '#1e1e2e',
       active_tab = {
-        bg_color = '#1e1e2e',
+        bg_color = '#313244',
         -- The color of the text for the tab
         fg_color = '#f5c2e7',
       },
       inactive_tab = {
-        bg_color = '#11111b',
+        bg_color = '#1e1e2e',
         -- The color of the text for the tab
-        fg_color = '#9399b2',
+        fg_color = '#bac2de',
       }
     }
   },
