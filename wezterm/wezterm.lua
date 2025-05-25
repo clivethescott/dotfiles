@@ -293,8 +293,36 @@ end)
 
 wezterm.on('update-right-status', function(window, _)
   local date = wezterm.strftime '%H:%M | %A %d %b'
-  window:set_right_status(date .. ' | ' .. window:active_workspace())
+  window:set_right_status(wezterm.format {
+    { Foreground = { Color = '#f5e0dc' } },
+    { Text = date .. ' | ' },
+    { Foreground = { Color = '#a6e3a1' } },
+    { Text = window:active_workspace() .. ' ' },
+  })
 end)
+
+-- override colorscheme
+local color_scheme = wezterm.get_builtin_color_schemes()['catppuccin-mocha']
+-- https://catppuccin.com/palette/
+color_scheme.foreground = '#cdd6f4'
+color_scheme.split = '#6c7086'
+color_scheme.cursor_fg = '#11111b'
+color_scheme.cursor_bg = '#f5c2e7'
+color_scheme.selection_bg = '#fab387'
+color_scheme.selection_fg = '#313244'
+color_scheme.tab_bar = {
+  background = '#1e1e2e',
+  active_tab = {
+    bg_color = '#313244',
+    -- The color of the text for the tab
+    fg_color = '#f5c2e7',
+  },
+  inactive_tab = {
+    bg_color = '#1e1e2e',
+    -- The color of the text for the tab
+    fg_color = '#bac2de',
+  }
+}
 
 return {
   term = 'wezterm',
@@ -307,10 +335,18 @@ return {
   scrollback_lines = 10000,
   font = wezterm.font('Hack Nerd Font Mono'),
   use_fancy_tab_bar = false,
-  color_scheme = 'catppuccin-mocha',
+  tab_max_width = 30,
+  color_scheme = 'catppuccin-mocha-patched',
   window_decorations = "RESIZE",
   audible_bell = "Disabled",
   window_close_confirmation = "NeverPrompt",
+  color_schemes = {
+    ['catppuccin-mocha-patched'] = color_scheme,
+  },
+  window_padding = {
+    top = 5,
+    left = 5,
+  },
   hyperlink_rules = hyperlink_rules,
   leader = { key = 'a', mods = 'CMD', timeout_milliseconds = 2000 },
   -- quick_select_patterns = {
@@ -319,23 +355,6 @@ return {
   inactive_pane_hsb = {
     saturation = 0.4,
     brightness = 0.4,
-  },
-  colors = {
-    selection_bg = '#fab387',
-    selection_fg = '#313244',
-    tab_bar = {
-      background = '#1e1e2e',
-      active_tab = {
-        bg_color = '#313244',
-        -- The color of the text for the tab
-        fg_color = '#f5c2e7',
-      },
-      inactive_tab = {
-        bg_color = '#1e1e2e',
-        -- The color of the text for the tab
-        fg_color = '#bac2de',
-      }
-    }
   },
   -- unix_domains = {
   --   { name = 'home' }
