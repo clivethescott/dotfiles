@@ -1,289 +1,7 @@
-local wezterm = require 'wezterm'
+local wezterm = require 'wezterm' --[[@as Wezterm]]
 local mux = wezterm.mux
-local action = wezterm.action
-
-local run_cmd = function(cmd)
-  local handle = io.popen(cmd)
-  if handle ~= nil then
-    local out = handle:read('*a')
-    handle:close()
-    return out:gsub('[\n\r]', '') -- replace cmd newline
-  else
-    return ''
-  end
-end
-
-local cmds = {}
-cmds.lazygit = run_cmd('/opt/homebrew/bin/mise which lazygit')
-
-
-local cmd_bindings = function()
-  local all_characters = [[`1234567890=qwertyuiop[]\asdfghjklv;'zxcbnm./^*$#|?!]]
-  local chars = {}
-
-  -- convert string to list
-  _ = all_characters:gsub(".", function(char) table.insert(chars, char) end)
-  local result = {
-    {
-      key = 'v',
-      mods = 'CMD|SHIFT',
-      action = action.PasteFrom 'Clipboard',
-    },
-    {
-      key = 'r',
-      mods = 'CMD|SHIFT',
-      action = wezterm.action.ReloadConfiguration,
-    },
-    {
-      key = '-',
-      mods = 'CMD',
-      action = action.DecreaseFontSize
-    },
-    {
-      key = '+',
-      mods = 'CMD',
-      action = action.IncreaseFontSize
-    },
-    {
-      key = 'q',
-      mods = 'CMD|OPT',
-      action = action.QuitApplication
-    },
-    {
-      key = 'f',
-      mods = 'CMD|SHIFT',
-      action = action.Search({ CaseInSensitiveString = '' })
-    },
-    {
-      key = 'x',
-      mods = 'LEADER',
-      action = wezterm.action.CloseCurrentPane { confirm = true },
-    },
-    { key = 'Q', mods = 'LEADER', action = wezterm.action.QuitApplication },
-    {
-      key = 'H',
-      mods = 'LEADER',
-      action = wezterm.action.AdjustPaneSize { 'Left', 5 },
-    },
-    {
-      key = 'J',
-      mods = 'LEADER',
-      action = wezterm.action.AdjustPaneSize { 'Down', 5 },
-    },
-    { key = 'K', mods = 'LEADER', action = wezterm.action.AdjustPaneSize { 'Up', 5 } },
-    {
-      key = 'L',
-      mods = 'LEADER',
-      action = wezterm.action.AdjustPaneSize { 'Right', 5 },
-    },
-    {
-      key = ':',
-      mods = 'LEADER',
-      action = wezterm.action.ActivateCommandPalette,
-    },
-    {
-      key = '[',
-      mods = 'LEADER',
-      action = action.ActivateCopyMode -- default
-    },
-    {
-      key = '{',
-      mods = 'LEADER',
-      action = action.QuickSelect -- default
-    },
-    {
-      key = 'c',
-      mods = 'LEADER',
-      action = action.SpawnTab 'CurrentPaneDomain',
-    },
-    {
-      mods   = "LEADER",
-      key    = "s",
-      action = action.SplitVertical { domain = 'CurrentPaneDomain' }
-    },
-    {
-      mods   = "LEADER",
-      key    = "v",
-      action = action.SplitHorizontal { domain = 'CurrentPaneDomain' }
-    },
-    {
-      mods = 'LEADER',
-      key = 'z',
-      action = action.TogglePaneZoomState
-    },
-    {
-      mods = 'LEADER',
-      key = 'h',
-      action = action.ActivatePaneDirection 'Left',
-    },
-    {
-      mods = 'LEADER',
-      key = 'l',
-      action = action.ActivatePaneDirection 'Right',
-    },
-    {
-      mods = 'LEADER',
-      key = 'k',
-      action = action.ActivatePaneDirection 'Up',
-    },
-    {
-      mods = 'LEADER',
-      key = 'j',
-      action = action.ActivatePaneDirection 'Down',
-    },
-    -- pane selection mode
-    {
-      mods = 'LEADER',
-      key = 'f',
-      action = wezterm.action.PaneSelect {
-        mode = 'Activate',
-      },
-    },
-    {
-      mods = 'LEADER',
-      key = 'r',
-      action = wezterm.action.PaneSelect {
-        mode = 'SwapWithActive',
-      },
-    },
-    {
-      mods = 'LEADER',
-      key = 'r',
-      action = wezterm.action.RotatePanes 'Clockwise',
-    },
-    {
-      mods = 'LEADER',
-      key = 'g',
-      action = wezterm.action.SpawnCommandInNewTab {
-        args = { cmds.lazygit },
-      }
-    },
-    {
-      mods = 'LEADER',
-      key = 'n',
-      action = wezterm.action.ActivateTabRelative(1),
-    },
-    {
-      mods = 'LEADER',
-      key = 'p',
-      action = wezterm.action.ActivateTabRelative(1),
-    },
-    { -- Rename tab title
-      key = ',',
-      mods = 'LEADER',
-      action = wezterm.action.PromptInputLine {
-        description = 'Enter new name for tab',
-        action = wezterm.action_callback(function(window, _, line)
-          -- line will be `nil` if they hit escape without entering anything
-          -- An empty string if they just hit enter
-          -- Or the actual line of text they wrote
-          if line then
-            window:active_tab():set_title(line)
-          end
-        end),
-      },
-    },
-    { -- Show the launcher in fuzzy selection mode and have it list all workspaces
-      key = 'e',
-      mods = 'LEADER',
-      action = wezterm.action.ShowLauncherArgs {
-        flags = 'FUZZY|WORKSPACES',
-      },
-    },
-    { -- Prompt for a name to use for a new workspace and switch to it.
-      key = 'E',
-      mods = 'LEADER',
-      action = wezterm.action.PromptInputLine {
-        description = wezterm.format {
-          { Attribute = { Intensity = 'Bold' } },
-          { Foreground = { AnsiColor = 'Fuchsia' } },
-          { Text = 'Enter name for new workspace' },
-        },
-        action = wezterm.action_callback(function(window, pane, line)
-          -- line will be `nil` if they hit escape without entering anything
-          -- An empty string if they just hit enter
-          -- Or the actual line of text they wrote
-          if line then
-            window:perform_action(
-              wezterm.action.SwitchToWorkspace {
-                name = line,
-              },
-              pane
-            )
-          end
-        end),
-      },
-    },
-    { key = ')', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(1) },
-    { key = '(', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(-1) },
-
-  }
-
-  for _, char in ipairs(chars) do
-    table.insert(result, {
-      key = char,
-      mods = 'CMD',
-      action = action.SendKey { key = char, mods = 'CTRL' },
-    })
-  end
-
-  -- ActivateTab now accepts negative numbers; these wrap around from the start of the tabs to the end,
-  -- so -1 references the right-most tab, -2 the tab to its left and so on.
-  for pane = 1, 8 do
-    table.insert(result, {
-      key = tostring(pane),
-      mods = 'LEADER',
-      action = wezterm.action.ActivateTab(pane - 1),
-    })
-  end
-  return result
-end
-
-local mouse_bindings = {
-  {
-    event = { Up = { streak = 1, button = 'Left' } },
-    mods = 'CMD',
-    action = action.OpenLinkAtMouseCursor,
-  },
-}
-
-local hyperlink_rules = wezterm.default_hyperlink_rules()
-local user_name = os.getenv('USER') or 'clive'
--- absolute file system URL e.g /Users/clive/Music/test.txt
-table.insert(hyperlink_rules, {
-  regex = [[(/Users/[\w./:]+)\S?\b]],
-  format = "file:///$1",
-})
--- relative file system URL e.g ~/Music/test.txt
-table.insert(hyperlink_rules, {
-  regex = [[~/([\w./:]+)\S?\b]],
-  format = string.format("file:///Users/%s/$1", user_name),
-})
-
-table.insert(hyperlink_rules, {
-  regex = '/Users[a-zA-Z0-9\\./-]+',
-  format = '$0'
-})
-
--- change action for open hyperlink
--- open doens't like file names with line numbers
-wezterm.on('open-uri', function(window, pane, uri)
-  local start, match_end = uri:find "file:///"
-  if start == 1 then
-    local path = uri:sub(match_end + 1)
-    window:perform_action(
-      wezterm.action.SpawnCommandInNewWindow {
-        args = { '/opt/homebrew/bin/subl', path },
-      },
-      pane
-    )
-    -- prevent the default action from opening in a browser
-    return false
-  end
-  -- otherwise, by not specifying a return value, we allow later
-  -- handlers and ultimately the default action to caused the
-  -- URI to be opened in the browser
-end)
+local utils = require 'wez-utils'
+local keys = require 'keybinds'
 
 -- maximise window on startup, doesn't work when connecting to domains
 wezterm.on('gui-startup', function(cmd)
@@ -291,44 +9,25 @@ wezterm.on('gui-startup', function(cmd)
   window:gui_window():maximize()
 end)
 
-wezterm.on('update-right-status', function(window, _)
+wezterm.on('update-right-status', function(window, pane)
   local date = wezterm.strftime '%H:%M | %A %d %b'
+  local status = window:active_workspace() .. ' @ ' .. pane:get_domain_name() .. ' '
+
   window:set_right_status(wezterm.format {
     { Foreground = { Color = '#f5e0dc' } },
     { Text = date .. ' | ' },
     { Foreground = { Color = '#a6e3a1' } },
-    { Text = window:active_workspace() .. ' ' },
+    { Text = status },
   })
 end)
 
--- override colorscheme
-local color_scheme = wezterm.get_builtin_color_schemes()['catppuccin-mocha']
--- https://catppuccin.com/palette/
-color_scheme.foreground = '#cdd6f4'
-color_scheme.split = '#6c7086'
-color_scheme.cursor_fg = '#11111b'
-color_scheme.cursor_bg = '#f5c2e7'
-color_scheme.selection_bg = '#fab387'
-color_scheme.selection_fg = '#313244'
-color_scheme.tab_bar = {
-  background = '#1e1e2e',
-  active_tab = {
-    bg_color = '#313244',
-    -- The color of the text for the tab
-    fg_color = '#f5c2e7',
-  },
-  inactive_tab = {
-    bg_color = '#1e1e2e',
-    -- The color of the text for the tab
-    fg_color = '#bac2de',
-  }
-}
+local color_scheme = utils.patch_color_scheme('catppuccin-mocha', wezterm)
 
 return {
   term = 'wezterm',
   disable_default_key_bindings = true, -- https://wezfurlong.org/wezterm/config/default-keys.html?h=keys
-  keys = cmd_bindings(),
-  mouse_bindings = mouse_bindings,
+  keys = keys.get(wezterm),
+  mouse_bindings = keys.mouse(wezterm),
   hide_tab_bar_if_only_one_tab = false,
   font_size = 16.5,
   line_height = 1.3,
@@ -347,7 +46,6 @@ return {
     top = 5,
     left = 5,
   },
-  hyperlink_rules = hyperlink_rules,
   leader = { key = 'a', mods = 'CMD', timeout_milliseconds = 2000 },
   -- quick_select_patterns = {
   -- [[^/Users/(?:\w|/|)+\.(?:txt|csv|scala)$]]
@@ -357,8 +55,8 @@ return {
     brightness = 0.4,
   },
   -- unix_domains = {
-  --   { name = 'home' }
+  --   { name = 'remote' }
   -- },
-  -- -- If you prefer to connect manually, leave out this line.
-  -- default_gui_startup_args = { 'connect', 'home' },
+  -- If you prefer to connect manually, leave out this line.
+  -- default_gui_startup_args = { 'connect', 'unix' },
 }

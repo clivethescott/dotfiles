@@ -1,0 +1,273 @@
+local M = {}
+local utils = require 'wez-utils'
+
+M._cmds = {}
+M._cmds.lazygit = utils.run_cmd('/opt/homebrew/bin/mise which lazygit')
+
+---@param wezterm Wezterm
+M.mouse = function(wezterm)
+  return {
+    {
+      event = { Up = { streak = 1, button = 'Left' } },
+      mods = 'CMD',
+      action = wezterm.action.OpenLinkAtMouseCursor,
+    }
+  }
+end
+
+---@param wezterm Wezterm
+M.get = function(wezterm)
+  local action = wezterm.action
+  local all_characters = [[`1234567890=qwertyuiop[]\sdfghjklv;'zxcbnm./^*$#|?!]]
+  local chars = {}
+
+  -- convert string to list
+  _ = all_characters:gsub(".", function(char) table.insert(chars, char) end)
+  local result = {
+    {
+      key = 'v',
+      mods = 'CMD|SHIFT',
+      action = action.PasteFrom 'Clipboard',
+    },
+    {
+      key = 'r',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.ReloadConfiguration,
+    },
+    {
+      key = '-',
+      mods = 'CMD',
+      action = action.DecreaseFontSize
+    },
+    {
+      key = '+',
+      mods = 'CMD',
+      action = action.IncreaseFontSize
+    },
+    {
+      key = 'q',
+      mods = 'CMD|OPT',
+      action = action.QuitApplication
+    },
+    {
+      key = 'f',
+      mods = 'CMD|SHIFT',
+      action = action.Search({ CaseInSensitiveString = '' })
+    },
+    {
+      key = 'x',
+      mods = 'LEADER',
+      action = wezterm.action.CloseCurrentPane { confirm = true },
+    },
+    { key = 'Q', mods = 'LEADER', action = wezterm.action.QuitApplication },
+    {
+      key = 'H',
+      mods = 'LEADER',
+      action = wezterm.action.AdjustPaneSize { 'Left', 5 },
+    },
+    {
+      key = 'J',
+      mods = 'LEADER',
+      action = wezterm.action.AdjustPaneSize { 'Down', 5 },
+    },
+    { key = 'K', mods = 'LEADER', action = wezterm.action.AdjustPaneSize { 'Up', 5 } },
+    {
+      key = 'L',
+      mods = 'LEADER',
+      action = wezterm.action.AdjustPaneSize { 'Right', 5 },
+    },
+    {
+      key = ':',
+      mods = 'LEADER',
+      action = wezterm.action.ActivateCommandPalette,
+    },
+    {
+      key = '[',
+      mods = 'LEADER',
+      action = action.ActivateCopyMode -- default
+    },
+    {
+      key = '{',
+      mods = 'LEADER',
+      action = action.QuickSelect -- default
+    },
+    {
+      key = 'c',
+      mods = 'LEADER',
+      action = action.SpawnTab 'CurrentPaneDomain',
+    },
+    {
+      mods   = "LEADER",
+      key    = "s",
+      action = action.SplitVertical { domain = 'CurrentPaneDomain' }
+    },
+    {
+      mods   = "LEADER",
+      key    = "v",
+      action = action.SplitHorizontal { domain = 'CurrentPaneDomain' }
+    },
+    {
+      mods = 'LEADER',
+      key = 'z',
+      action = action.TogglePaneZoomState
+    },
+    {
+      mods = 'LEADER',
+      key = 'h',
+      action = action.ActivatePaneDirection 'Left',
+    },
+    {
+      mods = 'LEADER',
+      key = 'l',
+      action = action.ActivatePaneDirection 'Right',
+    },
+    {
+      mods = 'LEADER',
+      key = 'k',
+      action = action.ActivatePaneDirection 'Up',
+    },
+    {
+      mods = 'LEADER',
+      key = 'j',
+      action = action.ActivatePaneDirection 'Down',
+    },
+    -- pane selection mode
+    {
+      mods = 'LEADER',
+      key = 'f',
+      action = wezterm.action.PaneSelect {
+        mode = 'Activate',
+      },
+    },
+    {
+      mods = 'LEADER',
+      key = 'r',
+      action = wezterm.action.PaneSelect {
+        mode = 'SwapWithActive',
+      },
+    },
+    {
+      mods = 'LEADER',
+      key = 'r',
+      action = wezterm.action.RotatePanes 'Clockwise',
+    },
+    {
+      mods = 'LEADER',
+      key = 'g',
+      action = wezterm.action.SpawnCommandInNewTab {
+        args = { M._cmds.lazygit },
+      }
+    },
+    {
+      mods = 'LEADER',
+      key = 'n',
+      action = wezterm.action.ActivateTabRelative(1),
+    },
+    {
+      mods = 'LEADER',
+      key = 'p',
+      action = wezterm.action.ActivateTabRelative(1),
+    },
+    { -- Rename tab title
+      key = ',',
+      mods = 'LEADER',
+      action = wezterm.action.PromptInputLine {
+        description = 'Enter new name for tab',
+        action = wezterm.action_callback(function(window, _, line)
+          -- line will be `nil` if they hit escape without entering anything
+          -- An empty string if they just hit enter
+          -- Or the actual line of text they wrote
+          if line then
+            window:active_tab():set_title(line)
+          end
+        end),
+      },
+    },
+    { -- rename session https://mwop.net/blog/2024-07-04-how-i-use-wezterm.html
+      key = '$',
+      mods = 'LEADER',
+      action = wezterm.action.PromptInputLine {
+        description = 'Enter new name for session',
+        action = wezterm.action_callback(
+          function(window, _, line)
+            if line then
+              wezterm.mux.rename_workspace(
+                window:mux_window():get_workspace(),
+                line
+              )
+            end
+          end
+        ),
+      },
+    },
+    { -- Show the launcher in fuzzy selection mode and have it list all workspaces
+      key = 'e',
+      mods = 'LEADER',
+      action = wezterm.action.ShowLauncherArgs {
+        flags = 'FUZZY|WORKSPACES',
+      },
+    },
+    {
+      key = 'r',
+      mods = 'LEADER',
+      action = wezterm.action.AttachDomain 'remote',
+    },
+    {
+      key = 'R',
+      mods = 'LEADER',
+      action = wezterm.action.DetachDomain { DomainName = 'remote' },
+    },
+    { -- Prompt for a name to use for a new workspace and switch to it.
+      key = 'S',
+      mods = 'LEADER',
+      action = wezterm.action.PromptInputLine {
+        description = wezterm.format {
+          { Attribute = { Intensity = 'Bold' } },
+          { Foreground = { AnsiColor = 'Fuchsia' } },
+          { Text = 'Enter name for new workspace' },
+        },
+        action = wezterm.action_callback(function(window, pane, line)
+          -- line will be `nil` if they hit escape without entering anything
+          -- An empty string if they just hit enter
+          -- Or the actual line of text they wrote
+          if line then
+            window:perform_action(
+              wezterm.action.SwitchToWorkspace {
+                name = line,
+              },
+              pane
+            )
+          end
+        end),
+      },
+    },
+    { key = ')', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(1) },
+    { key = '(', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(-1) },
+    { -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
+      key = 'a',
+      mods = 'LEADER|CTRL',
+      action = wezterm.action.SendKey { key = 'a', mods = 'CTRL' },
+    },
+
+  }
+
+  for _, char in ipairs(chars) do
+    table.insert(result, {
+      key = char,
+      mods = 'CMD',
+      action = action.SendKey { key = char, mods = 'CTRL' },
+    })
+  end
+
+  -- ActivateTab now accepts negative numbers; these wrap around from the start of the tabs to the end,
+  -- so -1 references the right-most tab, -2 the tab to its left and so on.
+  for pane = 1, 8 do
+    table.insert(result, {
+      key = tostring(pane),
+      mods = 'LEADER',
+      action = wezterm.action.ActivateTab(pane - 1),
+    })
+  end
+  return result
+end
+return M
