@@ -1,18 +1,5 @@
 local fts = { "http", "rest" }
 
-local switch_env = function()
-  local envs = { 'dev', 'qa', 'prod' }
-  local current_env = require 'kulala'.get_selected_env() or ''
-  local change_env = vim.tbl_filter(function(env) return env ~= current_env end, envs)
-  vim.ui.select(change_env, {
-    prompt = 'Switch environment:[' .. current_env .. ']'
-  }, function(choice)
-    if choice ~= nil then
-      require('kulala').set_selected_env(choice)
-    end
-  end)
-end
-
 return {
   'mistweaverco/kulala.nvim',
   -- keys = {"<leader>Rs", "<leader>Ra", "<leader>Ro"},
@@ -51,7 +38,8 @@ return {
       },
       ["Copy as cURL"] = { "<space>hc", function() require("kulala").copy() end, ft = fts },
       ["Paste from curl"] = { "<space>hp", function() require("kulala").from_curl() end, ft = fts },
-      ["Select environment"] = { "<space>he", switch_env, ft = fts },
+      ["Select environment"] = { "<space>he", function() require 'kulala'.set_selected_env() end, ft = fts },
+      ["Manage Auth Config"] = { "<space>hz", function() require("kulala.ui.auth_manager").open_auth_config() end, ft = { "http", "rest" }, },
       ["Clear globals"] = { "<space>hC", function() require("kulala").scripts_clear_global() end, ft = fts },
 
       ["Find request"] = { "<space>hs", function() require("kulala").search() end, ft = { "http", "rest" }, },
