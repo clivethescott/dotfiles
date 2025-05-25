@@ -49,16 +49,16 @@ return {
       },
     })
     require("fzf-lua").register_ui_select()
-    vim.keymap.set({ "n", "v", "i" }, "<C-x><C-f>",
+    vim.keymap.set({ "i" }, "<C-x><C-f>",
       function() require("fzf-lua").complete_path() end,
       { silent = true, desc = "FZF complete path" })
 
 
-    vim.keymap.set({ "n", "v", "i" }, "<C-x><C-l>",
+    vim.keymap.set({ "i" }, "<C-x><C-l>",
       function() require("fzf-lua").complete_line() end,
       { silent = true, desc = "FZF complete lines" })
 
-    vim.keymap.set({ "n", "v", "i" }, "<C-x>s",
+    vim.keymap.set({ "i" }, "<C-x>s",
       function() require("fzf-lua").spell_suggest() end,
       { silent = true, desc = "FZF Spell suggest" })
 
@@ -97,21 +97,21 @@ return {
       end,
       desc = "FZF files (lwd)"
     },
-    { "<c-e>",     "<cmd>FzfLua buffers<cr>",                    desc = "Buffers" },
-    { "<space>tl", "<cmd>FzfLua resume<cr>",                     desc = "Resume" },
-    { "<space>tq", "<cmd>FzfLua quickfix<cr>",                   desc = "Quickfix" },
-    { "<space>tf", "<cmd>FzfLua live_grep_glob<cr>",             desc = "Live grep" },
-    { "<space>tF", "<cmd>FzfLua grep_cWORD<cr>",                 desc = "Grep cword" },
-    { "<space>tc", "<cmd>FzfLua commands<cr>",                   desc = "Commands" },
-    { "<space>th", "<cmd>FzfLua helptags<cr>",                   desc = "Helptags" },
-    { "<space>tt", "<cmd>FzfLua tagstack<cr>",                   desc = "Tagstack" },
-    { "<space>tm", "<cmd>FzfLua marks<cr>",                      desc = "Marks" },
-    { "<space>tr", "<cmd>FzfLua registers<cr>",                  desc = "Registers" },
-    { "<space>tb", "<cmd>FzfLua lines<cr>",                      desc = "Open Buffers lines" },
-    { "<space>lw", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = "LSP workspace symbols" },
+    { "<c-e>",      "<cmd>FzfLua buffers<cr>",                    desc = "Buffers" },
+    { "<space>tl",  "<cmd>FzfLua resume<cr>",                     desc = "Resume" },
+    { "<space>tq",  "<cmd>FzfLua quickfix<cr>",                   desc = "Quickfix" },
+    { "<space>tf",  "<cmd>FzfLua live_grep_glob<cr>",             desc = "Live grep" },
+    { "<space>tF",  "<cmd>FzfLua grep_cWORD<cr>",                 desc = "Grep cword" },
+    { "<space>tc",  "<cmd>FzfLua commands<cr>",                   desc = "Commands" },
+    { "<space>th",  "<cmd>FzfLua helptags<cr>",                   desc = "Helptags" },
+    { "<space>tt",  "<cmd>FzfLua tagstack<cr>",                   desc = "Tagstack" },
+    { "<space>tm",  "<cmd>FzfLua marks<cr>",                      desc = "Marks" },
+    { "<space>tr",  "<cmd>FzfLua registers<cr>",                  desc = "Registers" },
+    { "<space>tb",  "<cmd>FzfLua lines<cr>",                      desc = "Open Buffers lines" },
+    { "<space>lw",  "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = "LSP workspace symbols" },
     { "<space>ldo", "<cmd>FzfLua diagnostics_document<cr>",       desc = "Diagnostics" },
-    { "gR",        "<cmd>FzfLua lsp_references<cr>",             desc = "LSP References" },
-    { "<space>lI", "<cmd>FzfLua lsp_implementations<cr>",        desc = "LSP Implementations" },
+    { "gR",         "<cmd>FzfLua lsp_references<cr>",             desc = "LSP References" },
+    { "<space>lI",  "<cmd>FzfLua lsp_implementations<cr>",        desc = "LSP Implementations" },
     {
       "<space>to",
       function() require 'fzf-lua'.oldfiles { include_current_session = true } end,

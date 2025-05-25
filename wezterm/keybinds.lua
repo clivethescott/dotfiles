@@ -255,7 +255,7 @@ M.get = function(wezterm)
     { key = '(', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(-1) },
     { -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
       key = 'a',
-      mods = 'LEADER|CTRL',
+      mods = 'LEADER|CMD',
       action = wezterm.action.SendKey { key = 'a', mods = 'CTRL' },
     },
 
