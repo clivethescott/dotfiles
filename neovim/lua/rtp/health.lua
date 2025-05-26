@@ -16,6 +16,7 @@ local must_install_tools = {
   procs = 'procs Process viewer',
   jless = 'jless JSON viewer',
   nu = 'nu shell',
+  presenterm = 'presenterm',
 }
 local M = {}
 M.check = function()
