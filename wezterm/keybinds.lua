@@ -1,11 +1,7 @@
 local M = {}
-local utils = require 'wez-utils'
+local wezterm = require 'wezterm' --[[@as Wezterm]]
 
-M._cmds = {}
-M._cmds.lazygit = utils.run_cmd('/opt/homebrew/bin/mise which lazygit')
-
----@param wezterm Wezterm
-M.mouse = function(wezterm)
+M.mouse = function()
   return {
     {
       event = { Up = { streak = 1, button = 'Left' } },
@@ -15,8 +11,13 @@ M.mouse = function(wezterm)
   }
 end
 
----@param wezterm Wezterm
-M.get = function(wezterm)
+M.get = function()
+  local utils = require 'wez-utils'
+  local lazygit = utils.run_cmd {
+    '/opt/homebrew/bin/mise',
+    'which',
+    'lazygit'
+  }
   local action = wezterm.action
   local all_characters = [[`1234567890=qwertyuiop[]\sdfghjklv;'zxcbnm./^*$#|?!]]
   local chars = {}
@@ -165,7 +166,7 @@ M.get = function(wezterm)
       mods = 'LEADER',
       key = 'g',
       action = wezterm.action.SpawnCommandInNewTab {
-        args = { M._cmds.lazygit },
+        args = { lazygit },
       }
     },
     {

@@ -1,18 +1,19 @@
 -- TODO: session management?  https://mwop.net/blog/2024-07-04-how-i-use-wezterm.html
+local keys = require 'keybinds'
+local utils = require 'wez-utils'
 local wezterm = require 'wezterm' --[[@as Wezterm]]
 local mux = wezterm.mux
-local utils = require 'wez-utils'
-local keys = require 'keybinds'
 
--- maximise window on startup, doesn't work when connecting to domains
+-- maximise window on startup
+-- Note that the gui-startup event does not fire when invoking wezterm connect DOMAIN or wezterm start --domain DOMAIN --attach.
 wezterm.on('gui-startup', function(cmd)
   local _, _, window = mux.spawn_window(cmd or {})
   window:gui_window():maximize()
 end)
 
-wezterm.on('update-right-status', function(window, pane)
+wezterm.on('update-right-status', function(window, _)
   local date = wezterm.strftime '%H:%M | %A %d %b'
-  local status = window:active_workspace() .. ' @ ' .. pane:get_domain_name() .. ' '
+  local status = window:active_workspace() .. ' ' -- .. ' @ ' .. pane:get_domain_name() .. ' '
 
   window:set_right_status(wezterm.format {
     { Foreground = { Color = '#f5e0dc' } },
@@ -30,13 +31,13 @@ wezterm.on('format-tab-title', function(tab, _)
   }
 end)
 
-local color_scheme = utils.patch_color_scheme('catppuccin-mocha', wezterm)
+local color_scheme = utils.patch_color_scheme('catppuccin-mocha')
 
 return {
   term = 'wezterm',
   disable_default_key_bindings = true, -- https://wezfurlong.org/wezterm/config/default-keys.html?h=keys
-  keys = keys.get(wezterm),
-  mouse_bindings = keys.mouse(wezterm),
+  keys = keys.get(),
+  mouse_bindings = keys.mouse(),
   hide_tab_bar_if_only_one_tab = false,
   font_size = 16.5,
   line_height = 1.3,

@@ -1,21 +1,17 @@
+local wezterm = require 'wezterm' --[[@as Wezterm]]
 local M = {}
 
 ---Runs a sys command and returns the output on success, empty string otherwise
----@param cmd string
+---@param cmd table
 ---@return string
 M.run_cmd = function(cmd)
-  local handle = io.popen(cmd)
-  if handle ~= nil then
-    local out = handle:read('*a')
-    handle:close()
-    return out:gsub('[\n\r]', '') -- replace cmd newline
-  else
-    return ''
-  end
+  local success, stdout, stderr = wezterm.run_child_process(cmd)
+  local out = success and stdout or stderr
+  return out:gsub('[\n\r]', '') -- replace cmd newline
 end
 
--- This function returns the suggested title for a tab. It prefers 
--- the title that was set via `tab:set_title()` or `wezterm cli set-tab-title`, 
+-- This function returns the suggested title for a tab. It prefers
+-- the title that was set via `tab:set_title()` or `wezterm cli set-tab-title`,
 -- but falls back to the title of the active pane in that tab.
 -- see https://wezterm.org/config/lua/window-events/format-window-title.html
 ---@param tab_info TabInformation
@@ -33,9 +29,8 @@ end
 
 ---Patches the provided built-in colorscheme
 ---@param builtin_color_scheme string Name of the built in color scheme to override
----@param wezterm any Wezterm config object
 ---@return string Modified color scheme
-M.patch_color_scheme = function(builtin_color_scheme, wezterm)
+M.patch_color_scheme = function(builtin_color_scheme)
   -- override colorscheme
   local color_scheme = wezterm.get_builtin_color_schemes()[builtin_color_scheme]
   -- https://catppuccin.com/palette/
