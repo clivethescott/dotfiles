@@ -5,7 +5,14 @@ return {
     pcall(require('nvim-treesitter.install').update { with_sync = false })
   end,
   dependencies = {
-    { 'nvim-treesitter/nvim-treesitter-textobjects', event = 'InsertEnter' },
+    {
+      'nvim-treesitter/nvim-treesitter-textobjects', event = 'InsertEnter' },
+    {
+      'nvim-treesitter/nvim-treesitter-context',
+      keys = {
+        { '[j', function() require("treesitter-context").go_to_context(vim.v.count1) end, desc = 'Jump to TS context' }
+      }
+    }
   },
   init = function()
     -- https://mise.jdx.dev/mise-cookbook/neovim.html#code-highlight-for-run-commands
@@ -56,8 +63,8 @@ return {
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
             -- Managed by mini.ai custom_textobjects
-            -- ['af'] = { query = '@function.outer', desc = 'Select outer function' },
-            -- ['if'] = { query = '@function.inner', desc = 'Select inner function' },
+            ['af'] = { query = '@function.outer', desc = 'Select outer function' },
+            ['if'] = { query = '@function.inner', desc = 'Select inner function' },
 
             -- ['ag'] = { query = '@function.params', desc = 'Select outer parameter' },
             -- ['aG'] = { query = '@function.name', desc = 'Select function name' },
