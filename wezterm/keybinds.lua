@@ -197,7 +197,7 @@ M.get = function(wezterm)
       key = '$',
       mods = 'LEADER',
       action = wezterm.action.PromptInputLine {
-        description = 'Enter new name for session',
+        description = 'Enter new name for workspace',
         action = wezterm.action_callback(
           function(window, _, line)
             if line then
@@ -211,24 +211,24 @@ M.get = function(wezterm)
       },
     },
     { -- Show the launcher in fuzzy selection mode and have it list all workspaces
-      key = 'e',
+      key = 'S',
       mods = 'LEADER',
       action = wezterm.action.ShowLauncherArgs {
         flags = 'FUZZY|WORKSPACES',
       },
     },
-    {
-      key = 'r',
-      mods = 'LEADER',
-      action = wezterm.action.AttachDomain 'remote',
-    },
-    {
-      key = 'R',
-      mods = 'LEADER',
-      action = wezterm.action.DetachDomain { DomainName = 'remote' },
-    },
+    -- {
+    --   key = 'r',
+    --   mods = 'LEADER',
+    --   action = wezterm.action.AttachDomain 'remote',
+    -- },
+    -- {
+    --   key = 'R',
+    --   mods = 'LEADER',
+    --   action = wezterm.action.DetachDomain { DomainName = 'remote' },
+    -- },
     { -- Prompt for a name to use for a new workspace and switch to it.
-      key = 'S',
+      key = 'w',
       mods = 'LEADER',
       action = wezterm.action.PromptInputLine {
         description = wezterm.format {
