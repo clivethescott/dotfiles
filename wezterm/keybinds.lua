@@ -108,6 +108,20 @@ M.get = function()
       action = action.SpawnTab 'CurrentPaneDomain',
     },
     {
+      key = 'm',
+      mods = 'LEADER',
+      action = wezterm.action_callback(function(_, pane)
+        pane:move_to_new_tab()
+      end),
+    },
+    {
+      key = 'M',
+      mods = 'LEADER',
+      action = wezterm.action_callback(function(_, pane)
+        pane:move_to_new_window()
+      end),
+    },
+    {
       mods   = "LEADER",
       key    = "s",
       action = action.SplitVertical { domain = 'CurrentPaneDomain' }
@@ -215,7 +229,7 @@ M.get = function()
       key = 'S',
       mods = 'LEADER',
       action = wezterm.action.ShowLauncherArgs {
-        flags = 'FUZZY|WORKSPACES',
+        flags = 'FUZZY|WORKSPACES|TABS',
       },
     },
     -- {
@@ -270,13 +284,18 @@ M.get = function()
     })
   end
 
-  -- ActivateTab now accepts negative numbers; these wrap around from the start of the tabs to the end,
+  -- now accepts negative numbers; these wrap around from the start of the tabs to the end,
   -- so -1 references the right-most tab, -2 the tab to its left and so on.
   for pane = 1, 8 do
     table.insert(result, {
       key = tostring(pane),
       mods = 'LEADER',
       action = wezterm.action.ActivateTab(pane - 1),
+    })
+    table.insert(result, {
+      key = tostring(pane),
+      mods = 'CMD|ALT',
+      action = wezterm.action.MoveTab(pane - 1),
     })
   end
   return result
