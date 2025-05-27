@@ -52,6 +52,8 @@ return {
       sections = dashboard_sections,
     },
     lazygit = { enabled = true },
+    bigfile = { enabled = true },
+    notifier = { enabled = true },
   },
   keys = {
     { "gs", function() require 'snacks'.lazygit.open() end, desc = "Lazygit" },

@@ -37,7 +37,8 @@ local diagnostics = function(bufnr)
 
   vim.keymap.set('n', '[e',
     function()
-      vim.diagnostic.goto_prev {
+      vim.diagnostic.jump {
+        count = -1,
         wrap = false,
         severity = { min = vim.diagnostic.severity.WARN }
       }
@@ -45,7 +46,8 @@ local diagnostics = function(bufnr)
 
   vim.keymap.set('n', ']e',
     function()
-      vim.diagnostic.goto_next {
+      vim.diagnostic.jump {
+        count = 1,
         wrap = true,
         severity = { min = vim.diagnostic.severity.WARN }
       }
@@ -59,7 +61,7 @@ function M.on_attach(client, bufnr)
   if client.name == 'copilot' then return end
 
   -- Prefer LSP folding if client supports it
-  -- https://www.reddit.com/r/neovim/comments/1jmqd7t/sorry_ufo_these_7_lines_replaced_you/
+  -- :h vim.lsp.foldexpr
   if client:supports_method('textDocument/foldingRange') then
     local win = vim.api.nvim_get_current_win()
     vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
@@ -99,8 +101,7 @@ function M.on_attach(client, bufnr)
   elseif client.supports_method('textDocument/definition') then
     vim.keymap.set('n', 'gD', function()
       if vim.g.use_picker == 'snacks.picker' then
-        require 'snacks'
-        picker.lsp_definitions()
+        require 'snacks'.picker.lsp_definitions()
       elseif vim.g.use_picker == 'fzf-lua' then
         require 'fzf-lua'.lsp_definitions()
       end
@@ -159,6 +160,9 @@ function M.client_capabilities()
       foldingRange = {
         dynamicRegistration = false,
         lineFoldingOnly = true
+      },
+      semanticTokens = {
+        multilineTokenSupport = true,
       },
       completionitem = {
         snippetSupport = true,
