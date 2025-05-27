@@ -26,6 +26,18 @@ return {
       folder = 'daily'
     },
     mappings = {
+      ["<cr>"] = {
+        action = function()
+          return require("obsidian").util.smart_action()
+        end,
+        opts = { buffer = true, expr = true },
+      },
+      ["gf"] = {
+        action = function()
+          return require("obsidian").util.gf_passthrough()
+        end,
+        opts = { noremap = false, expr = true, buffer = true },
+      },
       ["<space>nt"] = {
         action = function()
           return require("obsidian").util.toggle_checkbox()
