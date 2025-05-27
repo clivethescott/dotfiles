@@ -55,6 +55,20 @@ return {
         local path = args.fargs and args.fargs[1] or nil
         files.open(path)
       end, { nargs = '?', complete = 'dir', desc = 'File explorer at path' })
+
+      -- set custom marks, see :h mini-files
+      local set_mark = function(id, path, desc)
+        MiniFiles.set_bookmark(id, path, { desc = desc })
+      end
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'MiniFilesExplorerOpen',
+        callback = function()
+          -- set_mark('c', vim.fn.stdpath('config'), 'Config') -- path
+          set_mark('c', '~/.config', 'Config')
+          set_mark('w', vim.fn.getcwd, 'Working directory') -- callable
+          set_mark('d', '~/dotfiles', 'Dotfiles')
+        end,
+      })
     end,
     keys = {
       { '<leader>1', function() require 'mini.files'.open() end,                             desc = 'Open Files in cwd' },

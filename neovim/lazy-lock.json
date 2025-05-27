@@ -19,7 +19,7 @@
   "mini.files": { "branch": "main", "commit": "49c855977e9f4821d1ed8179ed44fe098b93ea2a" },
   "mini.hipatterns": { "branch": "main", "commit": "e5083df391171dc9d8172645606f8496d9443374" },
   "mini.pairs": { "branch": "main", "commit": "69864a2efb36c030877421634487fd90db1e4298" },
-  "moonfly": { "branch": "master", "commit": "e356d55cedb24a6c4251d83ce28e0e2010e99d2f" },
+  "moonfly": { "branch": "master", "commit": "ac98f2ea1d44c9968dc5394b406a3a853a24f113" },
   "nvim-lspconfig": { "branch": "master", "commit": "3ea99227e316c5028f57a4d86a1a7fd01dd876d0" },
   "nvim-metals": { "branch": "main", "commit": "d1639b7fccd845875e33444c7860ad292ab8670d" },
   "nvim-possession": { "branch": "main", "commit": "ac8bc3ecef3eb34790f8ab6a12099ae68d3ddad3" },
