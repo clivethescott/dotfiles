@@ -26,6 +26,7 @@ return {
     require 'lspconfig'.graphql.setup {}
     require 'lspconfig'.html.setup {}
     require 'lspconfig'.jsonls.setup {}
+    require 'lspconfig'.taplo.setup {}
     require 'lspconfig'.yamlls.setup {
       settings = {
         yaml = {
