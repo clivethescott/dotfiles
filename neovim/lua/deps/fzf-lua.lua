@@ -91,7 +91,7 @@ return {
       desc = "FZF files"
     },
     {
-      "<space>tp",
+      "<M-p>",
       function()
         require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") })
       end,

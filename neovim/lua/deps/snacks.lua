@@ -54,6 +54,7 @@ return {
     lazygit = { enabled = true },
     bigfile = { enabled = true },
     notifier = { enabled = true },
+    image = { enabled = true },
   },
   keys = {
     { "gs", function() require 'snacks'.lazygit.open() end, desc = "Lazygit" },
