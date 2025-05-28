@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mfontanini/presenterm/master/config-file-schema.json
-efaults:
+defaults:
   # override the terminal font size when in windows or when using sixel.
   terminal_font_size: 17
 
