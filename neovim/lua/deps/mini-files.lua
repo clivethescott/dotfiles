@@ -27,7 +27,8 @@ return {
         -- set_mark('c', vim.fn.stdpath('config'), 'Config') -- path
         set_mark('c', '~/.config', 'Config')
         set_mark('w', vim.fn.getcwd, 'Working directory')   -- callable
-        set_mark('d', '~/dotfiles', 'Dotfiles')
+        set_mark('h', '~/Code/HTTP', 'HTTP files')
+        set_mark('i', '~/IdeaProjects', 'IdeaProjects')
       end,
     })
 

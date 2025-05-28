@@ -81,7 +81,10 @@ end
 
 #bind -M insert ctrl-c __fish_cancel_commandline
 
-# setup homebrew
+# setup mise shims
+fish_add_path "~/.local/share/mise/shims"
+
+# setup coreutils. This is slighly better than the mise one which has 1 uber command
 fish_add_path "/opt/homebrew/opt/uutils-coreutils/libexec/uubin"
 fish_add_path "/opt/homebrew/bin/"
 # Setup brew
