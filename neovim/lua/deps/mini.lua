@@ -15,6 +15,7 @@ return {
       local ai = require 'mini.ai'
       ai.setup {
         custom_textobjects = {
+          f = ai.gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
           g = function()
             return {
               from = { line = 1, col = 1 },

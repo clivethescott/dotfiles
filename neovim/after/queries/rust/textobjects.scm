@@ -1,7 +1,6 @@
 ; extends
 (function_item 
-  name: (identifier)? @function.name
-  parameters: (parameters)? @function.params)
+  body: (block) @function.inner) @function.outer
 
 (struct_item 
   body: (field_declaration_list) @struct.inner) @struct.outer
