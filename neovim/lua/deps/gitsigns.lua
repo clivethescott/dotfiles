@@ -10,9 +10,9 @@ local on_attach = function()
   end
   local prev_hunk = function()
     if vim.wo.diff then
-      vim.cmd.normal({ ']c', bang = true })
+      vim.cmd.normal({ '[c', bang = true })
     else
-      gitsigns.nav_hunk('last')
+      gitsigns.nav_hunk('prev')
     end
   end
   -- Text object
@@ -23,7 +23,8 @@ local on_attach = function()
   vim.keymap.set('n', '<space>gd', gitsigns.preview_hunk, { desc = 'Show Diff' })
 
   vim.keymap.set('n', '<space>gu', gitsigns.reset_hunk, { desc = 'Undo Change' })
-  vim.keymap.set('v', '<space>gu', function() gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, { desc = 'Undo Change' })
+  vim.keymap.set('v', '<space>gu', function() gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end,
+    { desc = 'Undo Change' })
   vim.keymap.set('n', '<space>gU', gitsigns.reset_buffer, { desc = 'Undo All Changes' })
 
   vim.keymap.set('n', '<space>gB', gitsigns.toggle_current_line_blame, { desc = 'Toggle blame' })
@@ -39,6 +40,7 @@ return {
   event = { 'BufReadPost', 'BufNewFile' },
   opts = {
     on_attach = on_attach,
+    word_diff = true,
     signs = {
       add          = { text = '+' },
       change       = { text = '~' },
@@ -46,7 +48,7 @@ return {
       topdelete    = { text = '?' },
       changedelete = { text = '~' },
     },
-    current_line_blame = false,   -- Toggle with `:Gitsigns toggle_current_line_blame`
+    current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
     current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>'
   }
 }
