@@ -6,8 +6,8 @@ return {
   },
   event = 'VeryLazy',
   -- use a release tag to download pre-built binaries
-    ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
+  ---@module 'blink.cmp'
+  ---@type blink.cmp.Config
   opts = {
     cmdline = {
       enabled = false,

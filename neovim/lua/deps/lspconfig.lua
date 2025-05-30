@@ -26,7 +26,7 @@ return {
       'rust_analyzer', 'gopls', 'pyright', 'ts_ls', 'lua_ls'
     })
 
-    local is_work = vim.env.IS_WORK_PC or false
+    local is_work = vim.env.IS_WORK_PC == "true"
     if is_work then
       vim.lsp.enable({ 'dockerls', 'terraformls' })
     end

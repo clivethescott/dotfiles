@@ -117,6 +117,7 @@ vim.opt.diffopt:append {
   'vertical', -- https://github.com/lewis6991/gitsigns.nvim/issues/724
   'foldcolumn:0',
   'indent-heuristic',
+  'algorithm:histogram',
 }
 vim.opt.inccommand = "split"
 vim.opt.scrolloff = 1
