@@ -15,6 +15,17 @@ return {
           adapter = adapter,
         }
       },
+      adapters = {
+        ollama = function()
+          return require("codecompanion.adapters").extend("ollama", {
+            schema = {
+              model = {
+                default = "qwen3:1.7b",
+              },
+            },
+          })
+        end,
+      },
     },
     dependencies = {
       { "nvim-lua/plenary.nvim", branch = "master" },
