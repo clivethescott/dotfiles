@@ -90,6 +90,13 @@ fish_add_path "/opt/homebrew/bin/"
 # Setup brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+if type -q sd
+  abbr -a sed sd
+end
+
+if type -q gron
+  abbr -a gr gron
+end
 
 if type -q uv
   abbr -a pip uv pip

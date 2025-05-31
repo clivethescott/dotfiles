@@ -190,6 +190,11 @@ M.get = function()
     },
     {
       mods = 'LEADER',
+      key = 'Tab',
+      action = wezterm.action.ActivateLastTab,
+    },
+    {
+      mods = 'LEADER',
       key = 'p',
       action = wezterm.action.ActivateTabRelative(1),
     },
