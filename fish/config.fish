@@ -3,6 +3,7 @@ if status is-interactive; and test -f $__fish_config_dir/themes/Catppuccin\ Macc
 end
 
 set -gx EDITOR nvim
+set -gx COMPOSE_BAKE true
 
 # Disable the fish greeting message
 set fish_greeting ""
@@ -81,9 +82,6 @@ end
 
 #bind -M insert ctrl-c __fish_cancel_commandline
 
-# setup mise shims
-fish_add_path "~/.local/share/mise/shims"
-
 # setup coreutils. This is slighly better than the mise one which has 1 uber command
 fish_add_path "/opt/homebrew/opt/uutils-coreutils/libexec/uubin"
 fish_add_path "/opt/homebrew/bin/"
@@ -96,6 +94,10 @@ end
 
 if type -q gron
   abbr -a gr gron
+end
+
+if type -q mise
+  mise activate fish | source
 end
 
 if type -q uv

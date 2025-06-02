@@ -1,3 +1,4 @@
+local ignore_files = { "^%.metals", "^%.scala", "^Gemfile.lock" }
 return {
   "ibhagwan/fzf-lua",
   event = 'VeryLazy',
@@ -86,7 +87,7 @@ return {
     {
       "<c-p>",
       function()
-        require("fzf-lua").files({ file_ignore_patterns = { "^%.metals", "^%.scala" } })
+        require("fzf-lua").files({ file_ignore_patterns = ignore_files })
       end,
       desc = "FZF files"
     },
@@ -97,10 +98,15 @@ return {
       end,
       desc = "FZF files (lwd)"
     },
-    { "<c-e>",      "<cmd>FzfLua buffers<cr>",                    desc = "Buffers" },
-    { "<space>tl",  "<cmd>FzfLua resume<cr>",                     desc = "Resume" },
-    { "<space>tq",  "<cmd>FzfLua quickfix<cr>",                   desc = "Quickfix" },
-    { "<space>tf",  "<cmd>FzfLua live_grep_glob<cr>",             desc = "Live grep" },
+    { "<c-e>",     "<cmd>FzfLua buffers<cr>",        desc = "Buffers" },
+    { "<space>tl", "<cmd>FzfLua resume<cr>",         desc = "Resume" },
+    { "<space>tq", "<cmd>FzfLua quickfix<cr>",       desc = "Quickfix" },
+    -- { "<space>tf", "<cmd>FzfLua live_grep_glob<cr>", desc = "Live grep" },
+    {
+      "<space>tf",
+      function() require 'fzf-lua'.live_grep_glob({ file_ignore_patterns = ignore_files }) end,
+      desc = "Live grep"
+    },
     { "<space>tF",  "<cmd>FzfLua grep_cWORD<cr>",                 desc = "Grep cword" },
     { "<space>tc",  "<cmd>FzfLua commands<cr>",                   desc = "Commands" },
     { "<space>th",  "<cmd>FzfLua helptags<cr>",                   desc = "Helptags" },

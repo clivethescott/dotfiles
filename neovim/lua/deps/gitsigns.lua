@@ -40,7 +40,7 @@ return {
   event = { 'BufReadPost', 'BufNewFile' },
   opts = {
     on_attach = on_attach,
-    word_diff = true,
+    word_diff = false,
     signs = {
       add          = { text = '+' },
       change       = { text = '~' },

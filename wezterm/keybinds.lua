@@ -7,6 +7,11 @@ M.mouse = function()
       event = { Up = { streak = 1, button = 'Left' } },
       mods = 'CMD',
       action = wezterm.action.OpenLinkAtMouseCursor,
+    },
+    {
+      event = { Up = { streak = 1, button = 'Left' } },
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.OpenLinkAtMouseCursor,
     }
   }
 end
