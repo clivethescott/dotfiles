@@ -9,7 +9,7 @@ return {
         width_preview = 75,
       },
       options = {
-        permanent_delete = false,
+        permanent_delete = true,
       }
     }
     vim.api.nvim_create_user_command('Files', function(args)
