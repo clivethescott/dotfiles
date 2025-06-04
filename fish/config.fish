@@ -124,9 +124,9 @@ end
 
 if type -q kubectl
   abbr -a k kubectl
-  abbr -a kcontext kubectl config current-context
-  abbr -a kcluster kubectl config use-context
-  abbr -a knamespace kubectl config set-context --current --namespace=
+  abbr -a kgetcontext kubectl config current-context
+  abbr -a ksetcontext kubectl config use-context
+  abbr -a ksetnamespace kubectl config set-context --current --namespace=
 end
 
 if type -q dcli
