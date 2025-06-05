@@ -64,11 +64,11 @@ return {
       { silent = true, desc = "FZF Spell suggest" })
 
     vim.keymap.set("n", "<leader>2",
-      function() require("fzf-lua").files { cwd = '~/.config/neovim' } end,
+      function() require("fzf-lua").files { cwd = '~/.config/nvim' } end,
       { silent = true, desc = "Nvim files" })
 
     vim.keymap.set("n", "<leader>3",
-      function() require("fzf-lua").live_grep_glob { cwd = '~/.config/neovim' } end,
+      function() require("fzf-lua").live_grep_glob { cwd = '~/.config/nvim' } end,
       { silent = true, desc = "Nvim files" })
 
     local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
@@ -98,9 +98,9 @@ return {
       end,
       desc = "FZF files (lwd)"
     },
-    { "<c-e>",     "<cmd>FzfLua buffers<cr>",        desc = "Buffers" },
-    { "<space>tl", "<cmd>FzfLua resume<cr>",         desc = "Resume" },
-    { "<space>tq", "<cmd>FzfLua quickfix<cr>",       desc = "Quickfix" },
+    { "<c-e>",     "<cmd>FzfLua buffers<cr>",  desc = "Buffers" },
+    { "<space>tl", "<cmd>FzfLua resume<cr>",   desc = "Resume" },
+    { "<space>tq", "<cmd>FzfLua quickfix<cr>", desc = "Quickfix" },
     -- { "<space>tf", "<cmd>FzfLua live_grep_glob<cr>", desc = "Live grep" },
     {
       "<space>tf",
@@ -111,6 +111,7 @@ return {
     { "<space>tc",  "<cmd>FzfLua commands<cr>",                   desc = "Commands" },
     { "<space>th",  "<cmd>FzfLua helptags<cr>",                   desc = "Helptags" },
     { "<space>tt",  "<cmd>FzfLua tagstack<cr>",                   desc = "Tagstack" },
+    { "<space>tw",  "<cmd>FzfLua spell_suggest<cr>",              desc = "Spell Suggest" },
     { "<space>tm",  "<cmd>FzfLua marks<cr>",                      desc = "Marks" },
     { "<space>tr",  "<cmd>FzfLua registers<cr>",                  desc = "Registers" },
     { "<space>tb",  "<cmd>FzfLua lines<cr>",                      desc = "Open Buffers lines" },

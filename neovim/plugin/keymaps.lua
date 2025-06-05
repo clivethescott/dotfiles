@@ -3,11 +3,11 @@ vim.keymap.set('i', '<C-s>', '<esc>:update<cr>')
 vim.keymap.set('i', '<C-z>', '<esc>:undo<cr>')
 
 vim.keymap.set("n", "k", function()
-    return vim.v.count > 1 and "m'" .. vim.v.count .. "k" or "k"
+  return vim.v.count > 1 and "m'" .. vim.v.count .. "k" or "k"
 end, { expr = true })
 
 vim.keymap.set("n", "j", function()
-    return vim.v.count > 1 and "m'" .. vim.v.count .. "j" or "j"
+  return vim.v.count > 1 and "m'" .. vim.v.count .. "j" or "j"
 end, { expr = true })
 
 vim.keymap.set('n', '<space>lD', function()
@@ -29,7 +29,6 @@ vim.keymap.set('n', '<leader>q', ':q!<cr>')
 vim.keymap.set('n', 'Y', 'yy')
 vim.keymap.set('n', "'", '`')
 vim.keymap.set('n', '<space>y', ":let @+=expand('%:t')<cr>", { desc = 'Yank file name' })
-vim.keymap.set({ 'n', 'v' }, '<space>p', '"*p', { desc = 'Paste from sys clipboard', silent = true })
 -- Resize split
 -- :vertical resize +10 OR :vertical resize 90
 
@@ -71,3 +70,16 @@ vim.keymap.set('n', '<space>ow',
 -- default ]l [l [L ]L for location list,
 -- default ]t [t [T ]T for tag list,
 -- default ]b [b for buffer list,
+
+-- nicer :find
+function Fd(file_pattern, _)
+  -- if first char is * then fuzzy search
+  if file_pattern:sub(1, 1) == "*" then
+    file_pattern = file_pattern:gsub(".", ".*%0") .. ".*"
+  end
+  local cmd = 'fd  --color=never --full-path --type file --hidden --exclude=".git" "' .. file_pattern .. '"'
+  local result = vim.fn.systemlist(cmd)
+  return result
+end
+
+vim.opt.findfunc = "v:lua.Fd"

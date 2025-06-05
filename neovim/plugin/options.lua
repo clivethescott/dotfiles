@@ -1,5 +1,5 @@
 -- Always use the clipboard directly (instead of +/* registers)
-vim.opt.clipboard = 'unnamedplus'
+-- vim.opt.clipboard = 'unnamedplus'
 vim.opt.dictionary:append('/usr/share/dict/words')
 vim.opt.spell = true
 vim.opt.spelllang = 'en_gb'
@@ -64,6 +64,12 @@ vim.opt.cursorline = true
 -- diagnostics appear/become resolved.
 vim.opt.signcolumn = 'yes'
 vim.opt.colorcolumn = '100'
+
+-- autowrap long lines
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.textwidth = 100
+vim.opt.formatoptions:remove "l"
 
 -- Enable line (relative) numbers
 vim.opt.number = true

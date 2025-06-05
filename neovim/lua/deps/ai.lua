@@ -32,7 +32,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     keys = {
-      { '<space>ao', '<cmd>CodeCompanionChat<cr>',    desc = 'Code Companion chat' },
+      { '<space>ao', '<cmd>CodeCompanionChat Toggle<cr>',    desc = 'Toggle Chat' },
       { '<space>ac', '<cmd>CodeCompanionActions<cr>', desc = 'Code Companion actions' },
       {
         mode = { 'n', 'v' },

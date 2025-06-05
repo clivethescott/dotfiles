@@ -4,22 +4,21 @@ local utils = require 'wez-utils'
 local wezterm = require 'wezterm' --[[@as Wezterm]]
 local mux = wezterm.mux
 
--- maximise window on startup
--- Note that the gui-startup event does not fire when invoking wezterm connect DOMAIN or wezterm start --domain DOMAIN --attach.
+-- maximise window on startup Note that the gui-startup event does not fire when invoking wezterm connect DOMAIN or wezterm start --domain DOMAIN --attach
 wezterm.on('gui-startup', function(cmd)
   local _, _, window = mux.spawn_window(cmd or {})
   window:gui_window():maximize()
 end)
 
 wezterm.on('update-right-status', function(window, _)
-  local date = wezterm.strftime '%H:%M | %A %d %b'
+  local date = wezterm.strftime '| %H:%M on %A %d %b '
   local status = window:active_workspace() .. ' ' -- .. ' @ ' .. pane:get_domain_name() .. ' '
 
   window:set_right_status(wezterm.format {
-    { Foreground = { Color = '#f5e0dc' } },
-    { Text = date .. ' | ' },
     { Foreground = { Color = '#a6e3a1' } },
     { Text = status },
+    { Foreground = { Color = '#f5e0dc' } },
+    { Text = date },
   })
 end)
 
@@ -27,7 +26,7 @@ wezterm.on('format-tab-title', function(tab, _)
   local zoomed = tab.active_pane.is_zoomed and '[Z] ' or ''
   local title = utils.tab_title(tab)
   return {
-    { Text = '  ' .. tostring(tab.tab_index+1) .. ':' .. title .. '  ' .. zoomed },
+    { Text = '  ' .. tostring(tab.tab_index + 1) .. ':' .. title .. '  ' .. zoomed },
   }
 end)
 
