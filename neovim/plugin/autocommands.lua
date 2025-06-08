@@ -20,6 +20,13 @@ vim.api.nvim_create_autocmd('LspNotify', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FocusLost', {
+  desc = "Copy to clipboard on FocusLost",
+  callback = function()
+    vim.fn.setreg("+", vim.fn.getreg("0"))
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "LspAttach" }, {
   group = vim.api.nvim_create_augroup('MyLspAttach', { clear = true }),
   callback = function(args)
