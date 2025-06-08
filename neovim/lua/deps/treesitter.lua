@@ -9,7 +9,7 @@ return {
       'nvim-treesitter/nvim-treesitter-context',
       event = 'BufReadPost',
       keys = {
-        { '[j', function() require("treesitter-context").go_to_context(vim.v.count1) end, desc = 'Jump to TS context' }
+        { '[h', function() require("treesitter-context").go_to_context(vim.v.count1) end, desc = 'Jump to TS context' }
       }
     }
   },
@@ -50,55 +50,6 @@ return {
           node_incremental = "<M-space>",
           scope_incremental = false,
           node_decremental = "<bs>",
-        },
-      },
-      textobjects = {
-        select = {
-          enable = false,
-          lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-          -- include_surrounding_whitespace = function(opts)
-          -- return opts.query and string.find(opts.query, "outer") or false
-          -- end,
-          keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
-            -- Managed by mini.ai custom_textobjects
-            -- ['af'] = { query = '@function.outer', desc = 'Select outer function' },
-            -- ['if'] = { query = '@function.inner', desc = 'Select inner function' },
-
-            -- ['ag'] = { query = '@function.params', desc = 'Select outer parameter' },
-            -- ['aG'] = { query = '@function.name', desc = 'Select function name' },
-          },
-        },
-        move = {
-          enable = true,
-          set_jumps = true, -- whether to set jumps in the jumplist
-          goto_previous_start = {
-            ['[p'] = { query = '@parameter.inner', desc = 'Go to prev param' },
-
-            ['[P'] = { query = '@function.params', desc = 'Go to prev params' },
-            ['[f'] = { query = '@function.outer', desc = 'Go to prev function' },
-            ['[F'] = { query = '@function.inner', desc = 'Go to prev function inner' },
-          },
-          goto_previous_end = {
-            ['[a'] = { query = '@assignment.lhs', desc = 'Goto lhs assignment' },
-          },
-          goto_next_end = {
-            [']a'] = { query = '@assignment.rhs', desc = 'Goto rhs assignment' },
-          },
-          goto_next_start = {
-            [']p'] = { query = '@parameter.inner', desc = 'Go to next param' },
-            [']f'] = { query = '@function.outer', desc = 'Go to next function' },
-            [']F'] = { query = '@function.inner', desc = 'Go to next function inner' },
-            -- ["]i"] = { query = "@call.outer", desc = "Prev function call end" },
-            ["]y"] = { query = "@for.outer", desc = "Next for expression" },
-            ["]s"] = { query = "@struct.outer", desc = "Next struct" },
-            ["]S"] = { query = "@impl.outer", desc = "Next struct impl" },
-          },
-        },
-        rainbow = {
-          enable = false,
-          extended_mode = true,
-          max_file_lines = 1000,
         },
       },
       query_linter = {
