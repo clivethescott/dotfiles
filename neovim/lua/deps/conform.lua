@@ -19,30 +19,8 @@ return {
     formatters_by_ft = {
       -- Conform will run multiple formatters sequentially
       go = { "goimports", "gofumpt", "gofmt" },
-      ocaml = { "ocamlformat" },
-      -- http = { "kulalaformat" },
-      python = { "isort", "black" },
       rust = { "rustfmt", lsp_format = "fallback" },
       javascript = { "prettierd", "prettier", stop_after_first = true },
-    },
-    formatters = {
-      kulalaformat = {
-        command = "kulala-fmt",
-        args = { "format", "$FILENAME" },
-      },
-      ocamlformat = { -- https://martinlwx.github.io/en/neovim-setup-for-ocaml/
-        command = "ocamlformat",
-        args = {
-          "--if-then-else",
-          "vertical",
-          "--break-cases",
-          "fit-or-vertical",
-          "--type-decl",
-          "sparse",
-          -- $FILENAME - absolute path to the file
-          "$FILENAME",
-        },
-      },
     },
   },
   init = function()

@@ -22,8 +22,8 @@ return {
       end,
     })
     vim.lsp.enable({
-      'graphql', 'html', 'jsonls', 'taplo', 'yamlls',
-      'rust_analyzer', 'gopls', 'pyright', 'ts_ls', 'lua_ls'
+      'graphql', 'html', 'jsonls', 'taplo', 'yamlls', 'ruff', 'ty',
+      'rust_analyzer', 'gopls', 'ts_ls', 'lua_ls'
     })
 
     local is_work = vim.env.IS_WORK_PC == "true"
