@@ -224,7 +224,7 @@ if status is-interactive; and type -q zoxide
 # import from z => zoxide import --merge --from=z ~/.local/share/z/data
   set -gx _ZO_FZF_OPTS "$FZF_DEFAULT_OPTS"
 # z, zi for fzf
-  zoxide init fish | source
+  zoxide init --cmd cd fish | source
 end
 
 set PATH /opt/homebrew/bin $GOBIN $JAVA_HOME/bin $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
