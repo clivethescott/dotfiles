@@ -207,6 +207,7 @@ set -gx BAT_THEME "Catppuccin Mocha"
 set GOBIN $HOME/Code/Go/bin
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx TEALDEER_CONFIG_DIR $HOME/.config/tealdeer
+set -gx PYTHONGIL 0
 abbr -a tldr tldr -p macos --pager
 
 # Add completions from stuff installed with Homebrew.
