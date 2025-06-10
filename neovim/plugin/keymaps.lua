@@ -28,7 +28,14 @@ vim.keymap.set('n', 'Q', ':q<cr>')
 vim.keymap.set('n', '<leader>q', ':q!<cr>')
 vim.keymap.set('n', 'Y', 'yy')
 vim.keymap.set('n', "'", '`')
-vim.keymap.set('n', '<space>y', ":let @+=expand('%:t')<cr>", { desc = 'Yank file name' })
+-- use the 0 register here as we copy from 0 -> + register on focus lost
+vim.keymap.set('n', '<space>y',
+  function()
+    local file_name = vim.fn.expand('%:t')
+    vim.fn.setreg('0', file_name)
+    vim.notify('Copied file name "' .. file_name .. '" to clipboard')
+  end, { desc = 'Yank file name' })
+vim.keymap.set({ 'n', 'v' }, '<space>p', '"*p', { desc = 'Paste from sys clipboard', silent = true })
 -- Resize split
 -- :vertical resize +10 OR :vertical resize 90
 
