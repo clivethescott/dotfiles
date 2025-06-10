@@ -118,10 +118,6 @@ abbr -a gs 'git status'
 abbr -a gp 'git push'
 abbr --add unset 'set --erase'
 
-if type -q minikube
-  alias mk 'minikube kubectl --'
-end
-
 if type -q kubectl
   abbr -a k kubectl
   abbr -a kgetcontext kubectl config current-context
@@ -175,7 +171,7 @@ if type -q bat
 end
 
 if type -q ast-grep
-  alias sg ast-grep
+  abbr --add -g sg ast-grep
 end
 
 if type -q fzf
