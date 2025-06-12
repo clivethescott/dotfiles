@@ -20,10 +20,30 @@ vim.api.nvim_create_autocmd('LspNotify', {
   end,
 })
 
-vim.api.nvim_create_autocmd('FocusLost', {
+local time_spent = nil
+
+vim.api.nvim_create_autocmd("FocusGained", {
+  callback = function()
+    time_spent = vim.loop.hrtime()
+  end,
+})
+
+vim.api.nvim_create_autocmd("FocusLost", {
   desc = "Copy to clipboard on FocusLost",
   callback = function()
-    vim.fn.setreg("+", vim.fn.getreg("0"))
+    if time_spent then
+      local elapsed_ns = vim.loop.hrtime() - time_spent
+      local elapsed_sec = elapsed_ns / 1e9
+      if elapsed_sec > 2 then
+        vim.fn.setreg("+", vim.fn.getreg("0"))
+      end
+    else
+      vim.notify("Focus timer was not started.", vim.log.levels.WARN)
+    end
+  end,
+})
+vim.api.nvim_create_autocmd('FocusLost', {
+  callback = function()
   end,
 })
 

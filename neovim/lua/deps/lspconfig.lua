@@ -23,7 +23,8 @@ return {
     })
     vim.lsp.enable({
       'graphql', 'html', 'jsonls', 'taplo', 'yamlls', 'ruff', 'ty',
-      'rust_analyzer', 'gopls', 'ts_ls', 'lua_ls', 'fish_lsp', 'nushell'
+      'rust_analyzer', 'gopls', 'ts_ls', 'lua_ls', 'fish_lsp', 'nushell', 
+      'terraformls', 'smithy'
     })
 
     local is_work = vim.env.IS_WORK_PC == "true"

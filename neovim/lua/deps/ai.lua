@@ -32,8 +32,8 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     keys = {
-      { '<space>ao', '<cmd>CodeCompanionChat Toggle<cr>',    desc = 'Toggle Chat' },
-      { '<space>ac', '<cmd>CodeCompanionActions<cr>', desc = 'Code Companion actions' },
+      { '<space>ao', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle Chat' },
+      { '<space>ac', '<cmd>CodeCompanionActions<cr>',     desc = 'Code Companion actions' },
       {
         mode = { 'n', 'v' },
         '<space>ai',
@@ -51,6 +51,13 @@ return {
       -- recommended to disable these, can interfere with blink, see https://github.com/giuxtaposition/blink-cmp-copilot
       panel = { enabled = false },
       suggestion = { enabled = false },
+      server_opts_overrides = {
+        settings = {
+          telemetry = {
+            telemetryLevel = 'off',
+          },
+        },
+      },
     }
   }
 }

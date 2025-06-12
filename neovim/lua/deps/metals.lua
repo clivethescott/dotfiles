@@ -1,6 +1,7 @@
 return {
   'scalameta/nvim-metals',
   ft = 'scala',
+  cond = vim.env.METALS ~= 'false',
   dependencies = {
     "nvim-lua/plenary.nvim"
   },
