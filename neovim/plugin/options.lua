@@ -66,10 +66,10 @@ vim.opt.signcolumn = 'yes'
 vim.opt.colorcolumn = '100'
 
 -- autowrap long lines
-vim.opt.wrap = true
-vim.opt.linebreak = true
-vim.opt.textwidth = 100
-vim.opt.formatoptions:remove "l"
+-- vim.opt.wrap = false
+-- vim.opt.linebreak = true
+-- vim.opt.textwidth = 100
+-- vim.opt.formatoptions:remove "l"
 
 -- Enable line (relative) numbers
 vim.opt.number = true

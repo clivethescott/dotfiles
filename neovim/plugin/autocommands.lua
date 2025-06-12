@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("FocusGained", {
 })
 
 vim.api.nvim_create_autocmd("FocusLost", {
-  desc = "Copy to clipboard on FocusLost",
+  desc = "Copy to clipboard on FocusLost if spent enough time in window",
   callback = function()
     if time_spent then
       local elapsed_ns = vim.loop.hrtime() - time_spent
@@ -37,8 +37,6 @@ vim.api.nvim_create_autocmd("FocusLost", {
       if elapsed_sec > 2 then
         vim.fn.setreg("+", vim.fn.getreg("0"))
       end
-    else
-      vim.notify("Focus timer was not started.", vim.log.levels.WARN)
     end
   end,
 })
