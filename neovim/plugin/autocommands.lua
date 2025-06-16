@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd("FocusLost", {
     if time_spent then
       local elapsed_ns = vim.loop.hrtime() - time_spent
       local elapsed_sec = elapsed_ns / 1e9
-      if elapsed_sec > 2 then
+      if elapsed_sec > 1 then
         vim.fn.setreg("+", vim.fn.getreg("0"))
       end
     end
