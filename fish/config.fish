@@ -96,10 +96,10 @@ if type -q gron
   abbr -a gr gron
 end
 
-if type -q mise
-  mise activate fish | source
-end
-
+# if type -q mise
+#   mise activate fish | source
+# end
+#
 if type -q uv
   abbr -a pip uv pip
   abbr -a pip3 uv pip
