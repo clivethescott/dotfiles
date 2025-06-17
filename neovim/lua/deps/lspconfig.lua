@@ -24,12 +24,14 @@ return {
     vim.lsp.enable({
       'graphql', 'html', 'jsonls', 'taplo', 'yamlls', 'ruff', 'ty',
       'rust_analyzer', 'gopls', 'ts_ls', 'lua_ls', 'fish_lsp', 'nushell',
-      'terraformls', 'smithy'
     })
 
     local is_work = vim.env.IS_WORK_PC == "true"
     if is_work then
-      vim.lsp.enable({ 'dockerls', 'terraformls' })
+      vim.lsp.enable({ 'dockerls', 'terraformls',
+        'smithy',
+        'kulala_ls' -- only useful for graphQL completion, needs the kulala_ls LSP server installed
+      })
     end
 
     local capabilities = require 'lsp'.client_capabilities()

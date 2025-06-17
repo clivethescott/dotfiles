@@ -25,7 +25,7 @@ vim.keymap.set({ 'n', 't' }, '<leader>R', function()
   end)
 end)
 vim.keymap.set('n', 'Q', ':q<cr>')
-vim.keymap.set('n', '<leader>q', ':q!<cr>')
+vim.keymap.set('n', '<leader>q', ':qa!<cr>')
 vim.keymap.set('n', 'Y', 'yy')
 vim.keymap.set('n', "'", '`')
 -- use the 0 register here as we copy from 0 -> + register on focus lost
