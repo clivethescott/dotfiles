@@ -1,8 +1,10 @@
 return {
   'sindrets/diffview.nvim',
-  cmd = {'DiffviewOpen', 'DiffviewFileHistory'},
+  event = 'VeryLazy',
   keys = {
-    { "<space>gz", '<cmd>DiffviewClose<cr>', desc = "Close Diffview" },
+    { "<space>gx", '<cmd>DiffviewClose<cr>', desc = "Close Diffview" },
+    { "<space>go", '<cmd>DiffviewOpen<cr>', desc = "Open Diffview" },
+    { "<space>gs", '<cmd>DiffviewOpen main...HEAD<cr>', desc = "Diffview branch" },
   },
   opts = {
     default_args = {
