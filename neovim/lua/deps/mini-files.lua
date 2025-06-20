@@ -10,7 +10,11 @@ return {
       },
       options = {
         permanent_delete = true,
-      }
+      },
+      mappings = {
+        go_in = '<M-l>',
+        go_out = '<M-h>'
+      },
     }
     vim.api.nvim_create_user_command('Files', function(args)
       local path = args.fargs and args.fargs[1] or nil
@@ -26,7 +30,7 @@ return {
       callback = function()
         -- set_mark('c', vim.fn.stdpath('config'), 'Config') -- path
         set_mark('c', '~/.config', 'Config')
-        set_mark('w', vim.fn.getcwd, 'Working directory')   -- callable
+        set_mark('w', vim.fn.getcwd, 'Working directory') -- callable
         set_mark('h', '~/Code/HTTP', 'HTTP files')
         set_mark('i', '~/IdeaProjects', 'IdeaProjects')
       end,
