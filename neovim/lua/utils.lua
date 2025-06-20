@@ -5,6 +5,24 @@ function M.resolvedCapabilities(client_id)
   vim.print(vim.lsp.get_client_by_id(client_id).server_capabilities)
 end
 
+function M.get_inlay_hint(bufnr, line)
+  bufnr = bufnr or 0
+  line = line or vim.api.nvim_win_get_cursor(0)[1] - 1
+  local namespace = vim.api.nvim_get_namespaces()["nvim.lsp.inlayhint"] or 0
+  local virt_text = vim.api.nvim_buf_get_extmarks(0, namespace, { line, 0 }, { line, -1 }, { details = true })
+
+  local inlay_hints = {}
+  for _, mark in ipairs(virt_text) do
+    if mark[4] and mark[4].virt_text then
+      for _, chunk in ipairs(mark[4].virt_text) do
+        table.insert(inlay_hints, chunk[1])
+      end
+    end
+  end
+
+  return table.concat(inlay_hints, " ")
+end
+
 function M.start_smithy()
   local launcher_path = vim.fs.joinpath(vim.fn.stdpath('config'), '/launchers/smithy-language-server')
   vim.lsp.start({

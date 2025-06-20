@@ -52,6 +52,10 @@ return {
       end
       -- other settings for metals here
       require 'lsp'.on_attach(client, bufnr)
+
+      vim.keymap.set('n', '<space>mo', metals.hover_worksheet,
+        { desc = 'Hover worksheet', buffer = bufnr })
+
     end
 
     local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })

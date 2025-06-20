@@ -113,6 +113,17 @@ function M.on_attach(client, bufnr)
   if client.supports_method('textDocument/inlayHint') then
     vim.keymap.set({ 'n', 'i' }, '<M-i>',
       function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end, { desc = 'Toggle inlay hints' })
+
+    vim.keymap.set('n', '<space>mc', function()
+      if vim.lsp.inlay_hint.is_enabled() then
+        local virt_text = require 'utils'.get_inlay_hint(bufnr)
+        if virt_text then
+          vim.fn.setreg("0", virt_text)
+        end
+      else
+        vim.notify('Inlay hints are disabled', vim.log.levels.WARN)
+      end
+    end, { desc = 'Copy inlay hint', buffer = bufnr })
   end
 
 
