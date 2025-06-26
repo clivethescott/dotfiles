@@ -32,7 +32,7 @@ vim.keymap.set('n', "'", '`')
 vim.keymap.set('n', '<space>y',
   function()
     local file_name = vim.fn.expand('%:t')
-    vim.fn.setreg('0', file_name)
+    vim.fn.setreg(vim.v.register, file_name)
     vim.notify('Copied file name "' .. file_name .. '" to clipboard')
   end, { desc = 'Yank file name' })
 vim.keymap.set({ 'n', 'v' }, '<space>p', '"*p', { desc = 'Paste from sys clipboard', silent = true })

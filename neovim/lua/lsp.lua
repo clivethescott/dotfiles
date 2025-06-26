@@ -118,7 +118,7 @@ function M.on_attach(client, bufnr)
       if vim.lsp.inlay_hint.is_enabled() then
         local virt_text = require 'utils'.get_inlay_hint(bufnr)
         if virt_text then
-          vim.fn.setreg("0", virt_text)
+          vim.fn.setreg(vim.v.register, virt_text)
         end
       else
         vim.notify('Inlay hints are disabled', vim.log.levels.WARN)
