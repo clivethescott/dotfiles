@@ -30,7 +30,10 @@ return {
       auto_install = true,
       sync_install = false,
       highlight = {
-        enable = true,                             -- false will disable the whole extension
+        enable = true,          -- false will disable the whole extension
+        disable = function(lang, bufnr) -- Disable in large JSON buffers
+          return lang == "json" and vim.api.nvim_buf_line_count(bufnr) > 10000
+        end,
         additional_vim_regex_highlighting = false, -- performance may suffer if enabled
       },
       ignore_install = { "svelte" },
