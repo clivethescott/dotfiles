@@ -53,7 +53,7 @@ return {
   },
   window_padding = {
     top = 5,
-    left = 5,
+    left = 20,
   },
   leader = { key = 'a', mods = 'CMD', timeout_milliseconds = 2000 },
   -- quick_select_patterns = {
