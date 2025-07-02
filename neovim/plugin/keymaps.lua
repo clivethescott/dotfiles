@@ -47,6 +47,8 @@ vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('n', '<space>x', ":.lua<cr>", { silent = true, desc = 'Exec Lua' })
 vim.keymap.set('n', '<space>X', "<cmd>source %<cr>", { silent = true, desc = 'Exec Lua file' })
 vim.keymap.set('v', '<space>x', ":lua<cr>", { silent = true, desc = 'Exec Lua' })
+-- See :h & and :h &&
+vim.keymap.set({ 'x', 'n' }, '&', ':&&<cr>', { desc = 'Repeat last substitute keeping flags' })
 
 -- Dealing with word wrap on long lines
 vim.keymap.set('n', 'k', [[v:count < 2 ? 'gk' : "m'" .. v:count .. 'k']], { expr = true })

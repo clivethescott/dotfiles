@@ -24,6 +24,12 @@ return {
           ["alt-g"]   = actions.toggle_ignore,
         },
       },
+      commands = { -- https://github.com/ibhagwan/fzf-lua/pull/1603#issuecomment-2554925844
+        actions = {
+          ["ctrl-f"] = actions.ex_run,
+          ["enter"] = actions.ex_run_cr,
+        }
+      },
       files = {
         hidden = true,
         follow = false,
@@ -119,6 +125,7 @@ return {
     { "<space>ldo", "<cmd>FzfLua diagnostics_document<cr>",       desc = "Diagnostics" },
     { "gR",         "<cmd>FzfLua lsp_references<cr>",             desc = "LSP References" },
     { "<space>lI",  "<cmd>FzfLua lsp_implementations<cr>",        desc = "LSP Implementations" },
+    { "<space>lz",  "<cmd>FzfLua zoxide<cr>",                     desc = "Zoxide" },
     {
       "<space>to",
       function() require 'fzf-lua'.oldfiles { include_current_session = true } end,

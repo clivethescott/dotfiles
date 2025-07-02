@@ -46,7 +46,7 @@ return {
       ["Inspect current request"] = { "<space>hi", function() require("kulala").inspect() end, ft = fts },
     },
     kulala_keymaps = true,
-    default_env = 'dev',
+    default_env = 'qa',
     request_timeout = 5000,
     -- Current available pane contains { "body", "headers", "headers_body", "script_output", "stats", "verbose" },
     default_winbar_panes = { 'body', 'headers' },
