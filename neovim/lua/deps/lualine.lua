@@ -74,7 +74,7 @@ return {
         lualine_z = {}
       },
       tabline = {},
-      extensions = { 'oil' }
+      extensions = { 'quickfix' }
     }
   end
 }

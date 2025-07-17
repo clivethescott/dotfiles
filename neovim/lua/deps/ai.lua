@@ -2,7 +2,7 @@ local adapter = vim.env.IS_WORK_PC == "true" and "copilot" or "ollama"
 return {
   {
     "olimorris/codecompanion.nvim",
-    event = "VeryLazy",
+    cmd = {'CodeCompanionChat', 'CodeCompanion'},
     opts = {
       strategies = {
         chat = {
