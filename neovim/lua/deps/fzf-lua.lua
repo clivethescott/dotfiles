@@ -28,6 +28,7 @@ return {
         actions = {
           ["ctrl-f"] = actions.ex_run,
           ["enter"] = actions.ex_run_cr,
+          -- ["alt-enter"] = actions.ex_run,
         }
       },
       files = {

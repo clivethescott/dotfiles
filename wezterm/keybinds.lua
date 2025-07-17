@@ -28,7 +28,7 @@ M.get = function()
   local chars = {}
 
   -- convert string to list
-  _ = all_characters:gsub(".", function(char) table.insert(chars, char) end)
+  _ = all_characters:gsub('.', function(char) table.insert(chars, char) end)
   local result = {
     {
       key = 'v',
@@ -113,6 +113,14 @@ M.get = function()
       action = action.SpawnTab 'CurrentPaneDomain',
     },
     {
+      key = 'C',
+      mods = 'LEADER',
+      action = wezterm.action.SpawnCommandInNewTab {
+        set_environment_variables = { USE_Q = 'true' },
+        args = { '/opt/homebrew/bin/fish' }
+      },
+    },
+    {
       key = 'm',
       mods = 'LEADER',
       action = wezterm.action_callback(function(_, pane)
@@ -127,14 +135,30 @@ M.get = function()
       end),
     },
     {
-      mods   = "LEADER",
-      key    = "s",
+      mods   = 'LEADER',
+      key    = 's',
       action = action.SplitVertical { domain = 'CurrentPaneDomain' }
     },
     {
-      mods   = "LEADER",
-      key    = "v",
+      mods   = 'LEADER',
+      key    = 'S',
+      action = wezterm.action.SplitVertical {
+        set_environment_variables = { USE_Q = 'true' },
+        args = { '/opt/homebrew/bin/fish' }
+      }
+    },
+    {
+      mods   = 'LEADER',
+      key    = 'v',
       action = action.SplitHorizontal { domain = 'CurrentPaneDomain' }
+    },
+    {
+      mods   = 'LEADER',
+      key    = 'V',
+      action = wezterm.action.SplitHorizontal {
+        set_environment_variables = { USE_Q = 'true' },
+        args = { '/opt/homebrew/bin/fish' }
+      }
     },
     {
       mods = 'LEADER',
@@ -236,7 +260,7 @@ M.get = function()
       },
     },
     { -- Show the launcher in fuzzy selection mode and have it list all workspaces
-      key = 'S',
+      key = 't',
       mods = 'LEADER',
       action = wezterm.action.ShowLauncherArgs {
         flags = 'FUZZY|WORKSPACES|TABS',
@@ -278,7 +302,7 @@ M.get = function()
     },
     { key = ')', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(1) },
     { key = '(', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(-1) },
-    { -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
+    { -- Send 'CTRL-A' to the terminal when pressing CTRL-A, CTRL-A
       key = 'a',
       mods = 'LEADER|CMD',
       action = wezterm.action.SendKey { key = 'a', mods = 'CTRL' },
