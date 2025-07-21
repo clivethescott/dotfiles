@@ -4,6 +4,7 @@ end
 
 set -gx EDITOR nvim
 set -gx COMPOSE_BAKE true
+set -gx JIRA_PAGER bat
 
 # Disable the fish greeting message
 set fish_greeting ""
@@ -190,7 +191,7 @@ if type -q python3
  abbr --add -g py python3
 end
 
-if status is-interactive; and test -f ~/.config/fish/tokens.fish
+if status is-interactive; and test -f ~/.config/fish/tokens.fish; and not set -q USE_Q
   source ~/.config/fish/tokens.fish
 end
  
