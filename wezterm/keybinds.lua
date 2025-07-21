@@ -110,7 +110,20 @@ M.get = function()
     {
       key = 'c',
       mods = 'LEADER',
-      action = action.SpawnTab 'CurrentPaneDomain',
+      -- action = action.SpawnTab 'CurrentPaneDomain',
+      action = wezterm.action.PromptInputLine {
+        description = 'New tab name:',
+        action = wezterm.action_callback(function(window, pane, line)
+          -- https://github.com/wezterm/wezterm/issues/4845#issuecomment-1908772170
+          if line then
+            local tab, _, _ = window:mux_window():spawn_tab({
+              domain = 'CurrentPaneDomain',
+              title = line,
+            })
+            tab:set_title(line)
+          end
+        end),
+      },
     },
     {
       key = 'C',
