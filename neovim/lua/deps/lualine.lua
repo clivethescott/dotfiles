@@ -10,7 +10,7 @@ return {
     require 'lualine'.setup {
       options = {
         icons_enabled = false,
-        theme = 'catppuccin-macchiato',
+        theme = 'moonfly',
         globalstatus = true,
       },
       sections = {
