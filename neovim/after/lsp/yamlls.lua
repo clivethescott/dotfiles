@@ -5,6 +5,9 @@ return {
       format = {
         enable = true,
       },
+      schemaStore = {
+        enable = true
+      },
       hover = true,
       completion = true,
       customTags = {
