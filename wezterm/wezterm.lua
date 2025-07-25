@@ -30,7 +30,7 @@ wezterm.on('format-tab-title', function(tab, _)
   }
 end)
 
-local color_scheme = utils.patch_color_scheme('catppuccin-mocha')
+-- local color_scheme = utils.patch_color_scheme('catppuccin-mocha')
 
 return {
   term = 'wezterm',
@@ -46,6 +46,11 @@ return {
   tab_max_width = 30,
   -- color_scheme = 'catppuccin-mocha-patched',
   -- color_scheme = '3024 (dark) (terminal.sexy)',
+  colors = {
+    tab_bar = {
+      background = '#323437',
+    },
+  },
   color_scheme = 'Moonfly (Gogh)',
   window_decorations = "RESIZE",
   audible_bell = "Disabled",
@@ -62,8 +67,8 @@ return {
   -- [[^/Users/(?:\w|/|)+\.(?:txt|csv|scala)$]]
   -- },
   inactive_pane_hsb = {
-    saturation = 0.4,
-    brightness = 0.4,
+    saturation = 0.2,
+    brightness = 0.2,
   },
   -- unix_domains = {
   --   { name = 'remote' }
