@@ -1,6 +1,6 @@
 return {
   {
-    'echasnovski/mini.hipatterns',
+    'nvim-mini/mini.hipatterns',
     event = 'BufReadPost',
     opts = {
       highlighters = {
@@ -9,7 +9,7 @@ return {
     }
   },
   {
-    'echasnovski/mini.ai',
+    'nvim-mini/mini.ai',
     event = 'BufReadPost',
     config = function()
       local ai = require 'mini.ai'
@@ -34,7 +34,7 @@ return {
     end
   },
   {
-    'echasnovski/mini.pairs',
+    'nvim-mini/mini.pairs',
     event = 'InsertEnter',
     opts = {
       mappings = {

@@ -1,5 +1,5 @@
 return {
-  'echasnovski/mini.files',
+  'nvim-mini/mini.files',
   event = 'VeryLazy',
   config = function()
     local files = require 'mini.files'
