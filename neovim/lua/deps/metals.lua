@@ -1,7 +1,6 @@
 return {
   'scalameta/nvim-metals',
   ft = 'scala',
-  cond = vim.env.METALS ~= 'false',
   dependencies = {
     "nvim-lua/plenary.nvim"
   },
@@ -15,10 +14,15 @@ return {
       },
       hintsInPatternMatch = {
         enable = true,
-      }
+      },
+      ['named-parameters'] = {
+        enable = true,
+      },
     }
     metals_config.settings = {
-      serverVersion = '1.6.0',
+      disabledMode = vim.env.METALS == '0',
+      startMcpServer = true,
+      serverVersion = '1.6.2',
       fallbackScalaVersion = '3.6.3',
       showImplicitArguments = true,
       showImplicitConversionsAndClasses = true,
@@ -55,7 +59,6 @@ return {
 
       vim.keymap.set('n', '<space>mo', metals.hover_worksheet,
         { desc = 'Hover worksheet', buffer = bufnr })
-
     end
 
     local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })

@@ -3,9 +3,6 @@ return {
   'obsidian-nvim/obsidian.nvim',
   ft = 'markdown',
   cmd = 'Obsidian',
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
   ---@module 'obsidian'
   ---@type obsidian.config.ClientOpts
   opts = {
