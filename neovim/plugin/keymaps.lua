@@ -14,32 +14,21 @@ vim.keymap.set('n', '<space>lD', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = 'Toggle diagnostics' })
 
--- Rename terminal without keeping old alt
---https://vi.stackexchange.com/questions/9566/how-to-change-buffer-name-for-neovim-terminal-special-buffer
--- keepalt file newName
-vim.keymap.set({ 'n', 't' }, '<leader>R', function()
-  vim.ui.input({ prompt = 'Enter new name: ' }, function(name)
-    if name ~= nil then
-      vim.cmd(':keepalt file ' .. name)
-    end
-  end)
-end)
 vim.keymap.set('n', 'Q', ':q<cr>')
 vim.keymap.set('n', '<leader>q', ':qa!<cr>')
 vim.keymap.set('n', 'Y', 'yy')
 vim.keymap.set('n', "'", '`')
--- use the 0 register here as we copy from 0 -> + register on focus lost
 vim.keymap.set('n', '<space>y',
   function()
     local file_name = vim.fn.expand('%:t')
     vim.fn.setreg(vim.v.register, file_name)
     vim.notify('Copied file name "' .. file_name .. '" to clipboard')
   end, { desc = 'Yank file name' })
-vim.keymap.set({ 'n', 'v' }, '<space>p', '"*p', { desc = 'Paste from sys clipboard', silent = true })
+
 -- Resize split
 -- :vertical resize +10 OR :vertical resize 90
 
--- Keep selection after visual indent/outdentyy
+-- Keep selection after visual indent/outdent
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
@@ -47,25 +36,17 @@ vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('n', '<space>x', ":.lua<cr>", { silent = true, desc = 'Exec Lua' })
 vim.keymap.set('n', '<space>X', "<cmd>source %<cr>", { silent = true, desc = 'Exec Lua file' })
 vim.keymap.set('v', '<space>x', ":lua<cr>", { silent = true, desc = 'Exec Lua' })
+
 -- See :h & and :h &&
 vim.keymap.set({ 'x', 'n' }, '&', ':&&<cr>', { desc = 'Repeat last substitute keeping flags' })
 
--- Dealing with word wrap on long lines
+-- Dealing with word wrap and jumps on long lines
 vim.keymap.set('n', 'k', [[v:count < 2 ? 'gk' : "m'" .. v:count .. 'k']], { expr = true })
 vim.keymap.set('n', 'j', [[v:count < 2 ? 'gj' : "m'" .. v:count .. 'j']], { expr = true })
 
-if vim.fn.has("nvim-0.11") ~= 1 then
-  -- Quickly add empty lines, provided later in nvim
-  -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines=
-  vim.keymap.set('n', '[<space>', ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[",
-    { desc = 'Add line before', silent = true })
-  vim.keymap.set('n', ']<space>', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>',
-    { desc = 'Add line after', silent = true })
-end
+-- use the default <c-l> to clear search highlight
+-- vim.keymap.set('n', '<leader>m', "<cmd>silent! nohls<cr>", { silent = true, desc = 'Clear highlight' })
 
--- Misc
-vim.keymap.set('n', '<space><space>', ":b#<cr>", { silent = true, desc = 'Alt buffer' })
-vim.keymap.set('n', '<leader>m', "<cmd>silent! nohls<cr>", { silent = true, desc = 'Clear highlight' })
 vim.keymap.set('n', '<space>ow',
   function()
     if vim.o.winbar == "" then
