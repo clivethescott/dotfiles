@@ -1,10 +1,12 @@
-local adapter = vim.env.IS_WORK_PC == "true" and "copilot" or "copilot"
+local adapter = "copilot"
+local is_work_pc = vim.env.IS_WORK_PC == "true"
 return {
   {
     "ravitemer/mcphub.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+    cond = is_work_pc,
     event = 'InsertEnter',
     build = "npm install -g mcp-hub@latest",
     config = true,
@@ -12,6 +14,7 @@ return {
   {
     "olimorris/codecompanion.nvim",
     cmd = { 'CodeCompanionChat', 'CodeCompanion' },
+    cond = is_work_pc,
     opts = {
       extensions = {
         mcphub = {
@@ -59,7 +62,7 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
-    cond = vim.env.IS_WORK_PC == "true",
+    cond = is_work_pc,
     cmd = "Copilot",
     event = "VeryLazy",
     opts = {

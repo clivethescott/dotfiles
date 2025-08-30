@@ -1,3 +1,4 @@
+local is_work_pc = vim.env.IS_WORK_PC == "true"
 return {
   'scalameta/nvim-metals',
   ft = 'scala',
@@ -21,7 +22,7 @@ return {
     }
     metals_config.settings = {
       disabledMode = vim.env.METALS == '0',
-      startMcpServer = true,
+      startMcpServer = is_work_pc,
       serverVersion = '1.6.2',
       fallbackScalaVersion = '3.6.3',
       showImplicitArguments = true,
