@@ -153,6 +153,8 @@ if type -q xh
   alias http xh
 end
 
+alias z cd
+
 if type -q nvim
   abbr -a vim nvim
   abbr -a nv nvim
