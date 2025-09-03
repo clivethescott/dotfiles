@@ -20,6 +20,9 @@ return {
     ]]
       end,
     },
+    keys = {
+      { '<space>aq', '<cmd>AmazonQ toggle<cr>', desc = 'Toggle Q' },
+    }
   },
   {
     "ravitemer/mcphub.nvim",
