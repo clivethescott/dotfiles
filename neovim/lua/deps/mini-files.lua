@@ -1,3 +1,8 @@
+local is_directory = function(path)
+  local stat = vim.loop.fs_stat(path)
+  return stat and stat.type == "directory"
+end
+
 return {
   'nvim-mini/mini.files',
   event = 'VeryLazy',
@@ -61,6 +66,17 @@ return {
       vim.fn.setreg(vim.v.register, path)
     end
 
+    local fzf_grep_dir = function()
+      local path = (MiniFiles.get_fs_entry() or {}).path
+      if path == nil then return vim.notify('Cursor is not on valid entry') end
+      if is_directory(path) then
+        require("fzf-lua").live_grep_glob { cwd = path }
+        -- MiniFiles.close()
+      else
+        vim.notify('Cursor is not on a directory')
+      end
+    end
+
     -- Open path with system default handler (useful for non-text files)
     local ui_open = function() vim.ui.open(MiniFiles.get_fs_entry().path) end
 
@@ -69,13 +85,22 @@ return {
       callback = function(args)
         local b = args.data.buf_id
         vim.keymap.set('n', 'g.', set_cwd, { buffer = b, desc = 'Set cwd' })
-        vim.keymap.set('n', 'gx', ui_open, { buffer = b, desc = 'OS open' })
+        -- vim.keymap.set('n', 'gx', ui_open, { buffer = b, desc = 'OS open' })
+        vim.keymap.set('n', 'gf', fzf_grep_dir, { buffer = b, desc = 'Live grep dir' })
         vim.keymap.set('n', 'gy', yank_path, { buffer = b, desc = 'Yank path' })
       end,
     })
   end,
   keys = {
-    { '<leader>1', function() require 'mini.files'.open() end,                             desc = 'Open Files in cwd' },
+    {
+      '<leader>1',
+      function()
+        if not require 'mini.files'.close() then
+          require 'mini.files'.open()
+        end
+      end,
+      desc = 'Open Files in cwd'
+    },
     { '<space>fo', function() require 'mini.files'.open() end,                             desc = 'Open Files in cwd' },
     { '<space>fO', function() require 'mini.files'.open(vim.api.nvim_buf_get_name(0)) end, desc = 'Select file in explorer' },
     { '<leader>!', function() require 'mini.files'.open(vim.api.nvim_buf_get_name(0)) end, desc = 'Select file in explorer' },

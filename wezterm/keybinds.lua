@@ -125,14 +125,14 @@ M.get = function()
         end),
       },
     },
-    {
-      key = 'C',
-      mods = 'LEADER',
-      action = wezterm.action.SpawnCommandInNewTab {
-        set_environment_variables = { USE_Q = 'true' },
-        args = { '/opt/homebrew/bin/fish' }
-      },
-    },
+    -- {
+    --   key = 'C',
+    --   mods = 'LEADER',
+    --   action = wezterm.action.SpawnCommandInNewTab {
+    --     set_environment_variables = { USE_Q = 'true' },
+    --     args = { '/opt/homebrew/bin/fish' }
+    --   },
+    -- },
     {
       key = 'm',
       mods = 'LEADER',
@@ -290,7 +290,7 @@ M.get = function()
     --   action = wezterm.action.DetachDomain { DomainName = 'remote' },
     -- },
     { -- Prompt for a name to use for a new workspace and switch to it.
-      key = 'w',
+      key = 'C',
       mods = 'LEADER',
       action = wezterm.action.PromptInputLine {
         description = wezterm.format {

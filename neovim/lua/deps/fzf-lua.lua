@@ -122,11 +122,11 @@ return {
     { "<space>tm",  "<cmd>FzfLua marks<cr>",                      desc = "Marks" },
     { "<space>tr",  "<cmd>FzfLua registers<cr>",                  desc = "Registers" },
     { "<space>tb",  "<cmd>FzfLua lines<cr>",                      desc = "Open Buffers lines" },
+    { "<space>tz",  "<cmd>FzfLua zoxide<cr>",                     desc = "Zoxide" },
     { "<space>lw",  "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = "LSP workspace symbols" },
     { "<space>ldo", "<cmd>FzfLua diagnostics_document<cr>",       desc = "Diagnostics" },
     { "gR",         "<cmd>FzfLua lsp_references<cr>",             desc = "LSP References" },
     { "<space>lI",  "<cmd>FzfLua lsp_implementations<cr>",        desc = "LSP Implementations" },
-    { "<space>lz",  "<cmd>FzfLua zoxide<cr>",                     desc = "Zoxide" },
     {
       "<space>to",
       function() require 'fzf-lua'.oldfiles { include_current_session = true } end,
