@@ -12,6 +12,7 @@ return {
         path = "~/ObsidianNotes",
       },
     },
+    legacy_commands = false,
     log_level = vim.log.levels.WARN,
     completion = { blink = true, min_chars = 2 },
     open = {
@@ -26,32 +27,6 @@ return {
     daily_notes = {
       folder = 'daily'
     },
-    mappings = {
-      ["<cr>"] = {
-        action = function()
-          return require("obsidian").util.smart_action()
-        end,
-        opts = { buffer = true, expr = true },
-      },
-      ["gf"] = {
-        action = function()
-          return require("obsidian").util.gf_passthrough()
-        end,
-        opts = { noremap = false, expr = true, buffer = true },
-      },
-      ["<space>nt"] = {
-        action = function()
-          return require("obsidian").util.toggle_checkbox()
-        end,
-        opts = { buffer = true },
-      },
-      ["<space>na"] = {
-        action = function()
-          return require("obsidian").util.smart_action()
-        end,
-        opts = { buffer = true, expr = true },
-      },
-    }
   },
   keys = {
     {

@@ -1,4 +1,5 @@
 {
+  "amazonq": { "branch": "main", "commit": "9e912b9d59ca6f0e75086524b7289db2282799f5" },
   "blink.cmp": { "branch": "main", "commit": "bae4bae0eedd1fa55f34b685862e94a222d5c6f8" },
   "catppuccin": { "branch": "main", "commit": "cb5665990a797b102715188e73c44c3931b3b42e" },
   "codecompanion.nvim": { "branch": "main", "commit": "76f1c1aaedbb159256dbc64705cd34f447046d64" },
