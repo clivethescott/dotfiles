@@ -30,7 +30,7 @@ wezterm.on('format-tab-title', function(tab, _)
   }
 end)
 
--- local color_scheme = utils.patch_color_scheme('catppuccin-mocha')
+local color_scheme = utils.patch_color_scheme('catppuccin-mocha')
 
 return {
   term = 'wezterm',
@@ -43,9 +43,9 @@ return {
   scrollback_lines = 10000,
   font = wezterm.font('Hack Nerd Font Mono'),
   use_fancy_tab_bar = false,
+  tab_bar_at_bottom = false,
   tab_max_width = 30,
   -- color_scheme = 'catppuccin-mocha-patched',
-  -- color_scheme = '3024 (dark) (terminal.sexy)',
   colors = {
     tab_bar = {
       background = '#323437',

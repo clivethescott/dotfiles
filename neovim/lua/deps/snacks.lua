@@ -69,6 +69,7 @@ return {
     image = { enabled = true },
   },
   keys = {
-    { "gs", function() require 'snacks'.lazygit.open() end, desc = "Lazygit" },
+    { "gs",        function() require 'snacks'.lazygit.open() end,                  desc = "Lazygit" },
+    { "<space>nh", function() require 'snacks'.notifier.show_history() end, desc = "Notification history" },
   }
 }

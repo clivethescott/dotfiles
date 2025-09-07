@@ -22,7 +22,7 @@ return {
       end,
     })
     vim.lsp.enable({
-      'graphql', 'html', 'jsonls', 'taplo', 'yamlls', 'ruff', 'ty',
+      'graphql', 'html', 'jsonls', 'taplo', 'yamlls', 'ruff', 'pyrefly',
       'rust_analyzer', 'gopls', 'ts_ls', 'lua_ls', 'fish_lsp', 'nushell',
     })
 
