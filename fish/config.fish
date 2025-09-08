@@ -192,6 +192,7 @@ end
 
 if type -q python3
  abbr --add -g py python3
+ abbr --add -g python python3
 end
 
 if status is-interactive; and test -f ~/.config/fish/tokens.fish; and not set -q USE_Q

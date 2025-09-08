@@ -1,0 +1,42 @@
+{
+  "mcpServers": {
+    "datadog": {
+      "args": [
+        "run",
+        "--with",
+        "fastmcp",
+        "fastmcp",
+        "run",
+        "${userHome}/IdeaProjects/Tools/datadog-mcp-server/app/datadogmcp.py",
+        "--no-banner"
+      ],
+      "command": "${userHome}/.local/share/mise/installs/uv/0.8.14/uv-aarch64-apple-darwin/uv",
+      "disabled": false,
+      "env": {
+        "DD_API_KEY": "${env:DD_API_KEY}",
+        "DD_APPLICATION_KEY": "${env:DD_APP_KEY}"
+      }
+    },
+    "filesystem": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "${ALLOWED_DIRECTORY}"
+      ],
+      "command": "npx"
+    },
+    "sequentialthinking": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "command": "npx"
+    },
+    "time": {
+      "args": [
+        "mcp-server-time"
+      ],
+      "command": "uvx"
+    }
+  }
+}
