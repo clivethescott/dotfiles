@@ -31,12 +31,19 @@ wezterm.on('format-tab-title', function(tab, _)
 end)
 
 local color_scheme = utils.patch_color_scheme('catppuccin-mocha')
+local home_dir = wezterm.home_dir
 
 return {
   term = 'wezterm',
   disable_default_key_bindings = true, -- https://wezfurlong.org/wezterm/config/default-keys.html?h=keys
   keys = keys.get(),
   mouse_bindings = keys.mouse(),
+  set_environment_variables = {
+    XDG_CONFIG_HOME = home_dir .. '/.config',
+    XDG_DATA_HOME = home_dir .. '/.local/share',
+    XDG_STATE_HOME = home_dir .. '/.local/state',
+    XDG_CACHE_HOME = home_dir .. '/.cache',
+  },
   hide_tab_bar_if_only_one_tab = false,
   font_size = 16.5,
   line_height = 1.3,
