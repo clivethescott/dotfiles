@@ -1,50 +1,88 @@
 tap "coursier/formulas"
-tap "helix-editor/helix"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "jesseduffield/lazygit"
+tap "noahgorstein/tap"
 tap "scalacenter/bloop"
-brew "asciidoctor"
-brew "automake"
-brew "gettext"
-brew "axel"
-brew "bat"
-brew "carthage"
-brew "catimg"
-brew "coreutils"
-brew "defaultbrowser"
-brew "delve"
-brew "exa"
-brew "fd"
-brew "fzf"
-brew "gdbm"
-brew "git"
-brew "git-delta"
-brew "gnu-sed"
-brew "go"
-brew "mpdecimal"
+tap "smithy-lang/tap"
+tap "virtuslab/scala-cli"
+# General-purpose data compression with high compression ratio
 brew "xz"
-brew "python@3.10"
-brew "google-java-format"
-brew "httpie"
-brew "jq"
-brew "libtool"
-brew "maven"
-brew "neovim", args: ["HEAD"]
-brew "ninja"
-brew "node"
-brew "pkg-config"
-brew "postgresql"
+# Improved shell history for zsh, bash, fish and nushell
+brew "atuin", restart_service: :changed
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext"
+# Insanely fast image printing in your terminal
+brew "catimg"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+# Visually compare two PDF files
+brew "diff-pdf"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
+# User-friendly command-line shell for UNIX-like operating systems
+brew "fish"
+# Distributed revision control system
+brew "git"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
+# Idiomatic, lean, fast & safe pure Rust implementation of Git
+brew "gitoxide"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
+# C99 library which implements a VT220 or xterm terminal emulator
+brew "libvterm"
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
+# Library for decimal floating point arithmetic
+brew "mpdecimal"
+# Modern shell for the GitHub era
+brew "nushell"
+# Development kit for the Java programming language
+brew "openjdk"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
+# Terminal slideshow tool
+brew "presenterm"
+# Modern replacement for ps written in Rust
 brew "procs"
-brew "protobuf"
-brew "ripgrep"
-brew "smartmontools"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.12"
+# Very fast implementation of tldr in Rust
+brew "tealdeer"
+# Clean C library for processing UTF-8 Unicode data
+brew "utf8proc"
+# Terminal multiplexer
 brew "tmux"
+# Plugin manager for tmux
+brew "tpm"
+# Command-line unarchiving tools supporting multiple formats
+brew "unar"
+# Internet file retriever
 brew "wget"
-brew "zoxide"
-brew "coursier/formulas/coursier"
-brew "jesseduffield/lazygit/lazygit"
+# Access X11 clipboards from the command-line
+brew "xclip"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
+# Better and friendly vi(vim) mode plugin for ZSH
+brew "zsh-vi-mode"
+cask "font-fira-code-nerd-font"
+cask "font-hack-nerd-font"
+cask "font-symbols-only-nerd-font"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+# Free and open-source media player
 cask "iina"
+# Free and open-source RSS reader
+cask "netnewswire"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
+# Replacement for Docker Desktop
+# cask "orbstack"
+# Open-source BitTorrent client
 cask "transmission"
+# GPU-accelerated cross-platform terminal emulator and multiplexer
+cask "wezterm"
