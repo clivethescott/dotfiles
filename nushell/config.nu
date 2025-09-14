@@ -18,60 +18,47 @@
 # them for future reference.
 alias k = kubectl
 
-# This completer will use the fish shell to handle completions
-let fish_completer = {|spans|
-    fish --command $"complete '--do-complete=($spans | str join ' ')'"
-    | from tsv --flexible --noheaders --no-infer
-    | rename value description
-    | update value {
-        if ($in | path exists) {$'"($in | str replace "\"" "\\\"" )"'} else {$in}
-    }
-}
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
+# mkdir ~/.cache/carapace
+# carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
+source ~/.cache/carapace/init.nu
 
-let zoxide_completer = {|spans|
-    $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD}
-}
+mkdir ($nu.data-dir | path join "vendor/autoload")
 
-let carapace_completer = {|spans: list<string>|
-    carapace $spans.0 nushell ...$spans
-    | from json
-    | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
-}
+# Starship prompt
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
-# This completer will use fish by default
-let external_completer = {|spans|
-    let expanded_alias = scope aliases
-    | where name == $spans.0
-    | get -i 0.expansion
-
-    let spans = if $expanded_alias != null {
-        $spans
-        | skip 1
-        | prepend ($expanded_alias | split row ' ' | take 1)
-    } else {
-        $spans
-    }
-
-    match $spans.0 {
-        # carapace completions are incorrect for nu
-        nu => $fish_completer
-        # fish completes commits and branch names in a nicer way
-        git => $fish_completer
-        # carapace doesn't have completions for asdf
-        asdf => $fish_completer
-        # use zoxide completions for zoxide commands
-        __zoxide_z | __zoxide_zi | z => $zoxide_completer
-        _ => $fish_completer
-    } | do $in $spans
-}
-
+$env.EDITOR = 'nvim'
 $env.config = {
     show_banner: false,
     edit_mode: 'vi',
-    completions: {
-        external: {
-            enable: true
-            completer: $external_completer
-        }
+    cursor_shape: {
+      emacs: line # block, underscore, line, blink_block, blink_underscore, blink_line (line is the default)
+      vi_insert: line # block, underscore, line , blink_block, blink_underscore, blink_line (block is the default)
+      vi_normal: block # block, underscore, line, blink_block, blink_underscore, blink_line (underscore is the default)
     }
 }
+
+# Atuin shell history
+# https://docs.atuin.sh/configuration/key-binding/#nu
+$env.ATUIN_NOBIND = true
+atuin init nu | save -f ~/.local/share/atuin/init.nu
+source ~/.local/share/atuin/init.nu
+
+# https://www.nushell.sh/book/line_editor.html#keybindings
+$env.config.keybindings ++= [
+  {
+    name: atuin
+    modifier: control
+    keycode: char_r
+    mode: [emacs, vi_normal, vi_insert]
+    event: { send: executehostcommand cmd: (_atuin_search_cmd) }
+  },
+  {
+    name: complete_history
+    modifier: control
+    keycode: char_y
+    mode: [emacs, vi_normal, vi_insert]
+    event: { send: HistoryHintComplete }
+  }
+]

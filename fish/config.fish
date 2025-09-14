@@ -222,6 +222,10 @@ if status is-interactive; and test "$os" = Darwin
     end
 end
 
+# carapace completion
+set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
+carapace _carapace | source
+
 # fzf --fish | source
 if status is-interactive; and type -q zoxide
 # import from z => zoxide import --merge --from=z ~/.local/share/z/data
@@ -233,3 +237,4 @@ end
 set PATH /opt/homebrew/bin $GOBIN $JAVA_HOME/bin $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
 set PATH ~/orbstack/bin ~/.local/bin $PATH
 
+starship init fish | source
