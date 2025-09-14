@@ -237,4 +237,4 @@ end
 set PATH /opt/homebrew/bin $GOBIN $JAVA_HOME/bin $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
 set PATH ~/orbstack/bin ~/.local/bin $PATH
 
-starship init fish | source
+# starship init fish | source
