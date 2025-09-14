@@ -17,7 +17,14 @@
 # You can remove these comments if you want or leave
 # them for future reference.
 
+$env.MANPAGER =  "sh -c 'col -bx | bat -l man -p'"
+$env.FZF_DEFAULT_OPTS  = "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build"
+$env.FZF_DEFAULT_COMMAND = "fd --type file --strip-cwd-prefix --follow --exclude .git"
+
+# $env.PYTHONGIL = 0
 $env.EDITOR = 'nvim'
+
+$env.TEALDEER_CONFIG_DIR = $env.HOME | path join '.config/tealdeer'
 $env.XDG_CONFIG_HOME = $env.HOME | path join ".config" # important for Neovim
 $env.XDG_DATA_HOME = $env.HOME | path join ".local/share"
 $env.JIRA_PAGER = 'bat'
@@ -50,6 +57,7 @@ mkdir $vendor_autoload
 # starship init nu | save -f ($vendor_autoload | path join "starship.nu")
 source starship.nu
 
+alias tldr = tldr -p macos --pager
 alias lg = lazygit
 alias gd = git diff
 alias gs = git status
