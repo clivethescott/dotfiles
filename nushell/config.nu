@@ -29,6 +29,7 @@ mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
 $env.EDITOR = 'nvim'
+$env.XDG_CONFIG_HOME = $env.HOME | path join ".config"
 $env.config = {
     show_banner: false,
     edit_mode: 'vi',
