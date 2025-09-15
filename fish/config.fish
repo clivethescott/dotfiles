@@ -223,8 +223,8 @@ if status is-interactive; and test "$os" = Darwin
 end
 
 # carapace completion
-set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
-carapace _carapace | source
+# set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
+# carapace _carapace | source
 
 # fzf --fish | source
 if status is-interactive; and type -q zoxide
