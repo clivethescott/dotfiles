@@ -57,6 +57,8 @@ mkdir $vendor_autoload
 # starship init nu | save -f ($vendor_autoload | path join "starship.nu")
 source starship.nu
 
+alias unset = hide-env
+alias fg = job unfreeze
 alias tldr = tldr -p macos --pager
 alias lg = lazygit
 alias gd = git diff
@@ -90,6 +92,8 @@ $env.config.cursor_shape = {
    vi_insert: line # block, underscore, line , blink_block, blink_underscore, blink_line (block is the default)
    vi_normal: block # block, underscore, line, blink_block, blink_underscore, blink_line (underscore is the default)
 }
+$env.config.completions.algorithm = 'fuzzy'
+$env.config.completions.case_sensitive = false
 
 # Atuin shell history
 # https://docs.atuin.sh/configuration/key-binding/#nu
