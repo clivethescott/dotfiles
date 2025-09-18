@@ -87,7 +87,7 @@ return {
       { silent = true, desc = "Nvim plugin grep" })
 
     vim.keymap.set("n", "<space>ro",
-      function() require("fzf-lua").files { cwd = '~/Code/Hurl' } end,
+      function() require("fzf-lua").files { cwd = '~/Code/HTTP' } end,
       { silent = true, desc = "Hurl files" })
   end,
   keys = {
