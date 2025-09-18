@@ -2,30 +2,29 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = true
-right_format = """$git_branch"""
-format = """
-$directory\
+right_format = """
 $kubernetes\
+$git_branch\
 $git_commit\
 $git_state\
 $git_status\
 $docker_context\
 $golang\
 $helm\
-$java\
-$gradle\
 $lua\
 $nodejs\
-$python\
 $rust\
-$scala\
 $terraform\
-$aws\
 $env_var\
 $mise\
 $sudo\
 $shell\
 """
+
+format = """
+$directory\
+"""
+
 follow_symlinks = false
 
 [git_branch]
