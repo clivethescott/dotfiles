@@ -49,7 +49,8 @@ return {
     default_env = 'qa',
     request_timeout = 5000,
     -- Current available pane contains { "body", "headers", "headers_body", "script_output", "stats", "verbose" },
-    default_winbar_panes = { 'body', 'headers' },
+    -- default_winbar_panes = { 'body', 'headers' },
+    default_winbar_panes = { 'body' },
     default_view = 'headers_body',
   },
 }
