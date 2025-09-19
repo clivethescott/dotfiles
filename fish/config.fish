@@ -60,7 +60,7 @@ if status is-interactive
     # mimic right key to complete auto-suggestion
     # disable the preset in fish_user_key_bindings or may get reset
     bind -M $mode \cy forward-char
-    bind -M $mode \ce forward-char
+    # bind -M $mode \ce forward-char
   end
 end
 
@@ -76,6 +76,9 @@ end
 
 # edit commands in vim
 if status is-interactive
+  for mode in default visual insert
+    bind -M $mode \ce edit_command_buffer
+  end
   for mode in default visual
     bind -M $mode vv edit_command_buffer
   end
