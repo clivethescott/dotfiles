@@ -18,7 +18,7 @@
 # them for future reference.
 
 $env.MANPAGER =  "sh -c 'col -bx | bat -l man -p'"
-$env.FZF_DEFAULT_OPTS  = "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build"
+$env.FZF_DEFAULT_OPTS  = "--layout reverse --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build"
 $env.FZF_DEFAULT_COMMAND = "fd --type file --strip-cwd-prefix --follow --exclude .git"
 
 # $env.PYTHONGIL = 0
@@ -41,6 +41,8 @@ path add $GOBIN
 path add $JAVA_BIN
 path add $COURSIER_BIN
 path add $CARGO_BIN
+path add $APPS_BIN
+path add '/Applications/WezTerm.app/Contents/MacOS'
 
 # Mise -- needs to be higher up
 source ($nu.default-config-dir | path join mise.nu)
@@ -92,7 +94,7 @@ $env.config.cursor_shape = {
    vi_insert: line # block, underscore, line , blink_block, blink_underscore, blink_line (block is the default)
    vi_normal: block # block, underscore, line, blink_block, blink_underscore, blink_line (underscore is the default)
 }
-$env.config.completions.algorithm = 'fuzzy'
+# $env.config.completions.algorithm = 'fuzzy'
 $env.config.completions.case_sensitive = false
 
 # Atuin shell history

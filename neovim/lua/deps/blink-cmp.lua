@@ -31,7 +31,7 @@ return {
       ['<c-k>'] = { 'snippet_backward', 'fallback' },
     },
     sources = {
-      default = { 'lsp', 'snippets', 'buffer', 'markdown', 'lazydev', 'path' },
+      default = { 'lsp', 'snippets', 'buffer', 'omni', 'markdown', 'lazydev', 'path' },
       providers = {
         buffer = {
           max_items = 2,
