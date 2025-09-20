@@ -130,7 +130,7 @@ M.get = function()
       mods = 'LEADER',
       action = wezterm.action.SpawnCommandInNewTab {
         -- set_environment_variables = { USE_Q = 'true' },
-        args = { '/opt/homebrew/bin/fish' }
+        args = { '/opt/homebrew/bin/nu' }
       },
     },
     {
@@ -156,8 +156,8 @@ M.get = function()
       mods   = 'LEADER',
       key    = 'S',
       action = wezterm.action.SplitVertical {
-        set_environment_variables = { USE_Q = 'true' },
-        args = { '/opt/homebrew/bin/fish' }
+        -- set_environment_variables = { USE_Q = 'true' },
+        args = { '/opt/homebrew/bin/nu' }
       }
     },
     {
@@ -170,7 +170,7 @@ M.get = function()
       key    = 'V',
       action = wezterm.action.SplitHorizontal {
         -- set_environment_variables = { USE_Q = 'true' },
-        args = { '/opt/homebrew/bin/fish' }
+        args = { '/opt/homebrew/bin/nu' }
       }
     },
     {

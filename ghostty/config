@@ -50,7 +50,7 @@ macos-option-as-alt = true
 macos-titlebar-style = tabs
 macos-auto-secure-input = true
 
-theme = catppuccin-mocha
+theme = catppuccin-mocha.conf
 
 # Font
 font-family = "Hack Nerd Font Mono"
