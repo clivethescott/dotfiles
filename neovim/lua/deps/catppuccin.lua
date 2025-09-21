@@ -14,6 +14,11 @@ return {
       },
     },
     flavour = 'mocha',
+    custom_highlights = function(colors)
+      return {
+        NormalFloat = { bg = colors.base },
+      }
+    end,
     dim_inactive = {
       enabled = true,    -- dims the background color of inactive window
       shade = "light",
