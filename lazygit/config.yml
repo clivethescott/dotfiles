@@ -10,37 +10,30 @@ gui:
   enlargedSideViewLocation: "top"
   theme:
     activeBorderColor:
-      - '#fab387'
+      - "#fab387"
       - bold
     inactiveBorderColor:
-      - '#a6adc8'
+      - "#a6adc8"
     optionsTextColor:
-      - '#89b4fa'
+      - "#89b4fa"
     selectedLineBgColor:
-      - '#313244'
+      - "#313244"
     cherryPickedCommitBgColor:
-      - '#45475a'
+      - "#45475a"
     cherryPickedCommitFgColor:
-      - '#fab387'
+      - "#fab387"
     unstagedChangesColor:
-      - '#f38ba8'
+      - "#f38ba8"
     defaultFgColor:
-      - '#cdd6f4'
+      - "#cdd6f4"
     searchingActiveBorderColor:
-      - '#f9e2af'
+      - "#f9e2af"
 git:
-  commitPrefixes:
-    subscription-scheduler:
-      - pattern: "^ASTX-(\\d{4}).*"
-        replace: "ASTX-$1 "
-    subscription-service-v2:
-      - pattern: "^ASTX-(\\d{4}).*"
-        replace: "ASTX-$1 "
-      - pattern: "^NOTICKET.*?"
-        replace: "NOTICKET "
-    api-registry:
-      - pattern: "^ASTX-(\\d{4}).*"
-        replace: "ASTX-$1 "
+  commitPrefix:
+    - pattern: "^ASTX-(\\d{4}).*"
+      replace: "ASTX-$1 "
+    - pattern: "^NOTICKET.*?"
+      replace: "NOTICKET "
   paging:
     colorArg: always
     pager: delta --dark --paging=never
