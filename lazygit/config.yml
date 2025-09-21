@@ -1,16 +1,16 @@
 gui:
   branchColors:
-    'master': '#ff5500'
-    'main': '#ff5500'
+    "master": "#ff5500"
+    "main": "#ff5500"
   nerdFontsVersion: "3"
   authorColors:
-    'Clive Gurure': 'green'
-    'Clive Scott': 'green'
-    '*': 'yellow'
+    "Clive Gurure": "#b4befe"
+    "Clive Scott": "#b4befe"
+    "*": "yellow"
   enlargedSideViewLocation: "top"
   theme:
     activeBorderColor:
-      - '#89b4fa'
+      - '#fab387'
       - bold
     inactiveBorderColor:
       - '#a6adc8'
@@ -21,7 +21,7 @@ gui:
     cherryPickedCommitBgColor:
       - '#45475a'
     cherryPickedCommitFgColor:
-      - '#89b4fa'
+      - '#fab387'
     unstagedChangesColor:
       - '#f38ba8'
     defaultFgColor:
@@ -43,8 +43,8 @@ git:
         replace: "ASTX-$1 "
   paging:
     colorArg: always
-    # pager: delta --dark --paging=never
-    externalDiffCommand: difft --color=always
+    pager: delta --dark --paging=never
+    externalDiffCommand: difft --color=auto
   disableForcePushing: true
 confirmOnQuit: false
 update:
@@ -52,15 +52,15 @@ update:
 disableStartupPopups: true
 keybinding:
   universal:
-    prevItem: '<c-p>'
-    nextItem: '<c-n>'
+    prevItem: "<c-p>"
+    nextItem: "<c-n>"
     scrollUpMain-alt1: <disabled>
-    copyToClipboard: 'y'
-    openRecentRepos: '<c-o>'
+    copyToClipboard: "y"
+    openRecentRepos: "<c-o>"
 services:
-  'github.bamtech.co': 'github:github.bamtech.co'
+  "github.bamtech.co": "github:github.bamtech.co"
 # customCommands:
-  # - key: '<c-y>'
-  #   command: 'git pull --rebase'
-  #   description: 'Pull with rebase'
-  #   context: 'global'
+# - key: '<c-y>'
+#   command: 'git pull --rebase'
+#   description: 'Pull with rebase'
+#   context: 'global'
