@@ -33,6 +33,6 @@
   "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
   "render-markdown.nvim": { "branch": "main", "commit": "6594102acb2fc50dd47d19e49e463031ae48c3ef" },
   "snacks.nvim": { "branch": "main", "commit": "da230e3ca8146da4b73752daaf0a1d07d343c12d" },
-  "wezterm-types": { "branch": "main", "commit": "94a688237b5f142af1b8fbfe3d413a018ca2d828" },
+  "wezterm-types": { "branch": "main", "commit": "19e9924a7e140f61cc88ad9632c12b211cd088f5" },
   "which-key.nvim": { "branch": "main", "commit": "fcbf4eea17cb299c02557d576f0d568878e354a4" }
 }

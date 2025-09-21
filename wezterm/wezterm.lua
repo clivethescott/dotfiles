@@ -33,6 +33,7 @@ end)
 local color_scheme = utils.patch_color_scheme('catppuccin-mocha')
 local home_dir = wezterm.home_dir
 
+---@type Config
 return {
   term = 'wezterm',
   disable_default_key_bindings = true, -- https://wezfurlong.org/wezterm/config/default-keys.html?h=keys

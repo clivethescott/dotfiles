@@ -44,6 +44,10 @@ path add $CARGO_BIN
 path add $APPS_BIN
 path add '/Applications/WezTerm.app/Contents/MacOS'
 
+# use std/dirs
+# use std/log
+# use std/log
+
 # Mise -- needs to be higher up
 source ($nu.default-config-dir | path join mise.nu)
 
@@ -155,4 +159,62 @@ $env.config.keybindings ++= [
     ]
   },
 ]
+
+let abbreviations = {
+    "cd..": 'cd ..'
+    sau: 'sudo apt update; sudo apt upgrade'
+    bu: 'brew update; brew upgrade'
+    kgetcontext: 'kubectl config current-context'
+}
+
+# alias expansion kinda like fish
+# https://github.com/nushell/nushell/issues/5552
+$env.config.keybindings ++= [
+      {
+        name: abbr_menu
+        modifier: none
+        keycode: enter
+        mode: [emacs, vi_normal, vi_insert]
+        event: [
+            { send: menu name: abbr_menu }
+            { send: enter }
+        ]
+      }
+      {
+        name: abbr_menu
+        modifier: none
+        keycode: space
+        mode: [emacs, vi_normal, vi_insert]
+        event: [
+            { send: menu name: abbr_menu }
+            { edit: insertchar value: ' '}
+        ]
+      }
+    ]
+$env.config.menus ++= [
+        {
+            name: abbr_menu
+            only_buffer_difference: false
+            marker: none
+            type: {
+                layout: columnar
+                columns: 1
+                col_width: 20
+                col_padding: 2
+            }
+            style: {
+                text: green
+                selected_text: green_reverse
+                description_text: yellow
+            }
+            source: { |buffer, position|
+                let match = $abbreviations | columns | where $it == $buffer
+                if ($match | is-empty) {
+                    { value: $buffer }
+                } else {
+                    { value: ($abbreviations | get $match.0) }
+                }
+            }
+        }
+    ]
 
