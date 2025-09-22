@@ -237,7 +237,7 @@ if status is-interactive; and type -q zoxide
   zoxide init --cmd cd fish | source
 end
 
-set PATH /opt/homebrew/bin $GOBIN $JAVA_HOME/bin $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH
+set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH $JAVA_HOME/bin 
 set PATH ~/orbstack/bin ~/.local/bin $PATH
 
 # starship init fish | source
