@@ -256,6 +256,30 @@ M.get = function()
         end),
       },
     },
+    { -- Prompt for a name to use for a new workspace and switch to it.
+      key = 'n',
+      mods = 'LEADER|SHIFT',
+      action = wezterm.action.PromptInputLine {
+        description = wezterm.format {
+          { Attribute = { Intensity = 'Bold' } },
+          { Foreground = { AnsiColor = 'Fuchsia' } },
+          { Text = 'Enter name for new workspace' },
+        },
+        action = wezterm.action_callback(function(window, pane, line)
+          -- line will be `nil` if they hit escape without entering anything
+          -- An empty string if they just hit enter
+          -- Or the actual line of text they wrote
+          if line then
+            window:perform_action(
+              wezterm.action.SwitchToWorkspace {
+                name = line,
+              },
+              pane
+            )
+          end
+        end),
+      },
+    },
     { -- rename session https://mwop.net/blog/2024-07-04-how-i-use-wezterm.html
       key = '$',
       mods = 'LEADER',
