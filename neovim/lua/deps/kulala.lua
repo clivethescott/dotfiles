@@ -53,4 +53,15 @@ return {
     default_winbar_panes = { 'body' },
     default_view = 'headers_body',
   },
+  keys = {
+    {
+      "<space>hE",
+      function()
+        local config_path = vim.fs.joinpath(vim.env.HOME, 'Code/HTTP/http-client.env.json')
+        vim.cmd('e ' .. config_path)
+      end,
+      desc = "Open Kulala environments",
+      ft = 'http',
+    }
+  }
 }
