@@ -17,6 +17,7 @@ return {
     custom_highlights = function(colors)
       return {
         NormalFloat = { bg = colors.base },
+        FloatBorder = { bg = colors.base, fg = colors.overlay1 },
       }
     end,
     dim_inactive = {

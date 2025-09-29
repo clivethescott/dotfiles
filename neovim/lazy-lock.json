@@ -1,5 +1,7 @@
 {
   "amazonq": { "branch": "main", "commit": "9e912b9d59ca6f0e75086524b7289db2282799f5" },
+  "avante.nvim": { "branch": "main", "commit": "1947025ad3d6fddbaf7bee9e51bbadf1bc644e50" },
+  "blink-cmp-avante": { "branch": "master", "commit": "e5a1be4c818520385f95fe2663c04e48f5f0c36a" },
   "blink.cmp": { "branch": "main", "commit": "327fff91fe6af358e990be7be1ec8b78037d2138" },
   "catppuccin": { "branch": "main", "commit": "cb5665990a797b102715188e73c44c3931b3b42e" },
   "codecompanion.nvim": { "branch": "main", "commit": "0297731c8c0468f7172744d172e70766bfc2802c" },
@@ -11,7 +13,7 @@
   "fidget.nvim": { "branch": "main", "commit": "b61e8af9b8b68ee0ec7da5fb7a8c203aae854f2e" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "fzf-lua": { "branch": "main", "commit": "47b85a25c0c0b2c20b4e75199ed01bb71e7814f5" },
-  "gitlinker.nvim": { "branch": "master", "commit": "5d448b143ce72aa72ea6a39ac76c00c86cf6d061" },
+  "gitlinker.nvim": { "branch": "master", "commit": "7c1fae10e39fba627a433a0d7126683c79af289f" },
   "gitsigns.nvim": { "branch": "main", "commit": "7010000889bfb6c26065e0b0f7f1e6aa9163edd9" },
   "kulala.nvim": { "branch": "main", "commit": "ab3effad17d5dbb4d5d34b6289fa4dc97155045c" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
@@ -30,9 +32,9 @@
   "nvim-treesitter-context": { "branch": "master", "commit": "ed1cf48d5af252248c55f50b9427e8ce883a2c6b" },
   "nvim-web-devicons": { "branch": "master", "commit": "5b9067899ee6a2538891573500e8fd6ff008440f" },
   "obsidian.nvim": { "branch": "main", "commit": "705cc9b4f66eca1e54040ac819102e80a32896d3" },
-  "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
+  "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
   "render-markdown.nvim": { "branch": "main", "commit": "6594102acb2fc50dd47d19e49e463031ae48c3ef" },
   "snacks.nvim": { "branch": "main", "commit": "da230e3ca8146da4b73752daaf0a1d07d343c12d" },
-  "wezterm-types": { "branch": "main", "commit": "ed26a49e3bfe6a11d340e274bb2432cfc3f78f0c" },
+  "wezterm-types": { "branch": "main", "commit": "cfa3aa49d3a55f5004ae41df4bcf99449030fff6" },
   "which-key.nvim": { "branch": "main", "commit": "fcbf4eea17cb299c02557d576f0d568878e354a4" }
 }
