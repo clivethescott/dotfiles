@@ -1,5 +1,5 @@
 if status is-interactive; and test -f $__fish_config_dir/themes/Catppuccin\ Macchiato.theme
-  fish_config theme choose "Catppuccin Macchiato"
+    fish_config theme choose "Catppuccin Macchiato"
 end
 
 set -gx EDITOR nvim
@@ -40,9 +40,9 @@ set fzf_directory_opts --bind "ctrl-y:execute($EDITOR {})"
 
 # setup atuin
 if status is-interactive
-  # disable default keybindings
-  set -gx ATUIN_NOBIND "true"
-  atuin init fish | source
+    # disable default keybindings
+    set -gx ATUIN_NOBIND true
+    atuin init fish | source
 end
 
 # tmux auto-start
@@ -56,49 +56,49 @@ end
 
 # auto-suggestion mappings
 if status is-interactive
-  for mode in insert default visual
-    # mimic right key to complete auto-suggestion
-    # disable the preset in fish_user_key_bindings or may get reset
-    bind -M $mode \cy forward-char
-    # bind -M $mode \ce forward-char
-  end
+    for mode in insert default visual
+        # mimic right key to complete auto-suggestion
+        # disable the preset in fish_user_key_bindings or may get reset
+        bind -M $mode \cy forward-char
+        # bind -M $mode \ce forward-char
+    end
 end
 
 # history + atuin
 if status is-interactive
-  bind \cr _atuin_search
-  for mode in insert visual
-    bind -M $mode \cr _atuin_search
-    bind -M $mode \cn history-prefix-search-forward
-    bind -M $mode \cp history-prefix-search-backward
-  end
+    bind \cr _atuin_search
+    for mode in insert visual
+        bind -M $mode \cr _atuin_search
+        bind -M $mode \cn history-prefix-search-forward
+        bind -M $mode \cp history-prefix-search-backward
+    end
 end
 
 # edit commands in vim
 if status is-interactive
-  for mode in default visual insert
-    bind -M $mode \ce edit_command_buffer
-  end
-  for mode in default visual
-    bind -M $mode vv edit_command_buffer
-  end
+    for mode in default visual insert
+        bind -M $mode \ce edit_command_buffer
+    end
+    for mode in default visual
+        bind -M $mode vv edit_command_buffer
+    end
 end
 
 #bind -M insert ctrl-c __fish_cancel_commandline
 
 # setup coreutils. This is slighly better than the mise one which has 1 uber command
-fish_add_path "/opt/homebrew/opt/uutils-coreutils/libexec/uubin"
-fish_add_path "/opt/homebrew/bin/"
+fish_add_path /opt/homebrew/opt/uutils-coreutils/libexec/uubin
+fish_add_path /opt/homebrew/bin/
 fish_add_path "$HOME/.docker/bin"
 # Setup brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 if type -q sd
-  abbr -a sed sd
+    abbr -a sed sd
 end
 
 if type -q gron
-  abbr -a gr gron
+    abbr -a gr gron
 end
 
 # if type -q mise
@@ -106,16 +106,16 @@ end
 # end
 #
 if type -q uv
-  abbr -a pip uv pip
-  abbr -a pip3 uv pip
+    abbr -a pip uv pip
+    abbr -a pip3 uv pip
 end
 
 if type -q lazygit
-  abbr -a lg lazygit
+    abbr -a lg lazygit
 end
 
 if type -q lazydocker
-  abbr -a lld lazydocker
+    abbr -a lld lazydocker
 end
 
 abbr -a gd 'git diff'
@@ -124,84 +124,89 @@ abbr -a gp 'git push'
 abbr --add unset 'set --erase'
 
 if type -q kubectl
-  abbr -a k kubectl
-  abbr -a kgetcontext kubectl config current-context
-  abbr -a ksetcontext kubectl config use-context
-  abbr -a ksetnamespace kubectl config set-context --current --namespace=
+    abbr -a k kubectl
+    abbr -a kgetcontext kubectl config current-context
+    abbr -a ksetcontext kubectl config use-context
+    abbr -a ksetnamespace kubectl config set-context --current --namespace=
 end
 
 if type -q dcli
-  abbr -a dashlane dcli
+    abbr -a dashlane dcli
 end
 
 if type -q jira
-  abbr -a jv 'jira issue view'
+    abbr -a jv 'jira issue view'
 end
 
 if type -q jless
-  abbr -a jless 'jless --relative-line-numbers'
-  abbr -a yless 'jless --relative-line-numbers --yaml'
+    abbr -a jless 'jless --relative-line-numbers'
+    abbr -a yless 'jless --relative-line-numbers --yaml'
 end
 
 if type -q terraform
-  abbr -a tf terraform
+    abbr -a tf terraform
 end
 
 if type -q gitui
-  abbr -a gt gitui
+    abbr -a gt gitui
 end
 
 if type -q xh
-  abbr -a http xh
-  alias http xh
+    abbr -a http xh
 end
 
-alias z cd
+function z
+  cd
+end
 
 if type -q nvim
-  abbr -a vim nvim
-  abbr -a nv nvim
-  abbr -a vi 'nvim -u NONE'
+    abbr -a vim nvim
+    abbr -a nv nvim
+    abbr -a vi 'nvim -u NONE'
 end
- 
+
 # `ls` → `lsd`
 if type -q lsd
-  abbr --add -g ls 'lsd'
+    abbr --add -g ls lsd
 end
- 
+
 # `cat` → `bat` abbreviation
 # Requires `brew install bat`
 if type -q bat
-  abbr --add -g cat 'bat'
-  # https://github.com/sharkdp/bat#highlighting---help-messages
-  abbr -a --position anywhere -- --help '--help | bat -plhelp'
-  abbr -a --position anywhere -- -h '-h | bat -plhelp'
+    abbr --add -g cat bat
+    # https://github.com/sharkdp/bat#highlighting---help-messages
+    abbr -a --position anywhere -- --help '--help | bat -plhelp'
+    abbr -a --position anywhere -- -h '-h | bat -plhelp'
 end
 
 if type -q ast-grep
-  abbr --add -g sg ast-grep
+    abbr --add -g sg ast-grep
 end
 
 if type -q fzf
-  # https://junegunn.github.io/fzf/
-  abbr --add -g gco "git branch | fzf --preview 'git show --color=always {-1}' \
+    # https://junegunn.github.io/fzf/
+    abbr --add -g gco "git branch | fzf --preview 'git show --color=always {-1}' \
 --bind 'enter:become(git switch {-1})' \
 --height 40% --layout reverse"
 end
 
 if type -q gh
-  abbr --add -g ghr 'gh pr checkout'
+    abbr --add -g ghr 'gh pr checkout'
 end
 
 if type -q python3
- abbr --add -g py python3
- abbr --add -g python python3
+    abbr --add -g py python3
+    abbr --add -g python python3
+end
+
+function avante
+    nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"
 end
 
 if status is-interactive; and test -f ~/.config/fish/tokens.fish; and not set -q USE_Q
-  source ~/.config/fish/tokens.fish
+    source ~/.config/fish/tokens.fish
 end
- 
+
 set -gx MANPAGER "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build"
 set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
@@ -217,7 +222,7 @@ abbr -a tldr tldr -p macos --pager
 
 # Add completions from stuff installed with Homebrew.
 if status is-interactive; and test "$os" = Darwin
-    if test -d "/opt/homebrew/share/fish/completions"
+    if test -d /opt/homebrew/share/fish/completions
         set -p fish_complete_path /opt/homebrew/share/fish/completions
     end
     if test -d "/opt/homebrew/share/fish/vendor_completions.d"
@@ -231,13 +236,13 @@ end
 
 # fzf --fish | source
 if status is-interactive; and type -q zoxide
-# import from z => zoxide import --merge --from=z ~/.local/share/z/data
-  set -gx _ZO_FZF_OPTS "$FZF_DEFAULT_OPTS"
-# z, zi for fzf
-  zoxide init --cmd cd fish | source
+    # import from z => zoxide import --merge --from=z ~/.local/share/z/data
+    set -gx _ZO_FZF_OPTS "$FZF_DEFAULT_OPTS"
+    # z, zi for fzf
+    zoxide init --cmd cd fish | source
 end
 
-set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $PATH $JAVA_HOME/bin 
+set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $JAVA_HOME/bin $PATH
 set PATH ~/orbstack/bin ~/.local/bin $PATH
 
 # starship init fish | source
