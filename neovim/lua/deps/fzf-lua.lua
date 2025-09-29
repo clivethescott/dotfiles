@@ -7,6 +7,9 @@ return {
   config = function()
     local actions = require("fzf-lua").actions
     require("fzf-lua").setup({
+      fzf_colors = {
+        ['border'] = { 'fg', 'yellow' },
+      },
       fzf_opts = {
         -- ["--layout"] = "default", -- prompt at bottom
         ["--cycle"] = true
