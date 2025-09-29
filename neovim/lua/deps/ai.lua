@@ -1,5 +1,5 @@
 local adapter = "copilot"
-local is_work_pc = vim.env.IS_WORK_PC == "true"
+local is_work_pc = false -- vim.env.IS_WORK_PC == "true"
 local mcphub_enabled = false
 
 return {
@@ -35,9 +35,42 @@ return {
     config = true,
   },
   {
+    "yetone/avante.nvim",
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    -- ⚠️ must add this setting! ! !
+    build = "make",
+    event = "VeryLazy",
+    version = false, -- Never set this value to "*"! Never!
+    ---@module 'avante'
+    ---@type avante.Config
+    opts = {
+      input = {
+        provider = "snacks"
+      },
+      windows = {
+        width = 40,
+      },
+      -- this file can contain specific instructions for your project
+      instructions_file = "avante.md",
+      -- provider = "claude-code",
+      provider = "copilot",
+      selector = {
+        ---@type avante.SelectorProvider "native" | "fzf_lua" | "mini_pick" | "snacks" | "telescope" | fun(selector: avante.ui.Selector): nil
+        provider = 'fzf_lua'
+      }
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    keys = {
+      { '<space>ao', '<cmd>AvanteToggle<cr>', desc = 'Toggle Chat' },
+    }
+  },
+  {
     "olimorris/codecompanion.nvim",
     cmd = { 'CodeCompanionChat', 'CodeCompanion' },
-    cond = is_work_pc,
+    cond = false,
     opts = {
       extensions = {
         mcphub = {
