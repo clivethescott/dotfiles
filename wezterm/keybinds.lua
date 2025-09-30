@@ -297,7 +297,8 @@ M.get = function()
         ),
       },
     },
-    { -- Show the launcher in fuzzy selection mode and have it list all workspaces
+    { key = "Enter", mods = "SHIFT", action = wezterm.action { SendString = "\x1b\r" } }, -- claude
+    {                                                                      -- Show the launcher in fuzzy selection mode and have it list all workspaces
       key = 't',
       mods = 'LEADER',
       action = wezterm.action.ShowLauncherArgs {
@@ -314,8 +315,8 @@ M.get = function()
     --   mods = 'LEADER',
     --   action = wezterm.action.DetachDomain { DomainName = 'remote' },
     -- },
-    { key = ')', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(1) },
-    { key = '(', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(-1) },
+    { key = ')',   mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(1) },
+    { key = '(',   mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(-1) },
     { -- Send 'CTRL-A' to the terminal when pressing CTRL-A, CTRL-A
       key = 'a',
       mods = 'LEADER|CMD',
