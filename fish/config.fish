@@ -28,15 +28,15 @@ set fish_prompt_pwd_dir_length 3
 # vi-mode
 set -g fish_key_bindings fish_vi_key_bindings
 
-# https://github.com/PatrickF1/fzf.fish
-# bind --user to see configured, e.g \E is meta+shift+e
+# set fzf_directory_opts --bind "ctrl-y:execute($EDITOR {}) ctrl-f:reload(fd --type file)"
 
-fzf_configure_bindings --history= --git_status=\eG --variables= --git_log= --directory=\eF --processes=\eP
-set fzf_diff_highlighter delta --paging=never --width=20 # should not pipe its output to a pager
-set fzf_fd_opts --max-depth 5
-set fzf_preview_dir_cmd lsd -l --color always
-# open file in $EDITOR
-set fzf_directory_opts --bind "ctrl-y:execute($EDITOR {})"
+if type -q fzf
+    fzf --fish | FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= source
+    # https://junegunn.github.io/fzf/
+    abbr --add -g gco "git branch | fzf --preview 'git show --color=always {-1}' \
+--bind 'enter:become(git switch {-1})' \
+--height 40% --layout reverse"
+end
 
 # setup atuin
 if status is-interactive
@@ -183,13 +183,6 @@ if type -q ast-grep
     abbr --add -g sg ast-grep
 end
 
-if type -q fzf
-    # https://junegunn.github.io/fzf/
-    abbr --add -g gco "git branch | fzf --preview 'git show --color=always {-1}' \
---bind 'enter:become(git switch {-1})' \
---height 40% --layout reverse"
-end
-
 if type -q gh
     abbr --add -g ghr 'gh pr checkout'
 end
@@ -210,6 +203,8 @@ end
 set -gx MANPAGER "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build"
 set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
+set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
+set -gx FZF_CTRL_T_OPTS $FZF_DEFAULT_OPTS
 #set -gx JAVA_HOME "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
 set -gx JAVA_HOME (/usr/libexec/java_home -v 21)
 set -gx BAT_THEME "Catppuccin Mocha"
