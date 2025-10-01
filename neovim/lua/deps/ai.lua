@@ -1,5 +1,5 @@
 local is_work_pc = vim.env.IS_WORK_PC == "true"
-local adapter = is_work_pc and "copilot" or "claude"
+local adapter = is_work_pc and "amazonq" or "claude" -- TODO: use copilot CLI when org allowed
 
 return {
   {
@@ -9,33 +9,28 @@ return {
         mux = {
           enabled = false, -- only supports tmux/zellij
         },
+        tools = {
+          amazonq = { cmd = { "q", "chat" }, url = "https://aws.amazon.com/q" },
+        },
+        prompts = {
+          explain = "Explain this code",
+          architecture = "Can you explain how this code is structured",
+          fix = {
+            msg = "Can you help me fix these issues?",
+            diagnostics = true,
+          },
+          review = {
+            msg = "Can you review this code for any issues or improvements?",
+            diagnostics = true,
+          },
+          optimize = "How can this code be optimized?",
+          tests = "Can you write tests for this code?",
+          file = { location = { row = false, col = false } },
+          position = {},
+        },
       },
       copilot = {
         enabled = false,
-      },
-      prompts = {
-        explain = "Explain this code",
-        structure = "Explain how this code is structured. What are the main things I should know to get started",
-        diagnostics = {
-          msg = "What do the diagnostics in this file mean?",
-          diagnostics = true,
-        },
-        diagnostics_all = {
-          msg = "Can you help me fix these issues?",
-          diagnostics = { all = true },
-        },
-        fix = {
-          msg = "Can you fix the issues in this code?",
-          diagnostics = true,
-        },
-        review = {
-          msg = "Can you review this code for any issues or improvements?",
-          diagnostics = true,
-        },
-        optimize = "How can this code be optimized?",
-        tests = "Can you write tests for this code?",
-        file = { location = { row = false, col = false } },
-        position = {},
       },
     },
     keys = {
