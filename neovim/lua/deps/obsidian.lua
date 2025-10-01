@@ -4,7 +4,7 @@ return {
   ft = 'markdown',
   cmd = 'Obsidian',
   ---@module 'obsidian'
-  ---@type obsidian.config.ClientOpts
+  ---@type obsidian.config
   opts = {
     workspaces = {
       {

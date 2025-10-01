@@ -1,79 +1,69 @@
 local is_work_pc = vim.env.IS_WORK_PC == "true"
-local adapter = is_work_pc and "copilot" or "claude-code"
+local adapter = is_work_pc and "copilot" or "claude"
 
 return {
   {
-    name = 'amazonq',
-    cond = is_work_pc,
-    url = 'https://github.com/awslabs/amazonq.nvim.git',
-    cmd = { 'AmazonQ' },
+    "folke/sidekick.nvim",
     opts = {
-      ssoStartUrl = 'https://twdc-qdeveloper.awsapps.com/start',
-      filetypes = {
-        'amazonq', 'bash', 'java', 'python', 'typescript', 'javascript',
-        'scala', 'sh', 'sql', 'go', 'rust', 'lua', 'hcl', 'terraform', 'yaml'
+      cli = {
+        mux = {
+          enabled = false, -- only supports tmux/zellij
+        },
       },
-      on_chat_open = function()
-        vim.cmd [[
-      vertical split
-      set wrap breakindent number relativenumber nolist
-    ]]
-      end,
+      copilot = {
+        enabled = false,
+      },
+      prompts = {
+        explain = "Explain this code",
+        structure = "Explain how this code is structured. What are the main things I should know to get started",
+        diagnostics = {
+          msg = "What do the diagnostics in this file mean?",
+          diagnostics = true,
+        },
+        diagnostics_all = {
+          msg = "Can you help me fix these issues?",
+          diagnostics = { all = true },
+        },
+        fix = {
+          msg = "Can you fix the issues in this code?",
+          diagnostics = true,
+        },
+        review = {
+          msg = "Can you review this code for any issues or improvements?",
+          diagnostics = true,
+        },
+        optimize = "How can this code be optimized?",
+        tests = "Can you write tests for this code?",
+        file = { location = { row = false, col = false } },
+        position = {},
+      },
     },
     keys = {
-      { '<space>aq', '<cmd>AmazonQ toggle<cr>', desc = 'Toggle Q' },
-    }
-  },
-  {
-    "yetone/avante.nvim",
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    -- ⚠️ must add this setting! ! !
-    build = "make",
-    event = "VeryLazy",
-    version = false, -- Never set this value to "*"! Never!
-    ---@module 'avante'
-    ---@type avante.Config
-    opts = {
-      input = {
-        provider = "snacks"
-      },
-      windows = {
-        width = 40,
-      },
-      -- this file can contain specific instructions for your project
-      instructions_file = "avante.md",
-      -- provider = "claude-code",
-      provider = adapter,
-      selector = {
-        ---@type avante.SelectorProvider "native" | "fzf_lua" | "mini_pick" | "snacks" | "telescope" | fun(selector: avante.ui.Selector): nil
-        provider = 'fzf_lua'
-      }
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
       {
-        "zbirenbaum/copilot.lua",
-        cond = is_work_pc,
-        cmd = "Copilot",
-        event = "VeryLazy",
-        opts = {
-          -- recommended to disable these, can interfere with blink, see https://github.com/giuxtaposition/blink-cmp-copilot
-          panel = { enabled = false },
-          suggestion = { enabled = false },
-          server_opts_overrides = {
-            settings = {
-              telemetry = {
-                telemetryLevel = 'off',
-              },
-            },
-          },
-        }
-      }
+        "<c-.>",
+        function()
+          require("sidekick.cli").focus()
+        end,
+        mode = { "n", "x", "i", "t" },
+        desc = "Sidekick Switch Focus",
+      },
+      {
+        "<space>ao",
+        function()
+          require("sidekick.cli").toggle({ focus = true, name = adapter })
+        end,
+        desc = "Sidekick Toggle CLI",
+        mode = { "n", "v" },
+      },
+      {
+        "<space>ap",
+        function()
+          require("sidekick.cli").select_prompt()
+        end,
+        desc = "Sidekick Ask Prompt",
+        mode = { "n", "v" },
+      },
     },
-    keys = {
-      { '<space>ao', '<cmd>AvanteToggle<cr>', desc = 'Toggle Chat' },
-    }
   },
 
 }
