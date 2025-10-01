@@ -30,6 +30,10 @@ set -g fish_key_bindings fish_vi_key_bindings
 
 # set fzf_directory_opts --bind "ctrl-y:execute($EDITOR {}) ctrl-f:reload(fd --type file)"
 
+set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build,.idea"
+set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
+set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
+set -gx FZF_CTRL_T_OPTS $FZF_DEFAULT_OPTS
 if type -q fzf
     fzf --fish | FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= source
     # https://junegunn.github.io/fzf/
@@ -201,10 +205,6 @@ if status is-interactive; and test -f ~/.config/fish/tokens.fish; and not set -q
 end
 
 set -gx MANPAGER "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
-set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build"
-set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
-set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
-set -gx FZF_CTRL_T_OPTS $FZF_DEFAULT_OPTS
 #set -gx JAVA_HOME "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
 set -gx JAVA_HOME (/usr/libexec/java_home -v 21)
 set -gx BAT_THEME "Catppuccin Mocha"
