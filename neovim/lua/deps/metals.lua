@@ -1,4 +1,5 @@
-local is_work_pc = vim.env.IS_WORK_PC == "true"
+-- local is_work_pc = vim.env.IS_WORK_PC == "true"
+local is_work_pc = false
 return {
   'scalameta/nvim-metals',
   ft = 'scala',

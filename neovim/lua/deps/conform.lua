@@ -22,7 +22,7 @@ return {
       rust = { "rustfmt", lsp_format = "fallback" },
       python = {
         -- To fix auto-fixable lint errors.
-        "ruff_fix",
+        -- "ruff_fix",
         -- To run the Ruff formatter.
         "ruff_format",
         -- To organize the imports.

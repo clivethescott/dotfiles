@@ -196,10 +196,6 @@ if type -q python3
     abbr --add -g python python3
 end
 
-function avante
-    nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"
-end
-
 if status is-interactive; and test -f ~/.config/fish/tokens.fish; and not set -q USE_Q
     source ~/.config/fish/tokens.fish
 end

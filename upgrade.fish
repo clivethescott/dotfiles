@@ -11,6 +11,9 @@ if type -q rustup
 else
   echo 'rustup is not installed....skipping update'
 end
+if type -q uv
+  uv tool upgrade --all
+end
 if type -q devx
   devx update
 else
