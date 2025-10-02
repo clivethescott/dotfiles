@@ -1,7 +1,7 @@
 local M = {}
 
 local codelens = function(bufnr, au_group)
-  vim.keymap.set('n', '<space>ll',
+  vim.keymap.set('n', 'grl',
     function() vim.lsp.codelens.run() end, { buffer = true, desc = 'Run Codelens' })
 
   vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
@@ -27,7 +27,7 @@ local formatting = function(client, bufnr)
 end
 
 local diagnostics = function(bufnr)
-  vim.keymap.set('n', '<space>ld',
+  vim.keymap.set('n', 'grq',
     function() vim.diagnostic.setqflist() end,
     { desc = 'LSP Diagnostics to qflist', buffer = bufnr })
 
@@ -79,27 +79,20 @@ function M.on_attach(client, bufnr)
 
 
   if client.supports_method('textDocument/rename') then
-    vim.keymap.set('n', '<space>lr', vim.lsp.buf.rename, { buffer = true, desc = 'LSP Rename' })
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = true, desc = 'LSP Rename' })
     -- default vim.keymap.set('n', 'grn', vim.lsp.buf.rename)
   end
 
-  if client.supports_method('textDocument/codeAction') then
-    vim.keymap.set('n', '<space>la', vim.lsp.buf.code_action, { buffer = true, desc = 'LSP Code Action' })
-    -- default vim.keymap.set('n', 'gra', vim.lsp.code_action)
-  end
-
   if client.supports_method('textDocument/declaration') then
-    vim.keymap.set('n', 'gD', function()
+    vim.keymap.set('n', 'grd', function()
       if vim.g.use_picker == 'snacks.picker' then
         require 'snacks'.picker.lsp_declarations()
       elseif vim.g.use_picker == 'fzf-lua' then
         require 'fzf-lua'.lsp_declarations()
       end
     end, { buffer = true, desc = 'LSP Declaration' })
-    vim.keymap.set('n', 'gd', vim.lsp.buf.declaration, { buffer = true, silent = true })
   elseif client.supports_method('textDocument/definition') then
-    vim.keymap.set('n', 'gD', function()
+    vim.keymap.set('n', 'gry', function()
       if vim.g.use_picker == 'snacks.picker' then
         require 'snacks'.picker.lsp_definitions()
       elseif vim.g.use_picker == 'fzf-lua' then
@@ -114,7 +107,7 @@ function M.on_attach(client, bufnr)
     vim.keymap.set({ 'n', 'i' }, '<M-i>',
       function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end, { desc = 'Toggle inlay hints' })
 
-    vim.keymap.set('n', '<space>mc', function()
+    vim.keymap.set('n', '<space>li', function()
       if vim.lsp.inlay_hint.is_enabled() then
         local virt_text = require 'utils'.get_inlay_hint(bufnr)
         if virt_text then
@@ -127,22 +120,15 @@ function M.on_attach(client, bufnr)
   end
 
 
-  if client.supports_method('textDocument/implementation') then
-    vim.keymap.set('n', '<space>li', vim.lsp.buf.implementation, { desc = 'LSP implementation' })
-    -- default vim.keymap.set('n', 'gri', vim.lsp.buf.implementation)
-  end
-
   if client.supports_method('textDocument/references') then
     -- default vim.keymap.set('n', 'grr', vim.lsp.buf.references)
-    vim.keymap.set('n', 'gR', function()
+    vim.keymap.set('n', 'gRr', function()
       if vim.g.use_picker == 'snacks.picker' then
         require 'snacks'.picker.lsp_references { includeDeclaration = false }
       elseif vim.g.use_picker == 'fzf-lua' then
         require 'fzf-lua'.lsp_references { includeDeclaration = false }
       end
     end, { buffer = true, desc = 'LSP References' })
-    vim.keymap.set('n', 'gr', function() vim.lsp.buf.references { includeDeclaration = false } end,
-      { desc = 'LSP References' })
   end
 
   if client.supports_method('textDocument/codeLens') then
