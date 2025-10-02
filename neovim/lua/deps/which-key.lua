@@ -24,6 +24,7 @@ return {
       { "<space>l",  group = "LSP" },
       { "<space>lD", group = "LSP Diagnostics" },
       { "<space>t",  group = "FZF" },
+      { "<space>a",  group = "AI" },
     })
   end
 }
