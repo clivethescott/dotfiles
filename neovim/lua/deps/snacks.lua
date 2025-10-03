@@ -66,6 +66,7 @@ return {
     lazygit = { enabled = true },
     bigfile = { enabled = true },
     notifier = { enabled = true },
+    rename = { enabled = true },
     image = { enabled = true },
   },
   keys = {

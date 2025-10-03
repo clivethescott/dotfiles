@@ -6,9 +6,19 @@ return {
   cond = vim.g.use_picker == 'fzf-lua',
   config = function()
     local actions = require("fzf-lua").actions
+    local config = require 'fzf-lua'.config
+    -- Quickfix
+    config.defaults.keymap.fzf["ctrl-u"] = "half-page-up"
+    config.defaults.keymap.fzf["ctrl-d"] = "half-page-down"
+    config.defaults.keymap.fzf["ctrl-f"] = "preview-page-down"
+    config.defaults.keymap.fzf["ctrl-b"] = "preview-page-up"
+    config.defaults.keymap.builtin["<c-f>"] = "preview-page-down"
+    config.defaults.keymap.builtin["<c-b>"] = "preview-page-up"
     require("fzf-lua").setup({
-      fzf_colors = {
-        ['border'] = { 'fg', 'yellow' },
+      fzf_colors = true,
+      defaults = {
+        -- formatter = "path.filename_first",
+        formatter = "path.dirname_first",
       },
       fzf_opts = {
         -- ["--layout"] = "default", -- prompt at bottom
@@ -23,7 +33,7 @@ return {
           ["alt-s"]   = actions.file_split,
           ["alt-v"]   = actions.file_vsplit,
           ["alt-t"]   = actions.file_tabedit,
-          ["alt-f"]   = actions.toggle_hidden,
+          ["alt-h"]   = actions.toggle_hidden,
           ["alt-g"]   = actions.toggle_ignore,
         },
       },
@@ -41,6 +51,11 @@ return {
       grep = {
         rg_glob   = true,
         glob_flag = "--iglob",
+      },
+      lsp = {
+        code_actions = {
+          previewer = vim.fn.executable("delta") == 1 and "codeaction_native" or nil,
+        },
       },
       winopts = {
         height = 0.9,
