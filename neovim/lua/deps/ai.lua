@@ -73,6 +73,13 @@ return {
         desc = "Sidekick NES jump or apply",
       },
       {
+        "<space>aN",
+        function()
+          require("sidekick").nes_jump_or_apply()
+        end,
+        desc = "Sidekick NES jump or apply",
+      },
+      {
         "<space>anc",
         function()
           require("sidekick").clear()
