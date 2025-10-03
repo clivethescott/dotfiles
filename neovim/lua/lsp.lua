@@ -60,6 +60,17 @@ function M.on_attach(client, bufnr)
 
   if client.name == 'copilot' then return end
 
+  -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
+  -- seems that Neovim does not pick up on gopls' semantic token support 
+  if client.name == 'gopls' and not client.server_capabilities.semanticTokensProvider then
+    local semantic = client.config.capabilities.textDocument.semanticTokens
+    client.server_capabilities.semanticTokensProvider = {
+      full = true,
+      legend = { tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes },
+      range = true,
+    }
+  end
+
   -- Prefer LSP folding if client supports it
   -- :h vim.lsp.foldexpr
   if client:supports_method('textDocument/foldingRange') then

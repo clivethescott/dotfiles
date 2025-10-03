@@ -2,6 +2,11 @@ return {
   filetypes = { 'go' },
   settings = {
     gopls = {
+      usePlaceholders = false,
+      completeUnimported = true,
+      staticcheck = true,
+      directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+      semanticTokens = true,
       hints = {
         assignVariableTypes = true,
         compositeLiteralFields = true,
@@ -11,16 +16,25 @@ return {
         parameterNames = true,
         rangeVariableTypes = true,
       },
-      semanticTokens = true,
+      codelenses = {
+        gc_details = false,
+        generate = true,
+        regenerate_cgo = true,
+        run_govulncheck = true,
+        test = true,
+        tidy = true,
+        upgrade_dependency = true,
+        vendor = true,
+      },
       experimentalPostfixCompletions = true,
       analyses = {
         unusedvariable = true,
+        nilness = true,
+        unusedparams = true,
+        unusedwrite = true,
+        useany = true,
       },
-      staticcheck = true,
       gofumpt = true,
     },
-  },
-  init_options = {
-    usePlaceholders = false,
   },
 }
