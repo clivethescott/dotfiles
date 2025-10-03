@@ -1,36 +1,18 @@
 local is_work_pc = vim.env.IS_WORK_PC == "true"
-local adapter = is_work_pc and "amazonq" or "claude" -- TODO: use copilot CLI when org allowed
+local adapter = is_work_pc and "amazon_q" or "claude" -- TODO: use copilot CLI when org allowed
 
 return {
   {
     "folke/sidekick.nvim",
     opts = {
+      nes = { enabled = is_work_pc },
       cli = {
         mux = {
           enabled = false, -- only supports tmux/zellij
         },
-        tools = {
-          amazonq = { cmd = { "q", "chat" }, url = "https://aws.amazon.com/q" },
-        },
-        prompts = {
-          explain = "Explain this code",
-          architecture = "Can you explain how this code is structured",
-          fix = {
-            msg = "Can you help me fix these issues?",
-            diagnostics = true,
-          },
-          review = {
-            msg = "Can you review this code for any issues or improvements?",
-            diagnostics = true,
-          },
-          optimize = "How can this code be optimized?",
-          tests = "Can you write tests for this code?",
-          file = { location = { row = false, col = false } },
-          position = {},
-        },
       },
       copilot = {
-        enabled = false,
+        enabled = is_work_pc,
       },
     },
     keys = {
@@ -53,7 +35,7 @@ return {
       {
         "<space>ap",
         function()
-          require("sidekick.cli").select_prompt()
+          require("sidekick.cli").prompt()
         end,
         desc = "Sidekick Ask Prompt",
         mode = { "n", "v" },
@@ -75,7 +57,7 @@ return {
       {
         "<c-y>",
         function()
-          require("sidekick").apply()
+          require("sidekick.nes").apply()
         end,
         desc = "Sidekick NES jump or apply",
       },
