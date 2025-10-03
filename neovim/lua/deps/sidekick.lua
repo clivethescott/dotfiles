@@ -59,33 +59,26 @@ return {
         mode = { "n", "v" },
       },
       {
-        "<space>anu",
+        "<space>au",
         function()
           require("sidekick.nes").update()
         end,
         desc = "Sidekick Update NES",
       },
       {
-        "<space>ann",
-        function()
-          require("sidekick").nes_jump_or_apply()
-        end,
-        desc = "Sidekick NES jump or apply",
-      },
-      {
-        "<space>aN",
-        function()
-          require("sidekick").nes_jump_or_apply()
-        end,
-        desc = "Sidekick NES jump or apply",
-      },
-      {
-        "<space>anc",
+        "<space>ac",
         function()
           require("sidekick").clear()
         end,
         desc = "Sidekick NES clear",
-      }
+      },
+      {
+        "<c-y>",
+        function()
+          require("sidekick").apply()
+        end,
+        desc = "Sidekick NES jump or apply",
+      },
     },
   },
 

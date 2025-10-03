@@ -26,7 +26,10 @@ return {
       preset = 'none',
       ['<c-p>'] = { 'show', 'select_prev', 'fallback' },
       ['<c-n>'] = { 'show', 'select_next', 'fallback' },
-      ['<C-y>'] = { 'select_and_accept' },
+      ['<C-y>'] = { 'select_and_accept',
+        function() -- sidekick next edit suggestion
+          return require("sidekick").apply()
+        end, 'fallback' },
       ['<cr>'] = { 'select_and_accept', 'fallback' },
       ['<c-j>'] = { 'snippet_forward', 'fallback' },
       ['<c-k>'] = { 'snippet_backward', 'fallback' },
