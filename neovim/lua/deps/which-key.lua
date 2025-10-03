@@ -22,8 +22,9 @@ return {
       { "<space>na", desc = "Smart action" },
       { "<space>o",  group = "Open" },
       { "<space>l",  group = "LSP" },
-      { "<space>ld", group = "LSP Diagnostics" },
+      { "<space>lD", group = "LSP Diagnostics" },
       { "<space>t",  group = "FZF" },
+      { "<space>a",  group = "AI" },
     })
   end
 }

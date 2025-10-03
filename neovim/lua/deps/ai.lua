@@ -58,6 +58,27 @@ return {
         desc = "Sidekick Ask Prompt",
         mode = { "n", "v" },
       },
+      {
+        "<space>anu",
+        function()
+          require("sidekick.nes").update()
+        end,
+        desc = "Sidekick Update NES",
+      },
+      {
+        "<space>ann",
+        function()
+          require("sidekick").nes_jump_or_apply()
+        end,
+        desc = "Sidekick NES jump or apply",
+      },
+      {
+        "<space>anc",
+        function()
+          require("sidekick").clear()
+        end,
+        desc = "Sidekick NES clear",
+      }
     },
   },
 

@@ -61,6 +61,16 @@ return {
   },
   color_scheme = 'Moonfly (Gogh)',
   window_decorations = "RESIZE",
+  window_frame = {
+    border_left_width = '1px',
+    border_right_width = '1px',
+    border_bottom_height = '1px',
+    border_top_height = '1px',
+    border_left_color = '#484848',
+    border_right_color = '#484848',
+    border_bottom_color = '#484848',
+    border_top_color = '#484848',
+  },
   audible_bell = "Disabled",
   window_close_confirmation = "NeverPrompt",
   color_schemes = {
