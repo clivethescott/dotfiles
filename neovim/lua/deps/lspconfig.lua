@@ -29,7 +29,7 @@ return {
     local is_work = vim.env.IS_WORK_PC == "true"
     if is_work then
       vim.lsp.enable({ 'dockerls', 'terraformls', 'copilot',
-        'smithy',
+        'smithy_ls',
         'kulala_ls' -- only useful for graphQL completion, needs the kulala_ls LSP server installed
       })
     end
