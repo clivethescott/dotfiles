@@ -32,7 +32,8 @@ return {
         end, 'fallback' },
       ['<cr>'] = { 'select_and_accept', 'fallback' },
       ['<c-j>'] = { 'snippet_forward', 'fallback' },
-      ['<c-k>'] = { 'snippet_backward', 'fallback' },
+      ['<c-f>'] = { 'scroll_documentation_up', 'fallback' },
+      ['<c-b>'] = { 'scroll_documentation_down', 'fallback' },
     },
     sources = {
       default = { 'lsp', 'snippets', 'buffer', 'omni', 'markdown', 'lazydev', 'path', 'avante' },
