@@ -24,7 +24,7 @@ end
 if type -q uv
   uv tool upgrade --all
 else
-  echo 'devx is not installed....skipping update'
+  echo 'uv is not installed....skipping update'
 end
 if type -q devx
   devx update
