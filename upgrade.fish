@@ -11,11 +11,6 @@ if type -q rustup
 else
   echo 'rustup is not installed....skipping update'
 end
-if type -q cargo-install-update
-  cargo install-update -a
-else
-  echo 'cargo-update is not installed....skipping update'
-end
 if type -q node
   npm update -g
 else
