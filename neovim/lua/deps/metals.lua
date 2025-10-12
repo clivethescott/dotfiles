@@ -25,7 +25,7 @@ return {
       disabledMode = vim.env.METALS == '0',
       startMcpServer = is_work_pc,
       serverVersion = '1.6.2',
-      fallbackScalaVersion = '3.6.3',
+      fallbackScalaVersion = '2.13.16',
       showImplicitArguments = true,
       showImplicitConversionsAndClasses = true,
       showInferredType = true,
