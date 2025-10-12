@@ -1,5 +1,5 @@
 vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
--- vim.keymap.set('i', '<C-s>', '<esc>:update<cr>')
+vim.keymap.set('i', '<C-s>', '<esc>:update<cr>')
 vim.keymap.set('i', '<C-z>', '<esc>:undo<cr>')
 
 vim.keymap.set("n", "k", function()
