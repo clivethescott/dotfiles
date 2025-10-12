@@ -5,6 +5,9 @@ return {
   -- keys = {"<leader>Rs", "<leader>Ra", "<leader>Ro"},
   ft = { "http", "rest" },
   opts = {
+    lsp = {
+      formatter = true, -- needed for import openAPI/postman
+    },
     global_keymaps = {
       ["Send request"] = false,
       ["Open scratchpad"] = {
@@ -62,6 +65,12 @@ return {
       end,
       desc = "Open Kulala environments",
       ft = 'http',
+    },
+    {
+      "<space>hi", -- https://neovim.getkulala.net/docs/usage/import-export#importing
+      function() require("kulala").import() end,
+      desc = "Import from postman/openapi",
+      ft = { 'json', 'yaml', 'bruno' }
     }
   }
 }
