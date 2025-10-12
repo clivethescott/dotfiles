@@ -17,12 +17,6 @@ M.mouse = function()
 end
 
 M.get = function()
-  local utils = require 'wez-utils'
-  local lazygit = utils.run_cmd {
-    '/opt/homebrew/bin/mise',
-    'which',
-    'lazygit'
-  }
   local action = wezterm.action
   local all_characters = [[`1234567890=qwertyuiop[]\sdfghjklv;'zxcbnm./^*$#|?!]]
   local chars = {}
@@ -223,7 +217,11 @@ M.get = function()
       mods = 'LEADER',
       key = 'g',
       action = wezterm.action.SpawnCommandInNewTab {
-        args = { lazygit },
+        args = {
+          os.getenv 'SHELL', -- https://wezterm.org/faq.html#im-on-macos-and-wezterm-cannot-find-things-in-my-path
+          '-c',
+          'lazygit'
+        },
       }
     },
     {
@@ -289,7 +287,7 @@ M.get = function()
           function(window, _, line)
             if line then
               wezterm.mux.rename_workspace(
-                window:mux_window():get_workspace(),
+                window:mux_window():get_workspace() or '',
                 line
               )
             end
@@ -297,8 +295,8 @@ M.get = function()
         ),
       },
     },
-    { key = "Enter", mods = "SHIFT", action = wezterm.action { SendString = "\x1b\r" } }, -- claude
-    {                                                                      -- Show the launcher in fuzzy selection mode and have it list all workspaces
+    { key = "Enter", mods = "SHIFT",  action = wezterm.action { SendString = "\x1b\r" } }, -- claude
+    {                                                                                      -- Show the launcher in fuzzy selection mode and have it list all workspaces
       key = 't',
       mods = 'LEADER',
       action = wezterm.action.ShowLauncherArgs {
@@ -315,8 +313,8 @@ M.get = function()
     --   mods = 'LEADER',
     --   action = wezterm.action.DetachDomain { DomainName = 'remote' },
     -- },
-    { key = ')',   mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(1) },
-    { key = '(',   mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(-1) },
+    { key = ')',     mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(1) },
+    { key = '(',     mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(-1) },
     { -- Send 'CTRL-A' to the terminal when pressing CTRL-A, CTRL-A
       key = 'a',
       mods = 'LEADER|CMD',
