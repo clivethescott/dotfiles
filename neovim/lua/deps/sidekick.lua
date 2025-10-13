@@ -48,11 +48,18 @@ return {
         desc = "Sidekick Update NES",
       },
       {
-        "<space>ac",
+        "<space>ax",
         function()
           require("sidekick").clear()
         end,
         desc = "Sidekick NES clear",
+      },
+      {
+        "<space>aa",
+        function()
+          require("sidekick.nes").apply()
+        end,
+        desc = "Sidekick NES jump or apply",
       },
       {
         "<c-y>",

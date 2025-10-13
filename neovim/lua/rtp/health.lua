@@ -1,6 +1,7 @@
 local must_install_tools = {
   fd = 'fd',
   rg = 'ripgrep',
+  sd = 'sd search and replace, nicer sd',
   lsd = 'lsd',
   bat = 'Bat viewer',
   fzf = 'FZF Fuzzy finder',

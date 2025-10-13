@@ -8,6 +8,10 @@ return {
   opts = {
     workspaces = {
       {
+        name = "Work",
+        path = "~/Documents/Obsidian/Work",
+      },
+      {
         name = "Notes",
         path = "~/ObsidianNotes",
       },
@@ -43,6 +47,16 @@ return {
       '<space>nO',
       '<cmd>Obsidian open<cr>',
       desc = 'Open Note in Obsidian app'
+    },
+    {
+      '<space>nt',
+      '<cmd>Obsidian today<cr>',
+      desc = "Open Today's Note"
+    },
+{
+      '<space>nw',
+      '<cmd>Obsidian workspace<cr>',
+      desc = "Switch workspace"
     }
   }
 }
