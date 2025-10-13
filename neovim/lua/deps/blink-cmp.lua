@@ -3,7 +3,6 @@ return {
   build = "cargo build --release",
   dependencies = {
     'rafamadriz/friendly-snippets',
-    'Kaiser-Yang/blink-cmp-avante'
   },
   event = 'VeryLazy',
   -- use a release tag to download pre-built binaries
@@ -36,7 +35,7 @@ return {
       ['<c-b>'] = { 'scroll_documentation_down', 'fallback' },
     },
     sources = {
-      default = { 'lsp', 'snippets', 'buffer', 'omni', 'markdown', 'lazydev', 'path', 'avante' },
+      default = { 'lsp', 'snippets', 'buffer', 'omni', 'markdown', 'lazydev', 'path'},
       providers = {
         buffer = {
           max_items = 2,
@@ -58,13 +57,6 @@ return {
         snippets = {
           max_items = 3,
         },
-        avante = {
-          module = 'blink-cmp-avante',
-          name = 'Avante',
-          opts = {
-            -- options for blink-cmp-avante
-          }
-        }
       },
     },
     signature = { enabled = true },
