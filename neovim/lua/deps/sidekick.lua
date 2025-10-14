@@ -5,7 +5,14 @@ return {
   {
     "folke/sidekick.nvim",
     opts = {
-      nes = { enabled = is_work_pc },
+      nes = {
+        enabled = is_work_pc,
+        trigger = {
+          -- events that trigger sidekick next edit suggestions
+          -- events = { "InsertLeave", "TextChanged", "User SidekickNesDone" },
+          events = { "BufWritePost" },
+        },
+      },
       cli = {
         mux = {
           enabled = false, -- only supports tmux/zellij
