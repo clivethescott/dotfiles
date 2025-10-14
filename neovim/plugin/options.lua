@@ -135,3 +135,5 @@ vim.g.tmux_navigator_no_mappings = 1
 vim.opt.conceallevel = 1
 
 vim.opt.formatoptions:remove "o"
+vim.opt.showmode = false
+vim.o.iskeyword = '@,48-57,_,192-255,-' -- Treat dash as `word` textobject part

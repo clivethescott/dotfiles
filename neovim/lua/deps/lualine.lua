@@ -14,7 +14,7 @@ return {
         theme = 'catppuccin-mocha',
       },
       sections = {
-        -- lualine_a = { 'mode' },
+        lualine_a = {},
         lualine_b = { 'branch', 'diff',
           {
             'diagnostics',
