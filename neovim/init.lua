@@ -2,21 +2,6 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 vim.g.use_picker = 'fzf-lua'
 
-vim.diagnostic.config({
-  jump = {
-    float = true
-  },
-  -- virtual_lines = true,
-  -- Alternatively, customize specific options
-  virtual_lines = false,
-  -- virtual_lines = {
-   -- Only show virtual line diagnostics for the current cursor line
-   -- current_line = true,
-  -- },
-  virtual_text = true,
-  update_in_insert = false,
-  severity_sort = true,
-})
 -- Setup lazy
 local lazypath = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy/lazy.nvim")
 if not vim.loop.fs_stat(lazypath) then
