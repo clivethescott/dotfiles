@@ -56,3 +56,37 @@ vim.api.nvim_create_autocmd('BufRead', {
   end,
   group = vim.api.nvim_create_augroup('RestorePos', { clear = true }),
 })
+
+-- Neovim has built-in support for showing diagnostic messages. This configures
+-- a more conservative display while still being useful.
+-- See `:h vim.diagnostic` and `:h vim.diagnostic.config()`.
+local diagnostic_config = {
+  jump = {
+    float = true
+  },
+  -- Show signs on top of any other sign, but only for warnings and errors
+  signs = { priority = 9999, severity = { min = 'WARN', max = 'ERROR' } },
+  -- Show all diagnostics as underline
+  underline = { severity = { min = 'HINT', max = 'ERROR' } },
+  -- virtual_lines = true,
+  -- Alternatively, customize specific options
+  virtual_lines = false,
+  -- virtual_lines = {
+  -- Only show virtual line diagnostics for the current cursor line
+  -- current_line = true,
+  -- },
+  virtual_text = {
+    current_line = true,
+    severity = { min = 'ERROR', max = 'ERROR' },
+  },
+  update_in_insert = false,
+  severity_sort = true,
+}
+
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'VeryLazy',
+  group = vim.api.nvim_create_augroup('MyDiagConfig', { clear = true }),
+  callback = function()
+    vim.diagnostic.config(diagnostic_config)
+  end,
+})
