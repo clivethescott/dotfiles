@@ -12,6 +12,7 @@ return {
         browse = {
           ["^github%.bamtech%.co"] = require('gitlinker.routers').github_browse,
           ["^github%.twdcgrid%.net"] = require('gitlinker.routers').github_browse,
+          ["^github%.prod%.hulu%.com"] = require('gitlinker.routers').github_browse,
         }
       }
     }

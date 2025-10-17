@@ -231,6 +231,7 @@ if status is-interactive; and type -q zoxide
     set -gx _ZO_FZF_OPTS "$FZF_DEFAULT_OPTS"
     # z, zi for fzf
     zoxide init --cmd cd fish | source
+    abbr -a z cdi
 end
 
 set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $JAVA_HOME/bin $PATH
