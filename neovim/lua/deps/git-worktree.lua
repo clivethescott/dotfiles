@@ -1,23 +1,22 @@
+---@class Worktree
+---@field branch string The name of the branch
+---@field path string Path to where the worktree is
+
+---@return Worktree[]
 local get_worktrees = function()
-  local handle = io.popen("git worktree list")
-  if handle == nil then
+  if Snacks.git.get_root() == nil then
+    vim.notify('Not in a Git repo', vim.log.levels.WARN)
     return {}
   end
-  local result = handle:read("*a")
-  handle:close()
-
-  local worktrees = {}
-  for line in result:gmatch("[^\r\n]+") do
-    -- Each line format: "/path/to/worktree  commit [branch]"
-    local path, commit, branch = line:match("^(%S+)%s+(%S+)%s+%[(.+)%]")
-    if path then
-      table.insert(worktrees, {
-        branch = branch,
-        path = path,
-      })
-    end
-  end
-  return worktrees
+  local worktrees = vim.fn.systemlist({ "git", "worktree", "list" })
+  return vim.tbl_map(function(tree)
+    -- path, commit, branch
+    local path, _, branch = tree:match("^(%S+)%s+(%S+)%s+%[(.+)%]")
+    return {
+      branch = branch or 'unknown',
+      path = path or 'unknown',
+    }
+  end, worktrees)
 end
 
 local select_worktree = function()
@@ -30,8 +29,10 @@ local select_worktree = function()
           return item.branch .. ' ' .. vim.fn.expand(item.path, ":p:h:t")
         end
       },
-      function(choice)
-        require "git-worktree".switch_worktree(choice.branch)
+      function(tree)
+        if tree ~= nil then
+          require "git-worktree".switch_worktree(tree.branch)
+        end
       end)
   end
 end
