@@ -34,7 +34,7 @@ set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:tog
 set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
 set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 set -gx FZF_CTRL_T_OPTS $FZF_DEFAULT_OPTS
-if type -q fzf
+if status is-interactive; and type -q fzf
     fzf --fish | FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= source
     # https://junegunn.github.io/fzf/
     abbr --add -g gco "git branch | fzf --preview 'git show --color=always {-1}' \
@@ -43,7 +43,7 @@ if type -q fzf
 end
 
 # setup atuin
-if status is-interactive
+if status is-interactive; and type -q atuin
     # disable default keybindings
     set -gx ATUIN_NOBIND true
     atuin init fish | source
@@ -94,8 +94,11 @@ end
 fish_add_path /opt/homebrew/opt/uutils-coreutils/libexec/uubin
 fish_add_path /opt/homebrew/bin/
 fish_add_path "$HOME/.docker/bin"
+
+if type -q brew
 # Setup brew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+end
 
 if type -q sd
     abbr -a sed sd
@@ -236,5 +239,3 @@ end
 
 set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $JAVA_HOME/bin $PATH
 set PATH ~/orbstack/bin ~/.local/bin $PATH
-
-# starship init fish | source
