@@ -1,6 +1,26 @@
 local M = {}
 local wezterm = require 'wezterm' --[[@as Wezterm]]
 
+
+-- Re-think seamless jumps between nvim/terminal splits
+-- local is_nvim = function(pane)
+--   local process_name = pane:get_foreground_process_name()
+--   return string.find(process_name, 'nvim', 1, true) ~= nil
+-- end
+-- action = wezterm.action_callback(function(window, pane, line)
+--         local keymap = nil
+--         if (is_nvim(pane)) then
+--           keymap = wezterm.action.Multiple {
+--             wezterm.action.SendKey { key = 'w', mods = 'CTRL' },
+--             wezterm.action.SendKey { key = 'l', mods = 'CTRL' },
+--             wezterm.action.ActivatePaneDirection 'Right',
+--           }
+--         else
+--           keymap = wezterm.action.ActivatePaneDirection 'Right'
+--         end
+--         window:perform_action(keymap, pane)
+--       end)
+
 M.mouse = function()
   return {
     {

@@ -1,3 +1,19 @@
+local workspaces = {
+  {
+    name = "Work",
+    path = "~/Documents/Obsidian/Work",
+  },
+  {
+    name = "Notes",
+    path = "~/ObsidianNotes",
+  },
+}
+
+-- Sort workspaces: Notes first when at home, Work first when at work PC
+if vim.env.IS_WORK_PC ~= "true" then
+  workspaces[1], workspaces[2] = workspaces[2], workspaces[1]
+end
+
 ---@diagnostic disable: missing-fields
 return {
   'obsidian-nvim/obsidian.nvim',
@@ -6,16 +22,7 @@ return {
   ---@module 'obsidian'
   ---@type obsidian.config
   opts = {
-    workspaces = {
-      {
-        name = "Work",
-        path = "~/Documents/Obsidian/Work",
-      },
-      {
-        name = "Notes",
-        path = "~/ObsidianNotes",
-      },
-    },
+    workspaces = workspaces,
     legacy_commands = false,
     log_level = vim.log.levels.WARN,
     completion = { blink = true, min_chars = 2 },
@@ -53,7 +60,7 @@ return {
       '<cmd>Obsidian today<cr>',
       desc = "Open Today's Note"
     },
-{
+    {
       '<space>nw',
       '<cmd>Obsidian workspace<cr>',
       desc = "Switch workspace"

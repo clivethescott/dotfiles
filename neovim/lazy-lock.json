@@ -26,11 +26,11 @@
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
   "nvim-treesitter-context": { "branch": "master", "commit": "ed1cf48d5af252248c55f50b9427e8ce883a2c6b" },
   "nvim-web-devicons": { "branch": "master", "commit": "5b9067899ee6a2538891573500e8fd6ff008440f" },
-  "obsidian.nvim": { "branch": "main", "commit": "6b2a22a74d1c883e797764c28f75aa6b532a1ae4" },
+  "obsidian.nvim": { "branch": "main", "commit": "2d44b29dc71c26296cb6f267d0a615ec1ada908f" },
   "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
   "render-markdown.nvim": { "branch": "main", "commit": "ea3678daff66656a9e1c20914d204b7c841c5030" },
-  "sidekick.nvim": { "branch": "main", "commit": "9dee4da2bc3e51f2aab364214513f5b5972ad866" },
+  "sidekick.nvim": { "branch": "main", "commit": "4cab26429c01b2225dea7a201dcb94f81767e50b" },
   "snacks.nvim": { "branch": "main", "commit": "da230e3ca8146da4b73752daaf0a1d07d343c12d" },
-  "wezterm-types": { "branch": "main", "commit": "b8c96829a39f7daf341aa5a6ec19bb2174a94881" },
+  "wezterm-types": { "branch": "main", "commit": "9d861b940a1e31b0294c69a2a19b2fb2301e584a" },
   "which-key.nvim": { "branch": "main", "commit": "fcbf4eea17cb299c02557d576f0d568878e354a4" }
 }
