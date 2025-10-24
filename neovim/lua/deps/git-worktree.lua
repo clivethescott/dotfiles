@@ -8,10 +8,13 @@ local get_worktrees = function()
     vim.notify('Not in a Git repo', vim.log.levels.WARN)
     return {}
   end
-  local worktrees = vim.fn.systemlist({ "git", "worktree", "list" })
+  local git_worktrees = vim.fn.systemlist({ "git", "worktree", "list" })
+  local worktrees = vim.tbl_filter(function(item)
+    return string.find(item, 'bare', 1, true) == nil
+  end, git_worktrees)
   return vim.tbl_map(function(tree)
     -- path, commit, branch
-    local path, _, branch = tree:match("^(%S+)%s+(%S+)%s+%[(.+)%]")
+    local path, _, branch = tree:match("^(%S+)%s+(%S+)%s+[%(%[](.+)[%)%]]")
     return {
       branch = branch or 'unknown',
       path = path or 'unknown',
@@ -26,7 +29,7 @@ local select_worktree = function()
       {
         prompt = 'Select worktree',
         format_item = function(item)
-          return item.branch .. ' ' .. vim.fn.expand(item.path, ":p:h:t")
+          return vim.fn.fnamemodify(item.path, ":t")
         end
       },
       function(tree)
