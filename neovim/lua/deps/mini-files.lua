@@ -66,12 +66,18 @@ return {
       vim.fn.setreg(vim.v.register, path)
     end
 
-    local fzf_grep_dir = function()
+    local grep_dir = function()
       local path = (MiniFiles.get_fs_entry() or {}).path
+      local picker = vim.g.use_picker or 'fzf-lua'
       if path == nil then return vim.notify('Cursor is not on valid entry') end
       if is_directory(path) then
-        require("fzf-lua").live_grep_glob { cwd = path }
-        -- MiniFiles.close()
+        if picker == 'fzf-lua' then
+          require("fzf-lua").live_grep_glob { cwd = path }
+          -- MiniFiles.close()
+        elseif picker == 'snacks.picker' then
+          MiniFiles.close()
+          Snacks.picker.grep { dirs = { path } }
+        end
       else
         vim.notify('Cursor is not on a directory')
       end
@@ -123,7 +129,7 @@ return {
         local bufnr = args.data.buf_id
         vim.keymap.set('n', 'g.', set_cwd, { buffer = bufnr, desc = 'Set cwd' })
         -- vim.keymap.set('n', 'gx', ui_open, { buffer = b, desc = 'OS open' })
-        vim.keymap.set('n', 'gf', fzf_grep_dir, { buffer = bufnr, desc = 'Live grep dir' })
+        vim.keymap.set('n', 'gf', grep_dir, { buffer = bufnr, desc = 'Live grep dir' })
         vim.keymap.set('n', 'gy', yank_path, { buffer = bufnr, desc = 'Yank path' })
         vim.keymap.set("n", "gh", toggle_dotfiles, { buffer = bufnr, desc = "Toggle hidden files" })
 

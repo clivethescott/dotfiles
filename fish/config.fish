@@ -128,6 +128,10 @@ end
 abbr -a gd 'git diff'
 abbr -a gs 'git status'
 abbr -a gp 'git push'
+abbr -a gwl 'git worktree list'
+abbr -a gwr 'git worktree remove'
+abbr -a gwa 'git worktree add'
+abbr -a gw 'git worktree'
 abbr --add unset 'set --erase'
 
 if type -q kubectl

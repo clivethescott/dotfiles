@@ -1,3 +1,12 @@
+-- https://github.com/obsidian-nvim/obsidian.nvim/blob/47bd91e3edb95649f4347b2fef929446112fff21/lua/obsidian/config/init.lua#L36
+local obsidian_pickers = {
+  telescope = "telescope.nvim",
+  ['fzf-lua'] = "fzf-lua",
+  mini = "mini.pick",
+  ['snacks.picker'] = "snacks.pick",
+}
+local picker = vim.g.use_picker or 'fzf-lua'
+local obsidian_picker = obsidian_pickers[picker] or picker
 local workspaces = {
   {
     name = "Work",
@@ -32,7 +41,7 @@ return {
       end
     },
     picker = {
-      name = 'fzf-lua'
+      name = obsidian_picker,
     },
     ui = { enable = false }, -- use MeanderingProgrammer/render-markdown.nvim
     daily_notes = {

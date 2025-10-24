@@ -1,25 +1,11 @@
 return {
-  "gennaro-tedesco/nvim-possession",
-  dependencies = {
-    "ibhagwan/fzf-lua",
-  },
-  config = function()
-    require 'nvim-possession'.setup {
-      fzf_winopts = {
-        width = 0.9,
-        height = 0.9,
-        preview = {
-          -- vertical = "right:50%",
-          default = 'bat',
-        }
-      },
-      sort = require("nvim-possession.sorting").time_sort,
-    }
-  end,
+  "folke/persistence.nvim",
+  config = true,
   keys = {
-    { "<space>sl", function() require("nvim-possession").list() end,   desc = "List sessions", },
-    { "<space>sn", function() require("nvim-possession").new() end,    desc = "Create session", },
-    { "<space>su", function() require("nvim-possession").update() end, desc = "Update current session", },
-    { "<space>sd", function() require("nvim-possession").delete() end, desc = "Delete selected session" },
+    { "<space>sl", function() require("persistencee").load() end,   desc = "Load cwd session", },
+    { "<space>sL", function() require("persistencee").load({last=true}) end,   desc = "Load last session", },
+    { "<space>ss", function() require("persistence").select() end,    desc = "Select a session", },
+    { "<space>sd", function() require("persistency").stop() end, desc = "Stop session" },
+    { "<space>sq", function() require("persistency").stop() end, desc = "Stop session" },
   },
 }
