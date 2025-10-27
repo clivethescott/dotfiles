@@ -92,7 +92,6 @@ end
 
 # setup coreutils. This is slighly better than the mise one which has 1 uber command
 fish_add_path /opt/homebrew/opt/uutils-coreutils/libexec/uubin
-fish_add_path /opt/homebrew/bin/
 fish_add_path "$HOME/.docker/bin"
 
 if type -q brew
@@ -241,5 +240,4 @@ if status is-interactive; and type -q zoxide
     abbr -a z cdi
 end
 
-set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $JAVA_HOME/bin $PATH
-set PATH ~/orbstack/bin ~/.local/bin $PATH
+fish_add_path --global --path "/opt/homebrew/bin" "$GOBIN" "$HOME/Library/Application\ Support/Coursier/bin" "$HOME/.cargo/bin" "$HOME/apps/bin" "$JAVA_HOME/bin"
