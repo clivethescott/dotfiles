@@ -26,7 +26,7 @@ local picker_config      = {
       truncate = 80,
     },
   },
-  layout = { hidden = { "preview" }, fullscreen = true },
+  layout = { hidden = { "preview" }, fullscreen = false },
   ui_select = true,
 }
 
@@ -112,6 +112,7 @@ return {
     { "<space>gL", function() Snacks.picker.git_log_file() end,             desc = "Buffer Commits" },
     { "<space>gb", function() Snacks.picker.git_branches() end,             desc = "Git Branches" },
     { "<c-p>",     function() Snacks.picker.files() end,                    desc = "Files" },
+    { "<M-p>",     function() Snacks.picker.smart() end,                    desc = "Smart" },
     { "<c-e>",     function() Snacks.picker.buffers() end,                  desc = "Buffers" },
     { "<space>tf", function() Snacks.picker.grep() end,                     desc = "Grep" },
     { "<space>tF", function() Snacks.picker.grep_word() end,                desc = "Grep selection or word", mode = { "n", "x" } },

@@ -15,7 +15,7 @@ local codelens = function(bufnr, au_group)
 end
 
 local formatting = function(client, bufnr)
-  vim.keymap.set({ 'n', 'v' }, '<leader>f', function()
+  local conform_format = function()
     require 'conform'.format({
       timeout_ms = 2000,
       bufnr = bufnr or 0,
@@ -23,7 +23,9 @@ local formatting = function(client, bufnr)
       lsp_format = "fallback",
       id = client.id,
     })
-  end, { buffer = true, desc = 'LSP Format' })
+  end
+  vim.keymap.set({ 'n', 'v' }, '<leader>f', conform_format, { buffer = true, desc = 'LSP Format' })
+  vim.b.formatexpr = "v:lua.vim.lsp.formatexpr()"
 end
 
 local diagnostics = function(bufnr)
@@ -61,7 +63,7 @@ function M.on_attach(client, bufnr)
   if client.name == 'copilot' then return end
 
   -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
-  -- seems that Neovim does not pick up on gopls' semantic token support 
+  -- seems that Neovim does not pick up on gopls' semantic token support
   if client.name == 'gopls' and not client.server_capabilities.semanticTokensProvider then
     local semantic = client.config.capabilities.textDocument.semanticTokens
     client.server_capabilities.semanticTokensProvider = {
@@ -153,7 +155,6 @@ function M.on_attach(client, bufnr)
   if client.supports_method("textDocument/formatting") or has_conform then
     formatting(client, bufnr)
   end
-
   if client.supports_method('textDocument/diagnostic') or client.name == 'metals' then
     -- <c-w>d
     diagnostics(bufnr)
