@@ -45,11 +45,7 @@ update:
 disableStartupPopups: true
 keybinding:
   universal:
-    prevItem: "<c-p>"
-    nextItem: "<c-n>"
     scrollUpMain-alt1: <disabled>
-    copyToClipboard: "y"
-    openRecentRepos: "<c-o>"
 services:
   "github.bamtech.co": "github:github.bamtech.co"
 # customCommands:
