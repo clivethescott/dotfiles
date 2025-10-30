@@ -2,6 +2,7 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 -- vim.g.use_picker = 'fzf-lua'
 vim.g.use_picker = 'snacks.picker'
+vim.g.is_work_pc = vim.env.IS_WORK_PC == "true"
 
 -- Setup lazy
 local lazypath = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy/lazy.nvim")

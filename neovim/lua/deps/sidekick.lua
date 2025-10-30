@@ -1,12 +1,11 @@
-local is_work_pc = vim.env.IS_WORK_PC == "true"
-local adapter = is_work_pc and "amazon_q" or "claude" -- TODO: use copilot CLI when org allowed
+local adapter = vim.g.is_work_pc and "amazon_q" or "claude" -- TODO: use copilot CLI when org allowed
 
 return {
   {
     "folke/sidekick.nvim",
     opts = {
       nes = {
-        enabled = false, -- is_work_pc and vim.b.sidekick_nes ~= false and vim.g.sidekick_nes ~= false,
+        enabled = false, -- vim.g.is_work_pc and vim.b.sidekick_nes ~= false and vim.g.sidekick_nes ~= false,
         trigger = {
           -- events that trigger sidekick next edit suggestions
           -- events = { "InsertLeave", "TextChanged", "User SidekickNesDone" },
@@ -19,7 +18,7 @@ return {
         },
       },
       copilot = {
-        enabled = is_work_pc,
+        enabled = vim.g.is_work_pc,
       },
     },
     keys = {

@@ -19,7 +19,7 @@ local workspaces = {
 }
 
 -- Sort workspaces: Notes first when at home, Work first when at work PC
-if vim.env.IS_WORK_PC ~= "true" then
+if not vim.g.is_work_pc then
   workspaces[1], workspaces[2] = workspaces[2], workspaces[1]
 end
 

@@ -92,6 +92,7 @@ end
 
 # setup coreutils. This is slighly better than the mise one which has 1 uber command
 fish_add_path /opt/homebrew/opt/uutils-coreutils/libexec/uubin
+fish_add_path /opt/homebrew/bin/
 fish_add_path "$HOME/.docker/bin"
 
 if type -q brew
@@ -105,6 +106,7 @@ end
 
 if type -q gron
     abbr -a gr gron
+    abbr -a ungron gron --ungron
 end
 
 # if type -q mise
@@ -240,4 +242,4 @@ if status is-interactive; and type -q zoxide
     abbr -a z cdi
 end
 
-fish_add_path --global --path "/opt/homebrew/bin" "$GOBIN" "$HOME/Library/Application\ Support/Coursier/bin" "$HOME/.cargo/bin" "$HOME/apps/bin" "$JAVA_HOME/bin"
+set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $JAVA_HOME/bin $PATH

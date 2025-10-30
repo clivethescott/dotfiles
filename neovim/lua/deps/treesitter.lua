@@ -11,6 +11,11 @@ return {
       keys = {
         { '[h', function() require("treesitter-context").go_to_context(vim.v.count1) end, desc = 'Jump to TS context' }
       }
+    },
+    {
+      'towolf/vim-helm',
+      cond = vim.g.is_work_pc,
+      ft = 'yaml',
     }
   },
   init = function()
@@ -30,7 +35,7 @@ return {
       auto_install = true,
       sync_install = false,
       highlight = {
-        enable = true,          -- false will disable the whole extension
+        enable = true,                  -- false will disable the whole extension
         disable = function(lang, bufnr) -- Disable in large JSON buffers
           return lang == "json" and vim.api.nvim_buf_line_count(bufnr) > 10000
         end,
