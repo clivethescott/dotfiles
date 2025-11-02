@@ -61,5 +61,5 @@ function fish_right_prompt --description "Git info"
         set -g __fish_git_prompt_color_cleanstate green --bold
     end
     set_color normal
-    printf '%s ' (fish_vcs_prompt)
+    printf '%s ' (fish_git_prompt)
 end
