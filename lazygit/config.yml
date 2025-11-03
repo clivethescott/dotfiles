@@ -48,8 +48,38 @@ keybinding:
     scrollUpMain-alt1: <disabled>
 services:
   "github.bamtech.co": "github:github.bamtech.co"
-# customCommands:
-# - key: '<c-y>'
-#   command: 'git pull --rebase'
-#   description: 'Pull with rebase'
-#   context: 'global'
+customCommands:
+  - key: "G"
+    context: "localBranches"
+    description: "Open/Create PR"
+    command: |
+      #!/bin/bash
+      REMOTE_URL=$(git remote get-url origin 2>/dev/null || echo "")
+      if [[ "$REMOTE_URL" == *"github.com"* ]]; then
+        gh pr view --web || gh pr create --web
+      else
+        echo "Unsupported Git provider with remote URL: $REMOTE_URL"
+        exit 1
+      fi
+  - key: "U"
+    context: "commits"
+    description: "Undo last commit (keep changes)"
+    command: "git reset --mixed HEAD~1"
+  - key: "<c-n>"
+    context: "localBranches"
+    description: "Create branch"
+    prompts:
+      - type: "input"
+        title: "Ticket number"
+        key: "TicketNumber"
+        initialValue: ""
+      - type: "input"
+        title: "Branch Name"
+        key: "BranchName"
+        initialValue: ""
+      - type: "confirm"
+        key: "Confirm"
+        title: "Commit"
+        body: "Create new branch?"
+    command: "git switch -c 'ASTX-{{ .Form.TicketNumber }}-{{.Form.BranchName}}'"
+    loadingText: "Creating new branch..."
