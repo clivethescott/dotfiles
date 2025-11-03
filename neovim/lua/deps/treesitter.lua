@@ -13,9 +13,10 @@ return {
       }
     },
     {
-      'towolf/vim-helm',
+      -- 'towolf/vim-helm', possible compat issues?
+      "qvalentin/helm-ls.nvim",
       cond = vim.g.is_work_pc,
-      ft = 'yaml',
+      ft = { 'yaml', 'helm' },
     }
   },
   init = function()
@@ -29,7 +30,7 @@ return {
   config = function()
     local treesitter_config = require 'nvim-treesitter.configs'
     treesitter_config.setup {
-      ensure_installed = { 'dockerfile', 'git_config', 'gitcommit', 'graphql', 'hocon', 'html',
+      ensure_installed = { 'dockerfile', 'git_config', 'gitcommit', 'graphql', 'hocon', 'html', 'helm',
         'http', 'properties', 'json', 'lua', 'markdown', 'markdown_inline', 'python', 'rust', 'scala', 'sql', 'toml',
         'vim', 'yaml', 'fish', 'hurl' },
       auto_install = true,

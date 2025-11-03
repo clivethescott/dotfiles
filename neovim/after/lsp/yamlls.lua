@@ -1,13 +1,22 @@
 return {
   settings = {
+    redhat = {
+      telemetry = {
+        enabled = false
+      }
+    },
     yaml = {
       keyOrdering = false,
       format = {
         enable = true,
       },
       schemaStore = {
-        enable = true
+        -- disable built-in schemaStore support to use external
+        enable = false,
+        -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+        url = "",
       },
+      schemas = require("schemastore").yaml.schemas(),
       hover = true,
       completion = true,
       customTags = {

@@ -1,5 +1,6 @@
 return {
   "folke/persistence.nvim",
+  cond = vim.g.is_work_pc,
   config = true,
   keys = {
     { "<space>sl", function() require("persistencee").load() end,   desc = "Load cwd session", },

@@ -4,6 +4,7 @@ return {
   -- event = 'VeryLazy', causes an issue where LspAttach is not called if opening files directly
   dependencies = {
     'williamboman/mason.nvim',
+    "b0o/schemastore.nvim",
   },
   config = function()
     local lsp_group = vim.api.nvim_create_augroup('LspAttachGroup', { clear = true })

@@ -112,7 +112,7 @@ vim.g.do_filetype_lua = true
 vim.g.did_load_filetypes = false
 
 -- Disable modeline
-vim.opt.modeline = false
+vim.opt.modeline = true
 
 -- Recommended for https://github.com/rmagatti/auto-session
 -- vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
