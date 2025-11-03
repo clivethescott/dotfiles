@@ -34,10 +34,10 @@ git:
       replace: "ASTX-$1 "
     - pattern: "^NOTICKET.*?"
       replace: "NOTICKET "
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
-    externalDiffCommand: difft --color=auto
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
+      externalDiffCommand: difft --color=auto
   disableForcePushing: true
 confirmOnQuit: false
 update:
