@@ -32,3 +32,5 @@
 [push]
 	autoSetupRemote = true
 
+[alias]
+	jump = git-jump
