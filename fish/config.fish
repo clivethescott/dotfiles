@@ -100,10 +100,6 @@ if type -q brew
   eval "$(/opt/homebrew/bin/brew shellenv)"
 end
 
-if type -q chezmoi
-    abbr -a ch chezmoi
-end
-
 if type -q sd
     abbr -a sed sd
 end
