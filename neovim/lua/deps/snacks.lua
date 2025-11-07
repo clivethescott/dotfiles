@@ -135,16 +135,38 @@ return {
     { "<space>th", function() Snacks.picker.help() end,                     desc = "Help tags" },
     { "<space>tm", function() Snacks.picker.marks() end,                    desc = "Marks" },
     { "<space>tj", function() Snacks.picker.jumps() end,                    desc = "Jumps" },
+    { "<space>tz", function() Snacks.picker.zoxide() end,                   desc = "Zoxide" },
+    { "<space>tt", function() Snacks.picker() end,                          desc = "Pickers" },
     ---@diagnostic disable-next-line: undefined-field
-    { "<space>tu",  function() Snacks.picker.undo() end,                     desc = "Undo" },
-    { "<space>tr",  function() Snacks.picker.registers() end,                desc = "Registers" },
-    { "<space>tb",  function() Snacks.picker.lines() end,                    desc = "Buffer lines" },
+    { "<space>tu", function() Snacks.picker.undo() end,                     desc = "Undo" },
+    { "<space>tr", function() Snacks.picker.registers() end,                desc = "Registers" },
+    { "<space>tb", function() Snacks.picker.lines() end,                    desc = "Buffer lines" },
     -- { "<space>lm",  function() Snacks.picker.lsp_definitions() end,      desc = "Goto Definition" },
-    { "<space>lD",  function() Snacks.picker.diagnostics() end,              desc = "Snacks Diagnostics" },
-    { "<space>lR",  function() Snacks.picker.lsp_references() end,           nowait = true,                   desc = "References" },
-    { "<space>lI",  function() Snacks.picker.lsp_implementations() end,      desc = "Goto Implementation" },
-    { "<space>ly",  function() Snacks.picker.lsp_type_definitions() end,     desc = "Goto T[y]pe Definition" },
-    { "<space>lw",  function() Snacks.picker.lsp_symbols() end,              desc = "LSP Symbols" },
+    { "<space>lD", function() Snacks.picker.diagnostics() end,              desc = "Snacks Diagnostics" },
+    { "<space>lR", function() Snacks.picker.lsp_references() end,           nowait = true,                   desc = "References" },
+    { "<space>lI", function() Snacks.picker.lsp_implementations() end,      desc = "Goto Implementation" },
+    { "<space>ly", function() Snacks.picker.lsp_type_definitions() end,     desc = "Goto T[y]pe Definition" },
+    { "<space>lw", function() Snacks.picker.lsp_symbols() end,              desc = "LSP Symbols" },
+    {
+      '<space>te',
+      function()
+        Snacks.explorer.open {
+          diagnostics = false,
+          supports_live = true,
+        }
+      end,
+      desc = 'Toggle explorer'
+    },
+    {
+      '<space>tE',
+      function()
+        Snacks.explorer.open {
+          follow_file = true,
+          diagnostics = false,
+        }
+      end,
+      desc = 'Select file in explorer'
+    },
     {
       "<leader>2",
       function() Snacks.picker.files { dirs = conf_dirs } end,

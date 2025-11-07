@@ -134,6 +134,7 @@ abbr -a gwr 'git worktree remove'
 abbr -a gwa 'git worktree add'
 abbr -a gw 'git worktree'
 abbr --add unset 'set --erase'
+abbr --add pbclear pbcopy < /dev/null
 
 if type -q kubectl
     abbr -a k kubectl
