@@ -26,7 +26,7 @@ wezterm.on('format-tab-title', function(tab, _)
   local zoomed = tab.active_pane.is_zoomed and '[Z] ' or ''
   local title = utils.tab_title(tab)
   return {
-    { Text = '  ' .. tostring(tab.tab_index + 1) .. ':' .. title .. '  ' .. zoomed },
+    { Text = ' ' .. tostring(tab.tab_index + 1) .. ': ' .. title .. '  ' .. zoomed },
   }
 end)
 
