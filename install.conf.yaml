@@ -1,0 +1,23 @@
+- defaults:
+    link:
+      create: true
+      relink: false
+
+- clean: ['~']
+
+- link:
+    # ~/.config/atuin/config.toml: atuin/config.toml
+    ~/.tmux.conf: tmux/tmux.conf
+    ~/.config/fish/config.fish: fish/config.fish
+    ~/.config/fish/fish_plugins: fish/fish_plugins
+    ~/.config/fish/functions: fish/functions
+    ~/.gitconfig: git/.gitconfig
+    ~/.gitignore: git/.gitignore
+    ~/.config/lazygit/config.yml: lazygit/config.yml
+    ~/.config/mise/config.toml: mise/config.toml
+    ~/.config/nvim: neovim
+    ~/.config/nushell/config.nu: nushell/config.nu
+    ~/.ripgreprc: ripgrep/.ripgreprc
+    ~/.config/starship.toml: starship/starship.toml
+    ~/.config/wezterm: wezterm
+

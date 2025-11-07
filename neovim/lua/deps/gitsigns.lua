@@ -19,7 +19,9 @@ local on_attach = function()
   vim.keymap.set({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
 
   vim.keymap.set('n', ']c', next_hunk, { desc = 'Next Hunk' })
+  vim.keymap.set('n', ']g', next_hunk, { desc = 'Next Hunk' })
   vim.keymap.set('n', '[c', prev_hunk, { desc = 'Prev Hunk' })
+  vim.keymap.set('n', '[g', prev_hunk, { desc = 'Prev Hunk' })
   vim.keymap.set('n', '<space>gd', gitsigns.preview_hunk, { desc = 'Show Diff' })
 
   vim.keymap.set('n', '<space>gu', gitsigns.reset_hunk, { desc = 'Undo Change' })

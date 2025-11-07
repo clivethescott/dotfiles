@@ -134,6 +134,7 @@ abbr -a gwr 'git worktree remove'
 abbr -a gwa 'git worktree add'
 abbr -a gw 'git worktree'
 abbr --add unset 'set --erase'
+abbr --add pbclear pbcopy < /dev/null
 
 if type -q kubectl
     abbr -a k kubectl
@@ -242,4 +243,4 @@ if status is-interactive; and type -q zoxide
     abbr -a z cdi
 end
 
-set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $JAVA_HOME/bin $PATH
+set PATH /opt/homebrew/opt/git/share/git-core/contrib/git-jump /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $JAVA_HOME/bin $PATH
