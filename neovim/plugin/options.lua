@@ -2,6 +2,7 @@
 -- vim.opt.clipboard = 'unnamedplus'
 vim.opt.dictionary:append('/usr/share/dict/words')
 vim.opt.spell = true
+vim.opt.spelloptions = 'camel' -- Treat camelCase word parts as separate words
 vim.opt.spelllang = 'en_gb'
 
 vim.opt.list = true
