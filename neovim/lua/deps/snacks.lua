@@ -113,9 +113,16 @@ return {
     image = { enabled = true },
     picker = picker_config,
     gh = { enabled = true },
+    scratch = {
+      enabled = true,
+      filekey = { branch = false },
+      wo = { relativenumber = true }
+    },
   },
   keys = {
     { "gs",        function() require 'snacks'.lazygit.open() end,          desc = "Lazygit" },
+    { "<space>ts", function() Snacks.scratch() end,                         desc = "Toggle scratch buffer" },
+    { "<space>tS", function() Snacks.scratch.select() end,                  desc = "Select scratch buffer" },
     { "<space>gp", function() Snacks.picker.gh_pr() end,                    desc = "GitHub Open PRs" },
     { "<space>gP", function() Snacks.picker.gh_pr({ state = "all" }) end,   desc = "GitHub All PRs" },
     { "<space>nh", function() require 'snacks'.notifier.show_history() end, desc = "Notification history" },
