@@ -18,9 +18,9 @@ local ensure_installed = {
   'lua', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc',
   -- NOTE: the above are natively installed since neovim 0.12
   'bash', 'dockerfile', 'git_config', 'gitcommit', 'graphql', 'hocon', 'html', 'smithy',
-  'helm', 'http', 'properties', 'json', 'luadoc', 'python', 'rust', 'diff', 'hcl', 'nu',
+  'helm', 'http', 'properties', 'json', 'python', 'rust', 'diff', 'hcl', 'nu',
   'scala', 'sql', 'toml', 'yaml', 'fish', 'hurl', 'csv', 'go', 'groovy', 'java', 'proto',
-  'terraform', 'typescript', 'zig',
+  'terraform', 'typescript',
 }
 local disable_indent_fts = { 'ocaml' }
 local regex_highlight_fts = { 'yaml' }
@@ -34,6 +34,7 @@ end
 
 local install_missing_parsers = function()
   local missing_parsers = vim.tbl_filter(needs_install, ensure_installed)
+  vim.print(missing_parsers)
   if #missing_parsers > 0 then
     vim.notify('Installing missing parsers', vim.log.levels.INFO)
     require 'nvim-treesitter'.install(missing_parsers)
