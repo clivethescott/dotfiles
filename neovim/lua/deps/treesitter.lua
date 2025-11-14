@@ -22,6 +22,8 @@ local ensure_installed = {
   'scala', 'sql', 'toml', 'yaml', 'fish', 'hurl', 'csv', 'go', 'groovy', 'java', 'proto',
   'terraform', 'typescript', 'zig',
 }
+local disable_indent_fts = { 'ocaml' }
+local regex_highlight_fts = { 'yaml' }
 
 -- https://www.reddit.com/r/neovim/comments/1ow2m75/comment/nonf4nt/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 local needs_install = function(lang)
@@ -49,6 +51,16 @@ local get_supported_filetypes = function()
   return filetypes
 end
 
+local select_textobject = function(...)
+  require "nvim-treesitter-textobjects.select".select_textobject(...)
+end
+local goto_next = function(...)
+  require "nvim-treesitter-textobjects.move".goto_next_start(...)
+end
+local goto_previous = function(...)
+  require "nvim-treesitter-textobjects.move".goto_previous_end(...)
+end
+
 return {
   'nvim-treesitter/nvim-treesitter',
   branch = 'main',
@@ -56,12 +68,54 @@ return {
   lazy = false,
   dependencies = {
     {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      branch = 'main',
+      opts = {
+        move = {
+          -- whether to set jumps in the jumplist
+          set_jumps = true,
+        },
+      },
+      keys = {
+        -- You can use the capture groups defined in `textobjects.scm`
+        {
+          'af',
+          function() select_textobject("@function.outer", "textobjects") end,
+          desc = 'Select outer function',
+          mode = { 'x', 'o' }
+        },
+        {
+          'if',
+          function() select_textobject("@function.inner", "textobjects") end,
+          desc = 'Select inner function',
+          mode = { 'x', 'o' }
+        },
+        -- This is similar to ]m, [m, Neovim's mappings to jump to the next or previous function.
+        {
+          ']m',
+          function() goto_next({ "@function.outer", "@class.outer" }, "textobjects") end,
+          desc = 'Go to next function or class',
+          mode = { 'n', 'x', 'o' }
+        },
+        {
+          '[m',
+          function() goto_previous({ "@function.outer", "@class.outer" }, "textobjects") end,
+          desc = 'Go to prev function or class',
+          mode = { 'n', 'x', 'o' }
+        }
+      }
+    },
+    {
       'nvim-treesitter/nvim-treesitter-context',
       keys = {
         { '[h', function() require("treesitter-context").go_to_context(vim.v.count1) end, desc = 'Jump to TS context' },
         { ']h', function() require("treesitter-context").go_to_context(vim.v.count1) end, desc = 'Jump to TS context' },
       },
-      config = true
+      opts = {
+        multiline_threshold = 999,
+        separator = '-',
+        max_lines = 3,
+      }
     },
     {
       -- 'towolf/vim-helm', possible compat issues?
@@ -109,10 +163,13 @@ return {
         -- To replicate additional_vim_regex_highlighting = true
         -- regex syntax highlighting is disabled by default, which may be required for some plugins.
         -- after `vim.treesitter.start` call this if needed
-        -- vim.bo[buf].syntax = 'on'  -- only if additional legacy syntax is needed
+
+        if vim.tbl_contains(regex_highlight_fts, filetype) then
+          vim.bo[buf].syntax = 'on' -- only if additional legacy syntax is needed
+        end
 
         -- replicate `indent = { enable = true }`
-        if filetype ~= 'ocaml' then
+        if not vim.tbl_contains(disable_indent_fts, filetype) then
           -- strange issue where let is indented? (set in :h indentkeys)
           vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
