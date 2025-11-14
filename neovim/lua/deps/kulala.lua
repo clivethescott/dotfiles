@@ -2,6 +2,7 @@ local fts = { "http", "rest" }
 
 return {
   'mistweaverco/kulala.nvim',
+  branch = 'main',
   -- keys = {"<leader>Rs", "<leader>Ra", "<leader>Ro"},
   ft = { "http", "rest" },
   opts = {
