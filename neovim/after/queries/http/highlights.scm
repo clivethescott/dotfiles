@@ -17,8 +17,16 @@
 (variable_declaration
   (value) @variable.value)
 
+(request
+  (method) @request.method)
+
 (header
   (value) @header.value)
+
+(header
+  (header_entity) @header.name)
+
+(http_version) @http.version
 
 (comment
   (value) @request.name)
