@@ -3,7 +3,7 @@ return {
   event = 'BufReadPost',
   -- event = 'VeryLazy', causes an issue where LspAttach is not called if opening files directly
   dependencies = {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
     "b0o/schemastore.nvim",
   },
   config = function()
