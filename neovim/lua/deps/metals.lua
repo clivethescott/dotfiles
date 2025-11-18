@@ -1,6 +1,7 @@
 return {
   'scalameta/nvim-metals',
   ft = 'scala',
+  cond = false,
   dependencies = {
     "nvim-lua/plenary.nvim"
   },

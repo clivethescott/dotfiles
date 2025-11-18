@@ -4,7 +4,9 @@ vim.keymap.set('i', '<C-z>', '<esc>:undo<cr>')
 
 vim.keymap.set('n', '<M-v>', '"*p')
 vim.keymap.set('i', '<M-v>', '<esc>"*p')
-vim.keymap.set({'n', 'v', 's'}, '<M-y>', '"*y')
+vim.keymap.set({ 'n', 'v', 's' }, '<M-y>', '"*y')
+
+vim.keymap.set('n', '<leader>e', function() vim.show_pos() end, { desc = 'Show highlight at cursor' })
 
 vim.keymap.set("n", "k", function()
   return vim.v.count > 1 and "m'" .. vim.v.count .. "k" or "k"

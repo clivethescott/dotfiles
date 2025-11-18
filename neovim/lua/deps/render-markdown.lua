@@ -9,18 +9,6 @@ return {
     preset = 'obsidian',
     code = {
       disable_background = { 'diff', 'rust' },
-    }
+    },
   },
-  -- keys = { -- defined in obsidian-nvim
-  --   {
-  --     '<space>no',
-  --     function() require 'fzf-lua'.files { cwd = notes_dir } end,
-  --     desc = 'Open/Switch Note'
-  --   },
-  --   {
-  --     '<space>nf',
-  --     function() require 'fzf-lua'.live_grep_glob { cwd = notes_dir } end,
-  --     desc = 'Grep Search Note'
-  --   },
-  -- },
 }

@@ -23,7 +23,7 @@ local ensure_installed = {
   'terraform', 'typescript',
 }
 local disable_indent_fts = { 'ocaml' }
-local regex_highlight_fts = { 'yaml' }
+local regex_highlight_fts = { 'yaml', 'sh', 'bash', 'fish' }
 
 -- https://www.reddit.com/r/neovim/comments/1ow2m75/comment/nonf4nt/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 local needs_install = function(lang)
@@ -114,7 +114,7 @@ return {
       opts = {
         multiline_threshold = 999,
         separator = '-',
-        max_lines = 3,
+        max_lines = 1,
       }
     },
     {

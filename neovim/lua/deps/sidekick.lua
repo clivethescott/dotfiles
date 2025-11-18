@@ -16,6 +16,11 @@ return {
         mux = {
           enabled = false, -- only supports tmux/zellij
         },
+        tools = {
+          amazon_q = {
+            cmd = { vim.fs.joinpath(vim.env.HOME .. '/.local/bin/kiro-cli') }
+          }
+        }
       },
       copilot = {
         enabled = vim.g.is_work_pc,

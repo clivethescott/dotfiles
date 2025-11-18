@@ -1,7 +1,7 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
-vim.g.use_picker = 'fzf-lua'
--- vim.g.use_picker = 'snacks.picker'
+-- vim.g.use_picker = 'fzf-lua'
+vim.g.use_picker = 'snacks.picker'
 vim.g.is_work_pc = vim.env.IS_WORK_PC == "true"
 
 -- Setup lazy
@@ -45,6 +45,8 @@ require 'lazy'.setup({
 
 vim.keymap.set('n', '<space>ol', '<cmd>Lazy<cr>', { desc = 'Lazy Package Mgr' })
 
+-- vim.cmd.colorscheme "catppuccin-mocha"
+vim.cmd.colorscheme "default"
 
 local rtp_extras = vim.fs.joinpath(vim.fn.stdpath("config"), "lua/rtp")
 if vim.loop.fs_stat(rtp_extras) then

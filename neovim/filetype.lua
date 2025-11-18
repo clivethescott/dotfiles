@@ -6,6 +6,7 @@ vim.filetype.add({
     terraformrc = "hcl",
     tf = "terraform",
     sc = "scala",
+    sh = "bash",
     tfvars = "terraform",
     tfstate = "json",
     pp = "json",

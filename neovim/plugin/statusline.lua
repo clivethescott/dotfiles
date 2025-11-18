@@ -32,6 +32,7 @@ end
 Statusline.active = function()
   return table.concat({
     ' %t', -- filename
+    ' %y', -- file type
     ' %m', -- [modified] flag
     ' %r', -- [readonly] flag
     ' %h', -- [help buffer] flag
@@ -63,18 +64,3 @@ vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
     vim.wo.statusline = "%!v:lua.Statusline.inactive()"
   end,
 })
-
-vim.api.nvim_set_hl(0, 'StatusLine', {
-  bg = '#262626', -- Subtle dark gray
-  fg = '#afafaf', -- Medium gray text
-  bold = false,
-})
-
-vim.api.nvim_set_hl(0, 'StatusLineNC', {
-  bg = '#1c1c1c', -- Darker for inactive
-  fg = '#626262', -- Very dim text
-})
-
-vim.api.nvim_set_hl(0, 'StatusLineGitAdded', { fg = '#6b8e5f', bg = '#262626' })    -- Dimmed green
-vim.api.nvim_set_hl(0, 'StatusLineGitChanged', { fg = '#b89a5a', bg = '#262626' })  -- Dimmed yellow
-vim.api.nvim_set_hl(0, 'StatusLineGitRemoved', { fg = '#b55a5a', bg = '#262626' })  -- Dimmed red

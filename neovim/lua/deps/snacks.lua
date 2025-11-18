@@ -1,8 +1,8 @@
 ---@diagnostic disable: missing-fields
 ---@diagnostic disable-next-line: param-type-mismatch
 local plugins_dir        = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
-local conf_dirs          = { '~/.config/nvim', '~/.config/wezterm', '~/.config/tmux',
-  '~/.config/fish', '~/.config/atuin', '~/.config/lazygit' }
+local conf_dirs          = { '~/.config/nvim', '~/.config/wezterm',
+  '~/.config/atuin', '~/.config/lazygit' }
 
 ---@type snacks.picker.Config
 local picker_config      = {
@@ -138,6 +138,7 @@ return {
     { "<space>tq", function() Snacks.picker.qflist() end,                   desc = "Quickfix List" },
     { "<space>tl", function() Snacks.picker.resume() end,                   desc = "Resume" },
     { "<space>tc", function() Snacks.picker.commands() end,                 desc = "Commands" },
+    { "<space>tw", function() Snacks.picker.spelling() end,                 desc = "Spelling" },
     { "<space>tC", function() Snacks.picker.command_history() end,          desc = "Command history" },
     { "<space>th", function() Snacks.picker.help() end,                     desc = "Help tags" },
     { "<space>tm", function() Snacks.picker.marks() end,                    desc = "Marks" },

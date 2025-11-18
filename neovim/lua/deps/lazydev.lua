@@ -2,7 +2,7 @@ return {
   "folke/lazydev.nvim",
   ft = "lua", -- only load on lua files
   dependencies = {
-    { 'DrKJeff16/wezterm-types', lazy = true },
+    { 'DrKJeff16/wezterm-types', lazy = true, ft = 'lua' },
   },
   opts = {
     library = {
