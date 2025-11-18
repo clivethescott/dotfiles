@@ -1,6 +1,7 @@
 return {
   'saecki/crates.nvim',
   event = { "BufRead Cargo.toml" },
+  cond = false,
   tag = 'stable',
   opts = {
     lsp = {

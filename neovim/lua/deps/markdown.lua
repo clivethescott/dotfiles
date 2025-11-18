@@ -2,7 +2,6 @@ return {
   "MeanderingProgrammer/render-markdown.nvim",
   -- lazy = false, Lazy-loading will cause more time for the previews to load when starting Neovim?
   ft = { 'markdown', 'rust', 'codecompanion', 'python' },
-  dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
 
   ---@module 'render-markdown'
   ---@type render.md.UserConfig

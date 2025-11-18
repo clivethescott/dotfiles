@@ -2,6 +2,7 @@ return {
   "catppuccin/nvim",
   name = "catppuccin",
   event = 'VeryLazy',
+  cond = false,
   lazy = true,
   priority = 1000,
   opts = {
@@ -23,7 +24,7 @@ return {
     dim_inactive = {
       enabled = true,    -- dims the background color of inactive window
       shade = "light",
-      percentage = 0.50, -- percentage of the shade to apply to the inactive window
+      percentage = 0.30, -- percentage of the shade to apply to the inactive window
     },
     integrations = {
       gitsigns = true,

@@ -1,0 +1,80 @@
+Statusline = {}
+
+-- see :h statusline for more info
+
+Statusline.gitInfo = function()
+  local git = vim.b.gitsigns_status_dict
+  local git_branch = (git and git.head) and ' ' .. git.head or ''
+  local git_status = ''
+  if git then
+    if git.added and git.added > 0 then
+      git_status = git_status .. '%#StatusLineGitAdded# +' .. git.added
+    end
+    if git.changed and git.changed > 0 then
+      git_status = git_status .. '%#StatusLineGitChanged# ~' .. git.changed
+    end
+    if git.removed and git.removed > 0 then
+      git_status = git_status .. '%#StatusLineGitRemoved# -' .. git.removed
+    end
+    -- Return to normal statusline color after git status
+    if git_status ~= '' then
+      git_status = git_status .. '%#StatusLine#'
+    end
+  end
+
+  return string.format(
+    ' %s%s ',
+    git_branch,
+    git_status
+  )
+end
+
+Statusline.active = function()
+  return table.concat({
+    ' %t', -- filename
+    ' %m', -- [modified] flag
+    ' %r', -- [readonly] flag
+    ' %h', -- [help buffer] flag
+    '%=',  -- right align from here
+    Statusline.gitInfo(),
+  })
+end
+
+Statusline.inactive = function()
+  return table.concat({
+    " %f " -- filename with path
+  })
+end
+
+local group = vim.api.nvim_create_augroup("Statusline", { clear = true })
+
+vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+  group = group,
+  desc = "Activate statusline on focus",
+  callback = function()
+    vim.wo.statusline = "%!v:lua.Statusline.active()"
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+  group = group,
+  desc = "Deactivate statusline when unfocused",
+  callback = function()
+    vim.wo.statusline = "%!v:lua.Statusline.inactive()"
+  end,
+})
+
+vim.api.nvim_set_hl(0, 'StatusLine', {
+  bg = '#262626', -- Subtle dark gray
+  fg = '#afafaf', -- Medium gray text
+  bold = false,
+})
+
+vim.api.nvim_set_hl(0, 'StatusLineNC', {
+  bg = '#1c1c1c', -- Darker for inactive
+  fg = '#626262', -- Very dim text
+})
+
+vim.api.nvim_set_hl(0, 'StatusLineGitAdded', { fg = '#6b8e5f', bg = '#262626' })    -- Dimmed green
+vim.api.nvim_set_hl(0, 'StatusLineGitChanged', { fg = '#b89a5a', bg = '#262626' })  -- Dimmed yellow
+vim.api.nvim_set_hl(0, 'StatusLineGitRemoved', { fg = '#b55a5a', bg = '#262626' })  -- Dimmed red

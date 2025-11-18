@@ -35,7 +35,6 @@ end
 local install_missing_parsers = function()
   local missing_parsers = vim.tbl_filter(needs_install, ensure_installed)
   if #missing_parsers > 0 then
-    vim.print(missing_parsers)
     vim.notify('Installing missing parsers', vim.log.levels.INFO)
     require 'nvim-treesitter'.install(missing_parsers)
   end

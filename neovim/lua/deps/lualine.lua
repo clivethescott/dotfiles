@@ -6,6 +6,7 @@ return {
   'nvim-lualine/lualine.nvim',
   dependencies = { "gennaro-tedesco/nvim-possession" },
   event = 'VeryLazy',
+  cond = false,
   config = function()
     require 'lualine'.setup {
       options = {
