@@ -57,14 +57,14 @@ vim.opt.autowrite = true
 vim.o.timeout = true
 vim.opt.timeoutlen = 500
 
--- Affects redraw speed
+-- Affects redraw speed enable manually
 -- vim.opt.cursorcolumn = false
-vim.opt.cursorline = true
+-- vim.opt.cursorline = true
+-- vim.opt.colorcolumn = '100'
 
 -- Always show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appear/become resolved.
 vim.opt.signcolumn = 'yes'
-vim.opt.colorcolumn = '100'
 
 -- autowrap long lines
 -- vim.opt.wrap = false

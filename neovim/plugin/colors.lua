@@ -22,6 +22,8 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, 'StatusLineGitChanged', { fg = '#b89a5a', bg = '#262626' }) -- Dimmed yellow
     vim.api.nvim_set_hl(0, 'StatusLineGitRemoved', { fg = '#b55a5a', bg = '#262626' }) -- Dimmed red
 
+    -- lines
+    vim.api.nvim_set_hl(0, 'LineNr', { fg = '#626262' })
     vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#262626' })
     vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#262626' })
 
