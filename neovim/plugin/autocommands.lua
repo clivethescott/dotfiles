@@ -2,7 +2,7 @@ local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = t
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank {
-      higroup = 'TermCursor',
+      higroup = 'CurSearch',
       timeout = 500 -- time in ms before highlight is cleared
     }
   end,
