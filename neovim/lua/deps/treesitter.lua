@@ -113,7 +113,7 @@ return {
       },
       opts = {
         multiline_threshold = 999,
-        separator = '-',
+        -- separator = '-',
         max_lines = 1,
       }
     },

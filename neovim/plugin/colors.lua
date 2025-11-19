@@ -4,7 +4,6 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     local colorscheme = args.match or vim.g.colors_name or 'default'
     local default_colorscheme = colorscheme == 'default'
     if not default_colorscheme then
-      vim.notify('Non-default colorscheme, disabling overrides', vim.log.levels.INFO)
       return
     end
 
