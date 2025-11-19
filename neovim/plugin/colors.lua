@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, 'PMenu', { bg = '#000000' })
 
     -- folds
-    vim.api.nvim_set_hl(0, 'Folded', { bg = '#2e3d2e' })
+    vim.api.nvim_set_hl(0, 'Folded', { fg = '#b89a5a', bg = '#151f26' })
 
     -- snacks
     vim.api.nvim_set_hl(0, 'SnacksPickerListCursorLine', { bg = '#262626' })
