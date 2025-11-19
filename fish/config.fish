@@ -127,7 +127,7 @@ if type -q lazydocker
 end
 
 abbr -a gd 'git diff'
-abbr -a gs 'git status'
+abbr -a gs 'git status --short'
 abbr -a gp 'git push'
 abbr -a gwl 'git worktree list'
 abbr -a gwr 'git worktree remove'
