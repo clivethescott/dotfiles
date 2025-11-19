@@ -22,6 +22,9 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, 'StatusLineGitChanged', { fg = '#b89a5a', bg = '#262626' }) -- Dimmed yellow
     vim.api.nvim_set_hl(0, 'StatusLineGitRemoved', { fg = '#b55a5a', bg = '#262626' }) -- Dimmed red
 
+    vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#262626' })
+    vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#262626' })
+
     -- nicer colors for markdown headers
     vim.api.nvim_set_hl(0, 'RenderMarkdownH1Bg', { fg = '#e06c75', bg = '#2c1f1f', bold = true })
     vim.api.nvim_set_hl(0, 'RenderMarkdownH2Bg', { fg = '#d19a66', bg = '#2c251f', bold = true })
@@ -30,8 +33,15 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, 'RenderMarkdownH5Bg', { fg = '#c678dd', bg = '#261f2c', bold = true })
     vim.api.nvim_set_hl(0, 'RenderMarkdownH6Bg', { fg = '#56b6c2', bg = '#1f2a2c', bold = true })
     vim.api.nvim_set_hl(0, 'RenderMarkdownCode', { bg = '#0f1211', bold = false })
+
+    -- popup menus
     vim.api.nvim_set_hl(0, 'PMenuSel', { fg = '#7a96d6', bold = true })
     vim.api.nvim_set_hl(0, 'PMenu', { bg = '#000000' })
+
+    -- folds
     vim.api.nvim_set_hl(0, 'Folded', { bg = '#2e3d2e' })
+
+    -- snacks
+    vim.api.nvim_set_hl(0, 'SnacksPickerListCursorLine', { bg = '#262626' })
   end,
 })
