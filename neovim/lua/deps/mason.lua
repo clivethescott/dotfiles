@@ -5,10 +5,19 @@ local mason_packages = {
   'html-lsp',
   'json-lsp',
   'taplo',
+  -- yaml
   'yaml-language-server',
+  'yamlfmt',
+  'yamllint',
+  'kube-linter',
+  -- python
   'ruff',
   'ty',
+  'pyright',
+  -- rust
   'rust-analyzer',
+  -- go
+  'glow',
   'gopls',
   'typescript-language-server',
   'lua-language-server',
