@@ -58,6 +58,8 @@ return {
     tab_bar = {
       background = '#323437',
     },
+    cursor_fg = '#ffffff',
+    cursor_bg = '#b55a5a',
   },
   color_scheme = 'Moonfly (Gogh)',
   window_decorations = "RESIZE",
