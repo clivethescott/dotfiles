@@ -47,5 +47,8 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 
     -- snacks
     vim.api.nvim_set_hl(0, 'SnacksPickerListCursorLine', { bg = '#262626' })
+
+    -- lsp
+    vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { fg = '#b89a5a' })
   end,
 })
