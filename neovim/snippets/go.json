@@ -1,0 +1,10 @@
+{
+  "nil check": {
+    "prefix": "iff",
+    "body": [
+      "if err != nil {",
+       "  $1",
+      "}"
+    ]
+  }
+}

@@ -1,5 +1,3 @@
-[daemon]
-enabled = true
 ## where to store your database, default is your system data directory
 ## linux/mac: ~/.local/share/atuin/history.db
 ## windows: %USERPROFILE%/.local/share/atuin/history.db
@@ -109,7 +107,19 @@ history_filter = [
   "^ls",
   "^cd",
   "^mv",
+  "^rm*",
+  "^nvim$",
+  "^vim$",
+  "^vi$",
+  "which",
+  "^brew upgrade$",
+  "git commit",
+  "^git switch",
+  "^cp",
 ]
+
+store_failed = false
+dialect = 'uk'
 
 ## prevent commands run with cwd matching any of these regexes from being written
 ## to history. Note that these regular expressions are unanchored, i.e. if they don't
@@ -143,7 +153,7 @@ history_filter = [
 
 ## Defaults to true. If enabled, upon hitting enter Atuin will immediately execute the command. Press tab to return to the shell and edit.
 # This applies for new installs. Old installs will keep the old behaviour unless configured otherwise.
-enter_accept = true
+enter_accept = false
 
 ## Defaults to "emacs".  This specifies the keymap on the startup of `atuin
 ## search`.  If this is set to "auto", the startup keymap mode in the Atuin
