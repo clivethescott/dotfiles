@@ -151,7 +151,7 @@ return {
     { "<space>tb", function() Snacks.picker.lines() end,                    desc = "Buffer lines" },
     -- { "<space>lm",  function() Snacks.picker.lsp_definitions() end,      desc = "Goto Definition" },
     { "<space>lD", function() Snacks.picker.diagnostics() end,              desc = "Snacks Diagnostics" },
-    { "<space>lR", function() Snacks.picker.lsp_references() end,           nowait = true,                   desc = "References" },
+    { "<space>lr", function() Snacks.picker.lsp_references() end,           nowait = true,                   desc = "References" },
     { "<space>lI", function() Snacks.picker.lsp_implementations() end,      desc = "Goto Implementation" },
     { "<space>ly", function() Snacks.picker.lsp_type_definitions() end,     desc = "Goto T[y]pe Definition" },
     { "<space>lw", function() Snacks.picker.lsp_symbols() end,              desc = "LSP Symbols" },
