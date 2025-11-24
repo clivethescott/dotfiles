@@ -1,8 +1,8 @@
 # See more @ ghostty +list-keybinds --default
-
 # python3 -c "print(hex(ord(input('Press key: '))))" 
 #
-# keybind = cmd+a=text:\x01
+# increment in vim
+keybind = cmd+a>cmd+a=text:\x01
 keybind = cmd+b=text:\x02
 keybind = cmd+c=text:\x03
 keybind = cmd+d=text:\x04
@@ -91,3 +91,4 @@ split-divider-color = #626262
 scrollback-limit = 10000
 quick-terminal-size = 80%,70%
 quick-terminal-position = center
+clipboard-paste-protection = true
