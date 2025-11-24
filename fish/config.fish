@@ -244,4 +244,7 @@ if status is-interactive; and type -q zoxide
     abbr -a z cdi
 end
 
-set PATH /opt/homebrew/opt/git/share/git-core/contrib/git-jump /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $JAVA_HOME/bin $PATH
+set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $JAVA_HOME/bin $PATH
+
+fish_add_path ~/.local/bin
+fish_add_path /opt/homebrew/opt/git/share/git-core/contrib/git-jump

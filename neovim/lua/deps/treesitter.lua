@@ -145,6 +145,10 @@ return {
         local buf = args.buf
         local filetype = args.match
 
+        if vim.tbl_contains(regex_highlight_fts, filetype) then
+          vim.bo[buf].syntax = 'on' -- only if additional legacy syntax is needed
+        end
+
         -- https://github.com/MeanderingProgrammer/treesitter-modules.nvim?tab=readme-ov-file#implementing-yourself
         --- you need some mechanism to avoid running on buffers that do not
         -- correspond to a language (like oil.nvim buffers), this implementation
@@ -163,10 +167,6 @@ return {
         -- To replicate additional_vim_regex_highlighting = true
         -- regex syntax highlighting is disabled by default, which may be required for some plugins.
         -- after `vim.treesitter.start` call this if needed
-
-        if vim.tbl_contains(regex_highlight_fts, filetype) then
-          vim.bo[buf].syntax = 'on' -- only if additional legacy syntax is needed
-        end
 
         -- replicate `indent = { enable = true }`
         if not vim.tbl_contains(disable_indent_fts, filetype) then

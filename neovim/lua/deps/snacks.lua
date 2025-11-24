@@ -141,6 +141,7 @@ return {
     { "<space>tw", function() Snacks.picker.spelling() end,                 desc = "Spelling" },
     { "<space>tC", function() Snacks.picker.command_history() end,          desc = "Command history" },
     { "<space>th", function() Snacks.picker.help() end,                     desc = "Help tags" },
+    { "<space>tH", function() Snacks.picker.highlights() end,               desc = "Highlights" },
     { "<space>tm", function() Snacks.picker.marks() end,                    desc = "Marks" },
     { "<space>tj", function() Snacks.picker.jumps() end,                    desc = "Jumps" },
     { "<space>tz", function() Snacks.picker.zoxide() end,                   desc = "Zoxide" },

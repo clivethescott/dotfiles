@@ -1,4 +1,8 @@
-# keybind = cmd+a=text:\x01
+# See more @ ghostty +list-keybinds --default
+# python3 -c "print(hex(ord(input('Press key: '))))" 
+#
+# increment in vim
+keybind = cmd+a>cmd+a=text:\x01
 keybind = cmd+b=text:\x02
 keybind = cmd+c=text:\x03
 keybind = cmd+d=text:\x04
@@ -24,15 +28,20 @@ keybind = cmd+w=text:\x17
 keybind = cmd+x=text:\x18
 keybind = cmd+y=text:\x19
 keybind = cmd+z=text:\x1A
-keybind = cmd+[=text:\x1B
+keybind = cmd+left_bracket=text:\x1b
+keybind = cmd+digit_6=text:\x1E
 keybind = cmd+option+q=quit
-# keybind = global:cmd+grave_accent=toggle_quick_terminal
+keybind = cmd+shift+v=paste_from_clipboard
+keybind = cmd+shift+c=copy_to_clipboard
 
+keybind = global:cmd+shift+8=toggle_quick_terminal
+
+# See more @ ghostty +list-actions
 # Tmux
 keybind = cmd+a>r=reload_config
 keybind = cmd+a>c=new_tab
 keybind = cmd+a>p=previous_tab
-# keybind = cmd+a>tab=last_tab
+keybind = cmd+a>tab=previous_tab
 keybind = cmd+a>n=next_tab
 keybind = cmd+a>1=goto_tab:1
 keybind = cmd+a>2=goto_tab:2
@@ -46,28 +55,40 @@ keybind = cmd+a>h=goto_split:left
 keybind = cmd+a>l=goto_split:right
 keybind = cmd+a>j=goto_split:down
 keybind = cmd+a>k=goto_split:up
-keybind = cmd+a>,=prompt_surface_title # rename tab
+keybind = cmd+a>,=prompt_surface_title
 
 macos-option-as-alt = true
 macos-titlebar-style = tabs
 macos-auto-secure-input = true
 
-theme = catppuccin-mocha.conf
+theme = Nvim Dark
 
 # Font
 font-family = "Hack Nerd Font Mono"
 font-style = "Regular"
-font-size = 17
+font-size = 16.5
 
 window-width = 5000
 window-height = 5000
 
-
 mouse-hide-while-typing = true
-copy-on-select = true
+# to both selection + sys clipboard
+copy-on-select = clipboard
 quit-after-last-window-closed = true
-quick-terminal-position = center
 shell-integration = "fish"
 shell-integration-features = cursor,no-title
 
 auto-update = check
+cursor-color = #b55a5a
+cursor-text = #ffffff
+# % based thickness doesn't work properly on macos
+# https://github.com/ghostty-org/ghostty/discussions/5703
+adjust-cursor-thickness = 5
+link-url = true
+link-previews = true
+macos-non-native-fullscreen = true
+split-divider-color = #626262
+scrollback-limit = 10000
+quick-terminal-size = 80%,70%
+quick-terminal-position = center
+clipboard-paste-protection = true
