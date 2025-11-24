@@ -2,7 +2,7 @@
 ---@diagnostic disable-next-line: param-type-mismatch
 local plugins_dir        = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
 local conf_dirs          = { '~/.config/nvim', '~/.config/wezterm',
-  '~/.config/atuin', '~/.config/lazygit' }
+  '~/.config/atuin', '~/.config/lazygit', '~/.config/ghostty' }
 
 ---@type snacks.picker.Config
 local picker_config      = {

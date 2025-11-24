@@ -66,6 +66,7 @@ keybind = cmd+a>l=goto_split:right
 keybind = cmd+a>j=goto_split:down
 keybind = cmd+a>k=goto_split:up
 keybind = cmd+a>,=prompt_surface_title
+keybind = cmd++=reset_font_size
 
 macos-option-as-alt = true
 macos-titlebar-style = tabs
@@ -76,7 +77,7 @@ theme = Nvim Dark
 # Font
 font-family = "Hack Nerd Font Mono"
 font-style = "Regular"
-font-size = 16.5
+font-size = 17
 
 window-width = 5000
 window-height = 5000
