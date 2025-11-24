@@ -1,8 +1,11 @@
 # See more @ ghostty +list-keybinds --default
-# python3 -c "print(hex(ord(input('Press key: '))))" 
+# python3 -c "print(hex(ord(input('Press key: '))))"  
+# or just ask an LLM about escape sequences in ghostty
 #
 # increment in vim
 keybind = cmd+a>cmd+a=text:\x01
+keybind = cmd+period=csi:46;5u
+keybind = cmd+\=csi:92;5u
 keybind = cmd+b=text:\x02
 keybind = cmd+c=text:\x03
 keybind = cmd+d=text:\x04

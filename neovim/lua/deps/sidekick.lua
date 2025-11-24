@@ -30,18 +30,21 @@ return {
       {
         "<c-.>",
         function()
-          require("sidekick.cli").focus()
+          require("sidekick.cli").toggle({ name = adapter, focus = true })
         end,
         mode = { "n", "x", "i", "t" },
-        desc = "Sidekick Switch Focus",
+        desc = "Sidekick Toggle",
       },
       {
-        "<space>ao",
-        function()
-          require("sidekick.cli").toggle({ focus = true, name = adapter })
-        end,
-        desc = "Sidekick Toggle CLI",
-        mode = { "n", "v" },
+        "<space>af",
+        function() require("sidekick.cli").send({ msg = "{file}" }) end,
+        desc = "Sidekick send file",
+      },
+      {
+        "<space>av",
+        function() require("sidekick.cli").send({ msg = "{selection}" }) end,
+        mode = { 'x' },
+        desc = "Sidekick send visual selection",
       },
       {
         "<space>ap",

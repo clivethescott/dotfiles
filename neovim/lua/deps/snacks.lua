@@ -19,6 +19,8 @@ local picker_config      = {
         ["<a-m>"] = { "toggle_hidden", mode = { "i", "n" } },
         ["<a-f>"] = { "toggle_maximize", mode = { "i", "n" } },
         ["<c-g>"] = { "toggle_live", mode = { "i", "n" } },
+        ["<M-Down>"] = { "history_forward", mode = { "i", "n" } },
+        ["<M-Up>"] = { "history_back", mode = { "i", "n" } },
         -- ["<a-f>"] = { "toggle_follow", mode = { "i", "n" } },
         -- ["<a-h>"] = { "toggle_hidden", mode = { "i", "n" } },
         -- ["<a-i>"] = { "toggle_ignored", mode = { "i", "n" } },

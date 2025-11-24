@@ -2,3 +2,4 @@
 *.DS_Store
 .luarc.json
 fish/tokens.fish
+neovim/spell/*.spl
