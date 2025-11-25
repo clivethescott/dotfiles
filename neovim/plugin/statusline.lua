@@ -31,7 +31,7 @@ end
 
 Statusline.active = function()
   return table.concat({
-    ' %t', -- filename
+    Statusline.short_path(),
     ' %y', -- file type
     ' %m', -- [modified] flag
     ' %r', -- [readonly] flag
@@ -39,6 +39,18 @@ Statusline.active = function()
     '%=',  -- right align from here
     Statusline.gitInfo(),
   })
+end
+
+Statusline.short_path = function()
+  local file = vim.fn.expand("%")
+  local parts = vim.split(file, '/')
+
+  local take_last = 3
+  if #parts <= take_last then
+    return file
+  end
+
+  return '...' .. table.concat(parts, '/', math.max(1, #parts - take_last))
 end
 
 Statusline.inactive = function()
