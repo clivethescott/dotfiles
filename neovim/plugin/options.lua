@@ -139,3 +139,21 @@ vim.opt.formatoptions:remove "o"
 vim.opt.showmode = false
 -- vim.o.iskeyword = '@,48-57,_,192-255,-' -- Treat dash as `word` textobject part
 vim.g.sidekick_nes = false
+
+local cwd = vim.fn.getcwd()
+if cwd:find('IdeaProjects') then
+  -- shada per project
+  -- https://www.reddit.com/r/neovim/comments/1hkpgar/a_per_project_shadafile/
+  vim.opt.shadafile = (function()
+    local data = vim.fn.stdpath("data")
+
+    cwd = vim.fs.root(cwd, ".git") or cwd
+
+    local cwd_b64 = vim.base64.encode(cwd)
+
+    local file = vim.fs.joinpath(data, "project_shada", cwd_b64)
+    vim.fn.mkdir(vim.fs.dirname(file), "p")
+
+    return file
+  end)()
+end

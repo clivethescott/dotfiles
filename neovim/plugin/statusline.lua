@@ -42,7 +42,7 @@ Statusline.active = function()
 end
 
 Statusline.short_path = function()
-  local file = vim.fn.expand("%")
+  local file = vim.api.nvim_buf_get_name(0)
   local parts = vim.split(file, '/')
 
   local take_last = 3
