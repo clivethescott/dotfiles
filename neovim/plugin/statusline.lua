@@ -29,6 +29,17 @@ Statusline.gitInfo = function()
   )
 end
 
+Statusline.httpEnv = function()
+  if vim.bo.filetype == 'http' then
+    local has_kulala, kulala = pcall(require, 'kulala')
+    if has_kulala then
+      local env = kulala.get_selected_env() or 'unknown'
+      return '[' .. env:upper() .. ']'
+    end
+  end
+  return ''
+end
+
 Statusline.active = function()
   return table.concat({
     Statusline.short_path(),
@@ -37,6 +48,7 @@ Statusline.active = function()
     ' %r', -- [readonly] flag
     ' %h', -- [help buffer] flag
     '%=',  -- right align from here
+    Statusline.httpEnv(),
     Statusline.gitInfo(),
   })
 end
