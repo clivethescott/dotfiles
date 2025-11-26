@@ -11,8 +11,4 @@ vim.api.nvim_set_hl(0, "@header.value", { link = "FloatTitle" })
 vim.api.nvim_set_hl(0, "@header.name", { link = "ErrorMsg" })
 vim.api.nvim_set_hl(0, "@request.name", { link = "String" })
 
--- TODO define these for the kulala ftype in an autocmd
--- vim.api.nvim_set_hl(0, 'jsonCommentError', { bg = '#000000' })
--- vim.api.nvim_set_hl(0, 'jsonNoQuotesError', { bg = '#000000' })
-
 vim.bo.commentstring = '# %s'
