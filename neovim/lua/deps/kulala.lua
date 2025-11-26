@@ -54,6 +54,12 @@ return {
     -- default_winbar_panes = { 'body', 'headers' },
     default_winbar_panes = { 'body' },
     default_view = 'headers_body',
+    ui = {
+      syntax_hl = { -- these are linked to Error by default so the highlighting is weird
+        ['jsonCommentError'] = 'Changed',
+        ['jsonNoQuotesError'] = 'WarningMsg'
+      }
+    }
   },
   keys = {
     {

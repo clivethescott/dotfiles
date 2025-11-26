@@ -1,6 +1,6 @@
-# if status is-interactive; and test -f $__fish_config_dir/themes/Catppuccin\ Macchiato.theme
-#     # fish_config theme choose "Catppuccin Macchiato"
-# end
+if status is-interactive; and test -f $__fish_config_dir/themes/Catppuccin\ Macchiato.theme
+    fish_config theme choose "Catppuccin Macchiato"
+end
 
 set -gx EDITOR nvim
 set -gx COMPOSE_BAKE true

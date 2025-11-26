@@ -53,6 +53,7 @@ keybind = cmd+a>c=new_tab
 keybind = cmd+a>p=previous_tab
 keybind = cmd+a>tab=previous_tab
 keybind = cmd+a>n=next_tab
+keybind = cmd+a>shift+n=new_window
 keybind = cmd+a>1=goto_tab:1
 keybind = cmd+a>2=goto_tab:2
 keybind = cmd+a>3=goto_tab:3
@@ -100,7 +101,7 @@ link-previews = true
 macos-non-native-fullscreen = true
 split-divider-color = #626262
 scrollback-limit = 10000
-quick-terminal-size = 80%,70%
+quick-terminal-size = 75%,65%
 quick-terminal-position = center
 clipboard-paste-protection = true
 window-padding-x = 10, 0

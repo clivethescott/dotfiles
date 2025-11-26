@@ -19,6 +19,7 @@ local mason_packages = {
   -- go
   'glow',
   'gopls',
+  'goimports',
   'typescript-language-server',
   'lua-language-server',
   'fish-lsp',
