@@ -17,8 +17,8 @@ return {
     require("fzf-lua").setup({
       fzf_colors = true,
       defaults = {
-        -- formatter = "path.filename_first",
-        formatter = "path.dirname_first",
+        formatter = "path.filename_first",
+        -- formatter = "path.dirname_first",
       },
       fzf_opts = {
         -- ["--layout"] = "default", -- prompt at bottom
@@ -104,7 +104,7 @@ return {
       function() require("fzf-lua").live_grep_glob { cwd = plugins_dir } end,
       { silent = true, desc = "Nvim plugin grep" })
 
-    vim.keymap.set("n", "<space>ro",
+    vim.keymap.set("n", "<space>ho",
       function() require("fzf-lua").files { cwd = '~/Code/HTTP' } end,
       { silent = true, desc = "Hurl files" })
   end,
@@ -133,9 +133,12 @@ return {
       desc = "Live grep"
     },
     { "<space>tF",  "<cmd>FzfLua grep_cWORD<cr>",                 desc = "Grep cword" },
+    { "<space>gb",  "<cmd>FzfLua git_branches<cr>",               desc = "Git Branches" },
     { "<space>tc",  "<cmd>FzfLua commands<cr>",                   desc = "Commands" },
+    { "<space>tC",  "<cmd>FzfLua command_history<cr>",            desc = "Commands History" },
     { "<space>th",  "<cmd>FzfLua helptags<cr>",                   desc = "Helptags" },
-    { "<space>tt",  "<cmd>FzfLua tagstack<cr>",                   desc = "Tagstack" },
+    { "<space>tH",  "<cmd>FzfLua highlights<cr>",                 desc = "Highlights" },
+    { "<space>tt",  "<cmd>FzfLua<cr>",                            desc = "Tagstack" },
     { "<space>tw",  "<cmd>FzfLua spell_suggest<cr>",              desc = "Spell Suggest" },
     { "<space>tm",  "<cmd>FzfLua marks<cr>",                      desc = "Marks" },
     { "<space>tr",  "<cmd>FzfLua registers<cr>",                  desc = "Registers" },
