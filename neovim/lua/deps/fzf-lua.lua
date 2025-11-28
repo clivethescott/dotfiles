@@ -4,6 +4,7 @@ return {
   event = 'VeryLazy',
   dependencies = { "nvim-tree/nvim-web-devicons" },
   cond = vim.g.use_picker == 'fzf-lua',
+branch = 'main',
   config = function()
     local actions = require("fzf-lua").actions
     local config = require 'fzf-lua'.config
