@@ -32,7 +32,7 @@ return {
         function() require("kulala").replay() end,
         ft = fts,
       },
-      ["Open kulala"] = { "<space>ho", function() require("kulala").open() end, ft = fts },
+      ["Open kulala"] = { "<space>hh", function() require("kulala").open() end, ft = fts },
       ["Toggle headers/body"] = {
         "<space>ht",
         function() require("kulala").toggle_view() end,
