@@ -27,17 +27,6 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#262626' })
     vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#262626' })
 
-    -- markdown
-    vim.api.nvim_set_hl(0, 'RenderMarkdownH1Bg', { fg = '#e06c75', bg = '#2c1f1f', bold = true })
-    vim.api.nvim_set_hl(0, 'RenderMarkdownH2Bg', { fg = '#d19a66', bg = '#2c251f', bold = true })
-    vim.api.nvim_set_hl(0, 'RenderMarkdownH3Bg', { fg = '#e5c07b', bg = '#2c2a1f', bold = true })
-    vim.api.nvim_set_hl(0, 'RenderMarkdownH4Bg', { fg = '#61afef', bg = '#1f252c', bold = true })
-    vim.api.nvim_set_hl(0, 'RenderMarkdownH5Bg', { fg = '#c678dd', bg = '#261f2c', bold = true })
-    vim.api.nvim_set_hl(0, 'RenderMarkdownH6Bg', { fg = '#56b6c2', bg = '#1f2a2c', bold = true })
-    vim.api.nvim_set_hl(0, 'RenderMarkdownCode', { bg = '#0f1211', bold = false })
-    vim.api.nvim_set_hl(0, "@markup.link.label", { link = "Question" })
-    vim.api.nvim_set_hl(0, "@markup.link", { link = "Tabline" })
-
     -- popup menus
     vim.api.nvim_set_hl(0, 'PMenuSel', { fg = '#7a96d6', bold = true })
     vim.api.nvim_set_hl(0, 'PMenu', { bg = '#000000' })
