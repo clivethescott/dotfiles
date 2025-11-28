@@ -93,7 +93,7 @@ return {
       { silent = true, desc = "Nvim files" })
 
     vim.keymap.set("n", "<leader>3",
-      function() require("fzf-lua").live_grep_glob { cwd = '~/.config/nvim' } end,
+      function() require("fzf-lua").live_grep { cwd = '~/.config/nvim' } end,
       { silent = true, desc = "Nvim files" })
 
     local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
@@ -101,7 +101,7 @@ return {
       function() require("fzf-lua").files { cwd = plugins_dir } end,
       { silent = true, desc = "Nvim plugin files" })
     vim.keymap.set("n", "<leader>5",
-      function() require("fzf-lua").live_grep_glob { cwd = plugins_dir } end,
+      function() require("fzf-lua").live_grep { cwd = plugins_dir } end,
       { silent = true, desc = "Nvim plugin grep" })
 
     vim.keymap.set("n", "<space>ho",
