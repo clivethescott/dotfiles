@@ -126,10 +126,10 @@ return {
     { "<c-e>",     "<cmd>FzfLua buffers<cr>",  desc = "Buffers" },
     { "<space>tl", "<cmd>FzfLua resume<cr>",   desc = "Resume" },
     { "<space>tq", "<cmd>FzfLua quickfix<cr>", desc = "Quickfix" },
-    -- { "<space>tf", "<cmd>FzfLua live_grep_glob<cr>", desc = "Live grep" },
+    -- { "<space>tf", "<cmd>FzfLua live_grep<cr>", desc = "Live grep" },
     {
       "<space>tf",
-      function() require 'fzf-lua'.live_grep_glob({ file_ignore_patterns = ignore_files }) end,
+      function() require 'fzf-lua'.live_grep({ file_ignore_patterns = ignore_files }) end,
       desc = "Live grep"
     },
     { "<space>tF",  "<cmd>FzfLua grep_cWORD<cr>",                 desc = "Grep cword" },
