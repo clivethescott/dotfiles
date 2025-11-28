@@ -100,7 +100,8 @@ link-url = true
 link-previews = true
 macos-non-native-fullscreen = true
 split-divider-color = #626262
-scrollback-limit = 10000
+# scrollback-limit is in *bytes, so this is 100MB
+scrollback-limit = 100000000
 quick-terminal-size = 75%,65%
 quick-terminal-position = center
 clipboard-paste-protection = true
