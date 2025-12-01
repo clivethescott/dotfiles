@@ -3,6 +3,7 @@ return {
   event = 'VeryLazy',
   keys = {
     { "<space>gx", '<cmd>DiffviewClose<cr>',            desc = "Close Diffview" },
+    { "<space>gq", '<cmd>DiffviewClose<cr>',            desc = "Close Diffview" },
     { "<space>go", '<cmd>DiffviewOpen<cr>',             desc = "Open Diffview" },
     { "<space>gs", '<cmd>DiffviewOpen main...HEAD<cr>', desc = "Diffview branch" },
   },
