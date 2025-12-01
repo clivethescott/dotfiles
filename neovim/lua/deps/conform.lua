@@ -18,7 +18,7 @@ return {
     notify_on_error = false,
     formatters_by_ft = {
       -- Conform will run multiple formatters sequentially
-      go = { "goimports", "gofumpt", "gofmt" },
+      go = { "gofumpt", "gofmt" },
       rust = { "rustfmt", lsp_format = "fallback" },
       python = {
         -- To fix auto-fixable lint errors.
