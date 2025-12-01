@@ -1,7 +1,7 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
-vim.g.use_picker = 'fzf-lua'
--- vim.g.use_picker = 'snacks.picker'
+-- vim.g.use_picker = 'fzf-lua'
+vim.g.use_picker = 'snacks.picker'
 vim.g.is_work_pc = vim.env.IS_WORK_PC == "true"
 
 -- Setup lazy
