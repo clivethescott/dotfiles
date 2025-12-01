@@ -159,6 +159,11 @@ return {
     { "<space>ly", function() Snacks.picker.lsp_type_definitions() end,     desc = "Goto T[y]pe Definition" },
     { "<space>lw", function() Snacks.picker.lsp_symbols() end,              desc = "LSP Symbols" },
     {
+      "<space>ho",
+      function() Snacks.picker.files { dir = '~/Code/HTTP/' } end,
+      desc = "HTTP files"
+    },
+    {
       '<space>te',
       function()
         Snacks.explorer.open {
