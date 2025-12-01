@@ -107,7 +107,7 @@ branch = 'main',
 
     vim.keymap.set("n", "<space>ho",
       function() require("fzf-lua").files { cwd = '~/Code/HTTP' } end,
-      { silent = true, desc = "Hurl files" })
+      { silent = true, desc = "HTTP files" })
   end,
   keys = {
     {
