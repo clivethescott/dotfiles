@@ -56,12 +56,20 @@ return {
   -- color_scheme = 'catppuccin-mocha-patched',
   colors = {
     tab_bar = {
-      background = '#323437',
+      inactive_tab = {
+        bg_color = '#14161b',
+        fg_color = '#626262',
+      },
+      active_tab = {
+        bg_color = '#14161b',
+        fg_color = '#b3f6c0',
+      },
+      background = '#14161b',
     },
     cursor_fg = '#ffffff',
     cursor_bg = '#b55a5a',
   },
-  color_scheme = 'Moonfly (Gogh)',
+  color_scheme = 'NvimDark', -- may need nightly for this
   window_decorations = "RESIZE",
   window_frame = {
     border_left_width = '1px',
