@@ -129,6 +129,7 @@ end
 abbr -a gd 'git diff'
 abbr -a gs 'git status --short'
 abbr -a gp 'git pull --ff --quiet'
+abbr -a gP 'git push'
 abbr -a gwl 'git worktree list'
 abbr -a gwr 'git worktree remove'
 abbr -a gwa 'git worktree add'

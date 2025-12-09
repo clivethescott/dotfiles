@@ -22,4 +22,5 @@
     ~/.ripgreprc: ripgrep/.ripgreprc
     ~/.config/starship.toml: starship/starship.toml
     ~/.config/wezterm: wezterm
+    ~/.config/aerospace/aerospace.toml: aerospace/aerospace.toml
 
