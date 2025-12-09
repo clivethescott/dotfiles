@@ -15,7 +15,10 @@ vim.api.nvim_create_autocmd('LspNotify', {
   group = vim.api.nvim_create_augroup('MyLspNotify', { clear = true }),
   callback = function(args)
     if args.data.method == 'textDocument/didOpen' then
-      vim.lsp.foldclose('imports', vim.fn.bufwinid(args.buf))
+      local winid = vim.fn.bufwinid(args.buf) or 0
+      vim.lsp.foldclose('comment', winid)
+      vim.lsp.foldclose('imports', winid)
+      vim.lsp.foldclose('region', winid)
     end
   end,
 })

@@ -176,6 +176,7 @@ end
 if type -q nvim
     abbr -a vim nvim
     abbr -a nv nvim
+    abbr -a nvi nvim
     abbr -a vi 'nvim -u NONE'
 end
 
