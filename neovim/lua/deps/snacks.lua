@@ -107,7 +107,17 @@ return {
         keys = dashboard_keys,
       }
     },
-    lazygit = { enabled = true },
+    lazygit = {
+      enabled = true,
+      config = {
+        os = {
+          editPreset = "nvim-remote",
+          -- https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#configuring-file-editing
+          edit = '`begin; if test -z "$NVIM"; nvim -- {{filename}}; else; nvim --server "$NVIM" --remote-send "q"; nvim --server "$NVIM" --remote {{filename}}; end; end`',
+          editAtLine = '`begin; if test -z "$NVIM"; nvim +{{line}} -- {{filename}}; else; nvim --server "$NVIM" --remote-send "q"; nvim --server "$NVIM" --remote {{filename}}; nvim --server "$NVIM" --remote-send ":{{line}}<CR>"; end; end`',
+        },
+      }
+    },
     statuscolumn = { enabled = true },
     bigfile = { enabled = true },
     notifier = { enabled = true },
