@@ -113,8 +113,10 @@ return {
         os = {
           editPreset = "nvim-remote",
           -- https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#configuring-file-editing
-          edit = '`begin; if test -z "$NVIM"; nvim -- {{filename}}; else; nvim --server "$NVIM" --remote-send "q"; nvim --server "$NVIM" --remote {{filename}}; end; end`',
-          editAtLine = '`begin; if test -z "$NVIM"; nvim +{{line}} -- {{filename}}; else; nvim --server "$NVIM" --remote-send "q"; nvim --server "$NVIM" --remote {{filename}}; nvim --server "$NVIM" --remote-send ":{{line}}<CR>"; end; end`',
+          edit =
+          '`begin; if test -z "$NVIM"; nvim -- {{filename}}; else; nvim --server "$NVIM" --remote-send "q"; nvim --server "$NVIM" --remote {{filename}}; end; end`',
+          editAtLine =
+          '`begin; if test -z "$NVIM"; nvim +{{line}} -- {{filename}}; else; nvim --server "$NVIM" --remote-send "q"; nvim --server "$NVIM" --remote {{filename}}; nvim --server "$NVIM" --remote-send ":{{line}}<CR>"; end; end`',
         },
       }
     },
@@ -167,7 +169,7 @@ return {
     { "<space>lr", function() Snacks.picker.lsp_references() end,           nowait = true,                   desc = "References" },
     { "<space>lI", function() Snacks.picker.lsp_implementations() end,      desc = "Goto Implementation" },
     { "<space>ly", function() Snacks.picker.lsp_type_definitions() end,     desc = "Goto T[y]pe Definition" },
-    { "<space>lw", function() Snacks.picker.lsp_symbols() end,              desc = "LSP Symbols" },
+    { "<space>lw", function() Snacks.picker.lsp_workspace_symbols() end,    desc = "LSP Symbols" },
     {
       "<space>ho",
       function() Snacks.picker.files { dir = '~/Code/HTTP/' } end,
