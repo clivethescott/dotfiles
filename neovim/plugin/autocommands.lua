@@ -18,7 +18,6 @@ vim.api.nvim_create_autocmd('LspNotify', {
       local winid = vim.fn.bufwinid(args.buf) or 0
       vim.lsp.foldclose('comment', winid)
       vim.lsp.foldclose('imports', winid)
-      vim.lsp.foldclose('region', winid)
     end
   end,
 })

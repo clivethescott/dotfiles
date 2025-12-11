@@ -169,7 +169,8 @@ return {
     { "<space>lr", function() Snacks.picker.lsp_references() end,           nowait = true,                   desc = "References" },
     { "<space>lI", function() Snacks.picker.lsp_implementations() end,      desc = "Goto Implementation" },
     { "<space>ly", function() Snacks.picker.lsp_type_definitions() end,     desc = "Goto T[y]pe Definition" },
-    { "<space>lw", function() Snacks.picker.lsp_workspace_symbols() end,    desc = "LSP Symbols" },
+    { "<space>lW", function() Snacks.picker.lsp_workspace_symbols() end,    desc = "LSP Workspace Symbols" },
+    { "<space>lw", function() Snacks.picker.lsp_symbols() end,              desc = "LSP Project Symbols" },
     {
       "<space>ho",
       function() Snacks.picker.files { dir = '~/Code/HTTP/' } end,
