@@ -142,10 +142,7 @@ M.get = function()
     {
       key = 'C',
       mods = 'LEADER',
-      action = wezterm.action.SpawnCommandInNewTab {
-        -- set_environment_variables = { USE_Q = 'true' },
-        args = { '/opt/homebrew/bin/nu' }
-      },
+      action = wezterm.action.SpawnTab 'CurrentPaneDomain',
     },
     {
       key = 'm',

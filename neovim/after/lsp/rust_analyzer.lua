@@ -5,20 +5,10 @@ return {
     ['rust-analyzer'] = {
       diagnostics = { -- example
         enable = true,
-        styleLints = {
-          enable = true,
-        },
-      },
-      inlayHints = {
-        genericParameterHints = {
-          lifetime = {
-            enable = true,
-          },
-        },
       },
       completion = {
-        limit = 30,
-        hideDeprecated = true,
+        limit = 128,
+        hideDeprecated = false,
       },
       workspace = {
         cargo = {
@@ -27,7 +17,7 @@ return {
         symbol = {
           search = {
             scope = 'workspace_and_dependencies', --default 'workspace'
-            limit = 30,                           -- default 128
+            limit = 128,                           -- default 128
             kind = 'only_types',                  -- default only_types
           }
         }
