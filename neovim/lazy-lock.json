@@ -23,9 +23,9 @@
   "obsidian.nvim": { "branch": "main", "commit": "6939efc2c7145cf83644192c588eccd935b57826" },
   "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
   "render-markdown.nvim": { "branch": "main", "commit": "6a744f0d14fd1d0fa8e3f446ac7825ec1e351d55" },
-  "schemastore.nvim": { "branch": "main", "commit": "c103ea363c4776ea9079eccaae54b42aa537a80e" },
+  "schemastore.nvim": { "branch": "main", "commit": "a025c78b147affef1aabb8aa360c92be2e0377a0" },
   "sidekick.nvim": { "branch": "main", "commit": "dc2710af65a542eb3010136d7664b626633f0229" },
   "snacks.nvim": { "branch": "main", "commit": "a4e46becca45eb65c73a388634b1ce8aad629ae0" },
-  "wezterm-types": { "branch": "main", "commit": "911f2fee3f688cc5d60eb2eac72671dbe0bfdb4f" },
+  "wezterm-types": { "branch": "main", "commit": "e951f92b67b0d79a40d4e713f50feab13d4671ff" },
   "which-key.nvim": { "branch": "main", "commit": "fcbf4eea17cb299c02557d576f0d568878e354a4" }
 }
