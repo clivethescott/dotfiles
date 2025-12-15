@@ -15,16 +15,17 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     })
 
     vim.api.nvim_set_hl(0, 'StatusLineNC', {
-      bg = '#1c1c1c',                                                                  -- Darker for inactive
-      fg = '#626262',                                                                  -- Very dim text
+      bg = '#1c1c1c', -- Darker for inactive
+      fg = '#626262', -- Very dim text
     })
+    vim.api.nvim_set_hl(0, 'StatusLineGitBranch', { link = '@string' })
     vim.api.nvim_set_hl(0, 'StatusLineGitAdded', { fg = '#6b8e5f', bg = '#262626' })   -- Dimmed green
     vim.api.nvim_set_hl(0, 'StatusLineGitChanged', { fg = '#b89a5a', bg = '#262626' }) -- Dimmed yellow
     vim.api.nvim_set_hl(0, 'StatusLineGitRemoved', { fg = '#b55a5a', bg = '#262626' }) -- Dimmed red
     vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#14161b' })
     -- see :h nvim-treesitter-context
-    vim.api.nvim_set_hl(0, 'TreesitterContextBottom', {  underline = true })
-    vim.api.nvim_set_hl(0, 'TreesitterContextLineNumberBottom', {  underline = true })
+    vim.api.nvim_set_hl(0, 'TreesitterContextBottom', { underline = true })
+    vim.api.nvim_set_hl(0, 'TreesitterContextLineNumberBottom', { underline = true })
 
     -- lines
     vim.api.nvim_set_hl(0, 'LineNr', { fg = '#626262' })
@@ -39,7 +40,7 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, 'Folded', { fg = '#b89a5a', bg = '#151f26' })
 
     -- snacks
-    vim.api.nvim_set_hl(0, 'SnacksPickerListCursorLine', { bg = '#272828', bold = true})
+    vim.api.nvim_set_hl(0, 'SnacksPickerListCursorLine', { bg = '#272828', bold = true })
 
     -- lsp
     vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { fg = '#b89a5a' })

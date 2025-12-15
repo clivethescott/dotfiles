@@ -5,6 +5,10 @@ Statusline = {}
 Statusline.gitInfo = function()
   local git = vim.b.gitsigns_status_dict
   local git_branch = (git and git.head) and ' ' .. git.head or ''
+  if git_branch ~= '' then
+    git_branch = '%#StatusLineGitBranch#' .. git_branch .. '%#StatusLine#'
+  end
+
   local git_status = ''
   if git then
     if git.added and git.added > 0 then
