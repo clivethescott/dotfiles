@@ -65,6 +65,11 @@ M.get = function()
       action = action.IncreaseFontSize
     },
     {
+      key = '=',
+      mods = 'CMD|SHIFT',
+      action = action.ResetFontSize
+    },
+    {
       key = 'q',
       mods = 'CMD|OPT',
       action = action.QuitApplication
