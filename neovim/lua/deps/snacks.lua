@@ -121,7 +121,7 @@ return {
       }
     },
     statuscolumn = { enabled = true },
-    bigfile = { enabled = true },
+    bigfile = { enabled = false },
     notifier = { enabled = true },
     rename = { enabled = true },
     image = { enabled = true },
