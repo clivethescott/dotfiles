@@ -45,7 +45,12 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
     if not has_launch_args then
       local has_fzf_lua, fzf_lua = pcall(require, 'fzf-lua')
       if has_fzf_lua then
-        fzf_lua.combine({ pickers = { 'oldfiles', 'git_files' } })
+        fzf_lua.combine({
+          pickers = { 'oldfiles', 'files' },
+          winopts = {
+            title = 'Recent + Dir Files'
+          },
+        })
       end
     end
   end,
