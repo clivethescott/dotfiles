@@ -15,7 +15,7 @@ return {
       },
       options = {
         permanent_delete = true,
-        use_as_default_explorer = false, -- use snacks explorer
+        use_as_default_explorer = true,
       },
       mappings = {
         go_in = '<M-l>',
@@ -144,7 +144,7 @@ return {
     vim.api.nvim_create_autocmd("User", {
       pattern = "MiniFilesActionRename",
       callback = function(event)
-        require 'snacks'.rename.on_rename_file(event.data.from, event.data.to)
+        require 'lsp_rename'.on_rename_file(event.data.from, event.data.to)
       end,
     })
   end,
