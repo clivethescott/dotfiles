@@ -15,7 +15,7 @@ return {
       },
       options = {
         permanent_delete = true,
-        use_as_default_explorer = true,
+        use_as_default_explorer = false,
       },
       mappings = {
         go_in = '<M-l>',

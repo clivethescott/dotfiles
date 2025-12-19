@@ -46,10 +46,6 @@ vim.keymap.set('v', '<space>x', ":lua<cr>", { silent = true, desc = 'Exec Lua' }
 -- See :h & and :h &&
 vim.keymap.set({ 'x', 'n' }, '&', ':&&<cr>', { desc = 'Repeat last substitute keeping flags' })
 
--- Dealing with word wrap and jumps on long lines
-vim.keymap.set('n', 'k', [[v:count < 2 ? 'gk' : "m'" .. v:count .. 'k']], { expr = true })
-vim.keymap.set('n', 'j', [[v:count < 2 ? 'gj' : "m'" .. v:count .. 'j']], { expr = true })
-
 -- use the default <c-l> to clear search highlight
 -- vim.keymap.set('n', '<leader>m', "<cmd>silent! nohls<cr>", { silent = true, desc = 'Clear highlight' })
 

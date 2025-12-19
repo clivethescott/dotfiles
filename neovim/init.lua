@@ -35,11 +35,6 @@ require 'lazy'.setup({
     notify = true,                -- get a notification when new updates are found
     frequency = 60 * 60 * 24 * 7, -- check for updates every week
   },
-  performance = {
-    disabled_plugins = {
-      'gzip', 'netrwPlugin', 'tarPlugin', 'tohtml', 'tutor', 'zipPlugin'
-    }
-  }
 })
 
 vim.keymap.set('n', '<space>ol', '<cmd>Lazy<cr>', { desc = 'Lazy Package Mgr' })
