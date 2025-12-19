@@ -4,12 +4,16 @@ local state = {
   floating = {
     buf = -1,
     win = -1,
+  },
+  lazygit = {
+    buf = -1,
+    win = -1,
   }
 }
 
 local function create_floating_window(opts)
   opts = opts or {}
-  local width = opts.width or math.floor(vim.o.columns * 0.8)
+  local width = opts.width or math.floor(vim.o.columns * 0.9)
   local height = opts.height or math.floor(vim.o.lines * 0.8)
 
   -- Calculate the position to center the window
@@ -52,4 +56,28 @@ local toggle_terminal = function()
   end
 end
 
+local toggle_lazygit = function()
+  if not vim.api.nvim_win_is_valid(state.lazygit.win) then
+    state.lazygit = create_floating_window { buf = state.lazygit.buf }
+    if vim.bo[state.lazygit.buf].buftype ~= "terminal" then
+      vim.fn.jobstart('lazygit', {
+        term = true,
+        on_exit = function()
+          vim.api.nvim_buf_delete(state.lazygit.buf, { force = true })
+          state.lazygit.buf = -1
+          state.lazygit.win = -1
+        end,
+      })
+    end
+  else
+    vim.api.nvim_win_hide(state.lazygit.win)
+  end
+end
+
 vim.keymap.set({ 'n', 't' }, [[<M-\>]], toggle_terminal, { silent = true, desc = 'Toggle terminal' })
+vim.keymap.set('n', 'gs', toggle_lazygit, { silent = true, desc = 'Toggle lazygit' })
+vim.keymap.set('t', 'q', function()
+  if vim.api.nvim_win_is_valid(state.lazygit.win) then
+    vim.api.nvim_win_hide(state.lazygit.win)
+  end
+end, { silent = true, desc = 'Toggle lazygit' })

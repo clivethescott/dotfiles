@@ -36,26 +36,25 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-  group = vim.api.nvim_create_augroup('MyVimStartup', { clear = true }),
-  callback = function(args)
-    -- when directly opening a file or dir, don't launch fzf
-    local has_launch_args = args.file ~= ""
-
-    if not has_launch_args then
-      local has_fzf_lua, fzf_lua = pcall(require, 'fzf-lua')
-      if has_fzf_lua then
-        fzf_lua.combine({
-          pickers = { 'oldfiles', 'files' },
-          winopts = {
-            title = 'Recent + Dir Files'
-          },
-        })
-      end
-    end
-  end,
-})
-
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, {
+--   group = vim.api.nvim_create_augroup('MyVimStartup', { clear = true }),
+--   callback = function(args)
+--     -- when directly opening a file or dir, don't launch fzf
+--     local has_launch_args = args.file ~= ""
+--     if not has_launch_args then
+--       local has_fzf_lua, fzf_lua = pcall(require, 'fzf-lua')
+--       if has_fzf_lua then
+--         fzf_lua.combine({
+--           pickers = { 'oldfiles', 'files' },
+--           winopts = {
+--             title = 'Recent + Dir Files'
+--           },
+--         })
+--       end
+--     end
+--   end,
+-- })
+--
 -- https://github.com/neovim/neovim/issues/16339#issuecomment-1457394370
 vim.api.nvim_create_autocmd('BufRead', {
   pattern = { '*.lua', '*.scala', '*.rust', '*.conf', '*.smithy' },
