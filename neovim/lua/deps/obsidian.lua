@@ -14,7 +14,7 @@ local workspaces = {
   },
   {
     name = "Notes",
-    path = "~/ObsidianNotes",
+    path = "~/ObsidianNotesGit",
   },
 }
 
