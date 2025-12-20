@@ -45,6 +45,9 @@ function fish_right_prompt --description "Git info"
     if not set -q __fish_git_prompt_showupstream
         set -g __fish_git_prompt_showupstream informative
     end
+    if not set -q __fish_git_prompt_showupstream_timeout
+        set -g __fish_git_prompt_showupstream_timeout 500
+    end
     if not set -q __fish_git_prompt_color_dirtystate
         set -g __fish_git_prompt_color_dirtystate blue
     end
