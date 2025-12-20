@@ -4,6 +4,8 @@ return {
   config = function()
     local wk = require 'which-key'
     wk.setup {
+      present = 'modern',
+      delay   = 500,
       plugins = {
         presets = {
           operators = true,
