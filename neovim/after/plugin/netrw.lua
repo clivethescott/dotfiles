@@ -15,13 +15,14 @@ vim.g.netrw_localcopydircmd = 'cp -r'
 vim.g.netrw_localrmdir = 'rm -r'
 -- open files in a vsplit
 vim.g.netrw_browse_split = 0
+-- preview in right vsplit
+vim.g.netrw_preview = 1
+vim.g.netrw_alto = 0
 
-vim.keymap.set('n', '<leader>eo', '<cmd>Lexplore<cr>', { desc = 'Toggle Netrw' })
-vim.keymap.set('n', '<leader>eO', '<cmd>Lexplore %:p:h<cr>', { desc = 'Netrw in parent dir' })
+vim.keymap.set('n', '<leader>e', '<cmd>Lexplore<cr>', { desc = 'Toggle Netrw' })
+vim.keymap.set('n', '<leader>E', '<cmd>Lexplore %:p:h<cr>', { desc = 'Netrw in parent dir' })
 vim.keymap.set('n', '<M-h>', '-', { desc = 'Up dir', remap = true })
 vim.keymap.set('n', '<M-l>', '<cr>', { desc = 'Down dir', remap = true })
-vim.keymap.set('n', '<C-h>', 'gh', { desc = 'Toggle hidden files', remap = true })
-vim.keymap.set('n', '<tab>', 'mf', { desc = 'Mark file', remap = true })
-vim.keymap.set('n', 'a', '%:w<CR>:buffer #<CR>', { desc = 'Create + save file', remap = true })
-vim.keymap.set('n', 'gx', 'mx', { desc = 'Exec', remap = true })
-vim.keymap.set('n', '<leader>em', ':echo join(netrw#Expose("netrwmarkfilelist"))<cr>', { desc = 'Show mark list', remap = true })
+vim.keymap.set('n', '<leader>m', function()
+  vim.cmd [[echo join(netrw#Expose("netrwmarkfilelist"), "\n")]]
+end, { desc = 'Print mark list', remap = true })
