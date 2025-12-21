@@ -8,7 +8,7 @@ vim.g.netrw_hide = 1
 vim.g.netrw_list_hide = vim.fn["netrw_gitignore#Hide"]() .. ",*.pdf,*.exe"
 
 -- tried using g:netrw_localmovecmd<mv>; it doesn't work!
-vim.g.netrw_keepdir = 0
+-- vim.g.netrw_keepdir = 0
 
 -- enable recursive copy of directories.
 vim.g.netrw_localcopydircmd = 'cp -r'
@@ -17,7 +17,7 @@ vim.g.netrw_localrmdir = 'rm -r'
 vim.g.netrw_browse_split = 0
 -- preview in right vsplit
 vim.g.netrw_preview = 1
-vim.g.netrw_alto = 0
+vim.g.netrw_alto = 1
 
 vim.keymap.set('n', '<leader>e', '<cmd>Lexplore<cr>', { desc = 'Toggle Netrw' })
 vim.keymap.set('n', '<leader>E', '<cmd>Lexplore %:p:h<cr>', { desc = 'Netrw in parent dir' })
