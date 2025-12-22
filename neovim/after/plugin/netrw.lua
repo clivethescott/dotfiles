@@ -1,3 +1,7 @@
+local has_netrw = vim.g.loaded_netrwPlugin == 1 or vim.g.loaded_netrw == 1
+if not has_netrw then
+  return
+end
 vim.g.netrw_banner = 0
 -- tree style listing
 -- vim.g.netrw_liststyle = 3 -- toggle with 'i'
