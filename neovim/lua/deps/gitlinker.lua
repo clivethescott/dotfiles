@@ -1,12 +1,12 @@
 return {
-  'linrongbin16/gitlinker.nvim',
+  'gitlinker.nvim',
   cmd = 'GitLink',
   event = 'BufReadPost',
   keys = {
     { "<space>gy", "<cmd>GitLink<cr>",  mode = { "n", "v" }, desc = "Yank git link" },
     { "<space>gY", "<cmd>GitLink!<cr>", mode = { "n", "v" }, desc = "Open git link" },
   },
-  config = function()
+  after = function()
     require 'gitlinker'.setup {
       router = {
         browse = {

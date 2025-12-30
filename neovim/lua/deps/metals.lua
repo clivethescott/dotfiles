@@ -1,11 +1,11 @@
 return {
-  'scalameta/nvim-metals',
+  'nvim-metals',
   ft = 'scala',
-  cond = false,
+  enabled = false,
   dependencies = {
-    "nvim-lua/plenary.nvim"
+    "plenary.nvim"
   },
-  config = function()
+  after = function()
     local metals = require 'metals'
     local metals_config = metals.bare_config()
     metals_config.init_options.statusBarProvider = "off" -- use fidget

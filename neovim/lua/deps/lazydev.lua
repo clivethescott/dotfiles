@@ -1,17 +1,19 @@
 return {
-  "folke/lazydev.nvim",
+  "lazydev.nvim",
   ft = "lua", -- only load on lua files
   dependencies = {
-    { 'DrKJeff16/wezterm-types', lazy = true, ft = 'lua' },
+    { 'wezterm-types', lazy = true, ft = 'lua' },
   },
-  opts = {
-    library = {
-      -- See the configuration section for more details
-      -- Load luvit types when the `vim.uv` word is found
-      "~/.config/wezterm",
-      { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      { path = "Snacks.nvim",        words = { "Snacks" } },
-      { path = 'wezterm-types',      mods = { 'wezterm' } },
-    },
-  },
+  after = function()
+    require('lazydev').setup({
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        "~/.config/wezterm",
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        { path = "Snacks.nvim",        words = { "Snacks" } },
+        { path = 'wezterm-types',      mods = { 'wezterm' } },
+      },
+    })
+  end,
 }

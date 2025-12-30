@@ -45,12 +45,12 @@ local install_missing = function()
 end
 
 return {
-  'mason-org/mason.nvim',
-  event = 'VeryLazy',
+  'mason.nvim',
+  event = 'DeferredUIEnter',
   dependencies = {
-    'neovim/nvim-lspconfig',
+    'nvim-lspconfig',
   },
-  config = function()
+  after = function()
     require 'mason'.setup()
     install_missing()
   end,

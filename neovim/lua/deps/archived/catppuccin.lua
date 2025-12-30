@@ -1,7 +1,7 @@
 return {
   "catppuccin/nvim",
   name = "catppuccin",
-  event = 'VeryLazy',
+  event = 'DeferredUIEnter',
   lazy = true,
   priority = 1000,
   opts = {

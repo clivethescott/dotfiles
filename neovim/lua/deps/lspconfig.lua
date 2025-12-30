@@ -1,12 +1,13 @@
 return {
-  'neovim/nvim-lspconfig',
-  event = 'BufReadPost',
-  -- event = 'VeryLazy', causes an issue where LspAttach is not called if opening files directly
+  'nvim-lspconfig',
+  lazy = false,
+  -- event = 'BufReadPost', -- causes filetype detection issues on first file
+  -- event = 'DeferredUIEnter', causes an issue where LspAttach is not called if opening files directly
   dependencies = {
-    'mason-org/mason.nvim',
-    "b0o/schemastore.nvim",
+    'mason.nvim',
+    "schemastore.nvim",
   },
-  config = function()
+  after = function()
     local lsp_group = vim.api.nvim_create_augroup('LspAttachGroup', { clear = true })
 
     vim.api.nvim_create_autocmd({ "LspAttach" }, {

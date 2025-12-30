@@ -35,22 +35,24 @@ local on_attach = function()
 end
 
 return {
-  'lewis6991/gitsigns.nvim',
+  'gitsigns.nvim',
   dependencies = {
-    'nvim-lua/plenary.nvim',
+    'plenary.nvim',
   },
   event = { 'BufReadPost', 'BufNewFile' },
-  opts = {
-    on_attach = on_attach,
-    word_diff = false,
-    signs = {
-      add          = { text = '+' },
-      change       = { text = '~' },
-      delete       = { text = '-' },
-      topdelete    = { text = '?' },
-      changedelete = { text = '~' },
-    },
-    current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-    current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>'
-  }
+  after = function()
+    require('gitsigns').setup({
+      on_attach = on_attach,
+      word_diff = false,
+      signs = {
+        add          = { text = '+' },
+        change       = { text = '~' },
+        delete       = { text = '-' },
+        topdelete    = { text = '?' },
+        changedelete = { text = '~' },
+      },
+      current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+      current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>'
+    })
+  end,
 }

@@ -110,9 +110,6 @@ vim.opt.foldcolumn = "0"
 vim.opt.fillchars:append({ fold = " ", eob = " " })
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
-vim.g.do_filetype_lua = true
-vim.g.did_load_filetypes = false
-
 -- Disable modeline
 vim.opt.modeline = true
 

@@ -1,11 +1,11 @@
 local ignore_files = { "^%.metals", "^%.scala", "^Gemfile.lock" }
 return {
-  "ibhagwan/fzf-lua",
-  event = 'VeryLazy',
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  cond = vim.g.use_picker == 'fzf-lua',
-branch = 'main',
-  config = function()
+  "fzf-lua",
+  lazy = false,
+  dependencies = { "nvim-web-devicons" },
+  enabled = vim.g.use_picker == 'fzf-lua',
+  branch = 'main',
+  after = function()
     local actions = require("fzf-lua").actions
     local config = require 'fzf-lua'.config
     -- Quickfix
@@ -63,7 +63,7 @@ branch = 'main',
         width = 0.9,
         preview = {
           default = 'bat',
-          hidden = 'hidden'
+          hidden = true,
         },
         files = {
           git_icons = false,

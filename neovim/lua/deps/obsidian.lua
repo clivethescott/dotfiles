@@ -25,12 +25,13 @@ end
 
 ---@diagnostic disable: missing-fields
 return {
-  'obsidian-nvim/obsidian.nvim',
+  'obsidian.nvim',
   ft = 'markdown',
   cmd = 'Obsidian',
   ---@module 'obsidian'
   ---@type obsidian.config
-  opts = {
+  after = function()
+    require('obsidian').setup({
     workspaces = workspaces,
     legacy_commands = false,
     log_level = vim.log.levels.WARN,
@@ -47,7 +48,8 @@ return {
     daily_notes = {
       folder = 'daily'
     },
-  },
+    })
+  end,
   keys = {
     {
       '<space>no',

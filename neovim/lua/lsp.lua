@@ -1,5 +1,13 @@
 local M = {}
 
+local supports_method = function(client, method, bufnr)
+  if vim.fn.has('nvim-0.12') then
+    return client:supports_method(client, method, bufnr)
+  else
+    return client:supports_method(method)
+  end
+end
+
 local codelens = function(bufnr, au_group)
   vim.keymap.set('n', 'grl',
     function() vim.lsp.codelens.run() end, { buffer = true, desc = 'Run Codelens' })
@@ -75,28 +83,28 @@ function M.on_attach(client, bufnr)
 
   -- Prefer LSP folding if client supports it
   -- :h vim.lsp.foldexpr
-  if client:supports_method('textDocument/foldingRange') then
+  if supports_method(client, 'textDocument/foldingRange', bufnr) then
     local win = vim.api.nvim_get_current_win()
     vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
   end
 
-  if client:supports_method('textDocument/completion') then
+  if supports_method(client, 'textDocument/completion', bufnr) then
     vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = false })
   end
 
 
-  if client:supports_method('textDocument/signatureHelp') then
+  if supports_method(client, 'textDocument/signatureHelp', bufnr) then
     vim.keymap.set({ 'n', 'i' }, '<M-s>', vim.lsp.buf.signature_help, { buffer = true, desc = 'Signature help' })
     -- default vim.keymap.set('i', '<c-s>',vim.lsp.buf.signature_help)
   end
 
 
-  if client.supports_method('textDocument/rename') then
+  if supports_method(client, 'textDocument/rename', bufnr) then
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = true, desc = 'LSP Rename' })
     -- default vim.keymap.set('n', 'grn', vim.lsp.buf.rename)
   end
 
-  if client.supports_method('textDocument/declaration') then
+  if supports_method(client, 'textDocument/declaration', bufnr) then
     vim.keymap.set('n', 'grd', function()
       if vim.g.use_picker == 'snacks.picker' then
         require 'snacks'.picker.lsp_declarations()
@@ -104,7 +112,7 @@ function M.on_attach(client, bufnr)
         require 'fzf-lua'.lsp_declarations()
       end
     end, { buffer = true, desc = 'LSP Declaration' })
-  elseif client.supports_method('textDocument/definition') then
+  elseif supports_method(client, 'textDocument/definition', bufnr) then
     vim.keymap.set('n', 'gry', function()
       if vim.g.use_picker == 'snacks.picker' then
         require 'snacks'.picker.lsp_definitions()
@@ -116,7 +124,7 @@ function M.on_attach(client, bufnr)
   else
   end
 
-  if client.supports_method('textDocument/inlayHint') then
+  if supports_method(client, 'textDocument/inlayHint', bufnr) then
     vim.keymap.set({ 'n', 'i' }, '<M-i>',
       function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end, { desc = 'Toggle inlay hints' })
 
@@ -133,7 +141,7 @@ function M.on_attach(client, bufnr)
   end
 
 
-  if client.supports_method('textDocument/references') then
+  if supports_method(client, 'textDocument/references', bufnr) then
     -- default vim.keymap.set('n', 'grr', vim.lsp.buf.references)
     vim.keymap.set('n', 'gRr', function()
       if vim.g.use_picker == 'snacks.picker' then
@@ -144,7 +152,7 @@ function M.on_attach(client, bufnr)
     end, { buffer = true, desc = 'LSP References' })
   end
 
-  if client.supports_method('textDocument/codeLens') then
+  if supports_method(client, 'textDocument/codeLens', bufnr) then
     codelens(bufnr, lsp_group)
   end
 
@@ -152,11 +160,10 @@ function M.on_attach(client, bufnr)
   if has_conform then
     vim.b.formatexpr = "v:lua.require'conform'.formatexpr()"
   end
-  if client.supports_method("textDocument/formatting") or has_conform then
+  if supports_method(client, "textDocument/formatting", bufnr) or has_conform then
     formatting(client, bufnr)
   end
-  if client.supports_method('textDocument/diagnostic') or client.name == 'metals' then
-    -- <c-w>d
+  if supports_method(client, "textDocument/diagnostic", bufnr) or client.name == "metals" then
     diagnostics(bufnr)
   end
 end

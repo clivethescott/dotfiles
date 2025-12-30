@@ -1,6 +1,6 @@
 return {
   "tpope/vim-fugitive",
-  event = 'VeryLazy',
+  event = 'DeferredUIEnter',
   keys = {
     { "gs", "<cmd>Git<cr>", desc = "Git status" },
   }

@@ -1,7 +1,7 @@
 return {
-  "folke/which-key.nvim",
-  event = "VeryLazy",
-  config = function()
+  "which-key.nvim",
+  event = "DeferredUIEnter",
+  after = function()
     local wk = require 'which-key'
     wk.setup {
       present = 'modern',

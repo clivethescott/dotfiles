@@ -5,7 +5,7 @@ end
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = { "gennaro-tedesco/nvim-possession" },
-  event = 'VeryLazy',
+  event = 'DeferredUIEnter',
   config = function()
     require 'lualine'.setup {
       options = {

@@ -4,9 +4,9 @@ local is_directory = function(path)
 end
 
 return {
-  'nvim-mini/mini.files',
-  event = 'VeryLazy',
-  config = function()
+  'mini.files',
+  event = 'DeferredUIEnter',
+  after = function()
     local files = require 'mini.files'
     files.setup {
       windows = {

@@ -1,6 +1,6 @@
 return {
   "folke/snacks.nvim",
-  event = 'VeryLazy',
+  event = 'DeferredUIEnter',
   ---@type snacks.Config
   opts = {
     lazygit = {

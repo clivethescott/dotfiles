@@ -1,11 +1,11 @@
 return {
-  {
-    'nvim-mini/mini.hipatterns',
-    event = 'BufReadPost',
-    opts = {
+  'mini.hipatterns',
+  event = 'BufReadPost',
+  after = function()
+    require('mini.hipatterns').setup({
       highlighters = {
         todo = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
       },
-    }
-  },
+    })
+  end,
 }

@@ -82,9 +82,10 @@ vim.api.nvim_create_autocmd('BufRead', {
 -- a more conservative display while still being useful.
 -- See `:h vim.diagnostic` and `:h vim.diagnostic.config()`.
 local diagnostic_config = {
-  jump = {
-    float = true
-  },
+  float = true,
+  -- jump = {
+  --   float = true
+  -- },
   -- Show signs on top of any other sign, but only for warnings and errors
   signs = { priority = 9999, severity = { min = 'WARN', max = 'ERROR' } },
   -- Show all diagnostics as underline
@@ -105,7 +106,7 @@ local diagnostic_config = {
 }
 
 vim.api.nvim_create_autocmd('User', {
-  pattern = 'VeryLazy',
+  pattern = 'DeferredUIEnter',
   group = vim.api.nvim_create_augroup('MyDiagConfig', { clear = true }),
   callback = function()
     vim.diagnostic.config(diagnostic_config)

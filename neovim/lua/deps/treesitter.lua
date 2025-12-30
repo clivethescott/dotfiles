@@ -62,19 +62,21 @@ local goto_previous = function(...)
 end
 
 return {
-  'nvim-treesitter/nvim-treesitter',
+  'nvim-treesitter',
   build = ':TSUpdate',
   lazy = false,
   dependencies = {
     {
-      'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter-textobjects',
       branch = 'main',
-      opts = {
-        move = {
-          -- whether to set jumps in the jumplist
-          set_jumps = true,
-        },
-      },
+      after = function()
+        require('nvim-treesitter-textobjects').setup({
+          move = {
+            -- whether to set jumps in the jumplist
+            set_jumps = true,
+          },
+        })
+      end,
       keys = {
         -- You can use the capture groups defined in `textobjects.scm`
         {
@@ -105,33 +107,27 @@ return {
       }
     },
     {
-      'nvim-treesitter/nvim-treesitter-context',
+      'nvim-treesitter-context',
       keys = {
         { '[h', function() require("treesitter-context").go_to_context(vim.v.count1) end, desc = 'Jump to TS context' },
         { ']h', function() require("treesitter-context").go_to_context(vim.v.count1) end, desc = 'Jump to TS context' },
       },
-      opts = {
-        multiline_threshold = 999,
-        -- separator = '-',
-        max_lines = 1,
-      }
+      after = function()
+        require('treesitter-context').setup({
+          multiline_threshold = 999,
+          -- separator = '-',
+          max_lines = 1,
+        })
+      end,
     },
     {
       -- 'towolf/vim-helm', possible compat issues?
-      "qvalentin/helm-ls.nvim",
-      cond = vim.g.is_work_pc,
+      "helm-ls.nvim",
+      enabled = vim.g.is_work_pc,
       ft = { 'yaml', 'helm' },
     }
   },
-  init = function()
-    -- https://mise.jdx.dev/mise-cookbook/neovim.html#code-highlight-for-run-commands
-    require("vim.treesitter.query").add_predicate("is-mise?", function(_, _, bufnr, _)
-      local filepath = vim.api.nvim_buf_get_name(tonumber(bufnr) or 0)
-      local filename = vim.fn.fnamemodify(filepath, ":t")
-      return string.match(filename, ".*mise.*%.toml$")
-    end, { force = true, all = false })
-  end,
-  config = function()
+  after = function()
     install_missing_parsers()
 
     local supported_filetypes = get_supported_filetypes()

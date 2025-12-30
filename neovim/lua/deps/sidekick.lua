@@ -1,9 +1,9 @@
 local adapter = vim.g.is_work_pc and "amazon_q" or "claude" -- TODO: use copilot CLI when org allowed
 
 return {
-  {
-    "folke/sidekick.nvim",
-    opts = {
+  "sidekick.nvim",
+  after = function()
+    require('sidekick').setup({
       nes = {
         enabled = false, -- vim.g.is_work_pc and vim.b.sidekick_nes ~= false and vim.g.sidekick_nes ~= false,
         trigger = {
@@ -25,8 +25,9 @@ return {
       copilot = {
         enabled = vim.g.is_work_pc,
       },
-    },
-    keys = {
+    })
+  end,
+  keys = {
       {
         "<c-.>",
         function()
@@ -55,6 +56,4 @@ return {
         mode = { "n", "v" },
       },
     },
-  },
-
 }

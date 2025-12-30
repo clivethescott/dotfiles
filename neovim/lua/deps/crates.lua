@@ -1,17 +1,19 @@
 return {
-  'saecki/crates.nvim',
+  'crates.nvim',
   event = { "BufRead Cargo.toml" },
-  opts = {
-    lsp = {
-      enabled = true,
-      on_attach = function(client, bufnr)
-        require 'lsp'.on_attach(client, bufnr)
-      end,
-      actions = true,
-      completion = true,
-      hover = true,
-    }
-  },
+  after = function()
+    require('crates').setup({
+      lsp = {
+        enabled = true,
+        on_attach = function(client, bufnr)
+          require 'lsp'.on_attach(client, bufnr)
+        end,
+        actions = true,
+        completion = true,
+        hover = true,
+      }
+    })
+  end,
   keys = {
     -- :Crates .... or hover
   },
