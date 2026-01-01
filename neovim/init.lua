@@ -14,7 +14,7 @@ vim.pack.add({ 'https://github.com/lumen-oss/lz.n' })
 
 ---Returns a Github vim.pack plugin spec
 ---@param short_name string
----@param version string?
+---@param version string? Tag version, SHA or branch to use
 ---@return vim.pack.Spec
 local gh = function(short_name, version)
   return {
@@ -24,10 +24,10 @@ local gh = function(short_name, version)
 end
 
 local plugins = {
-  -- {src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = 'main'},
   gh('nvim-treesitter/nvim-treesitter', 'main'),
   gh('nvim-treesitter/nvim-treesitter-context', 'master'),
-  gh('nvim-tree/nvim-web-devicons', 'master'), -- fzf-lua relies on the latest api
+  gh('nvim-treesitter/nvim-treesitter-textobjects', 'main'),
+  gh('nvim-tree/nvim-web-devicons', 'master'),
   gh('nvim-mini/mini.files'),
   gh('Saghen/blink.cmp'),
   gh('MeanderingProgrammer/render-markdown.nvim'),
@@ -53,3 +53,7 @@ local plugins = {
 --- Add the plugins, replacing the built-in `load` function
 --- with lz.n's implementation.
 vim.pack.add(plugins, { load = require("lz.n").load("deps") })
+
+vim.keymap.set('n', '<space>ol', function()
+  vim.pack.update(nil, { force = false })
+end)
