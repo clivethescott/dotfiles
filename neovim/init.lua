@@ -47,7 +47,7 @@ local plugins = {
   gh('nvim-mini/mini.files'),
   gh('rafamadriz/friendly-snippets', { branch = 'main', event = 'DeferredUIEnter' }),
   gh('Saghen/blink.cmp'),
-  gh('MeanderingProgrammer/render-markdown.nvim', { ft = 'markdown' }),
+  gh('MeanderingProgrammer/render-markdown.nvim'),
   gh('folke/lazydev.nvim', { ft = 'lua' }),
   gh('DrKJeff16/wezterm-types', { ft = 'lua' }),
   gh('b0o/schemastore.nvim', { branch = 'main', ft = 'yaml', 'json' }),

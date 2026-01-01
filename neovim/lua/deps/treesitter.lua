@@ -54,7 +54,7 @@ end
 return {
   'nvim-treesitter',
   build = ':TSUpdate',
-  event = 'BufReadPost',
+  event = 'DeferredUIEnter',
   after = function()
     install_missing_parsers()
 
