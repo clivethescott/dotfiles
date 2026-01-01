@@ -1,3 +1,4 @@
+-- Lua annotations https://github.com/LuaLS/lua-language-server/wiki/Annotations
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 vim.g.use_picker = 'fzf-lua'
