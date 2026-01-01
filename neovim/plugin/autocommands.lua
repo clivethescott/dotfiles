@@ -106,9 +106,17 @@ local diagnostic_config = {
 }
 
 vim.api.nvim_create_autocmd('User', {
-  pattern = 'DeferredUIEnter',
+  pattern = 'VeryLazy',
   group = vim.api.nvim_create_augroup('MyDiagConfig', { clear = true }),
   callback = function()
+    vim.diagnostic.config(diagnostic_config)
+  end,
+})
+
+vim.api.nvim_create_autocmd('PackChanged', {
+  group = vim.api.nvim_create_augroup('MyPacksChanged', { clear = true }),
+  ---@param ev string
+  callback = function(ev)
     vim.diagnostic.config(diagnostic_config)
   end,
 })

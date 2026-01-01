@@ -1,8 +1,12 @@
 return {
   'fidget.nvim',
-  event = 'LspAttach',
+  event = 'DeferredUIEnter',
   after = function()
-    require('fidget').setup({
+    local fidget = require 'fidget'
+    fidget.setup {
+      notification = {
+        override_vim_notify = true, -- Automatically override vim.notify() with Fidget
+      },
       progress = {
         suppress_on_insert   = true,
         ignore_done_already  = true,
@@ -13,6 +17,7 @@ return {
           done_ttl = 0,
         }
       },
-    })
+    }
+    vim.keymap.set('n', '<space>nh', fidget.notification.show_history, { desc = 'Show notification history' })
   end,
 }

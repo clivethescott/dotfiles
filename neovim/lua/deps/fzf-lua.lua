@@ -97,7 +97,7 @@ return {
       function() require("fzf-lua").live_grep { cwd = '~/.config/nvim' } end,
       { silent = true, desc = "Nvim files" })
 
-    local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy')
+    local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('data'), '/site/pack/core/opt')
     vim.keymap.set("n", "<leader>4",
       function() require("fzf-lua").files { cwd = plugins_dir } end,
       { silent = true, desc = "Nvim plugin files" })

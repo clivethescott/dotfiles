@@ -46,3 +46,7 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { fg = '#b89a5a' })
   end,
 })
+
+if vim.g.colors_name ~= "default" then
+  vim.cmd.colorscheme "default"
+end

@@ -26,11 +26,10 @@ end
 ---@diagnostic disable: missing-fields
 return {
   'obsidian.nvim',
-  ft = 'markdown',
-  cmd = 'Obsidian',
+  event = 'DeferredUIEnter',
+  after = function()
   ---@module 'obsidian'
   ---@type obsidian.config
-  after = function()
     require('obsidian').setup({
     workspaces = workspaces,
     legacy_commands = false,
