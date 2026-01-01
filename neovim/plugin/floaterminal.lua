@@ -69,6 +69,7 @@ local toggle_lazygit = function()
         end,
       })
     end
+    vim.cmd.startinsert()
   else
     vim.api.nvim_win_hide(state.lazygit.win)
   end
