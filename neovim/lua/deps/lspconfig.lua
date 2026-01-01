@@ -1,8 +1,6 @@
 return {
   'nvim-lspconfig',
-  lazy = false,
-  -- event = 'BufReadPost', -- causes filetype detection issues on first file
-  -- event = 'DeferredUIEnter', causes an issue where LspAttach is not called if opening files directly
+  event = 'DeferredUIEnter', -- causes an issue where LspAttach is not called if opening files directly
   dependencies = {
     'mason.nvim',
     "schemastore.nvim",
