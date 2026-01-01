@@ -27,7 +27,8 @@
     },
     "friendly-snippets": {
       "rev": "572f5660cf05f8cd8834e096d7b4c921ba18e175",
-      "src": "https://github.com/rafamadriz/friendly-snippets"
+      "src": "https://github.com/rafamadriz/friendly-snippets",
+      "version": "'main'"
     },
     "fzf-lua": {
       "rev": "47b85a25c0c0b2c20b4e75199ed01bb71e7814f5",
@@ -110,7 +111,8 @@
     },
     "plenary.nvim": {
       "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
-      "src": "https://github.com/nvim-lua/plenary.nvim"
+      "src": "https://github.com/nvim-lua/plenary.nvim",
+      "version": "'master'"
     },
     "render-markdown.nvim": {
       "rev": "6a744f0d14fd1d0fa8e3f446ac7825ec1e351d55",
@@ -118,7 +120,7 @@
       "version": ">=0.0.0"
     },
     "schemastore.nvim": {
-      "rev": "c76a8ec99cda6873084e63962b008745eb6534dc",
+      "rev": "fb5f164a28f8fd5a052da512436d4173e06cf71e",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
