@@ -8,29 +8,6 @@ local rtp_extras = vim.fs.joinpath(vim.fn.stdpath("config"), "lua/rtp")
 if vim.loop.fs_stat(rtp_extras) then
   vim.opt.rtp:append(rtp_extras)
 end
-local install_wait_time_millis = 10000
--- TODO: figure out why no running
-vim.api.nvim_create_autocmd('PackChanged', {
-  callback = function(ev)
-    local name, kind = ev.data.spec.name, ev.data.kind
-    if name == 'blink.cmp' and kind ~= 'delete' then
-      --TODO: replace with plenary
-      local res = vim.system({ 'cargo build --release' },
-        { cwd = ev.data.path }):wait(install_wait_time_millis)
-      if vim.v.shell_error ~= 0 then
-        vim.notify('failed to compile blink.cmp:' .. res, vim.log.levels.ERROR)
-      else
-        vim.notify('blink successfully compiled', vim.log.levels.INFO)
-      end
-    else
-      if name == 'nvim-treesitter' and kind ~= 'delete' then
-      -- when changing between neovim head/stable
-      -- see weird issues where new parsers don't install until old ones are removed
-        vim.cmd('TSUnintall all | TSUpdate')
-      end
-    end
-  end,
-})
 
 -- Make sure you add lz.n first.
 vim.pack.add({ 'https://github.com/lumen-oss/lz.n' })
