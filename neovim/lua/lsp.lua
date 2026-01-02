@@ -1,5 +1,9 @@
 local M = {}
 
+-- Incremental selection is now supported via `textDocument/selectionRange`.
+-- `an` selects outwards and `in` selects inwards.
+-- e.g trigger with van, then an to expand/in to reduce
+
 local supports_method = function(client, method, bufnr)
   if vim.fn.has('nvim-0.12') then
     return client:supports_method(client, method, bufnr)
