@@ -6,6 +6,11 @@ vim.g.is_work_pc = vim.env.IS_WORK_PC == "true"
 vim.g.no_metals = true
 
 -- vim.cmd.packadd('nvim.difftool') -- setup for gitdiff tool -d
+
+require('vim._extui').enable({
+  enable = true, msg = { target = 'msg', timeout = 1000 },
+})
+
 local rtp_extras = vim.fs.joinpath(vim.fn.stdpath("config"), "lua/rtp")
 if vim.loop.fs_stat(rtp_extras) then
   vim.opt.rtp:append(rtp_extras)
