@@ -11,15 +11,11 @@
   # Run the difftool immediately, don't ask 'are you sure' each time.
   prompt = false
 
-[difftool "nvimdiff"]
-	cmd = nvim -d -c \"wincmd w\" -c \"wincmd L\" \"$LOCAL\" \"$REMOTE\"
-
-[pager]
-  difftool = true
+[difftool "nvim_difftool"]
+  cmd = nvim -c \"packadd nvim.difftool\" -c \"DiffTool $LOCAL $REMOTE\"
 
 [diff]
-  compactionHeuristic = true
-  tool = ???
+  tool = nvim_difftool
 
 [merge]
   tool = "nvim"

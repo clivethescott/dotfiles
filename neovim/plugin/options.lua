@@ -117,13 +117,6 @@ vim.opt.modeline = true
 -- vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.opt.sessionoptions:remove "folds" -- fold errors on session restore
 
-vim.opt.diffopt:append {
-  'linematch:50',
-  'vertical', -- https://github.com/lewis6991/gitsigns.nvim/issues/724
-  'foldcolumn:0',
-  'indent-heuristic',
-  'algorithm:histogram',
-}
 vim.opt.inccommand = "split"
 vim.opt.scrolloff = 1
 
