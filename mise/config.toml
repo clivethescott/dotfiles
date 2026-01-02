@@ -1,4 +1,5 @@
 [tools]
+1password-cli = "latest"
 ast-grep = "latest"
 aws-cli = "latest"
 bat = "latest"
