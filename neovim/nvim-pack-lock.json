@@ -85,7 +85,7 @@
       "version": ">=0.0.0"
     },
     "nvim-treesitter": {
-      "rev": "c6dd314086f7b471bf6c9110092a94ce1c06d220",
+      "rev": "737088f8571293f6a1ef8cd6c858d5daf9a38162",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -105,7 +105,7 @@
       "version": "'master'"
     },
     "obsidian.nvim": {
-      "rev": "30d477c8f2c1c0575032c3022cd3baead19dca97",
+      "rev": "95ab825e7722b456d2f21b72705814de2d05069e",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim",
       "version": ">=0.0.0"
     },

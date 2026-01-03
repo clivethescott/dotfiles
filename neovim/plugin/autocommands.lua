@@ -133,7 +133,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
       if name == 'nvim-treesitter' and kind ~= 'delete' then
       -- when changing between neovim head/stable
       -- see weird issues where new parsers don't install until old ones are removed
-        vim.cmd('TSUnintall all | TSUpdate')
+        vim.cmd('TSUpdate')
       end
     end
   end,
