@@ -6,7 +6,7 @@ local M = {}
 
 local supports_method = function(client, method, bufnr)
   if vim.fn.has('nvim-0.12') then
-    return client:supports_method(client, method, bufnr)
+    return client:supports_method(method, bufnr)
   else
     return client:supports_method(method)
   end
