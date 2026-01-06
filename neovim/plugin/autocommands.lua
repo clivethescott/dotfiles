@@ -22,20 +22,6 @@ vim.api.nvim_create_autocmd('LspNotify', {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "LspAttach" }, {
-  group = vim.api.nvim_create_augroup('MyLspAttach', { clear = true }),
-  callback = function(args)
-    local bufnr = args.buf
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client then
-      -- if client.server_capabilities.inlayHintProvider then
-      --   vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-      -- end
-      require 'lsp'.on_attach(client, bufnr)
-    end
-  end,
-})
-
 -- vim.api.nvim_create_autocmd({ "VimEnter" }, {
 --   group = vim.api.nvim_create_augroup('MyVimStartup', { clear = true }),
 --   callback = function(args)
