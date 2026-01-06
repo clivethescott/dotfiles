@@ -39,6 +39,11 @@ return {
         set_mark('w', vim.fn.getcwd, 'Working directory') -- callable
         set_mark('h', '~/Code/HTTP', 'HTTP files')
         set_mark('i', '~/IdeaProjects', 'IdeaProjects')
+        if vim.g.is_work_pc then
+          set_mark('n', vim.g.obsidian_work_notes_dir, 'Work Notes')
+        else
+          set_mark('n', vim.g.obsidian_personal_notes_dir, 'Personal Notes')
+        end
       end,
     })
 

@@ -7,14 +7,15 @@ local obsidian_pickers = {
 }
 local picker = vim.g.use_picker or 'fzf-lua'
 local obsidian_picker = obsidian_pickers[picker] or picker
+
 local workspaces = {
   {
-    name = "Work",
-    path = "~/Documents/Obsidian/Work",
+    name = "Work Notes",
+    path = vim.g.obsidian_work_notes_dir,
   },
   {
-    name = "Notes",
-    path = "~/ObsidianNotesGit",
+    name = "Personal Notes",
+    path = vim.g.obsidian_personal_notes_dir,
   },
 }
 
@@ -28,25 +29,25 @@ return {
   'obsidian.nvim',
   event = 'DeferredUIEnter',
   after = function()
-  ---@module 'obsidian'
-  ---@type obsidian.config
+    ---@module 'obsidian'
+    ---@type obsidian.config
     require('obsidian').setup({
-    workspaces = workspaces,
-    legacy_commands = false,
-    log_level = vim.log.levels.WARN,
-    completion = { blink = true, min_chars = 2 },
-    open = {
-      func = function(uri)
-        vim.ui.open(uri, { cmd = { "open", "-a", "/Applications/Obsidian.app" } })
-      end
-    },
-    picker = {
-      name = obsidian_picker,
-    },
-    ui = { enable = false }, -- use MeanderingProgrammer/render-markdown.nvim
-    daily_notes = {
-      folder = 'daily'
-    },
+      workspaces = workspaces,
+      legacy_commands = false,
+      log_level = vim.log.levels.WARN,
+      completion = { blink = true, min_chars = 2 },
+      open = {
+        func = function(uri)
+          vim.ui.open(uri, { cmd = { "open", "-a", "/Applications/Obsidian.app" } })
+        end
+      },
+      picker = {
+        name = obsidian_picker,
+      },
+      ui = { enable = false }, -- use MeanderingProgrammer/render-markdown.nvim
+      daily_notes = {
+        folder = 'daily'
+      },
     })
   end,
   keys = {
@@ -66,9 +67,14 @@ return {
       desc = 'Open Note in Obsidian app'
     },
     {
-      '<space>nt',
+      '<space>nn',
       '<cmd>Obsidian today<cr>',
       desc = "Open Today's Note"
+    },
+    {
+      '<space>nt',
+      '<cmd>Obsidian tags<cr>',
+      desc = "Notes by Tag"
     },
     {
       '<space>nw',
