@@ -100,10 +100,6 @@ if type -q brew
   eval "$(/opt/homebrew/bin/brew shellenv)"
 end
 
-if type -q sd
-    abbr -a sed sd
-end
-
 if type -q gron
     abbr -a gr gron
     abbr -a ungron gron --ungron

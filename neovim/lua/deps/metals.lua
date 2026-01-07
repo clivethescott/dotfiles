@@ -23,7 +23,7 @@ return {
     metals_config.settings = {
       disabledMode = vim.env.METALS == '0',
       startMcpServer = false,
-      serverVersion = '1.6.2',
+      serverVersion = '1.6.4',
       fallbackScalaVersion = '2.13.16',
       showImplicitArguments = true,
       showImplicitConversionsAndClasses = true,
