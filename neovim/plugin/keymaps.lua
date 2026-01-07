@@ -1,5 +1,6 @@
-vim.keymap.set('n', '<C-s>', '<cmd>update<cr>')
-vim.keymap.set('i', '<C-s>', '<esc>:update<cr>')
+vim.keymap.set('n', '<C-s>', ':silent update<cr>')
+vim.keymap.set('i', '<C-s>', '<esc>:silent update<cr>')
+
 vim.keymap.set('i', '<C-z>', '<esc>:undo<cr>')
 
 vim.keymap.set('n', '<M-v>', '"*p')
@@ -21,7 +22,7 @@ vim.keymap.set('n', '<space>lD', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = 'Toggle diagnostics' })
 
-vim.keymap.set('n', 'Q', ':q<cr>')
+vim.keymap.set('n', 'Q', ':qa<cr>')
 vim.keymap.set('n', '<leader>q', ':qa!<cr>')
 vim.keymap.set('n', 'Y', 'yy')
 vim.keymap.set('n', "'", '`')
@@ -47,8 +48,7 @@ vim.keymap.set('v', '<space>x', ":lua<cr>", { silent = true, desc = 'Exec Lua' }
 -- See :h & and :h &&
 vim.keymap.set({ 'x', 'n' }, '&', ':&&<cr>', { desc = 'Repeat last substitute keeping flags' })
 
--- use the default <c-l> to clear search highlight
--- vim.keymap.set('n', '<leader>m', "<cmd>silent! nohls<cr>", { silent = true, desc = 'Clear highlight' })
+vim.keymap.set('n', '<leader>m', vim.snippet.stop, { silent = true, desc = 'Clear snippet highlight' })
 
 vim.keymap.set('n', '<space>ow',
   function()
