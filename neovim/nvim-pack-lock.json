@@ -120,7 +120,7 @@
       "version": ">=0.0.0"
     },
     "schemastore.nvim": {
-      "rev": "b0ed552048541cf1452c7ca08b1d372768f059b9",
+      "rev": "1b83928c9ff8ff9d9506acc1aa8e0bdee635c570",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
