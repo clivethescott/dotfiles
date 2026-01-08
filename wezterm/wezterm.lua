@@ -11,7 +11,7 @@ wezterm.on('gui-startup', function(cmd)
 end)
 
 wezterm.on('update-right-status', function(window, _)
-  local date = wezterm.strftime '| %H:%M on %A %d %b '
+  local date = wezterm.strftime '| %H:%M -- %A %d %b '
   local status = window:active_workspace() .. ' ' -- .. ' @ ' .. pane:get_domain_name() .. ' '
 
   window:set_right_status(wezterm.format {

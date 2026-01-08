@@ -85,7 +85,7 @@
       "version": ">=0.0.0"
     },
     "nvim-treesitter": {
-      "rev": "de878155ca66c49b027b1380e4e60a6c665b2630",
+      "rev": "2ba5ec184609a96b513bf4c53a20512d64e27f39",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -120,7 +120,7 @@
       "version": ">=0.0.0"
     },
     "schemastore.nvim": {
-      "rev": "1b83928c9ff8ff9d9506acc1aa8e0bdee635c570",
+      "rev": "d5687736d15cfc3c1ac943485cad7808ba487d2b",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
@@ -130,7 +130,7 @@
       "version": ">=0.0.0"
     },
     "wezterm-types": {
-      "rev": "24e5da7c43ae56aaf0d2512a95f5992a92a707c7",
+      "rev": "c6c710039e2c3cda471d1480113e2146bd87c897",
       "src": "https://github.com/DrKJeff16/wezterm-types",
       "version": ">=0.0.0"
     }
