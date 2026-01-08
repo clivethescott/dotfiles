@@ -92,11 +92,10 @@ end
 
 # setup coreutils. This is slighly better than the mise one which has 1 uber command
 fish_add_path /opt/homebrew/opt/uutils-coreutils/libexec/uubin
-fish_add_path /opt/homebrew/bin/
 fish_add_path "$HOME/.docker/bin"
 
 if type -q brew
-# Setup brew
+# Setup brew paths
   eval "$(/opt/homebrew/bin/brew shellenv)"
 end
 
@@ -136,8 +135,17 @@ abbr --add pbclear pbcopy < /dev/null
 if type -q kubectl
     abbr -a k kubectl
     abbr -a kgetcontext kubectl config current-context
-    abbr -a ksetcontext kubectl config use-context
-    abbr -a ksetnamespace kubectl config set-context --current --namespace=
+    if type -q kubectx # fuzzy alternative
+      abbr -a kx kubectx
+    else
+      abbr -a kx kubectl config use-context
+    end
+
+    if type -q kubens # fuzzy alternative
+      abbr -a kn kubens
+    else
+      abbr -a kn kubectl config set-context --current --namespace=
+    end
 end
 
 if type -q dcli
