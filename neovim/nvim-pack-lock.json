@@ -65,7 +65,7 @@
       "src": "https://github.com/lumen-oss/lz.n"
     },
     "mason.nvim": {
-      "rev": "ad7146aa61dcaeb54fa900144d768f040090bff0",
+      "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
       "src": "https://github.com/mason-org/mason.nvim",
       "version": ">=0.0.0"
     },
@@ -85,7 +85,7 @@
       "version": ">=0.0.0"
     },
     "nvim-treesitter": {
-      "rev": "b033ab331ca0bccbd93c3c2b4f886fdfc09abec0",
+      "rev": "de878155ca66c49b027b1380e4e60a6c665b2630",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -115,12 +115,12 @@
       "version": "'master'"
     },
     "render-markdown.nvim": {
-      "rev": "6a744f0d14fd1d0fa8e3f446ac7825ec1e351d55",
+      "rev": "82aa306873db26c91f1c175bd902514a627a5d95",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim",
       "version": ">=0.0.0"
     },
     "schemastore.nvim": {
-      "rev": "b0ed552048541cf1452c7ca08b1d372768f059b9",
+      "rev": "1b83928c9ff8ff9d9506acc1aa8e0bdee635c570",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },

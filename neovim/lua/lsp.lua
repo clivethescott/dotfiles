@@ -117,6 +117,7 @@ function M.on_attach(client, bufnr)
       end
     end, { buffer = true, desc = 'LSP Declaration' })
   elseif supports_method(client, 'textDocument/definition', bufnr) then
+    -- default vim.keymap.set('n', 'grt', vim.lsp.buf.type_definition)
     vim.keymap.set('n', 'gry', function()
       if vim.g.use_picker == 'snacks.picker' then
         require 'snacks'.picker.lsp_definitions()
