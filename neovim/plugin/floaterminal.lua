@@ -77,8 +77,3 @@ end
 
 vim.keymap.set({ 'n', 't' }, [[<M-\>]], toggle_terminal, { silent = true, desc = 'Toggle terminal' })
 vim.keymap.set('n', 'gs', toggle_lazygit, { silent = true, desc = 'Toggle lazygit' })
-vim.keymap.set('t', 'q', function()
-  if vim.api.nvim_win_is_valid(state.lazygit.win) then
-    vim.api.nvim_win_hide(state.lazygit.win)
-  end
-end, { silent = true, desc = 'Toggle lazygit' })
