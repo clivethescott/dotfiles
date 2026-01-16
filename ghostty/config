@@ -2,8 +2,6 @@
 # python3 -c "print(hex(ord(input('Press key: '))))"  
 # or just ask an LLM about escape sequences in ghostty
 #
-# increment in vim
-keybind = cmd+a>cmd+a=text:\x01
 keybind = cmd+period=csi:46;5u
 keybind = cmd+\=csi:92;5u
 keybind = cmd+b=text:\x02
@@ -33,41 +31,48 @@ keybind = cmd+y=text:\x19
 keybind = cmd+z=text:\x1A
 keybind = cmd+left_bracket=text:\x1b
 keybind = cmd+right_bracket=text:\x1D
-# fat fingers
-keybind = cmd+a>cmd+left_bracket=text:\x1b
-keybind = cmd+a>left_bracket=text:\x1b
-keybind = cmd+a>cmd+right_bracket=text:\x1b
-keybind = cmd+a>right_bracket=text:\x1b
-
 keybind = cmd+digit_6=text:\x1E
 keybind = cmd+option+q=quit
 keybind = cmd+shift+v=paste_from_clipboard
 keybind = cmd+shift+c=copy_to_clipboard
-
 keybind = global:cmd+shift+8=toggle_quick_terminal
-
-# See more @ ghostty +list-actions
-# Tmux
-keybind = cmd+a>r=reload_config
-keybind = cmd+a>c=new_tab
-keybind = cmd+a>p=previous_tab
-keybind = cmd+a>tab=previous_tab
-keybind = cmd+a>n=next_tab
-keybind = cmd+a>shift+n=new_window
-keybind = cmd+a>1=goto_tab:1
-keybind = cmd+a>2=goto_tab:2
-keybind = cmd+a>3=goto_tab:3
-keybind = cmd+a>4=goto_tab:4
-keybind = cmd+a>5=goto_tab:5
-keybind = cmd+a>v=new_split:right
-keybind = cmd+a>s=new_split:down
-keybind = cmd+a>z=toggle_split_zoom
-keybind = cmd+a>h=goto_split:left
-keybind = cmd+a>l=goto_split:right
-keybind = cmd+a>j=goto_split:down
-keybind = cmd+a>k=goto_split:up
-keybind = cmd+a>,=prompt_surface_title
 keybind = cmd++=reset_font_size
+
+#
+# begin for tmux
+keybind = cmd+a=text:\x01
+window-decoration = none
+# eng for tmux
+#
+# begin non tmux
+# fat fingers
+# increment in vim
+# keybind = cmd+a>cmd+a=text:\x01
+# keybind = cmd+a>cmd+left_bracket=text:\x1b
+# keybind = cmd+a>left_bracket=text:\x1b
+# keybind = cmd+a>cmd+right_bracket=text:\x1b
+# keybind = cmd+a>right_bracket=text:\x1b
+# See more @ ghostty +list-actions
+# keybind = cmd+a>r=reload_config
+# keybind = cmd+a>c=new_tab
+# keybind = cmd+a>p=previous_tab
+# keybind = cmd+a>tab=previous_tab
+# keybind = cmd+a>n=next_tab
+# keybind = cmd+a>shift+n=new_window
+# keybind = cmd+a>1=goto_tab:1
+# keybind = cmd+a>2=goto_tab:2
+# keybind = cmd+a>3=goto_tab:3
+# keybind = cmd+a>4=goto_tab:4
+# keybind = cmd+a>5=goto_tab:5
+# keybind = cmd+a>v=new_split:right
+# keybind = cmd+a>s=new_split:down
+# keybind = cmd+a>z=toggle_split_zoom
+# keybind = cmd+a>h=goto_split:left
+# keybind = cmd+a>l=goto_split:right
+# keybind = cmd+a>j=goto_split:down
+# keybind = cmd+a>k=goto_split:up
+# keybind = cmd+a>,=prompt_surface_title
+# end non tmux
 
 macos-option-as-alt = true
 macos-titlebar-style = tabs
