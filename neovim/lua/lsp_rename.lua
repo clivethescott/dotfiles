@@ -91,7 +91,7 @@ function M.on_rename_file(from, to, rename)
 
   local clients = (vim.lsp.get_clients or vim.lsp.get_clients)()
   for _, client in ipairs(clients) do
-    if client.supports_method("workspace/willRenameFiles") then
+    if client:supports_method("workspace/willRenameFiles", 0) then
       local resp = client.request_sync("workspace/willRenameFiles", changes, 1000, 0)
       if resp and resp.result ~= nil then
         vim.lsp.util.apply_workspace_edit(resp.result, client.offset_encoding)
@@ -104,7 +104,7 @@ function M.on_rename_file(from, to, rename)
   end
 
   for _, client in ipairs(clients) do
-    if client.supports_method("workspace/didRenameFiles") then
+    if client:supports_method("workspace/didRenameFiles", 0) then
       client.notify("workspace/didRenameFiles", changes)
     end
   end
