@@ -93,6 +93,7 @@ end
 # setup coreutils. This is slighly better than the mise one which has 1 uber command
 fish_add_path /opt/homebrew/opt/uutils-coreutils/libexec/uubin
 fish_add_path "$HOME/.docker/bin"
+fish_add_path /opt/homebrew/opt/curl/bin
 
 if type -q brew
 # Setup brew paths
