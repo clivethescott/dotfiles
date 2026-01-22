@@ -16,8 +16,11 @@ vim.api.nvim_create_autocmd('LspNotify', {
   callback = function(args)
     if args.data.method == 'textDocument/didOpen' then
       local winid = vim.fn.bufwinid(args.buf) or 0
-      vim.lsp.foldclose('comment', winid)
-      vim.lsp.foldclose('imports', winid)
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      if client:supports_method('textDocument/foldingRange', args.buf) then
+        vim.lsp.foldclose('comment', winid)
+        vim.lsp.foldclose('imports', winid)
+      end
     end
   end,
 })
@@ -117,8 +120,8 @@ vim.api.nvim_create_autocmd('PackChanged', {
       end
     else
       if name == 'nvim-treesitter' and kind ~= 'delete' then
-      -- when changing between neovim head/stable
-      -- see weird issues where new parsers don't install until old ones are removed
+        -- when changing between neovim head/stable
+        -- see weird issues where new parsers don't install until old ones are removed
         vim.cmd('TSUpdate')
       end
     end
