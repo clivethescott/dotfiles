@@ -26,7 +26,7 @@
       "version": ">=0.0.0"
     },
     "friendly-snippets": {
-      "rev": "572f5660cf05f8cd8834e096d7b4c921ba18e175",
+      "rev": "bde8ad444e85db81b7a451223192d9444927ea01",
       "src": "https://github.com/rafamadriz/friendly-snippets",
       "version": "'main'"
     },
@@ -46,7 +46,7 @@
       "version": ">=0.0.0"
     },
     "helm-ls.nvim": {
-      "rev": "d6f3a8d4ad59b4f54cd734267dfb5411679ea608",
+      "rev": "f0b9a1723890971a6d84890b50dbf5f40974ea1b",
       "src": "https://github.com/qvalentin/helm-ls.nvim",
       "version": "'main'"
     },
@@ -61,7 +61,7 @@
       "version": ">=0.0.0"
     },
     "lz.n": {
-      "rev": "b36c73e1a9d1cb2c05b354b390da0d141c9fa09d",
+      "rev": "5d362d1fa6aaf251a91e3fad95d2bcd094dfbac0",
       "src": "https://github.com/lumen-oss/lz.n"
     },
     "mason.nvim": {
@@ -85,7 +85,7 @@
       "version": ">=0.0.0"
     },
     "nvim-treesitter": {
-      "rev": "2ba5ec184609a96b513bf4c53a20512d64e27f39",
+      "rev": "88f1dfc211c3a2fb47f1451fd5edc972ec697e58",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -95,7 +95,7 @@
       "version": "'master'"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "28a3494c075ef0f353314f627546537e43c09592",
+      "rev": "4d55f63252e04c5212daed958e4e940915ff16ce",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
@@ -120,7 +120,7 @@
       "version": ">=0.0.0"
     },
     "schemastore.nvim": {
-      "rev": "d5687736d15cfc3c1ac943485cad7808ba487d2b",
+      "rev": "a0fad73139f98ea1d6e9d380374c16245e562f4f",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
