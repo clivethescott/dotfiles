@@ -3,13 +3,12 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   callback = function(args)
     local colorscheme = args.match or vim.g.colors_name or 'default'
     local default_colorscheme = colorscheme == 'default'
-    if not default_colorscheme then
-      return
-    end
+    local catppuccin = colorscheme:find('catppuccin') ~= nil
+    local status_bg = catppuccin and '#181825' or '#262626'
 
     -- statusline
     vim.api.nvim_set_hl(0, 'StatusLine', {
-      bg = '#262626', -- Subtle dark gray
+      bg = status_bg,
       fg = '#afafaf', -- Medium gray text
       bold = false,
     })
@@ -19,9 +18,14 @@ vim.api.nvim_create_autocmd('ColorScheme', {
       fg = '#626262', -- Very dim text
     })
     vim.api.nvim_set_hl(0, 'StatusLineGitBranch', { link = '@string' })
-    vim.api.nvim_set_hl(0, 'StatusLineGitAdded', { fg = '#6b8e5f', bg = '#262626' })   -- Dimmed green
-    vim.api.nvim_set_hl(0, 'StatusLineGitChanged', { fg = '#b89a5a', bg = '#262626' }) -- Dimmed yellow
-    vim.api.nvim_set_hl(0, 'StatusLineGitRemoved', { fg = '#b55a5a', bg = '#262626' }) -- Dimmed red
+    vim.api.nvim_set_hl(0, 'StatusLineGitAdded', { fg = '#6b8e5f', bg = status_bg })   -- Dimmed green
+    vim.api.nvim_set_hl(0, 'StatusLineGitChanged', { fg = '#b89a5a', bg = status_bg }) -- Dimmed yellow
+    vim.api.nvim_set_hl(0, 'StatusLineGitRemoved', { fg = '#b55a5a', bg = status_bg }) -- Dimmed red
+
+    if not default_colorscheme then
+      return
+    end
+
     vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#14161b' })
     -- see :h nvim-treesitter-context
     vim.api.nvim_set_hl(0, 'TreesitterContextBottom', { underline = true })
@@ -29,8 +33,8 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 
     -- lines
     vim.api.nvim_set_hl(0, 'LineNr', { fg = '#626262' })
-    vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#262626' })
-    vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#262626' })
+    vim.api.nvim_set_hl(0, 'CursorLine', { bg = status_bg })
+    vim.api.nvim_set_hl(0, 'ColorColumn', { bg = status_bg })
 
     -- popup menus
     vim.api.nvim_set_hl(0, 'PMenuSel', { fg = '#7a96d6', bold = true })
@@ -47,6 +51,5 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   end,
 })
 
-if vim.g.colors_name ~= "default" then
-  vim.cmd.colorscheme "default"
-end
+local colorscheme = vim.g.colors_name or 'default'
+vim.cmd("colorscheme " .. colorscheme)
