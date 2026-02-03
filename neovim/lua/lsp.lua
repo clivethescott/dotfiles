@@ -12,16 +12,17 @@ local supports_method = function(client, method, bufnr)
   end
 end
 
-local codelens = function(bufnr, au_group)
+local codelens = function(client, bufnr, au_group)
   vim.keymap.set('n', 'grl',
     function() vim.lsp.codelens.run() end, { buffer = true, desc = 'Run Codelens' })
 
   vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
     group = au_group,
     buffer = bufnr,
-    desc = 'Refresh code lens for supported languages',
+    desc = 'Toggle code lens for supported languages',
     callback = function()
-      vim.lsp.codelens.refresh()
+      local opts = { bufnr = bufnr, client_id = client.id }
+      vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled(opts), opts)
     end
   })
 end
@@ -158,7 +159,7 @@ function M.on_attach(client, bufnr)
   end
 
   if supports_method(client, 'textDocument/codeLens', bufnr) then
-    codelens(bufnr, lsp_group)
+    codelens(client, bufnr, lsp_group)
   end
 
   local has_conform, _ = pcall(require, 'conform') -- has LSP as fallback

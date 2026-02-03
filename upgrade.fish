@@ -6,11 +6,6 @@ if type -q mise
 else
   echo 'mise is not installed....skipping update'
 end
-if type -q rustup
-  rustup update
-else
-  echo 'rustup is not installed....skipping update'
-end
 if type -q node
   npm update -g
 else
