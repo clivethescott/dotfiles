@@ -16,6 +16,9 @@ return {
     config.defaults.keymap.builtin["<c-f>"] = "preview-page-down"
     config.defaults.keymap.builtin["<c-b>"] = "preview-page-up"
     require("fzf-lua").setup({
+      'default',
+      -- "skim",
+      -- fzf_bin = 'sk',
       fzf_colors = true,
       defaults = {
         formatter = "path.filename_first",
@@ -23,7 +26,8 @@ return {
       },
       fzf_opts = {
         -- ["--layout"] = "default", -- prompt at bottom
-        ["--cycle"] = true
+        ["--cycle"] = true,
+        -- ["--algo"] = "frizbee",
       },
       file_ignore_patterns = { "%.bsp", "%_build", "%.obsidian", "%.scala_build", '%.idea', '%.terraform' },
       actions = {

@@ -1,4 +1,5 @@
-local adapter = vim.g.is_work_pc and "amazon_q" or "claude" -- TODO: use copilot CLI when org allowed
+-- local adapter = vim.g.is_work_pc and "amazon_q" or "claude" -- TODO: use copilot CLI when org allowed
+local adapter = "claude"
 
 return {
   "sidekick.nvim",
@@ -19,6 +20,9 @@ return {
         tools = {
           amazon_q = {
             cmd = { vim.fs.joinpath(vim.env.HOME .. '/.local/bin/kiro-cli') }
+          },
+          claude = {
+            env = { AWS_PROFILE = 'twdc-bedrock-central' }
           }
         }
       },
@@ -28,32 +32,32 @@ return {
     })
   end,
   keys = {
-      {
-        "<c-.>",
-        function()
-          require("sidekick.cli").toggle({ name = adapter, focus = true })
-        end,
-        mode = { "n", "x", "i", "t" },
-        desc = "Sidekick Toggle",
-      },
-      {
-        "<space>af",
-        function() require("sidekick.cli").send({ msg = "{file}" }) end,
-        desc = "Sidekick send file",
-      },
-      {
-        "<space>av",
-        function() require("sidekick.cli").send({ msg = "{selection}" }) end,
-        mode = { 'x' },
-        desc = "Sidekick send visual selection",
-      },
-      {
-        "<space>ap",
-        function()
-          require("sidekick.cli").prompt()
-        end,
-        desc = "Sidekick Ask Prompt",
-        mode = { "n", "v" },
-      },
+    {
+      "<c-.>",
+      function()
+        require("sidekick.cli").toggle({ name = adapter, focus = true })
+      end,
+      mode = { "n", "x", "i", "t" },
+      desc = "Sidekick Toggle",
     },
+    {
+      "<space>af",
+      function() require("sidekick.cli").send({ msg = "{file}" }) end,
+      desc = "Sidekick send file",
+    },
+    {
+      "<space>av",
+      function() require("sidekick.cli").send({ msg = "{selection}" }) end,
+      mode = { 'x' },
+      desc = "Sidekick send visual selection",
+    },
+    {
+      "<space>ap",
+      function()
+        require("sidekick.cli").prompt()
+      end,
+      desc = "Sidekick Ask Prompt",
+      mode = { "n", "v" },
+    },
+  },
 }
