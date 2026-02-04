@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "b19413d214068f316c78978b08264ed1c41830ec",
+      "rev": "bc54f81b6d92f91dac06c77c3ffccec5291e98cd",
       "src": "https://github.com/Saghen/blink.cmp",
       "version": ">=0.0.0"
     },
@@ -26,7 +26,7 @@
       "version": ">=0.0.0"
     },
     "friendly-snippets": {
-      "rev": "bde8ad444e85db81b7a451223192d9444927ea01",
+      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets",
       "version": "'main'"
     },
@@ -61,7 +61,7 @@
       "version": ">=0.0.0"
     },
     "lz.n": {
-      "rev": "5d362d1fa6aaf251a91e3fad95d2bcd094dfbac0",
+      "rev": "24b3d6e0b10d4f3d5d805b730ba03646b437b6d7",
       "src": "https://github.com/lumen-oss/lz.n"
     },
     "mason.nvim": {
@@ -85,7 +85,7 @@
       "version": ">=0.0.0"
     },
     "nvim-treesitter": {
-      "rev": "88f1dfc211c3a2fb47f1451fd5edc972ec697e58",
+      "rev": "4967fa48b0fe7a7f92cee546c76bb4bb61bb14d5",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -95,7 +95,7 @@
       "version": "'master'"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "4d55f63252e04c5212daed958e4e940915ff16ce",
+      "rev": "a0e182ae21fda68c59d1f36c9ed45600aef50311",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
@@ -105,7 +105,7 @@
       "version": "'master'"
     },
     "obsidian.nvim": {
-      "rev": "cc9f7b2588577a1961c563b8baa90f636e2d61b7",
+      "rev": "dacdbd8b08862ddbb8e9d384ddba6c428aef4428",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim",
       "version": ">=0.0.0"
     },
@@ -120,7 +120,7 @@
       "version": ">=0.0.0"
     },
     "schemastore.nvim": {
-      "rev": "a0fad73139f98ea1d6e9d380374c16245e562f4f",
+      "rev": "6217ff926e951401ac32f572da04e93e8cd6129d",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
@@ -130,7 +130,7 @@
       "version": ">=0.0.0"
     },
     "wezterm-types": {
-      "rev": "c6c710039e2c3cda471d1480113e2146bd87c897",
+      "rev": "4179269ff2a772172af76d33b5d169739abd9c8d",
       "src": "https://github.com/DrKJeff16/wezterm-types",
       "version": ">=0.0.0"
     }

@@ -6,6 +6,8 @@ vim.g.is_work_pc = vim.env.IS_WORK_PC == "true"
 vim.g.no_metals = true
 vim.g.obsidian_work_notes_dir = '~/Documents/Obsidian/Work'
 vim.g.obsidian_personal_notes_dir = '~/ObsidianNotesGit'
+-- vim.g.colors_name = 'catppuccin'
+vim.g.colors_name = 'default'
 
 -- vim.cmd.packadd('Cfilter') -- filter qflist
 -- vim.cmd.packadd('nvim.difftool') -- setup for gitdiff tool -d

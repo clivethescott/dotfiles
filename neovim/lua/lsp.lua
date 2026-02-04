@@ -19,9 +19,10 @@ local codelens = function(bufnr, au_group)
   vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
     group = au_group,
     buffer = bufnr,
-    desc = 'Refresh code lens for supported languages',
+    desc = 'Toggle code lens for supported languages',
     callback = function()
-      vim.lsp.codelens.refresh()
+      local opts = { bufnr = bufnr }
+      vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled(opts), opts)
     end
   })
 end
