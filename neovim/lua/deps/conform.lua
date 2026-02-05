@@ -31,9 +31,17 @@ return {
           lsp_format = "fallback"
         },
         javascript = { "prettierd", "prettier", stop_after_first = true },
-        formatters_by_ft = {
-          ["markdown"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
-          ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
+        markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
+        ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
+        ocaml = { "ocamlformat" },
+      },
+      formatters = {
+        ocamlformat = {
+          prepend_args = {
+            "--if-then-else", "vertical",
+            "--break-cases", "fit-or-vertical",
+            "--type-decl", "sparse",
+          },
         },
       },
     })

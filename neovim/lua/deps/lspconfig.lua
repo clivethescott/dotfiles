@@ -29,6 +29,7 @@ return {
       'smithy_ls',
       'kulala_ls', -- only useful for graphQL completion, needs the kulala_ls LSP server installed,
       'helm_ls',
+      'ocamllsp',
     })
 
     if vim.g.is_work_pc then

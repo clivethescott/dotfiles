@@ -42,6 +42,7 @@ xh = "latest"
 yq = "latest"
 yt-dlp = "latest"
 zoxide = "latest"
+opam = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
