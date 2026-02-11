@@ -136,16 +136,13 @@ abbr --add pbclear pbcopy < /dev/null
 if type -q kubectl
     abbr -a k kubectl
     abbr -a kgetcontext kubectl config current-context
-    if type -q kubectx # fuzzy alternative
-      abbr -a kx kubectx
-    else
-      abbr -a kx kubectl config use-context
-    end
 
     if type -q kubens # fuzzy alternative
       abbr -a kn kubens
+      abbr -a kx 'kubectx && kubens'
     else
       abbr -a kn kubectl config set-context --current --namespace=
+      abbr -a kx kubectl config use-context
     end
 end
 

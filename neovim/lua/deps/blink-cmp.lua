@@ -1,7 +1,7 @@
-local cargo_bin = vim.fs.joinpath(vim.env.HOME, '.cargo/bin/cargo')
+-- local cargo_bin = vim.fs.joinpath(vim.env.HOME, '.cargo/bin/cargo')
 return {
   "blink.cmp",
-  build = cargo_bin .. " build --release",
+  -- build = cargo_bin .. " build --release",
   dependencies = {
     'friendly-snippets',
   },
