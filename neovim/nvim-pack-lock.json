@@ -61,7 +61,7 @@
       "version": ">=0.0.0"
     },
     "lz.n": {
-      "rev": "5825c810ac97e141fb8869e3dabef06653ac6ecd",
+      "rev": "a81a4838862d4d2011f827f0e917553daeb2cedb",
       "src": "https://github.com/lumen-oss/lz.n"
     },
     "mason.nvim": {
@@ -75,7 +75,7 @@
       "version": ">=0.0.0"
     },
     "nvim-lspconfig": {
-      "rev": "5bfcc89fd155b4ffc02d18ab3b7d19c2d4e246a7",
+      "rev": "44acfe887d4056f704ccc4f17513ed41c9e2b2e6",
       "src": "https://github.com/neovim/nvim-lspconfig",
       "version": ">=0.0.0"
     },
@@ -85,7 +85,7 @@
       "version": ">=0.0.0"
     },
     "nvim-treesitter": {
-      "rev": "45a07f869b0cffba342276f2c77ba7c116d35db8",
+      "rev": "2bd9b9b4f12eed175fba35ca2db8e8584546a4ec",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -105,7 +105,7 @@
       "version": "'master'"
     },
     "obsidian.nvim": {
-      "rev": "dacdbd8b08862ddbb8e9d384ddba6c428aef4428",
+      "rev": "2bec7da95722e17fba22bf0c6255428fb8dfd3dc",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim",
       "version": ">=0.0.0"
     },
@@ -120,7 +120,7 @@
       "version": ">=0.0.0"
     },
     "schemastore.nvim": {
-      "rev": "b850ab25279ba04ada90e8b696ef5d0624af103d",
+      "rev": "55ca969ceed5209d62cbf4c20cef023ff188b6c5",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
@@ -130,7 +130,7 @@
       "version": ">=0.0.0"
     },
     "wezterm-types": {
-      "rev": "4eadd76837cd647ad652d77c5863de14175cf6eb",
+      "rev": "9b141b9cdb51eb08d360691169b5a3cfbd139143",
       "src": "https://github.com/DrKJeff16/wezterm-types",
       "version": ">=0.0.0"
     }

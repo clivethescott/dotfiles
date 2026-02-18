@@ -21,9 +21,9 @@ return {
       },
     }
     metals_config.settings = {
-      disabledMode = vim.env.METALS == '0',
-      startMcpServer = false,
-      serverVersion = '1.6.4',
+      -- disabledMode = vim.env.METALS == '0',
+      -- startMcpServer = false,
+      serverVersion = '1.6.5',
       fallbackScalaVersion = '2.13.16',
       showImplicitArguments = true,
       showImplicitConversionsAndClasses = true,
@@ -62,13 +62,5 @@ return {
         { desc = 'Hover worksheet', buffer = bufnr })
     end
 
-    local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = { "scala", "sbt", "sc" },
-      callback = function()
-        metals.initialize_or_attach(metals_config)
-      end,
-      group = nvim_metals_group,
-    })
   end
 }

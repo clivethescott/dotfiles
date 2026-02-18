@@ -2,7 +2,7 @@ local fts = { "http", "rest" }
 
 return {
   'kulala.nvim',
-  ft = { "http", "rest" },
+  -- event = 'BufEnter *.http', -- causes some TS issue when opening http files?
   after = function()
     require('kulala').setup({
       lsp = {
