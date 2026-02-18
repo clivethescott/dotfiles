@@ -130,7 +130,7 @@
       "version": ">=0.0.0"
     },
     "wezterm-types": {
-      "rev": "9b141b9cdb51eb08d360691169b5a3cfbd139143",
+      "rev": "3de19354ac9ab4f44c3f53934ad9cb6a8d278fa7",
       "src": "https://github.com/DrKJeff16/wezterm-types",
       "version": ">=0.0.0"
     }
