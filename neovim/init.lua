@@ -53,6 +53,7 @@ end
 local plugins = {
   gh('nvim-lua/plenary.nvim', { branch = 'master' }),
   gh('nvim-treesitter/nvim-treesitter', { branch = 'main' }),
+  gh('mistweaverco/kulala.nvim', { version = 'v5.3.3' }), -- https://github.com/mistweaverco/kulala.nvim/issues/835
   gh('nvim-treesitter/nvim-treesitter-context', { branch = 'master' }),
   gh('nvim-treesitter/nvim-treesitter-textobjects', { branch = 'main' }),
   gh('nvim-tree/nvim-web-devicons', { branch = 'master' }),
@@ -71,7 +72,6 @@ local plugins = {
   gh('obsidian-nvim/obsidian.nvim'),
   gh('j-hui/fidget.nvim'),
   gh('lewis6991/gitsigns.nvim'),
-  gh('mistweaverco/kulala.nvim'),
   gh('saecki/crates.nvim'),
   gh('linrongbin16/gitlinker.nvim'),
   gh('sindrets/diffview.nvim', { branch = 'main' }),

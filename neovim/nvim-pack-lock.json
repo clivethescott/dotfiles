@@ -51,9 +51,9 @@
       "version": "'main'"
     },
     "kulala.nvim": {
-      "rev": "6656c9d332735ca6a27725e0fb45a1715c4372d9",
+      "rev": "ab3effad17d5dbb4d5d34b6289fa4dc97155045c",
       "src": "https://github.com/mistweaverco/kulala.nvim",
-      "version": ">=0.0.0"
+      "version": "'v5.3.3'"
     },
     "lazydev.nvim": {
       "rev": "01bc2aacd51cf9021eb19d048e70ce3dd09f7f93",
@@ -85,7 +85,7 @@
       "version": ">=0.0.0"
     },
     "nvim-treesitter": {
-      "rev": "2bd9b9b4f12eed175fba35ca2db8e8584546a4ec",
+      "rev": "ecdae44baefeffceade8b0c752d80ececad28e76",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -105,7 +105,7 @@
       "version": "'master'"
     },
     "obsidian.nvim": {
-      "rev": "2bec7da95722e17fba22bf0c6255428fb8dfd3dc",
+      "rev": "20432a5ca03d99a9d5ad51d362e19d9b832e46f0",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim",
       "version": ">=0.0.0"
     },
@@ -130,7 +130,7 @@
       "version": ">=0.0.0"
     },
     "wezterm-types": {
-      "rev": "3de19354ac9ab4f44c3f53934ad9cb6a8d278fa7",
+      "rev": "309d3f962f50d7c032334d088af9c54a8d1c07cd",
       "src": "https://github.com/DrKJeff16/wezterm-types",
       "version": ">=0.0.0"
     }
