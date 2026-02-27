@@ -2,9 +2,9 @@ local fts = { "http", "rest" }
 
 return {
   'kulala.nvim',
-  -- event = 'BufEnter *.http', -- causes some TS issue when opening http files?
-lazy =false,
+  ft = 'http',
   after = function()
+    require 'lz.n'.trigger_load('nvim-treesitter')
     require('kulala').setup({
       lsp = {
         formatter = true, -- needed for import openAPI/postman

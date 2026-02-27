@@ -36,12 +36,12 @@
       "version": ">=0.0.0"
     },
     "gitlinker.nvim": {
-      "rev": "63cfbb7ba0465fa4a599f57c08c888abb188a595",
+      "rev": "d991b0fc12551227ab345e428696092ff2d117fc",
       "src": "https://github.com/linrongbin16/gitlinker.nvim",
       "version": ">=0.0.0"
     },
     "gitsigns.nvim": {
-      "rev": "7010000889bfb6c26065e0b0f7f1e6aa9163edd9",
+      "rev": "42d6aed4e94e0f0bbced16bbdcc42f57673bd75e",
       "src": "https://github.com/lewis6991/gitsigns.nvim",
       "version": ">=0.0.0"
     },
@@ -61,7 +61,7 @@
       "version": ">=0.0.0"
     },
     "lz.n": {
-      "rev": "a81a4838862d4d2011f827f0e917553daeb2cedb",
+      "rev": "6c755b9b92caa8c92b2d9809bac8c74fafd98bfc",
       "src": "https://github.com/lumen-oss/lz.n"
     },
     "mason.nvim": {
@@ -85,7 +85,7 @@
       "version": ">=0.0.0"
     },
     "nvim-treesitter": {
-      "rev": "ecdae44baefeffceade8b0c752d80ececad28e76",
+      "rev": "3edb01f912867603c2aef9079f208f0244c0885b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -100,7 +100,7 @@
       "version": "'main'"
     },
     "nvim-web-devicons": {
-      "rev": "6788013bb9cb784e606ada44206b0e755e4323d7",
+      "rev": "746ffbb17975ebd6c40142362eee1b0249969c5c",
       "src": "https://github.com/nvim-tree/nvim-web-devicons",
       "version": "'master'"
     },
