@@ -61,7 +61,7 @@
       "version": ">=0.0.0"
     },
     "lz.n": {
-      "rev": "6c755b9b92caa8c92b2d9809bac8c74fafd98bfc",
+      "rev": "c756ce269ca00739541f601ae47ab269795df428",
       "src": "https://github.com/lumen-oss/lz.n"
     },
     "mason.nvim": {
@@ -80,12 +80,12 @@
       "version": ">=0.0.0"
     },
     "nvim-metals": {
-      "rev": "f763b65fd71cb17d544753194fd91090e611c6e0",
+      "rev": "7ed47cd3095508e80423e30922385d5b9988f9d6",
       "src": "https://github.com/scalameta/nvim-metals",
-      "version": ">=0.0.0"
+      "version": "'main'"
     },
     "nvim-treesitter": {
-      "rev": "3edb01f912867603c2aef9079f208f0244c0885b",
+      "rev": "cb2cb74f3c3cbbcc17e79cada2060165d616d849",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -100,7 +100,7 @@
       "version": "'main'"
     },
     "nvim-web-devicons": {
-      "rev": "746ffbb17975ebd6c40142362eee1b0249969c5c",
+      "rev": "737cf6c657898d0c697311d79d361288a1343d50",
       "src": "https://github.com/nvim-tree/nvim-web-devicons",
       "version": "'master'"
     },
@@ -120,7 +120,7 @@
       "version": ">=0.0.0"
     },
     "schemastore.nvim": {
-      "rev": "55ca969ceed5209d62cbf4c20cef023ff188b6c5",
+      "rev": "2c2f2d3fb568bbff1a5e1344e87a979b7edf50a8",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
@@ -130,7 +130,7 @@
       "version": ">=0.0.0"
     },
     "wezterm-types": {
-      "rev": "309d3f962f50d7c032334d088af9c54a8d1c07cd",
+      "rev": "fb24c5738ad0c7c0c25a5a987115633ec642e022",
       "src": "https://github.com/DrKJeff16/wezterm-types",
       "version": ">=0.0.0"
     }

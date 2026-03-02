@@ -1,7 +1,6 @@
 return {
   'nvim-metals',
-  ft = 'scala',
-  enabled = false,
+  enabled = true,
   dependencies = {
     "plenary.nvim"
   },
@@ -24,12 +23,15 @@ return {
       -- disabledMode = vim.env.METALS == '0',
       -- startMcpServer = false,
       serverVersion = '1.6.5',
+      startMcpServer = false,
       fallbackScalaVersion = '2.13.16',
       showImplicitArguments = true,
       showImplicitConversionsAndClasses = true,
       showInferredType = true,
       serverProperties = { "-Xmx4G", "-Xms1G" },
       superMethodLensesEnabled = false,
+      -- worksheetScreenWidth = 120,
+      enableBestEffort = true,
       enableSemanticHighlighting = true,
       excludedPackages = {
         "akka.actor.typed.javadsl",
@@ -38,14 +40,14 @@ return {
       testUserInterface = "Test Explorer",
       autoImportBuild = 'all',
       defaultBspToBuildTool = true,
-      -- inlayHints = {
-      --   byNameParameters = { enable = true },
-      --   hintsInPatternMatch = { enable = true },
-      --   implicitArguments = { enable = true },
-      --   implicitConversions = { enable = true },
-      --   inferredTypes = { enable = true },
-      --   typeParameters = { enable = true },
-      -- }
+      inlayHints = {
+        byNameParameters = { enable = false },
+        hintsInPatternMatch = { enable = true },
+        implicitArguments = { enable = true },
+        implicitConversions = { enable = false },
+        inferredTypes = { enable = true },
+        typeParameters = { enable = false },
+      }
     }
     metals_config.capabilities = require 'lsp'.client_capabilities()
 
@@ -62,5 +64,22 @@ return {
         { desc = 'Hover worksheet', buffer = bufnr })
     end
 
+    local metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { 'scala', 'sbt', 'java' },
+      callback = function()
+        metals.initialize_or_attach(metals_config)
+      end,
+      group = metals_group,
+    })
+
+    -- worksheets use inlay_hints to show results
+    vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+      pattern = { "*.worksheet.sc" },
+      callback = function()
+        vim.lsp.inlay_hint.enable(true)
+      end,
+      group = metals_group,
+    })
   end
 }

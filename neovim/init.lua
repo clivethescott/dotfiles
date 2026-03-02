@@ -75,7 +75,7 @@ local plugins = {
   gh('saecki/crates.nvim'),
   gh('linrongbin16/gitlinker.nvim'),
   gh('sindrets/diffview.nvim', { branch = 'main' }),
-  gh('scalameta/nvim-metals'),
+  gh('scalameta/nvim-metals', { branch = 'main' }),
   gh('folke/sidekick.nvim'),
 }
 
