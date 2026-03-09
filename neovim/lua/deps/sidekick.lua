@@ -21,9 +21,6 @@ return {
           amazon_q = {
             cmd = { vim.fs.joinpath(vim.env.HOME .. '/.local/bin/kiro-cli') }
           },
-          claude = {
-            env = { AWS_PROFILE = 'twdc-bedrock-central' }
-          }
         }
       },
       copilot = {
