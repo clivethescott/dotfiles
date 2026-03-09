@@ -24,3 +24,6 @@ end
 if type -q nvim
   echo "Open nvim and run :Lazy sync, :Mason update"
 end
+if type -q claude
+  claude update
+end
