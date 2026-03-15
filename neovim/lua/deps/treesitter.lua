@@ -23,7 +23,7 @@ local ensure_installed = {
   -- NOTE: the above are natively installed since neovim 0.12
   'bash', 'dockerfile', 'git_config', 'gitcommit', 'graphql', 'hocon', 'html', 'smithy',
   'helm', 'http', 'properties', 'json', 'python', 'rust', 'diff', 'hcl', 'nu',
-  'scala', 'sql', 'toml', 'yaml', 'fish', 'hurl', 'csv', 'go', 'groovy', 'java', 'proto',
+  'scala', 'sql', 'toml', 'typst', 'yaml', 'fish', 'hurl', 'csv', 'go', 'groovy', 'java', 'proto',
   'terraform', 'typescript',
 }
 local disable_indent_fts = { 'ocaml' }
