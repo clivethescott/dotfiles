@@ -28,6 +28,7 @@ local mason_packages = {
   'terraform-ls',
   'copilot-language-server',
   'helm-ls',
+  'tinymist',
   -- these are installed manually / not in mason registry
   -- 'kulala_ls',
   -- 'nushell',

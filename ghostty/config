@@ -26,7 +26,7 @@ keybind = cmd+t=text:\x14
 keybind = cmd+u=text:\x15
 keybind = cmd+v=text:\x16
 keybind = cmd+w=text:\x17
-keybind = cmd+x=text:\x18
+keybind = cmd+x=text:\x19
 keybind = cmd+y=text:\x19
 keybind = cmd+z=text:\x1A
 keybind = cmd+left_bracket=text:\x1b
@@ -37,6 +37,7 @@ keybind = cmd+shift+v=paste_from_clipboard
 keybind = cmd+shift+c=copy_to_clipboard
 keybind = global:cmd+shift+8=toggle_quick_terminal
 keybind = cmd++=reset_font_size
+keybind = cmd+a>r=reload_config
 
 #
 # begin for tmux
@@ -49,10 +50,11 @@ window-decoration = none
 # increment in vim
 # keybind = cmd+a>cmd+a=text:\x01
 # keybind = cmd+a>cmd+left_bracket=text:\x1b
+# keybind = cmd+shift+f=start_search
 # keybind = cmd+a>left_bracket=text:\x1b
 # keybind = cmd+a>cmd+right_bracket=text:\x1b
 # keybind = cmd+a>right_bracket=text:\x1b
-# See more @ ghostty +list-actions
+# # See more @ ghostty +list-actions
 # keybind = cmd+a>r=reload_config
 # keybind = cmd+a>c=new_tab
 # keybind = cmd+a>p=previous_tab
@@ -71,7 +73,7 @@ window-decoration = none
 # keybind = cmd+a>l=goto_split:right
 # keybind = cmd+a>j=goto_split:down
 # keybind = cmd+a>k=goto_split:up
-# keybind = cmd+a>,=prompt_surface_title
+# keybind = cmd+a>,=prompt_tab_title
 # end non tmux
 
 macos-option-as-alt = true
@@ -111,3 +113,5 @@ quick-terminal-size = 75%,65%
 quick-terminal-position = center
 clipboard-paste-protection = true
 window-padding-x = 10, 0
+notify-on-command-finish = unfocused
+unfocused-split-opacity = 0.5
