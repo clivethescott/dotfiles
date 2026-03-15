@@ -115,7 +115,7 @@
       "version": "'master'"
     },
     "render-markdown.nvim": {
-      "rev": "82aa306873db26c91f1c175bd902514a627a5d95",
+      "rev": "e3c18ddd27a853f85a6f513a864cf4f2982b9f26",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim",
       "version": ">=0.0.0"
     },

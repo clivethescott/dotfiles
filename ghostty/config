@@ -85,7 +85,7 @@ theme = Nvim Dark
 # Font
 font-family = "Hack Nerd Font Mono"
 font-style = "Regular"
-font-size = 16.5
+font-size = 17
 
 window-width = 5000
 window-height = 5000
