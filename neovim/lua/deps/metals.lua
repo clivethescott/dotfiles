@@ -1,6 +1,6 @@
 return {
   'nvim-metals',
-  enabled = false,
+  enabled = true,
   dependencies = {
     "plenary.nvim"
   },
@@ -24,7 +24,7 @@ return {
       -- startMcpServer = false,
       -- serverVersion = '1.6.5',
       serverVersion = '2.0.0-M8',
-      startMcpServer = false,
+      startMcpServer = false, -- https://scalameta.org/metals/blog/#standalone-mcp-server
       fallbackScalaVersion = '2.13.16',
       showImplicitArguments = true,
       showImplicitConversionsAndClasses = true,
