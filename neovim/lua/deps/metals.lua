@@ -1,6 +1,6 @@
 return {
   'nvim-metals',
-  enabled = true,
+  enabled = false,
   dependencies = {
     "plenary.nvim"
   },
