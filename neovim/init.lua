@@ -65,7 +65,7 @@ local plugins = {
   gh('DrKJeff16/wezterm-types', { ft = 'lua' }),
   gh('b0o/schemastore.nvim', { branch = 'main', ft = 'yaml', 'json' }),
   gh('mason-org/mason.nvim'),
-  gh('neovim/nvim-lspconfig'),
+  gh('neovim/nvim-lspconfig', { branch = 'master' }),
   gh('ibhagwan/fzf-lua'),
   gh('stevearc/conform.nvim'),
   gh('qvalentin/helm-ls.nvim', { branch = 'main', ft = { 'yaml', 'helm' } }),

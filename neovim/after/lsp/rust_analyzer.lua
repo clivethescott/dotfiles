@@ -1,6 +1,8 @@
+---@type vim.lsp.Config
 return {
   -- toolchain installs a wrapper that isn't the real binary
   cmd = { 'rust-analyzer' },
+  ---@type lspconfig.settings.rust_analyzer
   settings = {
     ['rust-analyzer'] = {
       workspace = {

@@ -73,6 +73,24 @@ end
 function M.on_attach(client, bufnr)
   local lsp_group = vim.api.nvim_create_augroup('LspAttachedGroup', { clear = true })
 
+  -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#copilot
+  if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
+    vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
+
+    vim.keymap.set(
+      'i',
+      '<C-F>',
+      vim.lsp.inline_completion.get,
+      { desc = 'LSP: accept inline completion', buffer = bufnr }
+    )
+    vim.keymap.set(
+      'i',
+      '<C-G>',
+      vim.lsp.inline_completion.select,
+      { desc = 'LSP: switch inline completion', buffer = bufnr }
+    )
+  end
+
   if client.name == 'copilot' then return end
 
   -- https://github.com/golang/go/issues/54531#issuecomment-1464982242

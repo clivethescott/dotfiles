@@ -13,6 +13,8 @@ return {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         { path = "Snacks.nvim",        words = { "Snacks" } },
         { path = 'wezterm-types',      mods = { 'wezterm' } },
+        -- github.com/neovim/nvim-lspconfig/pull/4306
+        { path = 'nvim-lspconfig',     words = { 'lspconfig' } },
       },
     })
   end,
