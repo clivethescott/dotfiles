@@ -27,10 +27,11 @@ return {
         preset = 'none',
         ['<c-p>'] = { 'show', 'select_prev', 'fallback' },
         ['<c-n>'] = { 'show', 'select_next', 'fallback' },
-        ['<C-y>'] = { 'select_and_accept',
-          function() -- sidekick next edit suggestion
-            return require("sidekick").apply()
-          end, 'fallback' },
+        ['<C-y>'] = {
+          'select_and_accept',
+          function() return require("sidekick").nes_jump_or_apply() end, -- NES
+          function() return vim.lsp.inline_completion.get() end,
+          'fallback' },
         ['<cr>'] = { 'select_and_accept', 'fallback' },
         ['<c-j>'] = { 'snippet_forward', 'fallback' },
         ['<c-f>'] = { 'scroll_documentation_up', 'fallback' },
