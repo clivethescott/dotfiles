@@ -1,3 +1,5 @@
+# Awesome Setup config via UI => https://ghostty.zerebos.com
+
 # See more @ ghostty +list-keybinds --default
 # python3 -c "print(hex(ord(input('Press key: '))))"  
 # or just ask an LLM about escape sequences in ghostty
@@ -30,20 +32,21 @@ keybind = cmd+x=text:\x19
 keybind = cmd+y=text:\x19
 keybind = cmd+z=text:\x1A
 keybind = cmd+left_bracket=text:\x1b
-keybind = cmd+right_bracket=text:\x1D
+keybind = cmd+[=text:\x1b
+keybind = cmd+]=text:\x1b
 keybind = cmd+digit_6=text:\x1E
 keybind = cmd+option+q=quit
 keybind = cmd+shift+v=paste_from_clipboard
 keybind = cmd+shift+c=copy_to_clipboard
 keybind = global:cmd+shift+8=toggle_quick_terminal
 keybind = cmd++=reset_font_size
-keybind = cmd+a>r=reload_config
+keybind = cmd+shift+r=reload_config
 
 #
 # begin for tmux
 keybind = cmd+a=text:\x01
 window-decoration = none
-# eng for tmux
+# end for tmux
 #
 # begin non tmux
 # fat fingers
@@ -54,7 +57,7 @@ window-decoration = none
 # keybind = cmd+a>left_bracket=text:\x1b
 # keybind = cmd+a>cmd+right_bracket=text:\x1b
 # keybind = cmd+a>right_bracket=text:\x1b
-# # See more @ ghostty +list-actions
+# # # See more @ ghostty +list-actions
 # keybind = cmd+a>r=reload_config
 # keybind = cmd+a>c=new_tab
 # keybind = cmd+a>p=previous_tab
