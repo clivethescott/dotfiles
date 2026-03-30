@@ -13,8 +13,9 @@ local supports_method = function(client, method, bufnr)
 end
 
 local codelens = function(bufnr, au_group)
-  vim.keymap.set('n', 'grl',
-    function() vim.lsp.codelens.run() end, { buffer = true, desc = 'Run Codelens' })
+
+  -- vim.keymap.set('n', 'grx',
+  --   function() vim.lsp.codelens.run() end, { buffer = true, desc = 'Run Codelens' })
 
   vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
     group = au_group,
@@ -137,13 +138,13 @@ function M.on_attach(client, bufnr)
     end, { buffer = true, desc = 'LSP Declaration' })
   elseif supports_method(client, 'textDocument/definition', bufnr) then
     -- default vim.keymap.set('n', 'grt', vim.lsp.buf.type_definition)
-    vim.keymap.set('n', 'gry', function()
-      if vim.g.use_picker == 'snacks.picker' then
-        require 'snacks'.picker.lsp_definitions()
-      elseif vim.g.use_picker == 'fzf-lua' then
-        require 'fzf-lua'.lsp_definitions()
-      end
-    end, { buffer = true, desc = 'LSP Definition' })
+    -- vim.keymap.set('n', 'grt', function()
+    --   if vim.g.use_picker == 'snacks.picker' then
+    --     require 'snacks'.picker.lsp_definitions()
+    --   elseif vim.g.use_picker == 'fzf-lua' then
+    --     require 'fzf-lua'.lsp_definitions()
+    --   end
+    -- end, { buffer = true, desc = 'LSP Definition' })
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = true, silent = true })
   else
   end

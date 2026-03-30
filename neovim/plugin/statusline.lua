@@ -1,6 +1,9 @@
 Statusline = {}
 
 -- see :h statusline for more info
+Statusline.lspInfo = function()
+  return vim.diagnostic.status() .. ' ' .. vim.ui.progress_status() .. ' '
+end
 
 Statusline.gitInfo = function()
   local git = vim.b.gitsigns_status_dict
@@ -54,6 +57,7 @@ Statusline.active = function()
     ' %h', -- [help buffer] flag
     '%=',  -- right align from here
     Statusline.httpEnv(),
+    Statusline.lspInfo(),
     Statusline.gitInfo(),
   })
 end

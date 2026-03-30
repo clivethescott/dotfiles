@@ -1,0 +1,59 @@
+-- https://github.com/obsidian-nvim/obsidian.nvim/blob/47bd91e3edb95649f4347b2fef929446112fff21/lua/obsidian/config/init.lua#L36
+local obsidian_pickers = {
+  telescope = "telescope.nvim",
+  ['fzf-lua'] = "fzf-lua",
+  mini = "mini.pick",
+  ['snacks.picker'] = "snacks.pick",
+}
+local picker = vim.g.use_picker or 'fzf-lua'
+local obsidian_picker = obsidian_pickers[picker] or picker
+
+local workspaces = {
+  {
+    name = "Work Notes",
+    path = vim.g.obsidian_work_notes_dir,
+  },
+  {
+    name = "Personal Notes",
+    path = vim.g.obsidian_personal_notes_dir,
+  },
+}
+
+-- Sort workspaces: Notes first when at home, Work first when at work PC
+if not vim.g.is_work_pc then
+  workspaces[1], workspaces[2] = workspaces[2], workspaces[1]
+end
+
+vim.schedule(function()
+  vim.pack.add({ { src = 'https://github.com/Saghen/blink.cmp', version = vim.version.range('1.*') } })
+  vim.pack.add({ { src = 'https://github.com/obsidian-nvim/obsidian.nvim' } })
+
+  ---@diagnostic disable: missing-fields
+  ---@module 'obsidian'
+  ---@type obsidian.config
+  require('obsidian').setup({
+    workspaces = workspaces,
+    legacy_commands = false,
+    log_level = vim.log.levels.WARN,
+    completion = { blink = true, min_chars = 2 },
+    open = {
+      func = function(uri)
+        vim.ui.open(uri, { cmd = { "open", "-a", "/Applications/Obsidian.app" } })
+      end
+    },
+    picker = {
+      name = obsidian_picker,
+    },
+    ui = { enable = false }, -- use MeanderingProgrammer/render-markdown.nvim
+    daily_notes = {
+      folder = 'daily'
+    },
+  })
+
+  vim.keymap.set('n', '<space>no', '<cmd>Obsidian quick_switch<cr>', { desc = 'Open/Switch Note' })
+  vim.keymap.set('n', '<space>nf', '<cmd>Obsidian search<cr>',       { desc = 'Grep Search Note' })
+  vim.keymap.set('n', '<space>nO', '<cmd>Obsidian open<cr>',         { desc = 'Open Note in Obsidian app' })
+  vim.keymap.set('n', '<space>nn', '<cmd>Obsidian today<cr>',        { desc = "Open Today's Note" })
+  vim.keymap.set('n', '<space>nt', '<cmd>Obsidian tags<cr>',         { desc = "Notes by Tag" })
+  vim.keymap.set('n', '<space>nw', '<cmd>Obsidian workspace<cr>',    { desc = "Switch workspace" })
+end)

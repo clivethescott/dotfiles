@@ -1,19 +1,17 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "451168851e8e2466bc97ee3e026c3dcb9141ce07",
+      "rev": "8a2060dff4e68ac17f1c92aed526c76fb0c1ac2f",
       "src": "https://github.com/Saghen/blink.cmp",
-      "version": ">=0.0.0"
+      "version": "1.0.0 - 2.0.0"
     },
     "conform.nvim": {
-      "rev": "3543d000dafbc41cc7761d860cfdb24e82154f75",
-      "src": "https://github.com/stevearc/conform.nvim",
-      "version": ">=0.0.0"
+      "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
+      "src": "https://github.com/stevearc/conform.nvim"
     },
     "crates.nvim": {
-      "rev": "afcd1cc3eeceb5783676fc8464389b9216a29d05",
-      "src": "https://github.com/saecki/crates.nvim",
-      "version": ">=0.0.0"
+      "rev": "ac9fa498a9edb96dc3056724ff69d5f40b898453",
+      "src": "https://github.com/saecki/crates.nvim"
     },
     "diffview.nvim": {
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
@@ -21,9 +19,8 @@
       "version": "'main'"
     },
     "fidget.nvim": {
-      "rev": "b61e8af9b8b68ee0ec7da5fb7a8c203aae854f2e",
-      "src": "https://github.com/j-hui/fidget.nvim",
-      "version": ">=0.0.0"
+      "rev": "7fa433a83118a70fe24c1ce88d5f0bd3453c0970",
+      "src": "https://github.com/j-hui/fidget.nvim"
     },
     "friendly-snippets": {
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
@@ -31,22 +28,19 @@
       "version": "'main'"
     },
     "fzf-lua": {
-      "rev": "47b85a25c0c0b2c20b4e75199ed01bb71e7814f5",
-      "src": "https://github.com/ibhagwan/fzf-lua",
-      "version": ">=0.0.0"
+      "rev": "bde73a6886b607246095aa59f396de5e0d036890",
+      "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitlinker.nvim": {
-      "rev": "d991b0fc12551227ab345e428696092ff2d117fc",
-      "src": "https://github.com/linrongbin16/gitlinker.nvim",
-      "version": ">=0.0.0"
+      "rev": "bbe2a1254fc8fce21f3bbf9a020266a1c49799f7",
+      "src": "https://github.com/linrongbin16/gitlinker.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "42d6aed4e94e0f0bbced16bbdcc42f57673bd75e",
-      "src": "https://github.com/lewis6991/gitsigns.nvim",
-      "version": ">=0.0.0"
+      "rev": "50c205548d8b037b7ff6378fca6d21146f0b6161",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "helm-ls.nvim": {
-      "rev": "f0b9a1723890971a6d84890b50dbf5f40974ea1b",
+      "rev": "20df43509b02a3ce3c6b3eee254d6e2bffa9a370",
       "src": "https://github.com/qvalentin/helm-ls.nvim",
       "version": "'main'"
     },
@@ -56,46 +50,43 @@
       "version": "'v5.3.3'"
     },
     "lazydev.nvim": {
-      "rev": "01bc2aacd51cf9021eb19d048e70ce3dd09f7f93",
-      "src": "https://github.com/folke/lazydev.nvim",
-      "version": ">=0.0.0"
+      "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
+      "src": "https://github.com/folke/lazydev.nvim"
     },
     "lz.n": {
-      "rev": "339b1d35c9999134c91a1067685bc65695afc1c1",
+      "rev": "232b3e981aee6f62405ac40342600ce4d1fe6a7f",
       "src": "https://github.com/lumen-oss/lz.n"
     },
     "mason.nvim": {
       "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
-      "src": "https://github.com/mason-org/mason.nvim",
-      "version": ">=0.0.0"
+      "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.files": {
-      "rev": "22c64f010eef047ed270e29e7cc266cd4740787e",
-      "src": "https://github.com/nvim-mini/mini.files",
-      "version": ">=0.0.0"
+      "rev": "b4796e09eb103f9f2d1e00aa2dab3753b879b17b",
+      "src": "https://github.com/nvim-mini/mini.files"
     },
     "nvim-lspconfig": {
-      "rev": "1d13d2b0df9a0a02904c76d7ad6810f71d404406",
+      "rev": "16812abf0e8d8175155f26143a8504e8253e92b0",
       "src": "https://github.com/neovim/nvim-lspconfig",
       "version": "'master'"
     },
     "nvim-metals": {
-      "rev": "7ed47cd3095508e80423e30922385d5b9988f9d6",
+      "rev": "48b9d29a4e1370495db4d4b5ccbc17b285bc98eb",
       "src": "https://github.com/scalameta/nvim-metals",
       "version": "'main'"
     },
     "nvim-treesitter": {
-      "rev": "c9fea86a5a3c2d7f52e5cd53448edfaf7953bc75",
+      "rev": "7caec274fd19c12b55902a5b795100d21531391f",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
     "nvim-treesitter-context": {
-      "rev": "9a8e39993e3b895601bf8227124a48ea8268149e",
+      "rev": "adf4b6b0420b7be6c717ef0ac7993183d6c201b1",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context",
       "version": "'master'"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "4e91b5d0394329a229725b021a8ea217099826ef",
+      "rev": "93d60a475f0b08a8eceb99255863977d3a25f310",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
@@ -105,9 +96,8 @@
       "version": "'master'"
     },
     "obsidian.nvim": {
-      "rev": "5392f49c755d28e663147bc6012f0d8545b326cf",
-      "src": "https://github.com/obsidian-nvim/obsidian.nvim",
-      "version": ">=0.0.0"
+      "rev": "38552249c6dbeaa539849171b859f8cc8441a536",
+      "src": "https://github.com/obsidian-nvim/obsidian.nvim"
     },
     "plenary.nvim": {
       "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
@@ -116,23 +106,16 @@
     },
     "render-markdown.nvim": {
       "rev": "e3c18ddd27a853f85a6f513a864cf4f2982b9f26",
-      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim",
-      "version": ">=0.0.0"
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "157fa3f37a3be55ceb375274e2f3ea2d7d2f9ef6",
+      "rev": "24eeb97da8d605c480dc68bb6276248702e31d2a",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
-    "sidekick.nvim": {
-      "rev": "dc2710af65a542eb3010136d7664b626633f0229",
-      "src": "https://github.com/folke/sidekick.nvim",
-      "version": ">=0.0.0"
-    },
     "wezterm-types": {
-      "rev": "70dba888948a3483e5c341caf3c3b44d6b0dd967",
-      "src": "https://github.com/DrKJeff16/wezterm-types",
-      "version": ">=0.0.0"
+      "rev": "83d3ba9758d5ae32c3bde35f1f37e86fe8f81340",
+      "src": "https://github.com/DrKJeff16/wezterm-types"
     }
   }
 }

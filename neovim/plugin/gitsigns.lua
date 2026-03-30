@@ -1,3 +1,6 @@
+vim.pack.add({ { src = 'https://github.com/nvim-lua/plenary.nvim', version = 'master' } })
+vim.pack.add({ { src = 'https://github.com/lewis6991/gitsigns.nvim' } })
+
 local on_attach = function()
   local gitsigns = require 'gitsigns'
   -- Navigation
@@ -34,25 +37,16 @@ local on_attach = function()
   vim.keymap.set('n', '<space>gQ', gitsigns.setqflist, { desc = 'Buf changes to quickfix' })
 end
 
-return {
-  'gitsigns.nvim',
-  dependencies = {
-    'plenary.nvim',
+require('gitsigns').setup({
+  on_attach = on_attach,
+  word_diff = false,
+  signs = {
+    add          = { text = '+' },
+    change       = { text = '~' },
+    delete       = { text = '-' },
+    topdelete    = { text = '?' },
+    changedelete = { text = '~' },
   },
-  event = { 'BufReadPost', 'BufNewFile' },
-  after = function()
-    require('gitsigns').setup({
-      on_attach = on_attach,
-      word_diff = false,
-      signs = {
-        add          = { text = '+' },
-        change       = { text = '~' },
-        delete       = { text = '-' },
-        topdelete    = { text = '?' },
-        changedelete = { text = '~' },
-      },
-      current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-      current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>'
-    })
-  end,
-}
+  current_line_blame = false,   -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>'
+})

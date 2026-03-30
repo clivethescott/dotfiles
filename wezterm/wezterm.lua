@@ -87,7 +87,7 @@ return {
     ['catppuccin-mocha-patched'] = color_scheme,
   },
   window_padding = {
-    top = 5,
+    top = 15,
     left = 20,
     right = 10,
   },

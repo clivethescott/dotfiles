@@ -106,28 +106,6 @@ vim.api.nvim_create_user_command('PackUpdate', function()
   vim.pack.update(nil, { force = true })
 end, { desc = 'Update plugins' })
 
-vim.api.nvim_create_autocmd('PackChanged', {
-  group = vim.api.nvim_create_augroup('MyPacksChanged', { clear = true }),
-  callback = function(ev)
-    local name, kind = ev.data.spec.name, ev.data.kind
-    if name == 'blink.cmp' and kind ~= 'delete' then
-      --TODO: check why this has issues sometimes
-      local res = vim.system({ 'cargo build --release' }, { cwd = ev.data.path }):wait(10000) -- in millis
-      if vim.v.shell_error ~= 0 then
-        vim.notify('failed to compile blink.cmp:' .. res, vim.log.levels.ERROR)
-      else
-        vim.notify('blink successfully compiled', vim.log.levels.INFO)
-      end
-    else
-      if name == 'nvim-treesitter' and kind ~= 'delete' then
-        -- when changing between neovim head/stable
-        -- see weird issues where new parsers don't install until old ones are removed
-        vim.cmd('TSUpdate')
-      end
-    end
-  end,
-})
-
 -- have imports organized on save using the logic of goimports and your code formatted.
 -- https://go.dev/gopls/editor/vim
 vim.api.nvim_create_autocmd("BufWritePre", {
