@@ -1,6 +1,6 @@
 if vim.g.use_picker ~= 'fzf-lua' then return end
 
-local ignore_files = { "^%.metals", "^%.scala", "^Gemfile.lock" }
+local ignore_files = { "^%.metals", "^%.scala", "^Gemfile.lock", "^%.archived" }
 
 vim.schedule(function()
   vim.pack.add({ { src = 'https://github.com/nvim-tree/nvim-web-devicons', version = 'master' } })
@@ -94,11 +94,11 @@ vim.schedule(function()
     { silent = true, desc = "FZF Spell suggest" })
 
   vim.keymap.set("n", "<leader>2",
-    function() require("fzf-lua").files { cwd = '~/.config/nvim' } end,
+    function() require("fzf-lua").files { cwd = '~/.config/nvim', file_ignore_patterns = ignore_files } end,
     { silent = true, desc = "Nvim files" })
 
   vim.keymap.set("n", "<leader>3",
-    function() require("fzf-lua").live_grep { cwd = '~/.config/nvim' } end,
+    function() require("fzf-lua").live_grep { cwd = '~/.config/nvim', file_ignore_patterns = ignore_files  } end,
     { silent = true, desc = "Nvim files" })
 
   local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('data'), '/site/pack/core/opt')
@@ -113,27 +113,31 @@ vim.schedule(function()
     function() require("fzf-lua").files { cwd = '~/Code/HTTP' } end,
     { silent = true, desc = "HTTP files" })
 
-  vim.keymap.set("n", "<c-p>", function() require("fzf-lua").files({ file_ignore_patterns = ignore_files }) end, { desc = "FZF files" })
-  vim.keymap.set("n", "<M-p>", function() require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") }) end, { desc = "FZF files (lwd)" })
-  vim.keymap.set("n", "<c-e>",     "<cmd>FzfLua buffers<cr>",  { desc = "Buffers" })
-  vim.keymap.set("n", "<space>tl", "<cmd>FzfLua resume<cr>",   { desc = "Resume" })
+  vim.keymap.set("n", "<c-p>", function() require("fzf-lua").files({ file_ignore_patterns = ignore_files }) end,
+    { desc = "FZF files" })
+  vim.keymap.set("n", "<M-p>", function() require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") }) end,
+    { desc = "FZF files (lwd)" })
+  vim.keymap.set("n", "<c-e>", "<cmd>FzfLua buffers<cr>", { desc = "Buffers" })
+  vim.keymap.set("n", "<space>tl", "<cmd>FzfLua resume<cr>", { desc = "Resume" })
   vim.keymap.set("n", "<space>tq", "<cmd>FzfLua quickfix<cr>", { desc = "Quickfix" })
-  vim.keymap.set("n", "<space>tf", function() require 'fzf-lua'.live_grep({ file_ignore_patterns = ignore_files }) end, { desc = "Live grep" })
-  vim.keymap.set("n", "<space>tF",  "<cmd>FzfLua grep_cWORD<cr>",                 { desc = "Grep cword" })
-  vim.keymap.set("n", "<space>gb",  "<cmd>FzfLua git_branches<cr>",               { desc = "Git Branches" })
-  vim.keymap.set("n", "<space>tc",  "<cmd>FzfLua commands<cr>",                   { desc = "Commands" })
-  vim.keymap.set("n", "<space>tC",  "<cmd>FzfLua command_history<cr>",            { desc = "Commands History" })
-  vim.keymap.set("n", "<space>th",  "<cmd>FzfLua helptags<cr>",                   { desc = "Helptags" })
-  vim.keymap.set("n", "<space>tH",  "<cmd>FzfLua highlights<cr>",                 { desc = "Highlights" })
-  vim.keymap.set("n", "<space>tt",  "<cmd>FzfLua<cr>",                            { desc = "Tagstack" })
-  vim.keymap.set("n", "<space>tw",  "<cmd>FzfLua spell_suggest<cr>",              { desc = "Spell Suggest" })
-  vim.keymap.set("n", "<space>tm",  "<cmd>FzfLua marks<cr>",                      { desc = "Marks" })
-  vim.keymap.set("n", "<space>tr",  "<cmd>FzfLua registers<cr>",                  { desc = "Registers" })
-  vim.keymap.set("n", "<space>tb",  "<cmd>FzfLua lines<cr>",                      { desc = "Open Buffers lines" })
-  vim.keymap.set("n", "<space>tz",  "<cmd>FzfLua zoxide<cr>",                     { desc = "Zoxide" })
-  vim.keymap.set("n", "<space>lw",  "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { desc = "LSP workspace symbols" })
-  vim.keymap.set("n", "<space>ld",  "<cmd>FzfLua diagnostics_document<cr>",       { desc = "Diagnostics" })
-  vim.keymap.set("n", "gR",         "<cmd>FzfLua lsp_references<cr>",             { desc = "LSP References" })
-  vim.keymap.set("n", "<space>lI",  "<cmd>FzfLua lsp_implementations<cr>",        { desc = "LSP Implementations" })
-  vim.keymap.set("n", "<space>to",  function() require 'fzf-lua'.oldfiles { include_current_session = true } end, { desc = "FZF old files" })
+  vim.keymap.set("n", "<space>tf", function() require 'fzf-lua'.live_grep({ file_ignore_patterns = ignore_files }) end,
+    { desc = "Live grep" })
+  vim.keymap.set("n", "<space>tF", "<cmd>FzfLua grep_cWORD<cr>", { desc = "Grep cword" })
+  vim.keymap.set("n", "<space>gb", "<cmd>FzfLua git_branches<cr>", { desc = "Git Branches" })
+  vim.keymap.set("n", "<space>tc", "<cmd>FzfLua commands<cr>", { desc = "Commands" })
+  vim.keymap.set("n", "<space>tC", "<cmd>FzfLua command_history<cr>", { desc = "Commands History" })
+  vim.keymap.set("n", "<space>th", "<cmd>FzfLua helptags<cr>", { desc = "Helptags" })
+  vim.keymap.set("n", "<space>tH", "<cmd>FzfLua highlights<cr>", { desc = "Highlights" })
+  vim.keymap.set("n", "<space>tt", "<cmd>FzfLua<cr>", { desc = "Tagstack" })
+  vim.keymap.set("n", "<space>tw", "<cmd>FzfLua spell_suggest<cr>", { desc = "Spell Suggest" })
+  vim.keymap.set("n", "<space>tm", "<cmd>FzfLua marks<cr>", { desc = "Marks" })
+  vim.keymap.set("n", "<space>tr", "<cmd>FzfLua registers<cr>", { desc = "Registers" })
+  vim.keymap.set("n", "<space>tb", "<cmd>FzfLua lines<cr>", { desc = "Open Buffers lines" })
+  vim.keymap.set("n", "<space>tz", "<cmd>FzfLua zoxide<cr>", { desc = "Zoxide" })
+  vim.keymap.set("n", "<space>lw", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { desc = "LSP workspace symbols" })
+  vim.keymap.set("n", "<space>ld", "<cmd>FzfLua diagnostics_document<cr>", { desc = "Diagnostics" })
+  vim.keymap.set("n", "gR", "<cmd>FzfLua lsp_references<cr>", { desc = "LSP References" })
+  vim.keymap.set("n", "<space>lI", "<cmd>FzfLua lsp_implementations<cr>", { desc = "LSP Implementations" })
+  vim.keymap.set("n", "<space>to", function() require 'fzf-lua'.oldfiles { include_current_session = true } end,
+    { desc = "FZF old files" })
 end)
