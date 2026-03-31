@@ -106,6 +106,12 @@ vim.api.nvim_create_user_command('PackUpdate', function()
   vim.pack.update(nil, { force = true })
 end, { desc = 'Update plugins' })
 
+
+-- :h vim.pack Synchronize config across machines ~
+vim.api.nvim_create_user_command('PackSync', function()
+  vim.pack.update(nil, { target = 'lockfile' })
+end, { desc = 'Sync plugin state' })
+
 -- have imports organized on save using the logic of goimports and your code formatted.
 -- https://go.dev/gopls/editor/vim
 vim.api.nvim_create_autocmd("BufWritePre", {
