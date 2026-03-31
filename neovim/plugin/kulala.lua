@@ -1,10 +1,10 @@
 local fts = { "http", "rest" }
+vim.api.nvim_create_autocmd('FileType', {
+  once = true,
+  pattern = fts,
+  callback = function()
+    vim.pack.add({ { src = 'https://github.com/mistweaverco/kulala.nvim', version = 'v5.3.3' } })
 
-return {
-  'kulala.nvim',
-  ft = 'http',
-  after = function()
-    require 'lz.n'.trigger_load('nvim-treesitter')
     require('kulala').setup({
       lsp = {
         formatter = true, -- needed for import openAPI/postman
@@ -63,22 +63,13 @@ return {
         }
       }
     })
-  end,
-  keys = {
-    {
-      "<space>hE",
-      function()
-        local config_path = vim.fs.joinpath(vim.env.HOME, 'Code/HTTP/http-client.env.json')
-        vim.cmd('e ' .. config_path)
-      end,
-      desc = "Open Kulala environments",
-      ft = 'http',
-    },
-    {
-      "<space>hi", -- https://neovim.getkulala.net/docs/usage/import-export#importing
-      function() require("kulala").import() end,
-      desc = "Import from postman/openapi",
-      ft = { 'json', 'yaml', 'bruno' }
-    }
-  }
-}
+
+    vim.keymap.set('n', "<space>hE", function()
+      local config_path = vim.fs.joinpath(vim.env.HOME, 'Code/HTTP/http-client.env.json')
+      vim.cmd('e ' .. config_path)
+    end, { desc = "Open Kulala environments" })
+
+    vim.keymap.set({ 'n', 'v' }, "<space>hi", function() require("kulala").import() end,
+      { desc = "Import from postman/openapi" })
+  end
+})

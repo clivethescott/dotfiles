@@ -18,6 +18,7 @@ local mason_packages = {
   'rust-analyzer',
   -- go
   'glow',
+  'gofumpt',
   'gopls',
   'typescript-language-server',
   -- 'tsgo',
@@ -46,17 +47,11 @@ local install_missing = function()
   end
 end
 
-return {
-  'mason.nvim',
-  event = 'DeferredUIEnter',
-  dependencies = {
-    'nvim-lspconfig',
-  },
-  after = function()
-    require 'mason'.setup()
-    install_missing()
-  end,
-  keys = {
-    { '<space>om', '<cmd>Mason<cr>', 'Mason' }
-  }
-}
+vim.schedule(function()
+  vim.pack.add({ { src = 'https://github.com/mason-org/mason.nvim' } })
+
+  require 'mason'.setup()
+  install_missing()
+
+  vim.keymap.set('n', '<space>om', '<cmd>Mason<cr>', { desc = 'Mason' })
+end)

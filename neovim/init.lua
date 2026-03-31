@@ -10,8 +10,8 @@ vim.g.colors_name = 'default'
 vim.cmd.packadd 'cfilter'
 
 -- vim.cmd.packadd('Cfilter') -- filter qflist
--- vim.cmd.packadd('nvim.difftool') -- setup for gitdiff tool -d
--- vim.cmd.packadd('nvim.undotree') -- set :h undolist for cmds
+-- vim.cmd.packadd('nvim.difftool') OR :packadd nvim.difftool :Difftool -- setup for gitdiff tool -d
+-- vim.cmd.packadd('nvim.undotree') :Undotree -- set :h undolist for cmds
 
 -- require('vim._core.ui2').enable({ https://github.com/neovim/neovim/issues/37929
 --   enable = true, msg = { target = 'msg', timeout = 1000 },
@@ -22,63 +22,27 @@ if vim.loop.fs_stat(rtp_extras) then
   vim.opt.rtp:append(rtp_extras)
 end
 
--- Make sure you add lz.n first.
-vim.pack.add({ 'https://github.com/lumen-oss/lz.n' })
-
----@class LazyOpts
----@field ft string[]|string?
----@field event string?
----@field branch string?
----@field version string?
-
----Returns a Github vim.pack plugin spec
----@param opts LazyOpts?
----@return vim.pack.Spec
-local gh = function(short_name, opts)
-  opts = opts or {}
-  local spec = {
-    src = 'https://github.com/' .. short_name,
-    version = opts.branch or opts.version or vim.version.range '*', -- default to stable
-    data = {}
-  }
-  if opts.ft then
-    spec.data.ft = opts.ft
-  end
-  if opts.event then
-    spec.data.event = opts.event
-  end
-  return spec
-end
-
-local plugins = {
-  gh('nvim-lua/plenary.nvim', { branch = 'master' }),
-  gh('nvim-treesitter/nvim-treesitter', { branch = 'main' }),
-  gh('mistweaverco/kulala.nvim', { version = 'v5.3.3' }), -- https://github.com/mistweaverco/kulala.nvim/issues/835
-  gh('nvim-treesitter/nvim-treesitter-context', { branch = 'master' }),
-  gh('nvim-treesitter/nvim-treesitter-textobjects', { branch = 'main' }),
-  gh('nvim-tree/nvim-web-devicons', { branch = 'master' }),
-  gh('nvim-mini/mini.files'),
-  gh('rafamadriz/friendly-snippets', { branch = 'main', event = 'DeferredUIEnter' }),
-  gh('Saghen/blink.cmp'),
-  gh('MeanderingProgrammer/render-markdown.nvim'),
-  gh('folke/lazydev.nvim', { ft = 'lua' }),
-  gh('DrKJeff16/wezterm-types', { ft = 'lua' }),
-  gh('b0o/schemastore.nvim', { branch = 'main', ft = 'yaml', 'json' }),
-  gh('mason-org/mason.nvim'),
-  gh('neovim/nvim-lspconfig', { branch = 'master' }),
-  gh('ibhagwan/fzf-lua'),
-  gh('stevearc/conform.nvim'),
-  gh('qvalentin/helm-ls.nvim', { branch = 'main', ft = { 'yaml', 'helm' } }),
-  gh('obsidian-nvim/obsidian.nvim'),
-  gh('j-hui/fidget.nvim'),
-  gh('lewis6991/gitsigns.nvim'),
-  gh('saecki/crates.nvim'),
-  gh('linrongbin16/gitlinker.nvim'),
-  gh('sindrets/diffview.nvim', { branch = 'main' }),
-  gh('scalameta/nvim-metals', { branch = 'main' }),
-  gh('folke/sidekick.nvim'),
-}
-
---- Add the plugins, replacing the built-in `load` function
---- with lz.n's implementation.
-vim.pack.add(plugins, { load = require("lz.n").load("deps") })
+-- must be created before first vim.pack.... call.
+-- See https://echasnovski.com/blog/2026-03-13-a-guide-to-vim-pack.html#hooks
+vim.api.nvim_create_autocmd('PackChanged', {
+  group = vim.api.nvim_create_augroup('MyPacksChanged', { clear = true }),
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == 'blink.cmp' and kind ~= 'delete' then
+      --TODO: check why this has issues sometimes
+      local res = vim.system({ 'cargo build --release' }, { cwd = ev.data.path }):wait(10000) -- in millis
+      if vim.v.shell_error ~= 0 then
+        vim.notify('failed to compile blink.cmp:' .. res, vim.log.levels.ERROR)
+      else
+        vim.notify('blink successfully compiled', vim.log.levels.INFO)
+      end
+    else
+      if name == 'nvim-treesitter' and kind ~= 'delete' then
+        -- when changing between neovim head/stable
+        -- see weird issues where new parsers don't install until old ones are removed
+        if not ev.data.active then vim.cmd.packadd('nvim-treesitter') end
+        vim.cmd('TSUpdate')
+      end
+    end
+  end,
+})

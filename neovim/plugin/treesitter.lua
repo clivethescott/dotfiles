@@ -1,3 +1,5 @@
+vim.pack.add({ { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' } })
+
 -- Tree-sitter is a tool for fast incremental parsing. It converts text into
 -- a hierarchical structure (called tree) that can be used to implement advanced
 -- and/or more precise actions: syntax highlighting, textobjects, indent, etc.
@@ -55,52 +57,45 @@ local get_supported_filetypes = function()
   return filetypes
 end
 
-return {
-  'nvim-treesitter',
-  build = ':TSUpdate',
-  event = 'DeferredUIEnter',
-  after = function()
-    install_missing_parsers()
+install_missing_parsers()
 
-    local supported_filetypes = get_supported_filetypes()
-    vim.api.nvim_create_autocmd('FileType', {
-      desc = 'Start treesitter',
-      -- WARN: Do not use pattern "*" here, only run on supported buffers, see below
-      pattern = supported_filetypes,
-      group = vim.api.nvim_create_augroup('treesitter.setup', { clear = true }),
-      callback = function(args)
-        local buf = args.buf
-        local filetype = args.match
+local supported_filetypes = get_supported_filetypes()
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Start treesitter',
+  -- WARN: Do not use pattern "*" here, only run on supported buffers, see below
+  pattern = supported_filetypes,
+  group = vim.api.nvim_create_augroup('treesitter.setup', { clear = true }),
+  callback = function(args)
+    local buf = args.buf
+    local filetype = args.match
 
-        if vim.tbl_contains(regex_highlight_fts, filetype) then
-          vim.bo[buf].syntax = 'on' -- only if additional legacy syntax is needed
-        end
+    if vim.tbl_contains(regex_highlight_fts, filetype) then
+      vim.bo[buf].syntax = 'on' -- only if additional legacy syntax is needed
+    end
 
-        -- https://github.com/MeanderingProgrammer/treesitter-modules.nvim?tab=readme-ov-file#implementing-yourself
-        --- you need some mechanism to avoid running on buffers that do not
-        -- correspond to a language (like oil.nvim buffers), this implementation
-        --- checks if a parser exists for the current language
-        local language = vim.treesitter.language.get_lang(filetype) or filetype
-        if not vim.treesitter.language.add(language) then
-          return
-        end
+    -- https://github.com/MeanderingProgrammer/treesitter-modules.nvim?tab=readme-ov-file#implementing-yourself
+    --- you need some mechanism to avoid running on buffers that do not
+    -- correspond to a language (like oil.nvim buffers), this implementation
+    --- checks if a parser exists for the current language
+    local language = vim.treesitter.language.get_lang(filetype) or filetype
+    if not vim.treesitter.language.add(language) then
+      return
+    end
 
-        -- replicate `fold = { enable = true }`
-        vim.wo.foldmethod = 'expr'
-        vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    -- replicate `fold = { enable = true }`
+    vim.wo.foldmethod = 'expr'
+    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
-        -- replicate `highlight = { enable = true }`
-        vim.treesitter.start(buf, language)
-        -- To replicate additional_vim_regex_highlighting = true
-        -- regex syntax highlighting is disabled by default, which may be required for some plugins.
-        -- after `vim.treesitter.start` call this if needed
+    -- replicate `highlight = { enable = true }`
+    vim.treesitter.start(buf, language)
+    -- To replicate additional_vim_regex_highlighting = true
+    -- regex syntax highlighting is disabled by default, which may be required for some plugins.
+    -- after `vim.treesitter.start` call this if needed
 
-        -- replicate `indent = { enable = true }`
-        if not vim.tbl_contains(disable_indent_fts, filetype) then
-          -- strange issue where let is indented? (set in :h indentkeys)
-          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-        end
-      end,
-    })
+    -- replicate `indent = { enable = true }`
+    if not vim.tbl_contains(disable_indent_fts, filetype) then
+      -- strange issue where let is indented? (set in :h indentkeys)
+      vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
   end,
-}
+})
