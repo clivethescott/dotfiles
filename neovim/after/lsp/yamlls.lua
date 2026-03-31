@@ -1,3 +1,26 @@
+local schemas = {
+  "Helm Chart.yaml",
+  "Helm Unittest Test Suite",
+  "AWS CloudFormation",
+  "AWS CloudFormation Serverless Application Model (SAM)",
+  "GitHub Action",
+  "GitHub Workflow",
+  "Golangci-lint Configuration",
+  "Jekyll",
+  "lazygit"
+}
+local extra_schemas = vim.g.is_work_pc and {
+  {
+    description = 'Mariner Helm values',
+    fileMatch = '**/values/*.yaml',
+    name = 'Mariner Helm values',
+    url = vim.fs.joinpath(vim.env.HOME, "/IdeaProjects/Spinnaker/values.schema.json"),
+  }
+} or {}
+if vim.g.is_work_pc then
+  table.insert(schemas, "Mariner Helm values")
+end
+
 ---@type vim.lsp.Config
 return {
   ---@type lspconfig.settings.yamlls
@@ -18,7 +41,10 @@ return {
         -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
         url = "",
       },
-      schemas = require("schemastore").yaml.schemas(),
+      schemas = require("schemastore").yaml.schemas {
+        extra = extra_schemas,
+        select = schemas,
+      },
       hover = true,
       completion = true,
       customTags = {
