@@ -21,6 +21,9 @@ if type -q devx
 else
   echo 'devx is not installed....skipping update'
 end
+if type -q cs
+  cs update
+end
 if type -q nvim
   echo "Open nvim and run :Lazy sync, :Mason update"
 end
