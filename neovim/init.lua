@@ -22,6 +22,11 @@ if vim.loop.fs_stat(rtp_extras) then
   vim.opt.rtp:append(rtp_extras)
 end
 
+local on_exit = function(obj)
+  vim.print('Error executing command')
+  vim.print(obj.stdout)
+  vim.print(obj.stderr)
+end
 -- must be created before first vim.pack.... call.
 -- See https://echasnovski.com/blog/2026-03-13-a-guide-to-vim-pack.html#hooks
 vim.api.nvim_create_autocmd('PackChanged', {
@@ -29,8 +34,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)
     local name, kind = ev.data.spec.name, ev.data.kind
     if name == 'blink.cmp' and kind ~= 'delete' then
-      --TODO: check why this has issues sometimes
-      local res = vim.system({ 'cargo build --release' }, { cwd = ev.data.path }):wait(10000) -- in millis
+      local res = vim.system({ 'cargo', 'build', '--release' }, { cwd = ev.data.path, timeout = 10000 }, on_exit):wait()
       if vim.v.shell_error ~= 0 then
         vim.notify('failed to compile blink.cmp:' .. res, vim.log.levels.ERROR)
       else
