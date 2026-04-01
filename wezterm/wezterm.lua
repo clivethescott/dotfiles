@@ -36,6 +36,8 @@ local home_dir = wezterm.home_dir
 ---@type Config
 return {
   term = 'wezterm',
+  max_fps = 120,
+  front_end = 'WebGpu',
   disable_default_key_bindings = true, -- https://wezfurlong.org/wezterm/config/default-keys.html?h=keys
   keys = keys.get(),
   mouse_bindings = keys.mouse(),
