@@ -7,6 +7,9 @@ vim.api.nvim_create_autocmd('FileType', {
     ---@type render.md.UserConfig
     require('render-markdown').setup({
       preset = 'obsidian',
+      completions = {
+        lsp = { enabled = true }
+      },
       code = {
         disable_background = { 'diff', 'rust' },
       },
