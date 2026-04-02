@@ -13,7 +13,6 @@ local supports_method = function(client, method, bufnr)
 end
 
 local codelens = function(bufnr, au_group)
-
   -- vim.keymap.set('n', 'grx',
   --   function() vim.lsp.codelens.run() end, { buffer = true, desc = 'Run Codelens' })
 
@@ -81,6 +80,12 @@ function M.on_attach(client, bufnr)
     vim.keymap.set(
       'i',
       '<C-F>',
+      vim.lsp.inline_completion.get,
+      { desc = 'LSP: accept inline completion', buffer = bufnr }
+    )
+    vim.keymap.set(
+      'i',
+      '<C-.>',
       vim.lsp.inline_completion.get,
       { desc = 'LSP: accept inline completion', buffer = bufnr }
     )
