@@ -112,6 +112,13 @@ vim.api.nvim_create_user_command('PackSync', function()
   vim.pack.update(nil, { target = 'lockfile' })
 end, { desc = 'Sync plugin state' })
 
+
+-- :h nvim_open_term 
+-- https://www.youtube.com/watch?v=EiBg91LTOYk&t=3947s
+vim.api.nvim_create_user_command('TermHl', function()
+  vim.api.nvim_open_term(0, {})
+end, { desc = 'Highlights ANSI termcodes in curbuf' })
+
 -- have imports organized on save using the logic of goimports and your code formatted.
 -- https://go.dev/gopls/editor/vim
 vim.api.nvim_create_autocmd("BufWritePre", {
