@@ -113,17 +113,19 @@ vim.api.nvim_create_user_command('PackSync', function()
 end, { desc = 'Sync plugin state' })
 
 
--- :h nvim_open_term 
+-- :h nvim_open_term
 -- https://www.youtube.com/watch?v=EiBg91LTOYk&t=3947s
 vim.api.nvim_create_user_command('TermHl', function()
   vim.api.nvim_open_term(0, {})
 end, { desc = 'Highlights ANSI termcodes in curbuf' })
 
+local lsp_group = vim.api.nvim_create_augroup('MyLspFuncs', { clear = true })
+
 -- have imports organized on save using the logic of goimports and your code formatted.
 -- https://go.dev/gopls/editor/vim
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = vim.api.nvim_create_augroup('MyLspFuncs', { clear = true }),
   pattern = "*.go",
+  group = lsp_group,
   callback = function()
     local range_params = vim.lsp.util.make_range_params(0, "utf-8")
     range_params.context = { only = { "source.organizeImports" } }
@@ -143,4 +145,30 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
     vim.lsp.buf.format({ async = false })
   end
+})
+
+
+-- https://www.reddit.com/r/neovim/comments/1rcvliq/ghostty_lsp_progress_bar
+vim.api.nvim_create_autocmd("LspProgress", {
+  group = lsp_group,
+  callback = function(ev)
+    local value = ev.data.params.value or {}
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    local msg = value.message or "done"
+
+    -- rust analyszer in particular has really long LSP messages so truncate them
+    if #msg > 40 then
+      msg = msg:sub(1, 37) .. "..."
+    end
+
+    -- :h LspProgress
+    vim.api.nvim_echo({ { msg } }, false, {
+      id = "lsp",
+      kind = "progress",
+      title = value.title,
+      status = value.kind ~= "end" and "running" or "success",
+      percent = value.percentage,
+      source = client.name,
+    })
+  end,
 })
