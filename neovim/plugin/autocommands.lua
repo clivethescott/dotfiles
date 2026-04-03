@@ -148,27 +148,31 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 
--- https://www.reddit.com/r/neovim/comments/1rcvliq/ghostty_lsp_progress_bar
-vim.api.nvim_create_autocmd("LspProgress", {
-  group = lsp_group,
-  callback = function(ev)
-    local value = ev.data.params.value or {}
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    local msg = value.message or "done"
+local enable_ui2 = vim.g.enable_ui2 or false
 
-    -- rust analyszer in particular has really long LSP messages so truncate them
-    if #msg > 40 then
-      msg = msg:sub(1, 37) .. "..."
-    end
+if enable_ui2 then
+  -- https://www.reddit.com/r/neovim/comments/1rcvliq/ghostty_lsp_progress_bar
+  vim.api.nvim_create_autocmd("LspProgress", {
+    group = lsp_group,
+    callback = function(ev)
+      local value = ev.data.params.value or {}
+      local client = vim.lsp.get_client_by_id(ev.data.client_id)
+      local msg = value.message or "done"
 
-    -- :h LspProgress
-    vim.api.nvim_echo({ { msg } }, false, {
-      id = "lsp",
-      kind = "progress",
-      title = value.title,
-      status = value.kind ~= "end" and "running" or "success",
-      percent = value.percentage,
-      source = client.name,
-    })
-  end,
-})
+      -- rust analyszer in particular has really long LSP messages so truncate them
+      if #msg > 40 then
+        msg = msg:sub(1, 37) .. "..."
+      end
+
+      -- :h LspProgress
+      vim.api.nvim_echo({ { msg } }, false, {
+        id = "lsp",
+        kind = "progress",
+        title = value.title,
+        status = value.kind ~= "end" and "running" or "success",
+        percent = value.percentage,
+        source = client.name,
+      })
+    end,
+  })
+end

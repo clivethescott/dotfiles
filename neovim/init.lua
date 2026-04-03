@@ -7,14 +7,22 @@ vim.g.obsidian_work_notes_dir = '~/IdeaProjects/Obsidian/Work'
 vim.g.obsidian_personal_notes_dir = '~/ObsidianNotesGit'
 -- vim.g.colors_name = 'catppuccin'
 vim.g.colors_name = 'default'
+vim.g.enable_ui2 = true
 
-vim.cmd.packadd('Cfilter') -- filter qflist
+vim.cmd.packadd('Cfilter')       -- filter qflist
 vim.cmd.packadd('nvim.difftool') -- OR :packadd nvim.difftool :Difftool -- setup for gitdiff tool -d
 vim.cmd.packadd('nvim.undotree') -- :Undotree -- set :h undolist for cmds
 
--- require('vim._core.ui2').enable({ https://github.com/neovim/neovim/issues/37929
---   enable = true, msg = { target = 'msg', timeout = 1000 },
--- })
+require('vim._core.ui2').enable({
+  enable = vim.g.enable_ui2,
+  msg = {
+    target = 'msg',
+    timeout = 500,
+    msg = {               -- Options related to msg window.
+      timeout = 1000,     -- Time a message is visible in the message window.
+    },
+  },
+})
 
 local rtp_extras = vim.fs.joinpath(vim.fn.stdpath("config"), "lua/rtp")
 if vim.loop.fs_stat(rtp_extras) then

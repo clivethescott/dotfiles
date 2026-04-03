@@ -1,5 +1,4 @@
 vim.schedule(function()
-  vim.pack.add({ { src = 'https://github.com/folke/lazydev.nvim' } })
   vim.pack.add({ { src = 'https://github.com/rafamadriz/friendly-snippets', version = 'main' } })
   vim.pack.add({ { src = 'https://github.com/Saghen/blink.cmp', version = vim.version.range('1.*') } })
 
@@ -36,7 +35,7 @@ vim.schedule(function()
       ['<c-b>'] = { 'scroll_documentation_down', 'fallback' },
     },
     sources = {
-      default = { 'lsp', 'snippets', 'buffer', 'omni', 'lazydev', 'path' },
+      default = { 'lsp', 'snippets', 'buffer', 'omni', 'path' },
       providers = {
         buffer = {
           max_items = 2,
@@ -45,10 +44,6 @@ vim.schedule(function()
         lsp = {
           fallbacks = { 'buffer' },
           max_items = 20,
-        },
-        lazydev = {
-          name = "LazyDev",
-          module = "lazydev.integrations.blink",
         },
         snippets = {
           max_items = 3,
