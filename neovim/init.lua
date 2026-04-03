@@ -12,14 +12,15 @@ vim.g.enable_ui2 = true
 vim.cmd.packadd('Cfilter')       -- filter qflist
 vim.cmd.packadd('nvim.difftool') -- OR :packadd nvim.difftool :Difftool -- setup for gitdiff tool -d
 vim.cmd.packadd('nvim.undotree') -- :Undotree -- set :h undolist for cmds
+vim.pack.add({ { src = 'https://github.com/DrKJeff16/wezterm-types' } })
 
 require('vim._core.ui2').enable({
   enable = vim.g.enable_ui2,
   msg = {
     target = 'msg',
-    timeout = 500,
+    timeout = 1000,
     msg = {               -- Options related to msg window.
-      timeout = 1000,     -- Time a message is visible in the message window.
+      timeout = 2000,     -- Time a message is visible in the message window.
     },
   },
 })

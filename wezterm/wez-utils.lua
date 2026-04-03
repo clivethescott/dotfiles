@@ -7,6 +7,7 @@ local M = {}
 M.run_cmd = function(cmd)
   local success, stdout, stderr = wezterm.run_child_process(cmd)
   local out = success and stdout or stderr
+---@diagnostic disable-next-line: redundant-return-value
   return out:gsub('[\n\r]', '') -- replace cmd newline
 end
 
@@ -32,7 +33,7 @@ end
 ---@return string Modified color scheme
 M.patch_color_scheme = function(builtin_color_scheme)
   -- override colorscheme
-  local color_scheme = wezterm.get_builtin_color_schemes()[builtin_color_scheme]
+  local color_scheme = wezterm.color.get_builtin_schemes()[builtin_color_scheme]
   -- https://catppuccin.com/palette/
   color_scheme.foreground = '#cdd6f4'
   color_scheme.split = '#6c7086'

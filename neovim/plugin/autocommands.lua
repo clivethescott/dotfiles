@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd('LspNotify', {
     if args.data.method == 'textDocument/didOpen' then
       local winid = vim.fn.bufwinid(args.buf) or 0
       local client = vim.lsp.get_client_by_id(args.data.client_id)
-      if client:supports_method('textDocument/foldingRange', args.buf) then
+      if client and client:supports_method('textDocument/foldingRange', args.buf) then
         vim.lsp.foldclose('comment', winid)
         vim.lsp.foldclose('imports', winid)
       end
@@ -128,6 +128,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = lsp_group,
   callback = function()
     local range_params = vim.lsp.util.make_range_params(0, "utf-8")
+---@diagnostic disable-next-line: inject-field
     range_params.context = { only = { "source.organizeImports" } }
     -- buf_request_sync defaults to a 1000ms timeout. Depending on your
     -- machine and codebase, you may want longer. Add an additional
@@ -157,6 +158,8 @@ if enable_ui2 then
     callback = function(ev)
       local value = ev.data.params.value or {}
       local client = vim.lsp.get_client_by_id(ev.data.client_id)
+      local client_name = client and client.name or 'unknown'
+      -- if client_name == 'lua_ls' and string.find(value.title,  'Diagnosing workspace') then return end
       local msg = value.message or "done"
 
       -- rust analyszer in particular has really long LSP messages so truncate them
@@ -171,7 +174,7 @@ if enable_ui2 then
         title = value.title,
         status = value.kind ~= "end" and "running" or "success",
         percent = value.percentage,
-        source = client.name,
+        source = client_name,
       })
     end,
   })

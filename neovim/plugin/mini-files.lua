@@ -5,8 +5,8 @@ end
 
 vim.pack.add({ { src = 'https://github.com/nvim-mini/mini.files' } })
 
-local files = require 'mini.files'
-files.setup {
+local MiniFiles = require 'mini.files'
+MiniFiles.setup {
   windows = {
     preview = true,
     width_preview = 75,
@@ -22,7 +22,7 @@ files.setup {
 }
 vim.api.nvim_create_user_command('Files', function(args)
   local path = args.fargs and args.fargs[1] or nil
-  files.open(path)
+  MiniFiles.open(path)
 end, { nargs = '?', complete = 'dir', desc = 'File explorer at path' })
 
 -- set custom marks, see :h mini-files
@@ -78,9 +78,6 @@ local grep_dir = function()
     if picker == 'fzf-lua' then
       require("fzf-lua").live_grep_glob { cwd = path }
       -- MiniFiles.close()
-    elseif picker == 'snacks.picker' then
-      MiniFiles.close()
-      Snacks.picker.grep { dirs = { path } }
     end
   else
     vim.notify('Cursor is not on a directory')
@@ -91,6 +88,8 @@ end
 local ui_open = function() vim.ui.open(MiniFiles.get_fs_entry().path) end
 
 local show_dotfiles = true
+
+---@diagnostic disable-next-line: unused-local
 local filter_show = function(fs_entry)
   return true
 end
@@ -132,7 +131,7 @@ vim.api.nvim_create_autocmd('User', {
   callback = function(args)
     local bufnr = args.data.buf_id
     vim.keymap.set('n', 'g.', set_cwd, { buffer = bufnr, desc = 'Set cwd' })
-    -- vim.keymap.set('n', 'gx', ui_open, { buffer = b, desc = 'OS open' })
+    vim.keymap.set('n', 'gX', ui_open, { buffer = bufnr, desc = 'OS open' })
     vim.keymap.set('n', 'gf', grep_dir, { buffer = bufnr, desc = 'Live grep dir' })
     vim.keymap.set('n', 'gy', yank_path, { buffer = bufnr, desc = 'Yank path' })
     vim.keymap.set("n", "gh", toggle_dotfiles, { buffer = bufnr, desc = "Toggle hidden files" })
