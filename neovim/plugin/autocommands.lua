@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd('LspNotify', {
     if args.data.method == 'textDocument/didOpen' then
       local winid = vim.fn.bufwinid(args.buf) or 0
       local client = vim.lsp.get_client_by_id(args.data.client_id)
-      if client:supports_method('textDocument/foldingRange', args.buf) then
+      if client and client:supports_method('textDocument/foldingRange', args.buf) then
         vim.lsp.foldclose('comment', winid)
         vim.lsp.foldclose('imports', winid)
       end
@@ -113,19 +113,22 @@ vim.api.nvim_create_user_command('PackSync', function()
 end, { desc = 'Sync plugin state' })
 
 
--- :h nvim_open_term 
+-- :h nvim_open_term
 -- https://www.youtube.com/watch?v=EiBg91LTOYk&t=3947s
 vim.api.nvim_create_user_command('TermHl', function()
   vim.api.nvim_open_term(0, {})
 end, { desc = 'Highlights ANSI termcodes in curbuf' })
 
+local lsp_group = vim.api.nvim_create_augroup('MyLspFuncs', { clear = true })
+
 -- have imports organized on save using the logic of goimports and your code formatted.
 -- https://go.dev/gopls/editor/vim
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = vim.api.nvim_create_augroup('MyLspFuncs', { clear = true }),
   pattern = "*.go",
+  group = lsp_group,
   callback = function()
     local range_params = vim.lsp.util.make_range_params(0, "utf-8")
+---@diagnostic disable-next-line: inject-field
     range_params.context = { only = { "source.organizeImports" } }
     -- buf_request_sync defaults to a 1000ms timeout. Depending on your
     -- machine and codebase, you may want longer. Add an additional
@@ -144,3 +147,35 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format({ async = false })
   end
 })
+
+
+local enable_ui2 = vim.g.enable_ui2 or false
+
+if enable_ui2 then
+  -- https://www.reddit.com/r/neovim/comments/1rcvliq/ghostty_lsp_progress_bar
+  vim.api.nvim_create_autocmd("LspProgress", {
+    group = lsp_group,
+    callback = function(ev)
+      local value = ev.data.params.value or {}
+      local client = vim.lsp.get_client_by_id(ev.data.client_id)
+      local client_name = client and client.name or 'unknown'
+      -- if client_name == 'lua_ls' and string.find(value.title,  'Diagnosing workspace') then return end
+      local msg = value.message or "done"
+
+      -- rust analyszer in particular has really long LSP messages so truncate them
+      if #msg > 40 then
+        msg = msg:sub(1, 37) .. "..."
+      end
+
+      -- :h LspProgress
+      vim.api.nvim_echo({ { msg } }, false, {
+        id = "lsp",
+        kind = "progress",
+        title = value.title,
+        status = value.kind ~= "end" and "running" or "success",
+        percent = value.percentage,
+        source = client_name,
+      })
+    end,
+  })
+end

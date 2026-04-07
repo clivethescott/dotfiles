@@ -1,30 +1,47 @@
+local data_path = vim.fn.stdpath('data')
+local function pack(name)
+  return vim.fs.joinpath(data_path, '/site/pack/core/opt/', name)
+end
+
 ---@type vim.lsp.Config
 return {
----@type lspconfig.settings.lua_ls
   settings = {
     Lua = {
       runtime = {
-        -- Tell the language server which version of Lua you're using
-        -- (most likely LuaJIT in the case of Neovim)
         version = 'LuaJIT'
       },
       diagnostics = {
-        -- Get the language server to recognize the `vim` global and
         -- Luasnip shortcuts https://github.com/L3MON4D3/LuaSnip/blob/69cb81cf7490666890545fef905d31a414edc15b/lua/luasnip/config.lua#L82-L104
-        globals = { 'vim', 'parse', 's', 'sn', 't', 'f', 'i', 'c', 'fmt', 'rep', 'wezterm', },
+        globals = { 'vim', 'parse', 's', 'sn', 't', 'f', 'i', 'c', 'fmt', 'rep', 'wezterm' },
+        unusedLocalExcludes = { '_*' },
+        disable = { 'missing-fields', 'missing-parameter' },
+      },
+      completion = {
+        callSnippet = 'Replace',
+      },
+      hint = {
+        enable = true,
+      },
+      format = {
+        enable = true,
       },
       telemetry = {
         enable = false,
       },
       workspace = {
         checkThirdParty = false,
+        ignoreDir = { '.archived' },
         library = {
           vim.env.VIMRUNTIME,
-          -- Depending on the usage, you might want to add additional paths here.
-          "${3rd}/luv/library"
-          -- "${3rd}/busted/library",
-        }
-      }
+          '${3rd}/luv/library',
+          pack('nvim-lspconfig'),
+          pack('blink.cmp'),
+          pack('nvim-treesitter'),
+          pack('render-markdown.nvim'),
+          pack('obsidian.nvim'),
+          pack('wezterm-types'),
+        },
+      },
     },
   },
 }

@@ -4,8 +4,9 @@ vim.keymap.set('i', '<C-s>', '<esc>:silent update<cr>')
 vim.keymap.set('i', '<C-z>', '<esc>:undo<cr>')
 
 vim.keymap.set('n', '<M-v>', '"*p')
-vim.keymap.set('i', '<M-v>', '<esc>"*p')
 vim.keymap.set({ 'n', 'v', 's' }, '<M-y>', '"*y')
+vim.keymap.set('i', '<M-v>', '<esc>"*p')
+vim.keymap.set('n', 'gh', '<cmd>:help!<cr>', { desc = 'Improved help' })
 
 -- use :Inspect
 -- vim.keymap.set('n', '<leader>t', vim.show_pos, { desc = 'Show highlight at cursor' })

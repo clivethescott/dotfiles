@@ -1,19 +1,25 @@
-vim.pack.add({ { src = 'https://github.com/j-hui/fidget.nvim' } })
+local enable_ui2 = vim.g.enable_ui2 or false
 
-local fidget = require 'fidget'
-fidget.setup {
-  notification = {
-    override_vim_notify = true,   -- Automatically override vim.notify() with Fidget
-  },
-  progress = {
-    suppress_on_insert   = true,
-    ignore_done_already  = true,
-    ignore_empty_message = true,
-    ignore               = { 'lua_ls' },
-    display              = {
-      render_limit = 5,
-      done_ttl = 0,
-    }
-  },
-}
-vim.keymap.set('n', '<space>nh', fidget.notification.show_history, { desc = 'Show notification history' })
+if not enable_ui2 then
+  vim.pack.add({ { src = 'https://github.com/j-hui/fidget.nvim' } })
+
+  local fidget = require 'fidget'
+  fidget.setup {
+    notification = {
+      override_vim_notify = false, -- Automatically override vim.notify() with Fidget
+    },
+    progress = {
+      suppress_on_insert   = true,
+      ignore_done_already  = true,
+      ignore_empty_message = true,
+      ignore               = { 'lua_ls' },
+      display              = {
+        render_limit = 5,
+        done_ttl = 0,
+      }
+    },
+  }
+  vim.keymap.set('n', '<space>nh', fidget.notification.show_history, { desc = 'Show notification history' })
+else
+  vim.keymap.set('n', '<space>nh', '<cmd>messages<cr>', { desc = 'Show notification history' })
+end
