@@ -28,7 +28,7 @@ keybind = cmd+t=text:\x14
 keybind = cmd+u=text:\x15
 keybind = cmd+v=text:\x16
 keybind = cmd+w=text:\x17
-keybind = cmd+x=text:\x19
+keybind = cmd+x=text:\x18
 keybind = cmd+y=text:\x19
 keybind = cmd+z=text:\x1A
 keybind = cmd+left_bracket=text:\x1b
@@ -45,7 +45,7 @@ keybind = cmd+shift+r=reload_config
 #
 # begin for tmux
 keybind = cmd+a=text:\x01
-# window-decoration = none
+window-decoration = none
 # end for tmux
 #
 # begin non tmux
