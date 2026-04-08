@@ -75,7 +75,8 @@ function M.on_attach(client, bufnr)
 
   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#copilot
   if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
-    vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
+    vim.lsp.inline_completion.enable(true, { bufnr = bufnr, client_id = client.id })
+    vim.keymap.set("i", "<C-y>", vim.lsp.completion.get, { desc = "trigger autocompletion" })
 
     vim.keymap.set(
       'i',

@@ -12,8 +12,7 @@ vim.opt.listchars = "tab:··,leadmultispace:·"
 vim.opt.termguicolors = true
 
 vim.opt.lazyredraw = true
--- Set completeopt to have a better completion experience
-vim.opt.completeopt = 'menuone,noinsert,noselect,fuzzy'
+
 vim.o.winborder = 'rounded'
 
 -- Override ignorecase if search includes upper case chars
