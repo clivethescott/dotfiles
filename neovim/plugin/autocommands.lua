@@ -163,8 +163,8 @@ if enable_ui2 then
       local msg = value.message or "done"
 
       -- rust analyszer in particular has really long LSP messages so truncate them
-      if #msg > 40 then
-        msg = msg:sub(1, 37) .. "..."
+      if #msg > 60 then
+        msg = msg:sub(1, 57) .. "..."
       end
 
       -- :h LspProgress
