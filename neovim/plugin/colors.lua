@@ -22,6 +22,12 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, 'StatusLineGitChanged', { fg = '#b89a5a', bg = status_bg }) -- Dimmed yellow
     vim.api.nvim_set_hl(0, 'StatusLineGitRemoved', { fg = '#b55a5a', bg = status_bg }) -- Dimmed red
 
+    -- completion kind + extra columns (grayed out, applies to all colorschemes)
+    vim.api.nvim_set_hl(0, 'PmenuKind',     { fg = '#767676' })
+    vim.api.nvim_set_hl(0, 'PmenuKindSel',  { fg = '#767676', bold = true })
+    vim.api.nvim_set_hl(0, 'PmenuExtra',    { fg = '#767676' })
+    vim.api.nvim_set_hl(0, 'PmenuExtraSel', { fg = '#767676' })
+
     if not default_colorscheme then
       return
     end

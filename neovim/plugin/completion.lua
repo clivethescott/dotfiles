@@ -1,6 +1,6 @@
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect', 'fuzzy', 'popup' }
 vim.o.pumborder = 'rounded'
-vim.o.pummaxwidth = 40
+vim.o.pummaxwidth = 60
 
 if vim.g.blink_enabled then return end
 
@@ -22,3 +22,4 @@ end, { desc = 'Snippet: jump forward' })
 vim.keymap.set({ 'i', 's' }, '<c-k>', function()
   if vim.snippet.active({ direction = -1 }) then vim.snippet.jump(-1) end
 end, { desc = 'Snippet: jump back' })
+
