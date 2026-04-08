@@ -16,6 +16,7 @@ metals_config.inlayHints = {
   },
 }
 metals_config.settings = {
+  disabledMode = true,
   -- disabledMode = vim.env.METALS == '0',
   -- startMcpServer = false,
   -- serverVersion = '1.6.5',
