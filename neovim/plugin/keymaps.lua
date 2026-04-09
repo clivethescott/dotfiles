@@ -65,19 +65,6 @@ vim.keymap.set('n', '<space>ow',
 -- default ]t [t [T ]T for tag list,
 -- default ]b [b for buffer list,
 
--- nicer :find
-function Fd(file_pattern, _)
-  -- if first char is * then fuzzy search
-  if file_pattern:sub(1, 1) == "*" then
-    file_pattern = file_pattern:gsub(".", ".*%0") .. ".*"
-  end
-  local cmd = 'fd  --color=never --full-path --type file --hidden --exclude=".git" "' .. file_pattern .. '"'
-  local result = vim.fn.systemlist(cmd)
-  return result
-end
-
-vim.opt.findfunc = "v:lua.Fd"
-
 -- Whole buffer text object
 vim.keymap.set('o', 'ig', ':<C-u>normal! ggVG<CR>', { desc = 'Inner whole buffer' })
 vim.keymap.set('o', 'ag', ':<C-u>normal! ggVG<CR>', { desc = 'Around whole buffer' })
