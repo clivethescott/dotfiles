@@ -1,3 +1,4 @@
+if not vim.g.blink_enabled then return end
 vim.schedule(function()
   vim.pack.add({ { src = 'https://github.com/rafamadriz/friendly-snippets', version = 'main' } })
   vim.pack.add({ { src = 'https://github.com/Saghen/blink.cmp', version = vim.version.range('1.*') } })
