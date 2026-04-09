@@ -2,7 +2,8 @@ vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect', 'fuzzy', 'popup' }
 vim.o.pumborder = 'rounded'
 vim.o.pummaxwidth = 60
 
-if vim.g.blink_enabled then return end
+local blink_enabled = vim.g.blink_enabled or true
+if blink_enabled then return end
 
 vim.o.autocomplete = true
 
