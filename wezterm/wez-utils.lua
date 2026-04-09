@@ -28,12 +28,22 @@ M.tab_title = function(tab_info)
   return tab_info.active_pane.title
 end
 
+-- https://github.com/wezterm/wezterm/issues/4788#issuecomment-1911317536
+function get_color_schemes()
+  local schemes = wezterm.GLOBAL.color_schemes
+  if schemes then
+    return schemes
+  end
+  wezterm.GLOBAL.color_schemes = wezterm.color.get_builtin_schemes()
+  return wezterm.GLOBAL.color_schemes
+end
+
 ---Patches the provided built-in colorscheme
 ---@param builtin_color_scheme string Name of the built in color scheme to override
 ---@return string Modified color scheme
 M.patch_color_scheme = function(builtin_color_scheme)
   -- override colorscheme
-  local color_scheme = wezterm.color.get_builtin_schemes()[builtin_color_scheme]
+  local color_scheme = get_color_schemes()[builtin_color_scheme]
   -- https://catppuccin.com/palette/
   color_scheme.foreground = '#cdd6f4'
   color_scheme.split = '#6c7086'
