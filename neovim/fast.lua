@@ -200,17 +200,6 @@ Statusline.gitInfo = function()
   )
 end
 
-Statusline.httpEnv = function()
-  if vim.bo.filetype == 'http' then
-    local has_kulala, kulala = pcall(require, 'kulala')
-    if has_kulala then
-      local env = kulala.get_selected_env() or 'unknown'
-      return '[' .. env:upper() .. ']'
-    end
-  end
-  return ''
-end
-
 Statusline.active = function()
   return table.concat({
     Statusline.short_path(),
@@ -282,14 +271,7 @@ vim.keymap.set('n', '<space>x', ":.lua<cr>", { silent = true, desc = 'Exec Lua' 
 vim.keymap.set('n', '<space>X', "<cmd>source %<cr>", { silent = true, desc = 'Exec Lua file' })
 vim.keymap.set('v', '<space>x', ":lua<cr>", { silent = true, desc = 'Exec Lua' })
 vim.keymap.set({ 'x', 'n' }, '&', ':&&<cr>', { desc = 'Repeat last substitute keeping flags' })
-vim.keymap.set('n', '<space>ow',
-  function()
-    if vim.o.winbar == "" then
-      vim.o.winbar = "%{%v:lua.require'utils'.nvim_winbar()%}"
-    else
-      vim.o.winbar = ""
-    end
-  end, { desc = 'Toggle Winbar' })
+
 -- nicer :find
 function Fd(match)
   local files = vim.fn.systemlist(
