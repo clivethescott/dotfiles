@@ -35,7 +35,6 @@ return {
           vim.env.VIMRUNTIME,
           '${3rd}/luv/library',
           pack('nvim-lspconfig'),
-          pack('blink.cmp'),
           pack('nvim-treesitter'),
           pack('render-markdown.nvim'),
           pack('obsidian.nvim'),
