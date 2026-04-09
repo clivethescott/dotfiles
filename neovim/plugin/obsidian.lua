@@ -25,6 +25,7 @@ if not vim.g.is_work_pc then
 end
 
 vim.schedule(function()
+  vim.pack.add({ { src = 'https://github.com/Saghen/blink.cmp', version = vim.version.range('1.*') } })
   vim.pack.add({ { src = 'https://github.com/obsidian-nvim/obsidian.nvim' } })
 
   ---@diagnostic disable: missing-fields
@@ -34,7 +35,7 @@ vim.schedule(function()
     workspaces = workspaces,
     legacy_commands = false,
     log_level = vim.log.levels.WARN,
-    completion = { blink = false, min_chars = 2 },
+    completion = { blink = true, min_chars = 2 },
     open = {
       func = function(uri)
         vim.ui.open(uri, { cmd = { "open", "-a", "/Applications/Obsidian.app" } })

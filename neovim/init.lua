@@ -7,6 +7,8 @@ vim.g.obsidian_work_notes_dir = '~/IdeaProjects/Obsidian/Work'
 vim.g.obsidian_personal_notes_dir = '~/ObsidianNotesGit'
 -- vim.g.colors_name = 'catppuccin'
 vim.g.colors_name = 'default'
+vim.g.enable_ui2 = true
+vim.g.blink_enabled = false
 
 vim.cmd.packadd('Cfilter')       -- filter qflist
 vim.cmd.packadd('nvim.difftool') -- OR :packadd nvim.difftool :Difftool -- setup for gitdiff tool -d
@@ -14,7 +16,7 @@ vim.cmd.packadd('nvim.undotree') -- :Undotree -- set :h undolist for cmds
 vim.pack.add({ { src = 'https://github.com/DrKJeff16/wezterm-types' } })
 
 require('vim._core.ui2').enable({
-  enable = true,
+  enable = vim.g.enable_ui2,
   msg = {
     target = 'msg',
     timeout = 1000,

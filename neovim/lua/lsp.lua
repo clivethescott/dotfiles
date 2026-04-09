@@ -76,6 +76,7 @@ function M.on_attach(client, bufnr)
   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#copilot
   if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
     vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
+    vim.keymap.set("i", "<C-y>", vim.lsp.completion.get, { buffer = bufnr, desc = "trigger autocompletion" })
 
     vim.keymap.set(
       'i',
@@ -119,33 +120,17 @@ function M.on_attach(client, bufnr)
 
   if supports_method(client, 'textDocument/completion', bufnr) then
     vim.lsp.completion.enable(true, client.id, bufnr, {
-      autotrigger = true,
+      autotrigger = not vim.g.blink_enabled,
       convert = function(item)
         local icons = {
-          Text = '',
-          Method = '󰆧',
-          Function = '󰊕',
-          Constructor = '',
-          Field = '󰜢',
-          Variable = '󰀫',
-          Class = '󰠱',
-          Interface = '',
-          Module = '',
-          Property = '󰜢',
-          Unit = '󰑭',
-          Value = '󰎠',
-          Enum = '',
-          Keyword = '󰌋',
-          Snippet = '',
-          Color = '󰏘',
-          File = '󰈙',
-          Reference = '󰈇',
-          Folder = '󰉋',
-          EnumMember = '',
-          Constant = '󰏿',
-          Struct = '󰙅',
-          Event = '',
-          Operator = '󰆕',
+          Text          = '',  Method        = '󰆧', Function      = '󰊕',
+          Constructor   = '',  Field         = '󰜢', Variable      = '󰀫',
+          Class         = '󰠱', Interface     = '',  Module        = '',
+          Property      = '󰜢', Unit          = '󰑭', Value         = '󰎠',
+          Enum          = '',  Keyword       = '󰌋', Snippet       = '',
+          Color         = '󰏘', File          = '󰈙', Reference     = '󰈇',
+          Folder        = '󰉋', EnumMember    = '',  Constant      = '󰏿',
+          Struct        = '󰙅', Event         = '',  Operator      = '󰆕',
           TypeParameter = '󰊄',
         }
         local name = vim.lsp.protocol.CompletionItemKind[item.kind]
@@ -237,8 +222,9 @@ function M.on_attach(client, bufnr)
 end
 
 function M.client_capabilities()
+  local has_blink, blink = pcall(require, 'blink.cmp')
 
-  local capabilities = {
+  local capabilities     = {
     textDocument = {
       foldingRange = {
         dynamicRegistration = false,
@@ -255,7 +241,11 @@ function M.client_capabilities()
       }
     }
   }
-  capabilities       = vim.tbl_deep_extend('force', capabilities, vim.lsp.protocol.make_client_capabilities())
+  if has_blink then
+    capabilities = blink.get_lsp_capabilities(capabilities)
+  else
+    capabilities = vim.tbl_deep_extend('force', capabilities, vim.lsp.protocol.make_client_capabilities())
+  end
 
   return capabilities
 end

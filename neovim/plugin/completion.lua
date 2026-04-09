@@ -1,7 +1,8 @@
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect', 'fuzzy', 'popup' }
 vim.o.pumborder = 'rounded'
 vim.o.pummaxwidth = 60
-vim.opt.shortmess:append('c')
+
+if vim.g.blink_enabled then return end
 
 vim.o.autocomplete = true
 

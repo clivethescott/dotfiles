@@ -93,7 +93,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = lsp_group,
   callback = function()
     local range_params = vim.lsp.util.make_range_params(0, "utf-8")
-    ---@diagnostic disable-next-line: inject-field
+---@diagnostic disable-next-line: inject-field
     range_params.context = { only = { "source.organizeImports" } }
     -- buf_request_sync defaults to a 1000ms timeout. Depending on your
     -- machine and codebase, you may want longer. Add an additional
@@ -114,28 +114,33 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 
--- https://www.reddit.com/r/neovim/comments/1rcvliq/ghostty_lsp_progress_bar
-vim.api.nvim_create_autocmd("LspProgress", {
-  group = lsp_group,
-  callback = function(ev)
-    local value = ev.data.params.value or {}
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    local client_name = client and client.name or 'unknown'
-    -- if client_name == 'lua_ls' and string.find(value.title,  'Diagnosing workspace') then return end
-    local msg = value.message or "done"
+local enable_ui2 = vim.g.enable_ui2 or false
 
-    -- rust analyszer in particular has really long LSP messages so truncate them
-    if #msg > 60 then
-      msg = msg:sub(1, 57) .. "..."
-    end
+if enable_ui2 then
+  -- https://www.reddit.com/r/neovim/comments/1rcvliq/ghostty_lsp_progress_bar
+  vim.api.nvim_create_autocmd("LspProgress", {
+    group = lsp_group,
+    callback = function(ev)
+      local value = ev.data.params.value or {}
+      local client = vim.lsp.get_client_by_id(ev.data.client_id)
+      local client_name = client and client.name or 'unknown'
+      -- if client_name == 'lua_ls' and string.find(value.title,  'Diagnosing workspace') then return end
+      local msg = value.message or "done"
 
-    -- :h LspProgress
-    vim.api.nvim_echo({ { msg } }, false, {
-      id = "lsp",
-      kind = "progress",
-      title = value.title,
-      status = value.kind ~= "end" and "running" or "success",
-      percent = value.percentage,
-      source = client_name,
-    })
-  end,})
+      -- rust analyszer in particular has really long LSP messages so truncate them
+      if #msg > 60 then
+        msg = msg:sub(1, 57) .. "..."
+      end
+
+      -- :h LspProgress
+      vim.api.nvim_echo({ { msg } }, false, {
+        id = "lsp",
+        kind = "progress",
+        title = value.title,
+        status = value.kind ~= "end" and "running" or "success",
+        percent = value.percentage,
+        source = client_name,
+      })
+    end,
+  })
+end
