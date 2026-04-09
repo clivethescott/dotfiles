@@ -208,7 +208,6 @@ Statusline.active = function()
     ' %r', -- [readonly] flag
     ' %h', -- [help buffer] flag
     '%=',  -- right align from here
-    Statusline.httpEnv(),
     Statusline.lspInfo(),
     Statusline.gitInfo(),
   })
