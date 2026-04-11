@@ -74,3 +74,10 @@ vim.keymap.set('x', 'ag', ':<C-u>normal! ggVG<CR>', { desc = 'Around whole buffe
 vim.keymap.set('n', '<space>ol', function()
   vim.pack.update(nil, { force = false })
 end, { desc = 'Show packages with updates' })
+
+-- https://www.reddit.com/r/neovim/comments/1shks8o/nvim_012s_new_restart_command_is_nice/
+vim.keymap.set('n', '<leader>Q', function()
+  local session = vim.fn.stdpath('state') .. '/restart_session.vim'
+  vim.cmd('mksession! ' .. vim.fn.fnameescape(session))
+  vim.cmd('restart source ' .. vim.fn.fnameescape(session))
+end, { desc = 'Restart Neovim' })
