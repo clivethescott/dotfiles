@@ -1,6 +1,6 @@
 if vim.g.use_picker ~= 'fzf-lua' then return end
 
-local ignore_files = { "^%.metals", "^%.scala", "^Gemfile.lock", "^%.archived" }
+local ignore_files = { "^%.metals", "^%.scala", "^Gemfile.lock", "^%.archived", "fast.lua" }
 
 vim.schedule(function()
   vim.pack.add({ { src = 'https://github.com/nvim-tree/nvim-web-devicons', version = 'master' } })
