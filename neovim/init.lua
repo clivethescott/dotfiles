@@ -65,9 +65,9 @@ vim.schedule(function()
   -- See `:h vim.diagnostic` and `:h vim.diagnostic.config()`.
   vim.diagnostic.config({
     float = true,
-    -- jump = {
-    --   float = true
-    -- },
+    jump = {
+      on_jump = vim.diagnostic.open_float,
+    },
     -- Show signs on top of any other sign, but only for warnings and errors
     signs = { priority = 9999, severity = { min = 'WARN', max = 'ERROR' } },
     -- Show all diagnostics as underline
