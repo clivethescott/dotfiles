@@ -222,6 +222,7 @@ set GOBIN $HOME/Code/Go/bin
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx TEALDEER_CONFIG_DIR $HOME/.config/tealdeer
 set -gx PYTHONGIL 0
+set -gx CLAUDE_CODE_MAX_OUTPUT_TOKENS 4096
 abbr -a tldr tldr -p macos --pager
 abbr -a -g sbtd 'sbt -Dsbt.server.autostart=false'
 
