@@ -45,6 +45,7 @@ keybind = cmd+shift+r=reload_config
 #
 # begin for tmux
 keybind = cmd+a=text:\x01
+# window-decoration = auto
 window-decoration = none
 # end for tmux
 #
@@ -80,7 +81,7 @@ window-decoration = none
 # end non tmux
 
 macos-option-as-alt = true
-macos-titlebar-style = tabs
+macos-titlebar-style = transparent
 macos-auto-secure-input = true
 
 theme = Nvim Dark
