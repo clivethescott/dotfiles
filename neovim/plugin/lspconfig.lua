@@ -28,6 +28,7 @@ vim.schedule(function()
     'helm_ls',
     'ocamllsp',
     'tinymist',
+    'gleam',
   })
 
   if vim.g.is_work_pc then
