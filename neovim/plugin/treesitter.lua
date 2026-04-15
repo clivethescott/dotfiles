@@ -26,7 +26,7 @@ local ensure_installed = {
   'bash', 'dockerfile', 'git_config', 'gitcommit', 'graphql', 'hocon', 'html', 'smithy',
   'helm', 'http', 'properties', 'json', 'python', 'rust', 'diff', 'hcl', 'nu',
   'scala', 'sql', 'toml', 'typst', 'yaml', 'fish', 'hurl', 'csv', 'go', 'groovy', 'java', 'proto',
-  'terraform', 'typescript',
+  'terraform', 'typescript', 'gleam'
 }
 local disable_indent_fts = { 'ocaml' }
 local regex_highlight_fts = { 'fugitive' }
