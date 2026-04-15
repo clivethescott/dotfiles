@@ -48,11 +48,11 @@ local install_missing = function()
   end
 end
 
+vim.pack.add({ { src = 'https://github.com/mason-org/mason.nvim' } })
+
+require 'mason'.setup()
+vim.keymap.set('n', '<space>om', '<cmd>Mason<cr>', { desc = 'Mason' })
+
 vim.schedule(function()
-  vim.pack.add({ { src = 'https://github.com/mason-org/mason.nvim' } })
-
-  require 'mason'.setup()
   install_missing()
-
-  vim.keymap.set('n', '<space>om', '<cmd>Mason<cr>', { desc = 'Mason' })
 end)
