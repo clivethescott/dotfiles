@@ -34,6 +34,7 @@ require('conform').setup({
     markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
     ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
     ocaml = { "ocamlformat" },
+    gleam = { "gleam" },
   },
   formatters = {
     ocamlformat = {
