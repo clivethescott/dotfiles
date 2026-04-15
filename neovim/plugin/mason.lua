@@ -14,6 +14,7 @@ local mason_packages = {
   'ruff',
   'ty',
   'pyright',
+  'prettier',
   -- rust
   'rust-analyzer',
   -- go
