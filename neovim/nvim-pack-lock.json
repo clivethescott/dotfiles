@@ -87,6 +87,10 @@
       "rev": "94871e4ba1d737709723d8ff7d38ba399c1b51d5",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim"
     },
+    "opencode.nvim": {
+      "rev": "b3cdd746a5ca321b6884badefa0ba22c86c3d45e",
+      "src": "https://github.com/nickjvandyke/opencode.nvim"
+    },
     "render-markdown.nvim": {
       "rev": "0fd43fb4b1f073931c4b481f5f3b7cea3749e190",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
