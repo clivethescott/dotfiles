@@ -14,8 +14,8 @@
       "src": "https://github.com/saecki/crates.nvim"
     },
     "diffview.nvim": {
-      "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
-      "src": "https://github.com/sindrets/diffview.nvim",
+      "rev": "dde44b20df93b1cc837f1c8a483893838b0f8f03",
+      "src": "https://github.com/dlyongemallo/diffview.nvim",
       "version": "'main'"
     },
     "friendly-snippets": {
