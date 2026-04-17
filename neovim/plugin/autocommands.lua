@@ -140,3 +140,21 @@ vim.api.nvim_create_autocmd("LspProgress", {
     })
   end,
 })
+
+-- https://github.com/nickjvandyke/opencode.nvim?tab=readme-ov-file#-events
+vim.api.nvim_create_autocmd("User", {
+  pattern = "OpencodeEvent:*", -- Optionally filter event types
+  callback = function(args)
+    ---@type opencode.server.Event
+    local event = args.data.event
+    ---@type number
+    -- local port = args.data.port
+
+    -- See the available event types and their properties
+    -- vim.notify(vim.inspect(event))
+    -- Do something useful
+    if event.type == "session.idle" then
+      vim.notify("`opencode` finished responding")
+    end
+  end,
+})
