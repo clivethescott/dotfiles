@@ -24,7 +24,7 @@
       "version": "'main'"
     },
     "fzf-lua": {
-      "rev": "5bf93b12f70c7cc89a2cc6ee026b82f111815be8",
+      "rev": "83f7195972538beee3a40932b38ccd86c8cc0f06",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitlinker.nvim": {
@@ -54,7 +54,7 @@
       "src": "https://github.com/nvim-mini/mini.files"
     },
     "nvim-lspconfig": {
-      "rev": "b80f82f59544f0770981b5a6c7d129ca276dab36",
+      "rev": "4b7fbaa239c5db6b36f424a4521ca9f1a401be33",
       "src": "https://github.com/neovim/nvim-lspconfig",
       "version": "'master'"
     },
@@ -96,7 +96,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "b2e84d00db4d5432f471d58898e796b478f075a7",
+      "rev": "0ce1f8aba51db6812382a4135f5b20a9f0c959ec",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
