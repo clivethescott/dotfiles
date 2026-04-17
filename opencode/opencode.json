@@ -22,5 +22,13 @@
       "~/IdeaProjects/*": "allow",
       "~/Code/*": "allow"
     }
+  },
+  "provider": {
+    "amazon-bedrock": {
+      "options": {
+        "region": "eu-central-1",
+        "profile": "twdc-bedrock-central"
+      }
+    }
   }
 }
