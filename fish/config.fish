@@ -5,6 +5,7 @@ end
 set -gx EDITOR nvim
 set -gx COMPOSE_BAKE true
 set -gx JIRA_PAGER bat
+set -gx JAVA_HOME (/usr/libexec/java_home -v 21)
 
 # Disable the fish greeting message
 set fish_greeting ""
@@ -215,7 +216,7 @@ end
 
 set -gx MANPAGER "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 #set -gx JAVA_HOME "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home"
-set -gx JAVA_HOME (which java | sed 's#/bin/java##')
+# set -gx JAVA_HOME (which java | sed 's#/bin/java##')
 set -gx BAT_THEME "Catppuccin Mocha"
 #set -gx SBT_OPTS "-XX:MaxMetaspaceSize=2G XX:ReservedCodeCacheSize=256M -XX:+UseZGC -Xms1G -Xmx4G -Xss8M -Dsbt.repository.config=sbt.repositories"
 set GOBIN $HOME/Code/Go/bin
@@ -225,6 +226,7 @@ set -gx PYTHONGIL 0
 set -gx CLAUDE_CODE_MAX_OUTPUT_TOKENS 4096
 abbr -a tldr tldr -p macos --pager
 abbr -a -g sbtd 'sbt -Dsbt.server.autostart=false'
+abbr --add oc opencode
 
 # Add completions from stuff installed with Homebrew.
 if status is-interactive; and test "$os" = Darwin
