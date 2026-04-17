@@ -3,6 +3,10 @@
   "contributes": {
     "snippets": [
       {
+        "language": "all",
+        "path": "./global.json"
+      },
+      {
         "language": "rust",
         "path": "./rust.json"
       },

@@ -1,4 +1,3 @@
-vim.pack.add({ { src = 'https://github.com/nvim-lua/plenary.nvim', version = 'master' } })
 vim.pack.add({ { src = 'https://github.com/lewis6991/gitsigns.nvim' } })
 
 local on_attach = function()

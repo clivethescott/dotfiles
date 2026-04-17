@@ -1,6 +1,6 @@
 -- TODO: see if nvim.difftool can replace this
 vim.schedule(function()
-  vim.pack.add({ { src = 'https://github.com/sindrets/diffview.nvim', version = 'main' } })
+  vim.pack.add({ { src = 'https://github.com/dlyongemallo/diffview.nvim', version = 'main' } })
 
   require('diffview').setup({
     default_args = {
@@ -32,8 +32,7 @@ vim.schedule(function()
     },
   })
 
-  vim.keymap.set('n', "<space>gx", '<cmd>DiffviewClose<cr>',            { desc = "Close Diffview" })
+  vim.keymap.set('n', "<space>gg", '<cmd>DiffviewToggle<cr>',            { desc = "Toggle Diffview" })
   vim.keymap.set('n', "<space>gq", '<cmd>DiffviewClose<cr>',            { desc = "Close Diffview" })
-  vim.keymap.set('n', "<space>go", '<cmd>DiffviewOpen<cr>',             { desc = "Open Diffview" })
   vim.keymap.set('n', "<space>gs", '<cmd>DiffviewOpen main...HEAD<cr>', { desc = "Diffview branch" })
 end)
