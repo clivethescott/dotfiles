@@ -8,14 +8,16 @@
       "rm *": "deny",
       "grep *": "allow",
       "rg *": "allow",
-      "jq *": "allow"
+      "jq *": "allow",
+      "ls *": "allow"
     },
     "external_directory": {
       "*": "ask",
+      "/tmp*": "allow"
     },
     "read": {
       "*": "allow",
-      "~/.config/fish/*.fish": "ask",
+      "~/.config/fish/*.fish": "ask"
     },
     "edit": {
       "*": "ask",
@@ -30,5 +32,8 @@
         "profile": "twdc-bedrock-central"
       }
     }
-  }
+  },
+  "plugin": [
+    "oh-my-openagent@latest"
+  ]
 }
