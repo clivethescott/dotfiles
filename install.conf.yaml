@@ -28,4 +28,5 @@
     ~/.config/television: television
     ~/.config/opencode/opencode.json: opencode/opencode.json
     ~/.config/opencode/tui.json: opencode/tui.json
+    ~/.agents: agents
 
