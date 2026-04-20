@@ -35,12 +35,18 @@ set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:tog
 set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
 set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 set -gx FZF_CTRL_T_OPTS $FZF_DEFAULT_OPTS
-if status is-interactive; and type -q fzf
-    fzf --fish | FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= source
-    # https://junegunn.github.io/fzf/
-    abbr --add -g gco "git branch | fzf --preview 'git show --color=always {-1}' \
---bind 'enter:become(git switch {-1})' \
---height 40% --layout reverse"
+if status is-interactive
+    # if type -q fzf
+    #         fzf --fish | FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= source
+    #         # https://junegunn.github.io/fzf/
+    #         abbr --add -g gco "git branch | fzf --preview 'git show --color=always {-1}' \
+    # --bind 'enter:become(git switch {-1})' \
+    # --height 40% --layout reverse"
+    #
+    if type -q tv
+        tv init fish | source
+        abbr -a t tv
+    end
 end
 
 # setup atuin
@@ -97,8 +103,8 @@ fish_add_path "$HOME/.docker/bin"
 fish_add_path /opt/homebrew/opt/curl/bin
 
 if type -q brew
-# Setup brew paths
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+    # Setup brew paths
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 end
 
 if type -q gron
@@ -132,18 +138,18 @@ abbr -a gwr 'git worktree remove'
 abbr -a gwa 'git worktree add'
 abbr -a gw 'git worktree'
 abbr --add unset 'set --erase'
-abbr --add pbclear pbcopy < /dev/null
+abbr --add pbclear pbcopy </dev/null
 
 if type -q kubectl
     abbr -a k kubectl
     abbr -a kgetcontext kubectl config current-context
 
     if type -q kubens # fuzzy alternative
-      abbr -a kn kubens
-      abbr -a kx 'kubectx && kubens'
+        abbr -a kn kubens
+        abbr -a kx 'kubectx && kubens'
     else
-      abbr -a kn kubectl config set-context --current --namespace=
-      abbr -a kx kubectl config use-context
+        abbr -a kn kubectl config set-context --current --namespace=
+        abbr -a kx kubectl config use-context
     end
 end
 
@@ -173,7 +179,7 @@ if type -q xh
 end
 
 function z
-  cd
+    cd
 end
 
 if type -q nvim
@@ -256,11 +262,10 @@ set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bi
 fish_add_path ~/.local/bin
 fish_add_path /opt/homebrew/opt/git/share/git-core/contrib/git-jump
 
-
 # BEGIN opam configuration
 # This is useful if you're using opam as it adds:
 #   - the correct directories to the PATH
 #   - auto-completion for the opam binary
 # This section can be safely removed at any time if needed.
-test -r '/Users/clive/.opam/opam-init/init.fish' && source '/Users/clive/.opam/opam-init/init.fish' > /dev/null 2> /dev/null; or true
+test -r '/Users/clive/.opam/opam-init/init.fish' && source '/Users/clive/.opam/opam-init/init.fish' >/dev/null 2>/dev/null; or true
 # END opam configuration

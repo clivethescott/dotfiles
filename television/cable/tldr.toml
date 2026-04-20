@@ -1,0 +1,21 @@
+[metadata]
+name = "tldr"
+description = "TLDR help pages"
+requirements = ["tldr"]
+
+[source]
+command = "tldr --list"
+
+[preview]
+command = "tldr '{}' | bat -plhelp --color=always"
+
+[keybindings]
+enter = "actions:open"
+
+[actions.open]
+description = "Open TLDR page in pager"
+command = "tldr '{}' | bat --color=always --language=help"
+mode = "fork"
+
+[ui]
+preview_panel = { size = 80 }  # 80% width for preview
