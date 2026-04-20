@@ -1,4 +1,5 @@
 # https://github.com/anishathalye/dotbot
+# dotbot -c install.conf.yaml
 - defaults:
     link:
       create: true
@@ -8,7 +9,7 @@
 
 - link:
     # ~/.config/atuin/config.toml: atuin/config.toml
-    ~/.tmux.conf: tmux/tmux.conf
+    ~/.config/tmux/tmux.conf: tmux/tmux.conf
     ~/.config/fish/config.fish: fish/config.fish
     ~/.config/fish/fish_plugins: fish/fish_plugins
     ~/.config/fish/functions: fish/functions
@@ -23,4 +24,8 @@
     ~/.config/starship.toml: starship/starship.toml
     ~/.config/wezterm: wezterm
     ~/.config/aerospace/aerospace.toml: aerospace/aerospace.toml
+    ~/.config/sesh: sesh
+    ~/.config/television: television
+    ~/.config/opencode/opencode.json: opencode/opencode.json
+    ~/.config/opencode/tui.json: opencode/tui.json
 
