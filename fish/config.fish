@@ -31,7 +31,7 @@ set -g fish_key_bindings fish_vi_key_bindings
 
 # set fzf_directory_opts --bind "ctrl-y:execute($EDITOR {}) ctrl-f:reload(fd --type file)"
 
-set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build,.idea"
+set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build,.idea --color=bg:#14161b,fg:white,hl:white,bg+:#14161b,fg+:white,hl+:white"
 set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
 set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 set -gx FZF_CTRL_T_OPTS $FZF_DEFAULT_OPTS
