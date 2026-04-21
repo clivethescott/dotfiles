@@ -5,15 +5,12 @@ vim.opt.spell = true
 vim.opt.spelloptions = 'camel' -- Treat camelCase word parts as separate words
 vim.opt.spelllang = 'en_gb'
 vim.opt.splitright = true
+vim.opt.virtualedit = 'block' -- Allow cursor past EOL in visual block mode
 
 vim.opt.list = true
 vim.opt.listchars = "tab:··,leadmultispace:·"
 -- Enables Nicer colors in the terminal
 vim.opt.termguicolors = true
-
-vim.opt.lazyredraw = true
-
-vim.o.winborder = 'rounded'
 
 -- Override ignorecase if search includes upper case chars
 vim.opt.smartcase = true
@@ -35,6 +32,7 @@ vim.opt.swapfile = false
 -- Sensible split behaviour
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.o.splitkeep = 'screen' -- Keep cursor visible when opening/closing splits
 
 -- Ensure nvim-metals shows error messages
 -- Don't pass messages to |ins-completion-menu|.
@@ -52,6 +50,7 @@ vim.opt.rtp:append('/opt/homebrew/opt/fzf')
 
 -- Save on make
 vim.opt.autowrite = true
+vim.opt.confirm = true -- Prompt to save on :q instead of failing with E37
 
 -- Don't wait too long to complete successive keys, Also controls which-key delay
 vim.o.timeout = true
@@ -59,7 +58,8 @@ vim.opt.timeoutlen = 700
 
 -- Affects redraw speed enable manually
 -- vim.opt.cursorcolumn = false
--- vim.opt.cursorline = true
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = 'number' -- Only highlight line number, subtler than full line
 -- vim.opt.colorcolumn = '100'
 
 -- Always show the signcolumn, otherwise it would shift the text each time
@@ -67,6 +67,7 @@ vim.opt.timeoutlen = 700
 vim.opt.signcolumn = 'yes'
 
 -- autowrap long lines
+vim.opt.breakindent = true -- Wrapped lines keep their indentation visually
 -- vim.opt.wrap = false
 -- vim.opt.linebreak = true
 -- vim.opt.textwidth = 100
@@ -77,6 +78,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.cmdheight = 0
+vim.opt.laststatus = 3 -- Single global statusline instead of one per split
 
 -- Don't show mode change messages
 vim.opt.showmode = false
@@ -115,14 +117,15 @@ vim.opt.modeline = true
 -- Recommended for https://github.com/rmagatti/auto-session
 -- vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.opt.sessionoptions:remove "folds" -- fold errors on session restore
+vim.opt.diffopt:append({ 'linematch:60', 'algorithm:histogram' }) -- Better diff matching
 
 vim.opt.inccommand = "split"
 vim.opt.scrolloff = 1
+vim.opt.smoothscroll = true -- Smoother scrolling for wrapped lines
 
 vim.opt.conceallevel = 1
 
 vim.opt.formatoptions:remove "o"
-vim.opt.showmode = false
 -- vim.o.iskeyword = '@,48-57,_,192-255,-' -- Treat dash as `word` textobject part
 vim.g.sidekick_nes = false
 

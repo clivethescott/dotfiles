@@ -71,7 +71,8 @@ local diagnostics = function(bufnr)
 end
 
 function M.on_attach(client, bufnr)
-  local lsp_group = vim.api.nvim_create_augroup('LspAttachedGroup', { clear = true })
+  -- clear=false: don't wipe existing autocmds when multiple clients attach to same buffer
+  local lsp_group = vim.api.nvim_create_augroup('LspAttachedGroup', { clear = false })
 
   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#copilot
   if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
@@ -109,6 +110,11 @@ function M.on_attach(client, bufnr)
       legend = { tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes },
       range = true,
     }
+  end
+
+  -- Show color previews inline for CSS/JSON (native since 0.10)
+  if supports_method(client, 'textDocument/documentColor', bufnr) then
+    vim.lsp.document_color.enable(true, bufnr, { style = 'virtual' })
   end
 
   -- Prefer LSP folding if client supports it
