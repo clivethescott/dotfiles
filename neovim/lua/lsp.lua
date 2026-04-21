@@ -70,9 +70,9 @@ local diagnostics = function(bufnr)
     { desc = 'Next Warning or Error', buffer = bufnr })
 end
 
+local lsp_group = vim.api.nvim_create_augroup('LspAttachedGroup', { clear = true })
+
 function M.on_attach(client, bufnr)
-  -- clear=false: don't wipe existing autocmds when multiple clients attach to same buffer
-  local lsp_group = vim.api.nvim_create_augroup('LspAttachedGroup', { clear = false })
 
   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#copilot
   if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
