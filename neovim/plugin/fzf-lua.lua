@@ -123,7 +123,6 @@ vim.schedule(function()
   vim.keymap.set("n", "<space>tf", function() require 'fzf-lua'.live_grep({ file_ignore_patterns = ignore_files }) end,
     { desc = "Live grep" })
   vim.keymap.set("n", "<space>tF", "<cmd>FzfLua grep_cWORD<cr>", { desc = "Grep cword" })
-  vim.keymap.set("n", "<space>gb", "<cmd>FzfLua git_branches<cr>", { desc = "Git Branches" })
   vim.keymap.set("n", "<space>tc", "<cmd>FzfLua commands<cr>", { desc = "Commands" })
   vim.keymap.set("n", "<space>tC", "<cmd>FzfLua command_history<cr>", { desc = "Commands History" })
   vim.keymap.set("n", "<space>th", "<cmd>FzfLua helptags<cr>", { desc = "Helptags" })
