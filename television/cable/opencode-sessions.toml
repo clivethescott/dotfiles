@@ -23,14 +23,8 @@ border_type = "rounded"
 [keybindings]
 shortcut = "f4"
 enter = "actions:resume"
-ctrl-d = "actions:delete"
 
 [actions.resume]
 description = "Resume session"
-command = "opencode -s {split:\t:0}"
-mode = "execute"
-
-[actions.delete]
-description = "Delete session"
-command = '''bash -c 'echo "Delete {split:\t:1}?" && read -p "[y/N]: " conf && [[ $conf == "y" ]] && opencode session delete {split:\t:0} ''''
+command = "script -q /dev/null opencode -s {split:\t:0}"
 mode = "execute"
