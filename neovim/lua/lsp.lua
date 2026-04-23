@@ -73,7 +73,6 @@ end
 local lsp_group = vim.api.nvim_create_augroup('LspAttachedGroup', { clear = true })
 
 function M.on_attach(client, bufnr)
-
   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#copilot
   if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
     vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
@@ -114,7 +113,7 @@ function M.on_attach(client, bufnr)
 
   -- Show color previews inline for CSS/JSON (native since 0.10)
   if supports_method(client, 'textDocument/documentColor', bufnr) then
-    vim.lsp.document_color.enable(true, bufnr, { style = 'virtual' })
+    vim.lsp.document_color.enable(true, { bufnr = bufnr }, { style = 'virtual' })
   end
 
   -- Prefer LSP folding if client supports it
@@ -129,14 +128,30 @@ function M.on_attach(client, bufnr)
       autotrigger = not vim.g.blink_enabled,
       convert = function(item)
         local icons = {
-          Text          = '',  Method        = '󰆧', Function      = '󰊕',
-          Constructor   = '',  Field         = '󰜢', Variable      = '󰀫',
-          Class         = '󰠱', Interface     = '',  Module        = '',
-          Property      = '󰜢', Unit          = '󰑭', Value         = '󰎠',
-          Enum          = '',  Keyword       = '󰌋', Snippet       = '',
-          Color         = '󰏘', File          = '󰈙', Reference     = '󰈇',
-          Folder        = '󰉋', EnumMember    = '',  Constant      = '󰏿',
-          Struct        = '󰙅', Event         = '',  Operator      = '󰆕',
+          Text = '',
+          Method = '󰆧',
+          Function = '󰊕',
+          Constructor = '',
+          Field = '󰜢',
+          Variable = '󰀫',
+          Class = '󰠱',
+          Interface = '',
+          Module = '',
+          Property = '󰜢',
+          Unit = '󰑭',
+          Value = '󰎠',
+          Enum = '',
+          Keyword = '󰌋',
+          Snippet = '',
+          Color = '󰏘',
+          File = '󰈙',
+          Reference = '󰈇',
+          Folder = '󰉋',
+          EnumMember = '',
+          Constant = '󰏿',
+          Struct = '󰙅',
+          Event = '',
+          Operator = '󰆕',
           TypeParameter = '󰊄',
         }
         local name = vim.lsp.protocol.CompletionItemKind[item.kind]
