@@ -1,9 +1,9 @@
+local lsp_group = vim.api.nvim_create_augroup('LspAttachGroup', { clear = true })
+
 vim.schedule(function()
   vim.pack.add({ { src = 'https://github.com/b0o/schemastore.nvim', version = 'main' } })
   vim.pack.add({ { src = 'https://github.com/qvalentin/helm-ls.nvim', version = 'main' } })
   vim.pack.add({ { src = 'https://github.com/neovim/nvim-lspconfig', version = 'master' } })
-
-  local lsp_group = vim.api.nvim_create_augroup('LspAttachGroup', { clear = true })
 
   vim.api.nvim_create_autocmd({ "LspAttach" }, {
     group = lsp_group,
