@@ -1,39 +1,48 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "permission": {
-    "bash": {
-      "*": "ask",
-      "git *": "allow",
-      "npm *": "allow",
-      "rm *": "deny",
-      "grep *": "allow",
-      "rg *": "allow",
-      "jq *": "allow",
-      "ls *": "allow"
+    "$schema": "https://opencode.ai/config.json",
+    "permission": {
+        "bash": {
+            "*": "ask",
+            "git *": "allow",
+            "npm *": "allow",
+            "rm *": "deny",
+            "grep *": "allow",
+            "rg *": "allow",
+            "jq *": "allow",
+            "ls *": "allow"
+        },
+        "external_directory": {
+            "*": "ask",
+            "/tmp*": "allow"
+        },
+        "read": {
+            "*": "allow",
+            "~/.config/fish/*.fish": "ask"
+        },
+        "edit": {
+            "*": "ask",
+            "~/IdeaProjects/*": "allow",
+            "~/Code/*": "allow"
+        }
     },
-    "external_directory": {
-      "*": "ask",
-      "/tmp*": "allow"
+    "provider": {
+        "amazon-bedrock": {
+            "options": {
+                "region": "eu-central-1",
+                "profile": "twdc-bedrock-central"
+            }
+        }
     },
-    "read": {
-      "*": "allow",
-      "~/.config/fish/*.fish": "ask"
-    },
-    "edit": {
-      "*": "ask",
-      "~/IdeaProjects/*": "allow",
-      "~/Code/*": "allow"
+    "plugin": [
+        "oh-my-openagent@latest"
+    ],
+    "mcp": {
+        "codebase-memory-mcp": {
+            "enabled": false,
+            "type": "local",
+            "command": [
+                "codebase-memory-mcp"
+            ]
+        }
     }
-  },
-  "provider": {
-    "amazon-bedrock": {
-      "options": {
-        "region": "eu-central-1",
-        "profile": "twdc-bedrock-central"
-      }
-    }
-  },
-  "plugin": [
-    "oh-my-openagent@latest"
-  ]
 }

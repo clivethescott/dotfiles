@@ -72,6 +72,8 @@ end
 
 local lsp_group = vim.api.nvim_create_augroup('LspAttachedGroup', { clear = true })
 
+---@param client vim.lsp.Client
+---@param bufnr integer
 function M.on_attach(client, bufnr)
   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#copilot
   if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
@@ -104,16 +106,18 @@ function M.on_attach(client, bufnr)
   -- seems that Neovim does not pick up on gopls' semantic token support
   if client.name == 'gopls' and not client.server_capabilities.semanticTokensProvider then
     local semantic = client.config.capabilities.textDocument.semanticTokens
-    client.server_capabilities.semanticTokensProvider = {
-      full = true,
-      legend = { tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes },
-      range = true,
-    }
+    if semantic then
+      client.server_capabilities.semanticTokensProvider = {
+        full = true,
+        legend = { tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes },
+        range = true,
+      }
+    end
   end
 
   -- Show color previews inline for CSS/JSON (native since 0.10)
   if supports_method(client, 'textDocument/documentColor', bufnr) then
-    vim.lsp.document_color.enable(true, { bufnr = bufnr }, { style = 'virtual' })
+    vim.lsp.document_color.enable(true, { client_id = client.id }, { style = 'virtual' })
   end
 
   -- Prefer LSP folding if client supports it

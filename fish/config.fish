@@ -157,10 +157,6 @@ if type -q dcli
     abbr -a dashlane dcli
 end
 
-if type -q jira
-    abbr -a jv 'jira issue view'
-end
-
 if type -q jless
     abbr -a jless 'jless --relative-line-numbers'
     abbr -a yless 'jless --relative-line-numbers --yaml'
