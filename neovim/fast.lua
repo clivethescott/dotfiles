@@ -307,13 +307,13 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
     end
 
     -- :h vim.lsp.foldexpr
-    if client:supports_method('textDocument/foldingRange', bufnr) then
+    if client:supports_method(vim.lsp.protocol.Methods.textDocument_foldingRange, bufnr) then
       local win = vim.api.nvim_get_current_win()
       vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
     end
 
 
-    if client:supports_method('textDocument/completion', bufnr) then
+    if client:supports_method(vim.lsp.protocol.Methods.textDocument_completion, bufnr) then
       local icons = {
         Text = '',
         Method = '󰆧',
@@ -355,16 +355,16 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
       })
     end
 
-    if client:supports_method('textDocument/signatureHelp', bufnr) then
+    if client:supports_method(vim.lsp.protocol.Methods.textDocument_signatureHelp, bufnr) then
       vim.keymap.set({ 'n', 'i' }, '<M-s>', vim.lsp.buf.signature_help, { buffer = true, desc = 'Signature help' })
     end
 
-    if client:supports_method('textDocument/inlayHint', bufnr) then
+    if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
       vim.keymap.set({ 'n', 'i' }, '<M-i>',
         function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end, { desc = 'Toggle inlay hints' })
     end
 
-    if client:supports_method('textDocument/formatting', bufnr) then
+    if client:supports_method(vim.lsp.protocol.Methods.textDocument_formatting, bufnr) then
       vim.keymap.set({ 'n', 'v' }, '<leader>f', vim.lsp.buf.format, { buffer = true, desc = 'LSP Format' })
       vim.b.formatexpr = "v:lua.vim.lsp.formatexpr()"
     else

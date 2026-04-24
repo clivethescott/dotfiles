@@ -116,18 +116,18 @@ function M.on_attach(client, bufnr)
   end
 
   -- Show color previews inline for CSS/JSON (native since 0.10)
-  if supports_method(client, 'textDocument/documentColor', bufnr) then
+  if supports_method(client, vim.lsp.protocol.Methods.textDocument_documentColor, bufnr) then
     vim.lsp.document_color.enable(true, { client_id = client.id }, { style = 'virtual' })
   end
 
   -- Prefer LSP folding if client supports it
   -- :h vim.lsp.foldexpr
-  if supports_method(client, 'textDocument/foldingRange', bufnr) then
+  if supports_method(client, vim.lsp.protocol.Methods.textDocument_foldingRange, bufnr) then
     local win = vim.api.nvim_get_current_win()
     vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
   end
 
-  if supports_method(client, 'textDocument/completion', bufnr) then
+  if supports_method(client, vim.lsp.protocol.Methods.textDocument_completion, bufnr) then
     vim.lsp.completion.enable(true, client.id, bufnr, {
       autotrigger = not vim.g.blink_enabled,
       convert = function(item)
@@ -170,18 +170,18 @@ function M.on_attach(client, bufnr)
   end
 
 
-  if supports_method(client, 'textDocument/signatureHelp', bufnr) then
+  if supports_method(client, vim.lsp.protocol.Methods.textDocument_signatureHelp, bufnr) then
     vim.keymap.set({ 'n', 'i' }, '<M-s>', vim.lsp.buf.signature_help, { buffer = true, desc = 'Signature help' })
     -- default vim.keymap.set('i', '<c-s>',vim.lsp.buf.signature_help)
   end
 
 
-  if supports_method(client, 'textDocument/rename', bufnr) then
+  if supports_method(client, vim.lsp.protocol.Methods.textDocument_rename, bufnr) then
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = true, desc = 'LSP Rename' })
     -- default vim.keymap.set('n', 'grn', vim.lsp.buf.rename)
   end
 
-  if supports_method(client, 'textDocument/declaration', bufnr) then
+  if supports_method(client, vim.lsp.protocol.Methods.textDocument_declaration, bufnr) then
     vim.keymap.set('n', 'grd', function()
       if vim.g.use_picker == 'snacks.picker' then
         require 'snacks'.picker.lsp_declarations()
@@ -189,7 +189,7 @@ function M.on_attach(client, bufnr)
         require 'fzf-lua'.lsp_declarations()
       end
     end, { buffer = true, desc = 'LSP Declaration' })
-  elseif supports_method(client, 'textDocument/definition', bufnr) then
+  elseif supports_method(client, vim.lsp.protocol.Methods.textDocument_definition, bufnr) then
     -- default vim.keymap.set('n', 'grt', vim.lsp.buf.type_definition)
     -- vim.keymap.set('n', 'grt', function()
     --   if vim.g.use_picker == 'snacks.picker' then
@@ -202,7 +202,7 @@ function M.on_attach(client, bufnr)
   else
   end
 
-  if supports_method(client, 'textDocument/inlayHint', bufnr) then
+  if supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
     vim.keymap.set({ 'n', 'i' }, '<M-i>',
       function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end, { desc = 'Toggle inlay hints' })
 
@@ -219,7 +219,7 @@ function M.on_attach(client, bufnr)
   end
 
 
-  if supports_method(client, 'textDocument/references', bufnr) then
+  if supports_method(client, vim.lsp.protocol.Methods.textDocument_references, bufnr) then
     -- default vim.keymap.set('n', 'grr', vim.lsp.buf.references)
     vim.keymap.set('n', 'gRr', function()
       if vim.g.use_picker == 'snacks.picker' then
@@ -230,7 +230,7 @@ function M.on_attach(client, bufnr)
     end, { buffer = true, desc = 'LSP References' })
   end
 
-  if supports_method(client, 'textDocument/codeLens', bufnr) then
+  if supports_method(client, vim.lsp.protocol.Methods.textDocument_codeLens, bufnr) then
     codelens(bufnr, lsp_group)
   end
 
@@ -238,10 +238,10 @@ function M.on_attach(client, bufnr)
   if has_conform then
     vim.b.formatexpr = "v:lua.require'conform'.formatexpr()"
   end
-  if supports_method(client, "textDocument/formatting", bufnr) or has_conform then
+  if supports_method(client, vim.lsp.protocol.Methods.textDocument_formatting, bufnr) or has_conform then
     formatting(client, bufnr)
   end
-  if supports_method(client, "textDocument/diagnostic", bufnr) or client.name == "metals" then
+  if supports_method(client, vim.lsp.protocol.Methods.textDocument_diagnostic, bufnr) or client.name == "metals" then
     diagnostics(bufnr)
   end
 end

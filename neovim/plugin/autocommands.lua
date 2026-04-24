@@ -14,10 +14,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_create_autocmd('LspNotify', {
   group = vim.api.nvim_create_augroup('MyLspNotify', { clear = true }),
   callback = function(args)
-    if args.data.method == 'textDocument/didOpen' then
+    if args.data.method == vim.lsp.protocol.Methods.textDocument_didOpen then
       local winid = vim.fn.bufwinid(args.buf) or 0
       local client = vim.lsp.get_client_by_id(args.data.client_id)
-      if client and client:supports_method('textDocument/foldingRange', args.buf) then
+      if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_foldingRange, args.buf) then
         vim.lsp.foldclose('comment', winid)
         vim.lsp.foldclose('imports', winid)
       end
@@ -100,7 +100,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     -- argument after params if you find that you have to write the file
     -- twice for changes to be saved.
     -- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
-    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", range_params)
+    local result = vim.lsp.buf_request_sync(0, vim.lsp.protocol.Methods.textDocument_codeAction, range_params)
     for cid, res in pairs(result or {}) do
       for _, r in pairs(res.result or {}) do
         if r.edit then
