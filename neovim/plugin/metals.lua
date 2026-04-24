@@ -15,11 +15,11 @@ metals_config.inlayHints = {
   },
 }
 metals_config.settings = {
-  disabledMode = true,
+  disabledMode = false,
   -- disabledMode = vim.env.METALS == '0',
   -- startMcpServer = false,
-  -- serverVersion = '1.6.5',
-  serverVersion = '2.0.0-M8',
+  -- serverVersion = '1.6.7',
+  serverVersion = '2.0.0-M9',
   startMcpServer = false,   -- https://scalameta.org/metals/blog/#standalone-mcp-server
   fallbackScalaVersion = '2.13.16',
   showImplicitArguments = true,
