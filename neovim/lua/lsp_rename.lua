@@ -104,8 +104,8 @@ function M.on_rename_file(from, to, rename)
   end
 
   for _, client in ipairs(clients) do
-    if client:supports_method("workspace/didRenameFiles", 0) then
-      client.notify("workspace/didRenameFiles", changes)
+    if client:supports_method(vim.lsp.protocol.Methods.workspace_didRenameFiles, 0) then
+      client:notify(vim.lsp.protocol.Methods.workspace_didRenameFiles, changes)
     end
   end
 end
