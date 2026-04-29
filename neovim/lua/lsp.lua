@@ -11,22 +11,6 @@ local supports_method = function(client, method, bufnr)
     return client:supports_method(method)
   end
 end
-
-local codelens = function(bufnr, au_group)
-  -- vim.keymap.set('n', 'grx',
-  --   function() vim.lsp.codelens.run() end, { buffer = true, desc = 'Run Codelens' })
-
-  vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
-    group = au_group,
-    buffer = bufnr,
-    desc = 'Toggle code lens for supported languages',
-    callback = function()
-      local opts = { bufnr = bufnr }
-      vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled(opts), opts)
-    end
-  })
-end
-
 local formatting = function(client, bufnr)
   local conform_format = function()
     require 'conform'.format({
@@ -231,7 +215,14 @@ function M.on_attach(client, bufnr)
   end
 
   if supports_method(client, vim.lsp.protocol.Methods.textDocument_codeLens, bufnr) then
-    codelens(bufnr, lsp_group)
+    -- vim.keymap.set('n', 'grx',
+    --   function() vim.lsp.codelens.run() end, { buffer = true, desc = 'Run Codelens' })
+    vim.keymap.set('n', 'grX',
+      function()
+        local opts = { bufnr = bufnr }
+        local code_lens_enabled = vim.lsp.codelens.is_enabled(opts)
+        vim.lsp.codelens.enable(not code_lens_enabled, opts)
+      end, { buffer = bufnr, desc = 'Toggle codelens' })
   end
 
   local has_conform, _ = pcall(require, 'conform') -- has LSP as fallback
