@@ -23,7 +23,7 @@ vim.keymap.set('n', '<space>lD', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = 'Toggle diagnostics' })
 
--- vim.keymap.set('n', 'Q', ':qa<cr>')
+vim.keymap.set('n', 'Q', ':qa<cr>')
 vim.keymap.set('n', '<leader>q', ':qa<cr>')
 vim.keymap.set('n', '<leader>Q', ':qa!<cr>')
 vim.keymap.set('n', 'Y', 'yy')
