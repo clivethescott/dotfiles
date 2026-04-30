@@ -50,7 +50,6 @@ vim.opt.rtp:append('/opt/homebrew/opt/fzf')
 
 -- Save on make
 vim.opt.autowrite = true
-vim.opt.confirm = true -- Prompt to save on :q instead of failing with E37
 
 -- Don't wait too long to complete successive keys, Also controls which-key delay
 vim.o.timeout = true
