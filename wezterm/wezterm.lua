@@ -83,6 +83,9 @@ return {
     border_bottom_color = '#484848',
     border_top_color = '#484848',
   },
+  quit_when_all_windows_are_closed = false,
+  initial_cols = 200,
+  initial_rows = 160,
   audible_bell = "Disabled",
   window_close_confirmation = "NeverPrompt",
   color_schemes = {
