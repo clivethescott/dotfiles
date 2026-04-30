@@ -1,48 +1,51 @@
 {
-    "$schema": "https://opencode.ai/config.json",
-    "permission": {
-        "bash": {
-            "*": "ask",
-            "git *": "allow",
-            "npm *": "allow",
-            "rm *": "deny",
-            "grep *": "allow",
-            "rg *": "allow",
-            "jq *": "allow",
-            "ls *": "allow"
-        },
-        "external_directory": {
-            "*": "ask",
-            "/tmp*": "allow"
-        },
-        "read": {
-            "*": "allow",
-            "~/.config/fish/*.fish": "ask"
-        },
-        "edit": {
-            "*": "ask",
-            "~/IdeaProjects/*": "allow",
-            "~/Code/*": "allow"
-        }
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "git *": "allow",
+      "npm *": "allow",
+      "rm *": "deny",
+      "grep *": "allow",
+      "rg *": "allow",
+      "jq *": "allow",
+      "ls *": "allow"
     },
-    "provider": {
-        "amazon-bedrock": {
-            "options": {
-                "region": "eu-central-1",
-                "profile": "twdc-bedrock-central"
-            }
-        }
+    "external_directory": {
+      "*": "ask",
+      "/tmp*": "allow"
     },
-    "plugin": [
-        "oh-my-openagent@latest"
-    ],
-    "mcp": {
-        "codebase-memory-mcp": {
-            "enabled": false,
-            "type": "local",
-            "command": [
-                "codebase-memory-mcp"
-            ]
-        }
+    "read": {
+      "*": "allow",
+      "~/.config/fish/*.fish": "ask"
+    },
+    "edit": {
+      "*": "ask",
+      "~/IdeaProjects/*": "allow",
+      "~/Code/*": "allow"
     }
+  },
+  "provider": {
+    "amazon-bedrock": {
+      "options": {
+        "region": "eu-central-1",
+        "profile": "twdc-bedrock-central"
+      }
+    }
+  },
+  "plugin": [],
+  "mcp": {
+    "codebase-memory-mcp": {
+      "enabled": false,
+      "type": "local",
+      "command": [
+        "codebase-memory-mcp"
+      ]
+    },
+    "exa": {
+      "type": "remote",
+      "url": "https://mcp.exa.ai/mcp",
+      "enabled": true
+    }
+  }
 }

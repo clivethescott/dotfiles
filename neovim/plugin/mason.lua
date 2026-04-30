@@ -31,6 +31,8 @@ local mason_packages = {
   'copilot-language-server',
   'helm-ls',
   'tinymist',
+  'markdownlint-cli2',
+  'markdown-toc',
   -- these are installed manually / not in mason registry
   -- 'kulala_ls',
   -- 'nushell',
