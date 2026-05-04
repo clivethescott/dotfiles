@@ -33,3 +33,10 @@
 
 [alias]
 	jump = git-jump
+	hist = log --follow --patch
+	last = log -1 HEAD --stat
+	up = pull --ff --quiet
+	st = status --short
+	undo = reset HEAD~1 --mixed
+	tree = log --all --graph --decorate --oneline
+	yesterday = log --all --author=clive --since='9am yesterday'

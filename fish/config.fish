@@ -129,6 +129,7 @@ if type -q lazydocker
     abbr -a lld lazydocker
 end
 
+abbr -a g 'git'
 abbr -a gd 'git diff'
 abbr -a gs 'git status --short'
 abbr -a gp 'git pull --ff --quiet'
@@ -177,6 +178,8 @@ end
 function z
     cd
 end
+
+abbr -a cdr 'cd $(git rev-parse --show-toplevel)'
 
 if type -q nvim
     abbr -a vim nvim
