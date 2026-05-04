@@ -1,0 +1,205 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+
+  "runtime_fallback": {
+    "enabled": true,
+    "retry_on_errors": [400, 429, 503, 529],
+    "max_fallback_attempts": 3,
+    "cooldown_seconds": 60,
+    "timeout_seconds": 30,
+    "notify_on_fallback": true
+  },
+
+  "agents": {
+    "sisyphus": {
+      "model": "opencode-go/kimi-k2.6",
+      "variant": "max",
+      "fallback_models": [
+        "opencode-go/deepseek-v4-pro",
+        "opencode-go/qwen3.6-plus",
+        "opencode-go/glm-5.1"
+      ],
+      "ultrawork": {
+        "model": "opencode-go/kimi-k2.6",
+        "variant": "max"
+      },
+      "prompt_append": "User works primarily on backend systems: API design, service architecture, and business logic. Prioritize robustness, clear interfaces, and testability over visual polish."
+    },
+
+    "hephaestus": {
+      "model": "opencode-go/deepseek-v4-pro",
+      "fallback_models": [
+        "opencode-go/kimi-k2.6",
+        "opencode-go/glm-5.1"
+      ],
+      "prompt_append": "Explore thoroughly, then implement. Prefer small, testable changes. Focus on backend patterns: functional programming patterns, clean architecture."
+    },
+
+    "oracle": {
+      "model": "opencode-go/glm-5.1",
+      "variant": "high",
+      "fallback_models": [
+        "opencode-go/kimi-k2.6",
+        "opencode-go/deepseek-v4-pro"
+      ],
+      "prompt_append": "Focus on backend architecture: data flow, service boundaries, API contracts, database schema design, and scalability considerations."
+    },
+
+    "prometheus": {
+      "model": "opencode-go/glm-5.1",
+      "variant": "max",
+      "fallback_models": [
+        "opencode-go/qwen3.6-plus",
+        "opencode-go/deepseek-v4-pro"
+      ],
+      "prompt_append": "Always interview first. Validate scope before planning. Backend projects often have hidden data model complexity — probe for domain entities, relationships, and transaction boundaries."
+    },
+
+    "metis": {
+      "model": "opencode-go/qwen3.6-plus",
+      "fallback_models": [
+        "opencode-go/deepseek-v4-pro",
+        "opencode-go/glm-5.1"
+      ]
+    },
+
+    "momus": {
+      "model": "opencode-go/qwen3.6-plus",
+      "fallback_models": [
+        "opencode-go/kimi-k2.6",
+        "opencode-go/glm-5.1"
+      ]
+    },
+
+    "atlas": {
+      "model": "opencode-go/deepseek-v4-pro",
+      "fallback_models": [
+        "opencode-go/kimi-k2.6",
+        "opencode-go/deepseek-v4-flash"
+      ]
+    },
+
+    "librarian": {
+      "model": "opencode-go/deepseek-v4-flash",
+      "fallback_models": [
+        "opencode-go/qwen3.6-plus",
+        "opencode-go/minimax-m2.7-highspeed"
+      ]
+    },
+
+    "explore": {
+      "model": "opencode-go/deepseek-v4-flash",
+      "fallback_models": [
+        "opencode-go/minimax-m2.7-highspeed",
+        "opencode/gpt-5-nano"
+      ]
+    },
+
+    "multimodal-looker": {
+      "model": "opencode-go/kimi-k2.6",
+      "variant": "medium",
+      "fallback_models": [
+        "opencode-go/qwen3.6-plus",
+        "opencode/gpt-5-nano"
+      ]
+    },
+
+    "sisyphus-junior": {
+      "model": "opencode-go/deepseek-v4-flash",
+      "fallback_models": [
+        "opencode-go/deepseek-v4-pro",
+        "opencode-go/qwen3.6-plus"
+      ]
+    }
+  },
+
+  "categories": {
+    "deep": {
+      "model": "opencode-go/kimi-k2.6",
+      "variant": "medium",
+      "fallback_models": [
+        "opencode-go/deepseek-v4-pro",
+        "opencode-go/glm-5.1"
+      ]
+    },
+
+    "ultrabrain": {
+      "model": "opencode-go/glm-5.1",
+      "variant": "xhigh",
+      "fallback_models": [
+        "opencode-go/kimi-k2.6",
+        "opencode-go/deepseek-v4-pro"
+      ]
+    },
+
+    "unspecified-high": {
+      "model": "opencode-go/deepseek-v4-pro",
+      "fallback_models": [
+        "opencode-go/kimi-k2.6",
+        "opencode-go/glm-5.1"
+      ]
+    },
+
+    "unspecified-low": {
+      "model": "opencode-go/deepseek-v4-flash",
+      "fallback_models": [
+        "opencode-go/qwen3.6-plus",
+        "opencode-go/minimax-m2.7"
+      ]
+    },
+
+    "quick": {
+      "model": "opencode-go/deepseek-v4-flash",
+      "fallback_models": [
+        "opencode-go/minimax-m2.7-highspeed",
+        "opencode/gpt-5-nano"
+      ]
+    },
+
+    "visual-engineering": {
+      "model": "opencode-go/kimi-k2.6",
+      "variant": "medium",
+      "fallback_models": [
+        "opencode-go/qwen3.6-plus",
+        "opencode-go/glm-5.1"
+      ]
+    },
+
+    "artistry": {
+      "model": "opencode-go/glm-5.1",
+      "variant": "high",
+      "fallback_models": [
+        "opencode-go/qwen3.6-plus",
+        "opencode-go/kimi-k2.6"
+      ]
+    },
+
+    "writing": {
+      "model": "opencode-go/qwen3.6-plus",
+      "fallback_models": [
+        "opencode-go/deepseek-v4-flash"
+      ]
+    }
+  },
+
+  "background_task": {
+    "defaultConcurrency": 5,
+    "staleTimeoutMs": 180000,
+    "providerConcurrency": {
+      "opencode-go": 10
+    },
+    "modelConcurrency": {
+      "opencode-go/kimi-k2.6": 2,
+      "opencode-go/deepseek-v4-pro": 3,
+      "opencode-go/deepseek-v4-flash": 20,
+      "opencode-go/glm-5.1": 2,
+      "opencode-go/qwen3.6-plus": 5
+    }
+  },
+
+  "git_master": {
+    "commit_footer": true,
+    "include_co_authored_by": true,
+    "git_env_prefix": "GIT_MASTER=1"
+  }
+}
