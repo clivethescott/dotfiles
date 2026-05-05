@@ -1,7 +1,7 @@
 [include]
-    path = .local.gitconfig
+    path = .gitconfig-local
 [include]
-    path = ~/dotfiles/git/delta-gitconfig
+    path = ~/dotfiles/git/.delta.gitconfig
 [init]
 	defaultBranch = main
 [commit]
