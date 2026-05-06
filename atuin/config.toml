@@ -105,17 +105,42 @@ ctrl_n_shortcuts = true
 # ]
 history_filter = [
   "^ls",
+  "^sbtn",
   "^cd",
   "^mv",
   "^rm*",
-  "^nvim$",
-  "^vim$",
+  "^nvim",
+  "^vim",
   "^vi$",
   "which",
   "^brew upgrade$",
-  "git commit",
+  "^brew search",
+  "^brew install",
+  "^git commit",
+  "^git clone",
+  "^git log$",
   "^git switch",
   "^cp",
+  "^awsmyid",
+  "^op",
+  "^lazygit",
+  "^brew upgrade$",
+  "^head",
+  "^git pull",
+  "^git add",
+  "^git status$",
+  "^less",
+  "^mkdir",
+  "^bat",
+  "^go",
+  "export",
+  "^z",
+  "^wc -l",
+  "^mise",
+  "^devx",
+  "^gh pr view",
+  "^gh pr diff",
+  "^jira issue view",
 ]
 
 store_failed = false
@@ -206,11 +231,8 @@ enter_accept = false
 # common_prefix = ["sudo"]
 
 ## Set commands that will be completely ignored from stats
-# ignored_commands = [
-#   "cd",
-#   "ls",
-#   "vi"
-# ]
+ignored_commands = [
+ ]
 
 [keys]
 # Defaults to true. If disabled, using the up/down key won't exit the TUI when scrolled past the first/last entry.
