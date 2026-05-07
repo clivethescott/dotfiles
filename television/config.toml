@@ -253,4 +253,4 @@ fallback_channel = "files"
 "smart_autocomplete" = "ctrl-t"
 # controls which keybinding should trigger tv
 # for command history
-"command_history" = "alt-r"
+"command_history" = "alt-m"
