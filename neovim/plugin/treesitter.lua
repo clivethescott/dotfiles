@@ -93,9 +93,9 @@ vim.api.nvim_create_autocmd('FileType', {
     -- after `vim.treesitter.start` call this if needed
 
     -- replicate `indent = { enable = true }`
-    if not vim.tbl_contains(disable_indent_fts, filetype) then
-      -- strange issue where let is indented? (set in :h indentkeys)
-      vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-    end
+    -- if not vim.tbl_contains(disable_indent_fts, filetype) then
+    --   -- strange issue where let is indented? (set in :h indentkeys)
+    --   vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    -- end
   end,
 })

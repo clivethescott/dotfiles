@@ -82,10 +82,11 @@ vim.opt.laststatus = 3 -- Single global statusline instead of one per split
 -- Don't show mode change messages
 vim.opt.showmode = false
 
--- Number of spaces equal to a tab
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+-- -- Number of spaces equal to a tab
+-- setup in .editorconfig
+-- vim.opt.tabstop = 2
+-- vim.opt.softtabstop = 2
+-- vim.opt.shiftwidth = 2
 -- Tabs become spaces
 vim.opt.expandtab = true
 vim.opt.smarttab = true
