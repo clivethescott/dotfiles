@@ -5,6 +5,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     vim.pack.add({ { src = 'https://github.com/nvim-treesitter/nvim-treesitter-context', version = 'master' } })
 
     require('treesitter-context').setup({
+      enable = false,
       multiline_threshold = 999,
       -- separator = '-',
       max_lines = '20%',
