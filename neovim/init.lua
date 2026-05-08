@@ -42,7 +42,8 @@ vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)
     local name, kind = ev.data.spec.name, ev.data.kind
     if name == 'blink.cmp' and kind ~= 'delete' then
-      local res = vim.system({ 'cargo', 'build', '--release' }, { cwd = ev.data.path, timeout = 10000 }, on_exit):wait()
+      local res = vim.system({ 'cargo', 'build', '--release' },
+        { cwd = ev.data.path, timeout = 10000 }, on_exit):wait()
       if vim.v.shell_error ~= 0 then
         vim.notify('failed to compile blink.cmp:' .. res, vim.log.levels.ERROR)
       else

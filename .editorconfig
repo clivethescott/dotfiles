@@ -1,0 +1,29 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+max_line_length = 100
+trim_trailing_whitespace = true
+insert_final_newline = true
+tab_width = 4
+
+[*.{diff,md}]
+trim_trailing_whitespace = false
+
+[*.rs]
+indent_size = 4
+
+[*.go]
+indent_style = tab
+
+[*.{py,ipynb}]
+indent_size = 4
+
+[*.{java,scala,sc,sbt}]
+indent_size = 4
+
+[{Makefile,makefile,*.mk}]
+indent_style = tab
