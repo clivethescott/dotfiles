@@ -16,7 +16,6 @@
     ~/.config/ghostty/config: ghostty/config
     ~/.gitconfig: git/.gitconfig
     ~/.gitignore: git/.gitignore
-    ~/.config/lazygit/config.yml: lazygit/config.yml
     ~/.config/mise/config.toml: mise/config.toml
     ~/.config/nvim: neovim
     ~/.config/nushell/config.nu: nushell/config.nu
@@ -32,3 +31,5 @@
     ~/Code/.editorconfig: .editorconfig
     ~/IdeaProjects/.editorconfig: .editorconfig
 
+- shell:
+  - [cp ~/dotfiles/lazygit/config.yml ~/.config/lazygit, Copying lazygit config]
