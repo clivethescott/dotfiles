@@ -1,7 +1,6 @@
 venv/
 __pycache__/
 target/
-project/project
 .metals/
 node_modules/
 .bloop/
@@ -10,3 +9,13 @@ undodir/
 .scala-build
 .idea/
 .g8
+.terraform-version
+.terraform/
+http-client.env.json
+*.sbtopts
+# infiniloom
+**/.infiniloom/
+**/codebase-context.xml
+**/.worktreeinclude
+**/CLAUDE.md
+**/.claude/

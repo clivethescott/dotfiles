@@ -6,17 +6,42 @@
   "permission": {
     "bash": {
       "*": "ask",
+      "git rebase": "ask",
+      "git rm": "ask",
       "git *": "allow",
       "npm *": "allow",
-      "rm *": "deny",
+      "rm -rf *": "deny",
       "grep *": "allow",
       "rg *": "allow",
+      "cat *": "allow",
+      "head *": "allow",
+      "fd *": "allow",
+      "find *": "allow",
+      "tail *": "allow",
+      "wc *": "allow",
+      "sort *": "allow",
+      "uniq *": "allow",
       "jq *": "allow",
-      "ls *": "allow"
+      "ls *": "allow",
+      "less *": "allow",
+      "bat *": "allow",
+      "gh pr close *": "ask",
+      "gh pr *": "allow",
+      "gh api *": "allow",
+      "nexus *": "allow",
+      "jira issue delete *": "ask",
+      "jira issue *": "allow",
+      "devx *": "allow",
+      "sbt *": "allow",
+      "sbtn *": "allow"
     },
     "external_directory": {
       "*": "ask",
-      "/tmp*": "allow"
+      "/tmp*": "allow",
+      "/var/folders*": "allow",
+      "~/IdeaProjects/*": "allow",
+      "~/Code/*": "allow",
+      "~/Downloads/*": "allow"
     },
     "read": {
       "*": "allow",
@@ -25,7 +50,8 @@
     "edit": {
       "*": "ask",
       "~/IdeaProjects/*": "allow",
-      "~/Code/*": "allow"
+      "~/Code/*": "allow",
+      "~/Downloads/*": "allow"
     }
   },
   "provider": {
