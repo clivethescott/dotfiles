@@ -19,7 +19,7 @@ metals_config.settings = {
   -- disabledMode = vim.env.METALS == '0',
   -- startMcpServer = false,
   -- serverVersion = '1.6.7',
-  serverVersion = '2.0.0-M9',
+  serverVersion = '2.0.0-M12',
   startMcpServer = false,   -- https://scalameta.org/metals/blog/#standalone-mcp-server
   fallbackScalaVersion = '2.13.16',
   showImplicitArguments = true,
@@ -35,7 +35,7 @@ metals_config.settings = {
     "com.github.swagger.akka.javadsl"
   },
   testUserInterface = "Test Explorer",
-  autoImportBuild = 'all',
+  -- autoImportBuild = 'all',
   defaultBspToBuildTool = true,
   inlayHints = {
     byNameParameters = { enable = false },
