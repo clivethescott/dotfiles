@@ -25,14 +25,17 @@ local on_attach = function()
   vim.keymap.set('n', '<space>gd', gitsigns.preview_hunk, { desc = 'Show Diff' })
 
   vim.keymap.set('n', '<space>gu', gitsigns.reset_hunk, { desc = 'Undo Change' })
-  vim.keymap.set('v', '<space>gu', function() gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end,
+  vim.keymap.set('v', '<space>gu',
+    function() gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end,
     { desc = 'Undo Change' })
   vim.keymap.set('n', '<space>gU', gitsigns.reset_buffer, { desc = 'Undo All Changes' })
 
   vim.keymap.set('n', '<space>gb', gitsigns.toggle_current_line_blame, { desc = 'Toggle blame' })
-  vim.keymap.set('n', '<space>gq', function() gitsigns.setqflist('all') end, { desc = 'All changes to quickfix' })
+  vim.keymap.set('n', '<space>gq', function() gitsigns.setqflist('all') end,
+    { desc = 'All changes to quickfix' })
   vim.keymap.set('n', '<space>gQ', gitsigns.setqflist, { desc = 'Buf changes to quickfix' })
-  vim.keymap.set('n', '<space>ga', function() gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end)
+  vim.keymap.set('n', '<space>ga',
+    function() gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end)
   vim.keymap.set('n', '<space>gA', gitsigns.stage_buffer)
 end
 
