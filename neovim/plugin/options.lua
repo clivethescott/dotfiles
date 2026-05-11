@@ -123,7 +123,7 @@ vim.opt.inccommand = "split"
 vim.opt.scrolloff = 1
 vim.opt.smoothscroll = true -- Smoother scrolling for wrapped lines
 
-vim.opt.conceallevel = 1
+-- vim.opt.conceallevel = 1
 
 vim.opt.formatoptions:remove "o"
 -- vim.o.iskeyword = '@,48-57,_,192-255,-' -- Treat dash as `word` textobject part
