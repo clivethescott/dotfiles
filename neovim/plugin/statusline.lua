@@ -64,6 +64,7 @@ end
 
 Statusline.short_path = function()
   local file = vim.api.nvim_buf_get_name(0)
+  file = vim.fn.fnamemodify(file, ":~")
   local parts = vim.split(file, '/')
 
   local take_last = 3
@@ -71,7 +72,7 @@ Statusline.short_path = function()
     return file
   end
 
-  return '...' .. table.concat(parts, '/', math.max(1, #parts - take_last))
+  return table.concat(parts, '/', math.max(1, #parts - take_last))
 end
 
 Statusline.inactive = function()
