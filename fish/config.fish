@@ -260,6 +260,7 @@ set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bi
 
 fish_add_path ~/.local/bin
 fish_add_path /opt/homebrew/opt/git/share/git-core/contrib/git-jump
+fish_add_path /Users/clive.gurure/.local/share/nvim/mason/bin
 
 # BEGIN opam configuration
 # This is useful if you're using opam as it adds:
