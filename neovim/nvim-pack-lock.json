@@ -24,11 +24,11 @@
       "version": "'main'"
     },
     "fzf-lua": {
-      "rev": "64590411e6cf3d603d1e1bdad3a3d051f2f5a91a",
+      "rev": "23f71140754b9162551dc8ccc1d6346e4275ecc2",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitlinker.nvim": {
-      "rev": "d7adb5e4ba5bab4fd443a3f4c46af3f4c864685d",
+      "rev": "5e8d9f0deb34b079baf84ffe0abbe0475a6b5372",
       "src": "https://github.com/linrongbin16/gitlinker.nvim"
     },
     "gitsigns.nvim": {
@@ -46,15 +46,15 @@
       "version": "'v5.3.3'"
     },
     "mason.nvim": {
-      "rev": "cb8445f8ce85d957416c106b780efd51c6298f89",
+      "rev": "e54f5bf5f12c560da31c17eee5b3e1bd369f3ff9",
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.files": {
-      "rev": "3e247eb12ca8c05622ceb8745f9004f761b22ef8",
+      "rev": "f9f0ccbef0fd24eaddc8675accca83fa1f310c3f",
       "src": "https://github.com/nvim-mini/mini.files"
     },
     "nvim-lspconfig": {
-      "rev": "31026a13eefb20681124706a79fc1df6bf11ab27",
+      "rev": "4d9647d7b14dd2756578761f8cc2cf80f671b926",
       "src": "https://github.com/neovim/nvim-lspconfig",
       "version": "'master'"
     },
@@ -69,7 +69,7 @@
       "version": "'main'"
     },
     "nvim-treesitter-context": {
-      "rev": "b0c45cefe2c8f7b55fc46f34e563bc428ef99636",
+      "rev": "b311b30818951d01f7b4bf650521b868b3fece16",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context",
       "version": "'master'"
     },
@@ -79,25 +79,25 @@
       "version": "'main'"
     },
     "nvim-web-devicons": {
-      "rev": "4fc505ac7bd7692824a142e96e5f529c133862f8",
+      "rev": "2795c26c916bb3c57dde308b82be51971fa92747",
       "src": "https://github.com/nvim-tree/nvim-web-devicons",
       "version": "'master'"
     },
     "obsidian.nvim": {
-      "rev": "af9857e4993e0adddb897f09c2805b44a0d913ea",
+      "rev": "c9c2bcb3bc03b3b3e264e58d43289d8f8c2ee798",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "3f3eea97b80839f629c951ca660ffd125bfa5b34",
+      "rev": "629eb9533ec989d9d5c6cab8f3ad5372422c24e0",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "6db1246640e9e1bdf8a1d1f6d27a940fc0a572d5",
+      "rev": "5b319663792e537f0f6f36b449e6cb86da6b0f7f",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
     "wezterm-types": {
-      "rev": "67bfad8e15e23b3832880689b2187feb80804d43",
+      "rev": "b8b553de2f581b7ec4193de0e16ba8ec51d48e8f",
       "src": "https://github.com/DrKJeff16/wezterm-types"
     }
   }
