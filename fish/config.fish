@@ -261,4 +261,10 @@ set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bi
 fish_add_path ~/.local/bin
 fish_add_path /opt/homebrew/opt/git/share/git-core/contrib/git-jump
 fish_add_path ~/.local/share/nvim/mason/bin
-fish_add_path ~/.config/emacs/bin
+
+# if type -q emacs
+#   fish_add_path ~/.config/emacs/bin
+#   fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
+#   abbr -a emacs emacsclient --create-frame
+#   abbr -a em emacsclient --create-frame .
+# end

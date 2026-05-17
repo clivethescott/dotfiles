@@ -6,7 +6,7 @@
       "version": "1.0.0 - 2.0.0"
     },
     "conform.nvim": {
-      "rev": "dca1a190aa85f9065979ef35802fb77131911106",
+      "rev": "18aeab3d63d350dcf44d64c462cc489a3412af40",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "crates.nvim": {
@@ -14,7 +14,7 @@
       "src": "https://github.com/saecki/crates.nvim"
     },
     "diffview.nvim": {
-      "rev": "dde44b20df93b1cc837f1c8a483893838b0f8f03",
+      "rev": "58558f0fb84c474f714fb8bf72f71a56cce0f46b",
       "src": "https://github.com/dlyongemallo/diffview.nvim",
       "version": "'main'"
     },
@@ -24,7 +24,7 @@
       "version": "'main'"
     },
     "fzf-lua": {
-      "rev": "23f71140754b9162551dc8ccc1d6346e4275ecc2",
+      "rev": "311a630292310ea3bfe46dd616e17f283e975801",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitlinker.nvim": {
@@ -46,15 +46,15 @@
       "version": "'v5.3.3'"
     },
     "mason.nvim": {
-      "rev": "e54f5bf5f12c560da31c17eee5b3e1bd369f3ff9",
+      "rev": "8e921c2b68571e978db5d4d3fef9c9a7f8755473",
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.files": {
-      "rev": "f9f0ccbef0fd24eaddc8675accca83fa1f310c3f",
+      "rev": "5e0f0d264166e71d37ca35d84c54b1887ea76b40",
       "src": "https://github.com/nvim-mini/mini.files"
     },
     "nvim-lspconfig": {
-      "rev": "4d9647d7b14dd2756578761f8cc2cf80f671b926",
+      "rev": "f9349d4d99e7d66403ae8bf4fbd357b154dca7a7",
       "src": "https://github.com/neovim/nvim-lspconfig",
       "version": "'master'"
     },
@@ -84,7 +84,7 @@
       "version": "'master'"
     },
     "obsidian.nvim": {
-      "rev": "c9c2bcb3bc03b3b3e264e58d43289d8f8c2ee798",
+      "rev": "896d4515a7193676aacf8a95239882397fdd6b27",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim"
     },
     "render-markdown.nvim": {
@@ -92,12 +92,12 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "5b319663792e537f0f6f36b449e6cb86da6b0f7f",
+      "rev": "b0d5f4876c84f7c5c808ae4be4e05dd8207102d0",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
     "wezterm-types": {
-      "rev": "b8b553de2f581b7ec4193de0e16ba8ec51d48e8f",
+      "rev": "d3505f689e53d8fda536d265d870a1fee937e69f",
       "src": "https://github.com/DrKJeff16/wezterm-types"
     }
   }
