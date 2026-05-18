@@ -1,7 +1,8 @@
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
-    vim.highlight.on_yank {
+    -- :h vim.hl.hl_op
+    vim.hl.hl_op {
       higroup = 'CurSearch',
       timeout = 500 -- time in ms before highlight is cleared
     }
