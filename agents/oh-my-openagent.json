@@ -12,15 +12,14 @@
 
   "agents": {
     "sisyphus": {
-      "model": "opencode-go/kimi-k2.6",
+      "model": "opencode-go/glm-5.1",
       "variant": "max",
       "fallback_models": [
         "opencode-go/deepseek-v4-pro",
-        "opencode-go/qwen3.6-plus",
-        "opencode-go/glm-5.1"
+        "opencode-go/qwen3.6-plus"
       ],
       "ultrawork": {
-        "model": "opencode-go/kimi-k2.6",
+        "model": "opencode-go/glm-5.1",
         "variant": "max"
       },
       "prompt_append": "User works primarily on backend systems: API design, service architecture, and business logic. Prioritize robustness, clear interfaces, and testability over visual polish."
@@ -29,8 +28,8 @@
     "hephaestus": {
       "model": "opencode-go/deepseek-v4-pro",
       "fallback_models": [
-        "opencode-go/kimi-k2.6",
-        "opencode-go/glm-5.1"
+        "opencode-go/glm-5.1",
+        "opencode-go/qwen3.6-plus"
       ],
       "prompt_append": "Explore thoroughly, then implement. Prefer small, testable changes. Focus on backend patterns: functional programming patterns, clean architecture."
     },
@@ -39,8 +38,8 @@
       "model": "opencode-go/glm-5.1",
       "variant": "high",
       "fallback_models": [
-        "opencode-go/kimi-k2.6",
-        "opencode-go/deepseek-v4-pro"
+        "opencode-go/deepseek-v4-pro",
+        "opencode-go/qwen3.6-plus"
       ],
       "prompt_append": "Focus on backend architecture: data flow, service boundaries, API contracts, database schema design, and scalability considerations."
     },
@@ -66,15 +65,15 @@
     "momus": {
       "model": "opencode-go/qwen3.6-plus",
       "fallback_models": [
-        "opencode-go/kimi-k2.6",
-        "opencode-go/glm-5.1"
+        "opencode-go/glm-5.1",
+        "opencode-go/deepseek-v4-pro"
       ]
     },
 
     "atlas": {
       "model": "opencode-go/deepseek-v4-pro",
       "fallback_models": [
-        "opencode-go/kimi-k2.6",
+        "opencode-go/glm-5.1",
         "opencode-go/deepseek-v4-flash"
       ]
     },
@@ -96,7 +95,7 @@
     },
 
     "multimodal-looker": {
-      "model": "opencode-go/kimi-k2.6",
+      "model": "opencode-go/glm-5.1",
       "variant": "medium",
       "fallback_models": [
         "opencode-go/qwen3.6-plus",
@@ -115,11 +114,11 @@
 
   "categories": {
     "deep": {
-      "model": "opencode-go/kimi-k2.6",
+      "model": "opencode-go/glm-5.1",
       "variant": "medium",
       "fallback_models": [
         "opencode-go/deepseek-v4-pro",
-        "opencode-go/glm-5.1"
+        "opencode-go/qwen3.6-plus"
       ]
     },
 
@@ -127,16 +126,16 @@
       "model": "opencode-go/glm-5.1",
       "variant": "xhigh",
       "fallback_models": [
-        "opencode-go/kimi-k2.6",
-        "opencode-go/deepseek-v4-pro"
+        "opencode-go/deepseek-v4-pro",
+        "opencode-go/qwen3.6-plus"
       ]
     },
 
     "unspecified-high": {
       "model": "opencode-go/deepseek-v4-pro",
       "fallback_models": [
-        "opencode-go/kimi-k2.6",
-        "opencode-go/glm-5.1"
+        "opencode-go/glm-5.1",
+        "opencode-go/qwen3.6-plus"
       ]
     },
 
@@ -157,11 +156,11 @@
     },
 
     "visual-engineering": {
-      "model": "opencode-go/kimi-k2.6",
+      "model": "opencode-go/glm-5.1",
       "variant": "medium",
       "fallback_models": [
         "opencode-go/qwen3.6-plus",
-        "opencode-go/glm-5.1"
+        "opencode-go/deepseek-v4-pro"
       ]
     },
 
@@ -170,7 +169,7 @@
       "variant": "high",
       "fallback_models": [
         "opencode-go/qwen3.6-plus",
-        "opencode-go/kimi-k2.6"
+        "opencode-go/deepseek-v4-pro"
       ]
     },
 
@@ -189,10 +188,9 @@
       "opencode-go": 10
     },
     "modelConcurrency": {
-      "opencode-go/kimi-k2.6": 2,
+      "opencode-go/glm-5.1": 2,
       "opencode-go/deepseek-v4-pro": 3,
       "opencode-go/deepseek-v4-flash": 20,
-      "opencode-go/glm-5.1": 2,
       "opencode-go/qwen3.6-plus": 5
     }
   },
