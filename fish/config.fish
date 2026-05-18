@@ -140,6 +140,7 @@ abbr -a gwa 'git worktree add'
 abbr -a gw 'git worktree'
 abbr --add unset 'set --erase'
 abbr --add pbclear pbcopy </dev/null
+abbr --add cl 'claude agents'
 
 if type -q kubectl
     abbr -a k kubectl
