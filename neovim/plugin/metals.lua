@@ -20,6 +20,8 @@ metals_config.settings = {
   -- startMcpServer = false,
   -- serverVersion = '1.6.7',
   serverVersion = '2.0.0-M12',
+  -- As of Metals v1.6.6 (Osmium), Metals now includes a built-in standalone MCP server (metals-mcp)
+  -- that can be installed via Coursier (cs install metals-mcp)
   startMcpServer = false,   -- https://scalameta.org/metals/blog/#standalone-mcp-server
   fallbackScalaVersion = '2.13.16',
   showImplicitArguments = true,

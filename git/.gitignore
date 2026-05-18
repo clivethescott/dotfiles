@@ -19,3 +19,4 @@ http-client.env.json
 **/.worktreeinclude
 **/CLAUDE.md
 **/.claude/
+opencode.json
