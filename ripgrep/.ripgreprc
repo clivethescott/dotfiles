@@ -1,3 +1,4 @@
+# Set $RIPGREP_CONFIG_PATH to this file's location
 # Don't let ripgrep vomit really long lines to my terminal, and show a preview.
 --max-columns=150
 --max-columns-preview
@@ -22,15 +23,19 @@ properties:*.{properties,yml,yaml,conf}
 --type-add
 graphql:*.{graphqls}
 
+# Add hocon type
+--type-add
+hocon:*.{conf}
+
 # Because who cares about case!?
 --smart-case
 
---glob=!.m2/* 
---glob=!venv/* 
---glob=!node_modules/* 
---glob=!target/* 
---glob=!project/* 
---glob=!*/__pycache__/* 
+--glob=!.m2/*
+--glob=!venv/*
+--glob=!node_modules/*
+--glob=!target/*
+--glob=!project/*
+--glob=!*/__pycache__/*
 --glob=!*.class
 --glob=!*.jar
 --glob=!*.png

@@ -230,6 +230,7 @@ set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx TEALDEER_CONFIG_DIR $HOME/.config/tealdeer
 set -gx PYTHONGIL 0
 set -gx CLAUDE_CODE_MAX_OUTPUT_TOKENS 4096
+set -gx RIPGREP_CONFIG_PATH ~/dotfiles/ripgrep/.ripgreprc
 abbr -a tldr tldr -p macos --pager
 abbr -a -g sbtd 'sbt -Dsbt.server.autostart=false'
 abbr --add oc opencode
@@ -262,10 +263,3 @@ set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bi
 fish_add_path ~/.local/bin
 fish_add_path /opt/homebrew/opt/git/share/git-core/contrib/git-jump
 fish_add_path ~/.local/share/nvim/mason/bin
-
-# if type -q emacs
-#   fish_add_path ~/.config/emacs/bin
-#   fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
-#   abbr -a emacs emacsclient --create-frame
-#   abbr -a em emacsclient --create-frame .
-# end
