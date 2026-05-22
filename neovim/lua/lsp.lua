@@ -54,11 +54,10 @@ local diagnostics = function(bufnr)
     { desc = 'Next Warning or Error', buffer = bufnr })
 end
 
-local lsp_group = vim.api.nvim_create_augroup('LspAttachedGroup', { clear = true })
-
 ---@param client vim.lsp.Client
 ---@param bufnr integer
 function M.on_attach(client, bufnr)
+
   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#copilot
   if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
     vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
