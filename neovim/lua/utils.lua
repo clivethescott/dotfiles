@@ -9,7 +9,8 @@ function M.get_inlay_hint(bufnr, line)
   bufnr = bufnr or 0
   line = line or vim.api.nvim_win_get_cursor(0)[1] - 1
   local namespace = vim.api.nvim_get_namespaces()["nvim.lsp.inlayhint"] or 0
-  local virt_text = vim.api.nvim_buf_get_extmarks(0, namespace, { line, 0 }, { line, -1 }, { details = true })
+  local virt_text = vim.api.nvim_buf_get_extmarks(0, namespace, { line, 0 }, { line, -1 },
+    { details = true })
 
   local inlay_hints = {}
   for _, mark in ipairs(virt_text) do
@@ -147,6 +148,55 @@ end
 
 function M.netrw_mark_list()
   vim.cmd [[echo join(netrw#Expose("netrwmarkfilelist"), "\n")]]
+end
+
+function M.is_sbt_running(project_dir)
+  if not project_dir then
+    vim.notify("project_dir is required to check if sbt server is running", vim.log.levels.WARN)
+    return false
+  end
+
+  local f = io.open(project_dir .. "/project/target/active.json", "r")
+  if not f then return false end
+  local content = f:read("*a")
+  f:close()
+
+  local ok, data = pcall(vim.json.decode, content)
+  if not ok or not data.uri then return false end
+
+  local uri = data.uri:gsub("^local://", "")
+  local alive = false
+  local done = false
+
+  local pipe = vim.loop.new_pipe(false)
+  if not pipe then return false end
+  pipe:connect(uri, function(err)
+    if err then
+      done = true
+      return
+    end
+    pipe:read_start(function(_, chunk)
+      alive = (chunk ~= nil)
+      done = true
+      pipe:read_stop()
+      pipe:shutdown()
+      pipe:close()
+    end)
+    local msg = '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}'
+    local header = "Content-Length: " .. #msg .. "\r\n\r\n"
+    pipe:write(header .. msg, function(write_err)
+      if write_err then
+        done = true
+        pipe:close()
+      end
+    end)
+  end)
+
+  vim.wait(1000, function() return done end)
+  if not done then
+    pcall(function() pipe:close() end)
+  end
+  return alive
 end
 
 return M

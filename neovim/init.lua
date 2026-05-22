@@ -14,10 +14,11 @@ vim.cmd.packadd('nvim.difftool') -- OR :packadd nvim.difftool :Difftool -- setup
 vim.cmd.packadd('nvim.undotree') -- :Undotree -- set :h undolist for cmds
 vim.pack.add({ { src = 'https://github.com/DrKJeff16/wezterm-types' } })
 
+-- :h ui2
 require('vim._core.ui2').enable({
   enable = true,
   msg = {
-    target = 'msg',
+    targets = 'msg',
     timeout = 1000,
     msg = {           -- Options related to msg window.
       timeout = 2000, -- Time a message is visible in the message window.
