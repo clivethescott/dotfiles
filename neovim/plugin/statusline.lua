@@ -1,5 +1,16 @@
 Statusline = {}
 
+Statusline.mode = function()
+  local mode = vim.fn.mode():sub(1, 1)
+  local modes = {
+    n = { ' [N] ', 'StatusLineModeNormal' },
+    i = { ' [I] ', 'StatusLineModeInsert' },
+    t = { ' [T] ', 'StatusLineModeTerminal' },
+  }
+  local info = modes[mode] or modes.n
+  return string.format('%%#%s#%s%%#StatusLine#', info[2], info[1])
+end
+
 -- see :h statusline for more info
 Statusline.lspInfo = function()
   return vim.diagnostic.status() .. ' ' .. vim.ui.progress_status() .. ' '
@@ -37,6 +48,10 @@ Statusline.gitInfo = function()
   )
 end
 
+Statusline.filetype = function()
+  return string.format('%%#StatusLineFileType# %s %%#StatusLine#', vim.bo.filetype)
+end
+
 Statusline.httpEnv = function()
   if vim.bo.filetype == 'http' then
     local has_kulala, kulala = pcall(require, 'kulala')
@@ -50,8 +65,9 @@ end
 
 Statusline.active = function()
   return table.concat({
+    Statusline.mode(),
     Statusline.short_path(),
-    ' %y', -- file type
+    -- Statusline.filetype(),
     ' %m', -- [modified] flag
     ' %r', -- [readonly] flag
     ' %h', -- [help buffer] flag

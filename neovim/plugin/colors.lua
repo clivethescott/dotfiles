@@ -17,6 +17,10 @@ vim.api.nvim_create_autocmd('ColorScheme', {
       bg = '#1c1c1c', -- Darker for inactive
       fg = '#626262', -- Very dim text
     })
+    vim.api.nvim_set_hl(0, 'StatusLineFileType', { fg = '#94e2d5', bg = status_bg })
+    vim.api.nvim_set_hl(0, 'StatusLineModeNormal', { fg = '#f38ba8', bg = status_bg, bold = true })
+    vim.api.nvim_set_hl(0, 'StatusLineModeInsert', { fg = '#94e2d5', bg = status_bg, bold = true })
+    vim.api.nvim_set_hl(0, 'StatusLineModeTerminal', { fg = '#c8a0e0', bg = status_bg, bold = true })
     vim.api.nvim_set_hl(0, 'StatusLineGitBranch', { link = '@string' })
     vim.api.nvim_set_hl(0, 'StatusLineGitAdded', { fg = '#6b8e5f', bg = status_bg })   -- Dimmed green
     vim.api.nvim_set_hl(0, 'StatusLineGitChanged', { fg = '#b89a5a', bg = status_bg }) -- Dimmed yellow
