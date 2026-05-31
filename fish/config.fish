@@ -230,6 +230,7 @@ set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx TEALDEER_CONFIG_DIR $HOME/.config/tealdeer
 set -gx PYTHONGIL 0
 set -gx RIPGREP_CONFIG_PATH ~/dotfiles/ripgrep/.ripgreprc
+set -gx HOMEBREW_REQUIRE_TAP_TRUST 1
 abbr -a tldr tldr -p macos --pager
 abbr -a -g sbtd 'sbt -Dsbt.server.autostart=false'
 abbr --add oc opencode
