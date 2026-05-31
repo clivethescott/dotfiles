@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd('FileType', {
   once = true,
   pattern = fts,
   callback = function()
-    vim.pack.add({ { src = 'https://github.com/mistweaverco/kulala.nvim', version = '*' } })
+    vim.pack.add({ { src = 'https://github.com/mistweaverco/kulala.nvim'} })
 
     require('kulala').setup({
       lsp = {
