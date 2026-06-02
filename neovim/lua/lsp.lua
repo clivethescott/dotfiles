@@ -57,11 +57,11 @@ end
 ---@param client vim.lsp.Client
 ---@param bufnr integer
 function M.on_attach(client, bufnr)
-
   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#copilot
   if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
     vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
-    vim.keymap.set("i", "<C-y>", vim.lsp.completion.get, { buffer = bufnr, desc = "trigger autocompletion" })
+    vim.keymap.set("i", "<C-y>", vim.lsp.completion.get,
+      { buffer = bufnr, desc = "trigger autocompletion" })
 
     vim.keymap.set(
       'i',
@@ -154,7 +154,8 @@ function M.on_attach(client, bufnr)
 
 
   if supports_method(client, vim.lsp.protocol.Methods.textDocument_signatureHelp, bufnr) then
-    vim.keymap.set({ 'n', 'i' }, '<M-s>', vim.lsp.buf.signature_help, { buffer = true, desc = 'Signature help' })
+    vim.keymap.set({ 'n', 'i' }, '<M-s>', vim.lsp.buf.signature_help,
+      { buffer = true, desc = 'Signature help' })
     -- default vim.keymap.set('i', '<c-s>',vim.lsp.buf.signature_help)
   end
 
@@ -187,7 +188,8 @@ function M.on_attach(client, bufnr)
 
   if supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
     vim.keymap.set({ 'n', 'i' }, '<M-i>',
-      function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end, { desc = 'Toggle inlay hints' })
+      function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end,
+      { desc = 'Toggle inlay hints' })
 
     vim.keymap.set('n', '<space>li', function()
       if vim.lsp.inlay_hint.is_enabled() then
@@ -214,6 +216,20 @@ function M.on_attach(client, bufnr)
   end
 
   if supports_method(client, vim.lsp.protocol.Methods.textDocument_codeLens, bufnr) then
+    -- auto refresh codelens
+    vim.api.nvim_create_autocmd('InsertLeave', {
+      once = true,
+      pattern = { '*.hls' },
+      callback = function(args)
+        local opts = { bufnr = args.buf }
+        if vim.lsp.codelens.is_enabled(opts) then
+          vim.lsp.codelens.run { client_id = client.id }
+        end
+      end,
+      group = vim.api.nvim_create_augroup('RefreshCodeLens', { clear = true }),
+    })
+
+    vim.lsp.codelens.enable(true, { bufnr = bufnr })
     -- vim.keymap.set('n', 'grx',
     --   function() vim.lsp.codelens.run() end, { buffer = true, desc = 'Run Codelens' })
     vim.keymap.set('n', 'grX',
@@ -259,7 +275,8 @@ function M.client_capabilities()
   if has_blink then
     capabilities = blink.get_lsp_capabilities(capabilities)
   else
-    capabilities = vim.tbl_deep_extend('force', capabilities, vim.lsp.protocol.make_client_capabilities())
+    capabilities = vim.tbl_deep_extend('force', capabilities,
+      vim.lsp.protocol.make_client_capabilities())
   end
 
   return capabilities
