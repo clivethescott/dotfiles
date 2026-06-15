@@ -19,9 +19,8 @@ local workspaces = {
   },
 }
 
--- Sort workspaces: Notes first when at home, Work first when at work PC
 if not vim.g.is_work_pc then
-  workspaces[1], workspaces[2] = workspaces[2], workspaces[1]
+  table.remove(workspaces, 1)
 end
 
 vim.schedule(function()
@@ -49,9 +48,9 @@ vim.schedule(function()
   })
 
   vim.keymap.set('n', '<space>no', '<cmd>Obsidian quick_switch<cr>', { desc = 'Open/Switch Note' })
-  vim.keymap.set('n', '<space>nf', '<cmd>Obsidian search<cr>',       { desc = 'Grep Search Note' })
-  vim.keymap.set('n', '<space>nO', '<cmd>Obsidian open<cr>',         { desc = 'Open Note in Obsidian app' })
-  vim.keymap.set('n', '<space>nn', '<cmd>Obsidian today<cr>',        { desc = "Open Today's Note" })
-  vim.keymap.set('n', '<space>nt', '<cmd>Obsidian tags<cr>',         { desc = "Notes by Tag" })
-  vim.keymap.set('n', '<space>nw', '<cmd>Obsidian workspace<cr>',    { desc = "Switch workspace" })
+  vim.keymap.set('n', '<space>nf', '<cmd>Obsidian search<cr>', { desc = 'Grep Search Note' })
+  vim.keymap.set('n', '<space>nO', '<cmd>Obsidian open<cr>', { desc = 'Open Note in Obsidian app' })
+  vim.keymap.set('n', '<space>nn', '<cmd>Obsidian today<cr>', { desc = "Open Today's Note" })
+  vim.keymap.set('n', '<space>nt', '<cmd>Obsidian tags<cr>', { desc = "Notes by Tag" })
+  vim.keymap.set('n', '<space>nw', '<cmd>Obsidian workspace<cr>', { desc = "Switch workspace" })
 end)
