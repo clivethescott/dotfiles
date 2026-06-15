@@ -131,9 +131,11 @@ end
 
 abbr -a sbt 'sbtn'
 abbr -a g 'git branch'
+abbr -a gb 'git branch'
 abbr -a gd 'git diff'
 abbr -a gs 'git status --short'
 abbr -a gp 'git pull --ff --quiet'
+abbr -a gr 'git restore .'
 abbr -a gP 'git push'
 abbr -a gwl 'git worktree list'
 abbr -a gwr 'git worktree remove'
