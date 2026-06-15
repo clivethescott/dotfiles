@@ -14,9 +14,13 @@
       "src": "https://github.com/saecki/crates.nvim"
     },
     "diffview-plus.nvim": {
-      "rev": "276d8a79bd90aece4960cf8bcf292cc7a35a4f57",
+      "rev": "bff9d65b6e60b4cdcfc739cbd7f4eec57aac5315",
       "src": "https://github.com/dlyongemallo/diffview-plus.nvim",
       "version": "'main'"
+    },
+    "diffview.nvim": {
+      "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
+      "src": "https://github.com/sindrets/diffview.nvim"
     },
     "friendly-snippets": {
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
@@ -41,11 +45,11 @@
       "version": "'main'"
     },
     "kulala.nvim": {
-      "rev": "34189185048988248a6a4b78fc35d83a6ac7f343",
+      "rev": "bf50254965aff8228fa51067d79bb16d2124461e",
       "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "mason.nvim": {
-      "rev": "16ba83bfc8a25f52bb545134f5bee082b195c460",
+      "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.files": {
@@ -53,7 +57,7 @@
       "src": "https://github.com/nvim-mini/mini.files"
     },
     "nvim-lspconfig": {
-      "rev": "ed19590a3a9792901553c388d1aadafce012f80d",
+      "rev": "a683e0ddf0cf64c6cd689e18ffb480ade3c162b7",
       "src": "https://github.com/neovim/nvim-lspconfig",
       "version": "'master'"
     },
@@ -83,7 +87,7 @@
       "version": "'master'"
     },
     "obsidian.nvim": {
-      "rev": "76545ae41a3af898e607c03224309e15dabb4a26",
+      "rev": "7861be4efecb4828211d829d5b3a16e6ed8d6135",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim"
     },
     "render-markdown.nvim": {
@@ -91,12 +95,12 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "0f3cd0e584b4ed221fc44eee5b0b6ce335f7e263",
+      "rev": "3dca2d2153cfbc9aab937c1be0441e371101b0b8",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
     "wezterm-types": {
-      "rev": "13ab56e813cb5af9a36ae6b4c987ba2558cb3fcb",
+      "rev": "58c95e0d78e24b236b2eecaa2c29ae973478f79b",
       "src": "https://github.com/DrKJeff16/wezterm-types"
     }
   }

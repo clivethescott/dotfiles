@@ -129,7 +129,8 @@ if type -q lazydocker
     abbr -a lld lazydocker
 end
 
-abbr -a g 'git'
+abbr -a sbt 'sbtn'
+abbr -a g 'git branch'
 abbr -a gd 'git diff'
 abbr -a gs 'git status --short'
 abbr -a gp 'git pull --ff --quiet'
