@@ -32,37 +32,37 @@ function fish_prompt --description 'Main prompt'
 end
 
 
-function fish_right_prompt --description "Git info"
-    if not set -q __fish_git_prompt_show_informative_status
-        set -g __fish_git_prompt_show_informative_status 1
-    end
-    if not set -q __fish_git_prompt_hide_untrackedfiles
-        set -g __fish_git_prompt_hide_untrackedfiles 1
-    end
-    if not set -q __fish_git_prompt_color_branch
-        set -g __fish_git_prompt_color_branch magenta --bold
-    end
-    if not set -q __fish_git_prompt_showupstream
-        set -g __fish_git_prompt_showupstream informative
-    end
-    if not set -q __fish_git_prompt_showupstream_timeout
-        set -g __fish_git_prompt_showupstream_timeout 500
-    end
-    if not set -q __fish_git_prompt_color_dirtystate
-        set -g __fish_git_prompt_color_dirtystate blue
-    end
-    if not set -q __fish_git_prompt_color_stagedstate
-        set -g __fish_git_prompt_color_stagedstate yellow
-    end
-    if not set -q __fish_git_prompt_color_invalidstate
-        set -g __fish_git_prompt_color_invalidstate red
-    end
-    if not set -q __fish_git_prompt_color_untrackedfiles
-        set -g __fish_git_prompt_color_untrackedfiles $fish_color_normal
-    end
-    if not set -q __fish_git_prompt_color_cleanstate
-        set -g __fish_git_prompt_color_cleanstate green --bold
-    end
-    set_color normal
-    printf '%s ' (fish_git_prompt)
-end
+# function fish_right_prompt --description "Git info"
+#     if not set -q __fish_git_prompt_show_informative_status
+#         set -g __fish_git_prompt_show_informative_status 1
+#     end
+#     if not set -q __fish_git_prompt_hide_untrackedfiles
+#         set -g __fish_git_prompt_hide_untrackedfiles 1
+#     end
+#     if not set -q __fish_git_prompt_color_branch
+#         set -g __fish_git_prompt_color_branch magenta --bold
+#     end
+#     if not set -q __fish_git_prompt_showupstream
+#         set -g __fish_git_prompt_showupstream informative
+#     end
+#     if not set -q __fish_git_prompt_showupstream_timeout
+#         set -g __fish_git_prompt_showupstream_timeout 500
+#     end
+#     if not set -q __fish_git_prompt_color_dirtystate
+#         set -g __fish_git_prompt_color_dirtystate blue
+#     end
+#     if not set -q __fish_git_prompt_color_stagedstate
+#         set -g __fish_git_prompt_color_stagedstate yellow
+#     end
+#     if not set -q __fish_git_prompt_color_invalidstate
+#         set -g __fish_git_prompt_color_invalidstate red
+#     end
+#     if not set -q __fish_git_prompt_color_untrackedfiles
+#         set -g __fish_git_prompt_color_untrackedfiles $fish_color_normal
+#     end
+#     if not set -q __fish_git_prompt_color_cleanstate
+#         set -g __fish_git_prompt_color_cleanstate green --bold
+#     end
+#     set_color normal
+#     printf '%s ' (fish_git_prompt)
+# end
