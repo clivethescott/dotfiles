@@ -19,7 +19,7 @@ vim.schedule(function()
       win = {
         input = {
           keys = {
-            ["<esc>"] = { "close", mode = { "i" } }, -- no normal mode
+            -- ["<esc>"] = { "close", mode = { "i" } }, -- no normal mode
             ["<a-i>"] = { "toggle_preview", mode = { "i", "n" } },
             ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
             ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
@@ -27,7 +27,7 @@ vim.schedule(function()
             ["<c-q>"] = { "qflist", mode = { "i", "n" } },
             ["<a-g>"] = { "toggle_ignored", mode = { "i", "n" } },
             ["<a-m>"] = { "toggle_hidden", mode = { "i", "n" } },
-            ["<a-f>"] = { "toggle_maximize", mode = { "i", "n" } },
+            ["<a-f>"] = { "toggle_maximize", mode = { "i", "n" } }, -- toggle zoom/maximise
             ["<c-g>"] = { "toggle_live", mode = { "i", "n" } },
             ["<M-Down>"] = { "history_forward", mode = { "i", "n" } },
             ["<M-Up>"] = { "history_back", mode = { "i", "n" } },
