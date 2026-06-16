@@ -19,6 +19,7 @@ vim.schedule(function()
       win = {
         input = {
           keys = {
+            ["<esc>"] = { "close", mode = { "i" } }, -- no normal mode
             ["<a-i>"] = { "toggle_preview", mode = { "i", "n" } },
             ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
             ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
