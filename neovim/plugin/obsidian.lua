@@ -24,6 +24,7 @@ if not vim.g.is_work_pc then
 end
 
 vim.schedule(function()
+  vim.pack.add({ { src = 'https://github.com/folke/snacks.nvim' } })
   vim.pack.add({ { src = 'https://github.com/obsidian-nvim/obsidian.nvim' } })
 
   ---@diagnostic disable: missing-fields

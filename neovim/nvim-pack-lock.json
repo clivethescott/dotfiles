@@ -14,7 +14,7 @@
       "src": "https://github.com/saecki/crates.nvim"
     },
     "diffview-plus.nvim": {
-      "rev": "bff9d65b6e60b4cdcfc739cbd7f4eec57aac5315",
+      "rev": "c65ddb4724cc772a77e9eca1478bff451867b2e2",
       "src": "https://github.com/dlyongemallo/diffview-plus.nvim",
       "version": "'main'"
     },
@@ -26,6 +26,10 @@
     "fzf-lua": {
       "rev": "988416cc782dfe28bff3f0da9b8c943b236cd86a",
       "src": "https://github.com/ibhagwan/fzf-lua"
+    },
+    "gitgraph.nvim": {
+      "rev": "c16daa7d7dd597caf9085644c009cfa80b75db8e",
+      "src": "https://github.com/isakbm/gitgraph.nvim"
     },
     "gitlinker.nvim": {
       "rev": "a1b74070bbd5e50128190c85b09f1431ea5fbd83",
@@ -41,7 +45,7 @@
       "version": "'main'"
     },
     "kulala.nvim": {
-      "rev": "bf50254965aff8228fa51067d79bb16d2124461e",
+      "rev": "143966c65767414f8b3d545d44b86902ab0f0843",
       "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "mason.nvim": {
@@ -83,7 +87,7 @@
       "version": "'master'"
     },
     "obsidian.nvim": {
-      "rev": "7861be4efecb4828211d829d5b3a16e6ed8d6135",
+      "rev": "6fdfe8cfc05a705fa454c682b49fd99f64fdfb42",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim"
     },
     "render-markdown.nvim": {
