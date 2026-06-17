@@ -27,10 +27,6 @@
       "rev": "988416cc782dfe28bff3f0da9b8c943b236cd86a",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
-    "gitgraph.nvim": {
-      "rev": "c16daa7d7dd597caf9085644c009cfa80b75db8e",
-      "src": "https://github.com/isakbm/gitgraph.nvim"
-    },
     "gitlinker.nvim": {
       "rev": "a1b74070bbd5e50128190c85b09f1431ea5fbd83",
       "src": "https://github.com/linrongbin16/gitlinker.nvim"
