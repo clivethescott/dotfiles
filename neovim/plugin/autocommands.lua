@@ -68,9 +68,10 @@ vim.api.nvim_create_autocmd('BufRead', {
   group = vim.api.nvim_create_augroup('RestorePos', { clear = true }),
 })
 
-vim.api.nvim_create_user_command('PackUpdate', function()
-  vim.pack.update(nil, { force = true })
-end, { desc = 'Update plugins' })
+-- use built-in :packupdate
+-- vim.api.nvim_create_user_command('PackUpdate', function()
+--   vim.pack.update(nil, { force = true })
+-- end, { desc = 'Update plugins' })
 
 
 -- :h vim.pack Synchronize config across machines ~
