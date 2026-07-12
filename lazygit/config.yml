@@ -38,7 +38,6 @@ git:
       replace: "NOTICKET "
   pagers:
     - colorArg: always
-      pager: delta --dark --paging=never --line-numbers
       externalDiffCommand: difft --context=3 --color=always --syntax-highlight=off --display=inline
   disableForcePushing: true
 confirmOnQuit: false
