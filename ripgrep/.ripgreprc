@@ -19,6 +19,10 @@ typescript:*.{ts}
 --type-add
 properties:*.{properties,yml,yaml,conf}
 
+# Add properties type
+--type-add
+scala:*.{sbt,scala}
+
 # Add graphql type
 --type-add
 graphql:*.{graphqls}

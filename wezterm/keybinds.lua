@@ -170,24 +170,8 @@ M.get = function()
     },
     {
       mods   = 'LEADER',
-      key    = 'S',
-      action = wezterm.action.SplitVertical {
-        -- set_environment_variables = { USE_Q = 'true' },
-        args = { '/opt/homebrew/bin/nu' }
-      }
-    },
-    {
-      mods   = 'LEADER',
       key    = 'v',
       action = action.SplitHorizontal { domain = 'CurrentPaneDomain' }
-    },
-    {
-      mods   = 'LEADER',
-      key    = 'V',
-      action = wezterm.action.SplitHorizontal {
-        -- set_environment_variables = { USE_Q = 'true' },
-        args = { '/opt/homebrew/bin/nu' }
-      }
     },
     {
       mods = 'LEADER',
@@ -277,8 +261,8 @@ M.get = function()
       },
     },
     { -- Prompt for a name to use for a new workspace and switch to it.
-      key = 'n',
-      mods = 'LEADER|SHIFT',
+      key = 'S',
+      mods = 'LEADER',
       action = wezterm.action.PromptInputLine {
         description = wezterm.format {
           { Attribute = { Intensity = 'Bold' } },
