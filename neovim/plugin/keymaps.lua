@@ -65,11 +65,12 @@ vim.keymap.set('n', '<space>ow',
 -- default ]t [t [T ]T for tag list,
 -- default ]b [b for buffer list,
 
+-- use built-in V_il and V_al for select line and select whole buffer
 -- Whole buffer text object
-vim.keymap.set('o', 'ig', ':<C-u>normal! ggVG<CR>', { desc = 'Inner whole buffer' })
-vim.keymap.set('o', 'ag', ':<C-u>normal! ggVG<CR>', { desc = 'Around whole buffer' })
-vim.keymap.set('x', 'ig', ':<C-u>normal! ggVG<CR>', { desc = 'Inner whole buffer' })
-vim.keymap.set('x', 'ag', ':<C-u>normal! ggVG<CR>', { desc = 'Around whole buffer' })
+-- vim.keymap.set('o', 'ig', ':<C-u>normal! ggVG<CR>', { desc = 'Inner whole buffer' })
+-- vim.keymap.set('o', 'ag', ':<C-u>normal! ggVG<CR>', { desc = 'Around whole buffer' })
+-- vim.keymap.set('x', 'ig', ':<C-u>normal! ggVG<CR>', { desc = 'Inner whole buffer' })
+-- vim.keymap.set('x', 'ag', ':<C-u>normal! ggVG<CR>', { desc = 'Around whole buffer' })
 
 vim.keymap.set('n', '<space>ol', function()
   vim.pack.update(nil, { force = false })
