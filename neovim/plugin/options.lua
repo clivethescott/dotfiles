@@ -38,6 +38,9 @@ vim.o.splitkeep = 'screen' -- Keep cursor visible when opening/closing splits
 -- Don't pass messages to |ins-completion-menu|.
 -- vim.opt.shortmess:remove('F'):append('c'):append('m')
 
+-- no undo/redo messages
+vim.opt.shortmess:append('u')
+
 -- Shorter delays and better user experience.
 vim.opt.updatetime = 100
 
