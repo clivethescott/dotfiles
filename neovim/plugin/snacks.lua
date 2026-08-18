@@ -40,6 +40,14 @@ Snacks.setup({
         truncate = 80,
       },
     },
+    sources = {
+      files = {
+        exclude = { "node_modules", "target" },
+      },
+      grep = {
+        exclude = { "node_modules", "target" },
+      },
+    },
     layout = { hidden = { "preview" }, fullscreen = false },
     ui_select = true,
   },
