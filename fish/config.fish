@@ -6,6 +6,8 @@ set -gx EDITOR nvim
 set -gx COMPOSE_BAKE true
 set -gx JIRA_PAGER bat
 set -gx JAVA_HOME (/usr/libexec/java_home -v 21)
+# disables Claude telemetry
+set -gx DISABLE_TELEMETRY 1
 
 # Disable the fish greeting message
 set fish_greeting ""
