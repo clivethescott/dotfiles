@@ -1,3 +1,4 @@
+--- Native TS 7.0 engine (the former "tsgo" Go rewrite, upstreamed into `tsc` as of TS 7.0 GA).
 --- https://gist.github.com/kr-alt/24aaf4bad50d603c3c6a270502e57209
 --- https://blog.stephansama.info/articles/how-to-install-and-configure-typescript-go-as-an-lsp-in-neovim/
 local root_files = {
@@ -20,8 +21,8 @@ end
 local M = {}
 
 M.cmd = {
-  "tsgo",
-  "lsp",
+  "tsc",
+  "--lsp",
   "--stdio"
 }
 

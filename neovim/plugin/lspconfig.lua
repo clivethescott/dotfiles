@@ -21,13 +21,16 @@ vim.schedule(function()
 
   vim.lsp.enable({
     'graphql', 'html', 'jsonls', 'taplo', 'yamlls', 'ruff', 'ty',
-    'rust_analyzer', 'gopls', 'ts_ls', 'lua_ls', 'fish_lsp', 'nushell',
+    'rust_analyzer', 'gopls',  'lua_ls', 'fish_lsp', 'nushell',
     'dockerls', 'terraformls',
     'smithy_ls',
     'kulala_ls', -- only useful for graphQL completion, needs the kulala_ls LSP server installed,
     'helm_ls',
     'tinymist',
     'hls',
+    -- 'ts_ls', -- typescript-lang-server
+    'tsc', -- native TS 7.0 engine (formerly tsgo), via mason
+    'biome',
   })
 
   if vim.g.is_work_pc then

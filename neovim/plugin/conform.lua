@@ -30,7 +30,10 @@ require('conform').setup({
       "ruff_organize_imports",
       lsp_format = "fallback"
     },
-    javascript = { "prettierd", "prettier", stop_after_first = true },
+    javascript = { "biome" },
+    javascriptreact = { "biome" },
+    typescript = { "biome" },
+    typescriptreact = { "biome" },
     markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
     ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
     ocaml = { "ocamlformat" },

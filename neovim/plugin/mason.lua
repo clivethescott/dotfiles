@@ -21,8 +21,11 @@ local mason_packages = {
   'glow',
   'gofumpt',
   'gopls',
-  'typescript-language-server',
-  -- 'tsgo',
+  -- Javascript/Typescript
+  -- 'typescript-language-server',
+  'tsc',
+  'biome',
+
   'lua-language-server',
   'fish-lsp',
   'smithy-language-server',
