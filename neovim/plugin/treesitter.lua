@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
     -- replicate `fold = { enable = true }`
     vim.wo.foldmethod = 'expr'
-    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.wo.foldexpr = vim.treesitter.foldexpr
 
     -- replicate `highlight = { enable = true }`
     vim.treesitter.start(buf, language)

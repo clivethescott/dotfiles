@@ -21,7 +21,7 @@ require('vim._core.ui2').enable({
     targets = 'msg',
   },
 })
--- :h messagesopt
+-- other options for ui2 :h messagesopt
 vim.opt.messagesopt:append('maxheight:10,pager:<CR>,timeout:2000')
 
 local rtp_extras = vim.fs.joinpath(vim.fn.stdpath("config"), "lua/rtp")

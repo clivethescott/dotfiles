@@ -66,7 +66,7 @@ vim.o.foldlevel = 99
 vim.o.foldmethod = "expr"
 vim.opt.foldcolumn = "0"
 vim.opt.fillchars:append({ fold = " ", eob = " " })
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldexpr = vim.treesitter.foldexpr
 vim.opt.modeline = true
 vim.opt.inccommand = "split"
 vim.opt.scrolloff = 1
@@ -310,7 +310,7 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
     -- :h vim.lsp.foldexpr
     if client:supports_method(vim.lsp.protocol.Methods.textDocument_foldingRange, bufnr) then
       local win = vim.api.nvim_get_current_win()
-      vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+      vim.wo[win][0].foldexpr = vim.lsp.foldexpr
     end
 
 

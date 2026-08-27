@@ -112,7 +112,7 @@ vim.o.foldmethod = "expr"
 -- vim.o.foldtext = ""
 vim.opt.foldcolumn = "0"
 vim.opt.fillchars:append({ fold = " ", eob = " " })
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldexpr = vim.treesitter.foldexpr
 
 -- Disable modeline
 vim.opt.modeline = true

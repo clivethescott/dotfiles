@@ -107,7 +107,7 @@ function M.on_attach(client, bufnr)
   -- :h vim.lsp.foldexpr
   if supports_method(client, vim.lsp.protocol.Methods.textDocument_foldingRange, bufnr) then
     local win = vim.api.nvim_get_current_win()
-    vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+    vim.wo[win][0].foldexpr = vim.lsp.foldexpr
   end
 
   if supports_method(client, vim.lsp.protocol.Methods.textDocument_completion, bufnr) then

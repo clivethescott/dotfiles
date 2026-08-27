@@ -23,9 +23,10 @@ vim.keymap.set('n', '<space>lD', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = 'Toggle diagnostics' })
 
-vim.keymap.set('n', 'Q', ':qa<cr>')
--- vim.keymap.set('n', '<leader>q', ':qa!<cr>') use built-in ZQ
-vim.keymap.set('n', 'zq', function()
+--  :q! / built-in ZQ
+--  :restart / built-in ZR
+--  :wq / built-in ZZ
+vim.keymap.set('n', '<leader>q', function()
   local winid = vim.fn.bufwinid(0) or 0
   vim.lsp.foldclose('comment', winid)
   vim.lsp.foldclose('imports', winid)
