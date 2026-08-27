@@ -41,7 +41,7 @@
       "version": "'main'"
     },
     "kulala.nvim": {
-      "rev": "b1c1cd9430d1f506e9b7add09cc2f2aac067565f",
+      "rev": "232a9939919fe9bc88d573bce92de50f2f160c60",
       "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "mason.nvim": {
@@ -53,7 +53,7 @@
       "src": "https://github.com/nvim-mini/mini.files"
     },
     "nvim-lspconfig": {
-      "rev": "6fc041976833841cc9d991f45193533fe2a2e09b",
+      "rev": "3928e638fdedf195b23ae5a18f024afa487982bc",
       "src": "https://github.com/neovim/nvim-lspconfig",
       "version": "'master'"
     },
@@ -63,7 +63,7 @@
       "version": "'main'"
     },
     "nvim-treesitter": {
-      "rev": "074aa4422bf029908338e855d0c0f71470a971bb",
+      "rev": "8b98b4470eb326f1c7b50dae79f8c963568e5720",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -91,7 +91,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "cef8d093b63c9be7e8b49f7dc341e8447fc4c300",
+      "rev": "debb5f886d1f5648c0026a6bb18e17672fbcde48",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
@@ -100,7 +100,7 @@
       "src": "https://github.com/folke/snacks.nvim"
     },
     "wezterm-types": {
-      "rev": "851470ad5d2dfb56bda936e6aeef2f3a45e7f199",
+      "rev": "2b7b940c4db654c518708dac02d4f0d4bec99057",
       "src": "https://github.com/DrKJeff16/wezterm-types"
     }
   }

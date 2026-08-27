@@ -19,12 +19,10 @@ require('vim._core.ui2').enable({
   enable = true,
   msg = {
     targets = 'msg',
-    timeout = 1000,
-    msg = {           -- Options related to msg window.
-      timeout = 2000, -- Time a message is visible in the message window.
-    },
   },
 })
+-- :h messagesopt
+vim.opt.messagesopt:append('maxheight:10,pager:<CR>,timeout:2000')
 
 local rtp_extras = vim.fs.joinpath(vim.fn.stdpath("config"), "lua/rtp")
 if vim.loop.fs_stat(rtp_extras) then

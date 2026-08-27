@@ -24,7 +24,12 @@ vim.keymap.set('n', '<space>lD', function()
 end, { desc = 'Toggle diagnostics' })
 
 vim.keymap.set('n', 'Q', ':qa<cr>')
-vim.keymap.set('n', '<leader>q', ':qa!<cr>')
+-- vim.keymap.set('n', '<leader>q', ':qa!<cr>') use built-in ZQ
+vim.keymap.set('n', 'zq', function()
+  local winid = vim.fn.bufwinid(0) or 0
+  vim.lsp.foldclose('comment', winid)
+  vim.lsp.foldclose('imports', winid)
+end)
 vim.keymap.set('n', 'Y', 'yy')
 vim.keymap.set('n', "'", '`')
 vim.keymap.set('n', '<space>y',
@@ -49,7 +54,8 @@ vim.keymap.set('v', '<space>x', ":lua<cr>", { silent = true, desc = 'Exec Lua' }
 -- See :h & and :h &&
 vim.keymap.set({ 'x', 'n' }, '&', ':&&<cr>', { desc = 'Repeat last substitute keeping flags' })
 
-vim.keymap.set('n', '<leader>m', vim.snippet.stop, { silent = true, desc = 'Clear snippet highlight' })
+vim.keymap.set('n', '<leader>m', vim.snippet.stop,
+  { silent = true, desc = 'Clear snippet highlight' })
 
 vim.keymap.set('n', '<space>ow',
   function()

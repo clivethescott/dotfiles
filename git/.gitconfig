@@ -40,3 +40,15 @@
 	undo = reset HEAD~1 --mixed
 	tree = log --all --graph --decorate --oneline
 	yesterday = log --all --author=clive --since='9am yesterday'
+[credential "https://github.bamtech.co"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://github.twdcgrid.net"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
