@@ -104,9 +104,12 @@ return {
     saturation = 0.2,
     brightness = 0.2,
   },
-  -- unix_domains = {
-  --   { name = 'remote' }
-  -- },
+  unix_domains = {
+    { name = 'unix' }
+  },
+  -- This causes `wezterm` to act as though it was started as
+  -- `wezterm connect unix` by default, connecting to the unix
+  -- domain on startup.
   -- If you prefer to connect manually, leave out this line.
-  -- default_gui_startup_args = { 'connect', 'unix' },
+  default_gui_startup_args = { 'connect', 'unix' }
 }

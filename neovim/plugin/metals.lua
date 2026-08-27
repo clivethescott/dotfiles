@@ -2,7 +2,7 @@ vim.pack.add({ { src = 'https://github.com/scalameta/nvim-metals', version = 'ma
 
 local metals = require 'metals'
 local metals_config = metals.bare_config()
-metals_config.init_options.statusBarProvider = "off"   -- use fidget
+metals_config.init_options.statusBarProvider = "off" -- use fidget
 metals_config.inlayHints = {
   typeParameters = {
     enable = true
@@ -15,14 +15,14 @@ metals_config.inlayHints = {
   },
 }
 metals_config.settings = {
-  disabledMode = true,
+  disabledMode = false,
   -- disabledMode = vim.env.METALS == '0',
   -- startMcpServer = false,
-  serverVersion = '1.6.7',
+  serverVersion = '1.6.8',
   -- serverVersion = '2.0.0-M12',
   -- As of Metals v1.6.6 (Osmium), Metals now includes a built-in standalone MCP server (metals-mcp)
   -- that can be installed via Coursier (cs install metals-mcp)
-  startMcpServer = false,   -- https://scalameta.org/metals/blog/#standalone-mcp-server
+  startMcpServer = false, -- https://scalameta.org/metals/blog/#standalone-mcp-server
   fallbackScalaVersion = '2.13.16',
   showImplicitArguments = true,
   showImplicitConversionsAndClasses = true,
@@ -52,7 +52,7 @@ metals_config.capabilities = require 'lsp'.client_capabilities()
 
 metals_config.on_attach = function(client, bufnr)
   -- client and bufnr will be used in lspconfig
-  local dap_enabled = false   -- TODO: setup DAP if needed
+  local dap_enabled = false -- TODO: setup DAP if needed
   if dap_enabled then
     metals.setup_dap()
   end
