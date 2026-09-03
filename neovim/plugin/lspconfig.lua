@@ -28,8 +28,7 @@ vim.schedule(function()
     'helm_ls',
     'tinymist',
     'hls',
-    -- 'ts_ls', -- typescript-lang-server
-    'tsc', -- native TS 7.0 engine (formerly tsgo), via mason
+    'tsc',
     'biome',
   })
 

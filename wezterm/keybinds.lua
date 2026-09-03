@@ -306,7 +306,12 @@ M.get = function()
       mods = 'LEADER|CMD',
       action = wezterm.action.SendKey { key = 'a', mods = 'CTRL' },
     },
-
+    --  On macOS, WezTerm deliberately intercepts left Option as a Meta/Alt modifier instead of letting the system compose the character. The relevant defaults:
+    -- send_composed_key_when_left_alt_is_pressed → false
+    -- send_composed_key_when_right_alt_is_pressed → true
+    -- Changes this so that left LOption+3 sends a literal '#' character instead of sending Meta+3.
+    -- Alternatively use ROption+3
+    { key = '3', mods = 'ALT', action = wezterm.action.SendString '#' },
   }
 
   for _, char in ipairs(chars) do
