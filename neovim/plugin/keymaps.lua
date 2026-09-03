@@ -91,3 +91,15 @@ vim.keymap.set('n', '<leader>Q', function()
   vim.cmd('mksession! ' .. vim.fn.fnameescape(session))
   vim.cmd('restart source ' .. vim.fn.fnameescape(session))
 end, { desc = 'Restart Neovim' })
+
+-- multiple cursors
+-- Q add cursor (works in visual selection as well)
+-- :s/... then 1Q - place a cursor at every search match
+-- g<C-a> Number lines with cursors
+-- Follow mode: visual mode enables “follow-mode” by default
+-- 1q= - enable follow mode
+-- 2q= - exit follow mode
+-- Jump between cursors: [C and ]C
+-- gQ restores the previous set of multiple cursors
+-- Registers: cursors have their own registers.
+-- https://blog.olimorris.com/2026/09/02/multiple-cursors-in-neovim-0.13
