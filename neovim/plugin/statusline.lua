@@ -16,6 +16,23 @@ Statusline.lspInfo = function()
   return vim.diagnostic.status() .. ' ' .. vim.ui.progress_status() .. ' '
 end
 
+Statusline.searchCount = function()
+  local cmdtype = vim.fn.getcmdtype()
+  local pattern = vim.fn.getcmdline()
+  if (cmdtype ~= "/" and cmdtype ~= "?") or pattern == "" then
+    return ""
+  end
+  local ok, count = pcall(vim.fn.searchcount, {
+    pattern = pattern,
+    recompute = true,
+    maxcount = 0,
+  })
+  if not ok or count.total == 0 then
+    return ""
+  end
+  return (" [%d/%d]"):format(count.current, count.total)
+end
+
 Statusline.gitInfo = function()
   local git = vim.b.gitsigns_status_dict
   local git_branch = (git and git.head) and ' ' .. git.head or ''
@@ -67,6 +84,7 @@ Statusline.active = function()
   return table.concat({
     Statusline.mode(),
     Statusline.short_path(),
+    Statusline.searchCount(),
     -- Statusline.filetype(),
     ' %m', -- [modified] flag
     ' %r', -- [readonly] flag

@@ -53,7 +53,7 @@
       "src": "https://github.com/nvim-mini/mini.files"
     },
     "nvim-lspconfig": {
-      "rev": "ee1e369181a9e64904cdd7b739e98c70778cfc71",
+      "rev": "84252f9832fb5b9024fe9f7258e7c2aff915e6fb",
       "src": "https://github.com/neovim/nvim-lspconfig",
       "version": "'master'"
     },
@@ -83,7 +83,7 @@
       "version": "'master'"
     },
     "obsidian.nvim": {
-      "rev": "50be6d70988af31b71cd4d8675ca928e6194c4fb",
+      "rev": "f98e2be8923467194d8965d9cc342345fe634b02",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim"
     },
     "render-markdown.nvim": {
@@ -91,7 +91,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "6a1a2daf151dd742d5ff2f64eb2cc049d7e5ab4a",
+      "rev": "4a0e1b74096937d366031bc1e2b244546af39f8e",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },

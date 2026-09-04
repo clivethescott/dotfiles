@@ -16,7 +16,7 @@ vim.opt.termguicolors = true
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false -- interfers with multi-cursor
 
 -- Briefly show matching bracket
 vim.opt.showmatch = true
