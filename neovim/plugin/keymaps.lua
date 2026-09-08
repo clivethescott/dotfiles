@@ -32,6 +32,7 @@ vim.keymap.set('n', '<space>q', function()
   vim.lsp.foldclose('imports', winid)
 end)
 vim.keymap.set('n', '<c-q>', ':qall<cr>')
+vim.keymap.set({ 'n', 'v' }, '<c-/>', 'gcc', { remap = true })
 vim.keymap.set('n', 'Y', 'yy')
 vim.keymap.set('n', "'", '`')
 vim.keymap.set('n', '<space>y',
