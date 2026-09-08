@@ -113,6 +113,7 @@ vim.o.foldmethod = "expr"
 vim.opt.foldcolumn = "0"
 vim.opt.fillchars:append({ fold = " ", eob = " " })
 vim.o.foldexpr = vim.treesitter.foldexpr
+vim.opt.autoread = true
 
 -- Disable modeline
 vim.opt.modeline = true
