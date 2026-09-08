@@ -26,11 +26,13 @@ end, { desc = 'Toggle diagnostics' })
 --  :q! / built-in ZQ
 --  :restart / built-in ZR
 --  :wq / built-in ZZ
-vim.keymap.set('n', '<leader>q', function()
+vim.keymap.set('n', '<space>q', function()
   local winid = vim.fn.bufwinid(0) or 0
   vim.lsp.foldclose('comment', winid)
   vim.lsp.foldclose('imports', winid)
 end)
+vim.keymap.set('n', '<c-q>', ':qall<cr>')
+vim.keymap.set({ 'n', 'v' }, '<c-/>', 'gcc', { remap = true })
 vim.keymap.set('n', 'Y', 'yy')
 vim.keymap.set('n', "'", '`')
 vim.keymap.set('n', '<space>y',
@@ -83,9 +85,14 @@ vim.keymap.set('n', '<space>ol', function()
   vim.pack.update(nil, { force = false })
 end, { desc = 'Show packages with updates' })
 
--- https://www.reddit.com/r/neovim/comments/1shks8o/nvim_012s_new_restart_command_is_nice/
-vim.keymap.set('n', '<leader>Q', function()
-  local session = vim.fn.stdpath('state') .. '/restart_session.vim'
-  vim.cmd('mksession! ' .. vim.fn.fnameescape(session))
-  vim.cmd('restart source ' .. vim.fn.fnameescape(session))
-end, { desc = 'Restart Neovim' })
+-- multiple cursors
+-- Q add cursor (works in visual selection as well)
+-- :s/... then 1Q - place a cursor at every search match
+-- g<C-a> Number lines with cursors
+-- Follow mode: visual mode enables “follow-mode” by default
+-- 1q= - enable follow mode
+-- 2q= - exit follow mode
+-- Jump between cursors: [C and ]C
+-- gQ restores the previous set of multiple cursors
+-- Registers: cursors have their own registers.
+-- https://blog.olimorris.com/2026/09/02/multiple-cursors-in-neovim-0.13

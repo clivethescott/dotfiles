@@ -1,5 +1,5 @@
 -- TODO: session management?  https://mwop.net/blog/2024-07-04-how-i-use-wezterm.html
-local keys = require 'keybinds'
+local keys = require 'wez-keybinds'
 local utils = require 'wez-utils'
 local wezterm = require 'wezterm' --[[@as Wezterm]]
 local mux = wezterm.mux

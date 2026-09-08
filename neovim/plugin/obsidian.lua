@@ -3,7 +3,7 @@ local obsidian_pickers = {
   telescope = "telescope.nvim",
   ['fzf-lua'] = "fzf-lua",
   mini = "mini.pick",
-  ['snacks.picker'] = "snacks.pick",
+  ['snacks.picker'] = "snacks.picker",
 }
 local picker = vim.g.use_picker or 'fzf-lua'
 local obsidian_picker = obsidian_pickers[picker] or picker
