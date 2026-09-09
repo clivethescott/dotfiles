@@ -215,20 +215,8 @@ function M.on_attach(client, bufnr)
     end, { buffer = true, desc = 'LSP References' })
   end
 
-  if supports_method(client, vim.lsp.protocol.Methods.textDocument_codeLens, bufnr) then
-    -- auto refresh codelens
-    vim.api.nvim_create_autocmd('InsertLeave', {
-      once = true,
-      pattern = { '*.hls' },
-      callback = function(args)
-        local opts = { bufnr = args.buf }
-        if vim.lsp.codelens.is_enabled(opts) then
-          vim.lsp.codelens.run { client_id = client.id }
-        end
-      end,
-      group = vim.api.nvim_create_augroup('RefreshCodeLens', { clear = true }),
-    })
-
+  local no_code_lens_clients = { 'rust_analyzer' }
+  if supports_method(client, vim.lsp.protocol.Methods.textDocument_codeLens, bufnr) and not vim.tbl_contains(no_code_lens_clients, client.name) then
     vim.lsp.codelens.enable(true, { bufnr = bufnr })
     -- vim.keymap.set('n', 'grx',
     --   function() vim.lsp.codelens.run() end, { buffer = true, desc = 'Run Codelens' })

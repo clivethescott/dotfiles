@@ -240,7 +240,7 @@ M.get = function()
         end),
       },
     },
-    { -- Prompt for a name to use for a new workspace and switch to it.
+    { -- Prompt for a name to use for a new session/workspace and switch to it.
       key = 'S',
       mods = 'LEADER',
       action = wezterm.action.PromptInputLine {
@@ -264,7 +264,7 @@ M.get = function()
         end),
       },
     },
-    { -- rename session https://mwop.net/blog/2024-07-04-how-i-use-wezterm.html
+    { -- rename workspace/session https://mwop.net/blog/2024-07-04-how-i-use-wezterm.html
       key = '$',
       mods = 'LEADER',
       action = wezterm.action.PromptInputLine {
