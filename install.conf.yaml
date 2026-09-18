@@ -25,6 +25,7 @@
     ~/.config/aerospace/aerospace.toml: aerospace/aerospace.toml
     ~/.config/sesh: sesh
     ~/.config/television: television
+    ~/.config/hunk/config.toml: hunk/config.toml
     ~/.config/opencode/opencode.json: opencode/opencode.json
     ~/.config/opencode/tui.json: opencode/tui.json
     ~/.agents: agents
