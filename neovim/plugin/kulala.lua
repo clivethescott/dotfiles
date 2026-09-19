@@ -50,13 +50,14 @@ vim.api.nvim_create_autocmd('FileType', {
         ["Inspect current request"] = { "<space>hi", function() require("kulala").inspect() end, ft = fts },
       },
       kulala_keymaps = true,
-      default_env = 'qa',
+      default_env = 'prod',
       request_timeout = 5000,
       -- Current available pane contains { "body", "headers", "headers_body", "script_output", "stats", "verbose" },
       -- default_winbar_panes = { 'body', 'headers' },
       default_winbar_panes = { 'body' },
       default_view = 'headers_body',
       ui = {
+        max_response_size = 1000000, -- 1MB
         syntax_hl = { -- these are linked to Error by default so the highlighting is weird
           ['jsonCommentError'] = 'Changed',
           ['jsonNoQuotesError'] = 'WarningMsg'

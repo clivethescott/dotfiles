@@ -1,0 +1,23 @@
+theme = "custom"
+
+# Mirrors the top-level `colors` override in dotfiles/wezterm/wezterm.lua,
+# which wins over whatever color_scheme is active there.
+mode = "unified"
+line_numbers = true
+wrap_lines = false
+hunk_headers = false
+menu_bar = true
+agent_notes = false
+copy_decorations = false
+cursor_line = "row"
+
+[custom_theme]
+base = "catppuccin-mocha"
+label = "Wezterm Override"
+background = "#14161b"    # colors.tab_bar.background
+panel = "#14161b"         # colors.tab_bar.active_tab/inactive_tab.bg_color
+panelAlt = "#14161b"      # menu bar surface - matches background
+border = "#484848"        # window_frame border color
+accent = "#b3f6c0"        # colors.tab_bar.active_tab.fg_color (mint green)
+muted = "#626262"         # colors.tab_bar.inactive_tab.fg_color (grey)
+selectedHunk = "#b55a5a"  # colors.cursor_bg (brick red)
