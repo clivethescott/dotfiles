@@ -1,5 +1,6 @@
-  vim.pack.add({ { src = 'https://github.com/saecki/crates.nvim' } })
+vim.pack.add({ { src = 'https://github.com/saecki/crates.nvim' } })
 
+vim.schedule(function()
   require('crates').setup({
     lsp = {
       enabled = true,
@@ -11,3 +12,5 @@
       hover = true,
     }
   })
+end
+)
