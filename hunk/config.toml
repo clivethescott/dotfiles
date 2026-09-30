@@ -1,4 +1,4 @@
-theme = "custom"
+# theme = "custom"
 
 # Mirrors the top-level `colors` override in dotfiles/wezterm/wezterm.lua,
 # which wins over whatever color_scheme is active there.
@@ -10,6 +10,9 @@ menu_bar = true
 agent_notes = false
 copy_decorations = false
 cursor_line = "row"
+watch = true
+prompt_save_view_preferences = false
+transparent_background = true
 
 [custom_theme]
 base = "catppuccin-mocha"
