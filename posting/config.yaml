@@ -1,0 +1,16 @@
+theme: hacker
+keymap:
+  send-request: ctrl+enter
+  focus-method: ctrl+m
+  focus-url: ctrl+1
+  save-request: ctrl+s
+  expand-selection: ctrl+b
+  toggle-collection: ctrl+0
+  new-request: ctrl+n
+  commands: ctrl+t
+  help: ctrl+y
+  quit: ctrl+q
+  jump: ctrl+o
+  open-in-pager: ctrl+g
+  open-in-editor: ctrl+e
+  search-requests: ctrl+p
