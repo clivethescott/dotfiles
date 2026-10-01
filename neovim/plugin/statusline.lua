@@ -70,14 +70,7 @@ Statusline.filetype = function()
 end
 
 Statusline.httpEnv = function()
-  if vim.bo.filetype == 'http' then
-    local has_kulala, kulala = pcall(require, 'kulala')
-    if has_kulala then
-      local env = kulala.get_selected_env() or 'unknown'
-      return '[' .. env:upper() .. ']'
-    end
-  end
-  return ''
+  return '' -- placeholder
 end
 
 Statusline.active = function()
