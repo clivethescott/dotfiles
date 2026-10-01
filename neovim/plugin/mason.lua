@@ -38,7 +38,6 @@ local mason_packages = {
   'markdown-toc',
   'haskell-language-server',
   -- these are installed manually / not in mason registry
-  -- 'kulala_ls',
   -- 'nushell',
 }
 

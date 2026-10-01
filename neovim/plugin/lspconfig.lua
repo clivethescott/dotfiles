@@ -24,7 +24,6 @@ vim.schedule(function()
     'rust_analyzer', 'gopls',  'lua_ls', 'fish_lsp', 'nushell',
     'dockerls', 'terraformls',
     'smithy_ls',
-    'kulala_ls', -- only useful for graphQL completion, needs the kulala_ls LSP server installed,
     'helm_ls',
     'tinymist',
     'hls',
