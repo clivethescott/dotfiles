@@ -1,4 +1,3 @@
-theme: hacker
 keymap:
   send-request: ctrl+enter
   focus-method: ctrl+m
