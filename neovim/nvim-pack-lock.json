@@ -24,7 +24,7 @@
       "version": "'main'"
     },
     "fzf-lua": {
-      "rev": "eab53acb3fd36479f084f854b4418d02b5c70382",
+      "rev": "d5c12c6d72ed84554f0f8dacb84f20da094b6a2d",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitlinker.nvim": {
@@ -39,6 +39,10 @@
       "rev": "20df43509b02a3ce3c6b3eee254d6e2bffa9a370",
       "src": "https://github.com/qvalentin/helm-ls.nvim",
       "version": "'main'"
+    },
+    "hurl.nvim": {
+      "rev": "155a4e881058ad605e3498e8bdbb9561afe7739e",
+      "src": "https://github.com/clivethescott/hurl.nvim"
     },
     "mason.nvim": {
       "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
@@ -87,7 +91,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "fae5c76c00dec18485f264396ce24368e9c4e9fb",
+      "rev": "ec1b50c7fb9638e0a7b35e0182a54343b45f8d0d",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
