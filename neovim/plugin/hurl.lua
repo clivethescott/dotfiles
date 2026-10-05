@@ -28,6 +28,7 @@ vim.api.nvim_create_autocmd('FileType', {
     map('<space>hr', 'HurlRunner', 'Send selected requests', 'v')
     map('<space>ha', 'HurlRunner', 'Send all requests')
     map('<space>hl', 'HurlShowLastResponse', 'Show last response')
+    map('<space>hp', 'HurlPasteCurl', 'Paste curl as Hurl')
     map('<space>hh', 'HurlToggleMode', 'Toggle split/popup')
     map('<space>ht', 'HurlVerbose', 'Send request (verbose)')
     map('<space>he', 'HurlSelectEnvFile', 'Select environment')

@@ -18,6 +18,7 @@ local must_install_tools = {
   jless = 'jless JSON viewer',
   nu = 'nu shell',
   presenterm = 'presenterm',
+  hurlfmt = 'hurlfmt',
 }
 local M = {}
 M.check = function()
