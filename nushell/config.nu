@@ -58,9 +58,39 @@ $env._ZO_FZF_OPTS = $env.FZF_DEFAULT_OPTS
 $env.config.show_banner = false
 $env.config.edit_mode = 'vi'
 $env.config.cursor_shape = {emacs: line, vi_insert: line, vi_normal: block}
+# Like Fish, entering a directory name by itself changes into that directory.
+$env.config.auto_cd_implicit = true
 $env.config.completions.case_sensitive = false
 $env.config.completions.algorithm = 'fuzzy'
 $env.config.buffer_editor = 'nvim'
+
+# Prefer a single directory prefix over fuzzy matches such as `.codex/`.
+# Include local directories at the command position so `cod<Tab>` becomes
+# `Code/`; auto_cd_implicit then makes Enter change into that directory.
+# Keep the normal completion results for commands and ambiguous paths.
+$env.config.menus ++= [{
+    name: completion_menu
+    input_mode: cursor_prefix
+    marker: '| '
+    type: {layout: columnar, columns: 4, col_width: 20, col_padding: 2}
+    style: {text: green, selected_text: green_reverse, description_text: yellow}
+    source: {|token, buffer|
+        let native = ($buffer | commandline complete --detailed)
+        let prefix = ($token.text | str lowercase)
+        if $token.kind == head and $prefix != '' {
+            let dirs = ($token.text | commandline complete --type directory
+                | where {|item| $item | str lowercase | str starts-with $prefix})
+            if ($dirs | length) == 1 { return $dirs }
+            if ($dirs | is-not-empty) { return ($native | append $dirs) }
+        }
+        let paths = ($native | where {|item| $item.kind? in [directory file]})
+        if ($native | length) > 1 and ($native | length) == ($paths | length) {
+            let prefix_paths = ($paths | where {|item| $item.value | str lowercase | str starts-with $prefix})
+            if ($prefix_paths | is-not-empty) { return $prefix_paths }
+        }
+        $native
+    }
+}]
 
 # Fish supplies external command completions, including the user's WezTerm
 # completion file and Homebrew's vendor completions. Null lets Nu fall back
