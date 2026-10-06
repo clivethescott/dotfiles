@@ -1,0 +1,127 @@
+# Plugin equivalents from ~/.config/nvim. Helix merges these with its defaults.
+# Executables are resolved from PATH, including your existing Mason tools.
+# No keybindings or appearance settings are changed here.
+
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
+
+[language-server.ruff.config.settings]
+logLevel = "error"
+
+[language-server.gopls.config]
+usePlaceholders = false
+completeUnimported = true
+staticcheck = true
+directoryFilters = ["-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules"]
+semanticTokens = true
+experimentalPostfixCompletions = true
+gofumpt = true
+
+[language-server.gopls.config.hints]
+assignVariableTypes = true
+compositeLiteralFields = true
+compositeLiteralTypes = true
+constantValues = true
+functionTypeParameters = true
+parameterNames = true
+rangeVariableTypes = true
+
+[language-server.gopls.config.analyses]
+unusedvariable = true
+nilness = true
+unusedparams = true
+unusedwrite = true
+useany = true
+
+[language-server.rust-analyzer.config.workspace.symbol.search]
+scope = "workspace_and_dependencies"
+kind = "only_types"
+
+[language-server.lua-language-server.config.Lua]
+runtime.version = "LuaJIT"
+diagnostics.globals = ["vim", "parse", "s", "sn", "t", "f", "i", "c", "fmt", "rep", "wezterm"]
+diagnostics.unusedLocalExcludes = ["_*"]
+diagnostics.disable = ["missing-fields", "missing-parameter"]
+completion.callSnippet = "Replace"
+hint.enable = true
+format.enable = true
+telemetry.enable = false
+workspace.checkThirdParty = false
+workspace.ignoreDir = [".archived"]
+
+[language-server.tinymist.config]
+formatterMode = "typstyle"
+exportPdf = "onSave"
+semanticTokens = "disable"
+
+[language-server.helm_ls.config.helm-ls]
+logLevel = "warn"
+valuesFiles.mainValuesFile = "base_values.yaml"
+valuesFiles.additionalValuesFilesGlobPattern = "(dev|qa|prod)-*.yaml"
+
+[language-server.haskell-language-server.config.haskell.plugin.semanticTokens]
+globalOn = true
+
+[language-server.yaml-language-server.config]
+redhat.telemetry.enabled = false
+yaml.keyOrdering = false
+yaml.format.enable = true
+# Use the server's SchemaStore integration instead of Neovim's Lua plugin.
+yaml.schemaStore.enable = true
+yaml.hover = true
+yaml.completion = true
+yaml.customTags = ["!fn", "!And", "!If", "!Not", "!Equals", "!Or", "!FindInMap sequence", "!Base64", "!Cidr", "!Ref", "!Sub", "!GetAtt", "!GetAZs", "!ImportValue", "!Select", "!Split", "!Join sequence"]
+
+[[language]]
+name = "python"
+language-servers = ["ty", { name = "ruff", except-features = ["hover"] }]
+auto-format = true
+
+[[language]]
+name = "go"
+language-servers = ["gopls"]
+formatter = { command = "gofumpt" }
+auto-format = true
+
+[[language]]
+name = "rust"
+auto-format = true
+
+[[language]]
+name = "javascript"
+language-servers = [{ name = "typescript-language-server", except-features = ["format"] }, "biome"]
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = [{ name = "typescript-language-server", except-features = ["format"] }, "biome"]
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = [{ name = "typescript-language-server", except-features = ["format"] }, "biome"]
+auto-format = true
+
+[[language]]
+name = "tsx"
+language-servers = [{ name = "typescript-language-server", except-features = ["format"] }, "biome"]
+auto-format = true
+
+[[language]]
+name = "markdown"
+formatter = { command = "prettier", args = ["--parser", "markdown"] }
+auto-format = true
+
+[[language]]
+name = "gleam"
+formatter = { command = "gleam", args = ["format", "--stdin"] }
+auto-format = true
+
+[[language]]
+name = "hurl"
+auto-format = true
+
+[[language]]
+name = "smithy"
+auto-format = false

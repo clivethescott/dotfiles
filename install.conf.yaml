@@ -29,6 +29,7 @@
     ~/.config/opencode/opencode.json: opencode/opencode.json
     ~/.config/opencode/tui.json: opencode/tui.json
     ~/.config/posting/config.yaml: posting/config.yaml
+    ~/.config/helix: helix
     ~/.agents: agents
     ~/Code/.editorconfig: .editorconfig
     ~/IdeaProjects/.editorconfig: .editorconfig

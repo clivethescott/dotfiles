@@ -1,0 +1,19 @@
+theme = "nvim_dark_custom"
+
+[editor]
+line-number = "relative"
+cursorline = true
+completion-replace = true
+true-color = true
+rulers = [120]
+bufferline = "multiple"
+color-modes = true
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"

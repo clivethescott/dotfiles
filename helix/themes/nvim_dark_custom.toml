@@ -1,0 +1,125 @@
+# Neovim's current default dark palette plus plugin/colors.lua overrides.
+# Helix and Neovim use different highlight groups, so mappings are approximate.
+
+"ui.background" = { fg = "fg", bg = "bg" }
+"ui.text" = "fg"
+"ui.text.focus" = { fg = "fg", bg = "picker_focus", modifiers = ["bold"] }
+"ui.text.inactive" = "dim"
+"ui.text.info" = "fg"
+"ui.text.directory" = "cyan"
+"ui.cursor" = { fg = "bg", bg = "fg" }
+"ui.cursor.primary" = { fg = "bg", bg = "fg" }
+"ui.cursor.match" = { bg = "selection" }
+"ui.cursorline.primary" = { bg = "status_bg" }
+"ui.cursorline.secondary" = { bg = "status_bg" }
+"ui.selection" = { bg = "selection" }
+"ui.selection.primary" = { bg = "selection" }
+"ui.linenr" = "dim"
+"ui.linenr.selected" = { fg = "fg", modifiers = ["bold"] }
+"ui.gutter" = { bg = "bg" }
+"ui.statusline" = { fg = "status_fg", bg = "status_bg" }
+"ui.statusline.inactive" = { fg = "dim", bg = "inactive_bg" }
+"ui.statusline.normal" = { fg = "mode_normal", bg = "status_bg", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "mode_insert", bg = "status_bg", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "mode_select", bg = "status_bg", modifiers = ["bold"] }
+"ui.bufferline" = { fg = "dim", bg = "inactive_bg" }
+"ui.bufferline.active" = { fg = "status_fg", bg = "status_bg" }
+"ui.popup" = { fg = "fg", bg = "bg" }
+"ui.help" = { fg = "fg", bg = "bg" }
+"ui.menu" = { fg = "fg", bg = "black" }
+"ui.menu.selected" = { fg = "menu_selected", bg = "black", modifiers = ["bold"] }
+"ui.menu.scroll" = { fg = "dim", bg = "black" }
+"ui.window" = "dim"
+"ui.highlight" = { fg = "search_fg", bg = "search_bg" }
+"ui.virtual" = "dim"
+"ui.virtual.ruler" = { bg = "status_bg" }
+"ui.virtual.inlay-hint" = "dim"
+"ui.virtual.jump-label" = { fg = "mode_normal", modifiers = ["bold"] }
+"ui.picker.header" = { fg = "status_fg", modifiers = ["bold"] }
+"ui.picker.header.column.active" = { fg = "cyan", modifiers = ["bold"] }
+
+"comment" = "comment"
+"string" = "green"
+"string.special" = "cyan"
+"string.special.url" = { fg = "cyan", modifiers = ["underlined"] }
+"constant" = "fg"
+"constant.character.escape" = "cyan"
+"variable" = "fg"
+"variable.builtin" = "blue"
+"type" = "fg"
+"constructor" = "cyan"
+"function" = "cyan"
+"function.macro" = "fg"
+"keyword" = { fg = "keyword", modifiers = ["bold"] }
+"keyword.control.conditional" = "keyword"
+"keyword.control.repeat" = "keyword"
+"keyword.control.return" = "keyword"
+"keyword.control.exception" = "keyword"
+"keyword.control.import" = "import"
+"keyword.function" = "import"
+"keyword.operator" = "operator"
+"operator" = "operator"
+"punctuation" = "fg"
+"namespace" = "fg"
+"attribute" = "fg"
+"label" = "fg"
+"tag" = "cyan"
+"special" = "cyan"
+
+"markup.heading" = { fg = "fg", modifiers = ["bold"] }
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link.url" = { fg = "cyan", modifiers = ["underlined"] }
+"markup.link.text" = "blue"
+"markup.raw" = "green"
+"markup.list" = "cyan"
+
+"diff.plus" = { fg = "git_add", bg = "diff_add" }
+"diff.minus" = { fg = "git_delete", bg = "diff_delete" }
+"diff.delta" = { fg = "git_change", bg = "diff_change" }
+"diff.plus.gutter" = "git_add"
+"diff.minus.gutter" = "git_delete"
+"diff.delta.gutter" = "git_change"
+"error" = "error"
+"warning" = "warning"
+"info" = "cyan"
+"hint" = "blue"
+"diagnostic.error" = { underline = { color = "error", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "warning", style = "curl" } }
+"diagnostic.info" = { underline = { color = "cyan", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "blue", style = "curl" } }
+"diagnostic.unnecessary" = "git_change"
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+
+[palette]
+bg = "#14161b"
+fg = "#e0e2ea"
+comment = "#9b9ea4"
+green = "#b3f6c0"
+cyan = "#8cf8f7"
+blue = "#a6dbff"
+error = "#ffc0b9"
+warning = "#fce094"
+selection = "#4f5258"
+search_fg = "#eef1f8"
+search_bg = "#6b5300"
+status_bg = "#262626"
+status_fg = "#afafaf"
+inactive_bg = "#1c1c1c"
+dim = "#626262"
+black = "#000000"
+menu_selected = "#7a96d6"
+picker_focus = "#272828"
+mode_normal = "#f38ba8"
+mode_insert = "#94e2d5"
+mode_select = "#c8a0e0"
+keyword = "#b4a0d1"
+import = "#a4b4d4"
+operator = "#a09ab8"
+git_add = "#6b8e5f"
+git_change = "#b89a5a"
+git_delete = "#b55a5a"
+diff_add = "#1e2e1e"
+diff_delete = "#2e1e1e"
+diff_change = "#252f42"
