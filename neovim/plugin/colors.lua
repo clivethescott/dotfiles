@@ -95,6 +95,9 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 
     -- lsp
     vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { fg = '#b89a5a' })
+
+    -- mini jump 2d
+    vim.api.nvim_set_hl(0, 'MiniJump2DSpot', { fg = '#626262' })
   end,
 })
 

@@ -69,9 +69,9 @@ vim.schedule(function()
       on_jump = vim.diagnostic.open_float,
     },
     -- Show signs on top of any other sign, but only for warnings and errors
-    signs = { priority = 9999, severity = { min = 'WARN', max = 'ERROR' } },
+    signs = { priority = 9999, severity = { min = vim.diagnostic.severity.WARN, max = vim.diagnostic.severity.ERROR } },
     -- Show all diagnostics as underline
-    underline = { severity = { min = 'HINT', max = 'ERROR' } },
+    underline = { severity = { min = vim.diagnostic.severity.HINT, max = vim.diagnostic.severity.ERROR } },
     -- virtual_lines = true,
     -- Alternatively, customize specific options
     virtual_lines = false,
@@ -81,7 +81,7 @@ vim.schedule(function()
     -- },
     virtual_text = {
       current_line = true,
-      severity = { min = 'ERROR', max = 'ERROR' },
+      severity = { min = vim.diagnostic.severity.ERROR, max = vim.diagnostic.severity.ERROR },
     },
     update_in_insert = false,
     severity_sort = true,
