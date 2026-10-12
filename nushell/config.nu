@@ -268,15 +268,12 @@ $env.config.abbreviations = {
 
 # Only advertise shortcuts for optional programs that are installed.
 let optional_abbreviations = [
-    {program: tv,         entries: {t: tv}}
     {program: gron,       entries: {ungron: 'gron --ungron'}}
     {program: lazygit,    entries: {lg: lazygit}}
     {program: lazydocker, entries: {lld: lazydocker}}
     {program: dcli,       entries: {dashlane: dcli}}
     {program: jless,      entries: {jless: 'jless --relative-line-numbers', yless: 'jless --relative-line-numbers --yaml'}}
     {program: terraform,  entries: {tf: terraform}}
-    {program: gitui,      entries: {gt: gitui}}
-    {program: xh,         entries: {http: xh}}
     {program: nvim,       entries: {vim: nvim, nv: nvim, nvi: nvim, vi: 'nvim -u NONE'}}
     {program: bat,        entries: {cat: bat}}
     {program: ast-grep,   entries: {sg: ast-grep}}
