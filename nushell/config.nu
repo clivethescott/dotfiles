@@ -24,6 +24,7 @@ if ('/usr/libexec/java_home' | path exists) {
 # Match Fish's tool paths, skipping directories that are not installed.
 let tool_paths = [
     '/opt/homebrew/bin'
+    '/opt/zerobrew/bin'
     '/opt/homebrew/opt/uutils-coreutils/libexec/uubin'
     '/opt/homebrew/opt/curl/bin'
     ($env.HOME | path join 'Code/Go/bin')

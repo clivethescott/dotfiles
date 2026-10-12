@@ -268,3 +268,4 @@ fish_add_path ~/.local/bin
 fish_add_path /opt/homebrew/opt/git/share/git-core/contrib/git-jump
 fish_add_path ~/.local/share/nvim/mason/bin
 fish_add_path ~/.ghcup/bin
+fish_add_path /opt/zerobrew/bin

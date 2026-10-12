@@ -170,6 +170,13 @@ M.get = function()
     },
     {
       mods = 'LEADER',
+      key = 'u',
+      action = wezterm.action_callback(function(window, _)
+        window:maximize()
+      end)
+    },
+    {
+      mods = 'LEADER',
       key = 'k',
       action = action.ActivatePaneDirection 'Up',
     },
