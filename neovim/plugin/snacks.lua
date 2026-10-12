@@ -3,7 +3,8 @@ if vim.g.use_picker ~= 'snacks.picker' then return end
 ---@diagnostic disable: missing-fields
 local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('data'), '/site/pack/core/opt')
 local conf_dirs   = { '~/.config/nvim', '~/.config/wezterm',
-  '~/.config/atuin', '~/.config/lazygit', '~/.config/ghostty' }
+  '~/.config/atuin', '~/.config/lazygit', '~/.config/ghostty', '~/dotfiles/fish',
+  '~/dotfiles/nushell' }
 
 vim.pack.add({ { src = 'https://github.com/folke/snacks.nvim' } })
 
@@ -26,7 +27,7 @@ Snacks.setup({
           ["<c-q>"] = { "qflist", mode = { "i", "n" } },
           ["<a-g>"] = { "toggle_ignored", mode = { "i", "n" } },
           ["<a-m>"] = { "toggle_hidden", mode = { "i", "n" } },
-          ["<a-f>"] = { "toggle_maximize", mode = { "i", "n" } },   -- toggle zoom/maximise
+          ["<a-f>"] = { "toggle_maximize", mode = { "i", "n" } }, -- toggle zoom/maximise
           ["<c-g>"] = { "toggle_live", mode = { "i", "n" } },
           ["<M-Down>"] = { "history_forward", mode = { "i", "n" } },
           ["<M-Up>"] = { "history_back", mode = { "i", "n" } },

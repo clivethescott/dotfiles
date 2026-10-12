@@ -99,7 +99,7 @@ mouse-hide-while-typing = true
 # to both selection + sys clipboard
 copy-on-select = clipboard
 quit-after-last-window-closed = true
-shell-integration = "fish"
+shell-integration = "nushell"
 shell-integration-features = cursor,no-title
 
 auto-update = check
@@ -120,3 +120,4 @@ clipboard-paste-protection = true
 window-padding-x = 10, 0
 notify-on-command-finish = unfocused
 unfocused-split-opacity = 0.5
+command = /opt/zerobrew/bin/nu --config $HOME/.config/nushell/config.nu
