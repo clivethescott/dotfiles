@@ -64,6 +64,7 @@ $env.config.auto_cd_implicit = true
 $env.config.completions.case_sensitive = false
 $env.config.completions.algorithm = 'fuzzy'
 $env.config.buffer_editor = 'nvim'
+$env.config.color_config.shape_garbage = {fg: '#000000' bg: '#e5c07b' attr: b}
 
 # Prefer a single directory prefix over fuzzy matches such as `.codex/`.
 # Include local directories at the command position so `cod<Tab>` becomes
