@@ -10,6 +10,13 @@ wezterm.on('gui-startup', function(cmd)
   window:gui_window():maximize()
 end)
 
+-- Maximise windows when attaching to the persistent unix domain.
+wezterm.on('gui-attached', function()
+  for _, window in ipairs(mux.all_windows()) do
+    window:gui_window():maximize()
+  end
+end)
+
 wezterm.on('update-right-status', function(window, _)
   local date = wezterm.strftime '| %H:%M -- %A %d %b '
   local status = window:active_workspace() .. ' ' -- .. ' @ ' .. pane:get_domain_name() .. ' '
@@ -84,8 +91,8 @@ return {
     border_top_color = '#484848',
   },
   quit_when_all_windows_are_closed = false,
-  initial_cols = 200,
-  initial_rows = 160,
+  initial_cols = 120,
+  initial_rows = 35,
   audible_bell = "Disabled",
   window_close_confirmation = "NeverPrompt",
   color_schemes = {
