@@ -17,9 +17,11 @@ vim.pack.add({ { src = 'https://github.com/nvim-treesitter/nvim-treesitter', ver
 -- - Visit 'SUPPORTED_LANGUAGES.md' file at
 --   https://github.com/nvim-treesitter/nvim-treesitter/blob/main
 --
---   Incremental selection (in visual mode)
 --   see :h treesitter-defaults / https://github.com/neovim/neovim/commit/72d3a57f270fdca5e592dcf2e4b7c3b00549c05e
---   in (decrement), an (increment), [n prev node, ]n next node
+--   Incremental selection (in visual mode)
+--   in (decrement), an (increment),
+--   select Previous / Next node (in visual mode)
+--   [n prev node, ]n next node
 local ensure_installed = {
   'lua', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc',
   -- NOTE: the above are natively installed since neovim 0.12
