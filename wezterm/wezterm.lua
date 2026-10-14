@@ -11,22 +11,23 @@ wezterm.on('gui-startup', function(cmd)
 end)
 
 wezterm.on('update-right-status', function(window, _)
-  local date = wezterm.strftime '| %H:%M -- %A %d %b '
-  local status = window:active_workspace() .. ' ' -- .. ' @ ' .. pane:get_domain_name() .. ' '
-
-  window:set_right_status(wezterm.format {
-    { Foreground = { Color = '#a6e3a1' } },
-    { Text = status },
-    { Foreground = { Color = '#f5e0dc' } },
-    { Text = date },
-  })
+  -- local date = wezterm.strftime '| %H:%M -- %A %d %b '
+  -- local status = window:active_workspace() .. ' ' -- .. ' @ ' .. pane:get_domain_name() .. ' '
+  --
+  -- window:set_right_status(wezterm.format {
+  --   { Foreground = { Color = '#a6e3a1' } },
+  --   { Text = status },
+  --   { Foreground = { Color = '#f5e0dc' } },
+  --   { Text = date },
+  -- })
+  window:set_right_status('')
 end)
 
 wezterm.on('format-tab-title', function(tab, _)
   local zoomed = tab.active_pane.is_zoomed and '[Z] ' or ''
   local title = utils.tab_title(tab)
   return {
-    { Text = ' ' .. tostring(tab.tab_index + 1) .. ': ' .. title .. '  ' .. zoomed },
+    { Text = ' ' .. tostring(tab.tab_index + 1) .. ': ' .. title .. ' ' .. zoomed },
   }
 end)
 
