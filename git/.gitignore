@@ -18,5 +18,6 @@ http-client.env.json
 **/codebase-context.xml
 **/.worktreeinclude
 **/CLAUDE.md
+**/CONTEXT.md
 **/.claude/
 opencode.json
