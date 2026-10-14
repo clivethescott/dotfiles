@@ -2,7 +2,7 @@ vim.api.nvim_create_autocmd('FileType', {
   once = true,
   pattern = 'hurl',
   callback = function()
-    vim.pack.add({ { src = 'https://github.com/clivethescott/hurl.nvim' } })
+    vim.pack.add({ { src = 'https://github.com/clivethescott/hurl.nvim', version = 'develop' } })
 
     require('hurl').setup({
       mode = 'split',
