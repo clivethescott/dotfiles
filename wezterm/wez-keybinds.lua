@@ -176,6 +176,11 @@ M.get = function()
       end)
     },
     {
+      mods = 'CMD|SHIFT',
+      key = 'd',
+      action = wezterm.action.EmitEvent 'move-pane-to-new-tab'
+    },
+    {
       mods = 'LEADER',
       key = 'k',
       action = action.ActivatePaneDirection 'Up',

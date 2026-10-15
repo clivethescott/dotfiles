@@ -17,17 +17,18 @@ wezterm.on('gui-attached', function()
   end
 end)
 
-wezterm.on('update-right-status', function(window, _)
+wezterm.on('move-pane-to-new-tab', function(_, pane)
+  pane:move_to_new_tab()
+end)
+
+wezterm.on('update-right-status', function(window, pane)
   -- local date = wezterm.strftime '| %H:%M -- %A %d %b '
-  -- local status = window:active_workspace() .. ' ' -- .. ' @ ' .. pane:get_domain_name() .. ' '
-  --
-  -- window:set_right_status(wezterm.format {
-  --   { Foreground = { Color = '#a6e3a1' } },
-  --   { Text = status },
-  --   { Foreground = { Color = '#f5e0dc' } },
-  --   { Text = date },
-  -- })
-  window:set_right_status('')
+  local status = window:active_workspace() .. ' ' -- .. ' @ ' .. pane:get_domain_name() .. ' '
+
+  window:set_right_status(wezterm.format {
+    { Foreground = { Color = '#a6e3a1' } },
+    { Text = status },
+  })
 end)
 
 wezterm.on('format-tab-title', function(tab, _)
