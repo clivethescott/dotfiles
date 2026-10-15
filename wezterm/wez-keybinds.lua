@@ -156,7 +156,12 @@ M.get = function()
     {
       mods = 'LEADER',
       key = 'z',
-      action = action.TogglePaneZoomState
+      action = wezterm.action_callback(function(window, pane)
+        local tab = window:active_tab()
+        if #tab:panes() > 1 then
+          window:perform_action(action.TogglePaneZoomState, pane)
+        end
+      end)
     },
     {
       mods = 'LEADER',
