@@ -1,10 +1,10 @@
 #!/usr/bin/env fish
 
 brew upgrade
-if type -q mise
-  mise upgrade
+if type -q zb
+  zb upgrade
 else
-  echo 'mise is not installed....skipping update'
+  echo 'zerobrew is not installed....skipping update'
 end
 if type -q node
   npm update -g
