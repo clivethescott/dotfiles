@@ -73,12 +73,13 @@ $env.config.menus ++= [{
     marker: '| '
     type: {layout: columnar, columns: 4, col_width: 20, col_padding: 2}
     style: {text: green, selected_text: green_reverse, description_text: yellow}
-    source: {|token, buffer|
+    source: {|token, place, buffer|
         let native = ($buffer | commandline complete --detailed)
         let prefix = ($token.text | str lowercase)
-        if $token.kind == head and $prefix != '' {
-            let dirs = ($token.text | commandline complete --type directory
-                | where {|item| $item | str lowercase | str starts-with $prefix})
+        if $place.kind == command and $prefix != '' {
+            let dirs = ($token.text | commandline complete --type directory --detailed
+                | where {|item| $item.value | str lowercase | str starts-with $prefix}
+                | each {|item| $item | update span $token.span})
             if ($dirs | length) == 1 { return $dirs }
             if ($dirs | is-not-empty) { return ($native | append $dirs) }
         }
