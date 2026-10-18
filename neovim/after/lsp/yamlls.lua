@@ -14,7 +14,7 @@ local extra_schemas = vim.g.is_work_pc and {
     description = 'Mariner Helm values',
     fileMatch = '**/values/*.yaml',
     name = 'Mariner Helm values',
-    url = vim.fs.joinpath(vim.env.HOME, "/IdeaProjects/Spinnaker/values.schema.json"),
+    url = vim.fs.joinpath(vim.env.HOME, "/IdeaProjects/infra/values.schema.json"),
   }
 } or {}
 if vim.g.is_work_pc then
