@@ -16,6 +16,23 @@ Snacks.setup({
   ---@type snacks.picker.Config
   picker = {
     enabled = vim.g.use_picker == 'snacks.picker',
+    actions = {
+      toggle_files_grep = function(picker)
+        local source = picker.opts.source == "grep" and "files" or "grep"
+        local query = picker.input:get()
+
+        Snacks.picker(source, {
+          cwd = picker:cwd(),
+          dirs = picker.opts.dirs,
+          hidden = picker.opts.hidden,
+          ignored = picker.opts.ignored,
+          [source == "grep" and "search" or "pattern"] = query,
+          on_show = function()
+            picker:close()
+          end,
+        })
+      end,
+    },
     win = {
       input = {
         keys = {
@@ -29,6 +46,7 @@ Snacks.setup({
           ["<a-m>"] = { "toggle_hidden", mode = { "i", "n" } },
           ["<a-f>"] = { "toggle_maximize", mode = { "i", "n" } }, -- toggle zoom/maximise
           ["<c-g>"] = { "toggle_live", mode = { "i", "n" } },
+          ["<a-s>"] = { "toggle_files_grep", mode = { "i", "n" }, desc = "Switch files/grep" },
           ["<M-Down>"] = { "history_forward", mode = { "i", "n" } },
           ["<M-Up>"] = { "history_back", mode = { "i", "n" } },
           ["<a-r>"] = { "toggle_regex", mode = { "i", "n" } },
