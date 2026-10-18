@@ -4,25 +4,27 @@
 #     fish_config theme choose "Catppuccin Macchiato"
 # end
 
-begin
-# color overrides for ls*
-# Use Catppuccin Macchiato pink for symlinks in lsd / GNU ls.
-# Highlight world-writable directories in Catppuccin Macchiato red.
-    set -l other_colors (string match -v -r '^(ln|ow)=' -- (string split : -- "$LS_COLORS"))
-    set -gx LS_COLORS (string join : -- $other_colors \
+if status is-interactive
+    begin
+        # color overrides for ls*
+        # Use Catppuccin Macchiato pink for symlinks in lsd / GNU ls.
+        # Highlight world-writable directories in Catppuccin Macchiato red.
+        set -l other_colors (string match -v -r '^(ln|ow)=' -- (string split : -- "$LS_COLORS"))
+        set -gx LS_COLORS (string join : -- $other_colors \
         'ln=38;2;245;189;230' \
         'ow=1;38;2;237;135;150')
+    end
 end
 
 # For these generating them in conf.d. Remember to periodically update!
 # if status is-interactive
-    # if type -q fzf
-    #         fzf --fish | FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= source
-    #         # https://junegunn.github.io/fzf/
-    #         abbr --add -g gco "git branch | fzf --preview 'git show --color=always {-1}' \
-    # --bind 'enter:become(git switch {-1})' \
-    # --height 40% --layout reverse"
-    #
+# if type -q fzf
+#         fzf --fish | FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= source
+#         # https://junegunn.github.io/fzf/
+#         abbr --add -g gco "git branch | fzf --preview 'git show --color=always {-1}' \
+# --bind 'enter:become(git switch {-1})' \
+# --height 40% --layout reverse"
+#
 #     if type -q tv
 #         tv init fish | source
 #         abbr -a t tv
@@ -43,29 +45,32 @@ set -gx JAVA_HOME /opt/zerobrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home
 # disables Claude telemetry
 set -gx DISABLE_TELEMETRY 1
 
-# Disable the fish greeting message
-set fish_greeting ""
-# Emulates vim's cursor shape behavior
-# Set the normal and visual mode cursors to a block
-set fish_cursor_default block
-# Set the insert mode cursor to a line
-set fish_cursor_insert line
-# Set the replace mode cursors to an underscore
-set fish_cursor_replace_one underscore
-set fish_cursor_replace underscore
-# Set the external cursor to a line. The external cursor appears when a command is started.
-# The cursor shape takes the value of fish_cursor_default when fish_cursor_external is not specified.
-set fish_cursor_external line
-# The following variable can be used to configure cursor shape in
-# visual mode, but due to fish_cursor_default, is redundant here
-set fish_cursor_visual block
-# more info in prompt
-set fish_prompt_pwd_full_dirs 2
-set fish_prompt_pwd_dir_length 3
-# vi-mode
-set -g fish_key_bindings fish_vi_key_bindings
+if status is-interactive
 
-# set fzf_directory_opts --bind "ctrl-y:execute($EDITOR {}) ctrl-f:reload(fd --type file)"
+    # Disable the fish greeting message
+    set fish_greeting ""
+    # Emulates vim's cursor shape behavior
+    # Set the normal and visual mode cursors to a block
+    set fish_cursor_default block
+    # Set the insert mode cursor to a line
+    set fish_cursor_insert line
+    # Set the replace mode cursors to an underscore
+    set fish_cursor_replace_one underscore
+    set fish_cursor_replace underscore
+    # Set the external cursor to a line. The external cursor appears when a command is started.
+    # The cursor shape takes the value of fish_cursor_default when fish_cursor_external is not specified.
+    set fish_cursor_external line
+    # The following variable can be used to configure cursor shape in
+    # visual mode, but due to fish_cursor_default, is redundant here
+    set fish_cursor_visual block
+    # more info in prompt
+    set fish_prompt_pwd_full_dirs 2
+    set fish_prompt_pwd_dir_length 3
+    # vi-mode
+    set -g fish_key_bindings fish_vi_key_bindings
+
+    # set fzf_directory_opts --bind "ctrl-y:execute($EDITOR {}) ctrl-f:reload(fd --type file)"
+end
 
 set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:toggle-preview' --bind 'ctrl-/:change-preview-window(down|hidden|)' --walker-skip .git,node_modules,target,.scala-build,.idea --color=bg:#14161b,fg:white,hl:white,bg+:#14161b,fg+:white,hl+:white"
 set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
@@ -115,124 +120,123 @@ end
 #bind -M insert ctrl-c __fish_cancel_commandline
 
 # setup coreutils. This is slighly better than the mise one which has 1 uber command
-fish_add_path /opt/homebrew/opt/uutils-coreutils/libexec/uubin
-fish_add_path "$HOME/.docker/bin"
-fish_add_path /opt/homebrew/opt/curl/bin
-
-if type -q gron
-    abbr -a gr gron
-    abbr -a ungron gron --ungron
-end
-
-# if type -q mise
-#   mise activate fish | source
-# end
-#
-if type -q uv
-    abbr -a pip uv pip
-    abbr -a pip3 uv pip
-end
-
-if type -q lazygit
-    abbr -a lg lazygit
-end
-
-if type -q lazydocker
-    abbr -a lld lazydocker
-end
-
-# abbr -a sbt 'sbtn'
-abbr -a g 'git branch && git status --short'
-abbr -a gb 'git branch'
-abbr -a gd 'git diff'
-abbr -a gs 'git status'
-abbr -a gp 'git pull --ff --quiet'
-abbr -a gr 'git restore .'
-abbr -a gP 'git push'
-abbr -a gwl 'git worktree list'
-abbr -a gwr 'git worktree remove'
-abbr -a gwa 'git worktree add'
-abbr -a gw 'git worktree'
-abbr --add unset 'set --erase'
-abbr --add pbclear pbcopy </dev/null
-abbr --add cl 'claude agents'
-
-if type -q kubectl
-    abbr -a k kubectl
-    abbr -a kgetcontext kubectl config current-context
-
-    if type -q kubens # fuzzy alternative
-        abbr -a kn kubens
-        abbr -a kx 'kubectx && kubens'
-    else
-        abbr -a kn kubectl config set-context --current --namespace=
-        abbr -a kx kubectl config use-context
+if status is-interactive
+    if type -q gron
+        abbr -a gr gron
+        abbr -a ungron gron --ungron
     end
-end
 
-if type -q dcli
-    abbr -a dashlane dcli
-end
+    # if type -q mise
+    #   mise activate fish | source
+    # end
+    #
+    if type -q uv
+        abbr -a pip uv pip
+        abbr -a pip3 uv pip
+    end
 
-if type -q jless
-    abbr -a jless 'jless --relative-line-numbers'
-    abbr -a yless 'jless --relative-line-numbers --yaml'
-end
+    if type -q lazygit
+        abbr -a lg lazygit
+    end
 
-if type -q terraform
-    abbr -a tf terraform
-end
+    if type -q lazydocker
+        abbr -a lld lazydocker
+    end
 
-if type -q gitui
-    abbr -a gt gitui
-end
+    # abbr -a sbt 'sbtn'
+    abbr -a g 'git branch && git status --short'
+    abbr -a gb 'git branch'
+    abbr -a gd 'git diff'
+    abbr -a gs 'git status'
+    abbr -a gp 'git pull --ff --quiet'
+    abbr -a gr 'git restore .'
+    abbr -a gP 'git push'
+    abbr -a gwl 'git worktree list'
+    abbr -a gwr 'git worktree remove'
+    abbr -a gwa 'git worktree add'
+    abbr -a gw 'git worktree'
+    abbr --add unset 'set --erase'
+    abbr --add pbclear pbcopy </dev/null
+    abbr --add cl 'claude agents'
 
-if type -q xh
-    abbr -a http xh
-end
+    if type -q kubectl
+        abbr -a k kubectl
+        abbr -a kgetcontext kubectl config current-context
 
-function z
-    cd
-end
+        if type -q kubens # fuzzy alternative
+            abbr -a kn kubens
+            abbr -a kx 'kubectx && kubens'
+        else
+            abbr -a kn kubectl config set-context --current --namespace=
+            abbr -a kx kubectl config use-context
+        end
+    end
 
-abbr -a cdr 'cd $(git rev-parse --show-toplevel)'
+    if type -q dcli
+        abbr -a dashlane dcli
+    end
 
-if type -q nvim
-    abbr -a vim nvim
-    abbr -a nv nvim
-    abbr -a nvi nvim
-    abbr -a vi 'nvim -u NONE'
-end
+    if type -q jless
+        abbr -a jless 'jless --relative-line-numbers'
+        abbr -a yless 'jless --relative-line-numbers --yaml'
+    end
 
-# `ls` → `lsd`
-if type -q lsd
-    abbr --add -g ls lsd
-end
+    if type -q terraform
+        abbr -a tf terraform
+    end
 
-# `cat` → `bat` abbreviation
-# Requires `brew install bat`
-if type -q bat
-    abbr --add -g cat bat
-    # https://github.com/sharkdp/bat#highlighting---help-messages
-    abbr -a --position anywhere -- --help '--help | bat -plhelp'
-    abbr -a --position anywhere -- -h '-h | bat -plhelp'
-end
+    if type -q gitui
+        abbr -a gt gitui
+    end
 
-if type -q ast-grep
-    abbr --add -g sg ast-grep
-end
+    if type -q xh
+        abbr -a http xh
+    end
 
-if type -q gh
-    abbr --add -g ghr 'gh pr checkout'
-end
+    function z
+        cd
+    end
 
-if type -q python3
-    abbr --add -g py python3
-    abbr --add -g python python3
-end
+    abbr -a cdr 'cd $(git rev-parse --show-toplevel)'
 
-if status is-interactive; and test -f ~/.config/fish/tokens.fish; and not set -q USE_Q
-    source ~/.config/fish/tokens.fish
+    if type -q nvim
+        abbr -a vim nvim
+        abbr -a nv nvim
+        abbr -a nvi nvim
+        abbr -a vi 'nvim -u NONE'
+    end
+
+    # `ls` → `lsd`
+    if type -q lsd
+        abbr --add -g ls lsd
+    end
+
+    # `cat` → `bat` abbreviation
+    # Requires `brew install bat`
+    if type -q bat
+        abbr --add -g cat bat
+        # https://github.com/sharkdp/bat#highlighting---help-messages
+        abbr -a --position anywhere -- --help '--help | bat -plhelp'
+        abbr -a --position anywhere -- -h '-h | bat -plhelp'
+    end
+
+    if type -q ast-grep
+        abbr --add -g sg ast-grep
+    end
+
+    if type -q gh
+        abbr --add -g ghr 'gh pr checkout'
+    end
+
+    if type -q python3
+        abbr --add -g py python3
+        abbr --add -g python python3
+    end
+
+    if test -f ~/.config/fish/tokens.fish
+        source ~/.config/fish/tokens.fish
+    end
+
 end
 
 set -gx MANPAGER "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
@@ -268,14 +272,10 @@ if status is-interactive; and type -q zoxide
     # import from z => zoxide import --merge --from=z ~/.local/share/z/data
     set -gx _ZO_FZF_OPTS "$FZF_DEFAULT_OPTS"
     # z, zi for fzf
-    zoxide init --cmd cd fish | source
+    # zoxide init --cmd cd fish | source
     abbr -a z cdi
 end
 
 set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $JAVA_HOME/bin $PATH
 
-fish_add_path ~/.local/bin
-fish_add_path /opt/homebrew/opt/git/share/git-core/contrib/git-jump
-fish_add_path ~/.local/share/nvim/mason/bin
-fish_add_path ~/.ghcup/bin
-fish_add_path /opt/zerobrew/bin
+fish_add_path /opt/homebrew/opt/uutils-coreutils/libexec/uubin "$HOME/.docker/bin" /opt/homebrew/opt/curl/bin ~/.local/bin /opt/homebrew/opt/git/share/git-core/contrib/git-jump ~/.local/share/nvim/mason/bin ~/.ghcup/bin /opt/zerobrew/bin
