@@ -3,8 +3,10 @@ if vim.g.use_picker ~= 'snacks.picker' then return end
 ---@diagnostic disable: missing-fields
 local plugins_dir = vim.fs.joinpath(vim.fn.stdpath('data'), '/site/pack/core/opt')
 local conf_dirs   = { '~/.config/nvim', '~/.config/wezterm',
-  '~/.config/atuin', '~/.config/lazygit', '~/.config/ghostty', '~/dotfiles/fish',
-  '~/dotfiles/nushell' }
+  '~/.config/atuin', '~/.config/lazygit', '~/.config/ghostty',
+  '~/dotfiles/fish', '~/.config/fish',
+  '~/dotfiles/nushell', '~/.config/nushell',
+}
 
 vim.pack.add({ { src = 'https://github.com/folke/snacks.nvim' } })
 
