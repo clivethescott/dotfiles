@@ -16,10 +16,7 @@ $env.XDG_CACHE_HOME = ($env.XDG_CACHE_HOME? | default ($env.HOME | path join '.c
 $env.TEALDEER_CONFIG_DIR = ($env.XDG_CONFIG_HOME | path join 'tealdeer')
 $env.RIPGREP_CONFIG_PATH = ($env.HOME | path join 'dotfiles/ripgrep/.ripgreprc')
 $env.MANPAGER = "sh -c 'sed -u -e \"s/\\x1B\\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
-
-if ('/usr/libexec/java_home' | path exists) {
-    $env.JAVA_HOME = (^/usr/libexec/java_home -v 21 | str trim)
-}
+$env.JAVA_HOME = '/opt/zerobrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home'
 
 # Match Fish's tool paths, skipping directories that are not installed.
 let tool_paths = [

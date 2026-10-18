@@ -1,11 +1,35 @@
-if status is-interactive; and test -f $__fish_config_dir/themes/Catppuccin\ Macchiato.theme
-    fish_config theme choose "Catppuccin Macchiato"
-end
+# Disabled for perf
+# This can be run once, fish remembers
+# if status is-interactive; and test -f $__fish_config_dir/themes/Catppuccin\ Macchiato.theme
+#     fish_config theme choose "Catppuccin Macchiato"
+# end
+
+# For these generating them in conf.d. Remember to periodically update!
+# if status is-interactive
+    # if type -q fzf
+    #         fzf --fish | FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= source
+    #         # https://junegunn.github.io/fzf/
+    #         abbr --add -g gco "git branch | fzf --preview 'git show --color=always {-1}' \
+    # --bind 'enter:become(git switch {-1})' \
+    # --height 40% --layout reverse"
+    #
+#     if type -q tv
+#         tv init fish | source
+#         abbr -a t tv
+#     end
+# end
+
+# setup atuin
+# if status is-interactive; and type -q atuin
+
+#     # disable default keybindings
+#     atuin init fish | source
+# end
 
 set -gx EDITOR nvim
 set -gx COMPOSE_BAKE true
 set -gx JIRA_PAGER bat
-set -gx JAVA_HOME (/usr/libexec/java_home -v 21)
+set -gx JAVA_HOME /opt/zerobrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home
 # disables Claude telemetry
 set -gx DISABLE_TELEMETRY 1
 
@@ -37,26 +61,7 @@ set -gx FZF_DEFAULT_OPTS "--layout reverse --tmux 80% --border --bind 'alt-i:tog
 set -gx FZF_DEFAULT_COMMAND "fd --type file --strip-cwd-prefix --follow --exclude .git"
 set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 set -gx FZF_CTRL_T_OPTS $FZF_DEFAULT_OPTS
-if status is-interactive
-    # if type -q fzf
-    #         fzf --fish | FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= source
-    #         # https://junegunn.github.io/fzf/
-    #         abbr --add -g gco "git branch | fzf --preview 'git show --color=always {-1}' \
-    # --bind 'enter:become(git switch {-1})' \
-    # --height 40% --layout reverse"
-    #
-    if type -q tv
-        tv init fish | source
-        abbr -a t tv
-    end
-end
-
-# setup atuin
-if status is-interactive; and type -q atuin
-    # disable default keybindings
-    set -gx ATUIN_NOBIND true
-    atuin init fish | source
-end
+set -gx ATUIN_NOBIND true
 
 # tmux auto-start
 #if status is-interactive; and set -q TMUX
@@ -103,11 +108,6 @@ end
 fish_add_path /opt/homebrew/opt/uutils-coreutils/libexec/uubin
 fish_add_path "$HOME/.docker/bin"
 fish_add_path /opt/homebrew/opt/curl/bin
-
-if type -q brew
-    # Setup brew paths
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-end
 
 if type -q gron
     abbr -a gr gron
