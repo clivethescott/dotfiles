@@ -4,6 +4,16 @@
 #     fish_config theme choose "Catppuccin Macchiato"
 # end
 
+begin
+# color overrides for ls*
+# Use Catppuccin Macchiato pink for symlinks in lsd / GNU ls.
+# Highlight world-writable directories in Catppuccin Macchiato red.
+    set -l other_colors (string match -v -r '^(ln|ow)=' -- (string split : -- "$LS_COLORS"))
+    set -gx LS_COLORS (string join : -- $other_colors \
+        'ln=38;2;245;189;230' \
+        'ow=1;38;2;237;135;150')
+end
+
 # For these generating them in conf.d. Remember to periodically update!
 # if status is-interactive
     # if type -q fzf
