@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: For yield
+# key: fory
+# --
+for {
+${1:???}
+} yield ()

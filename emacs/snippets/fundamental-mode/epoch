@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Display current unix epoch
+# key: epoch
+# --
+`(format-time-string "%s")`

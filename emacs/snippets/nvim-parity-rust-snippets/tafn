@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Tokio test
+# key: tafn
+# --
+#[tokio::test]
+async fn ${1:name}() {
+    ${2:todo!();}
+}

@@ -274,4 +274,4 @@ end
 
 set PATH /opt/homebrew/bin $GOBIN $HOME/Library/Application\ Support/Coursier/bin $HOME/.cargo/bin $HOME/apps/bin $JAVA_HOME/bin $PATH
 
-fish_add_path /opt/homebrew/opt/uutils-coreutils/libexec/uubin "$HOME/.docker/bin" /opt/homebrew/opt/curl/bin ~/.local/bin /opt/homebrew/opt/git/share/git-core/contrib/git-jump ~/.local/share/nvim/mason/bin ~/.ghcup/bin /opt/zerobrew/bin
+fish_add_path /opt/homebrew/opt/uutils-coreutils/libexec/uubin "$HOME/.docker/bin" /opt/homebrew/opt/curl/bin ~/.local/bin /opt/homebrew/opt/git/share/git-core/contrib/git-jump ~/.local/share/nvim/mason/bin ~/.ghcup/bin /opt/zerobrew/bin ~/.config/emacs/bin

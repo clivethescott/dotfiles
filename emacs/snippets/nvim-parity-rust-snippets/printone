@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Print one thing
+# key: printone
+# --
+println!("{}", ${1});

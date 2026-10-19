@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Struct + Debug
+# key: tys
+# --
+#[derive(Debug)]
+struct ${1:Name} {
+    ${2:field}: ${3:Type}
+}

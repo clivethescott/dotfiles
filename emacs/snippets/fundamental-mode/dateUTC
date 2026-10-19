@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Display current UTC time
+# key: dateUTC
+# --
+`(format-time-string "%Y-%m-%dT%H:%M:%S.0Z" nil t)`
