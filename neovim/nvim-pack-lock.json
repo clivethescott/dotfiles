@@ -40,7 +40,7 @@
       "version": "'main'"
     },
     "hurl.nvim": {
-      "rev": "4eac5672c15e2d65afd9f702994f52070e3f3668",
+      "rev": "e59b95febfa93c3bc10082b1722d6a1e5b94e6bd",
       "src": "https://github.com/clivethescott/hurl.nvim",
       "version": "'develop'"
     },
