@@ -8,7 +8,7 @@
   verbose = true
 
 [diff]
-  tool = nvim_difftool
+	tool = codediff
   algorithm = histogram
 
 [difftool]
@@ -19,7 +19,7 @@
   cmd = nvim -c \"packadd nvim.difftool\" -c \"DiffTool $LOCAL $REMOTE\"
 
 [merge]
-  tool = "nvim"
+	tool = codediff
 
 [mergetool "nvim"]
   path = nvim
@@ -52,3 +52,7 @@
 [credential "https://github.twdcgrid.net"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
+[mergetool "codediff"]
+	cmd = nvim \"$MERGED\" -c \"CodeDiff --exit-on-close merge \\\"$MERGED\\\"\"
+[difftool "codediff"]
+	cmd = nvim \"$LOCAL\" \"$REMOTE\" +\"CodeDiff --exit-on-close file $LOCAL $REMOTE\"

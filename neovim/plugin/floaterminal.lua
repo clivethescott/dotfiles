@@ -76,4 +76,4 @@ local toggle_lazygit = function()
 end
 
 vim.keymap.set({ 'n', 't' }, [[<M-\>]], toggle_terminal, { silent = true, desc = 'Toggle terminal' })
-vim.keymap.set('n', 'gs', toggle_lazygit, { silent = true, desc = 'Toggle lazygit' })
+vim.keymap.set('n', '<leader>gs', toggle_lazygit, { silent = true, desc = 'Toggle lazygit' })

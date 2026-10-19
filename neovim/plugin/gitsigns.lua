@@ -31,7 +31,7 @@ local on_attach = function()
   vim.keymap.set('n', '<space>gU', gitsigns.reset_buffer, { desc = 'Undo All Changes' })
 
   vim.keymap.set('n', '<space>gb', gitsigns.toggle_current_line_blame, { desc = 'Toggle blame' })
-  vim.keymap.set('n', '<space>gq', function() gitsigns.setqflist('all') end,
+  vim.keymap.set('n', '<space>gQ', function() gitsigns.setqflist('all') end,
     { desc = 'All changes to quickfix' })
   vim.keymap.set('n', '<space>gQ', gitsigns.setqflist, { desc = 'Buf changes to quickfix' })
   vim.keymap.set('n', '<space>ga',
