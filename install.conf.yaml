@@ -32,7 +32,8 @@
     ~/.config/posting/config.yaml: posting/config.yaml
     ~/.config/helix: helix
     ~/.agents: agents
-    ~/Code/.editorconfig: .editorconfig
+    ~/.editorconfig: .editorconfig
+    ~/.config/gitlogue/config.toml: gitlogue/config.toml
     ~/IdeaProjects/.editorconfig: .editorconfig
 
 - shell:

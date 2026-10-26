@@ -262,6 +262,7 @@ $env.config.abbreviations = {
     cl: 'claude agents'
     cdr: 'cd (git rev-parse --show-toplevel | str trim)'
     sbtd: 'sbt -Dsbt.server.autostart=false'
+    sbt: 'sbt --client'
     tldr: 'tldr -p macos --pager'
 }
 
