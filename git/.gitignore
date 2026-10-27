@@ -17,6 +17,5 @@ http-client.env.json
 **/.infiniloom/
 **/codebase-context.xml
 **/.worktreeinclude
-**/CLAUDE.md
 **/.claude/
 opencode.json
