@@ -26,9 +26,9 @@ vim.schedule(function()
     'smithy_ls',
     'helm_ls',
     'tinymist',
-    'hls',
     'tsc',
     'biome',
+    'gleam',
   })
 
   if vim.g.is_work_pc then

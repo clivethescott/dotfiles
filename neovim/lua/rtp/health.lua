@@ -19,6 +19,7 @@ local must_install_tools = {
   nu = 'nu shell',
   presenterm = 'presenterm',
   hurlfmt = 'hurlfmt',
+  ['tree-sitter'] = 'tree-sitter-cli',
 }
 local M = {}
 M.check = function()
