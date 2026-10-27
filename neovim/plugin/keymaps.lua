@@ -95,3 +95,13 @@ end, { desc = 'Show packages with updates' })
 -- gQ restores the previous set of multiple cursors
 -- Registers: cursors have their own registers.
 -- https://blog.olimorris.com/2026/09/02/multiple-cursors-in-neovim-0.13
+
+-- poor man's autopairs
+for k, v in pairs({
+  ['{'] = '{}',
+  ['['] = '[]',
+  ['('] = '()',
+}) do
+  -- <c-g>U avoid splitting undo
+  vim.keymap.set("i", k, v .. "<C-g>U<Left>")
+end
