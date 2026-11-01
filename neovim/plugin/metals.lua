@@ -18,12 +18,12 @@ metals_config.settings = {
   disabledMode = true,
   -- disabledMode = vim.env.METALS == '0',
   -- startMcpServer = false,
-  -- serverVersion = '1.6.8',
-  serverVersion = '2.0.0-M18',
+  serverVersion = '1.6.9',
+  -- serverVersion = '2.0.0-M18',
   -- As of Metals v1.6.6 (Osmium), Metals now includes a built-in standalone MCP server (metals-mcp)
   -- that can be installed via Coursier (cs install metals-mcp)
   startMcpServer = false, -- https://scalameta.org/metals/blog/#standalone-mcp-server
-  fallbackScalaVersion = '2.13.16',
+  fallbackScalaVersion = '3.9.0',
   showImplicitArguments = true,
   showImplicitConversionsAndClasses = true,
   showInferredType = true,
