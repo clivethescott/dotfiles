@@ -101,6 +101,8 @@ for k, v in pairs({
   ['{'] = '{}',
   ['['] = '[]',
   ['('] = '()',
+  ['"'] = '""',
+  ['<'] = '<>',
 }) do
   -- <c-g>U avoid splitting undo
   vim.keymap.set("i", k, v .. "<C-g>U<Left>")
