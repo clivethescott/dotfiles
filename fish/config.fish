@@ -197,6 +197,10 @@ if status is-interactive
         cd
     end
 
+    function pwd
+        /bin/pwd | string replace --regex "^$HOME" '~'
+    end
+
     abbr -a cdr 'cd $(git rev-parse --show-toplevel)'
 
     if type -q nvim
