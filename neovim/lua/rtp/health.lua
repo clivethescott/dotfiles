@@ -18,6 +18,7 @@ local must_install_tools = {
   jless = 'jless JSON viewer',
   nu = 'nu shell',
   presenterm = 'presenterm',
+  mmdr = 'mermaid-rs-renderer',
   hurlfmt = 'hurlfmt',
   ['tree-sitter'] = 'tree-sitter-cli',
 }

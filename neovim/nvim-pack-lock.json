@@ -44,9 +44,17 @@
       "src": "https://github.com/clivethescott/hurl.nvim",
       "version": "'develop'"
     },
+    "kitehost.nvim": {
+      "rev": "4cb5c94a84cc653e0b32e0c9aed95465a36fc94d",
+      "src": "https://github.com/selimacerbas/kitehost.nvim"
+    },
     "mason.nvim": {
       "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
       "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "mdkite.nvim": {
+      "rev": "dded03dc6cce87364b48260b2ffbace575a6add7",
+      "src": "https://github.com/selimacerbas/mdkite.nvim"
     },
     "mini.files": {
       "rev": "638b80cb985c89ca2a98eed72c552c8d485a3d5b",
