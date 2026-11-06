@@ -1,3 +1,5 @@
+if not vim.g.is_work_pc then return end
+
 vim.schedule(function()
   vim.pack.add({ { src = 'https://github.com/linrongbin16/gitlinker.nvim' } })
 

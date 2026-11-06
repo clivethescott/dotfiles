@@ -40,7 +40,6 @@ return {
           -- pack('render-markdown.nvim'),
           -- pack('obsidian.nvim'),
           -- pack('opencode.nvim'),
-          pack('wezterm-types'),
         },
       },
     },

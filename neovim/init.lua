@@ -12,7 +12,6 @@ vim.g.blink_enabled = true
 vim.cmd.packadd('Cfilter')       -- filter qflist
 vim.cmd.packadd('nvim.difftool') -- OR :packadd nvim.difftool :Difftool -- setup for gitdiff tool -d
 vim.cmd.packadd('nvim.undotree') -- :Undotree -- set :h undolist for cmds
-vim.pack.add({ { src = 'https://github.com/DrKJeff16/wezterm-types' } })
 
 -- :h ui2
 require('vim._core.ui2').enable({
