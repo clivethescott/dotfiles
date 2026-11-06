@@ -1,23 +1,14 @@
 {
   "version": 3,
   "skills": {
-    "caveman": {
-      "source": "JuliusBrussee/caveman",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/JuliusBrussee/caveman.git",
-      "skillPath": "caveman/SKILL.md",
-      "skillFolderHash": "825e13085d1515fe67881b2123f3bf9b34c26154",
-      "installedAt": "2026-04-20T22:41:44.601Z",
-      "updatedAt": "2026-04-20T22:41:44.601Z"
-    },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/vercel-labs/skills.git",
       "skillPath": "skills/find-skills/SKILL.md",
-      "skillFolderHash": "3013fdeb8a11b10b1eb795ec3ae8bfca38f7c26d",
+      "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
       "installedAt": "2026-04-20T22:41:49.976Z",
-      "updatedAt": "2026-04-20T22:41:49.976Z"
+      "updatedAt": "2026-11-06T00:16:32.378Z"
     },
     "defuddle": {
       "source": "git@github.com:kepano/obsidian-skills.git",
@@ -45,6 +36,15 @@
       "skillFolderHash": "",
       "installedAt": "2026-04-20T22:42:02.404Z",
       "updatedAt": "2026-04-20T22:42:02.404Z"
+    },
+    "sesh": {
+      "source": "joshmedeski/sesh",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/joshmedeski/sesh.git",
+      "skillPath": "skills/sesh/SKILL.md",
+      "skillFolderHash": "26a41bcf68348dc5772a66b3a0d8aca144bfa48cae5acfa170c0f22bdc62fc6c",
+      "installedAt": "2026-11-06T00:16:16.794Z",
+      "updatedAt": "2026-11-06T00:16:16.794Z"
     }
   },
   "dismissed": {
@@ -52,16 +52,19 @@
   },
   "lastSelectedAgents": [
     "amp",
-    "antigravity",
     "cline",
     "codex",
     "cursor",
-    "deepagents",
-    "firebender",
+    "droid",
+    "fx",
     "gemini-cli",
     "github-copilot",
-    "kimi-cli",
+    "kilo",
+    "kimi-code-cli",
     "opencode",
-    "warp"
+    "pi",
+    "warp",
+    "zed",
+    "claude-code"
   ]
 }

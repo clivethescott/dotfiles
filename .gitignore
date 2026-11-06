@@ -2,3 +2,4 @@
 *.DS_Store
 fish/tokens.fish
 neovim/spell/*.spl
+agents/skills
