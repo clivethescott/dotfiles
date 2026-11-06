@@ -95,7 +95,18 @@ vim.api.nvim_create_autocmd('FileType', {
     map('<space>hp', 'HurlPasteCurl', 'Paste curl as Hurl')
     map('<space>hh', 'HurlToggleMode', 'Toggle split/popup')
     map('<space>ht', 'HurlVerbose', 'Send request (verbose)')
-    map('<space>he', 'HurlSelectEnvFile', 'Select environment')
+    vim.keymap.set('n', '<space>he', function()
+      -- the picker callback sets the env after the last redraw, so refresh the statusline once it runs
+      local select = vim.ui.select
+      vim.ui.select = function(items, opts, on_choice)
+        vim.ui.select = select
+        select(items, opts, function(...)
+          on_choice(...)
+          vim.cmd.redrawstatus()
+        end)
+      end
+      vim.cmd.HurlSelectEnvFile()
+    end, { buffer = ev.buf, desc = 'Select environment' })
     map('<space>hE', 'HurlManageVariable', 'Show variables')
   end
 })

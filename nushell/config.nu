@@ -7,7 +7,6 @@
 $env.EDITOR = 'nvim'
 $env.COMPOSE_BAKE = 'true'
 $env.DISABLE_TELEMETRY = '1'
-$env.JIRA_PAGER = 'bat'
 $env.BAT_THEME = 'Catppuccin Mocha'
 $env.PYTHONGIL = '0'
 $env.XDG_CONFIG_HOME = ($env.HOME | path join '.config')

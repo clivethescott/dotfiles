@@ -69,8 +69,14 @@ Statusline.filetype = function()
   return string.format('%%#StatusLineFileType# %s %%#StatusLine#', vim.bo.filetype)
 end
 
+-- hurl.nvim keeps the selected env file(s) in _HURL_GLOBAL_CONFIG.env_file
 Statusline.httpEnv = function()
-  return '' -- placeholder
+  if vim.bo.filetype ~= 'hurl' or not _HURL_GLOBAL_CONFIG then return '' end
+  local names = vim.tbl_map(function(file)
+    return vim.fn.fnamemodify(file, ':t:r')
+  end, _HURL_GLOBAL_CONFIG.env_file or {})
+  if #names == 0 then return '' end
+  return string.format('%%#StatusLineFileType#[%s] %%#StatusLine#', table.concat(names, ','))
 end
 
 Statusline.active = function()
@@ -83,9 +89,9 @@ Statusline.active = function()
     ' %r', -- [readonly] flag
     ' %h', -- [help buffer] flag
     '%=',  -- right align from here
-    Statusline.httpEnv(),
     Statusline.lspInfo(),
     Statusline.gitInfo(),
+    Statusline.httpEnv(),
   })
 end
 
