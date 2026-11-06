@@ -1,7 +1,7 @@
 # Awesome Setup config via UI => https://ghostty.zerebos.com
 
 # See more @ ghostty +list-keybinds --default
-# python3 -c "print(hex(ord(input('Press key: '))))"  
+# python3 -c "print(hex(ord(input('Press key: '))))"
 # or just ask an LLM about escape sequences in ghostty
 #
 keybind = cmd+period=csi:46;5u
@@ -99,7 +99,7 @@ mouse-hide-while-typing = true
 # to both selection + sys clipboard
 copy-on-select = clipboard
 quit-after-last-window-closed = true
-shell-integration = "nushell"
+shell-integration = "fish"
 shell-integration-features = cursor,no-title
 
 auto-update = check
@@ -120,4 +120,4 @@ clipboard-paste-protection = true
 window-padding-x = 10, 0
 notify-on-command-finish = unfocused
 unfocused-split-opacity = 0.5
-command = /opt/zerobrew/bin/nu --config $HOME/.config/nushell/config.nu
+# command = /opt/zerobrew/bin/nu --config $HOME/.config/nushell/config.nu
