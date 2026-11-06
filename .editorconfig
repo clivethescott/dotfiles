@@ -22,8 +22,11 @@ indent_style = tab
 [*.{py,ipynb}]
 indent_size = 4
 
-[*.{java,scala,sc,sbt}]
+[*.java]
 indent_size = 4
+
+[*.{scala,sc,sbt}]
+indent_size = 2
 
 [{Makefile,makefile,*.mk}]
 indent_style = tab
