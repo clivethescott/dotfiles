@@ -13,6 +13,7 @@ undodir/
 .terraform/
 http-client.env.json
 *.sbtopts
+*.semanticdb
 # infiniloom
 **/.infiniloom/
 **/codebase-context.xml
