@@ -6,4 +6,4 @@ require('codediff').setup{
 
 vim.keymap.set('n', '<space>gg', '<cmd>CodeDiff<cr>', { desc = 'CodeDiff' })
 vim.keymap.set('n', '<space>gq', '<cmd>tabclose<cr>', { desc = 'Close CodeDiff' })
-vim.keymap.set('n', '<space>gs', '<cmd>CodeDiff main...HEAD<cr>', { desc = 'CodeDiff branch' })
+vim.keymap.set('n', '<space>gs', '<cmd>CodeDiff origin/main HEAD<cr>', { desc = 'CodeDiff branch' })
