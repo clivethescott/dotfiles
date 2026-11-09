@@ -1,4 +1,5 @@
 local data_path = vim.fn.stdpath('data')
+---@diagnostic disable-next-line: unused-function
 local function pack(name)
   return vim.fs.joinpath(data_path, '/site/pack/core/opt/', name)
 end
@@ -34,6 +35,7 @@ return {
         library = {
           vim.env.VIMRUNTIME,
           '${3rd}/luv/library',
+          -- pack('gitlinker.nvim'),
           -- pack('nvim-lspconfig'),
           -- pack('blink.cmp'),
           -- pack('nvim-treesitter'),
