@@ -118,6 +118,7 @@ quick-terminal-size = 75%,65%
 quick-terminal-position = center
 clipboard-paste-protection = true
 window-padding-x = 10, 0
+drag-handle = never
 notify-on-command-finish = unfocused
 unfocused-split-opacity = 0.5
 # command = /opt/zerobrew/bin/nu --config $HOME/.config/nushell/config.nu
