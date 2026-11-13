@@ -1,0 +1,6 @@
+# Copy for another project; change cd and new_tab.
+new_tab fish
+layout splits
+cd ~
+launch
+os_window_state maximized

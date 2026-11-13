@@ -31,6 +31,7 @@
     ~/.config/opencode/tui.json: opencode/tui.json
     ~/.config/posting/config.yaml: posting/config.yaml
     ~/.config/helix: helix
+    ~/.config/kitty: kitty
     ~/.agents: agents
     ~/.editorconfig: .editorconfig
     ~/.config/gitlogue/config.toml: gitlogue/config.toml
