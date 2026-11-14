@@ -1,14 +1,7 @@
 os:
   editPreset: nvim-remote
 gui:
-  branchColors:
-    "master": "#ff5500"
-    "main": "#ff5500"
   nerdFontsVersion: "3"
-  authorColors:
-    "Clive Gurure": "#b4befe"
-    "Clive Scott": "#b4befe"
-    "*": "yellow"
   enlargedSideViewLocation: "top"
   theme:
     activeBorderColor:
@@ -30,6 +23,13 @@ gui:
       - "#cdd6f4"
     searchingActiveBorderColor:
       - "#f9e2af"
+    authorColors:
+      "Clive Gurure": "#b4befe"
+      "Clive Scott": "#b4befe"
+      "*": "yellow"
+    branchColorPatterns:
+      "^master(/|$)": "#ff5500"
+      "^main(/|$)": "#ff5500"
 git:
   commitPrefix:
     - pattern: "^ASTX-(\\d{4}).*"
