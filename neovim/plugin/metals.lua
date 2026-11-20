@@ -68,6 +68,8 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { 'scala', 'sbt', 'java' },
   callback = function()
     metals.initialize_or_attach(metals_config)
+    vim.keymap.set('n', '<space>ms', metals.start_server, { desc = 'Metals: manually start server' })
+    vim.keymap.set('n', '<space>mS', '<cmd>LspStop metals<cr>', { desc = 'Metals: manually stop server' })
   end,
   group = metals_group,
 })
