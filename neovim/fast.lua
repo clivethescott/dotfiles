@@ -250,7 +250,7 @@ vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
 })
 
 -- Keybindings
-vim.keymap.set('n', '<C-s>', ':silent update<cr>')
+vim.keymap.set('n', '<C-s>', '<cmd>silent update<cr>')
 vim.keymap.set('i', '<C-s>', '<esc>:silent update<cr>')
 vim.keymap.set('i', '<C-z>', '<esc>:undo<cr>')
 vim.keymap.set('n', '<M-v>', '"*p')
@@ -261,13 +261,13 @@ vim.keymap.set("n", "k", function() return vim.v.count > 1 and "m'" .. vim.v.cou
 vim.keymap.set("n", "j", function() return vim.v.count > 1 and "m'" .. vim.v.count .. "j" or "j" end, { expr = true })
 vim.keymap.set('n', '<space>lD', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end,
   { desc = 'Toggle diagnostics' })
-vim.keymap.set('n', 'Q', ':qa<cr>')
-vim.keymap.set('n', '<leader>q', ':qa!<cr>')
+vim.keymap.set('n', 'Q', '<cmd>qa<cr>')
+vim.keymap.set('n', '<leader>q', '<cmd>qa!<cr>')
 vim.keymap.set('n', 'Y', 'yy')
 vim.keymap.set('n', "'", '`')
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
-vim.keymap.set('n', '<space>x', ":.lua<cr>", { silent = true, desc = 'Exec Lua' })
+vim.keymap.set('n', '<space>x', "<cmd>.lua<cr>", { silent = true, desc = 'Exec Lua' })
 vim.keymap.set('n', '<space>X', "<cmd>source %<cr>", { silent = true, desc = 'Exec Lua file' })
 vim.keymap.set('v', '<space>x', ":lua<cr>", { silent = true, desc = 'Exec Lua' })
 vim.keymap.set({ 'x', 'n' }, '&', ':&&<cr>', { desc = 'Repeat last substitute keeping flags' })

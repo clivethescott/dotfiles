@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<C-s>', ':silent update<cr>')
+vim.keymap.set('n', '<C-s>', '<cmd>silent update<cr>')
 vim.keymap.set('i', '<C-s>', '<esc>:silent update<cr>')
 
 vim.keymap.set('i', '<C-z>', '<esc>:undo<cr>')
@@ -49,7 +49,7 @@ vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
 -- Lua dev
-vim.keymap.set('n', '<space>x', ":.lua<cr>", { silent = true, desc = 'Exec Lua' })
+vim.keymap.set('n', '<space>x', "<cmd>.lua<cr>", { silent = true, desc = 'Exec Lua' })
 vim.keymap.set('n', '<space>X', "<cmd>source %<cr>", { silent = true, desc = 'Exec Lua file' })
 vim.keymap.set('v', '<space>x', ":lua<cr>", { silent = true, desc = 'Exec Lua' })
 
